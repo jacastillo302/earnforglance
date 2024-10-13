@@ -14,4 +14,5 @@ This project was born from the collaboration of several companies, combining the
 
 -- Provide producers with powerful insights to make informed decisions before launching their products.
 
-This document wait reach to explain starkly how the product work technical and functionality as is explain afterwards
+
+This document aims to clearly explain how the product works, both technically and functionally, as detailed in the following sections.
