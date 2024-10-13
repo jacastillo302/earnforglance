@@ -5,7 +5,12 @@ This project was born from the collaboration of several companies, combining the
 ## The principal goals of the project are: ##
 
 -- Enable consumers to earn money by watching videos.
+
 -- Allow media producers to upload their creations and share them with a community of reviewers.
+
 -- Collect information about consumers, including their facial expressions, opinions, and assessments.
+
 -- Process the collected information using breakthrough technologies.
+
 -- Provide producers with powerful insights to make informed decisions before launching their products.
+
