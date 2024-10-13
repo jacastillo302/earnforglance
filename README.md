@@ -16,3 +16,9 @@ This project was born from the collaboration of several companies, combining the
 
 
 This document aims to clearly explain how the product works, both technically and functionally, as detailed in the following sections.
+
+
+## Table of Contents
+* [Introducction](#introducction)
+
+## Introduction
