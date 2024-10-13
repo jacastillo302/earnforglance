@@ -100,3 +100,75 @@ This document aims to clearly explain how the product works, both technically an
 
 [10. Inspirations and Recommendations](#10-inspirations-and-recommendations)
 
+
+
+## 1. Introduction
+
+### 1.1 Purpose of this Repository
+### 1.2 Out of Scope
+### 1.3 Reason
+### 1.4 Disclaimer
+### 1.5 Give a Star
+### 1.6 Share It
+
+## 2. Domain
+
+### 2.1 Description
+
+**Definition:**
+
+> Domain - A sphere of knowledge, influence, or activity. The subject area to which the user applies a program is the domain of the software. [Domain-Driven Design Reference](http://domainlanguage.com/ddd/reference/), Eric Evans
+
+### 2.2 Conceptual Model
+**Definition:**
+
+> Conceptual Model - A conceptual model is a representation of a system, made of the composition of concepts that are used to help people know, understand, or simulate a subject the model represents. [Wikipedia - Conceptual model](https://en.wikipedia.org/wiki/Conceptual_model)
+
+**Conceptual Model**
+
+PlantUML version:
+
+VisualParadigm version (not maintained, only for demonstration):
+
+**Conceptual Model of commenting feature**
+
+
+### 2.3 Event Storming
+While a Conceptual Model focuses on structures and relationships between them, **behavior** and **events** that occur in our domain are more important.
+
+There are many ways to show behavior and events. One of them is a light technique called [Event Storming](https://www.eventstorming.com/) which is becoming more popular. Below are presented 3 main business processes using this technique: user registration, meeting group creation and meeting organization.
+
+Note: Event Storming is a light, live workshop. One of the possible outputs of this workshop is presented here. Even if you are not doing Event Storming workshops, this type of process presentation can be very valuable to you and your stakeholders.
+
+## 3. Architecture
+
+### 3.0 C4 Model
+
+[C4 model](https://c4model.com/) is a lean graphical notation technique for modelling the architecture of software systems. <br>
+
+As can be found on the website of the author of this model ([Simon Brown](https://simonbrown.je/)): *The C4 model was created as a way to help software development teams describe and communicate software architecture, both during up-front design sessions and when retrospectively documenting an existing codebase* <br>
+
+*Model C4* defines 4 levels (views) of the system architecture: *System Context*, *Container*, *Component* and *Code*. Below are examples of each of these levels that describe the architecture of this system. <br>
+
+*Note: The [PlantUML](https://plantuml.com/) (diagram as text) component was used to describe all C4 model levels. Additionally, for levels C1-C3, a [C4-PlantUML](https://github.com/plantuml-stdlib/C4-PlantUML) plug-in connecting PlantUML with the C4 model was used*.
+
+
+#### 3.0.1 C1 System Context
+
+
+#### 3.0.2 C2 Container
+
+
+#### 3.0.3 C3 Component (high-level)
+
+
+#### 3.0.4 C3 Component (module-level)
+
+
+#### 3.0.5 C4 Code (meeting group aggregate)
+
+
+### 3.1 High Level View
+
+
+**Module descriptions:**
