@@ -104,7 +104,15 @@ This document aims to clearly explain how the product works, both technically an
 
 ## 1. Introduction
 
-### 1.1 Purpose of this Repository
+Nowadays, industries spend significant amounts of money each year trying to communicate effectively with their clients, aiming to achieve favorable outcomes. However, much of this investment can be wasted because we lack the ability to measure the future impact of these messages on target audiences.
+
+Digital media production is a crucial way for companies to convey their ideas and aspirations to clients and employees. Yet, many of these initiatives do not achieve their desired results, primarily because we do not fully understand consumer reception. This is the driving force behind our project. We believe that now is the right time to offer a service that helps industries improve their outcomes, save money, and achieve better results. By leveraging a broad community of selected media consumers and advanced AI technology, we provide a solution that promises to meet these goals.
+
+The data we collect are transformed using powerful AI, based on various breakthroughs in neuroscience. This integration allows us to create a robust tool that enables our clients to measure potential results before launching their products or services, making real-time decisions to maximize profits.
+
+In this document, the reader will find detailed explanations of the technological architecture and how it functions to generate insights based on the diverse types of data collected during the review process.
+
+### 1.1 Purpose of this project
 ### 1.2 Out of Scope
 ### 1.3 Reason
 ### 1.4 Disclaimer
