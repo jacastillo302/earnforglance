@@ -196,12 +196,12 @@ Here are some proposed bounded contexts for your project, each with its own dist
      - **AIProcessingService**: Applies AI algorithms to process consumer feedback and generate insights.
 
 #### d. **Payment Context**
-   -- **Purpose**: Manage payment processing and financial transactions related to consumer earnings.
-   -- **Key Entities**:
+   - **Purpose**: Manage payment processing and financial transactions related to consumer earnings.
+   - **Key Entities**:
      - **Transaction**: Represents financial transactions, including payments made to consumers.
-   -- **Value Objects**:
+   - **Value Objects**:
      - **PaymentDetails**: Information about payment methods and transaction status.
-   -- **Domain Services**:
+   - **Domain Services**:
      - **PaymentProcessingService**: Handles the processing of payments to consumers based on their earnings.
      - **TransactionHistoryService**: Manages the history and records of all transactions.
 
