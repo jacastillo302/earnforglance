@@ -936,7 +936,7 @@ Here are some proposed bounded contexts for your project, each with its own dist
    
    Test the models against real-world scenarios. For example, simulate a consumer's journey from watching a video to submitting a review and how the system processes this data. Ensure that the models accurately represent the intended functionality and interactions.
    
-   ### Example Scenario in Action
+   ##### Example Scenario in Action
    
    **Session Overview**:
    - **Participants**: Consumers, producers, developers, and analysts gather for a half-day workshop.
@@ -963,11 +963,28 @@ Here are some proposed bounded contexts for your project, each with its own dist
    **Outcome**:
    - A comprehensive domain model that captures the essential elements of the "Earn for Glance" project, ensuring alignment among all stakeholders and providing a clear framework for development.
    
-   ### Conclusion
+   ##### Conclusion
    
    Collaborative Modeling for "Earn for Glance" fosters a shared understanding among stakeholders, ensuring that the domain model reflects the needs and expectations of all parties involved. By engaging in this iterative process, you can build a solid foundation for the system that meets both consumer and producer needs.
 
 ![](https://github.com/jacastillo302/earnforglance/blob/main/docs/images/colaborative_model.png)
+
+Below is a simple PlantUML representation of the collaborative model for your "Earn for Glance" project, including key entities and their relationships.
+
+##### Explanation of the Model
+
+- **Entities**:
+  - **Consumer**: Represents the users who watch videos and submit reviews. Contains attributes like `consumerId`, `name`, `email`, and `earnings`.
+  - **Producer**: Represents the content creators who upload videos. Contains attributes like `producerId`, `name`, and `email`.
+  - **Video**: Represents the media content. Contains attributes like `videoId`, `title`, `description`, and `uploadDate`.
+  - **Review**: Represents the feedback provided by consumers. Contains attributes like `reviewId`, `rating`, `comment`, and `reviewDate`.
+  - **Insight**: Represents analytics data generated for producers. Contains attributes like `insightId`, `videoId`, and `analyticsData`.
+
+- **Relationships**:
+  - A **Consumer** can submit multiple **Reviews**.
+  - A **Producer** can upload multiple **Videos**.
+  - A **Video** can receive multiple **Reviews**.
+  - A **Video** generates an **Insight**, which is linked to its performance.
 
 
 ### 2.2 Conceptual Model
