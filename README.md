@@ -161,26 +161,26 @@ For your project, a Domain-Driven Design (DDD) approach can help ensure that the
    Here are some proposed bounded contexts for your project, each with its own distinct responsibilities and models:
    
    #### a. **Consumer Context**
-      - **Purpose**: Manage consumer interactions, feedback, and earnings.
-      - **Key Entities**:
-        - **Consumer**: Represents individual users who watch videos and provide reviews.
+      -- **Purpose**: Manage consumer interactions, feedback, and earnings.
+      -- **Key Entities**:
+         **Consumer**: Represents individual users who watch videos and provide reviews.
         - **Review**: Contains feedback on videos, including ratings, comments, and emotional responses.
-      - **Value Objects**:
+      -- **Value Objects**:
         - **Earnings**: Tracks the monetary rewards earned by consumers.
         - **FeedbackMetrics**: Represents various metrics like engagement level or sentiment analysis.
-      - **Domain Services**:
+      -- **Domain Services**:
         - **EarningsService**: Calculates and manages consumer earnings based on their reviews.
         - **FeedbackAnalysisService**: Analyzes consumer feedback to extract insights.
    
    #### b. **Producer Context**
-      - **Purpose**: Handle media producers, their content, and the upload process.
-      - **Key Entities**:
+      -- **Purpose**: Handle media producers, their content, and the upload process.
+      -- **Key Entities**:
         - **Producer**: Represents media creators who upload videos.
         - **Video**: The media content uploaded by producers, which includes metadata, genre, etc.
-      - **Value Objects**:
+      -- **Value Objects**:
         - **VideoMetadata**: Contains information such as title, description, and duration.
         - **ContentRating**: Represents content ratings assigned by consumers.
-      - **Domain Services**:
+      -- **Domain Services**:
         - **ContentManagementService**: Facilitates the upload, editing, and management of videos.
         - **InsightsService**: Provides producers with analytics based on consumer reviews and feedback.
    
@@ -196,12 +196,12 @@ For your project, a Domain-Driven Design (DDD) approach can help ensure that the
         - **AIProcessingService**: Applies AI algorithms to process consumer feedback and generate insights.
    
    #### d. **Payment Context**
-      - **Purpose**: Manage payment processing and financial transactions related to consumer earnings.
-      - **Key Entities**:
+      -- **Purpose**: Manage payment processing and financial transactions related to consumer earnings.
+      -- **Key Entities**:
         - **Transaction**: Represents financial transactions, including payments made to consumers.
-      - **Value Objects**:
+      -- **Value Objects**:
         - **PaymentDetails**: Information about payment methods and transaction status.
-      - **Domain Services**:
+      -- **Domain Services**:
         - **PaymentProcessingService**: Handles the processing of payments to consumers based on their earnings.
         - **TransactionHistoryService**: Manages the history and records of all transactions.
    
