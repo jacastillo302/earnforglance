@@ -30,10 +30,6 @@ This document aims to clearly explain how the product works, both technically an
 
 &nbsp;&nbsp;[1.4 Disclaimer](#14-disclaimer)
 
-&nbsp;&nbsp;[1.5 Give a Star](#15-give-a-star)
-
-&nbsp;&nbsp;[1.6 Share It](#16-share-it)
-
 [2. Domain](#2-domain)
 
 &nbsp;&nbsp;[2.1 Description](#21-description)
@@ -130,9 +126,23 @@ Overall, the project seeks to create a more efficient, informed, and rewarding m
 
 ### 1.2 Out of Scope
 ### 1.3 Reason
+
+The principal reason to create a product or service like this is to address the significant gap in understanding consumer reactions and the effectiveness of media content before it is launched. Here are some key factors driving this need:
+
+1. **Inefficient Resource Allocation**: Companies invest heavily in media production and marketing, but without a reliable way to measure impact, much of that investment may be wasted. This service aims to provide measurable insights, helping companies allocate resources more effectively.
+
+2. **Consumer Engagement**: By allowing consumers to earn money for their opinions, the platform fosters a sense of community and encourages active participation. This engagement can lead to more authentic feedback, benefiting both consumers and producers.
+
+3. **Data-Driven Decision Making**: In an increasingly competitive landscape, businesses need to rely on data to make informed decisions. This service leverages advanced AI and neuroscience to provide actionable insights that can significantly improve content development and marketing strategies.
+
+4. **Rapid Market Changes**: The media landscape is constantly evolving, and consumer preferences can shift quickly. Offering a tool that helps producers understand real-time reactions allows them to adapt swiftly to these changes.
+
+5. **Enhanced Consumer Experience**: By integrating feedback mechanisms into the consumption process, the project aims to create a more tailored experience for consumers, which can increase satisfaction and loyalty.
+
+Overall, the primary motivation is to create a more efficient, responsive, and consumer-centric media ecosystem that benefits all stakeholders involved.
+
 ### 1.4 Disclaimer
-### 1.5 Give a Star
-### 1.6 Share It
+
 
 ## 2. Domain
 
