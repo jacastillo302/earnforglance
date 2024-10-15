@@ -967,6 +967,8 @@ For your project, a Domain-Driven Design (DDD) approach can help ensure that the
    
    Collaborative Modeling for "Earn for Glance" fosters a shared understanding among stakeholders, ensuring that the domain model reflects the needs and expectations of all parties involved. By engaging in this iterative process, you can build a solid foundation for the system that meets both consumer and producer needs.
 
+![](https://www.plantuml.com/plantuml/proxy?cache=no&src=https://github.com/jacastillo302/earnforglance/blob/main/docs/plantuml/colaborative_model.puml)
+
 
 ### 2.2 Conceptual Model
 **Definition:**
