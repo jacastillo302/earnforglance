@@ -1,1 +1,45 @@
+@startuml
 
+!define ENTITY(x) class x << (E,#FFCC00) >>
+!define VALUE_OBJECT(x) class x << (V,#00CCFF) >>
+!define AGGREGATE(x) class x << (A,#CCFFCC) >>
+
+ENTITY(Consumer) {
+    +consumerId: String
+    +name: String
+    +email: String
+    +earnings: Float
+}
+
+ENTITY(Producer) {
+    +producerId: String
+    +name: String
+    +email: String
+}
+
+ENTITY(Video) {
+    +videoId: String
+    +title: String
+    +description: String
+    +uploadDate: Date
+}
+
+ENTITY(Review) {
+    +reviewId: String
+    +rating: Integer
+    +comment: String
+    +reviewDate: Date
+}
+
+ENTITY(Insight) {
+    +insightId: String
+    +videoId: String
+    +analyticsData: String
+}
+
+Consumer "1" -- "0..*" Review : submits >
+Producer "1" -- "0..*" Video : uploads >
+Video "1" -- "0..*" Review : receives >
+Video "1" -- "0..1" Insight : generates >
+
+@enduml
