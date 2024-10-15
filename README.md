@@ -22,7 +22,7 @@ This document aims to clearly explain how the product works, both technically an
 
 [1. Introduction](#1-introduction)
 
-&nbsp;&nbsp;[1.1 Purpose of this Repository](#11-purpose-of-this-repository)
+&nbsp;&nbsp;[1.1 Purpose of this project](#11-purpose-of-this-project)
 
 &nbsp;&nbsp;[1.2 Out of Scope](#12-out-of-scope)
 
@@ -113,6 +113,21 @@ The data we collect are transformed using powerful AI, based on various breakthr
 In this document, the reader will find detailed explanations of the technological architecture and how it functions to generate insights based on the diverse types of data collected during the review process.
 
 ### 1.1 Purpose of this project
+
+The purpose of this project is to create a platform that bridges the gap between media producers and consumers by leveraging neuroscience and artificial intelligence. Specifically, the project aims to:
+
+1. **Empower Consumers**: Allow consumers to earn money by watching and reviewing videos, thereby giving them a stake in the media they engage with.
+
+2. **Enhance Media Production**: Provide a space for media producers to upload their content and receive valuable feedback from a community of reviewers.
+
+3. **Measure Impact**: Utilize advanced AI and neuroscience techniques to collect and analyze data on consumer reactions, such as facial expressions and opinions, to gauge the effectiveness of media content before its launch.
+
+4. **Inform Decision-Making**: Equip producers with actionable insights that help them understand audience preferences and improve their content, ultimately maximizing their investment and achieving better results.
+
+5. **Reduce Wasted Investment**: Help industries optimize their communication strategies by providing tools to measure potential outcomes, thereby minimizing the risk of ineffective campaigns.
+
+Overall, the project seeks to create a more efficient, informed, and rewarding media consumption and production ecosystem.
+
 ### 1.2 Out of Scope
 ### 1.3 Reason
 ### 1.4 Disclaimer
