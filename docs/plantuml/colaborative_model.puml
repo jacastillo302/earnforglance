@@ -24,7 +24,15 @@ ENTITY(Video) {
     +uploadDate: Date
 }
 
+ENTITY(Campaing) {
+    +videoId: String
+    +amount: Float
+    +description: String
+    +dueDate: Date
+}
+
 ENTITY(Review) {
+    +campaingId: String
     +reviewId: String
     +rating: Integer
     +comment: String
@@ -32,6 +40,7 @@ ENTITY(Review) {
 }
 
 ENTITY(Insight) {
+    +campaingId: String
     +insightId: String
     +videoId: String
     +analyticsData: String
@@ -45,7 +54,8 @@ VALUE_OBJECT(Earnings) {
 Consumer "1" -- "0..*" Review : submits >
 Consumer "1" -- "1" Earnings : has >
 Producer "1" -- "0..*" Video : uploads >
-Video "1" -- "0..*" Review : receives >
-Video "1" -- "0..1" Insight : generates >
+Campaing "1" -- "0..*" Review : receives >
+Campaing "1" -- "0..1" Insight : generates >
+Video  "1" -- "0..1" Campaing : generates >
 
 @enduml
