@@ -172,10 +172,10 @@ As can be found on the website of the author of this model ([Simon Brown](https:
 
 *Note: The [PlantUML](https://plantuml.com/) (diagram as text) component was used to describe all C4 model levels. Additionally, for levels C1-C3, a [C4-PlantUML](https://github.com/plantuml-stdlib/C4-PlantUML) plug-in connecting PlantUML with the C4 model was used*.
 
-![alt text](https://github.com/jacastillo302/earnforglance/blob/main/docs/images/C4_Elements.png)
+
 
 #### 3.0.1 C1 System Context
-
+![alt text](https://github.com/jacastillo302/earnforglance/blob/main/docs/images/C4_Elements.png)
 
 #### 3.0.2 C2 Container
 
