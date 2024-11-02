@@ -179,6 +179,7 @@ As can be found on the website of the author of this model ([Simon Brown](https:
 
 #### 3.0.2 C2 Container
 
+![alt text](https://github.com/jacastillo302/earnforglance/blob/main/docs/images/c2_container_consumer.png)
 
 #### 3.0.3 C3 Component (high-level)
 
