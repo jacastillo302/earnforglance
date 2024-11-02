@@ -181,6 +181,9 @@ As can be found on the website of the author of this model ([Simon Brown](https:
 
 ![alt text](https://github.com/jacastillo302/earnforglance/blob/main/docs/images/c2_container_consumer.png)
 
+
+![alt text](https://github.com/jacastillo302/earnforglance/blob/main/docs/images/c2_container_producer.png)
+
 #### 3.0.3 C3 Component (high-level)
 
 
