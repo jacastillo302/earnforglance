@@ -172,6 +172,7 @@ As can be found on the website of the author of this model ([Simon Brown](https:
 
 *Note: The [PlantUML](https://plantuml.com/) (diagram as text) component was used to describe all C4 model levels. Additionally, for levels C1-C3, a [C4-PlantUML](https://github.com/plantuml-stdlib/C4-PlantUML) plug-in connecting PlantUML with the C4 model was used*.
 
+![alt text](https://github.com/jacastillo302/earnforglance/blob/main/docs/images/C4_Elements.png)
 
 #### 3.0.1 C1 System Context
 
@@ -706,17 +707,17 @@ This project is still under analysis and development. I assume its maintenance f
 List of features/tasks/approaches to add:
 
 | Name                               | Status | Release date |
-|------------------------------------| -------- |--------------|
-| Domain Model Unit Tests            |Completed | 2019-09-10   |
-| Architecture Decision Log update   |  Completed | 2019-11-09   |
+|------------------------------------| ----------|--------------|
+| Domain Model Unit Tests            | Completed | 2019-09-10   |
+| Architecture Decision Log update   | Completed | 2019-11-09   |
 | Integration automated tests        | Completed | 2020-02-24   |
-| Migration to .NET Core 3.1         |Completed  | 2020-03-04   |
-| System Integration Testing         | Completed  | 2020-03-28   |
-| More advanced Payments module      | Completed  | 2020-07-11   |
-| Event Sourcing implementation      | Completed  | 2020-07-11   |
-| Database Change Management         | Completed  | 2020-08-23   |
-| Continuous Integration             | Completed  | 2020-09-01   |
-| StyleCop Static Code Analysis      | Completed  | 2020-09-05   |
+| Migration to .NET Core 3.1         | Completed | 2020-03-04   |
+| System Integration Testing         | Completed | 2020-03-28   |
+| More advanced Payments module      | Completed | 2020-07-11   |
+| Event Sourcing implementation      | Completed | 2020-07-11   |
+| Database Change Management         | Completed | 2020-08-23   |
+| Continuous Integration             | Completed | 2020-09-01   |
+| StyleCop Static Code Analysis      | Completed | 2020-09-05   |
 | FrontEnd SPA application           | Completed | 2020-11-08   |
 | Docker support                     | Completed | 2020-11-26   |
 | PlantUML Conceptual Model          | Completed | 2021-03-22   |
@@ -732,21 +733,14 @@ NOTE: Please don't hesitate to suggest something else or a change to the existin
 
 ## 8. Authors
 
-Kamil Grzybek
-
-Blog: [https://kamilgrzybek.com](https://kamilgrzybek.com)
-
-Twitter: [https://twitter.com/kamgrzybek](https://twitter.com/kamgrzybek)
-
-LinkedIn: [https://www.linkedin.com/in/kamilgrzybek/](https://www.linkedin.com/in/kamilgrzybek/)
-
-GitHub: [https://github.com/kgrzybek](https://github.com/kgrzybek)
+- [Jimmy Castillo]([https://www.linkedin.com/in/jimmy-castillo-parra-2980b670/])
+- [Henry Castillo][([https://github.com/bistok](https://www.linkedin.com/in/doctorcastillo/)])
 
 ### 8.1 Main contributors
 
-- [Andrei Ganichev](https://github.com/AndreiGanichev)
-- [Bela Istok](https://github.com/bistok)
-- [Almar Aubel](https://github.com/AlmarAubel)
+- [Jimmy Castillo]([https://www.linkedin.com/in/jimmy-castillo-parra-2980b670/])
+- [Henry Castillo][([https://github.com/bistok](https://www.linkedin.com/in/doctorcastillo/)])
+
 
 ## 9. License
 
