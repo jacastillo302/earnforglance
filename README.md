@@ -189,6 +189,8 @@ As can be found on the website of the author of this model ([Simon Brown](https:
 #### 3.0.3 C3 Component (high-level)
 ![alt text](https://github.com/jacastillo302/earnforglance/blob/main/docs/images/c3_component_api.png)
 
+![alt text](https://github.com/jacastillo302/earnforglance/blob/main/docs/images/c3_component_spa.png)
+
 #### 3.0.4 C3 Component (module-level)
 
 
