@@ -1,0 +1,127 @@
+
+@startuml
+set separator none
+title AI Analityc System - Containers
+
+top to bottom direction
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<AIPlaformSystem.FacialAI>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+
+skinparam rectangle<<AIPlaformSystem.CorrelationalAI>> {
+  BackgroundColor #438ff5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam database<<AIPlaformSystem.Database>> {
+  BackgroundColor #aa8dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+
+skinparam rectangle<<AIPlaformSystem.AssessmentAI>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam rectangle<<StreamVideoSystem>> {
+  BackgroundColor #999999
+  FontColor #ffffff
+  BorderColor #6b6b6b
+  shadowing false
+}
+skinparam rectangle<<AppImageSystem>> {
+  BackgroundColor #999999
+  FontColor #ffffff
+  BorderColor #6b6b6b
+  shadowing false
+}
+skinparam rectangle<<AppAssestSystem>> {
+  BackgroundColor #999999
+  FontColor #ffffff
+  BorderColor #6b6b6b
+  shadowing false
+}
+skinparam person<<ProducerPlatformSystem>> {
+  BackgroundColor #08427b
+  FontColor #ffffff
+  BorderColor #052e56
+  shadowing false
+}
+skinparam person<<ConsumerPlatformSystem>> {
+  BackgroundColor #08427b
+  FontColor #ffffff
+  BorderColor #052e56
+  shadowing false
+}
+skinparam rectangle<<AIPlaformSystem.EyesAI>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam rectangle<<AIPlaformSystem.VisionAI>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam rectangle<<AIPlaformSystem>> {
+  BorderColor #0b4884
+  FontColor #0b4884
+  shadowing false
+}
+
+rectangle "==Consumer Plaform\n<size:10>[Person]</size>\n\nEarn money for glance short videos and answer short assess." <<ConsumerPlatformSystem>> as ConsumerPlatformSystem
+rectangle "==Producer Plaform\n<size:10>[Person]</size>\n\nUpload short videos and share with the community through campaigns and wait of the result." <<ProducerPlatformSystem>> as ProducerPlatformSystem
+rectangle "==Stream Video System\n<size:10>[Software as a Service]</size>\n\nProcessing of video data to transform on block of data easy to transport when producer upload" <<StreamVideoSystem>> as StreamVideoSystem
+rectangle "==Image Capture App\n<size:10>[Software System]</size>\n\nGetting images per second from the consumer while watching videos through camera of the mobile device" <<AppImageSystem>> as AppImageSystem
+rectangle "==Assesment App\n<size:10>[Software System]</size>\n\nAnswer questions and resolve surveys after saw the video" <<AppAssestSystem>> as AppAssestSystem
+
+
+rectangle "AI Platform\n<size:10>[Pipeline]</size>" <<AIPlaformSystem>> {
+  rectangle "==Vision Segmentation\n<size:10>[Pipeline]</size>\n\nAI Model segmentation]</size>\n\nClean, transform and segmente pixel to pixel and second to second a video" <<AIPlaformSystem.VisionAI>> as AIPlaformSystem.VisionAI
+  rectangle "==Facial Recognition\n<size:10>[Pipeline]</size>\n\n Through images by second predict change in expression and feelings" <<AIPlaformSystem.FacialAI>> as AIPlaformSystem.FacialAI  
+  rectangle "==Eyes Tracking\n<size:10>[Pipeline]</size>\n\n Through images by second predict change in eyes orientation and pupil, where and how much spend focusing on specific point of the picture." <<AIPlaformSystem.EyesAI>> as AIPlaformSystem.EyesAI
+  rectangle "==Assessment Classified\n<size:10>[Pipeline]</size>\n\nCollect results, opinions, momentos about situations and specific topics during video" <<AIPlaformSystem.AssessmentAI>> as AIPlaformSystem.AssessmentAI
+  rectangle "==Correlational Matrix\n<size:10>[Pipeline]</size>\n\nCorrelate the result between all components to find hotpoint and get conclusion about the data collected" <<AIPlaformSystem.CorrelationalAI>> as AIPlaformSystem.CorrelationalAI
+  database "==Database\n<size:10>[Dynamo]</size>\n\nStore the results of the analytics of the process" <<AIPlaformSystem.Database>> as AIPlaformSystem.Database
+}
+ 
+
+StreamVideoSystem .[#707070,thickness=2].> AIPlaformSystem.VisionAI : "<color:#707070>Visits bigbank.com/ib using\n<color:#707070><size:8>[HTTPS]</size>"
+ProducerPlatformSystem .[#707070,thickness=2].> StreamVideoSystem : "<color:#707070>Visits bigbank.com/ib using\n<color:#707070><size:8>[HTTPS]</size>"
+
+AppImageSystem .[#707070,thickness=2].> AIPlaformSystem.EyesAI : "<color:#707070>Views account balances, and makes payments using"
+AppImageSystem .[#707070,thickness=2].> AIPlaformSystem.FacialAI : "<color:#707070>Views account balances, and makes payments using"
+
+AppAssestSystem.[#707070,thickness=2].> AIPlaformSystem.AssessmentAI : "<color:#707070>Views account balances, and makes payments using"
+
+ConsumerPlatformSystem .[#707070,thickness=2].> AppImageSystem
+ConsumerPlatformSystem .[#707070,thickness=2].> AppAssestSystem
+
+AIPlaformSystem.VisionAI .[#707070,thickness=2].> AIPlaformSystem.CorrelationalAI : "<color:#707070>Delivers to the customer's web browser"
+AIPlaformSystem.EyesAI .[#707070,thickness=2].> AIPlaformSystem.CorrelationalAI : "<color:#707070>Makes API calls to\n<color:#707070><size:8>[JSON/HTTPS]</size>"
+AIPlaformSystem.FacialAI .[#707070,thickness=2].> AIPlaformSystem.CorrelationalAI : "<color:#707070>Reads from and writes to\n<color:#707070><size:8>[SQL/TCP]</size>"
+AIPlaformSystem.AssessmentAI .[#707070,thickness=2].> AIPlaformSystem.CorrelationalAI : "<color:#707070>Reads from and writes to\n<color:#707070><size:8>[SQL/TCP]</size>"
+
+AIPlaformSystem.CorrelationalAI .[#707070,thickness=2].> AIPlaformSystem.Database : "<color:#707070>Reads from and writes to\n<color:#707070><size:8>[SQL/TCP]</size>"
+
+
+@enduml

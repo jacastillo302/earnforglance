@@ -1,0 +1,68 @@
+@startuml C4_Elements
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+Person(PersonConsumer, "Consumer", "Reviewer Videos")
+Person(PersonProducer, "Producer", "Created Videos")
+
+System_Boundary(c1, "Video Sharing Platform") {
+    Container(web_app, "Web Application", "Producers Administrators")
+    System(systemVideo, "Upload", "Management")
+    System(systemCampains, "Campains", "Results and reports")
+    System(systemInsight, "Insight", "Results")
+    System(systemReports, "Reports", "Reports")
+
+    Rel(systemCampains, systemReports, "Reports", "Reports and advices")
+    Rel(systemInsight, systemCampains, "Results", "Details of the results squar to squart")
+    Rel(web_app, systemVideo, "Upload Videos", "")
+
+    Rel(systemVideo, systemCampains, "Campains", "Create campains to consumers")
+
+    Rel(web_app, systemReports, "View Repots", "")
+    Rel(web_app, systemInsight, "View Details", "")
+}
+
+System_Boundary(c2, "Video Reviewer Platform") {
+    Container(movil_app, "Movil App", "Androi + IOS")
+    Container(web_app2, "Web Application", "All browsers")
+    System(systemPlayer, "Player", "Results and reports")
+    System(systemAssessment, "Assessment", "Results and reports")
+    System(systemEarns, "Earns", "Results and reports")
+
+    Rel(web_app2, systemEarns, "Management Earns", "")
+    Rel(movil_app, systemPlayer, "Reproduce Videos", "")
+    Rel(movil_app, systemEarns, "Management Earns", "")
+
+    Rel(systemPlayer, systemAssessment, "Resolve", "")
+    Rel(systemAssessment, systemEarns, "Complete", "")
+
+    Rel(systemCampains, systemPlayer, "Subscribe Campaign", "")
+
+}
+
+System_Boundary(c3, "AI Platform") {    
+    Container(ContainerRecognition, "Recognition", "Technology", "Expression recognitio")
+    Container(ContainerEyetraker, "Eyetraker", "Technology", "Eye tracking")
+    Container(ContainerAssessment, "Assessment", "Technology", "Questionnaires and")
+    Container(ContainerCorrelation, "Correlation", "Technology", "Correlational matriz between recognition and vision")
+    Container(ContainerVision, "Vision", "Technology", "Segmentation Video")
+    
+    Rel(ContainerRecognition, ContainerCorrelation, "Face Expression", "Give de expresion at de moment")
+    Rel(ContainerEyetraker, ContainerCorrelation, "Face Expression", "Give de expresion at de moment")
+    Rel(ContainerVision, ContainerCorrelation, "Pixel segmentation", "Give the segmentation at the moment")
+    Rel(ContainerAssessment, ContainerCorrelation, "Clasified Answers", "Rate de Answers")
+}
+
+
+
+Rel(PersonConsumer, c2, "Watch Videos", "Earn Money")
+Rel(PersonProducer, c1, "Campains", "Management Campains")
+Rel(systemVideo, ContainerVision, "Mapping", "Mapping Segmentation Video")
+
+
+Rel(systemPlayer, ContainerRecognition, "Facial", "Facial Recognition")
+Rel(systemPlayer, ContainerEyetraker, "Eyes", "Eye move tracking")
+Rel(systemAssessment, ContainerAssessment, "Answer", "Resolve questionaries")
+
+Rel(ContainerCorrelation,systemInsight, "Results", "Get and process results")
+
+@enduml

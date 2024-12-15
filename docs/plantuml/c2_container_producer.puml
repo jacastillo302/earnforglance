@@ -1,0 +1,102 @@
+
+@startuml
+set separator none
+title Consumer Reviwer System - Containers
+
+top to bottom direction
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<PlayPlaformSystem.APIApplication>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam database<<PlayPlaformSystem.Database>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam rectangle<<EmailSystem>> {
+  BackgroundColor #999999
+  FontColor #ffffff
+  BorderColor #6b6b6b
+  shadowing false
+}
+skinparam rectangle<<MainframeCampainSystem>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam rectangle<<MainframeAISystem>> {
+  BackgroundColor #999999
+  FontColor #ffffff
+  BorderColor #6b6b6b
+  shadowing false
+}
+skinparam rectangle<<PlayPlaformSystem.MobileApp>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam person<<ConsumerPlatformSystem>> {
+  BackgroundColor #08427b
+  FontColor #ffffff
+  BorderColor #052e56
+  shadowing false
+}
+skinparam rectangle<<PlayPlaformSystem.SinglePageApplication>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam rectangle<<PlayPlaformSystem.WebApplication>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam rectangle<<PlayPlaformSystem>> {
+  BorderColor #0b4884
+  FontColor #0b4884
+  shadowing false
+}
+
+person "==Consumer\n<size:10>[Person]</size>\n\nA consumer of the videos." <<ConsumerPlatformSystem>> as ConsumerPlatformSystem
+rectangle "==E-mail System\n<size:10>[Software System]</size>\n\nThe internal Microsoft Exchange e-mail system." <<EmailSystem>> as EmailSystem
+rectangle "==AI Analityc System\n<size:10>[Software System]</size>\n\nProcess data of video about facial recognition, eyes tracking and tests, surveys." <<MainframeAISystem>> as MainframeAISystem
+
+rectangle "Video Reviewer Platform\n<size:10>[Software System]</size>" <<PlayPlaformSystem>> {
+  rectangle "==Web Application\n<size:10>[Container: Java and Spring MVC]</size>\n\nDelivers the static content and the Internet banking single page application." <<PlayPlaformSystem.WebApplication>> as PlayPlaformSystem.WebApplication
+  rectangle "==API Application\n<size:10>[Container: Java and Spring MVC]</size>\n\nProvides Internet banking functionality via a JSON/HTTPS API." <<PlayPlaformSystem.APIApplication>> as PlayPlaformSystem.APIApplication
+  database "==Database\n<size:10>[Container: Dynamo Database Schema]</size>\n\nStores user registration information, hashed authentication credentials, access logs, etc." <<PlayPlaformSystem.Database>> as PlayPlaformSystem.Database
+  rectangle "==Single-Page Application\n<size:10>[Container: JavaScript and Angular]</size>\n\nProvides all of the Internet banking functionality to customers via their web browser." <<PlayPlaformSystem.SinglePageApplication>> as PlayPlaformSystem.SinglePageApplication
+  rectangle "==Mobile App\n<size:10>[Container: Xamarin]</size>\n\nProvides a limited subset of the Internet banking functionality to customers via their mobile device." <<PlayPlaformSystem.MobileApp>> as PlayPlaformSystem.MobileApp
+  rectangle "==Mainframe Campain System\n<size:10>[Software System]</size>\n\nStores all of the core video information consumers accounts, earns, etc." <<MainframeCampainSystem>> as MainframeCampainSystem
+}
+
+EmailSystem .[#707070,thickness=2].> ConsumerPlatformSystem : "<color:#707070>Sends e-mails to"
+ConsumerPlatformSystem .[#707070,thickness=2].> PlayPlaformSystem.WebApplication : "<color:#707070>Visits bigbank.com/ib using\n<color:#707070><size:8>[HTTPS]</size>"
+ConsumerPlatformSystem .[#707070,thickness=2].> PlayPlaformSystem.SinglePageApplication : "<color:#707070>Views account balances, and makes payments using"
+ConsumerPlatformSystem .[#707070,thickness=2].> PlayPlaformSystem.MobileApp : "<color:#707070>Views account balances, and makes payments using"
+PlayPlaformSystem.WebApplication .[#707070,thickness=2].> PlayPlaformSystem.SinglePageApplication : "<color:#707070>Delivers to the customer's web browser"
+PlayPlaformSystem.SinglePageApplication .[#707070,thickness=2].> PlayPlaformSystem.APIApplication : "<color:#707070>Makes API calls to\n<color:#707070><size:8>[JSON/HTTPS]</size>"
+PlayPlaformSystem.MobileApp .[#707070,thickness=2].> PlayPlaformSystem.APIApplication : "<color:#707070>Makes API calls to\n<color:#707070><size:8>[JSON/HTTPS]</size>"
+PlayPlaformSystem.APIApplication .[#707070,thickness=2].> PlayPlaformSystem.Database : "<color:#707070>Reads from and writes to\n<color:#707070><size:8>[SQL/TCP]</size>"
+PlayPlaformSystem.APIApplication .[#707070,thickness=2].> MainframeCampainSystem : "<color:#707070>Makes API calls to\n<color:#707070><size:8>[XML/HTTPS]</size>"
+PlayPlaformSystem.APIApplication .[#707070,thickness=2].> EmailSystem : "<color:#707070>Sends e-mail using"
+PlayPlaformSystem.APIApplication .[#707070,thickness=2].> MainframeAISystem : "<color:#707070>Makes API calls to\n<color:#707070><size:8>[XML/HTTPS]</size>"
+
+@enduml
