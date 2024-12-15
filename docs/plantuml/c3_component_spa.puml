@@ -1,0 +1,96 @@
+@startuml
+set separator none
+title Sigle-Page Application - Components
+
+top to bottom direction
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<SinglePageApplication.SPApplication.GUIComponent>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+
+skinparam rectangle<<SinglePageApplication.SPApplication.Mapping>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam rectangle<<SinglePageApplication.MobileApp>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam rectangle<<SinglePageApplication.SPApplication.Model>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam rectangle<<SinglePageApplication.SPApplication.Orchestrator>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam rectangle<<SinglePageApplication.SPApplication.Bootstrap>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam rectangle<<SinglePageApplication.Messaging>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam rectangle<<SinglePageApplication.SPApplication>> {
+  BorderColor #2e6295
+  FontColor #2e6295
+  shadowing false
+}
+
+rectangle "==API Messagin\n<size:10>[<<Editor>>]</size>" <<SinglePageApplication.MobileApp>> as SinglePageApplication.MobileApp
+
+  rectangle "Page\n<size:10>[]</size>" <<SinglePageApplication.Page>> {
+
+    rectangle "==JSON Messaging\n<size:10>[<<Mesaggin Layer>>]</size>" <<SinglePageApplication.Messaging>> as SinglePageApplication.Messaging
+
+      rectangle "SPA\n<size:10>[]</size>" <<SinglePageApplication.SPApplication>> {
+        rectangle "==SPA Bootstrap\n<size:10>[<<Bootstrap>>]</size>" <<SinglePageApplication.SPApplication.Bootstrap>> as SinglePageApplication.SPApplication.Bootstrap
+        
+        rectangle "Package Dependecy\n<size:10>[0]</size>" <<SinglePageApplication.SPApplication>> {
+          rectangle "==Page Model\n<size:10>[<<Model>>]</size>\n\n" <<SinglePageApplication.SPApplication.Model>> as SinglePageApplication.SPApplication.Model
+          rectangle "==Component Orchestrator\n<size:10>[<<Orchestrator>>]</size>" <<SinglePageApplication.SPApplication.Orchestrator>> as SinglePageApplication.SPApplication.Orchestrator
+          rectangle "==Component Mapping\n<size:10>[<<Mapping>>]</size>" <<SinglePageApplication.SPApplication.Mapping>> as SinglePageApplication.SPApplication.Mapping      
+        }
+      
+     rectangle "==SPA Component\n<size:10>[<<GUI Component>>]</size>\n\n" <<SinglePageApplication.SPApplication.GUIComponent>> as SinglePageApplication.SPApplication.GUIComponent
+  }
+
+  SinglePageApplication.MobileApp .[#707070,thickness=2].> SinglePageApplication.Messaging : "<color:#707070>upload page model\n<color:#707070>"
+  SinglePageApplication.Messaging .[#707070,thickness=2].> SinglePageApplication.MobileApp : "<color:#707070>update authoring data\n<color:#707070>"
+
+  SinglePageApplication.SPApplication.Model .[#707070,thickness=2].> SinglePageApplication.Messaging : "<color:#707070>upload page model\n<color:#707070>"
+  SinglePageApplication.Messaging .[#707070,thickness=2].> SinglePageApplication.SPApplication.Model : "<color:#707070>update authoring data\n<color:#707070>"
+
+  SinglePageApplication.SPApplication.Bootstrap .[#707070,thickness=2].> SinglePageApplication.SPApplication.Model : "<color:#707070>fetch page model\n<color:#707070>"
+  SinglePageApplication.SPApplication.Model .[#707070,thickness=2].> SinglePageApplication.SPApplication.Orchestrator : "<color:#707070>dispatch chance\n<color:#707070>"
+  SinglePageApplication.SPApplication.Orchestrator .[#707070,thickness=2].> SinglePageApplication.SPApplication.Mapping : "<color:#707070>get component mapping\n<color:#707070>"
+  SinglePageApplication.SPApplication.Orchestrator .[#707070,thickness=2].> SinglePageApplication.SPApplication.GUIComponent : "<color:#707070>Instantiate Component\n<color:#707070>"
+
+}
+
+@enduml

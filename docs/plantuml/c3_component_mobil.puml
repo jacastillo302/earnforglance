@@ -1,0 +1,121 @@
+@startuml
+set separator none
+title Mobil Application - Components
+
+
+top to bottom direction
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<MobilApplication.Application.Memory>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam rectangle<<MobilApplication.Application.Player>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam rectangle<<MobilApplication.Application.Data>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+
+skinparam rectangle<<CampainSystem>> {
+  BackgroundColor #999999
+  FontColor #ffffff
+  BorderColor #6b6b6b
+  shadowing false
+}
+skinparam rectangle<<MobilApplication.Application.App>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam rectangle<<MobilApplication.Application.Domain>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam rectangle<<MobilApplication.Application.Drive>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam rectangle<<MobilApplication.Camera>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam rectangle<<MobilApplication.Sensor>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam rectangle<<MobilApplication.Protocol>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam rectangle<<MobilApplication.Application>> {
+  BorderColor #2e6295
+  FontColor #2e6295
+  shadowing false
+}
+
+rectangle "==Campain System\n<size:10>[<<Editor>>]</size>" <<CampainSystem>> as CampainSystem
+
+  rectangle "Mobil" <<MobilApplication.Page>> {
+
+    rectangle "==Camera\n<size:10>[<<Camera device>>]</size>" <<MobilApplication.Camera>> as MobilApplication.Camera
+    rectangle "==Sensor\n<size:10>[<<Sensor device>>]</size>" <<MobilApplication.Sensor>> as MobilApplication.Sensor
+    rectangle "==Protocol\n<size:10>[<<JSON/HTTPS>>]</size>" <<MobilApplication.Protocol>> as MobilApplication.Protocol
+
+      rectangle "Application" <<MobilApplication.Application>> {
+        rectangle "Packages" <<MobilApplication.Application>> {
+          rectangle "==Application Layer\n<size:10>[<<Application>>]</size>" <<MobilApplication.Application.App>> as MobilApplication.Application.App
+          rectangle "==Domain Layer\n<size:10>[<<Domain>>]</size>" <<MobilApplication.Application.Domain>> as MobilApplication.Application.Domain
+          rectangle "==Data Layer\n<size:10>[<<Data>>]</size>" <<MobilApplication.Application.Data>> as MobilApplication.Application.Data      
+        }
+      rectangle "==Share Drive\n<size:10>[<<Drive>>]</size>" <<MobilApplication.Application.Drive>> as MobilApplication.Application.Drive 
+      rectangle "==Local Memory\n<size:10>[<<Memory>>]</size>" <<MobilApplication.Application.Memory>> as MobilApplication.Application.Memory
+      rectangle "==Player\n<size:10>[<<Play Campain>>]</size>" <<MobilApplication.Application.Player>> as MobilApplication.Application.Player
+     }
+
+  MobilApplication.Application.App .[#707070,thickness=2].>   MobilApplication.Camera : "<color:#707070>take picture<color:#707070>"
+  MobilApplication.Application.App .[#707070,thickness=2].>   MobilApplication.Sensor : "<color:#707070>take measure<color:#707070>"
+  MobilApplication.Application.App .[#707070,thickness=2].>   MobilApplication.Application.Player : "<color:#707070>reproduce video<color:#707070>"
+  
+  MobilApplication.Application.Drive .[#707070,thickness=2].>   MobilApplication.Application.Domain : "<color:#707070>read pictures<color:#707070>"
+  MobilApplication.Application.App .[#707070,thickness=2].>   MobilApplication.Application.Domain : "<color:#707070>send command<color:#707070>"
+  MobilApplication.Application.Domain .[#707070,thickness=2].>   MobilApplication.Application.Data : "<color:#707070>send data to request<color:#707070>"
+  MobilApplication.Protocol .[#707070,thickness=2].> CampainSystem : "<color:#707070>request to API<color:#707070>"
+
+  MobilApplication.Application.Memory .[#707070,thickness=2].>   MobilApplication.Application.Domain : "<color:#707070>read measures<color:#707070>"
+  MobilApplication.Application.Player .[#707070,thickness=2].>   MobilApplication.Application.Domain : "<color:#707070>Get time to play<color:#707070>"
+  MobilApplication.Camera .[#707070,thickness=2].>   MobilApplication.Application.Drive : "<color:#707070>save pticure<color:#707070>"
+  MobilApplication.Sensor .[#707070,thickness=2].>   MobilApplication.Application.Memory : "<color:#707070>save measure<color:#707070>"
+  MobilApplication.Application.Data .[#707070,thickness=2].>   MobilApplication.Protocol : "<color:#707070>send data to API<color:#707070>"
+  
+
+}
+
+@enduml

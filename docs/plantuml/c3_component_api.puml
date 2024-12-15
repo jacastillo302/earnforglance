@@ -1,0 +1,117 @@
+@startuml
+set separator none
+title Producer and Consumer System - API Application - Components
+
+top to bottom direction
+
+skinparam {
+  arrowFontSize 10
+  defaultTextAlignment center
+  wrapWidth 200
+  maxMessageSize 100
+}
+
+hide stereotype
+
+skinparam rectangle<<InternetVideoSystem.APIApplication.AccountsSummaryController>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam database<<InternetVideoSystem.Database>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam rectangle<<InternetVideoSystem.APIApplication.EmailComponent>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam rectangle<<EmailSystem>> {
+  BackgroundColor #999999
+  FontColor #ffffff
+  BorderColor #6b6b6b
+  shadowing false
+}
+skinparam rectangle<<MainframeBankingSystem>> {
+  BackgroundColor #999999
+  FontColor #ffffff
+  BorderColor #6b6b6b
+  shadowing false
+}
+skinparam rectangle<<InternetVideoSystem.APIApplication.CampainSystemFacade>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam rectangle<<InternetVideoSystem.MobileApp>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam rectangle<<InternetVideoSystem.APIApplication.ResetPasswordController>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam rectangle<<InternetVideoSystem.APIApplication.SecurityComponent>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam rectangle<<InternetVideoSystem.APIApplication.SignInController>> {
+  BackgroundColor #85bbf0
+  FontColor #000000
+  BorderColor #5d82a8
+  shadowing false
+}
+skinparam rectangle<<InternetVideoSystem.SinglePageApplication>> {
+  BackgroundColor #438dd5
+  FontColor #ffffff
+  BorderColor #2e6295
+  shadowing false
+}
+skinparam rectangle<<InternetVideoSystem.APIApplication>> {
+  BorderColor #2e6295
+  FontColor #2e6295
+  shadowing false
+}
+
+rectangle "==Campain System\n<size:10>[Software System]</size>\n\Admin all of the core video information about streaming data, campains, results and reports, etc." <<MainframeBankingSystem>> as MainframeBankingSystem
+rectangle "==E-mail System\n<size:10>[Software System]</size>\n\nThe internal Microsoft Exchange e-mail system." <<EmailSystem>> as EmailSystem
+rectangle "==Single-Page Application\n<size:10>[Container: JavaScript and Angular]</size>\n\nProvides all of the Internet banking functionality to customers via their web browser." <<InternetVideoSystem.SinglePageApplication>> as InternetVideoSystem.SinglePageApplication
+rectangle "==Mobile App\n<size:10>[Container: Flutter]</size>\n\nProvides a limited subset of the Internet banking functionality to customers via their mobile device." <<InternetVideoSystem.MobileApp>> as InternetVideoSystem.MobileApp
+database "==Database\n<size:10>[Container: Oracle Database Schema]</size>\n\nStores user registration information, hashed authentication credentials, access logs, etc." <<InternetVideoSystem.Database>> as InternetVideoSystem.Database
+
+rectangle "API Application\n<size:10>[Container: Java and Spring MVC]</size>" <<InternetVideoSystem.APIApplication>> {
+  rectangle "==Sign In Controller\n<size:10>[Component: Spring MVC Rest Controller]</size>\n\nAllows users to sign in to the Internet Banking System." <<InternetVideoSystem.APIApplication.SignInController>> as InternetVideoSystem.APIApplication.SignInController
+  rectangle "==Accounts Summary Controller\n<size:10>[Component: Spring MVC Rest Controller]</size>\n\nProvides customers with a summary of their bank accounts." <<InternetVideoSystem.APIApplication.AccountsSummaryController>> as InternetVideoSystem.APIApplication.AccountsSummaryController
+  rectangle "==Reset Password Controller\n<size:10>[Component: Spring MVC Rest Controller]</size>\n\nAllows users to reset their passwords with a single use URL." <<InternetVideoSystem.APIApplication.ResetPasswordController>> as InternetVideoSystem.APIApplication.ResetPasswordController
+  rectangle "==Security Component\n<size:10>[Component: Spring Bean]</size>\n\nProvides functionality related to signing in, changing passwords, etc." <<InternetVideoSystem.APIApplication.SecurityComponent>> as InternetVideoSystem.APIApplication.SecurityComponent
+  rectangle "==Video System Facade\n<size:10>[Component: Spring Bean]</size>\n\nA facade onto the video sharing system." <<InternetVideoSystem.APIApplication.CampainSystemFacade>> as InternetVideoSystem.APIApplication.CampainSystemFacade
+  rectangle "==E-mail Component\n<size:10>[Component: Spring Bean]</size>\n\nSends e-mails to users." <<InternetVideoSystem.APIApplication.EmailComponent>> as InternetVideoSystem.APIApplication.EmailComponent
+}
+
+InternetVideoSystem.SinglePageApplication .[#707070,thickness=2].> InternetVideoSystem.APIApplication.SignInController : "<color:#707070>Makes API calls to\n<color:#707070><size:8>[JSON/HTTPS]</size>"
+InternetVideoSystem.SinglePageApplication .[#707070,thickness=2].> InternetVideoSystem.APIApplication.AccountsSummaryController : "<color:#707070>Makes API calls to\n<color:#707070><size:8>[JSON/HTTPS]</size>"
+InternetVideoSystem.SinglePageApplication .[#707070,thickness=2].> InternetVideoSystem.APIApplication.ResetPasswordController : "<color:#707070>Makes API calls to\n<color:#707070><size:8>[JSON/HTTPS]</size>"
+InternetVideoSystem.MobileApp .[#707070,thickness=2].> InternetVideoSystem.APIApplication.SignInController : "<color:#707070>Makes API calls to\n<color:#707070><size:8>[JSON/HTTPS]</size>"
+InternetVideoSystem.MobileApp .[#707070,thickness=2].> InternetVideoSystem.APIApplication.AccountsSummaryController : "<color:#707070>Makes API calls to\n<color:#707070><size:8>[JSON/HTTPS]</size>"
+InternetVideoSystem.MobileApp .[#707070,thickness=2].> InternetVideoSystem.APIApplication.ResetPasswordController : "<color:#707070>Makes API calls to\n<color:#707070><size:8>[JSON/HTTPS]</size>"
+InternetVideoSystem.APIApplication.SignInController .[#707070,thickness=2].> InternetVideoSystem.APIApplication.SecurityComponent : "<color:#707070>Uses"
+InternetVideoSystem.APIApplication.AccountsSummaryController .[#707070,thickness=2].> InternetVideoSystem.APIApplication.CampainSystemFacade : "<color:#707070>Uses"
+InternetVideoSystem.APIApplication.ResetPasswordController .[#707070,thickness=2].> InternetVideoSystem.APIApplication.SecurityComponent : "<color:#707070>Uses"
+InternetVideoSystem.APIApplication.AccountsSummaryController .[#707070,thickness=2].> InternetVideoSystem.APIApplication.EmailComponent : "<color:#707070>Uses"
+InternetVideoSystem.APIApplication.CampainSystemFacade .[#707070,thickness=2].> InternetVideoSystem.Database : "<color:#707070>Reads from and writes to\n<color:#707070><size:8>[SQL/TCP]</size>"
+InternetVideoSystem.APIApplication.SecurityComponent .[#707070,thickness=2].> InternetVideoSystem.APIApplication.AccountsSummaryController : "<color:#707070>Reads from and writes to\n<color:#707070><size:8>[SQL/TCP]</size>"
+InternetVideoSystem.APIApplication.CampainSystemFacade .[#707070,thickness=2].> MainframeBankingSystem : "<color:#707070>Makes API calls to\n<color:#707070><size:8>[XML/HTTPS]</size>"
+InternetVideoSystem.APIApplication.EmailComponent .[#707070,thickness=2].> EmailSystem : "<color:#707070>Sends e-mail using"
+@enduml
