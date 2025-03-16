@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"earnforglance/server/domain"
+	common "earnforglance/server/domain/common"
 
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -18,7 +19,7 @@ func (tc *TaskController) Create(c *gin.Context) {
 
 	err := c.ShouldBind(&task)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, domain.ErrorResponse{Message: err.Error()})
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: err.Error()})
 		return
 	}
 
@@ -27,17 +28,17 @@ func (tc *TaskController) Create(c *gin.Context) {
 
 	task.UserID, err = primitive.ObjectIDFromHex(userID)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, domain.ErrorResponse{Message: err.Error()})
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: err.Error()})
 		return
 	}
 
 	err = tc.TaskUsecase.Create(c, &task)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, domain.ErrorResponse{Message: err.Error()})
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
 		return
 	}
 
-	c.JSON(http.StatusOK, domain.SuccessResponse{
+	c.JSON(http.StatusOK, common.SuccessResponse{
 		Message: "Task created successfully",
 	})
 }
@@ -47,7 +48,7 @@ func (u *TaskController) Fetch(c *gin.Context) {
 
 	tasks, err := u.TaskUsecase.FetchByUserID(c, userID)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, domain.ErrorResponse{Message: err.Error()})
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
 		return
 	}
 

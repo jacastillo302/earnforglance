@@ -5,7 +5,7 @@ package mocks
 import (
 	context "context"
 
-	domain "earnforglance/server/domain"
+	domain "earnforglance/server/domain/security" 
 	mock "github.com/stretchr/testify/mock"
 )
 

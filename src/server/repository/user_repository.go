@@ -3,7 +3,7 @@ package repository
 import (
 	"context"
 
-	"earnforglance/server/domain"
+	domain "earnforglance/server/domain/security"
 	"earnforglance/server/mongo"
 
 	"go.mongodb.org/mongo-driver/bson"

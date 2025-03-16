@@ -5,7 +5,7 @@ import (
 
 	"earnforglance/server/api/controller"
 	"earnforglance/server/bootstrap"
-	"earnforglance/server/domain"
+	domain "earnforglance/server/domain/security"
 	"earnforglance/server/mongo"
 	"earnforglance/server/repository"
 	"earnforglance/server/usecase"

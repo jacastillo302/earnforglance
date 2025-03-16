@@ -3,7 +3,8 @@ package controller
 import (
 	"net/http"
 
-	"earnforglance/server/domain"
+	common "earnforglance/server/domain/common"
+	domain "earnforglance/server/domain/security"
 
 	"github.com/gin-gonic/gin"
 )
@@ -17,7 +18,7 @@ func (pc *ProfileController) Fetch(c *gin.Context) {
 
 	profile, err := pc.ProfileUsecase.GetProfileByID(c, userID)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, domain.ErrorResponse{Message: err.Error()})
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
 		return
 	}
 

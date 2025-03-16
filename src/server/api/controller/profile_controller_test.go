@@ -8,8 +8,9 @@ import (
 	"testing"
 
 	"earnforglance/server/api/controller"
-	"earnforglance/server/domain"
+	common "earnforglance/server/domain/common"
 	"earnforglance/server/domain/mocks"
+	domain "earnforglance/server/domain/security"
 
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"
@@ -86,7 +87,7 @@ func TestFetch(t *testing.T) {
 		gin.Use(setUserID(userID))
 		gin.GET("/profile", pc.Fetch)
 
-		body, err := json.Marshal(domain.ErrorResponse{Message: customErr.Error()})
+		body, err := json.Marshal(common.ErrorResponse{Message: customErr.Error()})
 		assert.NoError(t, err)
 
 		bodyString := string(body)

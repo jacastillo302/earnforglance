@@ -5,7 +5,7 @@ import (
 	"errors"
 	"testing"
 
-	"earnforglance/server/domain"
+	domain "earnforglance/server/domain/security"
 	"earnforglance/server/mongo/mocks"
 	"earnforglance/server/repository"
 
