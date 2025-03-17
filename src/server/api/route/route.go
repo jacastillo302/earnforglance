@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"earnforglance/server/api/middleware"
+	affiliate "earnforglance/server/api/route/affiliate"
 	"earnforglance/server/bootstrap"
 	"earnforglance/server/mongo"
 
@@ -24,4 +25,7 @@ func Setup(env *bootstrap.Env, timeout time.Duration, db mongo.Database, gin *gi
 	// All Private APIs
 	NewProfileRouter(env, timeout, db, protectedRouter)
 	NewTaskRouter(env, timeout, db, protectedRouter)
+
+	affiliate.NewAffiliateRouter(env, timeout, db, protectedRouter)
+
 }
