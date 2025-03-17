@@ -22,13 +22,13 @@ func NewAffiliateUsecase(affiliateRepository domain.AffiliateRepository, timeout
 func (tu *affiliateUsecase) Create(c context.Context, affiliate *domain.Affiliate) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
-	return tu.Create(ctx, affiliate)
+	return tu.affiliateRepository.Create(ctx, affiliate)
 }
 
 func (tu *affiliateUsecase) Update(c context.Context, affiliate *domain.Affiliate) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
-	return tu.Update(ctx, affiliate)
+	return tu.affiliateRepository.Update(ctx, affiliate)
 }
 
 func (lu *affiliateUsecase) FetchByID(c context.Context, affiliateID string) (domain.Affiliate, error) {

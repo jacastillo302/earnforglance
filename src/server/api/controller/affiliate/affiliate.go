@@ -39,7 +39,7 @@ func (tc *AffiliateController) Create(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, common.SuccessResponse{
-		Message: "Affiliate created successfully" + task.AddressId.String(),
+		Message: "Affiliate created successfully",
 	})
 }
 
@@ -58,7 +58,7 @@ func (tc *AffiliateController) Update(c *gin.Context) {
 		return
 	}
 
-	err = tc.AffiliateUsecase.Update(c, &task)
+	err = tc.AffiliateUsecase.Create(c, &task)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
 		return

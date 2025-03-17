@@ -29,7 +29,7 @@ type AffiliateRepository interface {
 
 type AffiliateUsecase interface {
 	FetchByID(c context.Context, affiliateID string) (Affiliate, error)
-	Create(c context.Context, task *Affiliate) error
+	Create(c context.Context, affiliate *Affiliate) error
 	Update(c context.Context, affiliate *Affiliate) error
 	Fetch(c context.Context) ([]Affiliate, error)
 }

@@ -20,8 +20,9 @@ func NewAffiliateRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Data
 		AffiliateUsecase: usecase.NewAffiliateUsecase(ur, timeout),
 		Env:              env,
 	}
-	group.GET("/affiliate", lc.FetchByID)
+
 	group.GET("/affiliates", lc.Fetch)
+	group.GET("/affiliate", lc.FetchByID)
 	group.POST("/affiliate", lc.Create)
 	group.PUT("/affiliate", lc.Update)
 }
