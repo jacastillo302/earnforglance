@@ -31,6 +31,12 @@ func (tu *affiliateUsecase) Update(c context.Context, affiliate *domain.Affiliat
 	return tu.affiliateRepository.Update(ctx, affiliate)
 }
 
+func (tu *affiliateUsecase) Delete(c context.Context, affiliate *domain.Affiliate) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.affiliateRepository.Delete(ctx, affiliate)
+}
+
 func (lu *affiliateUsecase) FetchByID(c context.Context, affiliateID string) (domain.Affiliate, error) {
 	ctx, cancel := context.WithTimeout(c, lu.contextTimeout)
 	defer cancel()

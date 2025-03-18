@@ -1,6 +1,8 @@
 package domain
 
 import (
+	"context"
+
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
@@ -130,4 +132,20 @@ type CatalogSettings struct {
 	ActiveSearchProviderSystemName                     string                              `bson:"active_search_provider_system_name"`
 	UseStandardSearchWhenSearchProviderThrowsException bool                                `bson:"use_standard_search_when_search_provider_throws_exception"`
 	VendorProductReviewsPageSize                       int                                 `bson:"vendor_product_reviews_page_size"`
+}
+
+type CatalogSettingsRepository interface {
+	Create(c context.Context, catalog_settings *CatalogSettings) error
+	Update(c context.Context, catalog_settings *CatalogSettings) error
+	Delete(c context.Context, catalog_settings *CatalogSettings) error
+	Fetch(c context.Context) ([]CatalogSettings, error)
+	FetchByID(c context.Context, catalog_settingsID string) (CatalogSettings, error)
+}
+
+type CatalogSettingsUsecase interface {
+	FetchByID(c context.Context, catalog_settingsID string) (CatalogSettings, error)
+	Create(c context.Context, catalog_settings *CatalogSettings) error
+	Update(c context.Context, catalog_settings *CatalogSettings) error
+	Delete(c context.Context, catalog_settings *CatalogSettings) error
+	Fetch(c context.Context) ([]CatalogSettings, error)
 }

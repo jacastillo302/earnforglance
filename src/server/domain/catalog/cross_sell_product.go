@@ -1,6 +1,10 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionCrossSellProduct = "cross_sell_products"
@@ -11,4 +15,20 @@ type CrossSellProduct struct {
 	ID         primitive.ObjectID `bson:"_id,omitempty"`
 	ProductID1 int                `bson:"product_id1"`
 	ProductID2 int                `bson:"product_id2"`
+}
+
+type CrossSellProductRepository interface {
+	Create(c context.Context, cross_sell_product *CrossSellProduct) error
+	Update(c context.Context, cross_sell_product *CrossSellProduct) error
+	Delete(c context.Context, cross_sell_product *CrossSellProduct) error
+	Fetch(c context.Context) ([]CrossSellProduct, error)
+	FetchByID(c context.Context, cross_sell_product string) (CrossSellProduct, error)
+}
+
+type CrossSellProductUsecase interface {
+	FetchByID(c context.Context, cross_sell_productID string) (CrossSellProduct, error)
+	Create(c context.Context, cross_sell_product *CrossSellProduct) error
+	Update(c context.Context, cross_sell_product *CrossSellProduct) error
+	Delete(c context.Context, cross_sell_product *CrossSellProduct) error
+	Fetch(c context.Context) ([]CrossSellProduct, error)
 }

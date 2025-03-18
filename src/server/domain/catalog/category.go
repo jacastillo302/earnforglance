@@ -1,6 +1,7 @@
 package domain
 
 import (
+	"context"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -15,12 +16,12 @@ type Category struct {
 	ID                             primitive.ObjectID `bson:"_id,omitempty"`
 	Name                           string             `bson:"name"`
 	Description                    string             `bson:"description"`
-	CategoryTemplateID             int                `bson:"category_template_id"`
+	CategoryTemplateID             primitive.ObjectID `bson:"category_template_id"`
 	MetaKeywords                   string             `bson:"meta_keywords"`
 	MetaDescription                string             `bson:"meta_description"`
 	MetaTitle                      string             `bson:"meta_title"`
-	ParentCategoryID               int                `bson:"parent_category_id"`
-	PictureID                      int                `bson:"picture_id"`
+	ParentCategoryID               primitive.ObjectID `bson:"parent_category_id"`
+	PictureID                      primitive.ObjectID `bson:"picture_id"`
 	PageSize                       int                `bson:"page_size"`
 	AllowCustomersToSelectPageSize bool               `bson:"allow_customers_to_select_page_size"`
 	PageSizeOptions                string             `bson:"page_size_options"`
@@ -38,4 +39,20 @@ type Category struct {
 	PriceTo                        float64            `bson:"price_to"`
 	ManuallyPriceRange             bool               `bson:"manually_price_range"`
 	RestrictFromVendors            bool               `bson:"restrict_from_vendors"`
+}
+
+type CategoryRepository interface {
+	Create(c context.Context, category *Category) error
+	Update(c context.Context, category *Category) error
+	Delete(c context.Context, category *Category) error
+	Fetch(c context.Context) ([]Category, error)
+	FetchByID(c context.Context, categoryID string) (Category, error)
+}
+
+type CategoryUsecase interface {
+	FetchByID(c context.Context, categoryID string) (Category, error)
+	Create(c context.Context, category *Category) error
+	Update(c context.Context, category *Category) error
+	Delete(c context.Context, category *Category) error
+	Fetch(c context.Context) ([]Category, error)
 }
