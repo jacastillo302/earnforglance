@@ -1,6 +1,10 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionStateProvince = "state_provinces"
@@ -14,4 +18,20 @@ type StateProvince struct {
 	Abbreviation string             `bson:"abbreviation"`
 	Published    bool               `bson:"published"`
 	DisplayOrder int                `bson:"display_order"`
+}
+
+type StateProvinceRepository interface {
+	Create(c context.Context, state_province *StateProvince) error
+	Update(c context.Context, state_province *StateProvince) error
+	Delete(c context.Context, state_province *StateProvince) error
+	Fetch(c context.Context) ([]StateProvince, error)
+	FetchByID(c context.Context, state_provinceID string) (StateProvince, error)
+}
+
+type StateProvinceUsecase interface {
+	FetchByID(c context.Context, state_provinceID string) (StateProvince, error)
+	Create(c context.Context, state_province *StateProvince) error
+	Update(c context.Context, state_province *StateProvince) error
+	Delete(c context.Context, state_province *StateProvince) error
+	Fetch(c context.Context) ([]StateProvince, error)
 }

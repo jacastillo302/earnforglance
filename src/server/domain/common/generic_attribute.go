@@ -1,6 +1,7 @@
 package domain
 
 import (
+	"context"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -13,10 +14,26 @@ const (
 // GenericAttribute represents a generic attribute
 type GenericAttribute struct {
 	ID                      primitive.ObjectID `bson:"_id,omitempty"`
-	EntityID                int                `bson:"entity_id"`
+	EntityID                primitive.ObjectID `bson:"entity_id"`
 	KeyGroup                string             `bson:"key_group"`
 	Key                     string             `bson:"key"`
 	Value                   string             `bson:"value"`
-	StoreID                 int                `bson:"store_id"`
+	StoreID                 primitive.ObjectID `bson:"store_id"`
 	CreatedOrUpdatedDateUTC *time.Time         `bson:"created_or_updated_date_utc,omitempty"`
+}
+
+type GenericAttributeRepository interface {
+	Create(c context.Context, generic_attribute *GenericAttribute) error
+	Update(c context.Context, generic_attribute *GenericAttribute) error
+	Delete(c context.Context, generic_attribute *GenericAttribute) error
+	Fetch(c context.Context) ([]GenericAttribute, error)
+	FetchByID(c context.Context, generic_attributeID string) (GenericAttribute, error)
+}
+
+type GenericAttributeUsecase interface {
+	FetchByID(c context.Context, generic_attributeID string) (GenericAttribute, error)
+	Create(c context.Context, generic_attribute *GenericAttribute) error
+	Update(c context.Context, generic_attribute *GenericAttribute) error
+	Delete(c context.Context, generic_attribute *GenericAttribute) error
+	Fetch(c context.Context) ([]GenericAttribute, error)
 }

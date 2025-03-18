@@ -1,6 +1,10 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionMeasureDimension = "measure_dimensions"
@@ -13,4 +17,20 @@ type MeasureDimension struct {
 	SystemKeyword string             `bson:"system_keyword"`
 	Ratio         float64            `bson:"ratio"`
 	DisplayOrder  int                `bson:"display_order"`
+}
+
+type MeasureDimensionRepository interface {
+	Create(c context.Context, measure_dimension *MeasureDimension) error
+	Update(c context.Context, measure_dimension *MeasureDimension) error
+	Delete(c context.Context, measure_dimension *MeasureDimension) error
+	Fetch(c context.Context) ([]MeasureDimension, error)
+	FetchByID(c context.Context, measure_dimensionID string) (MeasureDimension, error)
+}
+
+type MeasureDimensionUsecase interface {
+	FetchByID(c context.Context, measure_dimensionID string) (MeasureDimension, error)
+	Create(c context.Context, measure_dimension *MeasureDimension) error
+	Update(c context.Context, measure_dimension *MeasureDimension) error
+	Delete(c context.Context, measure_dimension *MeasureDimension) error
+	Fetch(c context.Context) ([]MeasureDimension, error)
 }

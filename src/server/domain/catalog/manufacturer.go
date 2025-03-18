@@ -1,6 +1,7 @@
 package domain
 
 import (
+	"context"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -15,11 +16,11 @@ type Manufacturer struct {
 	ID                             primitive.ObjectID `bson:"_id,omitempty"`
 	Name                           string             `bson:"name"`
 	Description                    string             `bson:"description"`
-	ManufacturerTemplateID         int                `bson:"manufacturer_template_id"`
+	ManufacturerID                 primitive.ObjectID `bson:"manufacturer_id"`
 	MetaKeywords                   string             `bson:"meta_keywords"`
 	MetaDescription                string             `bson:"meta_description"`
 	MetaTitle                      string             `bson:"meta_title"`
-	PictureID                      int                `bson:"picture_id"`
+	PictureID                      primitive.ObjectID `bson:"picture_id"`
 	PageSize                       int                `bson:"page_size"`
 	AllowCustomersToSelectPageSize bool               `bson:"allow_customers_to_select_page_size"`
 	PageSizeOptions                string             `bson:"page_size_options"`
@@ -34,4 +35,20 @@ type Manufacturer struct {
 	PriceFrom                      float64            `bson:"price_from"`
 	PriceTo                        float64            `bson:"price_to"`
 	ManuallyPriceRange             bool               `bson:"manually_price_range"`
+}
+
+type ManufacturerRepository interface {
+	Create(c context.Context, manufacturer *Manufacturer) error
+	Update(c context.Context, manufacturer *Manufacturer) error
+	Delete(c context.Context, manufacturer *Manufacturer) error
+	Fetch(c context.Context) ([]Manufacturer, error)
+	FetchByID(c context.Context, manufacturerID string) (Manufacturer, error)
+}
+
+type ManufacturerUsecase interface {
+	FetchByID(c context.Context, manufacturerID string) (Manufacturer, error)
+	Create(c context.Context, manufacturer *Manufacturer) error
+	Update(c context.Context, manufacturer *Manufacturer) error
+	Delete(c context.Context, manufacturer *Manufacturer) error
+	Fetch(c context.Context) ([]Manufacturer, error)
 }

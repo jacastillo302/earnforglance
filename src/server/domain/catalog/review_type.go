@@ -1,6 +1,10 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionReviewType = "review_types"
@@ -14,4 +18,20 @@ type ReviewType struct {
 	DisplayOrder          int                `bson:"display_order"`
 	VisibleToAllCustomers bool               `bson:"visible_to_all_customers"`
 	IsRequired            bool               `bson:"is_required"`
+}
+
+type ReviewTypeRepository interface {
+	Create(c context.Context, review_type *ReviewType) error
+	Update(c context.Context, review_type *ReviewType) error
+	Delete(c context.Context, review_type *ReviewType) error
+	Fetch(c context.Context) ([]ReviewType, error)
+	FetchByID(c context.Context, review_typeID string) (ReviewType, error)
+}
+
+type ReviewTypeUsecase interface {
+	FetchByID(c context.Context, review_typeID string) (ReviewType, error)
+	Create(c context.Context, review_type *ReviewType) error
+	Update(c context.Context, review_type *ReviewType) error
+	Delete(c context.Context, review_type *ReviewType) error
+	Fetch(c context.Context) ([]ReviewType, error)
 }

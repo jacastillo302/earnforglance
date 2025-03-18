@@ -1,6 +1,10 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionDisplayDefaultFooterItemSettings = "display_default_footer_item_settings"
@@ -24,4 +28,20 @@ type DisplayDefaultFooterItemSettings struct {
 	DisplayShoppingCartFooterItem           bool               `bson:"display_shopping_cart_footer_item"`
 	DisplayWishlistFooterItem               bool               `bson:"display_wishlist_footer_item"`
 	DisplayApplyVendorAccountFooterItem     bool               `bson:"display_apply_vendor_account_footer_item"`
+}
+
+type DisplayDefaultFooterItemSettingsRepository interface {
+	Create(c context.Context, display_default_footer_item_settings *DisplayDefaultFooterItemSettings) error
+	Update(c context.Context, display_default_footer_item_settings *DisplayDefaultFooterItemSettings) error
+	Delete(c context.Context, display_default_footer_item_settings *DisplayDefaultFooterItemSettings) error
+	Fetch(c context.Context) ([]DisplayDefaultFooterItemSettings, error)
+	FetchByID(c context.Context, display_default_footer_item_settingsID string) (DisplayDefaultFooterItemSettings, error)
+}
+
+type DisplayDefaultFooterItemSettingsUsecase interface {
+	FetchByID(c context.Context, display_default_footer_item_settingsID string) (DisplayDefaultFooterItemSettings, error)
+	Create(c context.Context, display_default_footer_item_settings *DisplayDefaultFooterItemSettings) error
+	Update(c context.Context, display_default_footer_item_settings *DisplayDefaultFooterItemSettings) error
+	Delete(c context.Context, display_default_footer_item_settings *DisplayDefaultFooterItemSettings) error
+	Fetch(c context.Context) ([]DisplayDefaultFooterItemSettings, error)
 }

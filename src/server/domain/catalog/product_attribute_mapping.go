@@ -1,6 +1,10 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionProductAttributeMapping = "product_attribute_mappings"
@@ -9,8 +13,8 @@ const (
 // ProductAttributeMapping represents a product attribute mapping
 type ProductAttributeMapping struct {
 	ID                              primitive.ObjectID   `bson:"_id,omitempty"`
-	ProductID                       int                  `bson:"product_id"`
-	ProductAttributeID              int                  `bson:"product_attribute_id"`
+	ProductID                       primitive.ObjectID   `bson:"product_id"`
+	ProductAttributeID              primitive.ObjectID   `bson:"product_attribute_id"`
 	TextPrompt                      string               `bson:"text_prompt"`
 	IsRequired                      bool                 `bson:"is_required"`
 	AttributeControlTypeID          int                  `bson:"attribute_control_type_id"`
@@ -22,4 +26,20 @@ type ProductAttributeMapping struct {
 	DefaultValue                    string               `bson:"default_value"`
 	ConditionAttributeXml           string               `bson:"condition_attribute_xml"`
 	AttributeControlType            AttributeControlType `bson:"attribute_control_type"`
+}
+
+type ProductAttributeMappingRepository interface {
+	Create(c context.Context, product_attribute_mapping *ProductAttributeMapping) error
+	Update(c context.Context, product_attribute_mapping *ProductAttributeMapping) error
+	Delete(c context.Context, product_attribute_mapping *ProductAttributeMapping) error
+	Fetch(c context.Context) ([]ProductAttributeMapping, error)
+	FetchByID(c context.Context, product_attribute_mappingID string) (ProductAttributeMapping, error)
+}
+
+type ProductAttributeMappingUsecase interface {
+	FetchByID(c context.Context, product_attribute_mappingID string) (ProductAttributeMapping, error)
+	Create(c context.Context, product_attribute_mapping *ProductAttributeMapping) error
+	Update(c context.Context, product_attribute_mapping *ProductAttributeMapping) error
+	Delete(c context.Context, product_attribute_mapping *ProductAttributeMapping) error
+	Fetch(c context.Context) ([]ProductAttributeMapping, error)
 }

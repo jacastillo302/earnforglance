@@ -1,6 +1,7 @@
 package domain
 
 import (
+	"context"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -14,14 +15,14 @@ const (
 type Product struct {
 	ID                                           primitive.ObjectID          `bson:"_id,omitempty"`
 	ProductTypeID                                int                         `bson:"product_type_id"`
-	ParentGroupedProductID                       int                         `bson:"parent_grouped_product_id"`
+	ParentGroupedProductID                       primitive.ObjectID          `bson:"parent_grouped_product_id"`
 	VisibleIndividually                          bool                        `bson:"visible_individually"`
 	Name                                         string                      `bson:"name"`
 	ShortDescription                             string                      `bson:"short_description"`
 	FullDescription                              string                      `bson:"full_description"`
 	AdminComment                                 string                      `bson:"admin_comment"`
-	ProductTemplateID                            int                         `bson:"product_template_id"`
-	VendorID                                     int                         `bson:"vendor_id"`
+	ProductTemplateID                            primitive.ObjectID          `bson:"product_template_id"`
+	VendorID                                     primitive.ObjectID          `bson:"vendor_id"`
 	ShowOnHomepage                               bool                        `bson:"show_on_homepage"`
 	MetaKeywords                                 string                      `bson:"meta_keywords"`
 	MetaDescription                              string                      `bson:"meta_description"`
@@ -63,13 +64,13 @@ type Product struct {
 	IsFreeShipping                               bool                        `bson:"is_free_shipping"`
 	ShipSeparately                               bool                        `bson:"ship_separately"`
 	AdditionalShippingCharge                     float64                     `bson:"additional_shipping_charge"`
-	DeliveryDateID                               int                         `bson:"delivery_date_id"`
+	DeliveryDateID                               primitive.ObjectID          `bson:"delivery_date_id"`
 	IsTaxExempt                                  bool                        `bson:"is_tax_exempt"`
-	TaxCategoryID                                int                         `bson:"tax_category_id"`
+	TaxCategoryID                                primitive.ObjectID          `bson:"tax_category_id"`
 	ManageInventoryMethodID                      int                         `bson:"manage_inventory_method_id"`
-	ProductAvailabilityRangeID                   int                         `bson:"product_availability_range_id"`
+	ProductAvailabilityRangeID                   primitive.ObjectID          `bson:"product_availability_range_id"`
 	UseMultipleWarehouses                        bool                        `bson:"use_multiple_warehouses"`
-	WarehouseID                                  int                         `bson:"warehouse_id"`
+	WarehouseID                                  primitive.ObjectID          `bson:"warehouse_id"`
 	StockQuantity                                int                         `bson:"stock_quantity"`
 	DisplayStockAvailability                     bool                        `bson:"display_stock_availability"`
 	DisplayStockQuantity                         bool                        `bson:"display_stock_quantity"`
@@ -124,4 +125,20 @@ type Product struct {
 	ManageInventoryMethod                        ManageInventoryMethod       `bson:"manage_inventory_method"`
 	RecurringCyclePeriod                         RecurringProductCyclePeriod `bson:"recurring_cycle_period"`
 	RentalPricePeriod                            RentalPricePeriod           `bson:"rental_price_period"`
+}
+
+type ProductRepository interface {
+	Create(c context.Context, product *Product) error
+	Update(c context.Context, product *Product) error
+	Delete(c context.Context, product *Product) error
+	Fetch(c context.Context) ([]Product, error)
+	FetchByID(c context.Context, productID string) (Product, error)
+}
+
+type ProductUsecase interface {
+	FetchByID(c context.Context, productID string) (Product, error)
+	Create(c context.Context, product *Product) error
+	Update(c context.Context, product *Product) error
+	Delete(c context.Context, product *Product) error
+	Fetch(c context.Context) ([]Product, error)
 }

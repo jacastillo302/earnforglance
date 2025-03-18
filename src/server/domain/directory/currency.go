@@ -1,6 +1,7 @@
 package domain
 
 import (
+	"context"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -25,4 +26,20 @@ type Currency struct {
 	UpdatedOnUtc     time.Time          `bson:"updated_on_utc"`
 	RoundingTypeID   int                `bson:"rounding_type_id"`
 	RoundingType     RoundingType       `bson:"rounding_type"`
+}
+
+type CurrencyRepository interface {
+	Create(c context.Context, currency *Currency) error
+	Update(c context.Context, currency *Currency) error
+	Delete(c context.Context, currency *Currency) error
+	Fetch(c context.Context) ([]Currency, error)
+	FetchByID(c context.Context, currencyID string) (Currency, error)
+}
+
+type CurrencyUsecase interface {
+	FetchByID(c context.Context, currencyID string) (Currency, error)
+	Create(c context.Context, currency *Currency) error
+	Update(c context.Context, currency *Currency) error
+	Delete(c context.Context, currency *Currency) error
+	Fetch(c context.Context) ([]Currency, error)
 }

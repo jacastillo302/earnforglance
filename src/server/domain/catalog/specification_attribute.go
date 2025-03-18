@@ -1,6 +1,10 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionSpecificationAttribute = "specification_attributes"
@@ -12,4 +16,20 @@ type SpecificationAttribute struct {
 	Name                          string             `bson:"name"`
 	DisplayOrder                  int                `bson:"display_order"`
 	SpecificationAttributeGroupID *int               `bson:"specification_attribute_group_id,omitempty"`
+}
+
+type SpecificationAttributeRepository interface {
+	Create(c context.Context, specification_attribute *SpecificationAttribute) error
+	Update(c context.Context, specification_attribute *SpecificationAttribute) error
+	Delete(c context.Context, specification_attribute *SpecificationAttribute) error
+	Fetch(c context.Context) ([]SpecificationAttribute, error)
+	FetchByID(c context.Context, specification_attributeID string) (SpecificationAttribute, error)
+}
+
+type SpecificationAttributeUsecase interface {
+	FetchByID(c context.Context, specification_attributeID string) (SpecificationAttribute, error)
+	Create(c context.Context, specification_attribute *SpecificationAttribute) error
+	Update(c context.Context, specification_attribute *SpecificationAttribute) error
+	Delete(c context.Context, specification_attribute *SpecificationAttribute) error
+	Fetch(c context.Context) ([]SpecificationAttribute, error)
 }

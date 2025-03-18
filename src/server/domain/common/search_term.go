@@ -1,6 +1,10 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionSearchTerm = "search_terms"
@@ -10,6 +14,22 @@ const (
 type SearchTerm struct {
 	ID      primitive.ObjectID `bson:"_id,omitempty"`
 	Keyword string             `bson:"keyword"`
-	StoreID int                `bson:"store_id"`
+	StoreID primitive.ObjectID `bson:"store_id"`
 	Count   int                `bson:"count"`
+}
+
+type SearchTermRepository interface {
+	Create(c context.Context, search_term *SearchTerm) error
+	Update(c context.Context, search_term *SearchTerm) error
+	Delete(c context.Context, search_term *SearchTerm) error
+	Fetch(c context.Context) ([]SearchTerm, error)
+	FetchByID(c context.Context, search_termID string) (SearchTerm, error)
+}
+
+type SearchTermUsecase interface {
+	FetchByID(c context.Context, search_termID string) (SearchTerm, error)
+	Create(c context.Context, search_term *SearchTerm) error
+	Update(c context.Context, search_term *SearchTerm) error
+	Delete(c context.Context, search_term *SearchTerm) error
+	Fetch(c context.Context) ([]SearchTerm, error)
 }

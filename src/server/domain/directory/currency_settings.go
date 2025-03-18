@@ -1,6 +1,10 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionCurrencySettings = "currency_settings"
@@ -10,8 +14,24 @@ const (
 type CurrencySettings struct {
 	ID                                   primitive.ObjectID `bson:"_id,omitempty"`
 	DisplayCurrencyLabel                 bool               `bson:"display_currency_label"`
-	PrimaryStoreCurrencyID               int                `bson:"primary_store_currency_id"`
-	PrimaryExchangeRateCurrencyID        int                `bson:"primary_exchange_rate_currency_id"`
+	PrimaryStoreCurrencyID               primitive.ObjectID `bson:"primary_store_currency_id"`
+	PrimaryExchangeRateCurrencyID        primitive.ObjectID `bson:"primary_exchange_rate_currency_id"`
 	ActiveExchangeRateProviderSystemName string             `bson:"active_exchange_rate_provider_system_name"`
 	AutoUpdateEnabled                    bool               `bson:"auto_update_enabled"`
+}
+
+type CurrencySettingsRepository interface {
+	Create(c context.Context, currency_settings *CurrencySettings) error
+	Update(c context.Context, currency_settings *CurrencySettings) error
+	Delete(c context.Context, currency_settings *CurrencySettings) error
+	Fetch(c context.Context) ([]CurrencySettings, error)
+	FetchByID(c context.Context, currency_settingsID string) (CurrencySettings, error)
+}
+
+type CurrencySettingsUsecase interface {
+	FetchByID(c context.Context, currency_settingsID string) (CurrencySettings, error)
+	Create(c context.Context, currency_settings *CurrencySettings) error
+	Update(c context.Context, currency_settings *CurrencySettings) error
+	Delete(c context.Context, currency_settings *CurrencySettings) error
+	Fetch(c context.Context) ([]CurrencySettings, error)
 }

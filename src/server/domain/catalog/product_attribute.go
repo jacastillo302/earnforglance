@@ -1,6 +1,10 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionProductAttribute = "product_attributes"
@@ -11,4 +15,20 @@ type ProductAttribute struct {
 	ID          primitive.ObjectID `bson:"_id,omitempty"`
 	Name        string             `bson:"name"`
 	Description string             `bson:"description"`
+}
+
+type ProductAttributeRepository interface {
+	Create(c context.Context, product_attribute *ProductAttribute) error
+	Update(c context.Context, product_attribute *ProductAttribute) error
+	Delete(c context.Context, product_attribute *ProductAttribute) error
+	Fetch(c context.Context) ([]ProductAttribute, error)
+	FetchByID(c context.Context, product_attributeID string) (ProductAttribute, error)
+}
+
+type ProductAttributeUsecase interface {
+	FetchByID(c context.Context, product_attributeID string) (ProductAttribute, error)
+	Create(c context.Context, product_attribute *ProductAttribute) error
+	Update(c context.Context, product_attribute *ProductAttribute) error
+	Delete(c context.Context, product_attribute *ProductAttribute) error
+	Fetch(c context.Context) ([]ProductAttribute, error)
 }

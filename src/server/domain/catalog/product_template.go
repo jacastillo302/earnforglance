@@ -1,6 +1,10 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionProductTemplate = "product_templates"
@@ -13,4 +17,20 @@ type ProductTemplate struct {
 	ViewPath            string             `bson:"view_path"`
 	DisplayOrder        int                `bson:"display_order"`
 	IgnoredProductTypes string             `bson:"ignored_product_types"`
+}
+
+type ProductTemplateRepository interface {
+	Create(c context.Context, product_template *ProductTemplate) error
+	Update(c context.Context, product_template *ProductTemplate) error
+	Delete(c context.Context, product_template *ProductTemplate) error
+	Fetch(c context.Context) ([]ProductTemplate, error)
+	FetchByID(c context.Context, product_templateID string) (ProductTemplate, error)
+}
+
+type ProductTemplateUsecase interface {
+	FetchByID(c context.Context, product_templateID string) (ProductTemplate, error)
+	Create(c context.Context, product_template *ProductTemplate) error
+	Update(c context.Context, product_template *ProductTemplate) error
+	Delete(c context.Context, product_template *ProductTemplate) error
+	Fetch(c context.Context) ([]ProductTemplate, error)
 }

@@ -1,6 +1,10 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionProductEditorSettings = "product_editor_settings"
@@ -69,4 +73,20 @@ type ProductEditorSettings struct {
 	Manufacturers                                bool               `bson:"manufacturers"`
 	StockQuantityHistory                         bool               `bson:"stock_quantity_history"`
 	AgeVerification                              bool               `bson:"age_verification"`
+}
+
+type ProductEditorSettingsRepository interface {
+	Create(c context.Context, product_editor_settings *ProductEditorSettings) error
+	Update(c context.Context, product_editor_settings *ProductEditorSettings) error
+	Delete(c context.Context, product_editor_settings *ProductEditorSettings) error
+	Fetch(c context.Context) ([]ProductEditorSettings, error)
+	FetchByID(c context.Context, product_editor_settingsID string) (ProductEditorSettings, error)
+}
+
+type ProductEditorSettingsUsecase interface {
+	FetchByID(c context.Context, product_editor_settingsID string) (ProductEditorSettings, error)
+	Create(c context.Context, product_editor_settings *ProductEditorSettings) error
+	Update(c context.Context, product_editor_settings *ProductEditorSettings) error
+	Delete(c context.Context, product_editor_settings *ProductEditorSettings) error
+	Fetch(c context.Context) ([]ProductEditorSettings, error)
 }

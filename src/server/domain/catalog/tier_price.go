@@ -1,6 +1,7 @@
 package domain
 
 import (
+	"context"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -20,4 +21,20 @@ type TierPrice struct {
 	Price            float64            `bson:"price"`
 	StartDateTimeUtc *time.Time         `bson:"start_date_time_utc,omitempty"`
 	EndDateTimeUtc   *time.Time         `bson:"end_date_time_utc,omitempty"`
+}
+
+type TierPriceRepository interface {
+	Create(c context.Context, tier_price *TierPrice) error
+	Update(c context.Context, tier_price *TierPrice) error
+	Delete(c context.Context, tier_price *TierPrice) error
+	Fetch(c context.Context) ([]TierPrice, error)
+	FetchByID(c context.Context, tier_priceID string) (TierPrice, error)
+}
+
+type TierPriceUsecase interface {
+	FetchByID(c context.Context, tier_priceID string) (TierPrice, error)
+	Create(c context.Context, tier_price *TierPrice) error
+	Update(c context.Context, tier_price *TierPrice) error
+	Delete(c context.Context, tier_price *TierPrice) error
+	Fetch(c context.Context) ([]TierPrice, error)
 }

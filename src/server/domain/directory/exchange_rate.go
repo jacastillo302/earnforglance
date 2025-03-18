@@ -1,6 +1,7 @@
 package domain
 
 import (
+	"context"
 	"fmt"
 	"time"
 
@@ -17,6 +18,22 @@ type ExchangeRate struct {
 	CurrencyCode string             `bson:"currency_code"`
 	Rate         float64            `bson:"rate"`
 	UpdatedOn    time.Time          `bson:"updated_on"`
+}
+
+type ExchangeRateRepository interface {
+	Create(c context.Context, exchange_rate *ExchangeRate) error
+	Update(c context.Context, exchange_rate *ExchangeRate) error
+	Delete(c context.Context, exchange_rate *ExchangeRate) error
+	Fetch(c context.Context) ([]ExchangeRate, error)
+	FetchByID(c context.Context, exchange_rateID string) (ExchangeRate, error)
+}
+
+type ExchangeRateUsecase interface {
+	FetchByID(c context.Context, exchange_rateID string) (ExchangeRate, error)
+	Create(c context.Context, exchange_rate *ExchangeRate) error
+	Update(c context.Context, exchange_rate *ExchangeRate) error
+	Delete(c context.Context, exchange_rate *ExchangeRate) error
+	Fetch(c context.Context) ([]ExchangeRate, error)
 }
 
 // NewExchangeRate creates a new instance of the ExchangeRate struct

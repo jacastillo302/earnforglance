@@ -1,6 +1,10 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionCustomerCustomerAttribute = "customer_customer_attributes"
@@ -19,4 +23,20 @@ type CustomerAttribute struct {
 	ValidationFileAllowedExtensions string             `bson:"validation_file_allowed_extensions"`
 	ValidationFileMaximumSize       *int               `bson:"validation_file_maximum_size,omitempty"`
 	ConditionAttributeXml           string             `bson:"condition_attribute_xml"`
+}
+
+type CustomerAttributeRepository interface {
+	Create(c context.Context, customer_attribute *CustomerAttribute) error
+	Update(c context.Context, customer_attribute *CustomerAttribute) error
+	Delete(c context.Context, customer_attribute *CustomerAttribute) error
+	Fetch(c context.Context) ([]CustomerAttribute, error)
+	FetchByID(c context.Context, customer_attributeID string) (CustomerAttribute, error)
+}
+
+type CustomerAttributeUsecase interface {
+	FetchByID(c context.Context, customer_attributeID string) (CustomerAttribute, error)
+	Create(c context.Context, customer_attribute *CustomerAttribute) error
+	Update(c context.Context, customer_attribute *CustomerAttribute) error
+	Delete(c context.Context, customer_attribute *CustomerAttribute) error
+	Fetch(c context.Context) ([]CustomerAttribute, error)
 }

@@ -1,6 +1,7 @@
 package domain
 
 import (
+	"context"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -13,9 +14,9 @@ const (
 // ProductReview represents a product review
 type ProductReview struct {
 	ID                      primitive.ObjectID `bson:"_id,omitempty"`
-	CustomerID              int                `bson:"customer_id"`
-	ProductID               int                `bson:"product_id"`
-	StoreID                 int                `bson:"store_id"`
+	CustomerID              primitive.ObjectID `bson:"customer_id"`
+	ProductID               primitive.ObjectID `bson:"product_id"`
+	StoreID                 primitive.ObjectID `bson:"store_id"`
 	IsApproved              bool               `bson:"is_approved"`
 	Title                   string             `bson:"title"`
 	ReviewText              string             `bson:"review_text"`
@@ -25,4 +26,20 @@ type ProductReview struct {
 	HelpfulYesTotal         int                `bson:"helpful_yes_total"`
 	HelpfulNoTotal          int                `bson:"helpful_no_total"`
 	CreatedOnUtc            time.Time          `bson:"created_on_utc"`
+}
+
+type ProductReviewRepository interface {
+	Create(c context.Context, product_review *ProductReview) error
+	Update(c context.Context, product_review *ProductReview) error
+	Delete(c context.Context, product_review *ProductReview) error
+	Fetch(c context.Context) ([]ProductReview, error)
+	FetchByID(c context.Context, ProductReviewID string) (ProductReview, error)
+}
+
+type ProductReviewUsecase interface {
+	FetchByID(c context.Context, product_reviewID string) (ProductReview, error)
+	Create(c context.Context, product_review *ProductReview) error
+	Update(c context.Context, product_review *ProductReview) error
+	Delete(c context.Context, product_review *ProductReview) error
+	Fetch(c context.Context) ([]ProductReview, error)
 }

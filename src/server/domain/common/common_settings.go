@@ -1,6 +1,10 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionCommonSettings = "common_settings"
@@ -25,6 +29,22 @@ type CommonSettings struct {
 	RestartTimeout                   *int               `bson:"restart_timeout,omitempty"`
 	HeaderCustomHtml                 string             `bson:"header_custom_html"`
 	FooterCustomHtml                 string             `bson:"footer_custom_html"`
+}
+
+type CommonSettingsRepository interface {
+	Create(c context.Context, common_settings *CommonSettings) error
+	Update(c context.Context, common_settings *CommonSettings) error
+	Delete(c context.Context, common_settings *CommonSettings) error
+	Fetch(c context.Context) ([]CommonSettings, error)
+	FetchByID(c context.Context, common_settingsID string) (CommonSettings, error)
+}
+
+type CommonSettingsUsecase interface {
+	FetchByID(c context.Context, common_settingsID string) (CommonSettings, error)
+	Create(c context.Context, common_settings *CommonSettings) error
+	Update(c context.Context, common_settings *CommonSettings) error
+	Delete(c context.Context, common_settings *CommonSettings) error
+	Fetch(c context.Context) ([]CommonSettings, error)
 }
 
 // NewCommonSettings creates a new CommonSettings instance

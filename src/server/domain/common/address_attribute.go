@@ -1,6 +1,10 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionAddressAttribute = "address_attribute"
@@ -19,4 +23,20 @@ type AddressAttribute struct {
 	ValidationFileAllowedExtensions string             `bson:"validation_file_allowed_extensions"`
 	ValidationFileMaximumSize       *int               `bson:"validation_file_maximum_size,omitempty"`
 	ConditionAttributeXml           string             `bson:"condition_attribute_xml"`
+}
+
+type AddressAttributeRepository interface {
+	Create(c context.Context, address_attribute *AddressAttribute) error
+	Update(c context.Context, address_attribute *AddressAttribute) error
+	Delete(c context.Context, address_attribute *AddressAttribute) error
+	Fetch(c context.Context) ([]AddressAttribute, error)
+	FetchByID(c context.Context, address_attributeID string) (AddressAttribute, error)
+}
+
+type AddressAttributeUsecase interface {
+	FetchByID(c context.Context, address_attributeID string) (AddressAttribute, error)
+	Create(c context.Context, address_attribute *AddressAttribute) error
+	Update(c context.Context, address_attribute *AddressAttribute) error
+	Delete(c context.Context, address_attribute *AddressAttribute) error
+	Fetch(c context.Context) ([]AddressAttribute, error)
 }

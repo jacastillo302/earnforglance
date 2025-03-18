@@ -1,6 +1,10 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionAdminAreaSettings = "admin_area_settings"
@@ -25,4 +29,20 @@ type AdminAreaSettings struct {
 	ShowDocumentationReferenceLinks bool               `bson:"show_documentation_reference_links"`
 	UseStickyHeaderLayout           bool               `bson:"use_sticky_header_layout"`
 	MinimumDropdownItemsForSearch   int                `bson:"minimum_dropdown_items_for_search"`
+}
+
+type AdminAreaSettingsRepository interface {
+	Create(c context.Context, admin_area_settings *AdminAreaSettings) error
+	Update(c context.Context, admin_area_settings *AdminAreaSettings) error
+	Delete(c context.Context, admin_area_settings *AdminAreaSettings) error
+	Fetch(c context.Context) ([]AdminAreaSettings, error)
+	FetchByID(c context.Context, admin_area_settingsID string) (AdminAreaSettings, error)
+}
+
+type AdminAreaSettingsUsecase interface {
+	FetchByID(c context.Context, admin_area_settingsID string) (AdminAreaSettings, error)
+	Create(c context.Context, admin_area_settings *AdminAreaSettings) error
+	Update(c context.Context, admin_area_settings *AdminAreaSettings) error
+	Delete(c context.Context, admin_area_settings *AdminAreaSettings) error
+	Fetch(c context.Context) ([]AdminAreaSettings, error)
 }

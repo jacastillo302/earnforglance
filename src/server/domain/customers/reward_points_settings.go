@@ -1,6 +1,10 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionRewardPointsSettings = "reward_points_settings"
@@ -25,4 +29,20 @@ type RewardPointsSettings struct {
 	DisplayHowMuchWillBeEarned       bool               `bson:"display_how_much_will_be_earned"`
 	PointsAccumulatedForAllStores    bool               `bson:"points_accumulated_for_all_stores"`
 	PageSize                         int                `bson:"page_size"`
+}
+
+type RewardPointsSettingsRepository interface {
+	Create(c context.Context, reward_points_settings *RewardPointsSettings) error
+	Update(c context.Context, reward_points_settings *RewardPointsSettings) error
+	Delete(c context.Context, reward_points_settings *RewardPointsSettings) error
+	Fetch(c context.Context) ([]RewardPointsSettings, error)
+	FetchByID(c context.Context, reward_points_settingsID string) (RewardPointsSettings, error)
+}
+
+type RewardPointsSettingsUsecase interface {
+	FetchByID(c context.Context, reward_points_settingsID string) (RewardPointsSettings, error)
+	Create(c context.Context, reward_points_settings *RewardPointsSettings) error
+	Update(c context.Context, reward_points_settings *RewardPointsSettings) error
+	Delete(c context.Context, reward_points_settings *RewardPointsSettings) error
+	Fetch(c context.Context) ([]RewardPointsSettings, error)
 }
