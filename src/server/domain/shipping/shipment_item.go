@@ -1,6 +1,10 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionShipmentItem = "shipment_items"
@@ -9,8 +13,26 @@ const (
 // ShipmentItem represents a shipment item
 type ShipmentItem struct {
 	ID          primitive.ObjectID `bson:"_id,omitempty"`
-	ShipmentID  int                `bson:"shipment_id"`
-	OrderItemID int                `bson:"order_item_id"`
+	ShipmentID  primitive.ObjectID `bson:"shipment_id"`
+	OrderItemID primitive.ObjectID `bson:"order_item_id"`
 	Quantity    int                `bson:"quantity"`
-	WarehouseID int                `bson:"warehouse_id"`
+	WarehouseID primitive.ObjectID `bson:"warehouse_id"`
+}
+
+// ShipmentItemRepository defines the repository interface for ShipmentItem
+type ShipmentItemRepository interface {
+	Create(c context.Context, shipment_item *ShipmentItem) error
+	Update(c context.Context, shipment_item *ShipmentItem) error
+	Delete(c context.Context, shipment_item *ShipmentItem) error
+	Fetch(c context.Context) ([]ShipmentItem, error)
+	FetchByID(c context.Context, shipment_itemID string) (ShipmentItem, error)
+}
+
+// ShipmentItemUsecase defines the use case interface for ShipmentItem
+type ShipmentItemUsecase interface {
+	FetchByID(c context.Context, shipment_itemID string) (ShipmentItem, error)
+	Create(c context.Context, shipment_item *ShipmentItem) error
+	Update(c context.Context, shipment_item *ShipmentItem) error
+	Delete(c context.Context, shipment_item *ShipmentItem) error
+	Fetch(c context.Context) ([]ShipmentItem, error)
 }

@@ -1,6 +1,7 @@
 package domain
 
 import (
+	"context"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -17,4 +18,20 @@ type ForumGroup struct {
 	DisplayOrder int                `bson:"display_order"`
 	CreatedOnUtc time.Time          `bson:"created_on_utc"`
 	UpdatedOnUtc time.Time          `bson:"updated_on_utc"`
+}
+
+type ForumGroupRepository interface {
+	Create(c context.Context, forum_group *ForumGroup) error
+	Update(c context.Context, forum_group *ForumGroup) error
+	Delete(c context.Context, forum_group *ForumGroup) error
+	Fetch(c context.Context) ([]ForumGroup, error)
+	FetchByID(c context.Context, forum_groupID string) (ForumGroup, error)
+}
+
+type ForumGroupUsecase interface {
+	FetchByID(c context.Context, forum_groupID string) (ForumGroup, error)
+	Create(c context.Context, forum_group *ForumGroup) error
+	Update(c context.Context, forum_group *ForumGroup) error
+	Delete(c context.Context, forum_group *ForumGroup) error
+	Fetch(c context.Context) ([]ForumGroup, error)
 }

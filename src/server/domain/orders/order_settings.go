@@ -1,12 +1,16 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionOrderSettings = "order_settings"
 )
 
-// OrderSettings represents order settings
+// OrderSettings represents order settings.
 type OrderSettings struct {
 	ID                                                primitive.ObjectID `bson:"_id,omitempty"`
 	IsReOrderAllowed                                  bool               `bson:"is_re_order_allowed"`
@@ -46,4 +50,22 @@ type OrderSettings struct {
 	DisplayCustomerCurrencyOnOrders                   bool               `bson:"display_customer_currency_on_orders"`
 	DisplayOrderSummary                               bool               `bson:"display_order_summary"`
 	PlaceOrderWithLock                                bool               `bson:"place_order_with_lock"`
+}
+
+// OrderSettingsRepository represents the repository interface for OrderSettings
+type OrderSettingsRepository interface {
+	Create(c context.Context, order_settings *OrderSettings) error
+	Update(c context.Context, order_settings *OrderSettings) error
+	Delete(c context.Context, order_settings *OrderSettings) error
+	Fetch(c context.Context) ([]OrderSettings, error)
+	FetchByID(c context.Context, order_settingsID string) (OrderSettings, error)
+}
+
+// OrderSettingsUsecase represents the usecase interface for OrderSettings
+type OrderSettingsUsecase interface {
+	FetchByID(c context.Context, order_settingsID string) (OrderSettings, error)
+	Create(c context.Context, order_settings *OrderSettings) error
+	Update(c context.Context, order_settings *OrderSettings) error
+	Delete(c context.Context, order_settings *OrderSettings) error
+	Fetch(c context.Context) ([]OrderSettings, error)
 }

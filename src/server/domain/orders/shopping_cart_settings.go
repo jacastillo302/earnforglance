@@ -1,12 +1,16 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionShoppingCartSettings = "shopping_cart_settings"
 )
 
-// ShoppingCartSettings represents shopping cart settings
+// ShoppingCartSettings represents shopping cart settings.
 type ShoppingCartSettings struct {
 	ID                                          primitive.ObjectID `bson:"_id,omitempty"`
 	DisplayCartAfterAddingProduct               bool               `bson:"display_cart_after_adding_product"`
@@ -30,4 +34,22 @@ type ShoppingCartSettings struct {
 	GroupTierPricesForDistinctShoppingCartItems bool               `bson:"group_tier_prices_for_distinct_shopping_cart_items"`
 	AllowCartItemEditing                        bool               `bson:"allow_cart_item_editing"`
 	RenderAssociatedAttributeValueQuantity      bool               `bson:"render_associated_attribute_value_quantity"`
+}
+
+// ShoppingCartSettingsRepository defines the repository interface for ShoppingCartSettings
+type ShoppingCartSettingsRepository interface {
+	Create(c context.Context, shopping_cart_settings *ShoppingCartSettings) error
+	Update(c context.Context, shopping_cart_settings *ShoppingCartSettings) error
+	Delete(c context.Context, shopping_cart_settings *ShoppingCartSettings) error
+	Fetch(c context.Context) ([]ShoppingCartSettings, error)
+	FetchByID(c context.Context, shopping_cart_settingsID string) (ShoppingCartSettings, error)
+}
+
+// ShoppingCartSettingsUsecase defines the use case interface for ShoppingCartSettings
+type ShoppingCartSettingsUsecase interface {
+	FetchByID(c context.Context, shopping_cart_settingsID string) (ShoppingCartSettings, error)
+	Create(c context.Context, shopping_cart_settings *ShoppingCartSettings) error
+	Update(c context.Context, shopping_cart_settings *ShoppingCartSettings) error
+	Delete(c context.Context, shopping_cart_settings *ShoppingCartSettings) error
+	Fetch(c context.Context) ([]ShoppingCartSettings, error)
 }

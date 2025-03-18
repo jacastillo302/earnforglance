@@ -1,12 +1,16 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionShippingSettings = "shipping_settings"
 )
 
-// ShippingSettings represents shipping settings
+// ShippingSettings represents shipping settings.
 type ShippingSettings struct {
 	ID                                               primitive.ObjectID  `bson:"_id,omitempty"`
 	ActiveShippingRateComputationMethodSystemNames   []string            `bson:"active_shipping_rate_computation_method_system_names"`
@@ -43,4 +47,22 @@ func NewShippingSettings() *ShippingSettings {
 		ActiveShippingRateComputationMethodSystemNames: []string{},
 		ActivePickupPointProviderSystemNames:           []string{},
 	}
+}
+
+// ShippingSettingsRepository defines the repository interface for ShippingSettings
+type ShippingSettingsRepository interface {
+	Create(c context.Context, shipping_settings *ShippingSettings) error
+	Update(c context.Context, shipping_settings *ShippingSettings) error
+	Delete(c context.Context, shipping_settings *ShippingSettings) error
+	Fetch(c context.Context) ([]ShippingSettings, error)
+	FetchByID(c context.Context, shipping_settingsID string) (ShippingSettings, error)
+}
+
+// ShippingSettingsUsecase defines the usecase interface for ShippingSettings
+type ShippingSettingsUsecase interface {
+	FetchByID(c context.Context, shipping_settingsID string) (ShippingSettings, error)
+	Create(c context.Context, shipping_settings *ShippingSettings) error
+	Update(c context.Context, shipping_settings *ShippingSettings) error
+	Delete(c context.Context, shipping_settings *ShippingSettings) error
+	Fetch(c context.Context) ([]ShippingSettings, error)
 }

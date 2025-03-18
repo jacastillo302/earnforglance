@@ -1,12 +1,16 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionLocalizationSettings = "localization_settings"
 )
 
-// LocalizationSettings represents localization settings
+// LocalizationSettings represents localization settings all
 type LocalizationSettings struct {
 	ID                                  primitive.ObjectID `bson:"_id,omitempty"`
 	DefaultAdminLanguageID              int                `bson:"default_admin_language_id"`
@@ -17,4 +21,20 @@ type LocalizationSettings struct {
 	LoadAllLocalizedPropertiesOnStartup bool               `bson:"load_all_localized_properties_on_startup"`
 	LoadAllUrlRecordsOnStartup          bool               `bson:"load_all_url_records_on_startup"`
 	IgnoreRtlPropertyForAdminArea       bool               `bson:"ignore_rtl_property_for_admin_area"`
+}
+
+type LocalizationSettingsRepository interface {
+	Create(c context.Context, localization_settings *LocalizationSettings) error
+	Update(c context.Context, localization_settings *LocalizationSettings) error
+	Delete(c context.Context, localization_settings *LocalizationSettings) error
+	Fetch(c context.Context) ([]LocalizationSettings, error)
+	FetchByID(c context.Context, localization_settingsID string) (LocalizationSettings, error)
+}
+
+type LocalizationSettingsUsecase interface {
+	FetchByID(c context.Context, localization_settingsID string) (LocalizationSettings, error)
+	Create(c context.Context, localization_settings *LocalizationSettings) error
+	Update(c context.Context, localization_settings *LocalizationSettings) error
+	Delete(c context.Context, localization_settings *LocalizationSettings) error
+	Fetch(c context.Context) ([]LocalizationSettings, error)
 }

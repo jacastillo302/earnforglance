@@ -1,6 +1,10 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionForumSettings = "forum_settings"
@@ -42,4 +46,22 @@ type ForumSettings struct {
 	ForumFeedsEnabled                   bool               `bson:"forum_feeds_enabled"`
 	ForumFeedCount                      int                `bson:"forum_feed_count"`
 	ForumSearchTermMinimumLength        int                `bson:"forum_search_term_minimum_length"`
+}
+
+// ForumSettingsRepository represents the forum settings repository interface
+type ForumSettingsRepository interface {
+	Create(c context.Context, forum_settings *ForumSettings) error
+	Update(c context.Context, forum_settings *ForumSettings) error
+	Delete(c context.Context, forum_settings *ForumSettings) error
+	Fetch(c context.Context) ([]ForumSettings, error)
+	FetchByID(c context.Context, forum_settingsID string) (ForumSettings, error)
+}
+
+// ForumSettingsUsecase represents the forum settings usecase interface
+type ForumSettingsUsecase interface {
+	FetchByID(c context.Context, forum_settingsID string) (ForumSettings, error)
+	Create(c context.Context, forum_settings *ForumSettings) error
+	Update(c context.Context, forum_settings *ForumSettings) error
+	Delete(c context.Context, forum_settings *ForumSettings) error
+	Fetch(c context.Context) ([]ForumSettings, error)
 }

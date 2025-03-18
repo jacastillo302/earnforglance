@@ -1,15 +1,37 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionAclRecord = "acl_records"
 )
 
-// AclRecord represents an ACL record
+// AclRecord represents an ACL record.
 type AclRecord struct {
 	ID             primitive.ObjectID `bson:"_id,omitempty"`
-	EntityID       int                `bson:"entity_id"`
+	EntityID       primitive.ObjectID `bson:"entity_id"`
 	EntityName     string             `bson:"entity_name"`
-	CustomerRoleID int                `bson:"customer_role_id"`
+	CustomerRoleID primitive.ObjectID `bson:"customer_role_id"`
+}
+
+// AclRecordRepository defines the repository interface for AclRecord
+type AclRecordRepository interface {
+	Create(c context.Context, acl_record *AclRecord) error
+	Update(c context.Context, acl_record *AclRecord) error
+	Delete(c context.Context, acl_record *AclRecord) error
+	Fetch(c context.Context) ([]AclRecord, error)
+	FetchByID(c context.Context, acl_recordID string) (AclRecord, error)
+}
+
+// AclRecordUsecase defines the use case interface for AclRecord
+type AclRecordUsecase interface {
+	FetchByID(c context.Context, acl_recordID string) (AclRecord, error)
+	Create(c context.Context, acl_record *AclRecord) error
+	Update(c context.Context, acl_record *AclRecord) error
+	Delete(c context.Context, acl_record *AclRecord) error
+	Fetch(c context.Context) ([]AclRecord, error)
 }

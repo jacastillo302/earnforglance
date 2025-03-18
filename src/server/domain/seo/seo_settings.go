@@ -1,12 +1,16 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionSeoSettings = "seo_settings"
 )
 
-// SeoSettings represents SEO settings
+// SeoSettings represents SEO settings.
 type SeoSettings struct {
 	ID                                primitive.ObjectID     `bson:"_id,omitempty"`
 	PageTitleSeparator                string                 `bson:"page_title_separator"`
@@ -29,4 +33,20 @@ func NewSeoSettings() *SeoSettings {
 	return &SeoSettings{
 		ReservedUrlRecordSlugs: []string{},
 	}
+}
+
+type SeoSettingsRepository interface {
+	Create(c context.Context, seo_settings *SeoSettings) error
+	Update(c context.Context, seo_settings *SeoSettings) error
+	Delete(c context.Context, seo_settings *SeoSettings) error
+	Fetch(c context.Context) ([]SeoSettings, error)
+	FetchByID(c context.Context, seo_settingsID string) (SeoSettings, error)
+}
+
+type SeoSettingsUsecase interface {
+	FetchByID(c context.Context, seo_settingsID string) (SeoSettings, error)
+	Create(c context.Context, seo_settings *SeoSettings) error
+	Update(c context.Context, seo_settings *SeoSettings) error
+	Delete(c context.Context, seo_settings *SeoSettings) error
+	Fetch(c context.Context) ([]SeoSettings, error)
 }

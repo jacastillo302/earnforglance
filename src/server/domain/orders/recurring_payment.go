@@ -1,6 +1,7 @@
 package domain
 
 import (
+	"context" // added context library
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -10,7 +11,7 @@ const (
 	CollectionRecurringPayment = "recurring_payments"
 )
 
-// RecurringPayment represents a recurring payment
+// RecurringPayment represents a recurring payment.
 type RecurringPayment struct {
 	ID                primitive.ObjectID `bson:"_id,omitempty"`
 	CycleLength       int                `bson:"cycle_length"`
@@ -23,4 +24,22 @@ type RecurringPayment struct {
 	InitialOrderID    int                `bson:"initial_order_id"`
 	CreatedOnUtc      time.Time          `bson:"created_on_utc"`
 	CyclePeriod       int                `bson:"cycle_period"`
+}
+
+// RecurringPaymentRepository interface
+type RecurringPaymentRepository interface {
+	Create(c context.Context, recurring_payment *RecurringPayment) error
+	Update(c context.Context, recurring_payment *RecurringPayment) error
+	Delete(c context.Context, recurring_payment *RecurringPayment) error
+	Fetch(c context.Context) ([]RecurringPayment, error)
+	FetchByID(c context.Context, recurring_paymentID string) (RecurringPayment, error)
+}
+
+// RecurringPaymentUsecase interface
+type RecurringPaymentUsecase interface {
+	FetchByID(c context.Context, recurring_paymentID string) (RecurringPayment, error)
+	Create(c context.Context, recurring_payment *RecurringPayment) error
+	Update(c context.Context, recurring_payment *RecurringPayment) error
+	Delete(c context.Context, recurring_payment *RecurringPayment) error
+	Fetch(c context.Context) ([]RecurringPayment, error)
 }

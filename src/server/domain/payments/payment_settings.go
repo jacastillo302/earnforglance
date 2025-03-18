@@ -1,12 +1,16 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionPaymentSettings = "payment_settings"
 )
 
-// PaymentSettings represents payment settings
+// PaymentSettings represents payment settings.
 type PaymentSettings struct {
 	ID                                              primitive.ObjectID `bson:"_id,omitempty"`
 	ActivePaymentMethodSystemNames                  []string           `bson:"active_payment_method_system_names"`
@@ -23,4 +27,20 @@ func NewPaymentSettings() *PaymentSettings {
 	return &PaymentSettings{
 		ActivePaymentMethodSystemNames: []string{},
 	}
+}
+
+type PaymentSettingsRepository interface {
+	Create(c context.Context, payment_settings *PaymentSettings) error
+	Update(c context.Context, payment_settings *PaymentSettings) error
+	Delete(c context.Context, payment_settings *PaymentSettings) error
+	Fetch(c context.Context) ([]PaymentSettings, error)
+	FetchByID(c context.Context, payment_settingsID string) (PaymentSettings, error)
+}
+
+type PaymentSettingsUsecase interface {
+	FetchByID(c context.Context, payment_settingsID string) (PaymentSettings, error)
+	Create(c context.Context, payment_settings *PaymentSettings) error
+	Update(c context.Context, payment_settings *PaymentSettings) error
+	Delete(c context.Context, payment_settings *PaymentSettings) error
+	Fetch(c context.Context) ([]PaymentSettings, error)
 }

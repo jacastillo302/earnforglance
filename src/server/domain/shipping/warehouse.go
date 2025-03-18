@@ -1,6 +1,10 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionWarehouse = "warehouses"
@@ -11,5 +15,21 @@ type Warehouse struct {
 	ID           primitive.ObjectID `bson:"_id,omitempty"`
 	Name         string             `bson:"name"`
 	AdminComment string             `bson:"admin_comment"`
-	AddressID    int                `bson:"address_id"`
+	AddressID    primitive.ObjectID `bson:"address_id"`
+}
+
+type WarehouseRepository interface {
+	Create(c context.Context, warehouse *Warehouse) error
+	Update(c context.Context, warehouse *Warehouse) error
+	Delete(c context.Context, warehouse *Warehouse) error
+	Fetch(c context.Context) ([]Warehouse, error)
+	FetchByID(c context.Context, warehouseID string) (Warehouse, error)
+}
+
+type WarehouseUsecase interface {
+	FetchByID(c context.Context, warehouseID string) (Warehouse, error)
+	Create(c context.Context, warehouse *Warehouse) error
+	Update(c context.Context, warehouse *Warehouse) error
+	Delete(c context.Context, warehouse *Warehouse) error
+	Fetch(c context.Context) ([]Warehouse, error)
 }

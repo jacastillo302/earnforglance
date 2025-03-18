@@ -1,6 +1,7 @@
 package domain
 
 import (
+	"context" // added context library
 	"time"
 
 	"github.com/google/uuid"
@@ -17,7 +18,25 @@ type NewsLetterSubscription struct {
 	NewsLetterSubscriptionGuid uuid.UUID          `bson:"newsletter_subscription_guid"`
 	Email                      string             `bson:"email"`
 	Active                     bool               `bson:"active"`
-	StoreID                    int                `bson:"store_id"`
+	StoreID                    primitive.ObjectID `bson:"store_id"`
 	CreatedOnUtc               time.Time          `bson:"created_on_utc"`
-	LanguageID                 int                `bson:"language_id"`
+	LanguageID                 primitive.ObjectID `bson:"language_id"`
+}
+
+// NewsLetterSubscriptionRepository interface
+type NewsLetterSubscriptionRepository interface {
+	Create(c context.Context, newsletter_subscription *NewsLetterSubscription) error
+	Update(c context.Context, newsletter_subscription *NewsLetterSubscription) error
+	Delete(c context.Context, newsletter_subscription *NewsLetterSubscription) error
+	Fetch(c context.Context) ([]NewsLetterSubscription, error)
+	FetchByID(c context.Context, newsletter_subscriptionID string) (NewsLetterSubscription, error)
+}
+
+// NewsLetterSubscriptionUsecase interface
+type NewsLetterSubscriptionUsecase interface {
+	FetchByID(c context.Context, newsletter_subscriptionID string) (NewsLetterSubscription, error)
+	Create(c context.Context, newsletter_subscription *NewsLetterSubscription) error
+	Update(c context.Context, newsletter_subscription *NewsLetterSubscription) error
+	Delete(c context.Context, newsletter_subscription *NewsLetterSubscription) error
+	Fetch(c context.Context) ([]NewsLetterSubscription, error)
 }

@@ -1,12 +1,16 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionProxySettings = "proxy_settings"
 )
 
-// ProxySettings represents proxy settings
+// ProxySettings represents proxy settings.
 type ProxySettings struct {
 	ID              primitive.ObjectID `bson:"_id,omitempty"`
 	Enabled         bool               `bson:"enabled"`
@@ -16,4 +20,20 @@ type ProxySettings struct {
 	Password        string             `bson:"password"`
 	BypassOnLocal   bool               `bson:"bypass_on_local"`
 	PreAuthenticate bool               `bson:"pre_authenticate"`
+}
+
+type ProxySettingsRepository interface {
+	Create(c context.Context, proxy_settings *ProxySettings) error
+	Update(c context.Context, proxy_settings *ProxySettings) error
+	Delete(c context.Context, proxy_settings *ProxySettings) error
+	Fetch(c context.Context) ([]ProxySettings, error)
+	FetchByID(c context.Context, proxy_settingsID string) (ProxySettings, error)
+}
+
+type ProxySettingsUsecase interface {
+	FetchByID(c context.Context, proxy_settingsID string) (ProxySettings, error)
+	Create(c context.Context, proxy_settings *ProxySettings) error
+	Update(c context.Context, proxy_settings *ProxySettings) error
+	Delete(c context.Context, proxy_settings *ProxySettings) error
+	Fetch(c context.Context) ([]ProxySettings, error)
 }

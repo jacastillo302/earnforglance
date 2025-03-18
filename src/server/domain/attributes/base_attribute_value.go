@@ -11,7 +11,7 @@ const (
 )
 
 // BaseAttributeValue represents the base class for attribute values
-type BaseAttributevValue struct {
+type BaseAttributeValue struct {
 	ID            primitive.ObjectID `bson:"_id,omitempty"`
 	Name          string             `bson:"name"`
 	IsPreSelected bool               `bson:"is_pre_selected"`
@@ -19,18 +19,18 @@ type BaseAttributevValue struct {
 	AttributeId   primitive.ObjectID `bson:"attribute_id"`
 }
 
-type BaseAttributevValueRepository interface {
-	Create(c context.Context, base_attribute *BaseAttributevValue) error
-	Update(c context.Context, base_attribute *BaseAttributevValue) error
-	Delete(c context.Context, base_attribute *BaseAttributevValue) error
-	Fetch(c context.Context) ([]BaseAttributevValue, error)
-	FetchByID(c context.Context, base_attributeID string) (BaseAttributevValue, error)
+type BaseAttributeValueRepository interface {
+	Create(c context.Context, base_attribute *BaseAttributeValue) error
+	Update(c context.Context, base_attribute *BaseAttributeValue) error
+	Delete(c context.Context, base_attribute *BaseAttributeValue) error
+	Fetch(c context.Context) ([]BaseAttributeValue, error)
+	FetchByID(c context.Context, base_attributeID string) (BaseAttributeValue, error)
 }
 
-type BaseAttributevValueUsecase interface {
-	FetchByID(c context.Context, base_attributeID string) (BaseAttributevValue, error)
-	Create(c context.Context, base_attribute *BaseAttributevValue) error
-	Update(c context.Context, base_attribute *BaseAttributevValue) error
-	Delete(c context.Context, base_attribute *BaseAttributevValue) error
-	Fetch(c context.Context) ([]BaseAttributevValue, error)
+type BaseAttributeValueUsecase interface {
+	FetchByID(c context.Context, base_attributeID string) (BaseAttributeValue, error)
+	Create(c context.Context, base_attribute *BaseAttributeValue) error
+	Update(c context.Context, base_attribute *BaseAttributeValue) error
+	Delete(c context.Context, base_attribute *BaseAttributeValue) error
+	Fetch(c context.Context) ([]BaseAttributeValue, error)
 }

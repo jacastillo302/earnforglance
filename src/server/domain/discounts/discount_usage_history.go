@@ -1,6 +1,7 @@
 package domain
 
 import (
+	"context"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -13,7 +14,23 @@ const (
 // DiscountUsageHistory represents a discount usage history entry
 type DiscountUsageHistory struct {
 	ID           primitive.ObjectID `bson:"_id,omitempty"`
-	DiscountID   int                `bson:"discount_id"`
-	OrderID      int                `bson:"order_id"`
+	DiscountID   primitive.ObjectID `bson:"discount_id"`
+	OrderID      primitive.ObjectID `bson:"order_id"`
 	CreatedOnUtc time.Time          `bson:"created_on_utc"`
+}
+
+type DiscountUsageHistoryRepository interface {
+	Create(c context.Context, discount_usage_history *DiscountUsageHistory) error
+	Update(c context.Context, discount_usage_history *DiscountUsageHistory) error
+	Delete(c context.Context, discount_usage_history *DiscountUsageHistory) error
+	Fetch(c context.Context) ([]DiscountUsageHistory, error)
+	FetchByID(c context.Context, discount_usage_historyID string) (DiscountUsageHistory, error)
+}
+
+type DiscountUsageHistoryUsecase interface {
+	FetchByID(c context.Context, discount_usage_historyID string) (DiscountUsageHistory, error)
+	Create(c context.Context, discount_usage_history *DiscountUsageHistory) error
+	Update(c context.Context, discount_usage_history *DiscountUsageHistory) error
+	Delete(c context.Context, discount_usage_history *DiscountUsageHistory) error
+	Fetch(c context.Context) ([]DiscountUsageHistory, error)
 }

@@ -1,12 +1,16 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionSecuritySettings = "security_settings"
 )
 
-// SecuritySettings represents security settings
+// SecuritySettings represents security settings.
 type SecuritySettings struct {
 	ID                                                     primitive.ObjectID `bson:"_id,omitempty"`
 	EncryptionKey                                          string             `bson:"encryption_key"`
@@ -24,4 +28,20 @@ func NewSecuritySettings() *SecuritySettings {
 	return &SecuritySettings{
 		AdminAreaAllowedIpAddresses: []string{},
 	}
+}
+
+type SecuritySettingsRepository interface {
+	Create(c context.Context, security_settings *SecuritySettings) error
+	Update(c context.Context, security_settings *SecuritySettings) error
+	Delete(c context.Context, security_settings *SecuritySettings) error
+	Fetch(c context.Context) ([]SecuritySettings, error)
+	FetchByID(c context.Context, security_settingsID string) (SecuritySettings, error)
+}
+
+type SecuritySettingsUsecase interface {
+	FetchByID(c context.Context, security_settingsID string) (SecuritySettings, error)
+	Create(c context.Context, security_settings *SecuritySettings) error
+	Update(c context.Context, security_settings *SecuritySettings) error
+	Delete(c context.Context, security_settings *SecuritySettings) error
+	Fetch(c context.Context) ([]SecuritySettings, error)
 }

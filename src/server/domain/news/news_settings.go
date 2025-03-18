@@ -1,12 +1,16 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionNewsSettings = "news_settings"
 )
 
-// NewsSettings represents news settings
+// NewsSettings represents news settings.
 type NewsSettings struct {
 	ID                                     primitive.ObjectID `bson:"_id,omitempty"`
 	Enabled                                bool               `bson:"enabled"`
@@ -18,4 +22,22 @@ type NewsSettings struct {
 	ShowHeaderRssUrl                       bool               `bson:"show_header_rss_url"`
 	NewsCommentsMustBeApproved             bool               `bson:"news_comments_must_be_approved"`
 	ShowNewsCommentsPerStore               bool               `bson:"show_news_comments_per_store"`
+}
+
+// NewsSettingsRepository interface
+type NewsSettingsRepository interface {
+	Create(c context.Context, news_settings *NewsSettings) error
+	Update(c context.Context, news_settings *NewsSettings) error
+	Delete(c context.Context, news_settings *NewsSettings) error
+	Fetch(c context.Context) ([]NewsSettings, error)
+	FetchByID(c context.Context, news_settingsID string) (NewsSettings, error)
+}
+
+// NewsSettingsUsecase interface
+type NewsSettingsUsecase interface {
+	FetchByID(c context.Context, news_settingsID string) (NewsSettings, error)
+	Create(c context.Context, news_settings *NewsSettings) error
+	Update(c context.Context, news_settings *NewsSettings) error
+	Delete(c context.Context, news_settings *NewsSettings) error
+	Fetch(c context.Context) ([]NewsSettings, error)
 }

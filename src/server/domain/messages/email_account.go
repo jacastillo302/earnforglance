@@ -1,12 +1,16 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionEmailAccount = "email_accounts"
 )
 
-// EmailAccount represents an email account
+// EmailAccount represent an email account
 type EmailAccount struct {
 	ID                          primitive.ObjectID        `bson:"_id,omitempty"`
 	Email                       string                    `bson:"email"`
@@ -22,4 +26,22 @@ type EmailAccount struct {
 	ClientSecret                string                    `bson:"client_secret"`
 	TenantID                    string                    `bson:"tenant_id"`
 	EmailAuthenticationMethod   EmailAuthenticationMethod `bson:"email_authentication_method"`
+}
+
+// EmailAccountRepository represents the repository interface for EmailAccount
+type EmailAccountRepository interface {
+	Create(c context.Context, email_account *EmailAccount) error
+	Update(c context.Context, email_account *EmailAccount) error
+	Delete(c context.Context, email_account *EmailAccount) error
+	Fetch(c context.Context) ([]EmailAccount, error)
+	FetchByID(c context.Context, email_accountID string) (EmailAccount, error)
+}
+
+// EmailAccountUsecase represents the use case interface for EmailAccount
+type EmailAccountUsecase interface {
+	FetchByID(c context.Context, email_accountID string) (EmailAccount, error)
+	Create(c context.Context, email_account *EmailAccount) error
+	Update(c context.Context, email_account *EmailAccount) error
+	Delete(c context.Context, email_account *EmailAccount) error
+	Fetch(c context.Context) ([]EmailAccount, error)
 }

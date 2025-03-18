@@ -1,12 +1,16 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionCaptchaSettings = "captcha_settings"
 )
 
-// CaptchaSettings represents CAPTCHA settings
+// CaptchaSettings represents CAPTCHA settings.
 type CaptchaSettings struct {
 	ID                              primitive.ObjectID `bson:"_id,omitempty"`
 	Enabled                         bool               `bson:"enabled"`
@@ -33,4 +37,20 @@ type CaptchaSettings struct {
 	ReCaptchaRequestTimeout         *int               `bson:"re_captcha_request_timeout,omitempty"`
 	ReCaptchaDefaultLanguage        string             `bson:"re_captcha_default_language"`
 	AutomaticallyChooseLanguage     bool               `bson:"automatically_choose_language"`
+}
+
+type CaptchaSettingsRepository interface {
+	Create(c context.Context, capcha_settings *CaptchaSettings) error
+	Update(c context.Context, capcha_settings *CaptchaSettings) error
+	Delete(c context.Context, capcha_settings *CaptchaSettings) error
+	Fetch(c context.Context) ([]CaptchaSettings, error)
+	FetchByID(c context.Context, capcha_settingsID string) (CaptchaSettings, error)
+}
+
+type CaptchaSettingsUsecase interface {
+	FetchByID(c context.Context, capcha_settingsID string) (CaptchaSettings, error)
+	Create(c context.Context, capcha_settings *CaptchaSettings) error
+	Update(c context.Context, capcha_settings *CaptchaSettings) error
+	Delete(c context.Context, capcha_settings *CaptchaSettings) error
+	Fetch(c context.Context) ([]CaptchaSettings, error)
 }

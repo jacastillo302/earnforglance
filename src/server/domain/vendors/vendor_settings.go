@@ -1,12 +1,16 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectioVendorSettings = "vendor_settings"
 )
 
-// VendorSettings represents vendor settings
+// VendorSettings represents vendor settings.
 type VendorSettings struct {
 	ID                                           primitive.ObjectID `bson:"_id,omitempty"`
 	DefaultVendorPageSizeOptions                 string             `bson:"default_vendor_page_size_options"`
@@ -27,4 +31,22 @@ type VendorSettings struct {
 // NewVendorSettings creates a new instance of VendorSettings with default values
 func NewVendorSettings() *VendorSettings {
 	return &VendorSettings{}
+}
+
+// VendorSettingsRepository defines the repository interface for VendorSettings
+type VendorSettingsRepository interface {
+	Create(c context.Context, vendor_settings *VendorSettings) error
+	Update(c context.Context, vendor_settings *VendorSettings) error
+	Delete(c context.Context, vendor_settings *VendorSettings) error
+	Fetch(c context.Context) ([]VendorSettings, error)
+	FetchByID(c context.Context, vendor_settingsID string) (VendorSettings, error)
+}
+
+// VendorSettingsUsecase defines the use case interface for VendorSettings
+type VendorSettingsUsecase interface {
+	FetchByID(c context.Context, vendor_settingsID string) (VendorSettings, error)
+	Create(c context.Context, vendor_settings *VendorSettings) error
+	Update(c context.Context, vendor_settings *VendorSettings) error
+	Delete(c context.Context, vendor_settings *VendorSettings) error
+	Fetch(c context.Context) ([]VendorSettings, error)
 }

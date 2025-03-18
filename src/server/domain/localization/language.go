@@ -1,6 +1,10 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionLanguage = "languages"
@@ -15,7 +19,23 @@ type Language struct {
 	FlagImageFileName string             `bson:"flag_image_file_name"`
 	Rtl               bool               `bson:"rtl"`
 	LimitedToStores   bool               `bson:"limited_to_stores"`
-	DefaultCurrencyID int                `bson:"default_currency_id"`
+	DefaultCurrencyID primitive.ObjectID `bson:"default_currency_id"`
 	Published         bool               `bson:"published"`
 	DisplayOrder      int                `bson:"display_order"`
+}
+
+type LanguageRepository interface {
+	Create(c context.Context, language *Language) error
+	Update(c context.Context, language *Language) error
+	Delete(c context.Context, language *Language) error
+	Fetch(c context.Context) ([]Language, error)
+	FetchByID(c context.Context, languageID string) (Language, error)
+}
+
+type LanguageUsecase interface {
+	FetchByID(c context.Context, languageID string) (Language, error)
+	Create(c context.Context, language *Language) error
+	Update(c context.Context, language *Language) error
+	Delete(c context.Context, language *Language) error
+	Fetch(c context.Context) ([]Language, error)
 }

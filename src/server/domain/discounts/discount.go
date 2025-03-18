@@ -1,6 +1,7 @@
 package domain
 
 import (
+	"context"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -25,7 +26,7 @@ type Discount struct {
 	RequiresCouponCode        bool                   `bson:"requires_coupon_code"`
 	CouponCode                string                 `bson:"coupon_code"`
 	IsCumulative              bool                   `bson:"is_cumulative"`
-	DiscountLimitationID      int                    `bson:"discount_limitation_id"`
+	DiscountLimitationID      primitive.ObjectID     `bson:"discount_limitation_id"`
 	LimitationTimes           int                    `bson:"limitation_times"`
 	MaximumDiscountedQuantity *int                   `bson:"maximum_discounted_quantity,omitempty"`
 	AppliedToSubCategories    bool                   `bson:"applied_to_sub_categories"`
@@ -33,4 +34,20 @@ type Discount struct {
 	VendorID                  *int                   `bson:"vendor_id,omitempty"`
 	DiscountType              DiscountType           `bson:"discount_type"`
 	DiscountLimitation        DiscountLimitationType `bson:"discount_limitation"`
+}
+
+type DiscountRepository interface {
+	Create(c context.Context, discount *Discount) error
+	Update(c context.Context, discount *Discount) error
+	Delete(c context.Context, discount *Discount) error
+	Fetch(c context.Context) ([]Discount, error)
+	FetchByID(c context.Context, discountID string) (Discount, error)
+}
+
+type DiscountUsecase interface {
+	FetchByID(c context.Context, discountID string) (Discount, error)
+	Create(c context.Context, discount *Discount) error
+	Update(c context.Context, discount *Discount) error
+	Delete(c context.Context, discount *Discount) error
+	Fetch(c context.Context) ([]Discount, error)
 }

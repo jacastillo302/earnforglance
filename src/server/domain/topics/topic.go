@@ -1,6 +1,7 @@
 package domain
 
 import (
+	"context"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -10,7 +11,7 @@ const (
 	CollectioTopic = "topics"
 )
 
-// Topic represents a topic
+// Topic represents a topic.
 type Topic struct {
 	ID                        primitive.ObjectID `bson:"_id,omitempty"`
 	SystemName                string             `bson:"system_name"`
@@ -26,7 +27,7 @@ type Topic struct {
 	Title                     string             `bson:"title"`
 	Body                      string             `bson:"body"`
 	Published                 bool               `bson:"published"`
-	TopicTemplateID           int                `bson:"topic_template_id"`
+	TopicTemplateID           primitive.ObjectID `bson:"topic_template_id"`
 	MetaKeywords              string             `bson:"meta_keywords"`
 	MetaDescription           string             `bson:"meta_description"`
 	MetaTitle                 string             `bson:"meta_title"`
@@ -34,4 +35,22 @@ type Topic struct {
 	LimitedToStores           bool               `bson:"limited_to_stores"`
 	AvailableStartDateTimeUtc *time.Time         `bson:"available_start_date_time_utc,omitempty"`
 	AvailableEndDateTimeUtc   *time.Time         `bson:"available_end_date_time_utc,omitempty"`
+}
+
+// TopicRepository defines the repository interface for Topic
+type TopicRepository interface {
+	Create(c context.Context, topic *Topic) error
+	Update(c context.Context, topic *Topic) error
+	Delete(c context.Context, topic *Topic) error
+	Fetch(c context.Context) ([]Topic, error)
+	FetchByID(c context.Context, topicID string) (Topic, error)
+}
+
+// TopicUsecase defines the use case interface for Topic
+type TopicUsecase interface {
+	FetchByID(c context.Context, topicID string) (Topic, error)
+	Create(c context.Context, topic *Topic) error
+	Update(c context.Context, topic *Topic) error
+	Delete(c context.Context, topic *Topic) error
+	Fetch(c context.Context) ([]Topic, error)
 }

@@ -1,6 +1,10 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionRobotsTxtSettings = "robots_txt_settings"
@@ -16,7 +20,7 @@ type RobotsTxtSettings struct {
 	AllowSitemapXml          bool               `bson:"allow_sitemap_xml"`
 }
 
-// NewRobotsTxtSettings creates a new instance of RobotsTxtSettings with default values
+// NewRobotsTxtSettings creates a new instance of RobotsTxtSettings with default values.
 func NewRobotsTxtSettings() *RobotsTxtSettings {
 	return &RobotsTxtSettings{
 		DisallowPaths:            []string{},
@@ -25,4 +29,22 @@ func NewRobotsTxtSettings() *RobotsTxtSettings {
 		AdditionsRules:           []string{},
 		AllowSitemapXml:          true,
 	}
+}
+
+// RobotsTxtSettingsRepository defines the repository interface for RobotsTxtSettings
+type RobotsTxtSettingsRepository interface {
+	Create(c context.Context, robotsTxtSettings *RobotsTxtSettings) error
+	Update(c context.Context, robotsTxtSettings *RobotsTxtSettings) error
+	Delete(c context.Context, robotsTxtSettings *RobotsTxtSettings) error
+	Fetch(c context.Context) ([]RobotsTxtSettings, error)
+	FetchByID(c context.Context, robotsTxtSettingsID string) (RobotsTxtSettings, error)
+}
+
+// RobotsTxtSettingsUsecase defines the use case interface for RobotsTxtSettings
+type RobotsTxtSettingsUsecase interface {
+	FetchByID(c context.Context, robotsTxtSettingsID string) (RobotsTxtSettings, error)
+	Create(c context.Context, robotsTxtSettings *RobotsTxtSettings) error
+	Update(c context.Context, robotsTxtSettings *RobotsTxtSettings) error
+	Delete(c context.Context, robotsTxtSettings *RobotsTxtSettings) error
+	Fetch(c context.Context) ([]RobotsTxtSettings, error)
 }

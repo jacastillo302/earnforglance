@@ -1,6 +1,7 @@
 package domain
 
 import (
+	"context"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -13,7 +14,25 @@ const (
 // RecurringPaymentHistory represents a recurring payment history
 type RecurringPaymentHistory struct {
 	ID                 primitive.ObjectID `bson:"_id,omitempty"`
-	RecurringPaymentID int                `bson:"recurring_payment_id"`
-	OrderID            int                `bson:"order_id"`
+	RecurringPaymentID primitive.ObjectID `bson:"recurring_payment_id"`
+	OrderID            primitive.ObjectID `bson:"order_id"`
 	CreatedOnUtc       time.Time          `bson:"created_on_utc"`
+}
+
+// RecurringPaymentHistoryRepository represents the repository interface for RecurringPaymentHistory
+type RecurringPaymentHistoryRepository interface {
+	Create(c context.Context, recurring_payment_history *RecurringPaymentHistory) error
+	Update(c context.Context, recurring_payment_history *RecurringPaymentHistory) error
+	Delete(c context.Context, recurring_payment_history *RecurringPaymentHistory) error
+	Fetch(c context.Context) ([]RecurringPaymentHistory, error)
+	FetchByID(c context.Context, recurring_payment_historyID string) (RecurringPaymentHistory, error)
+}
+
+// RecurringPaymentHistoryUsecase represents the use case interface for RecurringPaymentHistory
+type RecurringPaymentHistoryUsecase interface {
+	FetchByID(c context.Context, recurring_payment_historyID string) (RecurringPaymentHistory, error)
+	Create(c context.Context, recurring_payment_history *RecurringPaymentHistory) error
+	Update(c context.Context, recurring_payment_history *RecurringPaymentHistory) error
+	Delete(c context.Context, recurring_payment_history *RecurringPaymentHistory) error
+	Fetch(c context.Context) ([]RecurringPaymentHistory, error)
 }

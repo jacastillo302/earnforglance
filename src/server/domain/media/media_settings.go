@@ -1,6 +1,10 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionMediaSettings = "media_settings"
@@ -33,6 +37,22 @@ type MediaSettings struct {
 	VideoIframeAllow                            string             `bson:"video_iframe_allow"`
 	VideoIframeWidth                            int                `bson:"video_iframe_width"`
 	VideoIframeHeight                           int                `bson:"video_iframe_height"`
-	ProductDefaultImageID                       int                `bson:"product_default_image_id"`
+	ProductDefaultImageID                       primitive.ObjectID `bson:"product_default_image_id"`
 	AutoOrientImage                             bool               `bson:"auto_orient_image"`
+}
+
+type MediaSettingsRepository interface {
+	Create(c context.Context, media_settings *MediaSettings) error
+	Update(c context.Context, media_settings *MediaSettings) error
+	Delete(c context.Context, media_settings *MediaSettings) error
+	Fetch(c context.Context) ([]MediaSettings, error)
+	FetchByID(c context.Context, media_settingsID string) (MediaSettings, error)
+}
+
+type MediaSettingsUsecase interface {
+	FetchByID(c context.Context, media_settingsID string) (MediaSettings, error)
+	Create(c context.Context, media_settings *MediaSettings) error
+	Update(c context.Context, media_settings *MediaSettings) error
+	Delete(c context.Context, media_settings *MediaSettings) error
+	Fetch(c context.Context) ([]MediaSettings, error)
 }

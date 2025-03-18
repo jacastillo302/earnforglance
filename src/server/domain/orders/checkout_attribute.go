@@ -1,6 +1,10 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionCheckoutAttributem = "checkout_attributes"
@@ -12,7 +16,7 @@ type CheckoutAttribute struct {
 	TextPrompt                      string             `bson:"text_prompt"`
 	ShippableProductRequired        bool               `bson:"shippable_product_required"`
 	IsTaxExempt                     bool               `bson:"is_tax_exempt"`
-	TaxCategoryID                   int                `bson:"tax_category_id"`
+	TaxCategoryID                   primitive.ObjectID `bson:"tax_category_id"`
 	LimitedToStores                 bool               `bson:"limited_to_stores"`
 	ValidationMinLength             *int               `bson:"validation_min_length,omitempty"`
 	ValidationMaxLength             *int               `bson:"validation_max_length,omitempty"`
@@ -20,4 +24,22 @@ type CheckoutAttribute struct {
 	ValidationFileMaximumSize       *int               `bson:"validation_file_maximum_size,omitempty"`
 	DefaultValue                    string             `bson:"default_value"`
 	ConditionAttributeXml           string             `bson:"condition_attribute_xml"`
+}
+
+// CheckoutAttributeRepository interface
+type CheckoutAttributeRepository interface {
+	Create(c context.Context, checkout_attribute *CheckoutAttribute) error
+	Update(c context.Context, checkout_attribute *CheckoutAttribute) error
+	Delete(c context.Context, checkout_attribute *CheckoutAttribute) error
+	Fetch(c context.Context) ([]CheckoutAttribute, error)
+	FetchByID(c context.Context, checkout_attributeID string) (CheckoutAttribute, error)
+}
+
+// CheckoutAttributeUsecase interface
+type CheckoutAttributeUsecase interface {
+	FetchByID(c context.Context, checkout_attributeID string) (CheckoutAttribute, error)
+	Create(c context.Context, checkout_attribute *CheckoutAttribute) error
+	Update(c context.Context, checkout_attribute *CheckoutAttribute) error
+	Delete(c context.Context, checkout_attribute *CheckoutAttribute) error
+	Fetch(c context.Context) ([]CheckoutAttribute, error)
 }

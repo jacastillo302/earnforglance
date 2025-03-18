@@ -1,6 +1,10 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionDiscountMapping = "discount_mappings"
@@ -9,12 +13,28 @@ const (
 // DiscountMapping represents an abstract discount mapping
 type DiscountMapping struct {
 	ID         primitive.ObjectID `bson:"_id,omitempty"`
-	DiscountID int                `bson:"discount_id"`
-	EntityID   int                `bson:"entity_id"`
+	DiscountID primitive.ObjectID `bson:"discount_id"`
+	EntityID   primitive.ObjectID `bson:"entity_id"`
+}
+
+type DiscountMappingRepository interface {
+	Create(c context.Context, discount_mapping *DiscountMapping) error
+	Update(c context.Context, discount_mapping *DiscountMapping) error
+	Delete(c context.Context, discount_mapping *DiscountMapping) error
+	Fetch(c context.Context) ([]DiscountMapping, error)
+	FetchByID(c context.Context, discount_mappingID string) (DiscountMapping, error)
+}
+
+type DiscountMappingUsecase interface {
+	FetchByID(c context.Context, discount_mappingID string) (DiscountMapping, error)
+	Create(c context.Context, discount_mapping *DiscountMapping) error
+	Update(c context.Context, discount_mapping *DiscountMapping) error
+	Delete(c context.Context, discount_mapping *DiscountMapping) error
+	Fetch(c context.Context) ([]DiscountMapping, error)
 }
 
 // NewDiscountMapping creates a new DiscountMapping instance
-func NewDiscountMapping(discountID int, entityID int) *DiscountMapping {
+func NewDiscountMapping(discountID primitive.ObjectID, entityID primitive.ObjectID) *DiscountMapping {
 	return &DiscountMapping{
 		DiscountID: discountID,
 		EntityID:   entityID,
