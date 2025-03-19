@@ -1,1 +1,87 @@
 package repository
+
+import (
+	"context"
+
+	domain "earnforglance/server/domain/common"
+	"earnforglance/server/mongo"
+
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/mongo/options"
+)
+
+type commonsettingsRepository struct {
+	database   mongo.Database
+	collection string
+}
+
+func NewCommonSettingsRepository(db mongo.Database, collection string) domain.CommonSettingsRepository {
+	return &commonsettingsRepository{
+		database:   db,
+		collection: collection,
+	}
+}
+
+func (ur *commonsettingsRepository) Create(c context.Context, commonsettings *domain.CommonSettings) error {
+	collection := ur.database.Collection(ur.collection)
+
+	_, err := collection.InsertOne(c, commonsettings)
+
+	return err
+}
+
+func (ur *commonsettingsRepository) Update(c context.Context, commonsettings *domain.CommonSettings) error {
+	collection := ur.database.Collection(ur.collection)
+
+	filter := bson.M{"_id": commonsettings.ID}
+	update := bson.M{
+		"$set": commonsettings,
+	}
+	_, err := collection.UpdateOne(c, filter, update)
+	return err
+
+}
+
+func (ur *commonsettingsRepository) Delete(c context.Context, commonsettings *domain.CommonSettings) error {
+	collection := ur.database.Collection(ur.collection)
+
+	filter := bson.M{"_id": commonsettings.ID}
+	_, err := collection.DeleteOne(c, filter)
+	return err
+
+}
+
+func (ur *commonsettingsRepository) Fetch(c context.Context) ([]domain.CommonSettings, error) {
+	collection := ur.database.Collection(ur.collection)
+
+	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	cursor, err := collection.Find(c, bson.D{}, opts)
+
+	if err != nil {
+		return nil, err
+	}
+
+	var commonsettingss []domain.CommonSettings
+
+	err = cursor.All(c, &commonsettingss)
+	if commonsettingss == nil {
+		return []domain.CommonSettings{}, err
+	}
+
+	return commonsettingss, err
+}
+
+func (tr *commonsettingsRepository) FetchByID(c context.Context, commonsettingsID string) (domain.CommonSettings, error) {
+	collection := tr.database.Collection(tr.collection)
+
+	var commonsettings domain.CommonSettings
+
+	idHex, err := primitive.ObjectIDFromHex(commonsettingsID)
+	if err != nil {
+		return commonsettings, err
+	}
+
+	err = collection.FindOne(c, bson.M{"_id": idHex}).Decode(&commonsettings)
+	return commonsettings, err
+}

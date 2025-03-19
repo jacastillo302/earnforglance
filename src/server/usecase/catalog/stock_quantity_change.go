@@ -7,44 +7,44 @@ import (
 	domain "earnforglance/server/domain/catalog"
 )
 
-type StockQuantityHistoryUsecase struct {
-	StockQuantityHistoryRepository domain.StockQuantityHistoryRepository
-	contextTimeout                 time.Duration
+type StockQuantityChangeUsecase struct {
+	StockQuantityChangeRepository domain.StockQuantityChangeRepository
+	contextTimeout                time.Duration
 }
 
-func NewStockQuantityHistoryUsecase(StockQuantityHistoryRepository domain.StockQuantityHistoryRepository, timeout time.Duration) domain.StockQuantityHistoryUsecase {
-	return &StockQuantityHistoryUsecase{
-		StockQuantityHistoryRepository: StockQuantityHistoryRepository,
-		contextTimeout:                 timeout,
+func NewStockQuantityChangeUsecase(StockQuantityChangeRepository domain.StockQuantityChangeRepository, timeout time.Duration) domain.StockQuantityChangeUsecase {
+	return &StockQuantityChangeUsecase{
+		StockQuantityChangeRepository: StockQuantityChangeRepository,
+		contextTimeout:                timeout,
 	}
 }
 
-func (tu *StockQuantityHistoryUsecase) Create(c context.Context, StockQuantityHistory *domain.StockQuantityHistory) error {
+func (tu *StockQuantityChangeUsecase) Create(c context.Context, StockQuantityChange *domain.StockQuantityChange) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
-	return tu.StockQuantityHistoryRepository.Create(ctx, StockQuantityHistory)
+	return tu.StockQuantityChangeRepository.Create(ctx, StockQuantityChange)
 }
 
-func (tu *StockQuantityHistoryUsecase) Update(c context.Context, StockQuantityHistory *domain.StockQuantityHistory) error {
+func (tu *StockQuantityChangeUsecase) Update(c context.Context, StockQuantityChange *domain.StockQuantityChange) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
-	return tu.StockQuantityHistoryRepository.Update(ctx, StockQuantityHistory)
+	return tu.StockQuantityChangeRepository.Update(ctx, StockQuantityChange)
 }
 
-func (tu *StockQuantityHistoryUsecase) Delete(c context.Context, StockQuantityHistory *domain.StockQuantityHistory) error {
+func (tu *StockQuantityChangeUsecase) Delete(c context.Context, StockQuantityChange *domain.StockQuantityChange) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
-	return tu.StockQuantityHistoryRepository.Delete(ctx, StockQuantityHistory)
+	return tu.StockQuantityChangeRepository.Delete(ctx, StockQuantityChange)
 }
 
-func (lu *StockQuantityHistoryUsecase) FetchByID(c context.Context, StockQuantityHistoryID string) (domain.StockQuantityHistory, error) {
+func (lu *StockQuantityChangeUsecase) FetchByID(c context.Context, StockQuantityChangeID string) (domain.StockQuantityChange, error) {
 	ctx, cancel := context.WithTimeout(c, lu.contextTimeout)
 	defer cancel()
-	return lu.StockQuantityHistoryRepository.FetchByID(ctx, StockQuantityHistoryID)
+	return lu.StockQuantityChangeRepository.FetchByID(ctx, StockQuantityChangeID)
 }
 
-func (lu *StockQuantityHistoryUsecase) Fetch(c context.Context) ([]domain.StockQuantityHistory, error) {
+func (lu *StockQuantityChangeUsecase) Fetch(c context.Context) ([]domain.StockQuantityChange, error) {
 	ctx, cancel := context.WithTimeout(c, lu.contextTimeout)
 	defer cancel()
-	return lu.StockQuantityHistoryRepository.Fetch(ctx)
+	return lu.StockQuantityChangeRepository.Fetch(ctx)
 }

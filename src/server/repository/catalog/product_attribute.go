@@ -1,1 +1,85 @@
 package repository
+
+import (
+	"context"
+
+	domain "earnforglance/server/domain/catalog"
+	"earnforglance/server/mongo"
+
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/mongo/options"
+)
+
+type productattributeRepository struct {
+	database   mongo.Database
+	collection string
+}
+
+func NewProductAttributeRepository(db mongo.Database, collection string) domain.ProductAttributeRepository {
+	return &productattributeRepository{
+		database:   db,
+		collection: collection,
+	}
+}
+
+func (ur *productattributeRepository) Create(c context.Context, productattribute *domain.ProductAttribute) error {
+	collection := ur.database.Collection(ur.collection)
+
+	_, err := collection.InsertOne(c, productattribute)
+
+	return err
+}
+
+func (ur *productattributeRepository) Update(c context.Context, productattribute *domain.ProductAttribute) error {
+	collection := ur.database.Collection(ur.collection)
+
+	filter := bson.M{"_id": productattribute.ID}
+	update := bson.M{
+		"$set": productattribute,
+	}
+	_, err := collection.UpdateOne(c, filter, update)
+	return err
+}
+
+func (ur *productattributeRepository) Delete(c context.Context, productattribute *domain.ProductAttribute) error {
+	collection := ur.database.Collection(ur.collection)
+
+	filter := bson.M{"_id": productattribute.ID}
+	_, err := collection.DeleteOne(c, filter)
+	return err
+}
+
+func (ur *productattributeRepository) Fetch(c context.Context) ([]domain.ProductAttribute, error) {
+	collection := ur.database.Collection(ur.collection)
+
+	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	cursor, err := collection.Find(c, bson.D{}, opts)
+
+	if err != nil {
+		return nil, err
+	}
+
+	var productattributes []domain.ProductAttribute
+
+	err = cursor.All(c, &productattributes)
+	if productattributes == nil {
+		return []domain.ProductAttribute{}, err
+	}
+
+	return productattributes, err
+}
+
+func (tr *productattributeRepository) FetchByID(c context.Context, productattributeID string) (domain.ProductAttribute, error) {
+	collection := tr.database.Collection(tr.collection)
+
+	var productattribute domain.ProductAttribute
+
+	idHex, err := primitive.ObjectIDFromHex(productattributeID)
+	if err != nil {
+		return productattribute, err
+	}
+
+	err = collection.FindOne(c, bson.M{"_id": idHex}).Decode(&productattribute)
+	return productattribute, err
+}

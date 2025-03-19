@@ -34,7 +34,7 @@ func (ur *affiliateRepository) Create(c context.Context, affiliate *domain.Affil
 func (ur *affiliateRepository) Update(c context.Context, affiliate *domain.Affiliate) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": affiliate.AddressId}
+	filter := bson.M{"_id": affiliate.ID}
 	update := bson.M{
 		"$set": affiliate,
 	}
@@ -46,7 +46,7 @@ func (ur *affiliateRepository) Update(c context.Context, affiliate *domain.Affil
 func (ur *affiliateRepository) Delete(c context.Context, affiliate *domain.Affiliate) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": affiliate.AddressId}
+	filter := bson.M{"_id": affiliate.ID}
 	_, err := collection.DeleteOne(c, filter)
 	return err
 

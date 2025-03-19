@@ -1,1 +1,85 @@
 package repository
+
+import (
+	"context"
+
+	domain "earnforglance/server/domain/shipping"
+	"earnforglance/server/mongo"
+
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/mongo/options"
+)
+
+type shipmentRepository struct {
+	database   mongo.Database
+	collection string
+}
+
+func NewShipmentRepository(db mongo.Database, collection string) domain.ShipmentRepository {
+	return &shipmentRepository{
+		database:   db,
+		collection: collection,
+	}
+}
+
+func (ur *shipmentRepository) Create(c context.Context, shipment *domain.Shipment) error {
+	collection := ur.database.Collection(ur.collection)
+
+	_, err := collection.InsertOne(c, shipment)
+
+	return err
+}
+
+func (ur *shipmentRepository) Update(c context.Context, shipment *domain.Shipment) error {
+	collection := ur.database.Collection(ur.collection)
+
+	filter := bson.M{"_id": shipment.ID}
+	update := bson.M{
+		"$set": shipment,
+	}
+	_, err := collection.UpdateOne(c, filter, update)
+	return err
+}
+
+func (ur *shipmentRepository) Delete(c context.Context, shipment *domain.Shipment) error {
+	collection := ur.database.Collection(ur.collection)
+
+	filter := bson.M{"_id": shipment.ID}
+	_, err := collection.DeleteOne(c, filter)
+	return err
+}
+
+func (ur *shipmentRepository) Fetch(c context.Context) ([]domain.Shipment, error) {
+	collection := ur.database.Collection(ur.collection)
+
+	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	cursor, err := collection.Find(c, bson.D{}, opts)
+
+	if err != nil {
+		return nil, err
+	}
+
+	var shipments []domain.Shipment
+
+	err = cursor.All(c, &shipments)
+	if shipments == nil {
+		return []domain.Shipment{}, err
+	}
+
+	return shipments, err
+}
+
+func (tr *shipmentRepository) FetchByID(c context.Context, shipmentID string) (domain.Shipment, error) {
+	collection := tr.database.Collection(tr.collection)
+
+	var shipment domain.Shipment
+
+	idHex, err := primitive.ObjectIDFromHex(shipmentID)
+	if err != nil {
+		return shipment, err
+	}
+
+	err = collection.FindOne(c, bson.M{"_id": idHex}).Decode(&shipment)
+	return shipment, err
+}

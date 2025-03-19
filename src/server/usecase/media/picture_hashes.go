@@ -7,44 +7,44 @@ import (
 	domain "earnforglance/server/domain/media"
 )
 
-type PictureHashItemUsecase struct {
-	PictureHashItemRepository domain.PictureHashItemRepository
-	contextTimeout            time.Duration
+type PictureHashesUsecase struct {
+	PictureHashesRepository domain.PictureHashesRepository
+	contextTimeout          time.Duration
 }
 
-func NewPictureHashItemUsecase(PictureHashItemRepository domain.PictureHashItemRepository, timeout time.Duration) domain.PictureHashItemUsecase {
-	return &PictureHashItemUsecase{
-		PictureHashItemRepository: PictureHashItemRepository,
-		contextTimeout:            timeout,
+func NewPictureHashesUsecase(PictureHashesRepository domain.PictureHashesRepository, timeout time.Duration) domain.PictureHashesUsecase {
+	return &PictureHashesUsecase{
+		PictureHashesRepository: PictureHashesRepository,
+		contextTimeout:          timeout,
 	}
 }
 
-func (tu *PictureHashItemUsecase) Create(c context.Context, PictureHashItem *domain.PictureHashItem) error {
+func (tu *PictureHashesUsecase) Create(c context.Context, PictureHashes *domain.PictureHashes) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
-	return tu.PictureHashItemRepository.Create(ctx, PictureHashItem)
+	return tu.PictureHashesRepository.Create(ctx, PictureHashes)
 }
 
-func (tu *PictureHashItemUsecase) Update(c context.Context, PictureHashItem *domain.PictureHashItem) error {
+func (tu *PictureHashesUsecase) Update(c context.Context, PictureHashes *domain.PictureHashes) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
-	return tu.PictureHashItemRepository.Update(ctx, PictureHashItem)
+	return tu.PictureHashesRepository.Update(ctx, PictureHashes)
 }
 
-func (tu *PictureHashItemUsecase) Delete(c context.Context, PictureHashItem *domain.PictureHashItem) error {
+func (tu *PictureHashesUsecase) Delete(c context.Context, PictureHashes *domain.PictureHashes) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
-	return tu.PictureHashItemRepository.Delete(ctx, PictureHashItem)
+	return tu.PictureHashesRepository.Delete(ctx, PictureHashes)
 }
 
-func (lu *PictureHashItemUsecase) FetchByID(c context.Context, PictureHashItemID string) (domain.PictureHashItem, error) {
+func (lu *PictureHashesUsecase) FetchByID(c context.Context, PictureHashesID string) (domain.PictureHashes, error) {
 	ctx, cancel := context.WithTimeout(c, lu.contextTimeout)
 	defer cancel()
-	return lu.PictureHashItemRepository.FetchByID(ctx, PictureHashItemID)
+	return lu.PictureHashesRepository.FetchByID(ctx, PictureHashesID)
 }
 
-func (lu *PictureHashItemUsecase) Fetch(c context.Context) ([]domain.PictureHashItem, error) {
+func (lu *PictureHashesUsecase) Fetch(c context.Context) ([]domain.PictureHashes, error) {
 	ctx, cancel := context.WithTimeout(c, lu.contextTimeout)
 	defer cancel()
-	return lu.PictureHashItemRepository.Fetch(ctx)
+	return lu.PictureHashesRepository.Fetch(ctx)
 }

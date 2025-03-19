@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	CollectionBestCustomerReportLine = "best_customer_report_line"
+	CollectionBestCustomerReportLine = "best_customer_report_lines"
 )
 
 // BestCustomerReportLine represents a best customer report line

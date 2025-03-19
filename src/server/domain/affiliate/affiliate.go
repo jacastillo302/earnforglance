@@ -12,7 +12,7 @@ const (
 
 // Affiliate represents an affiliate
 type Affiliate struct {
-	AddressId       primitive.ObjectID `bson:"_id,omitempty"`
+	ID              primitive.ObjectID `bson:"_id,omitempty"`
 	AdminComment    string             `bson:"admin_comment"`
 	FriendlyUrlName string             `bson:"friendly_url_name"`
 	Deleted         bool               `bson:"deleted"`

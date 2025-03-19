@@ -8,11 +8,11 @@ import (
 )
 
 const (
-	CollectionStockQuantityHistory = "stock_quantity_changes"
+	CollectionStockQuantityChange = "stock_quantity_changes"
 )
 
-// StockQuantityHistory represents a stock quantity change entry
-type StockQuantityHistory struct {
+// StockQuantityChange represents a stock quantity change entry
+type StockQuantityChange struct {
 	ID                 primitive.ObjectID `bson:"_id,omitempty"`
 	QuantityAdjustment int                `bson:"quantity_adjustment"`
 	StockQuantity      int                `bson:"stock_quantity"`
@@ -23,18 +23,18 @@ type StockQuantityHistory struct {
 	WarehouseID        *int               `bson:"warehouse_id,omitempty"`
 }
 
-type StockQuantityHistoryRepository interface {
-	Create(c context.Context, stock_quantity_change *StockQuantityHistory) error
-	Update(c context.Context, stock_quantity_change *StockQuantityHistory) error
-	Delete(c context.Context, stock_quantity_change *StockQuantityHistory) error
-	Fetch(c context.Context) ([]StockQuantityHistory, error)
-	FetchByID(c context.Context, stock_quantity_changeID string) (StockQuantityHistory, error)
+type StockQuantityChangeRepository interface {
+	Create(c context.Context, stock_quantity_change *StockQuantityChange) error
+	Update(c context.Context, stock_quantity_change *StockQuantityChange) error
+	Delete(c context.Context, stock_quantity_change *StockQuantityChange) error
+	Fetch(c context.Context) ([]StockQuantityChange, error)
+	FetchByID(c context.Context, stock_quantity_changeID string) (StockQuantityChange, error)
 }
 
-type StockQuantityHistoryUsecase interface {
-	FetchByID(c context.Context, stock_quantity_changeID string) (StockQuantityHistory, error)
-	Create(c context.Context, stock_quantity_change *StockQuantityHistory) error
-	Update(c context.Context, stock_quantity_change *StockQuantityHistory) error
-	Delete(c context.Context, stock_quantity_change *StockQuantityHistory) error
-	Fetch(c context.Context) ([]StockQuantityHistory, error)
+type StockQuantityChangeUsecase interface {
+	FetchByID(c context.Context, stock_quantity_changeID string) (StockQuantityChange, error)
+	Create(c context.Context, stock_quantity_change *StockQuantityChange) error
+	Update(c context.Context, stock_quantity_change *StockQuantityChange) error
+	Delete(c context.Context, stock_quantity_change *StockQuantityChange) error
+	Fetch(c context.Context) ([]StockQuantityChange, error)
 }

@@ -71,7 +71,7 @@ type ProductEditorSettings struct {
 	ProductAttributes                            bool               `bson:"product_attributes"`
 	SpecificationAttributes                      bool               `bson:"specification_attributes"`
 	Manufacturers                                bool               `bson:"manufacturers"`
-	StockQuantityHistory                         bool               `bson:"stock_quantity_history"`
+	StockQuantityChange                          bool               `bson:"stock_quantity_history"`
 	AgeVerification                              bool               `bson:"age_verification"`
 }
 
