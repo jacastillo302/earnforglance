@@ -1,6 +1,10 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionLocalizedProperty = "localized_properties"
@@ -14,4 +18,20 @@ type LocalizedProperty struct {
 	LocaleKeyGroup string             `bson:"locale_key_group"`
 	LocaleKey      string             `bson:"locale_key"`
 	LocaleValue    string             `bson:"locale_value"`
+}
+
+type LocalizedPropertyRepository interface {
+	Create(c context.Context, localization_settings *LocalizedProperty) error
+	Update(c context.Context, localization_settings *LocalizedProperty) error
+	Delete(c context.Context, localization_settings *LocalizedProperty) error
+	Fetch(c context.Context) ([]LocalizedProperty, error)
+	FetchByID(c context.Context, localization_settingsID string) (LocalizedProperty, error)
+}
+
+type LocalizedPropertyUsecase interface {
+	FetchByID(c context.Context, localization_settingsID string) (LocalizedProperty, error)
+	Create(c context.Context, localization_settings *LocalizedProperty) error
+	Update(c context.Context, localization_settings *LocalizedProperty) error
+	Delete(c context.Context, localization_settings *LocalizedProperty) error
+	Fetch(c context.Context) ([]LocalizedProperty, error)
 }
