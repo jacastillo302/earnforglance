@@ -58,7 +58,33 @@ func (tc *AffiliateController) Update(c *gin.Context) {
 		return
 	}
 
-	err = tc.AffiliateUsecase.Create(c, &task)
+	err = tc.AffiliateUsecase.Update(c, &task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "Affiliate update successfully",
+	})
+}
+
+func (tc *AffiliateController) Delete(c *gin.Context) {
+	var task domain.Affiliate
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.AffiliateUsecase.Delete(c, &task)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
 		return
