@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	CollectioStoreMapping = "store_mappings"
+	CollectionStoreMapping = "store_mappings"
 )
 
 // StoreMapping represents a store mapping record.

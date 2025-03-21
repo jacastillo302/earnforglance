@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	CollectioVendorSettings = "vendor_settings"
+	CollectionVendorSettings = "vendor_settings"
 )
 
 // VendorSettings represents vendor settings.

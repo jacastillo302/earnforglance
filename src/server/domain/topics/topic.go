@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	CollectioTopic = "topics"
+	CollectionTopic = "topics"
 )
 
 // Topic represents a topic.

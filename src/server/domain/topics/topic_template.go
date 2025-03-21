@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	CollectioTopicTemplate = "topic_templates"
+	CollectionTopicTemplate = "topic_templates"
 )
 
 // TopicTemplate represents a topic template.

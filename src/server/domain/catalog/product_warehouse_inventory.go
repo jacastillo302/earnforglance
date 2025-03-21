@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	CollectionWarehouseInventory = "product_warehouse_inventories"
+	CollectionProductWarehouseInventory = "product_warehouse_inventories"
 )
 
 // ProductWarehouseInventory represents a record to manage product inventory per warehouse

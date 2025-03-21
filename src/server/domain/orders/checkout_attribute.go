@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	CollectionCheckoutAttributem = "checkout_attributes"
+	CollectionCheckoutAttribute = "checkout_attributes"
 )
 
 // CheckoutAttribute represents a checkout attribute

@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	CollectioVendorNote = "vendor_notes"
+	CollectionVendorNote = "vendor_notes"
 )
 
 // VendorNote represents a vendor note

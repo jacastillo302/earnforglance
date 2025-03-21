@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	CollectioTaxCategory = "tax_categories"
+	CollectionTaxCategory = "tax_categories"
 )
 
 // TaxCategory represents a tax category.

@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	CollectionCampaigno = "Campaigns"
+	CollectionCampaign = "Campaigns"
 )
 
 // Campaign represents a Campaign

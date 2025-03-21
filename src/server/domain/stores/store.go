@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	CollectioStore = "stores"
+	CollectionStore = "stores"
 )
 
 // Store represents a store

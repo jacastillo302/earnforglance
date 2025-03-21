@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	CollectioTaxSettings = "tax_settings"
+	CollectionTaxSettings = "tax_settings"
 )
 
 // TaxSettings represents tax settings

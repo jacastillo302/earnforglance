@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	CollectionDefaultMenuItemSettings = "display_default_menu_item_settings"
+	CollectionDisplayDefaultMenuItemSettings = "display_default_menu_item_settings"
 )
 
 // DisplayDefaultMenuItemSettings represents display default menu item settings

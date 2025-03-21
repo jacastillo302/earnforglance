@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	CollectionNewsLetterSubscriptiont = "news_letter_subscriptions"
+	CollectionNewsLetterSubscription = "news_letter_subscriptions"
 )
 
 // NewsLetterSubscription represents NewsLetterSubscription entity

@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	CollectionPictureHash = "picture_hashes"
+	CollectionPictureHashes = "picture_hashes"
 )
 
 // PictureHashes is a helper class for making picture hashes from DB

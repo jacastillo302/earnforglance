@@ -14,7 +14,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func NewAffiliateRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database, group *gin.RouterGroup) {
+func AffiliateRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database, group *gin.RouterGroup) {
 	ur := repository.NewAffiliateRepository(db, domain.CollectionAffiliate)
 	lc := &controller.AffiliateController{
 		AffiliateUsecase: usecase.NewAffiliateUsecase(ur, timeout),
@@ -25,4 +25,5 @@ func NewAffiliateRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Data
 	group.GET("/affiliate", lc.FetchByID)
 	group.POST("/affiliate", lc.Create)
 	group.PUT("/affiliate", lc.Update)
+	group.DELETE("/affiliate", lc.Delete)
 }

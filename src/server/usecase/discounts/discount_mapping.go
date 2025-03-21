@@ -12,7 +12,7 @@ type discountMappingUseCase struct {
 	contextTimeout     time.Duration
 }
 
-func NewdiscountMappingUseCase(discountRepository domain.DiscountMappingRepository, timeout time.Duration) domain.DiscountMappingUsecase {
+func NewDiscountMappingUsecase(discountRepository domain.DiscountMappingRepository, timeout time.Duration) domain.DiscountMappingUsecase {
 	return &discountMappingUseCase{
 		discountRepository: discountRepository,
 		contextTimeout:     timeout,
