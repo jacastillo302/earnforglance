@@ -31,7 +31,7 @@ func (tu *productavailabilityrangeUsecase) Update(c context.Context, productavai
 	return tu.productavailabilityrangeRepository.Update(ctx, productavailabilityrange)
 }
 
-func (tu *productavailabilityrangeUsecase) Delete(c context.Context, productavailabilityrange *domain.ProductAvailabilityRange) error {
+func (tu *productavailabilityrangeUsecase) Delete(c context.Context, productavailabilityrange string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.productavailabilityrangeRepository.Delete(ctx, productavailabilityrange)

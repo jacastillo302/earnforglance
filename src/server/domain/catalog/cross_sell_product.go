@@ -20,15 +20,15 @@ type CrossSellProduct struct {
 type CrossSellProductRepository interface {
 	Create(c context.Context, cross_sell_product *CrossSellProduct) error
 	Update(c context.Context, cross_sell_product *CrossSellProduct) error
-	Delete(c context.Context, cross_sell_product *CrossSellProduct) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]CrossSellProduct, error)
-	FetchByID(c context.Context, cross_sell_product string) (CrossSellProduct, error)
+	FetchByID(c context.Context, ID string) (CrossSellProduct, error)
 }
 
 type CrossSellProductUsecase interface {
-	FetchByID(c context.Context, cross_sell_productID string) (CrossSellProduct, error)
+	FetchByID(c context.Context, ID string) (CrossSellProduct, error)
 	Create(c context.Context, cross_sell_product *CrossSellProduct) error
 	Update(c context.Context, cross_sell_product *CrossSellProduct) error
-	Delete(c context.Context, cross_sell_product *CrossSellProduct) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]CrossSellProduct, error)
 }

@@ -69,28 +69,20 @@ func (tc *SearchTermController) Update(c *gin.Context) {
 }
 
 func (tc *SearchTermController) Delete(c *gin.Context) {
-	var task common.SearchTerm
-	body, err := io.ReadAll(c.Request.Body)
-
-	if err != nil {
-		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+	ID := c.Query("id")
+	if ID == "" {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "invalid ID format"})
 		return
 	}
 
-	err = json.Unmarshal(body, &task)
+	err := tc.SearchTermUsecase.Delete(c, ID)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
-		return
-	}
-
-	err = tc.SearchTermUsecase.Delete(c, &task)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		c.JSON(http.StatusNotFound, common.ErrorResponse{Message: ID})
 		return
 	}
 
 	c.JSON(http.StatusOK, common.SuccessResponse{
-		Message: "SearchTerm update successfully",
+		Message: "Record deleted successfully",
 	})
 }
 

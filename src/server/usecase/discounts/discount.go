@@ -31,7 +31,7 @@ func (tu *discountUsecase) Update(c context.Context, discount *domain.Discount) 
 	return tu.discountRepository.Update(ctx, discount)
 }
 
-func (tu *discountUsecase) Delete(c context.Context, discount *domain.Discount) error {
+func (tu *discountUsecase) Delete(c context.Context, discount string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.discountRepository.Delete(ctx, discount)

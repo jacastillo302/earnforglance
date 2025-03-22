@@ -23,16 +23,16 @@ type PollAnswer struct {
 type PollAnswerRepository interface {
 	Create(c context.Context, poll_answer *PollAnswer) error
 	Update(c context.Context, poll_answer *PollAnswer) error
-	Delete(c context.Context, poll_answer *PollAnswer) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]PollAnswer, error)
-	FetchByID(c context.Context, poll_answerID string) (PollAnswer, error)
+	FetchByID(c context.Context, ID string) (PollAnswer, error)
 }
 
 // PollAnswerUsecase defines the usecase interface for PollAnswer
 type PollAnswerUsecase interface {
-	FetchByID(c context.Context, poll_answerID string) (PollAnswer, error)
+	FetchByID(c context.Context, ID string) (PollAnswer, error)
 	Create(c context.Context, poll_answer *PollAnswer) error
 	Update(c context.Context, poll_answer *PollAnswer) error
-	Delete(c context.Context, poll_answer *PollAnswer) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]PollAnswer, error)
 }

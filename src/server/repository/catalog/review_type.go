@@ -43,11 +43,15 @@ func (ur *reviewtypeRepository) Update(c context.Context, reviewtype *domain.Rev
 
 }
 
-func (ur *reviewtypeRepository) Delete(c context.Context, reviewtype *domain.ReviewType) error {
+func (ur *reviewtypeRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": reviewtype.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
 
 }

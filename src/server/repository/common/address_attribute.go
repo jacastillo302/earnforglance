@@ -43,11 +43,15 @@ func (ur *addressattributeRepository) Update(c context.Context, addressattribute
 
 }
 
-func (ur *addressattributeRepository) Delete(c context.Context, addressattribute *domain.AddressAttribute) error {
+func (ur *addressattributeRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": addressattribute.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
 
 }

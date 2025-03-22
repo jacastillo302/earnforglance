@@ -22,15 +22,15 @@ type ProductWarehouseInventory struct {
 type ProductWarehouseInventoryRepository interface {
 	Create(c context.Context, product_inventory_warehouse *ProductWarehouseInventory) error
 	Update(c context.Context, product_inventory_warehouse *ProductWarehouseInventory) error
-	Delete(c context.Context, product_inventory_warehouse *ProductWarehouseInventory) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProductWarehouseInventory, error)
-	FetchByID(c context.Context, product_inventory_warehouseID string) (ProductWarehouseInventory, error)
+	FetchByID(c context.Context, ID string) (ProductWarehouseInventory, error)
 }
 
 type ProductWarehouseInventoryUsecase interface {
-	FetchByID(c context.Context, product_inventory_warehouseID string) (ProductWarehouseInventory, error)
+	FetchByID(c context.Context, ID string) (ProductWarehouseInventory, error)
 	Create(c context.Context, product_inventory_warehouse *ProductWarehouseInventory) error
 	Update(c context.Context, product_inventory_warehouse *ProductWarehouseInventory) error
-	Delete(c context.Context, product_inventory_warehouse *ProductWarehouseInventory) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProductWarehouseInventory, error)
 }

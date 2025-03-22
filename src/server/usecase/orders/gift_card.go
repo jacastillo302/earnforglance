@@ -31,7 +31,7 @@ func (tu *giftcardUsecase) Update(c context.Context, giftcard *domain.GiftCard) 
 	return tu.giftcardRepository.Update(ctx, giftcard)
 }
 
-func (tu *giftcardUsecase) Delete(c context.Context, giftcard *domain.GiftCard) error {
+func (tu *giftcardUsecase) Delete(c context.Context, giftcard string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.giftcardRepository.Delete(ctx, giftcard)

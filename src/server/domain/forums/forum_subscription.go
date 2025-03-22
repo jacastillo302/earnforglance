@@ -26,16 +26,16 @@ type ForumSubscription struct {
 type ForumSubscriptionRepository interface {
 	Create(c context.Context, forum_subscription *ForumSubscription) error
 	Update(c context.Context, forum_subscription *ForumSubscription) error
-	Delete(c context.Context, forum_subscription *ForumSubscription) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ForumSubscription, error)
-	FetchByID(c context.Context, forum_subscriptionID string) (ForumSubscription, error)
+	FetchByID(c context.Context, ID string) (ForumSubscription, error)
 }
 
 // ForumSubscriptionUsecase interface
 type ForumSubscriptionUsecase interface {
-	FetchByID(c context.Context, forum_subscriptionID string) (ForumSubscription, error)
+	FetchByID(c context.Context, ID string) (ForumSubscription, error)
 	Create(c context.Context, forum_subscription *ForumSubscription) error
 	Update(c context.Context, forum_subscription *ForumSubscription) error
-	Delete(c context.Context, forum_subscription *ForumSubscription) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ForumSubscription, error)
 }

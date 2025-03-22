@@ -20,15 +20,15 @@ type PermissionRecordCustomerRoleMapping struct {
 type PermissionRecordCustomerRoleMappingRepository interface {
 	Create(c context.Context, permission_record_customer_role_mapping *PermissionRecordCustomerRoleMapping) error
 	Update(c context.Context, permission_record_customer_role_mapping *PermissionRecordCustomerRoleMapping) error
-	Delete(c context.Context, permission_record_customer_role_mapping *PermissionRecordCustomerRoleMapping) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]PermissionRecordCustomerRoleMapping, error)
-	FetchByID(c context.Context, permission_record_customer_role_mappingID string) (PermissionRecordCustomerRoleMapping, error)
+	FetchByID(c context.Context, ID string) (PermissionRecordCustomerRoleMapping, error)
 }
 
 type PermissionRecordCustomerRoleMappingUsecase interface {
-	FetchByID(c context.Context, permission_record_customer_role_mappingID string) (PermissionRecordCustomerRoleMapping, error)
+	FetchByID(c context.Context, ID string) (PermissionRecordCustomerRoleMapping, error)
 	Create(c context.Context, permission_record_customer_role_mapping *PermissionRecordCustomerRoleMapping) error
 	Update(c context.Context, permission_record_customer_role_mapping *PermissionRecordCustomerRoleMapping) error
-	Delete(c context.Context, permission_record_customer_role_mapping *PermissionRecordCustomerRoleMapping) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]PermissionRecordCustomerRoleMapping, error)
 }

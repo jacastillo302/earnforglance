@@ -23,16 +23,16 @@ type MessageTemplatesSettings struct {
 type MessageTemplatesSettingsRepository interface {
 	Create(c context.Context, message_template_settings *MessageTemplatesSettings) error
 	Update(c context.Context, message_template_settings *MessageTemplatesSettings) error
-	Delete(c context.Context, message_template_settings *MessageTemplatesSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]MessageTemplatesSettings, error)
-	FetchByID(c context.Context, message_template_settingsID string) (MessageTemplatesSettings, error)
+	FetchByID(c context.Context, ID string) (MessageTemplatesSettings, error)
 }
 
 // MessageTemplatesSettingsUsecase interface
 type MessageTemplatesSettingsUsecase interface {
-	FetchByID(c context.Context, message_template_settingsID string) (MessageTemplatesSettings, error)
+	FetchByID(c context.Context, ID string) (MessageTemplatesSettings, error)
 	Create(c context.Context, message_template_settings *MessageTemplatesSettings) error
 	Update(c context.Context, message_template_settings *MessageTemplatesSettings) error
-	Delete(c context.Context, message_template_settings *MessageTemplatesSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]MessageTemplatesSettings, error)
 }

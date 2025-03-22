@@ -31,7 +31,7 @@ func (tu *vendorattributeUsecase) Update(c context.Context, vendorattribute *dom
 	return tu.vendorattributeRepository.Update(ctx, vendorattribute)
 }
 
-func (tu *vendorattributeUsecase) Delete(c context.Context, vendorattribute *domain.VendorAttribute) error {
+func (tu *vendorattributeUsecase) Delete(c context.Context, vendorattribute string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.vendorattributeRepository.Delete(ctx, vendorattribute)

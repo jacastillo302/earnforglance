@@ -42,12 +42,17 @@ func (ur *measuresettingsRepository) Update(c context.Context, measuresettings *
 	return err
 }
 
-func (ur *measuresettingsRepository) Delete(c context.Context, measuresettings *domain.MeasureSettings) error {
+func (ur *measuresettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": measuresettings.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *measuresettingsRepository) Fetch(c context.Context) ([]domain.MeasureSettings, error) {

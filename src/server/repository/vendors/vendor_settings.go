@@ -43,11 +43,15 @@ func (ur *vendorsettingsRepository) Update(c context.Context, vendorsettings *do
 
 }
 
-func (ur *vendorsettingsRepository) Delete(c context.Context, vendorsettings *domain.VendorSettings) error {
+func (ur *vendorsettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": vendorsettings.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
 
 }

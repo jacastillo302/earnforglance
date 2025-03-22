@@ -32,7 +32,7 @@ func (tu *MessageTemplatesSettingsUsecase) Update(c context.Context, MessageTemp
 	return tu.MessageTemplatesSettingsRepository.Update(ctx, MessageTemplatesSettings)
 }
 
-func (tu *MessageTemplatesSettingsUsecase) Delete(c context.Context, MessageTemplatesSettings *domain.MessageTemplatesSettings) error {
+func (tu *MessageTemplatesSettingsUsecase) Delete(c context.Context, MessageTemplatesSettings string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.MessageTemplatesSettingsRepository.Delete(ctx, MessageTemplatesSettings)

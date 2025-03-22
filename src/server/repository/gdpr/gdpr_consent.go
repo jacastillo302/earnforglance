@@ -43,11 +43,15 @@ func (ur *gdprconsentRepository) Update(c context.Context, gdprconsent *domain.G
 
 }
 
-func (ur *gdprconsentRepository) Delete(c context.Context, gdprconsent *domain.GdprConsent) error {
+func (ur *gdprconsentRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": gdprconsent.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
 
 }

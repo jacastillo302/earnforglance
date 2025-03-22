@@ -44,15 +44,15 @@ type MediaSettings struct {
 type MediaSettingsRepository interface {
 	Create(c context.Context, media_settings *MediaSettings) error
 	Update(c context.Context, media_settings *MediaSettings) error
-	Delete(c context.Context, media_settings *MediaSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]MediaSettings, error)
-	FetchByID(c context.Context, media_settingsID string) (MediaSettings, error)
+	FetchByID(c context.Context, ID string) (MediaSettings, error)
 }
 
 type MediaSettingsUsecase interface {
-	FetchByID(c context.Context, media_settingsID string) (MediaSettings, error)
+	FetchByID(c context.Context, ID string) (MediaSettings, error)
 	Create(c context.Context, media_settings *MediaSettings) error
 	Update(c context.Context, media_settings *MediaSettings) error
-	Delete(c context.Context, media_settings *MediaSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]MediaSettings, error)
 }

@@ -40,15 +40,15 @@ type Manufacturer struct {
 type ManufacturerRepository interface {
 	Create(c context.Context, manufacturer *Manufacturer) error
 	Update(c context.Context, manufacturer *Manufacturer) error
-	Delete(c context.Context, manufacturer *Manufacturer) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Manufacturer, error)
-	FetchByID(c context.Context, manufacturerID string) (Manufacturer, error)
+	FetchByID(c context.Context, ID string) (Manufacturer, error)
 }
 
 type ManufacturerUsecase interface {
-	FetchByID(c context.Context, manufacturerID string) (Manufacturer, error)
+	FetchByID(c context.Context, ID string) (Manufacturer, error)
 	Create(c context.Context, manufacturer *Manufacturer) error
 	Update(c context.Context, manufacturer *Manufacturer) error
-	Delete(c context.Context, manufacturer *Manufacturer) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Manufacturer, error)
 }

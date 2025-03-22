@@ -42,12 +42,17 @@ func (ur *logRepository) Update(c context.Context, log *domain.Log) error {
 	return err
 }
 
-func (ur *logRepository) Delete(c context.Context, log *domain.Log) error {
+func (ur *logRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": log.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *logRepository) Fetch(c context.Context) ([]domain.Log, error) {

@@ -31,7 +31,7 @@ func (tu *customerPermanentlyDeletedUsecase) Update(c context.Context, customerP
 	return tu.customerPermanentlyDeletedRepository.Update(ctx, customerPermanentlyDeleted)
 }
 
-func (tu *customerPermanentlyDeletedUsecase) Delete(c context.Context, customerPermanentlyDeleted *domain.CustomerPermanentlyDeleted) error {
+func (tu *customerPermanentlyDeletedUsecase) Delete(c context.Context, customerPermanentlyDeleted string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.customerPermanentlyDeletedRepository.Delete(ctx, customerPermanentlyDeleted)

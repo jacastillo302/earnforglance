@@ -42,12 +42,17 @@ func (ur *pollRepository) Update(c context.Context, poll *domain.Poll) error {
 	return err
 }
 
-func (ur *pollRepository) Delete(c context.Context, poll *domain.Poll) error {
+func (ur *pollRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": poll.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *pollRepository) Fetch(c context.Context) ([]domain.Poll, error) {

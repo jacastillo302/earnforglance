@@ -33,16 +33,16 @@ type GiftCard struct {
 type GiftCardRepository interface {
 	Create(c context.Context, gift_card *GiftCard) error
 	Update(c context.Context, gift_card *GiftCard) error
-	Delete(c context.Context, gift_card *GiftCard) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]GiftCard, error)
-	FetchByID(c context.Context, gift_cardID string) (GiftCard, error)
+	FetchByID(c context.Context, ID string) (GiftCard, error)
 }
 
 // GiftCardUsecase interface
 type GiftCardUsecase interface {
-	FetchByID(c context.Context, gift_cardID string) (GiftCard, error)
+	FetchByID(c context.Context, ID string) (GiftCard, error)
 	Create(c context.Context, gift_card *GiftCard) error
 	Update(c context.Context, gift_card *GiftCard) error
-	Delete(c context.Context, gift_card *GiftCard) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]GiftCard, error)
 }

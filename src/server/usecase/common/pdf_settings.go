@@ -31,7 +31,7 @@ func (tu *pdfsettingsUsecase) Update(c context.Context, pdfsettings *domain.PdfS
 	return tu.pdfsettingsRepository.Update(ctx, pdfsettings)
 }
 
-func (tu *pdfsettingsUsecase) Delete(c context.Context, pdfsettings *domain.PdfSettings) error {
+func (tu *pdfsettingsUsecase) Delete(c context.Context, pdfsettings string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.pdfsettingsRepository.Delete(ctx, pdfsettings)

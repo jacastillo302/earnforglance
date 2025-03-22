@@ -31,7 +31,7 @@ func (tu *commonsettingsUsecase) Update(c context.Context, commonsettings *domai
 	return tu.commonsettingsRepository.Update(ctx, commonsettings)
 }
 
-func (tu *commonsettingsUsecase) Delete(c context.Context, commonsettings *domain.CommonSettings) error {
+func (tu *commonsettingsUsecase) Delete(c context.Context, commonsettings string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.commonsettingsRepository.Delete(ctx, commonsettings)

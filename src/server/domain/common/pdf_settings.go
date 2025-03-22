@@ -28,15 +28,15 @@ type PdfSettings struct {
 type PdfSettingsRepository interface {
 	Create(c context.Context, PdfSettings *PdfSettings) error
 	Update(c context.Context, PdfSettings *PdfSettings) error
-	Delete(c context.Context, PdfSettings *PdfSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]PdfSettings, error)
-	FetchByID(c context.Context, PdfSettingsID string) (PdfSettings, error)
+	FetchByID(c context.Context, ID string) (PdfSettings, error)
 }
 
 type PdfSettingsUsecase interface {
-	FetchByID(c context.Context, PdfSettingsID string) (PdfSettings, error)
+	FetchByID(c context.Context, ID string) (PdfSettings, error)
 	Create(c context.Context, PdfSettings *PdfSettings) error
 	Update(c context.Context, PdfSettings *PdfSettings) error
-	Delete(c context.Context, PdfSettings *PdfSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]PdfSettings, error)
 }

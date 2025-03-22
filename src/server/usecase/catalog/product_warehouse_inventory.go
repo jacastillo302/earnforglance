@@ -31,7 +31,7 @@ func (tu *ProductWarehouseInventoryUsecase) Update(c context.Context, ProductWar
 	return tu.ProductWarehouseInventoryRepository.Update(ctx, ProductWarehouseInventory)
 }
 
-func (tu *ProductWarehouseInventoryUsecase) Delete(c context.Context, ProductWarehouseInventory *domain.ProductWarehouseInventory) error {
+func (tu *ProductWarehouseInventoryUsecase) Delete(c context.Context, ProductWarehouseInventory string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.ProductWarehouseInventoryRepository.Delete(ctx, ProductWarehouseInventory)

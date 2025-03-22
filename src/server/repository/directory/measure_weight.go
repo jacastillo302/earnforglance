@@ -42,12 +42,17 @@ func (ur *measureweightRepository) Update(c context.Context, measureweight *doma
 	return err
 }
 
-func (ur *measureweightRepository) Delete(c context.Context, measureweight *domain.MeasureWeight) error {
+func (ur *measureweightRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": measureweight.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *measureweightRepository) Fetch(c context.Context) ([]domain.MeasureWeight, error) {

@@ -31,7 +31,7 @@ func (tu *countryUsecase) Update(c context.Context, country *domain.Country) err
 	return tu.countryRepository.Update(ctx, country)
 }
 
-func (tu *countryUsecase) Delete(c context.Context, country *domain.Country) error {
+func (tu *countryUsecase) Delete(c context.Context, country string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.countryRepository.Delete(ctx, country)

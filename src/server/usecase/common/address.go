@@ -31,7 +31,7 @@ func (tu *addressUsecase) Update(c context.Context, address *domain.Address) err
 	return tu.addressRepository.Update(ctx, address)
 }
 
-func (tu *addressUsecase) Delete(c context.Context, address *domain.Address) error {
+func (tu *addressUsecase) Delete(c context.Context, address string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.addressRepository.Delete(ctx, address)

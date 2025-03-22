@@ -31,7 +31,7 @@ func (tu *recurringpaymentUsecase) Update(c context.Context, recurringpayment *d
 	return tu.recurringpaymentRepository.Update(ctx, recurringpayment)
 }
 
-func (tu *recurringpaymentUsecase) Delete(c context.Context, recurringpayment *domain.RecurringPayment) error {
+func (tu *recurringpaymentUsecase) Delete(c context.Context, recurringpayment string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.recurringpaymentRepository.Delete(ctx, recurringpayment)

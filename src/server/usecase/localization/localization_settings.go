@@ -31,7 +31,7 @@ func (tu *localizationsettingsUsecase) Update(c context.Context, localizationset
 	return tu.localizationsettingsRepository.Update(ctx, localizationsettings)
 }
 
-func (tu *localizationsettingsUsecase) Delete(c context.Context, localizationsettings *domain.LocalizationSettings) error {
+func (tu *localizationsettingsUsecase) Delete(c context.Context, localizationsettings string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.localizationsettingsRepository.Delete(ctx, localizationsettings)

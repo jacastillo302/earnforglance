@@ -26,15 +26,15 @@ type BlogSettings struct {
 type BlogSettingsRepository interface {
 	Create(c context.Context, blog_settings *BlogSettings) error
 	Update(c context.Context, blog_settings *BlogSettings) error
-	Delete(c context.Context, blog_settings *BlogSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]BlogSettings, error)
-	FetchByID(c context.Context, blog_settingsID string) (BlogSettings, error)
+	FetchByID(c context.Context, ID string) (BlogSettings, error)
 }
 
 type BlogSettingsUsecase interface {
-	FetchByID(c context.Context, blog_settingsID string) (BlogSettings, error)
+	FetchByID(c context.Context, ID string) (BlogSettings, error)
 	Create(c context.Context, blog_settings *BlogSettings) error
 	Update(c context.Context, blog_settings *BlogSettings) error
-	Delete(c context.Context, blog_settings *BlogSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]BlogSettings, error)
 }

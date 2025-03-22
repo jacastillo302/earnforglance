@@ -31,7 +31,7 @@ func (tu *pollVotingRecordUsecase) Update(c context.Context, pollVotingRecord *d
 	return tu.pollVotingRecordRepository.Update(ctx, pollVotingRecord)
 }
 
-func (tu *pollVotingRecordUsecase) Delete(c context.Context, pollVotingRecord *domain.PollVotingRecord) error {
+func (tu *pollVotingRecordUsecase) Delete(c context.Context, pollVotingRecord string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.pollVotingRecordRepository.Delete(ctx, pollVotingRecord)

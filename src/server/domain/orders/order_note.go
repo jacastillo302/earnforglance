@@ -25,16 +25,16 @@ type OrderNote struct {
 type OrderNoteRepository interface {
 	Create(c context.Context, order_note *OrderNote) error
 	Update(c context.Context, order_note *OrderNote) error
-	Delete(c context.Context, order_note *OrderNote) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]OrderNote, error)
-	FetchByID(c context.Context, order_noteID string) (OrderNote, error)
+	FetchByID(c context.Context, ID string) (OrderNote, error)
 }
 
 // OrderNoteUsecase interface
 type OrderNoteUsecase interface {
-	FetchByID(c context.Context, order_noteID string) (OrderNote, error)
+	FetchByID(c context.Context, ID string) (OrderNote, error)
 	Create(c context.Context, order_note *OrderNote) error
 	Update(c context.Context, order_note *OrderNote) error
-	Delete(c context.Context, order_note *OrderNote) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]OrderNote, error)
 }

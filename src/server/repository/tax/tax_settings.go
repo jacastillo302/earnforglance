@@ -42,12 +42,17 @@ func (ur *taxsettingsRepository) Update(c context.Context, taxsettings *domain.T
 	return err
 }
 
-func (ur *taxsettingsRepository) Delete(c context.Context, taxsettings *domain.TaxSettings) error {
+func (ur *taxsettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": taxsettings.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *taxsettingsRepository) Fetch(c context.Context) ([]domain.TaxSettings, error) {

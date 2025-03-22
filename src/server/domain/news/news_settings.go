@@ -28,16 +28,16 @@ type NewsSettings struct {
 type NewsSettingsRepository interface {
 	Create(c context.Context, news_settings *NewsSettings) error
 	Update(c context.Context, news_settings *NewsSettings) error
-	Delete(c context.Context, news_settings *NewsSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]NewsSettings, error)
-	FetchByID(c context.Context, news_settingsID string) (NewsSettings, error)
+	FetchByID(c context.Context, ID string) (NewsSettings, error)
 }
 
 // NewsSettingsUsecase interface
 type NewsSettingsUsecase interface {
-	FetchByID(c context.Context, news_settingsID string) (NewsSettings, error)
+	FetchByID(c context.Context, ID string) (NewsSettings, error)
 	Create(c context.Context, news_settings *NewsSettings) error
 	Update(c context.Context, news_settings *NewsSettings) error
-	Delete(c context.Context, news_settings *NewsSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]NewsSettings, error)
 }

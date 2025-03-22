@@ -43,15 +43,18 @@ func (ur *crosssellproductRepository) Update(c context.Context, crosssellproduct
 
 }
 
-func (ur *crosssellproductRepository) Delete(c context.Context, crosssellproduct *domain.CrossSellProduct) error {
+func (ur *crosssellproductRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": crosssellproduct.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
 
 }
-
 func (ur *crosssellproductRepository) Fetch(c context.Context) ([]domain.CrossSellProduct, error) {
 	collection := ur.database.Collection(ur.collection)
 

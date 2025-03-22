@@ -40,16 +40,16 @@ type QueuedEmail struct {
 type QueuedEmailRepository interface {
 	Create(c context.Context, queued_email *QueuedEmail) error
 	Update(c context.Context, queued_email *QueuedEmail) error
-	Delete(c context.Context, queued_email *QueuedEmail) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]QueuedEmail, error)
-	FetchByID(c context.Context, queued_emailID string) (QueuedEmail, error)
+	FetchByID(c context.Context, ID string) (QueuedEmail, error)
 }
 
 // QueuedEmailUsecase interface
 type QueuedEmailUsecase interface {
-	FetchByID(c context.Context, queued_emailID string) (QueuedEmail, error)
+	FetchByID(c context.Context, ID string) (QueuedEmail, error)
 	Create(c context.Context, queued_email *QueuedEmail) error
 	Update(c context.Context, queued_email *QueuedEmail) error
-	Delete(c context.Context, queued_email *QueuedEmail) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]QueuedEmail, error)
 }

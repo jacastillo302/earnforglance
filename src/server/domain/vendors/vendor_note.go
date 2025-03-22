@@ -23,16 +23,16 @@ type VendorNote struct {
 type VendorNoteRepository interface {
 	Create(c context.Context, vendor_note *VendorNote) error
 	Update(c context.Context, vendor_note *VendorNote) error
-	Delete(c context.Context, vendor_note *VendorNote) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]VendorNote, error)
-	FetchByID(c context.Context, vendor_noteID string) (VendorNote, error)
+	FetchByID(c context.Context, ID string) (VendorNote, error)
 }
 
 // VendorNoteUsecase defines the use case interface for VendorNote
 type VendorNoteUsecase interface {
-	FetchByID(c context.Context, vendor_noteID string) (VendorNote, error)
+	FetchByID(c context.Context, ID string) (VendorNote, error)
 	Create(c context.Context, vendor_note *VendorNote) error
 	Update(c context.Context, vendor_note *VendorNote) error
-	Delete(c context.Context, vendor_note *VendorNote) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]VendorNote, error)
 }

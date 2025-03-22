@@ -43,11 +43,15 @@ func (ur *ordernoteRepository) Update(c context.Context, ordernote *domain.Order
 
 }
 
-func (ur *ordernoteRepository) Delete(c context.Context, ordernote *domain.OrderNote) error {
+func (ur *ordernoteRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": ordernote.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
 
 }

@@ -31,7 +31,7 @@ func (tu *productreviewreviewtypemappingUsecase) Update(c context.Context, produ
 	return tu.productreviewreviewtypemappingRepository.Update(ctx, productreviewreviewtypemapping)
 }
 
-func (tu *productreviewreviewtypemappingUsecase) Delete(c context.Context, productreviewreviewtypemapping *domain.ProductReviewReviewTypeMapping) error {
+func (tu *productreviewreviewtypemappingUsecase) Delete(c context.Context, productreviewreviewtypemapping string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.productreviewreviewtypemappingRepository.Delete(ctx, productreviewreviewtypemapping)

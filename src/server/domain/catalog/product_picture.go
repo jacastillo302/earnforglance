@@ -21,15 +21,15 @@ type ProductPicture struct {
 type ProductPictureRepository interface {
 	Create(c context.Context, product_picture *ProductPicture) error
 	Update(c context.Context, product_picture *ProductPicture) error
-	Delete(c context.Context, product_picture *ProductPicture) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProductPicture, error)
-	FetchByID(c context.Context, product_pictureID string) (ProductPicture, error)
+	FetchByID(c context.Context, ID string) (ProductPicture, error)
 }
 
 type ProductPictureUsecase interface {
-	FetchByID(c context.Context, product_pictureID string) (ProductPicture, error)
+	FetchByID(c context.Context, ID string) (ProductPicture, error)
 	Create(c context.Context, product_picture *ProductPicture) error
 	Update(c context.Context, product_picture *ProductPicture) error
-	Delete(c context.Context, product_picture *ProductPicture) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProductPicture, error)
 }

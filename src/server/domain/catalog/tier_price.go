@@ -26,15 +26,15 @@ type TierPrice struct {
 type TierPriceRepository interface {
 	Create(c context.Context, tier_price *TierPrice) error
 	Update(c context.Context, tier_price *TierPrice) error
-	Delete(c context.Context, tier_price *TierPrice) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]TierPrice, error)
-	FetchByID(c context.Context, tier_priceID string) (TierPrice, error)
+	FetchByID(c context.Context, ID string) (TierPrice, error)
 }
 
 type TierPriceUsecase interface {
-	FetchByID(c context.Context, tier_priceID string) (TierPrice, error)
+	FetchByID(c context.Context, ID string) (TierPrice, error)
 	Create(c context.Context, tier_price *TierPrice) error
 	Update(c context.Context, tier_price *TierPrice) error
-	Delete(c context.Context, tier_price *TierPrice) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]TierPrice, error)
 }

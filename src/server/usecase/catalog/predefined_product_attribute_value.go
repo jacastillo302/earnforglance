@@ -31,7 +31,7 @@ func (tu *predefinedproductattributevalueUsecase) Update(c context.Context, pred
 	return tu.predefinedproductattributevalueRepository.Update(ctx, predefinedproductattributevalue)
 }
 
-func (tu *predefinedproductattributevalueUsecase) Delete(c context.Context, predefinedproductattributevalue *domain.PredefinedProductAttributeValue) error {
+func (tu *predefinedproductattributevalueUsecase) Delete(c context.Context, predefinedproductattributevalue string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.predefinedproductattributevalueRepository.Delete(ctx, predefinedproductattributevalue)

@@ -70,28 +70,20 @@ func (tc *CampaignController) Update(c *gin.Context) {
 }
 
 func (tc *CampaignController) Delete(c *gin.Context) {
-	var task domain.Campaign
-	body, err := io.ReadAll(c.Request.Body)
-
-	if err != nil {
-		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+	ID := c.Query("id")
+	if ID == "" {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "invalid ID format"})
 		return
 	}
 
-	err = json.Unmarshal(body, &task)
+	err := tc.CampaignUsecase.Delete(c, ID)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
-		return
-	}
-
-	err = tc.CampaignUsecase.Delete(c, &task)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		c.JSON(http.StatusNotFound, common.ErrorResponse{Message: ID})
 		return
 	}
 
 	c.JSON(http.StatusOK, common.SuccessResponse{
-		Message: "Campaign update successfully",
+		Message: "Record deleted successfully",
 	})
 }
 

@@ -30,15 +30,15 @@ type RewardPointsHistory struct {
 type RewardPointsHistoryRepository interface {
 	Create(c context.Context, reward_point_history *RewardPointsHistory) error
 	Update(c context.Context, reward_point_history *RewardPointsHistory) error
-	Delete(c context.Context, reward_point_history *RewardPointsHistory) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]RewardPointsHistory, error)
-	FetchByID(c context.Context, reward_point_historyID string) (RewardPointsHistory, error)
+	FetchByID(c context.Context, ID string) (RewardPointsHistory, error)
 }
 
 type RewardPointsHistoryUsecase interface {
-	FetchByID(c context.Context, reward_point_historyID string) (RewardPointsHistory, error)
+	FetchByID(c context.Context, ID string) (RewardPointsHistory, error)
 	Create(c context.Context, reward_point_history *RewardPointsHistory) error
 	Update(c context.Context, reward_point_history *RewardPointsHistory) error
-	Delete(c context.Context, reward_point_history *RewardPointsHistory) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]RewardPointsHistory, error)
 }

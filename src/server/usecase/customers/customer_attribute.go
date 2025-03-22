@@ -31,7 +31,7 @@ func (tu *customerattributeUsecase) Update(c context.Context, customerattribute 
 	return tu.customerattributeRepository.Update(ctx, customerattribute)
 }
 
-func (tu *customerattributeUsecase) Delete(c context.Context, customerattribute *domain.CustomerAttribute) error {
+func (tu *customerattributeUsecase) Delete(c context.Context, customerattribute string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.customerattributeRepository.Delete(ctx, customerattribute)

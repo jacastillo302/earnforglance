@@ -43,11 +43,15 @@ func (ur *newsSettingsRepository) Update(c context.Context, newsSettings *domain
 
 }
 
-func (ur *newsSettingsRepository) Delete(c context.Context, newsSettings *domain.NewsSettings) error {
+func (ur *newsSettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": newsSettings.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
 
 }

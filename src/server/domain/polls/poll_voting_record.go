@@ -23,16 +23,16 @@ type PollVotingRecord struct {
 type PollVotingRecordRepository interface {
 	Create(c context.Context, poll_voting_record *PollVotingRecord) error
 	Update(c context.Context, poll_voting_record *PollVotingRecord) error
-	Delete(c context.Context, poll_voting_record *PollVotingRecord) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]PollVotingRecord, error)
-	FetchByID(c context.Context, poll_voting_recordID string) (PollVotingRecord, error)
+	FetchByID(c context.Context, ID string) (PollVotingRecord, error)
 }
 
 // PollVotingRecordUsecase defines the usecase interface for PollVotingRecord
 type PollVotingRecordUsecase interface {
-	FetchByID(c context.Context, poll_voting_recordID string) (PollVotingRecord, error)
+	FetchByID(c context.Context, ID string) (PollVotingRecord, error)
 	Create(c context.Context, poll_voting_record *PollVotingRecord) error
 	Update(c context.Context, poll_voting_record *PollVotingRecord) error
-	Delete(c context.Context, poll_voting_record *PollVotingRecord) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]PollVotingRecord, error)
 }

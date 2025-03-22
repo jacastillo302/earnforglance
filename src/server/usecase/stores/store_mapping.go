@@ -31,7 +31,7 @@ func (tu *storemappingUsecase) Update(c context.Context, storemapping *domain.St
 	return tu.storemappingRepository.Update(ctx, storemapping)
 }
 
-func (tu *storemappingUsecase) Delete(c context.Context, storemapping *domain.StoreMapping) error {
+func (tu *storemappingUsecase) Delete(c context.Context, storemapping string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.storemappingRepository.Delete(ctx, storemapping)

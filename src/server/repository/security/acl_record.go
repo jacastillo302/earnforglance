@@ -42,12 +42,17 @@ func (ur *aclrecordRepository) Update(c context.Context, aclrecord *domain.AclRe
 	return err
 }
 
-func (ur *aclrecordRepository) Delete(c context.Context, aclrecord *domain.AclRecord) error {
+func (ur *aclrecordRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": aclrecord.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *aclrecordRepository) Fetch(c context.Context) ([]domain.AclRecord, error) {

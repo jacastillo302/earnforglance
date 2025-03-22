@@ -42,12 +42,17 @@ func (ur *rewardpointssettingsRepository) Update(c context.Context, rewardpoints
 	return err
 }
 
-func (ur *rewardpointssettingsRepository) Delete(c context.Context, rewardpointssettings *domain.RewardPointsSettings) error {
+func (ur *rewardpointssettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": rewardpointssettings.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *rewardpointssettingsRepository) Fetch(c context.Context) ([]domain.RewardPointsSettings, error) {

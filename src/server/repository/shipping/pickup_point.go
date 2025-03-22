@@ -42,12 +42,17 @@ func (ur *pickupPointRepository) Update(c context.Context, pickupPoint *domain.P
 	return err
 }
 
-func (ur *pickupPointRepository) Delete(c context.Context, pickupPoint *domain.PickupPoint) error {
+func (ur *pickupPointRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": pickupPoint.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *pickupPointRepository) Fetch(c context.Context) ([]domain.PickupPoint, error) {

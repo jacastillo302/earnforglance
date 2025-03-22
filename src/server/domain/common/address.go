@@ -34,15 +34,15 @@ type Address struct {
 type AddressRepository interface {
 	Create(c context.Context, product_tag *Address) error
 	Update(c context.Context, product_tag *Address) error
-	Delete(c context.Context, product_tag *Address) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Address, error)
-	FetchByID(c context.Context, product_tagID string) (Address, error)
+	FetchByID(c context.Context, ID string) (Address, error)
 }
 
 type AddressUsecase interface {
-	FetchByID(c context.Context, product_tagID string) (Address, error)
+	FetchByID(c context.Context, ID string) (Address, error)
 	Create(c context.Context, product_tag *Address) error
 	Update(c context.Context, product_tag *Address) error
-	Delete(c context.Context, product_tag *Address) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Address, error)
 }

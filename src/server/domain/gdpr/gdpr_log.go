@@ -27,16 +27,16 @@ type GdprLog struct {
 type GdprLogRepository interface {
 	Create(c context.Context, gdpr_log *GdprLog) error
 	Update(c context.Context, gdpr_log *GdprLog) error
-	Delete(c context.Context, gdpr_log *GdprLog) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]GdprLog, error)
-	FetchByID(c context.Context, gdpr_logID string) (GdprLog, error)
+	FetchByID(c context.Context, ID string) (GdprLog, error)
 }
 
 // GdprLogUsecase interface
 type GdprLogUsecase interface {
-	FetchByID(c context.Context, gdpr_logID string) (GdprLog, error)
+	FetchByID(c context.Context, ID string) (GdprLog, error)
 	Create(c context.Context, gdpr_log *GdprLog) error
 	Update(c context.Context, gdpr_log *GdprLog) error
-	Delete(c context.Context, gdpr_log *GdprLog) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]GdprLog, error)
 }

@@ -20,15 +20,15 @@ type MessagesSettings struct {
 type MessagesSettingsRepository interface {
 	Create(c context.Context, messages_settings *MessagesSettings) error
 	Update(c context.Context, messages_settings *MessagesSettings) error
-	Delete(c context.Context, messages_settings *MessagesSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]MessagesSettings, error)
-	FetchByID(c context.Context, messages_settingsID string) (MessagesSettings, error)
+	FetchByID(c context.Context, ID string) (MessagesSettings, error)
 }
 
 type MessagesSettingsUsecase interface {
-	FetchByID(c context.Context, messages_settingsID string) (MessagesSettings, error)
+	FetchByID(c context.Context, ID string) (MessagesSettings, error)
 	Create(c context.Context, messages_settings *MessagesSettings) error
 	Update(c context.Context, messages_settings *MessagesSettings) error
-	Delete(c context.Context, messages_settings *MessagesSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]MessagesSettings, error)
 }

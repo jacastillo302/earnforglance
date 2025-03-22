@@ -31,7 +31,7 @@ func (vu *videoUsecase) Update(c context.Context, video *domain.Video) error {
 	return vu.videoRepository.Update(ctx, video)
 }
 
-func (vu *videoUsecase) Delete(c context.Context, video *domain.Video) error {
+func (vu *videoUsecase) Delete(c context.Context, video string) error {
 	ctx, cancel := context.WithTimeout(c, vu.contextTimeout)
 	defer cancel()
 	return vu.videoRepository.Delete(ctx, video)

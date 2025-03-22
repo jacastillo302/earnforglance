@@ -21,16 +21,16 @@ type DeliveryDate struct {
 type DeliveryDateRepository interface {
 	Create(c context.Context, delivery_date *DeliveryDate) error
 	Update(c context.Context, delivery_date *DeliveryDate) error
-	Delete(c context.Context, delivery_date *DeliveryDate) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]DeliveryDate, error)
-	FetchByID(c context.Context, delivery_dateID string) (DeliveryDate, error)
+	FetchByID(c context.Context, ID string) (DeliveryDate, error)
 }
 
 // DeliveryDateUsecase defines the use case interface for DeliveryDate
 type DeliveryDateUsecase interface {
-	FetchByID(c context.Context, delivery_dateID string) (DeliveryDate, error)
+	FetchByID(c context.Context, ID string) (DeliveryDate, error)
 	Create(c context.Context, delivery_date *DeliveryDate) error
 	Update(c context.Context, delivery_date *DeliveryDate) error
-	Delete(c context.Context, delivery_date *DeliveryDate) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]DeliveryDate, error)
 }

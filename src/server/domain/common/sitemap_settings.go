@@ -27,15 +27,15 @@ type SitemapSettings struct {
 type SitemapSettingsRepository interface {
 	Create(c context.Context, sitemap_settings *SitemapSettings) error
 	Update(c context.Context, sitemap_settings *SitemapSettings) error
-	Delete(c context.Context, sitemap_settings *SitemapSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]SitemapSettings, error)
-	FetchByID(c context.Context, sitemap_settingsID string) (SitemapSettings, error)
+	FetchByID(c context.Context, ID string) (SitemapSettings, error)
 }
 
 type SitemapSettingsUsecase interface {
-	FetchByID(c context.Context, sitemap_settingsID string) (SitemapSettings, error)
+	FetchByID(c context.Context, ID string) (SitemapSettings, error)
 	Create(c context.Context, sitemap_settings *SitemapSettings) error
 	Update(c context.Context, sitemap_settings *SitemapSettings) error
-	Delete(c context.Context, sitemap_settings *SitemapSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]SitemapSettings, error)
 }

@@ -43,11 +43,15 @@ func (ur *recurringpaymenthistoryRepository) Update(c context.Context, recurring
 
 }
 
-func (ur *recurringpaymenthistoryRepository) Delete(c context.Context, recurringpaymenthistory *domain.RecurringPaymentHistory) error {
+func (ur *recurringpaymenthistoryRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": recurringpaymenthistory.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
 
 }

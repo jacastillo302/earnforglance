@@ -31,7 +31,7 @@ func (tu *producteditorsettingsUsecase) Update(c context.Context, producteditors
 	return tu.producteditorsettingsRepository.Update(ctx, producteditorsettings)
 }
 
-func (tu *producteditorsettingsUsecase) Delete(c context.Context, producteditorsettings *domain.ProductEditorSettings) error {
+func (tu *producteditorsettingsUsecase) Delete(c context.Context, producteditorsettings string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.producteditorsettingsRepository.Delete(ctx, producteditorsettings)

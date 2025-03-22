@@ -22,15 +22,15 @@ type CustomerAttributeValue struct {
 type CustomerAttributeValueRepository interface {
 	Create(c context.Context, customer_attribute_value *CustomerAttributeValue) error
 	Update(c context.Context, customer_attribute_value *CustomerAttributeValue) error
-	Delete(c context.Context, customer_attribute_value *CustomerAttributeValue) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]CustomerAttributeValue, error)
-	FetchByID(c context.Context, customer_attribute_valueID string) (CustomerAttributeValue, error)
+	FetchByID(c context.Context, ID string) (CustomerAttributeValue, error)
 }
 
 type CustomerAttributeValueUsecase interface {
-	FetchByID(c context.Context, customer_attribute_valueID string) (CustomerAttributeValue, error)
+	FetchByID(c context.Context, ID string) (CustomerAttributeValue, error)
 	Create(c context.Context, customer_attribute_value *CustomerAttributeValue) error
 	Update(c context.Context, customer_attribute_value *CustomerAttributeValue) error
-	Delete(c context.Context, customer_attribute_value *CustomerAttributeValue) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]CustomerAttributeValue, error)
 }

@@ -31,7 +31,7 @@ func (tu *permissionrecordcustomerrolemappingUsecase) Update(c context.Context, 
 	return tu.permissionrecordcustomerrolemappingRepository.Update(ctx, permissionrecordcustomerrolemapping)
 }
 
-func (tu *permissionrecordcustomerrolemappingUsecase) Delete(c context.Context, permissionrecordcustomerrolemapping *domain.PermissionRecordCustomerRoleMapping) error {
+func (tu *permissionrecordcustomerrolemappingUsecase) Delete(c context.Context, permissionrecordcustomerrolemapping string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.permissionrecordcustomerrolemappingRepository.Delete(ctx, permissionrecordcustomerrolemapping)

@@ -31,7 +31,7 @@ func (cu *categoryUsecase) Update(c context.Context, category *domain.Category) 
 	return cu.categoryRepository.Update(ctx, category)
 }
 
-func (cu *categoryUsecase) Delete(c context.Context, category *domain.Category) error {
+func (cu *categoryUsecase) Delete(c context.Context, category string) error {
 	ctx, cancel := context.WithTimeout(c, cu.contextTimeout)
 	defer cancel()
 	return cu.categoryRepository.Delete(ctx, category)

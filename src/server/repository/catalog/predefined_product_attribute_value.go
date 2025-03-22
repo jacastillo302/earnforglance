@@ -43,11 +43,15 @@ func (ur *predefinedproductattributevalueRepository) Update(c context.Context, p
 
 }
 
-func (ur *predefinedproductattributevalueRepository) Delete(c context.Context, predefinedproductattributevalue *domain.PredefinedProductAttributeValue) error {
+func (ur *predefinedproductattributevalueRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": predefinedproductattributevalue.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
 
 }

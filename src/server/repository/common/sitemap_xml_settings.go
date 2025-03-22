@@ -43,11 +43,15 @@ func (ur *sitemapxmlsettingsRepository) Update(c context.Context, sitemapxmlsett
 
 }
 
-func (ur *sitemapxmlsettingsRepository) Delete(c context.Context, sitemapxmlsettings *domain.SitemapXmlSettings) error {
+func (ur *sitemapxmlsettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": sitemapxmlsettings.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
 
 }

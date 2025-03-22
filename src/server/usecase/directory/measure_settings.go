@@ -31,7 +31,7 @@ func (tu *measuresettingsUsecase) Update(c context.Context, measuresettings *dom
 	return tu.measuresettingsRepository.Update(ctx, measuresettings)
 }
 
-func (tu *measuresettingsUsecase) Delete(c context.Context, measuresettings *domain.MeasureSettings) error {
+func (tu *measuresettingsUsecase) Delete(c context.Context, measuresettings string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.measuresettingsRepository.Delete(ctx, measuresettings)

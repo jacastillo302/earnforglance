@@ -32,7 +32,7 @@ func (tu *baseattributevalueUsecase) Update(c context.Context, baseAttributeValu
 	return tu.baseattributevalueRepository.Update(ctx, baseAttributeValue)
 }
 
-func (tu *baseattributevalueUsecase) Delete(c context.Context, baseAttributeValue *domain.BaseAttributeValue) error {
+func (tu *baseattributevalueUsecase) Delete(c context.Context, baseAttributeValue string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.baseattributevalueRepository.Delete(ctx, baseAttributeValue)

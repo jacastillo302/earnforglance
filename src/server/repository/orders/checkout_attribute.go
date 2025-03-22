@@ -42,12 +42,17 @@ func (ur *checkoutattributeRepository) Update(c context.Context, checkoutattribu
 	return err
 }
 
-func (ur *checkoutattributeRepository) Delete(c context.Context, checkoutattribute *domain.CheckoutAttribute) error {
+func (ur *checkoutattributeRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": checkoutattribute.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *checkoutattributeRepository) Fetch(c context.Context) ([]domain.CheckoutAttribute, error) {

@@ -21,16 +21,16 @@ type Setting struct {
 type SettingRepository interface {
 	Create(c context.Context, setting *Setting) error
 	Update(c context.Context, setting *Setting) error
-	Delete(c context.Context, setting *Setting) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Setting, error)
-	FetchByID(c context.Context, settingID string) (Setting, error)
+	FetchByID(c context.Context, ID string) (Setting, error)
 }
 
 type SettingUsecase interface {
-	FetchByID(c context.Context, settingID string) (Setting, error)
+	FetchByID(c context.Context, ID string) (Setting, error)
 	Create(c context.Context, setting *Setting) error
 	Update(c context.Context, setting *Setting) error
-	Delete(c context.Context, setting *Setting) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Setting, error)
 }
 

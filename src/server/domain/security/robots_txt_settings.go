@@ -35,16 +35,16 @@ func NewRobotsTxtSettings() *RobotsTxtSettings {
 type RobotsTxtSettingsRepository interface {
 	Create(c context.Context, robotsTxtSettings *RobotsTxtSettings) error
 	Update(c context.Context, robotsTxtSettings *RobotsTxtSettings) error
-	Delete(c context.Context, robotsTxtSettings *RobotsTxtSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]RobotsTxtSettings, error)
-	FetchByID(c context.Context, robotsTxtSettingsID string) (RobotsTxtSettings, error)
+	FetchByID(c context.Context, ID string) (RobotsTxtSettings, error)
 }
 
 // RobotsTxtSettingsUsecase defines the use case interface for RobotsTxtSettings
 type RobotsTxtSettingsUsecase interface {
-	FetchByID(c context.Context, robotsTxtSettingsID string) (RobotsTxtSettings, error)
+	FetchByID(c context.Context, ID string) (RobotsTxtSettings, error)
 	Create(c context.Context, robotsTxtSettings *RobotsTxtSettings) error
 	Update(c context.Context, robotsTxtSettings *RobotsTxtSettings) error
-	Delete(c context.Context, robotsTxtSettings *RobotsTxtSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]RobotsTxtSettings, error)
 }

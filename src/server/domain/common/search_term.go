@@ -21,15 +21,15 @@ type SearchTerm struct {
 type SearchTermRepository interface {
 	Create(c context.Context, search_term *SearchTerm) error
 	Update(c context.Context, search_term *SearchTerm) error
-	Delete(c context.Context, search_term *SearchTerm) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]SearchTerm, error)
-	FetchByID(c context.Context, search_termID string) (SearchTerm, error)
+	FetchByID(c context.Context, ID string) (SearchTerm, error)
 }
 
 type SearchTermUsecase interface {
-	FetchByID(c context.Context, search_termID string) (SearchTerm, error)
+	FetchByID(c context.Context, ID string) (SearchTerm, error)
 	Create(c context.Context, search_term *SearchTerm) error
 	Update(c context.Context, search_term *SearchTerm) error
-	Delete(c context.Context, search_term *SearchTerm) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]SearchTerm, error)
 }

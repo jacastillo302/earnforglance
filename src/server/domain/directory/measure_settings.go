@@ -20,15 +20,15 @@ type MeasureSettings struct {
 type MeasureSettingsRepository interface {
 	Create(c context.Context, measure_settings *MeasureSettings) error
 	Update(c context.Context, measure_settings *MeasureSettings) error
-	Delete(c context.Context, measure_settings *MeasureSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]MeasureSettings, error)
-	FetchByID(c context.Context, measure_settingsID string) (MeasureSettings, error)
+	FetchByID(c context.Context, ID string) (MeasureSettings, error)
 }
 
 type MeasureSettingsUsecase interface {
-	FetchByID(c context.Context, measure_settingsID string) (MeasureSettings, error)
+	FetchByID(c context.Context, ID string) (MeasureSettings, error)
 	Create(c context.Context, measure_settings *MeasureSettings) error
 	Update(c context.Context, measure_settings *MeasureSettings) error
-	Delete(c context.Context, measure_settings *MeasureSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]MeasureSettings, error)
 }

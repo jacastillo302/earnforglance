@@ -35,16 +35,16 @@ type Store struct {
 type StoreRepository interface {
 	Create(c context.Context, store *Store) error
 	Update(c context.Context, store *Store) error
-	Delete(c context.Context, store *Store) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Store, error)
-	FetchByID(c context.Context, storeID string) (Store, error)
+	FetchByID(c context.Context, ID string) (Store, error)
 }
 
 // StoreUsecase defines the use case interface for Store
 type StoreUsecase interface {
-	FetchByID(c context.Context, storeID string) (Store, error)
+	FetchByID(c context.Context, ID string) (Store, error)
 	Create(c context.Context, store *Store) error
 	Update(c context.Context, store *Store) error
-	Delete(c context.Context, store *Store) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Store, error)
 }

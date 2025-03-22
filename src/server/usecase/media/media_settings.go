@@ -31,7 +31,7 @@ func (tu *mediaSettingsUsecase) Update(c context.Context, mediaSettings *domain.
 	return tu.mediaSettingsRepository.Update(ctx, mediaSettings)
 }
 
-func (tu *mediaSettingsUsecase) Delete(c context.Context, mediaSettings *domain.MediaSettings) error {
+func (tu *mediaSettingsUsecase) Delete(c context.Context, mediaSettings string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.mediaSettingsRepository.Delete(ctx, mediaSettings)

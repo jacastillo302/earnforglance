@@ -29,16 +29,16 @@ type ScheduleTask struct {
 type ScheduleTaskRepository interface {
 	Create(c context.Context, schedule_task *ScheduleTask) error
 	Update(c context.Context, schedule_task *ScheduleTask) error
-	Delete(c context.Context, schedule_task *ScheduleTask) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ScheduleTask, error)
-	FetchByID(c context.Context, schedule_taskID string) (ScheduleTask, error)
+	FetchByID(c context.Context, ID string) (ScheduleTask, error)
 }
 
 // ScheduleTaskUsecase defines the usecase interface for ScheduleTask
 type ScheduleTaskUsecase interface {
-	FetchByID(c context.Context, schedule_taskID string) (ScheduleTask, error)
+	FetchByID(c context.Context, ID string) (ScheduleTask, error)
 	Create(c context.Context, schedule_task *ScheduleTask) error
 	Update(c context.Context, schedule_task *ScheduleTask) error
-	Delete(c context.Context, schedule_task *ScheduleTask) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ScheduleTask, error)
 }

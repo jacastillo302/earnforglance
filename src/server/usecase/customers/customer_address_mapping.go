@@ -31,7 +31,7 @@ func (tu *customeraddressmappingUsecase) Update(c context.Context, customeraddre
 	return tu.customeraddressmappingRepository.Update(ctx, customeraddressmapping)
 }
 
-func (tu *customeraddressmappingUsecase) Delete(c context.Context, customeraddressmapping *domain.CustomerAddressMapping) error {
+func (tu *customeraddressmappingUsecase) Delete(c context.Context, customeraddressmapping string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.customeraddressmappingRepository.Delete(ctx, customeraddressmapping)

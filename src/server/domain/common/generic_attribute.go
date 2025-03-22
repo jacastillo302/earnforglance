@@ -25,15 +25,15 @@ type GenericAttribute struct {
 type GenericAttributeRepository interface {
 	Create(c context.Context, generic_attribute *GenericAttribute) error
 	Update(c context.Context, generic_attribute *GenericAttribute) error
-	Delete(c context.Context, generic_attribute *GenericAttribute) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]GenericAttribute, error)
-	FetchByID(c context.Context, generic_attributeID string) (GenericAttribute, error)
+	FetchByID(c context.Context, ID string) (GenericAttribute, error)
 }
 
 type GenericAttributeUsecase interface {
-	FetchByID(c context.Context, generic_attributeID string) (GenericAttribute, error)
+	FetchByID(c context.Context, ID string) (GenericAttribute, error)
 	Create(c context.Context, generic_attribute *GenericAttribute) error
 	Update(c context.Context, generic_attribute *GenericAttribute) error
-	Delete(c context.Context, generic_attribute *GenericAttribute) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]GenericAttribute, error)
 }

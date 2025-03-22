@@ -22,15 +22,15 @@ type MeasureWeight struct {
 type MeasureWeightRepository interface {
 	Create(c context.Context, measure_weight *MeasureWeight) error
 	Update(c context.Context, measure_weight *MeasureWeight) error
-	Delete(c context.Context, measure_weight *MeasureWeight) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]MeasureWeight, error)
-	FetchByID(c context.Context, measure_weightID string) (MeasureWeight, error)
+	FetchByID(c context.Context, ID string) (MeasureWeight, error)
 }
 
 type MeasureWeightUsecase interface {
-	FetchByID(c context.Context, measure_weightID string) (MeasureWeight, error)
+	FetchByID(c context.Context, ID string) (MeasureWeight, error)
 	Create(c context.Context, measure_weight *MeasureWeight) error
 	Update(c context.Context, measure_weight *MeasureWeight) error
-	Delete(c context.Context, measure_weight *MeasureWeight) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]MeasureWeight, error)
 }

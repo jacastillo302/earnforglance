@@ -42,12 +42,17 @@ func (ur *specificationattributeoptionRepository) Update(c context.Context, spec
 	return err
 }
 
-func (ur *specificationattributeoptionRepository) Delete(c context.Context, specificationattributeoption *domain.SpecificationAttributeOption) error {
+func (ur *specificationattributeoptionRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": specificationattributeoption.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *specificationattributeoptionRepository) Fetch(c context.Context) ([]domain.SpecificationAttributeOption, error) {

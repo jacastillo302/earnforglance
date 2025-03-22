@@ -22,15 +22,15 @@ type ProductTag struct {
 type ProductTagRepository interface {
 	Create(c context.Context, product_tag *ProductTag) error
 	Update(c context.Context, product_tag *ProductTag) error
-	Delete(c context.Context, product_tag *ProductTag) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProductTag, error)
-	FetchByID(c context.Context, product_tagID string) (ProductTag, error)
+	FetchByID(c context.Context, ID string) (ProductTag, error)
 }
 
 type ProductTagUsecase interface {
-	FetchByID(c context.Context, product_tagID string) (ProductTag, error)
+	FetchByID(c context.Context, ID string) (ProductTag, error)
 	Create(c context.Context, product_tag *ProductTag) error
 	Update(c context.Context, product_tag *ProductTag) error
-	Delete(c context.Context, product_tag *ProductTag) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProductTag, error)
 }

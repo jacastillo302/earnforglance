@@ -21,16 +21,16 @@ type ReturnRequestAction struct {
 type ReturnRequestActionRepository interface {
 	Create(c context.Context, return_request_action *ReturnRequestAction) error
 	Update(c context.Context, return_request_action *ReturnRequestAction) error
-	Delete(c context.Context, return_request_action *ReturnRequestAction) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ReturnRequestAction, error)
-	FetchByID(c context.Context, return_request_actionID string) (ReturnRequestAction, error)
+	FetchByID(c context.Context, ID string) (ReturnRequestAction, error)
 }
 
 // ReturnRequestActionUsecase interface
 type ReturnRequestActionUsecase interface {
-	FetchByID(c context.Context, return_request_actionID string) (ReturnRequestAction, error)
+	FetchByID(c context.Context, ID string) (ReturnRequestAction, error)
 	Create(c context.Context, return_request_action *ReturnRequestAction) error
 	Update(c context.Context, return_request_action *ReturnRequestAction) error
-	Delete(c context.Context, return_request_action *ReturnRequestAction) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ReturnRequestAction, error)
 }

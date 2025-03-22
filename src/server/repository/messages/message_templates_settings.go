@@ -42,12 +42,17 @@ func (ur *MessageTemplatesSettingsRepository) Update(c context.Context, MessageT
 	return err
 }
 
-func (ur *MessageTemplatesSettingsRepository) Delete(c context.Context, MessageTemplatesSettings *domain.MessageTemplatesSettings) error {
+func (ur *MessageTemplatesSettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": MessageTemplatesSettings.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *MessageTemplatesSettingsRepository) Fetch(c context.Context) ([]domain.MessageTemplatesSettings, error) {

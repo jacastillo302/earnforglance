@@ -31,7 +31,7 @@ func (tu *rewardpointshistoryUsecase) Update(c context.Context, rewardpointshist
 	return tu.rewardpointshistoryRepository.Update(ctx, rewardpointshistory)
 }
 
-func (tu *rewardpointshistoryUsecase) Delete(c context.Context, rewardpointshistory *domain.RewardPointsHistory) error {
+func (tu *rewardpointshistoryUsecase) Delete(c context.Context, rewardpointshistory string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.rewardpointshistoryRepository.Delete(ctx, rewardpointshistory)

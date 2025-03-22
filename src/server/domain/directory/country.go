@@ -28,15 +28,15 @@ type Country struct {
 type CountryRepository interface {
 	Create(c context.Context, country *Country) error
 	Update(c context.Context, country *Country) error
-	Delete(c context.Context, country *Country) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Country, error)
-	FetchByID(c context.Context, countryID string) (Country, error)
+	FetchByID(c context.Context, ID string) (Country, error)
 }
 
 type CountryUsecase interface {
-	FetchByID(c context.Context, countryID string) (Country, error)
+	FetchByID(c context.Context, ID string) (Country, error)
 	Create(c context.Context, country *Country) error
 	Update(c context.Context, country *Country) error
-	Delete(c context.Context, country *Country) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Country, error)
 }

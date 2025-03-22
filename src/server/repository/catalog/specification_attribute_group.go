@@ -43,11 +43,15 @@ func (ur *specificationattributegroupRepository) Update(c context.Context, speci
 
 }
 
-func (ur *specificationattributegroupRepository) Delete(c context.Context, specificationattributegroup *domain.SpecificationAttributeGroup) error {
+func (ur *specificationattributegroupRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": specificationattributegroup.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
 
 }

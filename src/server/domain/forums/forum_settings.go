@@ -52,16 +52,16 @@ type ForumSettings struct {
 type ForumSettingsRepository interface {
 	Create(c context.Context, forum_settings *ForumSettings) error
 	Update(c context.Context, forum_settings *ForumSettings) error
-	Delete(c context.Context, forum_settings *ForumSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ForumSettings, error)
-	FetchByID(c context.Context, forum_settingsID string) (ForumSettings, error)
+	FetchByID(c context.Context, ID string) (ForumSettings, error)
 }
 
 // ForumSettingsUsecase represents the forum settings usecase interface
 type ForumSettingsUsecase interface {
-	FetchByID(c context.Context, forum_settingsID string) (ForumSettings, error)
+	FetchByID(c context.Context, ID string) (ForumSettings, error)
 	Create(c context.Context, forum_settings *ForumSettings) error
 	Update(c context.Context, forum_settings *ForumSettings) error
-	Delete(c context.Context, forum_settings *ForumSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ForumSettings, error)
 }

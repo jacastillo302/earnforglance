@@ -42,12 +42,17 @@ func (ur *currencysettingsRepository) Update(c context.Context, currencysettings
 	return err
 }
 
-func (ur *currencysettingsRepository) Delete(c context.Context, currencysettings *domain.CurrencySettings) error {
+func (ur *currencysettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": currencysettings.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *currencysettingsRepository) Fetch(c context.Context) ([]domain.CurrencySettings, error) {

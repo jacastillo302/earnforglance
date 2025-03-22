@@ -20,15 +20,15 @@ type SearchTermReportLine struct {
 type SearchTermReportLineRepository interface {
 	Create(c context.Context, search_term_record_line *SearchTermReportLine) error
 	Update(c context.Context, search_term_record_line *SearchTermReportLine) error
-	Delete(c context.Context, search_term_record_line *SearchTermReportLine) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]SearchTermReportLine, error)
-	FetchByID(c context.Context, search_term_record_lineID string) (SearchTermReportLine, error)
+	FetchByID(c context.Context, ID string) (SearchTermReportLine, error)
 }
 
 type SearchTermReportLineUsecase interface {
-	FetchByID(c context.Context, search_term_record_lineID string) (SearchTermReportLine, error)
+	FetchByID(c context.Context, ID string) (SearchTermReportLine, error)
 	Create(c context.Context, search_term_record_line *SearchTermReportLine) error
 	Update(c context.Context, search_term_record_line *SearchTermReportLine) error
-	Delete(c context.Context, search_term_record_line *SearchTermReportLine) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]SearchTermReportLine, error)
 }

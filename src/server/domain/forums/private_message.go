@@ -29,16 +29,16 @@ type PrivateMessage struct {
 type PrivateMessageRepository interface {
 	Create(c context.Context, private_message *PrivateMessage) error
 	Update(c context.Context, private_message *PrivateMessage) error
-	Delete(c context.Context, private_message *PrivateMessage) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]PrivateMessage, error)
-	FetchByID(c context.Context, private_messageID string) (PrivateMessage, error)
+	FetchByID(c context.Context, ID string) (PrivateMessage, error)
 }
 
 // PrivateMessageUsecase interface
 type PrivateMessageUsecase interface {
-	FetchByID(c context.Context, private_messageID string) (PrivateMessage, error)
+	FetchByID(c context.Context, ID string) (PrivateMessage, error)
 	Create(c context.Context, private_message *PrivateMessage) error
 	Update(c context.Context, private_message *PrivateMessage) error
-	Delete(c context.Context, private_message *PrivateMessage) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]PrivateMessage, error)
 }

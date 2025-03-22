@@ -43,11 +43,15 @@ func (ur *measuredimensionRepository) Update(c context.Context, measuredimension
 
 }
 
-func (ur *measuredimensionRepository) Delete(c context.Context, measuredimension *domain.MeasureDimension) error {
+func (ur *measuredimensionRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": measuredimension.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
 
 }

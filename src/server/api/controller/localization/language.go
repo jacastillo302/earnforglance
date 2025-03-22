@@ -70,28 +70,20 @@ func (tc *LanguageController) Update(c *gin.Context) {
 }
 
 func (tc *LanguageController) Delete(c *gin.Context) {
-	var task domain.Language
-	body, err := io.ReadAll(c.Request.Body)
-
-	if err != nil {
-		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+	ID := c.Query("id")
+	if ID == "" {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "invalid ID format"})
 		return
 	}
 
-	err = json.Unmarshal(body, &task)
+	err := tc.LanguageUsecase.Delete(c, ID)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
-		return
-	}
-
-	err = tc.LanguageUsecase.Delete(c, &task)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		c.JSON(http.StatusNotFound, common.ErrorResponse{Message: ID})
 		return
 	}
 
 	c.JSON(http.StatusOK, common.SuccessResponse{
-		Message: "Language update successfully",
+		Message: "Record deleted successfully",
 	})
 }
 

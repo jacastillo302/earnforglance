@@ -21,8 +21,8 @@ func (m *MockAffiliateRepository) Update(c context.Context, affiliate *Affiliate
 	return args.Error(0)
 }
 
-func (m *MockAffiliateRepository) Delete(c context.Context, affiliate *Affiliate) error {
-	args := m.Called(c, affiliate)
+func (m *MockAffiliateRepository) Delete(c context.Context, ID string) error {
+	args := m.Called(c, ID)
 	return args.Error(0)
 }
 
@@ -36,7 +36,7 @@ func (m *MockAffiliateRepository) GetActive(c context.Context, active bool) (Aff
 	return args.Get(0).(Affiliate), args.Error(1)
 }
 
-func (m *MockAffiliateRepository) FetchByID(c context.Context, affiliateID string) (Affiliate, error) {
-	args := m.Called(c, affiliateID)
+func (m *MockAffiliateRepository) FetchByID(c context.Context, ID string) (Affiliate, error) {
+	args := m.Called(c, ID)
 	return args.Get(0).(Affiliate), args.Error(1)
 }

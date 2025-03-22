@@ -41,16 +41,16 @@ type Topic struct {
 type TopicRepository interface {
 	Create(c context.Context, topic *Topic) error
 	Update(c context.Context, topic *Topic) error
-	Delete(c context.Context, topic *Topic) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Topic, error)
-	FetchByID(c context.Context, topicID string) (Topic, error)
+	FetchByID(c context.Context, ID string) (Topic, error)
 }
 
 // TopicUsecase defines the use case interface for Topic
 type TopicUsecase interface {
-	FetchByID(c context.Context, topicID string) (Topic, error)
+	FetchByID(c context.Context, ID string) (Topic, error)
 	Create(c context.Context, topic *Topic) error
 	Update(c context.Context, topic *Topic) error
-	Delete(c context.Context, topic *Topic) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Topic, error)
 }

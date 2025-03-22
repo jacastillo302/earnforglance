@@ -20,15 +20,15 @@ type CustomerCustomerRoleMapping struct {
 type CustomerCustomerRoleMappingRepository interface {
 	Create(c context.Context, customer_customer_role_mapping *CustomerCustomerRoleMapping) error
 	Update(c context.Context, customer_customer_role_mapping *CustomerCustomerRoleMapping) error
-	Delete(c context.Context, customer_customer_role_mapping *CustomerCustomerRoleMapping) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]CustomerCustomerRoleMapping, error)
-	FetchByID(c context.Context, customer_customer_role_mappingID string) (CustomerCustomerRoleMapping, error)
+	FetchByID(c context.Context, ID string) (CustomerCustomerRoleMapping, error)
 }
 
 type CustomerCustomerRoleMappingUsecase interface {
-	FetchByID(c context.Context, customer_customer_role_mappingID string) (CustomerCustomerRoleMapping, error)
+	FetchByID(c context.Context, ID string) (CustomerCustomerRoleMapping, error)
 	Create(c context.Context, customer_customer_role_mapping *CustomerCustomerRoleMapping) error
 	Update(c context.Context, customer_customer_role_mapping *CustomerCustomerRoleMapping) error
-	Delete(c context.Context, customer_customer_role_mapping *CustomerCustomerRoleMapping) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]CustomerCustomerRoleMapping, error)
 }

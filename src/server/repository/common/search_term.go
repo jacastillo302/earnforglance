@@ -42,12 +42,17 @@ func (ur *searchtermRepository) Update(c context.Context, searchterm *domain.Sea
 	return err
 }
 
-func (ur *searchtermRepository) Delete(c context.Context, searchterm *domain.SearchTerm) error {
+func (ur *searchtermRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": searchterm.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *searchtermRepository) Fetch(c context.Context) ([]domain.SearchTerm, error) {

@@ -21,15 +21,15 @@ type ActivityLogType struct {
 type ActivityLogTypeRepository interface {
 	Create(c context.Context, activity_log_type *ActivityLogType) error
 	Update(c context.Context, activity_log_type *ActivityLogType) error
-	Delete(c context.Context, activity_log_type *ActivityLogType) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ActivityLogType, error)
-	FetchByID(c context.Context, activity_log_typeID string) (ActivityLogType, error)
+	FetchByID(c context.Context, ID string) (ActivityLogType, error)
 }
 
 type ActivityLogTypeUsecase interface {
-	FetchByID(c context.Context, activity_log_typeID string) (ActivityLogType, error)
+	FetchByID(c context.Context, ID string) (ActivityLogType, error)
 	Create(c context.Context, activity_log_type *ActivityLogType) error
 	Update(c context.Context, activity_log_type *ActivityLogType) error
-	Delete(c context.Context, activity_log_type *ActivityLogType) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ActivityLogType, error)
 }

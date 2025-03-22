@@ -39,15 +39,15 @@ type Discount struct {
 type DiscountRepository interface {
 	Create(c context.Context, discount *Discount) error
 	Update(c context.Context, discount *Discount) error
-	Delete(c context.Context, discount *Discount) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Discount, error)
-	FetchByID(c context.Context, discountID string) (Discount, error)
+	FetchByID(c context.Context, ID string) (Discount, error)
 }
 
 type DiscountUsecase interface {
-	FetchByID(c context.Context, discountID string) (Discount, error)
+	FetchByID(c context.Context, ID string) (Discount, error)
 	Create(c context.Context, discount *Discount) error
 	Update(c context.Context, discount *Discount) error
-	Delete(c context.Context, discount *Discount) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Discount, error)
 }

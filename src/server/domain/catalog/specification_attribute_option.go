@@ -22,15 +22,15 @@ type SpecificationAttributeOption struct {
 type SpecificationAttributeOptionRepository interface {
 	Create(c context.Context, specification_attribute_option *SpecificationAttributeOption) error
 	Update(c context.Context, specification_attribute_option *SpecificationAttributeOption) error
-	Delete(c context.Context, specification_attribute_option *SpecificationAttributeOption) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]SpecificationAttributeOption, error)
-	FetchByID(c context.Context, specification_attribute_optionID string) (SpecificationAttributeOption, error)
+	FetchByID(c context.Context, ID string) (SpecificationAttributeOption, error)
 }
 
 type SpecificationAttributeOptionUsecase interface {
-	FetchByID(c context.Context, specification_attribute_optionID string) (SpecificationAttributeOption, error)
+	FetchByID(c context.Context, ID string) (SpecificationAttributeOption, error)
 	Create(c context.Context, specification_attribute_option *SpecificationAttributeOption) error
 	Update(c context.Context, specification_attribute_option *SpecificationAttributeOption) error
-	Delete(c context.Context, specification_attribute_option *SpecificationAttributeOption) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]SpecificationAttributeOption, error)
 }

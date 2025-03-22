@@ -31,7 +31,7 @@ func (tu *newsCommentUsecase) Update(c context.Context, newsComment *domain.News
 	return tu.newsCommentRepository.Update(ctx, newsComment)
 }
 
-func (tu *newsCommentUsecase) Delete(c context.Context, newsComment *domain.NewsComment) error {
+func (tu *newsCommentUsecase) Delete(c context.Context, newsComment string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.newsCommentRepository.Delete(ctx, newsComment)

@@ -77,16 +77,16 @@ func TestAffiliateUsecase_Update(t *testing.T) {
 
 func TestAffiliateUsecase_Delete(t *testing.T) {
 	mockRepo := new(domian.MockAffiliateRepository)
-	//time := time.Duration(10)
-	//usecase := NewAffiliateUsecase(mockRepo, time) // Assuming a constructor exists
+	time := time.Duration(10)
+	usecase := NewAffiliateUsecase(mockRepo, time) // Assuming a constructor exists
 
-	affiliateID := primitive.NewObjectID()
+	affiliateID := primitive.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, affiliateID).Return(nil)
 
-	//err := usecase.Delete(context.Background(), affiliateID)
+	err := usecase.Delete(context.Background(), affiliateID)
 
-	//assert.NoError(t, err)
+	assert.NoError(t, err)
 	mockRepo.AssertExpectations(t)
 }
 

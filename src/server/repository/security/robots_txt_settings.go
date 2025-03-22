@@ -42,12 +42,17 @@ func (ur *robotstxtsettingsRepository) Update(c context.Context, robotstxtsettin
 	return err
 }
 
-func (ur *robotstxtsettingsRepository) Delete(c context.Context, robotstxtsettings *domain.RobotsTxtSettings) error {
+func (ur *robotstxtsettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": robotstxtsettings.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *robotstxtsettingsRepository) Fetch(c context.Context) ([]domain.RobotsTxtSettings, error) {

@@ -31,7 +31,7 @@ func (tu *pollAnswerUsecase) Update(c context.Context, pollAnswer *domain.PollAn
 	return tu.pollAnswerRepository.Update(ctx, pollAnswer)
 }
 
-func (tu *pollAnswerUsecase) Delete(c context.Context, pollAnswer *domain.PollAnswer) error {
+func (tu *pollAnswerUsecase) Delete(c context.Context, pollAnswer string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.pollAnswerRepository.Delete(ctx, pollAnswer)

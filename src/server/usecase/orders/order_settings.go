@@ -31,7 +31,7 @@ func (tu *orderSettingsUsecase) Update(c context.Context, orderSettings *domain.
 	return tu.orderSettingsRepository.Update(ctx, orderSettings)
 }
 
-func (tu *orderSettingsUsecase) Delete(c context.Context, orderSettings *domain.OrderSettings) error {
+func (tu *orderSettingsUsecase) Delete(c context.Context, orderSettings string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.orderSettingsRepository.Delete(ctx, orderSettings)

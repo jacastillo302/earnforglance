@@ -24,16 +24,16 @@ type UrlRecord struct {
 type UrlRecordRepository interface {
 	Create(c context.Context, url_record *UrlRecord) error
 	Update(c context.Context, url_record *UrlRecord) error
-	Delete(c context.Context, url_record *UrlRecord) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]UrlRecord, error)
-	FetchByID(c context.Context, url_recordID string) (UrlRecord, error)
+	FetchByID(c context.Context, ID string) (UrlRecord, error)
 }
 
 // UrlRecordUsecase defines the use case interface for UrlRecord
 type UrlRecordUsecase interface {
-	FetchByID(c context.Context, url_recordID string) (UrlRecord, error)
+	FetchByID(c context.Context, ID string) (UrlRecord, error)
 	Create(c context.Context, url_record *UrlRecord) error
 	Update(c context.Context, url_record *UrlRecord) error
-	Delete(c context.Context, url_record *UrlRecord) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]UrlRecord, error)
 }

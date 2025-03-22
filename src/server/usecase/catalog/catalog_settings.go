@@ -31,7 +31,7 @@ func (tu *catalogsettingsUsecase) Update(c context.Context, affiliate *domain.Ca
 	return tu.catalogsettingsRepository.Update(ctx, affiliate)
 }
 
-func (tu *catalogsettingsUsecase) Delete(c context.Context, affiliate *domain.CatalogSettings) error {
+func (tu *catalogsettingsUsecase) Delete(c context.Context, affiliate string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.catalogsettingsRepository.Delete(ctx, affiliate)

@@ -31,7 +31,7 @@ func (tu *searchtermUsecase) Update(c context.Context, searchterm *domain.Search
 	return tu.searchtermRepository.Update(ctx, searchterm)
 }
 
-func (tu *searchtermUsecase) Delete(c context.Context, searchterm *domain.SearchTerm) error {
+func (tu *searchtermUsecase) Delete(c context.Context, searchterm string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.searchtermRepository.Delete(ctx, searchterm)

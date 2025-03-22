@@ -43,11 +43,15 @@ func (ur *paymentsettingsRepository) Update(c context.Context, paymentsettings *
 
 }
 
-func (ur *paymentsettingsRepository) Delete(c context.Context, paymentsettings *domain.PaymentSettings) error {
+func (ur *paymentsettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": paymentsettings.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
 
 }

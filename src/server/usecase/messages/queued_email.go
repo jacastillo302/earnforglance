@@ -31,7 +31,7 @@ func (tu *queuedEmailUsecase) Update(c context.Context, queuedEmail *domain.Queu
 	return tu.queuedEmailRepository.Update(ctx, queuedEmail)
 }
 
-func (tu *queuedEmailUsecase) Delete(c context.Context, queuedEmail *domain.QueuedEmail) error {
+func (tu *queuedEmailUsecase) Delete(c context.Context, queuedEmail string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.queuedEmailRepository.Delete(ctx, queuedEmail)

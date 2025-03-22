@@ -31,7 +31,7 @@ func (tu *measuredimensionUsecase) Update(c context.Context, measuredimension *d
 	return tu.MeasureDimensionRepository.Update(ctx, measuredimension)
 }
 
-func (tu *measuredimensionUsecase) Delete(c context.Context, measuredimension *domain.MeasureDimension) error {
+func (tu *measuredimensionUsecase) Delete(c context.Context, measuredimension string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.MeasureDimensionRepository.Delete(ctx, measuredimension)

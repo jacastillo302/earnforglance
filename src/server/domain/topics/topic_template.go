@@ -22,16 +22,16 @@ type TopicTemplate struct {
 type TopicTemplateRepository interface {
 	Create(c context.Context, topic_template *TopicTemplate) error
 	Update(c context.Context, topic_template *TopicTemplate) error
-	Delete(c context.Context, topic_template *TopicTemplate) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]TopicTemplate, error)
-	FetchByID(c context.Context, topic_templateID string) (TopicTemplate, error)
+	FetchByID(c context.Context, ID string) (TopicTemplate, error)
 }
 
 // TopicTemplateUsecase defines the use case interface for TopicTemplate
 type TopicTemplateUsecase interface {
-	FetchByID(c context.Context, topic_templateID string) (TopicTemplate, error)
+	FetchByID(c context.Context, ID string) (TopicTemplate, error)
 	Create(c context.Context, topic_template *TopicTemplate) error
 	Update(c context.Context, topic_template *TopicTemplate) error
-	Delete(c context.Context, topic_template *TopicTemplate) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]TopicTemplate, error)
 }

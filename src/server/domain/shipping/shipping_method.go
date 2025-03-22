@@ -22,16 +22,16 @@ type ShippingMethod struct {
 type ShippingMethodRepository interface {
 	Create(c context.Context, shipping_method *ShippingMethod) error
 	Update(c context.Context, shipping_method *ShippingMethod) error
-	Delete(c context.Context, shipping_method *ShippingMethod) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ShippingMethod, error)
-	FetchByID(c context.Context, shipping_methodID string) (ShippingMethod, error)
+	FetchByID(c context.Context, ID string) (ShippingMethod, error)
 }
 
 // ShippingMethodUsecase defines the use case interface for ShippingMethod
 type ShippingMethodUsecase interface {
-	FetchByID(c context.Context, shipping_methodID string) (ShippingMethod, error)
+	FetchByID(c context.Context, ID string) (ShippingMethod, error)
 	Create(c context.Context, shipping_method *ShippingMethod) error
 	Update(c context.Context, shipping_method *ShippingMethod) error
-	Delete(c context.Context, shipping_method *ShippingMethod) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ShippingMethod, error)
 }

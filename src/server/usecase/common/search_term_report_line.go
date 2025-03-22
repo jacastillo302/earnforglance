@@ -31,7 +31,7 @@ func (tu *SearchTermReportLineUsecase) Update(c context.Context, SearchTermRepor
 	return tu.SearchTermReportLineRepository.Update(ctx, SearchTermReportLine)
 }
 
-func (tu *SearchTermReportLineUsecase) Delete(c context.Context, SearchTermReportLine *domain.SearchTermReportLine) error {
+func (tu *SearchTermReportLineUsecase) Delete(c context.Context, SearchTermReportLine string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.SearchTermReportLineRepository.Delete(ctx, SearchTermReportLine)

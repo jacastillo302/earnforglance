@@ -31,7 +31,7 @@ func (tu *forumpostvoteUsecase) Update(c context.Context, forumpostvote *domain.
 	return tu.forumpostvoteRepository.Update(ctx, forumpostvote)
 }
 
-func (tu *forumpostvoteUsecase) Delete(c context.Context, forumpostvote *domain.ForumPostVote) error {
+func (tu *forumpostvoteUsecase) Delete(c context.Context, forumpostvote string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.forumpostvoteRepository.Delete(ctx, forumpostvote)

@@ -22,15 +22,15 @@ type MeasureDimension struct {
 type MeasureDimensionRepository interface {
 	Create(c context.Context, measure_dimension *MeasureDimension) error
 	Update(c context.Context, measure_dimension *MeasureDimension) error
-	Delete(c context.Context, measure_dimension *MeasureDimension) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]MeasureDimension, error)
-	FetchByID(c context.Context, measure_dimensionID string) (MeasureDimension, error)
+	FetchByID(c context.Context, ID string) (MeasureDimension, error)
 }
 
 type MeasureDimensionUsecase interface {
-	FetchByID(c context.Context, measure_dimensionID string) (MeasureDimension, error)
+	FetchByID(c context.Context, ID string) (MeasureDimension, error)
 	Create(c context.Context, measure_dimension *MeasureDimension) error
 	Update(c context.Context, measure_dimension *MeasureDimension) error
-	Delete(c context.Context, measure_dimension *MeasureDimension) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]MeasureDimension, error)
 }

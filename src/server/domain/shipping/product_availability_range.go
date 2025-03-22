@@ -21,16 +21,16 @@ type ProductAvailabilityRange struct {
 type ProductAvailabilityRangeRepository interface {
 	Create(c context.Context, product_availability_range *ProductAvailabilityRange) error
 	Update(c context.Context, product_availability_range *ProductAvailabilityRange) error
-	Delete(c context.Context, product_availability_range *ProductAvailabilityRange) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProductAvailabilityRange, error)
-	FetchByID(c context.Context, product_availability_rangeID string) (ProductAvailabilityRange, error)
+	FetchByID(c context.Context, ID string) (ProductAvailabilityRange, error)
 }
 
 // ProductAvailabilityRangeUsecase defines the use case interface for ProductAvailabilityRange
 type ProductAvailabilityRangeUsecase interface {
-	FetchByID(c context.Context, product_availability_rangeID string) (ProductAvailabilityRange, error)
+	FetchByID(c context.Context, ID string) (ProductAvailabilityRange, error)
 	Create(c context.Context, product_availability_range *ProductAvailabilityRange) error
 	Update(c context.Context, product_availability_range *ProductAvailabilityRange) error
-	Delete(c context.Context, product_availability_range *ProductAvailabilityRange) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProductAvailabilityRange, error)
 }

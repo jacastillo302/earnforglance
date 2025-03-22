@@ -28,16 +28,16 @@ func NewCustomerPermanentlyDeleted(customerID primitive.ObjectID, email string) 
 type CustomerPermanentlyDeletedRepository interface {
 	Create(c context.Context, customer_permanently_deleted *CustomerPermanentlyDeleted) error
 	Update(c context.Context, customer_permanently_deleted *CustomerPermanentlyDeleted) error
-	Delete(c context.Context, customer_permanently_deleted *CustomerPermanentlyDeleted) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]CustomerPermanentlyDeleted, error)
-	FetchByID(c context.Context, customer_permanently_deletedID string) (CustomerPermanentlyDeleted, error)
+	FetchByID(c context.Context, ID string) (CustomerPermanentlyDeleted, error)
 }
 
 // CustomerPermanentlyDeletedUsecase defines the usecase interface for CustomerPermanentlyDeleted
 type CustomerPermanentlyDeletedUsecase interface {
-	FetchByID(c context.Context, customer_permanently_deletedID string) (CustomerPermanentlyDeleted, error)
+	FetchByID(c context.Context, ID string) (CustomerPermanentlyDeleted, error)
 	Create(c context.Context, customer_permanently_deleted *CustomerPermanentlyDeleted) error
 	Update(c context.Context, customer_permanently_deleted *CustomerPermanentlyDeleted) error
-	Delete(c context.Context, customer_permanently_deleted *CustomerPermanentlyDeleted) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]CustomerPermanentlyDeleted, error)
 }

@@ -21,15 +21,15 @@ type LocaleStringResource struct {
 type LocaleStringResourceRepository interface {
 	Create(c context.Context, locale_string_resource *LocaleStringResource) error
 	Update(c context.Context, locale_string_resource *LocaleStringResource) error
-	Delete(c context.Context, locale_string_resource *LocaleStringResource) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]LocaleStringResource, error)
-	FetchByID(c context.Context, locale_string_resourceID string) (LocaleStringResource, error)
+	FetchByID(c context.Context, ID string) (LocaleStringResource, error)
 }
 
 type LocaleStringResourceUsecase interface {
-	FetchByID(c context.Context, locale_string_resourceID string) (LocaleStringResource, error)
+	FetchByID(c context.Context, ID string) (LocaleStringResource, error)
 	Create(c context.Context, locale_string_resource *LocaleStringResource) error
 	Update(c context.Context, locale_string_resource *LocaleStringResource) error
-	Delete(c context.Context, locale_string_resource *LocaleStringResource) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]LocaleStringResource, error)
 }

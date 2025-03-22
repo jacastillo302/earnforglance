@@ -42,12 +42,17 @@ func (ur *activitylogRepository) Update(c context.Context, activitylog *domain.A
 	return err
 }
 
-func (ur *activitylogRepository) Delete(c context.Context, activitylog *domain.ActivityLog) error {
+func (ur *activitylogRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": activitylog.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *activitylogRepository) Fetch(c context.Context) ([]domain.ActivityLog, error) {

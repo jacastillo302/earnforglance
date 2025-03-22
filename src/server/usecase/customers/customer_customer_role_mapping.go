@@ -31,7 +31,7 @@ func (tu *customerCustomerRoleMappingUsecase) Update(c context.Context, customer
 	return tu.customerCustomerRoleMappingRepository.Update(ctx, customerCustomerRoleMapping)
 }
 
-func (tu *customerCustomerRoleMappingUsecase) Delete(c context.Context, customerCustomerRoleMapping *domain.CustomerCustomerRoleMapping) error {
+func (tu *customerCustomerRoleMappingUsecase) Delete(c context.Context, customerCustomerRoleMapping string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.customerCustomerRoleMappingRepository.Delete(ctx, customerCustomerRoleMapping)

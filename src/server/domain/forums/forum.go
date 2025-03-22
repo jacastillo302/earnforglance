@@ -32,16 +32,16 @@ type Forum struct {
 type ForumRepository interface {
 	Create(c context.Context, forum *Forum) error
 	Update(c context.Context, forum *Forum) error
-	Delete(c context.Context, forum *Forum) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Forum, error)
-	FetchByID(c context.Context, forumID string) (Forum, error)
+	FetchByID(c context.Context, ID string) (Forum, error)
 }
 
 // ForumUsecase interface
 type ForumUsecase interface {
-	FetchByID(c context.Context, forumID string) (Forum, error)
+	FetchByID(c context.Context, ID string) (Forum, error)
 	Create(c context.Context, forum *Forum) error
 	Update(c context.Context, forum *Forum) error
-	Delete(c context.Context, forum *Forum) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Forum, error)
 }

@@ -81,16 +81,16 @@ type Order struct {
 type OrderRepository interface {
 	Create(c context.Context, order *Order) error
 	Update(c context.Context, order *Order) error
-	Delete(c context.Context, order *Order) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Order, error)
-	FetchByID(c context.Context, orderID string) (Order, error)
+	FetchByID(c context.Context, ID string) (Order, error)
 }
 
 // OrderUsecase represents the order usecase interface
 type OrderUsecase interface {
-	FetchByID(c context.Context, orderID string) (Order, error)
+	FetchByID(c context.Context, ID string) (Order, error)
 	Create(c context.Context, order *Order) error
 	Update(c context.Context, order *Order) error
-	Delete(c context.Context, order *Order) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Order, error)
 }

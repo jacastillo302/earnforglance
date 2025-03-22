@@ -23,15 +23,15 @@ type ForumGroup struct {
 type ForumGroupRepository interface {
 	Create(c context.Context, forum_group *ForumGroup) error
 	Update(c context.Context, forum_group *ForumGroup) error
-	Delete(c context.Context, forum_group *ForumGroup) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ForumGroup, error)
-	FetchByID(c context.Context, forum_groupID string) (ForumGroup, error)
+	FetchByID(c context.Context, ID string) (ForumGroup, error)
 }
 
 type ForumGroupUsecase interface {
-	FetchByID(c context.Context, forum_groupID string) (ForumGroup, error)
+	FetchByID(c context.Context, ID string) (ForumGroup, error)
 	Create(c context.Context, forum_group *ForumGroup) error
 	Update(c context.Context, forum_group *ForumGroup) error
-	Delete(c context.Context, forum_group *ForumGroup) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ForumGroup, error)
 }

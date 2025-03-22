@@ -42,12 +42,17 @@ func (ur *widgetsettingsRepository) Update(c context.Context, widgetsettings *do
 	return err
 }
 
-func (ur *widgetsettingsRepository) Delete(c context.Context, widgetsettings *domain.WidgetSettings) error {
+func (ur *widgetsettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": widgetsettings.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *widgetsettingsRepository) Fetch(c context.Context) ([]domain.WidgetSettings, error) {

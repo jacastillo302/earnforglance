@@ -31,7 +31,7 @@ func (tu *robotsTxtSettingsUsecase) Update(c context.Context, robotsTxtSettings 
 	return tu.robotsTxtSettingsRepository.Update(ctx, robotsTxtSettings)
 }
 
-func (tu *robotsTxtSettingsUsecase) Delete(c context.Context, robotsTxtSettings *domain.RobotsTxtSettings) error {
+func (tu *robotsTxtSettingsUsecase) Delete(c context.Context, robotsTxtSettings string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.robotsTxtSettingsRepository.Delete(ctx, robotsTxtSettings)

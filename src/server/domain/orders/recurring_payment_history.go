@@ -23,16 +23,16 @@ type RecurringPaymentHistory struct {
 type RecurringPaymentHistoryRepository interface {
 	Create(c context.Context, recurring_payment_history *RecurringPaymentHistory) error
 	Update(c context.Context, recurring_payment_history *RecurringPaymentHistory) error
-	Delete(c context.Context, recurring_payment_history *RecurringPaymentHistory) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]RecurringPaymentHistory, error)
-	FetchByID(c context.Context, recurring_payment_historyID string) (RecurringPaymentHistory, error)
+	FetchByID(c context.Context, ID string) (RecurringPaymentHistory, error)
 }
 
 // RecurringPaymentHistoryUsecase represents the use case interface for RecurringPaymentHistory
 type RecurringPaymentHistoryUsecase interface {
-	FetchByID(c context.Context, recurring_payment_historyID string) (RecurringPaymentHistory, error)
+	FetchByID(c context.Context, ID string) (RecurringPaymentHistory, error)
 	Create(c context.Context, recurring_payment_history *RecurringPaymentHistory) error
 	Update(c context.Context, recurring_payment_history *RecurringPaymentHistory) error
-	Delete(c context.Context, recurring_payment_history *RecurringPaymentHistory) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]RecurringPaymentHistory, error)
 }

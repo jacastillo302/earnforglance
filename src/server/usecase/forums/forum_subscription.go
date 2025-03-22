@@ -31,7 +31,7 @@ func (tu *forumSubscriptionUsecase) Update(c context.Context, forumSubscription 
 	return tu.forumSubscriptionRepository.Update(ctx, forumSubscription)
 }
 
-func (tu *forumSubscriptionUsecase) Delete(c context.Context, forumSubscription *domain.ForumSubscription) error {
+func (tu *forumSubscriptionUsecase) Delete(c context.Context, forumSubscription string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.forumSubscriptionRepository.Delete(ctx, forumSubscription)

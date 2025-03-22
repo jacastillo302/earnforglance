@@ -27,16 +27,16 @@ type Campaign struct {
 type CampaignRepository interface {
 	Create(c context.Context, campaign *Campaign) error
 	Update(c context.Context, campaign *Campaign) error
-	Delete(c context.Context, campaign *Campaign) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Campaign, error)
-	FetchByID(c context.Context, campaignID string) (Campaign, error)
+	FetchByID(c context.Context, ID string) (Campaign, error)
 }
 
 // CampaignUsecase represents the use case interface for Campaign
 type CampaignUsecase interface {
-	FetchByID(c context.Context, campaignID string) (Campaign, error)
+	FetchByID(c context.Context, ID string) (Campaign, error)
 	Create(c context.Context, campaign *Campaign) error
 	Update(c context.Context, campaign *Campaign) error
-	Delete(c context.Context, campaign *Campaign) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Campaign, error)
 }

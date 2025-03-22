@@ -27,15 +27,15 @@ type Language struct {
 type LanguageRepository interface {
 	Create(c context.Context, language *Language) error
 	Update(c context.Context, language *Language) error
-	Delete(c context.Context, language *Language) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Language, error)
-	FetchByID(c context.Context, languageID string) (Language, error)
+	FetchByID(c context.Context, ID string) (Language, error)
 }
 
 type LanguageUsecase interface {
-	FetchByID(c context.Context, languageID string) (Language, error)
+	FetchByID(c context.Context, ID string) (Language, error)
 	Create(c context.Context, language *Language) error
 	Update(c context.Context, language *Language) error
-	Delete(c context.Context, language *Language) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Language, error)
 }

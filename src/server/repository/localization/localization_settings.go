@@ -42,12 +42,17 @@ func (ur *localizationsettingsRepository) Update(c context.Context, localization
 	return err
 }
 
-func (ur *localizationsettingsRepository) Delete(c context.Context, localizationsettings *domain.LocalizationSettings) error {
+func (ur *localizationsettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": localizationsettings.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *localizationsettingsRepository) Fetch(c context.Context) ([]domain.LocalizationSettings, error) {

@@ -31,7 +31,7 @@ func (tu *downloadUsecase) Update(c context.Context, download *domain.Download) 
 	return tu.downloadRepository.Update(ctx, download)
 }
 
-func (tu *downloadUsecase) Delete(c context.Context, download *domain.Download) error {
+func (tu *downloadUsecase) Delete(c context.Context, download string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.downloadRepository.Delete(ctx, download)

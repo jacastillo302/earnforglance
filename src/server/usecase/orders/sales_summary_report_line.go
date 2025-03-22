@@ -31,7 +31,7 @@ func (tu *salesSummaryReportLineUsecase) Update(c context.Context, salesSummaryR
 	return tu.salesSummaryReportLineRepository.Update(ctx, salesSummaryReportLine)
 }
 
-func (tu *salesSummaryReportLineUsecase) Delete(c context.Context, salesSummaryReportLine *domain.SalesSummaryReportLine) error {
+func (tu *salesSummaryReportLineUsecase) Delete(c context.Context, salesSummaryReportLine string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.salesSummaryReportLineRepository.Delete(ctx, salesSummaryReportLine)

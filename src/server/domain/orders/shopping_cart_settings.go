@@ -40,16 +40,16 @@ type ShoppingCartSettings struct {
 type ShoppingCartSettingsRepository interface {
 	Create(c context.Context, shopping_cart_settings *ShoppingCartSettings) error
 	Update(c context.Context, shopping_cart_settings *ShoppingCartSettings) error
-	Delete(c context.Context, shopping_cart_settings *ShoppingCartSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ShoppingCartSettings, error)
-	FetchByID(c context.Context, shopping_cart_settingsID string) (ShoppingCartSettings, error)
+	FetchByID(c context.Context, ID string) (ShoppingCartSettings, error)
 }
 
 // ShoppingCartSettingsUsecase defines the use case interface for ShoppingCartSettings
 type ShoppingCartSettingsUsecase interface {
-	FetchByID(c context.Context, shopping_cart_settingsID string) (ShoppingCartSettings, error)
+	FetchByID(c context.Context, ID string) (ShoppingCartSettings, error)
 	Create(c context.Context, shopping_cart_settings *ShoppingCartSettings) error
 	Update(c context.Context, shopping_cart_settings *ShoppingCartSettings) error
-	Delete(c context.Context, shopping_cart_settings *ShoppingCartSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ShoppingCartSettings, error)
 }

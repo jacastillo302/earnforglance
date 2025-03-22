@@ -31,7 +31,7 @@ func (tu *GdprLogUsecase) Update(c context.Context, GdprLog *domain.GdprLog) err
 	return tu.GdprLogRepository.Update(ctx, GdprLog)
 }
 
-func (tu *GdprLogUsecase) Delete(c context.Context, GdprLog *domain.GdprLog) error {
+func (tu *GdprLogUsecase) Delete(c context.Context, GdprLog string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.GdprLogRepository.Delete(ctx, GdprLog)

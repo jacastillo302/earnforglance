@@ -31,7 +31,7 @@ func (tu *recurringpaymenthistoryUsecase) Update(c context.Context, recurringpay
 	return tu.recurringpaymenthistoryRepository.Update(ctx, recurringpaymenthistory)
 }
 
-func (tu *recurringpaymenthistoryUsecase) Delete(c context.Context, recurringpaymenthistory *domain.RecurringPaymentHistory) error {
+func (tu *recurringpaymenthistoryUsecase) Delete(c context.Context, recurringpaymenthistory string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.recurringpaymenthistoryRepository.Delete(ctx, recurringpaymenthistory)

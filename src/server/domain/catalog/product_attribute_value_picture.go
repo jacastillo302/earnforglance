@@ -20,15 +20,15 @@ type ProductAttributeValuePicture struct {
 type ProductAttributeValuePictureRepository interface {
 	Create(c context.Context, product_attribute_value_picture *ProductAttributeValuePicture) error
 	Update(c context.Context, product_attribute_value_picture *ProductAttributeValuePicture) error
-	Delete(c context.Context, product_attribute_value_picture *ProductAttributeValuePicture) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProductAttributeValuePicture, error)
-	FetchByID(c context.Context, product_attribute_value_pictureID string) (ProductAttributeValuePicture, error)
+	FetchByID(c context.Context, ID string) (ProductAttributeValuePicture, error)
 }
 
 type ProductAttributeValuePictureUsecase interface {
-	FetchByID(c context.Context, product_attribute_value_pictureID string) (ProductAttributeValuePicture, error)
+	FetchByID(c context.Context, ID string) (ProductAttributeValuePicture, error)
 	Create(c context.Context, product_attribute_value_picture *ProductAttributeValuePicture) error
 	Update(c context.Context, product_attribute_value_picture *ProductAttributeValuePicture) error
-	Delete(c context.Context, product_attribute_value_picture *ProductAttributeValuePicture) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProductAttributeValuePicture, error)
 }

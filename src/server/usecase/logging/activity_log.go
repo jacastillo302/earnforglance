@@ -31,7 +31,7 @@ func (tu *activityLogUsecase) Update(c context.Context, activityLog *domain.Acti
 	return tu.activityLogRepository.Update(ctx, activityLog)
 }
 
-func (tu *activityLogUsecase) Delete(c context.Context, activityLog *domain.ActivityLog) error {
+func (tu *activityLogUsecase) Delete(c context.Context, activityLog string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.activityLogRepository.Delete(ctx, activityLog)

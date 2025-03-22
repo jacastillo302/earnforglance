@@ -30,16 +30,16 @@ type RecurringPayment struct {
 type RecurringPaymentRepository interface {
 	Create(c context.Context, recurring_payment *RecurringPayment) error
 	Update(c context.Context, recurring_payment *RecurringPayment) error
-	Delete(c context.Context, recurring_payment *RecurringPayment) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]RecurringPayment, error)
-	FetchByID(c context.Context, recurring_paymentID string) (RecurringPayment, error)
+	FetchByID(c context.Context, ID string) (RecurringPayment, error)
 }
 
 // RecurringPaymentUsecase interface
 type RecurringPaymentUsecase interface {
-	FetchByID(c context.Context, recurring_paymentID string) (RecurringPayment, error)
+	FetchByID(c context.Context, ID string) (RecurringPayment, error)
 	Create(c context.Context, recurring_payment *RecurringPayment) error
 	Update(c context.Context, recurring_payment *RecurringPayment) error
-	Delete(c context.Context, recurring_payment *RecurringPayment) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]RecurringPayment, error)
 }

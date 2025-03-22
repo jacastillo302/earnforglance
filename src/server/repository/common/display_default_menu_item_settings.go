@@ -42,12 +42,17 @@ func (ur *displaydefaultmenuitemsettingsRepository) Update(c context.Context, di
 	return err
 }
 
-func (ur *displaydefaultmenuitemsettingsRepository) Delete(c context.Context, displaydefaultmenuitemsettings *domain.DisplayDefaultMenuItemSettings) error {
+func (ur *displaydefaultmenuitemsettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": displaydefaultmenuitemsettings.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *displaydefaultmenuitemsettingsRepository) Fetch(c context.Context) ([]domain.DisplayDefaultMenuItemSettings, error) {

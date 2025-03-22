@@ -35,16 +35,16 @@ type ReturnRequest struct {
 type ReturnRequestRepository interface {
 	Create(c context.Context, return_request *ReturnRequest) error
 	Update(c context.Context, return_request *ReturnRequest) error
-	Delete(c context.Context, return_request *ReturnRequest) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ReturnRequest, error)
-	FetchByID(c context.Context, return_requestID string) (ReturnRequest, error)
+	FetchByID(c context.Context, ID string) (ReturnRequest, error)
 }
 
 // ReturnRequestUsecase represents the usecase interface for ReturnRequest
 type ReturnRequestUsecase interface {
-	FetchByID(c context.Context, return_requestID string) (ReturnRequest, error)
+	FetchByID(c context.Context, ID string) (ReturnRequest, error)
 	Create(c context.Context, return_request *ReturnRequest) error
 	Update(c context.Context, return_request *ReturnRequest) error
-	Delete(c context.Context, return_request *ReturnRequest) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ReturnRequest, error)
 }

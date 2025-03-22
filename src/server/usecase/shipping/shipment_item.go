@@ -31,7 +31,7 @@ func (tu *shipmentitemUsecase) Update(c context.Context, shipmentitem *domain.Sh
 	return tu.shipmentitemRepository.Update(ctx, shipmentitem)
 }
 
-func (tu *shipmentitemUsecase) Delete(c context.Context, shipmentitem *domain.ShipmentItem) error {
+func (tu *shipmentitemUsecase) Delete(c context.Context, shipmentitem string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.shipmentitemRepository.Delete(ctx, shipmentitem)

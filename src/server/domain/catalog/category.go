@@ -44,15 +44,15 @@ type Category struct {
 type CategoryRepository interface {
 	Create(c context.Context, category *Category) error
 	Update(c context.Context, category *Category) error
-	Delete(c context.Context, category *Category) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Category, error)
-	FetchByID(c context.Context, categoryID string) (Category, error)
+	FetchByID(c context.Context, ID string) (Category, error)
 }
 
 type CategoryUsecase interface {
-	FetchByID(c context.Context, categoryID string) (Category, error)
+	FetchByID(c context.Context, ID string) (Category, error)
 	Create(c context.Context, category *Category) error
 	Update(c context.Context, category *Category) error
-	Delete(c context.Context, category *Category) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Category, error)
 }

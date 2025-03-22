@@ -23,15 +23,15 @@ type GdprSettings struct {
 type GdprSettingsRepository interface {
 	Create(c context.Context, gdpr_settings *GdprSettings) error
 	Update(c context.Context, gdpr_settings *GdprSettings) error
-	Delete(c context.Context, gdpr_settings *GdprSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]GdprSettings, error)
-	FetchByID(c context.Context, gdpr_settingsID string) (GdprSettings, error)
+	FetchByID(c context.Context, ID string) (GdprSettings, error)
 }
 
 type GdprSettingsUsecase interface {
-	FetchByID(c context.Context, gdpr_settingsID string) (GdprSettings, error)
+	FetchByID(c context.Context, ID string) (GdprSettings, error)
 	Create(c context.Context, gdpr_settings *GdprSettings) error
 	Update(c context.Context, gdpr_settings *GdprSettings) error
-	Delete(c context.Context, gdpr_settings *GdprSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]GdprSettings, error)
 }

@@ -19,15 +19,15 @@ type VendorAttribute struct {
 type VendorAttributeRepository interface {
 	Create(c context.Context, vendor_attribute *VendorAttribute) error
 	Update(c context.Context, vendor_attribute *VendorAttribute) error
-	Delete(c context.Context, vendor_attribute *VendorAttribute) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]VendorAttribute, error)
-	FetchByID(c context.Context, vendor_attributeID string) (VendorAttribute, error)
+	FetchByID(c context.Context, ID string) (VendorAttribute, error)
 }
 
 type VendorAttributeUsecase interface {
-	FetchByID(c context.Context, vendor_attributeID string) (VendorAttribute, error)
+	FetchByID(c context.Context, ID string) (VendorAttribute, error)
 	Create(c context.Context, vendor_attribute *VendorAttribute) error
 	Update(c context.Context, vendor_attribute *VendorAttribute) error
-	Delete(c context.Context, vendor_attribute *VendorAttribute) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]VendorAttribute, error)
 }

@@ -31,7 +31,7 @@ func (tu *crosssellproductUsecase) Update(c context.Context, affiliate *domain.C
 	return tu.crosssellproductRepository.Update(ctx, affiliate)
 }
 
-func (tu *crosssellproductUsecase) Delete(c context.Context, affiliate *domain.CrossSellProduct) error {
+func (tu *crosssellproductUsecase) Delete(c context.Context, affiliate string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.crosssellproductRepository.Delete(ctx, affiliate)

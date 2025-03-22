@@ -42,12 +42,17 @@ func (ur *forumsettingsRepository) Update(c context.Context, forumsettings *doma
 	return err
 }
 
-func (ur *forumsettingsRepository) Delete(c context.Context, forumsettings *domain.ForumSettings) error {
+func (ur *forumsettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": forumsettings.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *forumsettingsRepository) Fetch(c context.Context) ([]domain.ForumSettings, error) {

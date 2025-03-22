@@ -43,11 +43,15 @@ func (ur *pdfsettingsRepository) Update(c context.Context, pdfsettings *domain.P
 
 }
 
-func (ur *pdfsettingsRepository) Delete(c context.Context, pdfsettings *domain.PdfSettings) error {
+func (ur *pdfsettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": pdfsettings.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
 
 }

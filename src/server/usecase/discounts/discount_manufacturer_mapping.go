@@ -31,7 +31,7 @@ func (tu *discountManufacturerMappingUsecase) Update(c context.Context, discount
 	return tu.discountManufacturerMappingRepository.Update(ctx, discountManufacturerMapping)
 }
 
-func (tu *discountManufacturerMappingUsecase) Delete(c context.Context, discountManufacturerMapping *domain.DiscountManufacturerMapping) error {
+func (tu *discountManufacturerMappingUsecase) Delete(c context.Context, discountManufacturerMapping string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.discountManufacturerMappingRepository.Delete(ctx, discountManufacturerMapping)

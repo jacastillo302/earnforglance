@@ -31,7 +31,7 @@ func (tu *productManufacturerUsecase) Update(c context.Context, productManufactu
 	return tu.productManufacturerRepository.Update(ctx, productManufacturer)
 }
 
-func (tu *productManufacturerUsecase) Delete(c context.Context, productManufacturer *domain.ProductManufacturer) error {
+func (tu *productManufacturerUsecase) Delete(c context.Context, productManufacturer string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.productManufacturerRepository.Delete(ctx, productManufacturer)

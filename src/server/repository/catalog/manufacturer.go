@@ -43,15 +43,18 @@ func (ur *manufacturerRepository) Update(c context.Context, manufacturer *domain
 
 }
 
-func (ur *manufacturerRepository) Delete(c context.Context, manufacturer *domain.Manufacturer) error {
+func (ur *manufacturerRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": manufacturer.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
 
 }
-
 func (ur *manufacturerRepository) Fetch(c context.Context) ([]domain.Manufacturer, error) {
 	collection := ur.database.Collection(ur.collection)
 

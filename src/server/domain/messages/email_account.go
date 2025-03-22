@@ -32,16 +32,16 @@ type EmailAccount struct {
 type EmailAccountRepository interface {
 	Create(c context.Context, email_account *EmailAccount) error
 	Update(c context.Context, email_account *EmailAccount) error
-	Delete(c context.Context, email_account *EmailAccount) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]EmailAccount, error)
-	FetchByID(c context.Context, email_accountID string) (EmailAccount, error)
+	FetchByID(c context.Context, ID string) (EmailAccount, error)
 }
 
 // EmailAccountUsecase represents the use case interface for EmailAccount
 type EmailAccountUsecase interface {
-	FetchByID(c context.Context, email_accountID string) (EmailAccount, error)
+	FetchByID(c context.Context, ID string) (EmailAccount, error)
 	Create(c context.Context, email_account *EmailAccount) error
 	Update(c context.Context, email_account *EmailAccount) error
-	Delete(c context.Context, email_account *EmailAccount) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]EmailAccount, error)
 }

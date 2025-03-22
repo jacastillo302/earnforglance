@@ -31,7 +31,7 @@ func (tu *forumtopicUsecase) Update(c context.Context, forumtopic *domain.ForumT
 	return tu.forumtopicRepository.Update(ctx, forumtopic)
 }
 
-func (tu *forumtopicUsecase) Delete(c context.Context, forumtopic *domain.ForumTopic) error {
+func (tu *forumtopicUsecase) Delete(c context.Context, forumtopic string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.forumtopicRepository.Delete(ctx, forumtopic)

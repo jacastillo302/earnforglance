@@ -31,7 +31,7 @@ func (tu *shoppingCartSettingsUsecase) Update(c context.Context, shoppingCartSet
 	return tu.shoppingCartSettingsRepository.Update(ctx, shoppingCartSettings)
 }
 
-func (tu *shoppingCartSettingsUsecase) Delete(c context.Context, shoppingCartSettings *domain.ShoppingCartSettings) error {
+func (tu *shoppingCartSettingsUsecase) Delete(c context.Context, shoppingCartSettings string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.shoppingCartSettingsRepository.Delete(ctx, shoppingCartSettings)

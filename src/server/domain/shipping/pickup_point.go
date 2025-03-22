@@ -35,16 +35,16 @@ type PickupPoint struct {
 type PickupPointRepository interface {
 	Create(c context.Context, pickup_point *PickupPoint) error
 	Update(c context.Context, pickup_point *PickupPoint) error
-	Delete(c context.Context, pickup_point *PickupPoint) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]PickupPoint, error)
-	FetchByID(c context.Context, pickup_pointID string) (PickupPoint, error)
+	FetchByID(c context.Context, ID string) (PickupPoint, error)
 }
 
 // PickupPointUsecase defines the use case interface for PickupPoint
 type PickupPointUsecase interface {
-	FetchByID(c context.Context, pickup_pointID string) (PickupPoint, error)
+	FetchByID(c context.Context, ID string) (PickupPoint, error)
 	Create(c context.Context, pickup_point *PickupPoint) error
 	Update(c context.Context, pickup_point *PickupPoint) error
-	Delete(c context.Context, pickup_point *PickupPoint) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]PickupPoint, error)
 }

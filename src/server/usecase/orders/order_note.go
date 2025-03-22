@@ -31,7 +31,7 @@ func (tu *orderNoteUsecase) Update(c context.Context, orderNote *domain.OrderNot
 	return tu.orderNoteRepository.Update(ctx, orderNote)
 }
 
-func (tu *orderNoteUsecase) Delete(c context.Context, orderNote *domain.OrderNote) error {
+func (tu *orderNoteUsecase) Delete(c context.Context, orderNote string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.orderNoteRepository.Delete(ctx, orderNote)

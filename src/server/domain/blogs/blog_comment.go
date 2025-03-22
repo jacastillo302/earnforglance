@@ -25,7 +25,7 @@ type BlogComment struct {
 type BlogCommentRepository interface {
 	Create(c context.Context, blog_comment *BlogComment) error
 	Update(c context.Context, blog_comment *BlogComment) error
-	Delete(c context.Context, blog_comment *BlogComment) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]BlogComment, error)
 	FetchByID(c context.Context, blog_commentID string) (BlogComment, error)
 }
@@ -34,6 +34,6 @@ type BlogCommentUsecase interface {
 	FetchByID(c context.Context, blog_commentID string) (BlogComment, error)
 	Create(c context.Context, blog_comment *BlogComment) error
 	Update(c context.Context, blog_comment *BlogComment) error
-	Delete(c context.Context, blog_comment *BlogComment) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]BlogComment, error)
 }

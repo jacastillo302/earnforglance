@@ -21,16 +21,16 @@ type ReturnRequestReason struct {
 type ReturnRequestReasonRepository interface {
 	Create(c context.Context, return_request_reason *ReturnRequestReason) error
 	Update(c context.Context, return_request_reason *ReturnRequestReason) error
-	Delete(c context.Context, return_request_reason *ReturnRequestReason) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ReturnRequestReason, error)
-	FetchByID(c context.Context, return_request_reasonID string) (ReturnRequestReason, error)
+	FetchByID(c context.Context, ID string) (ReturnRequestReason, error)
 }
 
 // ReturnRequestReasonUsecase represents the use case interface for ReturnRequestReason
 type ReturnRequestReasonUsecase interface {
-	FetchByID(c context.Context, return_request_reasonID string) (ReturnRequestReason, error)
+	FetchByID(c context.Context, ID string) (ReturnRequestReason, error)
 	Create(c context.Context, return_request_reason *ReturnRequestReason) error
 	Update(c context.Context, return_request_reason *ReturnRequestReason) error
-	Delete(c context.Context, return_request_reason *ReturnRequestReason) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ReturnRequestReason, error)
 }

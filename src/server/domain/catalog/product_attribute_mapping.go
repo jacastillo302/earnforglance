@@ -31,15 +31,15 @@ type ProductAttributeMapping struct {
 type ProductAttributeMappingRepository interface {
 	Create(c context.Context, product_attribute_mapping *ProductAttributeMapping) error
 	Update(c context.Context, product_attribute_mapping *ProductAttributeMapping) error
-	Delete(c context.Context, product_attribute_mapping *ProductAttributeMapping) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProductAttributeMapping, error)
-	FetchByID(c context.Context, product_attribute_mappingID string) (ProductAttributeMapping, error)
+	FetchByID(c context.Context, ID string) (ProductAttributeMapping, error)
 }
 
 type ProductAttributeMappingUsecase interface {
-	FetchByID(c context.Context, product_attribute_mappingID string) (ProductAttributeMapping, error)
+	FetchByID(c context.Context, ID string) (ProductAttributeMapping, error)
 	Create(c context.Context, product_attribute_mapping *ProductAttributeMapping) error
 	Update(c context.Context, product_attribute_mapping *ProductAttributeMapping) error
-	Delete(c context.Context, product_attribute_mapping *ProductAttributeMapping) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProductAttributeMapping, error)
 }

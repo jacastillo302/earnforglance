@@ -28,15 +28,15 @@ type AddressAttribute struct {
 type AddressAttributeRepository interface {
 	Create(c context.Context, address_attribute *AddressAttribute) error
 	Update(c context.Context, address_attribute *AddressAttribute) error
-	Delete(c context.Context, address_attribute *AddressAttribute) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]AddressAttribute, error)
-	FetchByID(c context.Context, address_attributeID string) (AddressAttribute, error)
+	FetchByID(c context.Context, ID string) (AddressAttribute, error)
 }
 
 type AddressAttributeUsecase interface {
-	FetchByID(c context.Context, address_attributeID string) (AddressAttribute, error)
+	FetchByID(c context.Context, ID string) (AddressAttribute, error)
 	Create(c context.Context, address_attribute *AddressAttribute) error
 	Update(c context.Context, address_attribute *AddressAttribute) error
-	Delete(c context.Context, address_attribute *AddressAttribute) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]AddressAttribute, error)
 }

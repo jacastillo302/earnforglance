@@ -20,15 +20,15 @@ type TaxCategory struct {
 type TaxCategoryRepository interface {
 	Create(c context.Context, tax_category *TaxCategory) error
 	Update(c context.Context, tax_category *TaxCategory) error
-	Delete(c context.Context, tax_category *TaxCategory) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]TaxCategory, error)
-	FetchByID(c context.Context, tax_categoryID string) (TaxCategory, error)
+	FetchByID(c context.Context, ID string) (TaxCategory, error)
 }
 
 type TaxCategoryUsecase interface {
-	FetchByID(c context.Context, tax_categoryID string) (TaxCategory, error)
+	FetchByID(c context.Context, ID string) (TaxCategory, error)
 	Create(c context.Context, tax_category *TaxCategory) error
 	Update(c context.Context, tax_category *TaxCategory) error
-	Delete(c context.Context, tax_category *TaxCategory) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]TaxCategory, error)
 }

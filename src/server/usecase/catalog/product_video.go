@@ -31,7 +31,7 @@ func (tu *productvideoUsecase) Update(c context.Context, productvideo *domain.Pr
 	return tu.productvideoRepository.Update(ctx, productvideo)
 }
 
-func (tu *productvideoUsecase) Delete(c context.Context, productvideo *domain.ProductVideo) error {
+func (tu *productvideoUsecase) Delete(c context.Context, productvideo string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.productvideoRepository.Delete(ctx, productvideo)

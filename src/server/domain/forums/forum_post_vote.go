@@ -23,15 +23,15 @@ type ForumPostVote struct {
 type ForumPostVoteRepository interface {
 	Create(c context.Context, product_tag *ForumPostVote) error
 	Update(c context.Context, product_tag *ForumPostVote) error
-	Delete(c context.Context, product_tag *ForumPostVote) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ForumPostVote, error)
-	FetchByID(c context.Context, product_tagID string) (ForumPostVote, error)
+	FetchByID(c context.Context, ID string) (ForumPostVote, error)
 }
 
 type ForumPostVoteUsecase interface {
-	FetchByID(c context.Context, product_tagID string) (ForumPostVote, error)
+	FetchByID(c context.Context, ID string) (ForumPostVote, error)
 	Create(c context.Context, product_tag *ForumPostVote) error
 	Update(c context.Context, product_tag *ForumPostVote) error
-	Delete(c context.Context, product_tag *ForumPostVote) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ForumPostVote, error)
 }

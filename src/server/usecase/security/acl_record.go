@@ -31,7 +31,7 @@ func (tu *aclrecordUsecase) Update(c context.Context, aclrecord *domain.AclRecor
 	return tu.aclrecordRepository.Update(ctx, aclrecord)
 }
 
-func (tu *aclrecordUsecase) Delete(c context.Context, aclrecord *domain.AclRecord) error {
+func (tu *aclrecordUsecase) Delete(c context.Context, aclrecord string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.aclrecordRepository.Delete(ctx, aclrecord)

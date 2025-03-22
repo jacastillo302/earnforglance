@@ -20,16 +20,16 @@ type Video struct {
 type VideoRepository interface {
 	Create(c context.Context, video *Video) error
 	Update(c context.Context, video *Video) error
-	Delete(c context.Context, video *Video) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Video, error)
-	FetchByID(c context.Context, videoID string) (Video, error)
+	FetchByID(c context.Context, ID string) (Video, error)
 }
 
 // VideoUsecase represents the video usecase interface
 type VideoUsecase interface {
-	FetchByID(c context.Context, videoID string) (Video, error)
+	FetchByID(c context.Context, ID string) (Video, error)
 	Create(c context.Context, video *Video) error
 	Update(c context.Context, video *Video) error
-	Delete(c context.Context, video *Video) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Video, error)
 }

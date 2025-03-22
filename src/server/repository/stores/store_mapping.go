@@ -42,14 +42,18 @@ func (ur *storemappingRepository) Update(c context.Context, storemapping *domain
 	return err
 }
 
-func (ur *storemappingRepository) Delete(c context.Context, storemapping *domain.StoreMapping) error {
+func (ur *storemappingRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": storemapping.ID}
-	_, err := collection.DeleteOne(c, filter)
-	return err
-}
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
 
+	return err
+
+}
 func (ur *storemappingRepository) Fetch(c context.Context) ([]domain.StoreMapping, error) {
 	collection := ur.database.Collection(ur.collection)
 

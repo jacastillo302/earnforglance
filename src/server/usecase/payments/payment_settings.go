@@ -31,7 +31,7 @@ func (tu *paymentsettingsUsecase) Update(c context.Context, paymentsettings *dom
 	return tu.paymentsettingsRepository.Update(ctx, paymentsettings)
 }
 
-func (tu *paymentsettingsUsecase) Delete(c context.Context, paymentsettings *domain.PaymentSettings) error {
+func (tu *paymentsettingsUsecase) Delete(c context.Context, paymentsettings string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.paymentsettingsRepository.Delete(ctx, paymentsettings)

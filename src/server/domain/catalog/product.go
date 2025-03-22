@@ -15,7 +15,7 @@ const (
 type Product struct {
 	ID                                           primitive.ObjectID          `bson:"_id,omitempty"`
 	ProductTypeID                                int                         `bson:"product_type_id"`
-	ParentGroupedProductID                       primitive.ObjectID          `bson:"parent_grouped_product_id"`
+	ParentGroupedID                              primitive.ObjectID          `bson:"parent_grouped_product_id"`
 	VisibleIndividually                          bool                        `bson:"visible_individually"`
 	Name                                         string                      `bson:"name"`
 	ShortDescription                             string                      `bson:"short_description"`
@@ -41,7 +41,7 @@ type Product struct {
 	GiftCardTypeID                               int                         `bson:"gift_card_type_id"`
 	OverriddenGiftCardAmount                     *float64                    `bson:"overridden_gift_card_amount,omitempty"`
 	RequireOtherProducts                         bool                        `bson:"require_other_products"`
-	RequiredProductIds                           string                      `bson:"required_product_ids"`
+	RequiredIDs                                  string                      `bson:"required_product_ids"`
 	AutomaticallyAddRequiredProducts             bool                        `bson:"automatically_add_required_products"`
 	IsDownload                                   bool                        `bson:"is_download"`
 	DownloadID                                   int                         `bson:"download_id"`
@@ -130,15 +130,15 @@ type Product struct {
 type ProductRepository interface {
 	Create(c context.Context, product *Product) error
 	Update(c context.Context, product *Product) error
-	Delete(c context.Context, product *Product) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Product, error)
-	FetchByID(c context.Context, productID string) (Product, error)
+	FetchByID(c context.Context, ID string) (Product, error)
 }
 
 type ProductUsecase interface {
-	FetchByID(c context.Context, productID string) (Product, error)
+	FetchByID(c context.Context, ID string) (Product, error)
 	Create(c context.Context, product *Product) error
 	Update(c context.Context, product *Product) error
-	Delete(c context.Context, product *Product) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Product, error)
 }

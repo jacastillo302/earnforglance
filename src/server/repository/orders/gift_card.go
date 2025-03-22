@@ -43,11 +43,15 @@ func (ur *giftcardRepository) Update(c context.Context, giftcard *domain.GiftCar
 
 }
 
-func (ur *giftcardRepository) Delete(c context.Context, giftcard *domain.GiftCard) error {
+func (ur *giftcardRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": giftcard.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
 
 }

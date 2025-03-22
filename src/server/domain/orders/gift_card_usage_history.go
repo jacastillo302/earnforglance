@@ -24,16 +24,16 @@ type GiftCardUsageHistory struct {
 type GiftCardUsageHistoryRepository interface {
 	Create(c context.Context, gift_card_usage_history *GiftCardUsageHistory) error
 	Update(c context.Context, gift_card_usage_history *GiftCardUsageHistory) error
-	Delete(c context.Context, gift_card_usage_history *GiftCardUsageHistory) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]GiftCardUsageHistory, error)
-	FetchByID(c context.Context, gift_card_usage_historyID string) (GiftCardUsageHistory, error)
+	FetchByID(c context.Context, ID string) (GiftCardUsageHistory, error)
 }
 
 // GiftCardUsageHistoryUsecase defines the usecase interface for GiftCardUsageHistory
 type GiftCardUsageHistoryUsecase interface {
-	FetchByID(c context.Context, gift_card_usage_historyID string) (GiftCardUsageHistory, error)
+	FetchByID(c context.Context, ID string) (GiftCardUsageHistory, error)
 	Create(c context.Context, gift_card_usage_history *GiftCardUsageHistory) error
 	Update(c context.Context, gift_card_usage_history *GiftCardUsageHistory) error
-	Delete(c context.Context, gift_card_usage_history *GiftCardUsageHistory) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]GiftCardUsageHistory, error)
 }

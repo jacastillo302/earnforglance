@@ -21,15 +21,15 @@ type SpecificationAttribute struct {
 type SpecificationAttributeRepository interface {
 	Create(c context.Context, specification_attribute *SpecificationAttribute) error
 	Update(c context.Context, specification_attribute *SpecificationAttribute) error
-	Delete(c context.Context, specification_attribute *SpecificationAttribute) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]SpecificationAttribute, error)
-	FetchByID(c context.Context, specification_attributeID string) (SpecificationAttribute, error)
+	FetchByID(c context.Context, ID string) (SpecificationAttribute, error)
 }
 
 type SpecificationAttributeUsecase interface {
-	FetchByID(c context.Context, specification_attributeID string) (SpecificationAttribute, error)
+	FetchByID(c context.Context, ID string) (SpecificationAttribute, error)
 	Create(c context.Context, specification_attribute *SpecificationAttribute) error
 	Update(c context.Context, specification_attribute *SpecificationAttribute) error
-	Delete(c context.Context, specification_attribute *SpecificationAttribute) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]SpecificationAttribute, error)
 }

@@ -29,15 +29,15 @@ type ProductAttributeCombination struct {
 type ProductAttributeCombinationRepository interface {
 	Create(c context.Context, product_attribute_combination *ProductAttributeCombination) error
 	Update(c context.Context, product_attribute_combination *ProductAttributeCombination) error
-	Delete(c context.Context, product_attribute_combination *ProductAttributeCombination) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProductAttributeCombination, error)
-	FetchByID(c context.Context, product_attribute_combinationID string) (ProductAttributeCombination, error)
+	FetchByID(c context.Context, ID string) (ProductAttributeCombination, error)
 }
 
 type ProductAttributeCombinationUsecase interface {
-	FetchByID(c context.Context, product_attribute_combinationID string) (ProductAttributeCombination, error)
+	FetchByID(c context.Context, ID string) (ProductAttributeCombination, error)
 	Create(c context.Context, product_attribute_combination *ProductAttributeCombination) error
 	Update(c context.Context, product_attribute_combination *ProductAttributeCombination) error
-	Delete(c context.Context, product_attribute_combination *ProductAttributeCombination) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProductAttributeCombination, error)
 }

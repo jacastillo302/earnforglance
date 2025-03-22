@@ -31,7 +31,7 @@ func (tu *emailaccountUsecase) Update(c context.Context, emailaccount *domain.Em
 	return tu.emailaccountRepository.Update(ctx, emailaccount)
 }
 
-func (tu *emailaccountUsecase) Delete(c context.Context, emailaccount *domain.EmailAccount) error {
+func (tu *emailaccountUsecase) Delete(c context.Context, emailaccount string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.emailaccountRepository.Delete(ctx, emailaccount)

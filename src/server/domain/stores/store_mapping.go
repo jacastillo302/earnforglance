@@ -22,16 +22,16 @@ type StoreMapping struct {
 type StoreMappingRepository interface {
 	Create(c context.Context, store_mapping *StoreMapping) error
 	Update(c context.Context, store_mapping *StoreMapping) error
-	Delete(c context.Context, store_mapping *StoreMapping) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]StoreMapping, error)
-	FetchByID(c context.Context, store_mappingID string) (StoreMapping, error)
+	FetchByID(c context.Context, ID string) (StoreMapping, error)
 }
 
 // StoreMappingUsecase defines the use case interface for StoreMapping
 type StoreMappingUsecase interface {
-	FetchByID(c context.Context, store_mappingID string) (StoreMapping, error)
+	FetchByID(c context.Context, ID string) (StoreMapping, error)
 	Create(c context.Context, store_mapping *StoreMapping) error
 	Update(c context.Context, store_mapping *StoreMapping) error
-	Delete(c context.Context, store_mapping *StoreMapping) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]StoreMapping, error)
 }

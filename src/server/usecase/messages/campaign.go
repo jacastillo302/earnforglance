@@ -31,7 +31,7 @@ func (tu *campaignUsecase) Update(c context.Context, campaign *domain.Campaign) 
 	return tu.campaignRepository.Update(ctx, campaign)
 }
 
-func (tu *campaignUsecase) Delete(c context.Context, campaign *domain.Campaign) error {
+func (tu *campaignUsecase) Delete(c context.Context, campaign string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.campaignRepository.Delete(ctx, campaign)

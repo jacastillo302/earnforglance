@@ -20,15 +20,15 @@ type CustomerAddressMapping struct {
 type CustomerAddressMappingRepository interface {
 	Create(c context.Context, customer_address_mapping *CustomerAddressMapping) error
 	Update(c context.Context, customer_address_mapping *CustomerAddressMapping) error
-	Delete(c context.Context, customer_address_mapping *CustomerAddressMapping) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]CustomerAddressMapping, error)
-	FetchByID(c context.Context, customer_address_mappingID string) (CustomerAddressMapping, error)
+	FetchByID(c context.Context, ID string) (CustomerAddressMapping, error)
 }
 
 type CustomerAddressMappingUsecase interface {
-	FetchByID(c context.Context, customer_address_mappingID string) (CustomerAddressMapping, error)
+	FetchByID(c context.Context, ID string) (CustomerAddressMapping, error)
 	Create(c context.Context, customer_address_mapping *CustomerAddressMapping) error
 	Update(c context.Context, customer_address_mapping *CustomerAddressMapping) error
-	Delete(c context.Context, customer_address_mapping *CustomerAddressMapping) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]CustomerAddressMapping, error)
 }

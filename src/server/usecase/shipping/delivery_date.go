@@ -31,7 +31,7 @@ func (tu *deliverydateUsecase) Update(c context.Context, deliverydate *domain.De
 	return tu.deliverydateRepository.Update(ctx, deliverydate)
 }
 
-func (tu *deliverydateUsecase) Delete(c context.Context, deliverydate *domain.DeliveryDate) error {
+func (tu *deliverydateUsecase) Delete(c context.Context, deliverydate string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.deliverydateRepository.Delete(ctx, deliverydate)

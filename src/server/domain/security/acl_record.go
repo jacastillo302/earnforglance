@@ -22,16 +22,16 @@ type AclRecord struct {
 type AclRecordRepository interface {
 	Create(c context.Context, acl_record *AclRecord) error
 	Update(c context.Context, acl_record *AclRecord) error
-	Delete(c context.Context, acl_record *AclRecord) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]AclRecord, error)
-	FetchByID(c context.Context, acl_recordID string) (AclRecord, error)
+	FetchByID(c context.Context, ID string) (AclRecord, error)
 }
 
 // AclRecordUsecase defines the use case interface for AclRecord
 type AclRecordUsecase interface {
-	FetchByID(c context.Context, acl_recordID string) (AclRecord, error)
+	FetchByID(c context.Context, ID string) (AclRecord, error)
 	Create(c context.Context, acl_record *AclRecord) error
 	Update(c context.Context, acl_record *AclRecord) error
-	Delete(c context.Context, acl_record *AclRecord) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]AclRecord, error)
 }

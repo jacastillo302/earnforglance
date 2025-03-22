@@ -31,7 +31,7 @@ func (tu *urlrecordUsecase) Update(c context.Context, urlrecord *domain.UrlRecor
 	return tu.urlrecordRepository.Update(ctx, urlrecord)
 }
 
-func (tu *urlrecordUsecase) Delete(c context.Context, urlrecord *domain.UrlRecord) error {
+func (tu *urlrecordUsecase) Delete(c context.Context, urlrecord string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.urlrecordRepository.Delete(ctx, urlrecord)

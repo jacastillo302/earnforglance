@@ -70,28 +70,20 @@ func (tc *RecurringPaymentController) Update(c *gin.Context) {
 }
 
 func (tc *RecurringPaymentController) Delete(c *gin.Context) {
-	var task domain.RecurringPayment
-	body, err := io.ReadAll(c.Request.Body)
-
-	if err != nil {
-		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+	ID := c.Query("id")
+	if ID == "" {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "invalid ID format"})
 		return
 	}
 
-	err = json.Unmarshal(body, &task)
+	err := tc.RecurringPaymentUsecase.Delete(c, ID)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
-		return
-	}
-
-	err = tc.RecurringPaymentUsecase.Delete(c, &task)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		c.JSON(http.StatusNotFound, common.ErrorResponse{Message: ID})
 		return
 	}
 
 	c.JSON(http.StatusOK, common.SuccessResponse{
-		Message: "RecurringPayment update successfully",
+		Message: "Record deleted successfully",
 	})
 }
 

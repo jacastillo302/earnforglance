@@ -32,7 +32,7 @@ func (tu *sitemapsettingsUsecase) Update(c context.Context, sitemapsettings *dom
 	return tu.sitemapsettingsRepository.Update(ctx, sitemapsettings)
 }
 
-func (tu *sitemapsettingsUsecase) Delete(c context.Context, sitemapsettings *domain.SitemapSettings) error {
+func (tu *sitemapsettingsUsecase) Delete(c context.Context, sitemapsettings string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.sitemapsettingsRepository.Delete(ctx, sitemapsettings)

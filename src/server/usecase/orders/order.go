@@ -31,7 +31,7 @@ func (ou *orderUsecase) Update(c context.Context, order *domain.Order) error {
 	return ou.orderRepository.Update(ctx, order)
 }
 
-func (ou *orderUsecase) Delete(c context.Context, order *domain.Order) error {
+func (ou *orderUsecase) Delete(c context.Context, order string) error {
 	ctx, cancel := context.WithTimeout(c, ou.contextTimeout)
 	defer cancel()
 	return ou.orderRepository.Delete(ctx, order)

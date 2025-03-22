@@ -30,16 +30,16 @@ type Poll struct {
 type PollRepository interface {
 	Create(c context.Context, poll *Poll) error
 	Update(c context.Context, poll *Poll) error
-	Delete(c context.Context, poll *Poll) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Poll, error)
-	FetchByID(c context.Context, pollID string) (Poll, error)
+	FetchByID(c context.Context, ID string) (Poll, error)
 }
 
 // PollUsecase defines the use case interface for Poll
 type PollUsecase interface {
-	FetchByID(c context.Context, pollID string) (Poll, error)
+	FetchByID(c context.Context, ID string) (Poll, error)
 	Create(c context.Context, poll *Poll) error
 	Update(c context.Context, poll *Poll) error
-	Delete(c context.Context, poll *Poll) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Poll, error)
 }

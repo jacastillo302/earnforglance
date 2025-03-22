@@ -37,16 +37,16 @@ func NewVendorSettings() *VendorSettings {
 type VendorSettingsRepository interface {
 	Create(c context.Context, vendor_settings *VendorSettings) error
 	Update(c context.Context, vendor_settings *VendorSettings) error
-	Delete(c context.Context, vendor_settings *VendorSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]VendorSettings, error)
-	FetchByID(c context.Context, vendor_settingsID string) (VendorSettings, error)
+	FetchByID(c context.Context, ID string) (VendorSettings, error)
 }
 
 // VendorSettingsUsecase defines the use case interface for VendorSettings
 type VendorSettingsUsecase interface {
-	FetchByID(c context.Context, vendor_settingsID string) (VendorSettings, error)
+	FetchByID(c context.Context, ID string) (VendorSettings, error)
 	Create(c context.Context, vendor_settings *VendorSettings) error
 	Update(c context.Context, vendor_settings *VendorSettings) error
-	Delete(c context.Context, vendor_settings *VendorSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]VendorSettings, error)
 }

@@ -31,15 +31,15 @@ type ProductReview struct {
 type ProductReviewRepository interface {
 	Create(c context.Context, product_review *ProductReview) error
 	Update(c context.Context, product_review *ProductReview) error
-	Delete(c context.Context, product_review *ProductReview) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProductReview, error)
-	FetchByID(c context.Context, ProductReviewID string) (ProductReview, error)
+	FetchByID(c context.Context, ID string) (ProductReview, error)
 }
 
 type ProductReviewUsecase interface {
-	FetchByID(c context.Context, product_reviewID string) (ProductReview, error)
+	FetchByID(c context.Context, ID string) (ProductReview, error)
 	Create(c context.Context, product_review *ProductReview) error
 	Update(c context.Context, product_review *ProductReview) error
-	Delete(c context.Context, product_review *ProductReview) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProductReview, error)
 }

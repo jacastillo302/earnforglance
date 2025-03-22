@@ -26,15 +26,15 @@ type StockQuantityChange struct {
 type StockQuantityChangeRepository interface {
 	Create(c context.Context, stock_quantity_change *StockQuantityChange) error
 	Update(c context.Context, stock_quantity_change *StockQuantityChange) error
-	Delete(c context.Context, stock_quantity_change *StockQuantityChange) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]StockQuantityChange, error)
-	FetchByID(c context.Context, stock_quantity_changeID string) (StockQuantityChange, error)
+	FetchByID(c context.Context, ID string) (StockQuantityChange, error)
 }
 
 type StockQuantityChangeUsecase interface {
-	FetchByID(c context.Context, stock_quantity_changeID string) (StockQuantityChange, error)
+	FetchByID(c context.Context, ID string) (StockQuantityChange, error)
 	Create(c context.Context, stock_quantity_change *StockQuantityChange) error
 	Update(c context.Context, stock_quantity_change *StockQuantityChange) error
-	Delete(c context.Context, stock_quantity_change *StockQuantityChange) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]StockQuantityChange, error)
 }

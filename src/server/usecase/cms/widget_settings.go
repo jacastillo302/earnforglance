@@ -31,7 +31,7 @@ func (tu *widgetsettingsUsecase) Update(c context.Context, widgetsettings *domai
 	return tu.widgetsettingsRepository.Update(ctx, widgetsettings)
 }
 
-func (tu *widgetsettingsUsecase) Delete(c context.Context, widgetsettings *domain.WidgetSettings) error {
+func (tu *widgetsettingsUsecase) Delete(c context.Context, widgetsettings string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.widgetsettingsRepository.Delete(ctx, widgetsettings)

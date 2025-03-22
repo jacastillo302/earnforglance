@@ -42,12 +42,17 @@ func (ur *seosettingsRepository) Update(c context.Context, seosettings *domain.S
 	return err
 }
 
-func (ur *seosettingsRepository) Delete(c context.Context, seosettings *domain.SeoSettings) error {
+func (ur *seosettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": seosettings.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *seosettingsRepository) Fetch(c context.Context) ([]domain.SeoSettings, error) {

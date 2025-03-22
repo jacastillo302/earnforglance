@@ -39,16 +39,16 @@ type Vendor struct {
 type VendorRepository interface {
 	Create(c context.Context, vendor *Vendor) error
 	Update(c context.Context, vendor *Vendor) error
-	Delete(c context.Context, vendor *Vendor) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Vendor, error)
-	FetchByID(c context.Context, vendorID string) (Vendor, error)
+	FetchByID(c context.Context, ID string) (Vendor, error)
 }
 
 // VendorUsecase defines the use case interface for Vendor
 type VendorUsecase interface {
-	FetchByID(c context.Context, vendorID string) (Vendor, error)
+	FetchByID(c context.Context, ID string) (Vendor, error)
 	Create(c context.Context, vendor *Vendor) error
 	Update(c context.Context, vendor *Vendor) error
-	Delete(c context.Context, vendor *Vendor) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Vendor, error)
 }

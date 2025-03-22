@@ -21,16 +21,16 @@ type PictureBinary struct {
 type PictureBinaryRepository interface {
 	Create(c context.Context, picture_binary *PictureBinary) error
 	Update(c context.Context, picture_binary *PictureBinary) error
-	Delete(c context.Context, picture_binary *PictureBinary) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]PictureBinary, error)
-	FetchByID(c context.Context, picture_binaryID string) (PictureBinary, error)
+	FetchByID(c context.Context, ID string) (PictureBinary, error)
 }
 
 // PictureBinaryUsecase defines the usecase interface for PictureBinary
 type PictureBinaryUsecase interface {
-	FetchByID(c context.Context, picture_binaryID string) (PictureBinary, error)
+	FetchByID(c context.Context, ID string) (PictureBinary, error)
 	Create(c context.Context, picture_binary *PictureBinary) error
 	Update(c context.Context, picture_binary *PictureBinary) error
-	Delete(c context.Context, picture_binary *PictureBinary) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]PictureBinary, error)
 }

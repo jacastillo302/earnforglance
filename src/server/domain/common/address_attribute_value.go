@@ -22,15 +22,15 @@ type AddressAttributeValue struct {
 type AddressAttributeValueRepository interface {
 	Create(c context.Context, address_attribute_value *AddressAttributeValue) error
 	Update(c context.Context, address_attribute_value *AddressAttributeValue) error
-	Delete(c context.Context, address_attribute_value *AddressAttributeValue) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]AddressAttributeValue, error)
-	FetchByID(c context.Context, address_attribute_valueID string) (AddressAttributeValue, error)
+	FetchByID(c context.Context, ID string) (AddressAttributeValue, error)
 }
 
 type AddressAttributeValueUsecase interface {
-	FetchByID(c context.Context, address_attribute_valueID string) (AddressAttributeValue, error)
+	FetchByID(c context.Context, ID string) (AddressAttributeValue, error)
 	Create(c context.Context, address_attribute_value *AddressAttributeValue) error
 	Update(c context.Context, address_attribute_value *AddressAttributeValue) error
-	Delete(c context.Context, address_attribute_value *AddressAttributeValue) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]AddressAttributeValue, error)
 }

@@ -34,15 +34,15 @@ type RewardPointsSettings struct {
 type RewardPointsSettingsRepository interface {
 	Create(c context.Context, reward_points_settings *RewardPointsSettings) error
 	Update(c context.Context, reward_points_settings *RewardPointsSettings) error
-	Delete(c context.Context, reward_points_settings *RewardPointsSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]RewardPointsSettings, error)
-	FetchByID(c context.Context, reward_points_settingsID string) (RewardPointsSettings, error)
+	FetchByID(c context.Context, ID string) (RewardPointsSettings, error)
 }
 
 type RewardPointsSettingsUsecase interface {
-	FetchByID(c context.Context, reward_points_settingsID string) (RewardPointsSettings, error)
+	FetchByID(c context.Context, ID string) (RewardPointsSettings, error)
 	Create(c context.Context, reward_points_settings *RewardPointsSettings) error
 	Update(c context.Context, reward_points_settings *RewardPointsSettings) error
-	Delete(c context.Context, reward_points_settings *RewardPointsSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]RewardPointsSettings, error)
 }

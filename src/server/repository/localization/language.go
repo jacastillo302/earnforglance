@@ -42,12 +42,17 @@ func (ur *languageRepository) Update(c context.Context, language *domain.Languag
 	return err
 }
 
-func (ur *languageRepository) Delete(c context.Context, language *domain.Language) error {
+func (ur *languageRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": language.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *languageRepository) Fetch(c context.Context) ([]domain.Language, error) {

@@ -31,7 +31,7 @@ func (tu *productreviewhelpfulnessUsecase) Update(c context.Context, productrevi
 	return tu.productreviewhelpfulnessRepository.Update(ctx, productreviewhelpfulness)
 }
 
-func (tu *productreviewhelpfulnessUsecase) Delete(c context.Context, productreviewhelpfulness *domain.ProductReviewHelpfulness) error {
+func (tu *productreviewhelpfulnessUsecase) Delete(c context.Context, productreviewhelpfulness string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.productreviewhelpfulnessRepository.Delete(ctx, productreviewhelpfulness)

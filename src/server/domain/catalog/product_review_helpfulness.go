@@ -21,15 +21,15 @@ type ProductReviewHelpfulness struct {
 type ProductReviewHelpfulnessRepository interface {
 	Create(c context.Context, product_review_helpfulness *ProductReviewHelpfulness) error
 	Update(c context.Context, product_review_helpfulness *ProductReviewHelpfulness) error
-	Delete(c context.Context, product_review_helpfulness *ProductReviewHelpfulness) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProductReviewHelpfulness, error)
-	FetchByID(c context.Context, ProductReviewHelpfulnessID string) (ProductReviewHelpfulness, error)
+	FetchByID(c context.Context, ID string) (ProductReviewHelpfulness, error)
 }
 
 type ProductReviewHelpfulnessUsecase interface {
-	FetchByID(c context.Context, product_review_helpfulnessID string) (ProductReviewHelpfulness, error)
-	Create(c context.Context, product_review_helpfulness *ProductReviewHelpfulness) error
+	FetchByID(c context.Context, ID string) (ProductReviewHelpfulness, error)
+	Create(c context.Context, product_review_helpfulnes *ProductReviewHelpfulness) error
 	Update(c context.Context, product_review_helpfulness *ProductReviewHelpfulness) error
-	Delete(c context.Context, product_review_helpfulness *ProductReviewHelpfulness) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProductReviewHelpfulness, error)
 }

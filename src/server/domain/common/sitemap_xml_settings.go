@@ -30,16 +30,16 @@ type SitemapXmlSettings struct {
 type SitemapXmlSettingsRepository interface {
 	Create(c context.Context, sitemap_xml_settings *SitemapXmlSettings) error
 	Update(c context.Context, sitemap_xml_settings *SitemapXmlSettings) error
-	Delete(c context.Context, sitemap_xml_settings *SitemapXmlSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]SitemapXmlSettings, error)
-	FetchByID(c context.Context, sitemap_xml_settingsID string) (SitemapXmlSettings, error)
+	FetchByID(c context.Context, ID string) (SitemapXmlSettings, error)
 }
 
 type SitemapXmlSettingsUsecase interface {
-	FetchByID(c context.Context, sitemap_xml_settingsID string) (SitemapXmlSettings, error)
+	FetchByID(c context.Context, ID string) (SitemapXmlSettings, error)
 	Create(c context.Context, sitemap_xml_settings *SitemapXmlSettings) error
 	Update(c context.Context, sitemap_xml_settings *SitemapXmlSettings) error
-	Delete(c context.Context, sitemap_xml_settings *SitemapXmlSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]SitemapXmlSettings, error)
 }
 

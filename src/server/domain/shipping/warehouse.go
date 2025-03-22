@@ -21,15 +21,15 @@ type Warehouse struct {
 type WarehouseRepository interface {
 	Create(c context.Context, warehouse *Warehouse) error
 	Update(c context.Context, warehouse *Warehouse) error
-	Delete(c context.Context, warehouse *Warehouse) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Warehouse, error)
-	FetchByID(c context.Context, warehouseID string) (Warehouse, error)
+	FetchByID(c context.Context, ID string) (Warehouse, error)
 }
 
 type WarehouseUsecase interface {
-	FetchByID(c context.Context, warehouseID string) (Warehouse, error)
+	FetchByID(c context.Context, ID string) (Warehouse, error)
 	Create(c context.Context, warehouse *Warehouse) error
 	Update(c context.Context, warehouse *Warehouse) error
-	Delete(c context.Context, warehouse *Warehouse) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Warehouse, error)
 }

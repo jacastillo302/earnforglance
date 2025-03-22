@@ -31,7 +31,7 @@ func (lu *logUsecase) Update(c context.Context, log *domain.Log) error {
 	return lu.logRepository.Update(ctx, log)
 }
 
-func (lu *logUsecase) Delete(c context.Context, log *domain.Log) error {
+func (lu *logUsecase) Delete(c context.Context, log string) error {
 	ctx, cancel := context.WithTimeout(c, lu.contextTimeout)
 	defer cancel()
 	return lu.logRepository.Delete(ctx, log)

@@ -42,12 +42,17 @@ func (ur *proxysettingsRepository) Update(c context.Context, proxysettings *doma
 	return err
 }
 
-func (ur *proxysettingsRepository) Delete(c context.Context, proxysettings *domain.ProxySettings) error {
+func (ur *proxysettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": proxysettings.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *proxysettingsRepository) Fetch(c context.Context) ([]domain.ProxySettings, error) {

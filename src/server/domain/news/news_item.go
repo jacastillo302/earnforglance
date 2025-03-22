@@ -33,16 +33,16 @@ type NewsItem struct {
 type NewsItemRepository interface {
 	Create(c context.Context, news_item *NewsItem) error
 	Update(c context.Context, news_item *NewsItem) error
-	Delete(c context.Context, news_item *NewsItem) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]NewsItem, error)
-	FetchByID(c context.Context, news_itemID string) (NewsItem, error)
+	FetchByID(c context.Context, ID string) (NewsItem, error)
 }
 
 // NewsItemUsecase interface
 type NewsItemUsecase interface {
-	FetchByID(c context.Context, news_itemID string) (NewsItem, error)
+	FetchByID(c context.Context, ID string) (NewsItem, error)
 	Create(c context.Context, news_item *NewsItem) error
 	Update(c context.Context, news_item *NewsItem) error
-	Delete(c context.Context, news_item *NewsItem) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]NewsItem, error)
 }

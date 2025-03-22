@@ -31,7 +31,7 @@ func (cu *currencyUsecase) Update(c context.Context, currency *domain.Currency) 
 	return cu.currencyRepository.Update(ctx, currency)
 }
 
-func (cu *currencyUsecase) Delete(c context.Context, currency *domain.Currency) error {
+func (cu *currencyUsecase) Delete(c context.Context, currency string) error {
 	ctx, cancel := context.WithTimeout(c, cu.contextTimeout)
 	defer cancel()
 	return cu.currencyRepository.Delete(ctx, currency)

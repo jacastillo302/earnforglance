@@ -31,7 +31,7 @@ func (tu *adminareasettingsUsecase) Update(c context.Context, adminareasettings 
 	return tu.adminareasettingsRepository.Update(ctx, adminareasettings)
 }
 
-func (tu *adminareasettingsUsecase) Delete(c context.Context, adminareasettings *domain.AdminAreaSettings) error {
+func (tu *adminareasettingsUsecase) Delete(c context.Context, adminareasettings string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.adminareasettingsRepository.Delete(ctx, adminareasettings)

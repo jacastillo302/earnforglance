@@ -31,7 +31,7 @@ func (tu *localestringresourceUsecase) Update(c context.Context, localestringres
 	return tu.localestringresourceRepository.Update(ctx, localestringresource)
 }
 
-func (tu *localestringresourceUsecase) Delete(c context.Context, localestringresource *domain.LocaleStringResource) error {
+func (tu *localestringresourceUsecase) Delete(c context.Context, localestringresource string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.localestringresourceRepository.Delete(ctx, localestringresource)

@@ -31,7 +31,7 @@ func (tu *securitySettingsUsecase) Update(c context.Context, securitySettings *d
 	return tu.securitySettingsRepository.Update(ctx, securitySettings)
 }
 
-func (tu *securitySettingsUsecase) Delete(c context.Context, securitySettings *domain.SecuritySettings) error {
+func (tu *securitySettingsUsecase) Delete(c context.Context, securitySettings string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.securitySettingsRepository.Delete(ctx, securitySettings)

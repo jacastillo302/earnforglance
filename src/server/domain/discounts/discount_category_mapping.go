@@ -19,15 +19,15 @@ type DiscountCategoryMapping struct {
 type DiscountCategoryMappingRepository interface {
 	Create(c context.Context, discount_category_mapping *DiscountCategoryMapping) error
 	Update(c context.Context, discount_category_mapping *DiscountCategoryMapping) error
-	Delete(c context.Context, discount_category_mapping *DiscountCategoryMapping) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]DiscountCategoryMapping, error)
-	FetchByID(c context.Context, discount_category_mappingID string) (DiscountCategoryMapping, error)
+	FetchByID(c context.Context, ID string) (DiscountCategoryMapping, error)
 }
 
 type DiscountCategoryMappingUsecase interface {
-	FetchByID(c context.Context, discount_category_mappingID string) (DiscountCategoryMapping, error)
+	FetchByID(c context.Context, ID string) (DiscountCategoryMapping, error)
 	Create(c context.Context, discount_category_mapping *DiscountCategoryMapping) error
 	Update(c context.Context, discount_category_mapping *DiscountCategoryMapping) error
-	Delete(c context.Context, discount_category_mapping *DiscountCategoryMapping) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]DiscountCategoryMapping, error)
 }

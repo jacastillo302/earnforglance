@@ -42,12 +42,17 @@ func (ur *giftcardusagehistoryRepository) Update(c context.Context, giftcardusag
 	return err
 }
 
-func (ur *giftcardusagehistoryRepository) Delete(c context.Context, giftcardusagehistory *domain.GiftCardUsageHistory) error {
+func (ur *giftcardusagehistoryRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": giftcardusagehistory.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *giftcardusagehistoryRepository) Fetch(c context.Context) ([]domain.GiftCardUsageHistory, error) {

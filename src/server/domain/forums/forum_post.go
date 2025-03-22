@@ -27,16 +27,16 @@ type ForumPost struct {
 type ForumPostRepository interface {
 	Create(c context.Context, forum_post *ForumPost) error
 	Update(c context.Context, forum_post *ForumPost) error
-	Delete(c context.Context, forum_post *ForumPost) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ForumPost, error)
-	FetchByID(c context.Context, forum_postID string) (ForumPost, error)
+	FetchByID(c context.Context, ID string) (ForumPost, error)
 }
 
 // ForumPostUsecase interface
 type ForumPostUsecase interface {
-	FetchByID(c context.Context, forum_postID string) (ForumPost, error)
+	FetchByID(c context.Context, ID string) (ForumPost, error)
 	Create(c context.Context, forum_post *ForumPost) error
 	Update(c context.Context, forum_post *ForumPost) error
-	Delete(c context.Context, forum_post *ForumPost) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ForumPost, error)
 }

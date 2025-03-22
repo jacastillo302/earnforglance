@@ -42,12 +42,17 @@ func (ur *localizedpropertyRepository) Update(c context.Context, localizedproper
 	return err
 }
 
-func (ur *localizedpropertyRepository) Delete(c context.Context, localizedproperty *domain.LocalizedProperty) error {
+func (ur *localizedpropertyRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": localizedproperty.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *localizedpropertyRepository) Fetch(c context.Context) ([]domain.LocalizedProperty, error) {

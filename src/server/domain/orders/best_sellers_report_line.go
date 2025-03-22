@@ -21,15 +21,15 @@ type BestSellersReportLine struct {
 type BestSellersReportLineRepository interface {
 	Create(c context.Context, best_sellers_report_line *BestSellersReportLine) error
 	Update(c context.Context, best_sellers_report_line *BestSellersReportLine) error
-	Delete(c context.Context, best_sellers_report_line *BestSellersReportLine) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]BestSellersReportLine, error)
-	FetchByID(c context.Context, best_sellers_report_lineID string) (BestSellersReportLine, error)
+	FetchByID(c context.Context, ID string) (BestSellersReportLine, error)
 }
 
 type BestSellersReportLineUsecase interface {
-	FetchByID(c context.Context, best_sellers_report_lineID string) (BestSellersReportLine, error)
+	FetchByID(c context.Context, ID string) (BestSellersReportLine, error)
 	Create(c context.Context, best_sellers_report_line *BestSellersReportLine) error
 	Update(c context.Context, best_sellers_report_line *BestSellersReportLine) error
-	Delete(c context.Context, best_sellers_report_line *BestSellersReportLine) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]BestSellersReportLine, error)
 }

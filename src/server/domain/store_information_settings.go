@@ -29,16 +29,16 @@ type StoreInformationSettings struct {
 type StoreInformationSettingsRepository interface {
 	Create(c context.Context, store_information_settings *StoreInformationSettings) error
 	Update(c context.Context, store_information_settings *StoreInformationSettings) error
-	Delete(c context.Context, store_information_settings *StoreInformationSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]StoreInformationSettings, error)
-	FetchByID(c context.Context, store_information_settingsID string) (StoreInformationSettings, error)
+	FetchByID(c context.Context, ID string) (StoreInformationSettings, error)
 }
 
 // StoreInformationSettingsUsecase defines the use case interface for StoreInformationSettings
 type StoreInformationSettingsUsecase interface {
-	FetchByID(c context.Context, store_information_settingsID string) (StoreInformationSettings, error)
+	FetchByID(c context.Context, ID string) (StoreInformationSettings, error)
 	Create(c context.Context, store_information_settings *StoreInformationSettings) error
 	Update(c context.Context, store_information_settings *StoreInformationSettings) error
-	Delete(c context.Context, store_information_settings *StoreInformationSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]StoreInformationSettings, error)
 }

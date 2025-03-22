@@ -31,7 +31,7 @@ func (tu *categorytemplateUsecase) Update(c context.Context, affiliate *domain.C
 	return tu.categorytemplateRepository.Update(ctx, affiliate)
 }
 
-func (tu *categorytemplateUsecase) Delete(c context.Context, affiliate *domain.CategoryTemplate) error {
+func (tu *categorytemplateUsecase) Delete(c context.Context, affiliate string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.categorytemplateRepository.Delete(ctx, affiliate)

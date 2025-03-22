@@ -31,7 +31,7 @@ func (tu *genericattributeUsecase) Update(c context.Context, genericattribute *d
 	return tu.genericattributeRepository.Update(ctx, genericattribute)
 }
 
-func (tu *genericattributeUsecase) Delete(c context.Context, genericattribute *domain.GenericAttribute) error {
+func (tu *genericattributeUsecase) Delete(c context.Context, genericattribute string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.genericattributeRepository.Delete(ctx, genericattribute)

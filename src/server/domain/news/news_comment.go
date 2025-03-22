@@ -27,16 +27,16 @@ type NewsComment struct {
 type NewsCommentRepository interface {
 	Create(c context.Context, news_comment *NewsComment) error
 	Update(c context.Context, news_comment *NewsComment) error
-	Delete(c context.Context, news_comment *NewsComment) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]NewsComment, error)
-	FetchByID(c context.Context, news_commentID string) (NewsComment, error)
+	FetchByID(c context.Context, ID string) (NewsComment, error)
 }
 
 // NewsCommentUsecase interface
 type NewsCommentUsecase interface {
-	FetchByID(c context.Context, news_commentID string) (NewsComment, error)
+	FetchByID(c context.Context, ID string) (NewsComment, error)
 	Create(c context.Context, news_comment *NewsComment) error
 	Update(c context.Context, news_comment *NewsComment) error
-	Delete(c context.Context, news_comment *NewsComment) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]NewsComment, error)
 }

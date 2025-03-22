@@ -31,7 +31,7 @@ func (tu *GdprSettingsUsecase) Update(c context.Context, GdprSettings *domain.Gd
 	return tu.GdprSettingsRepository.Update(ctx, GdprSettings)
 }
 
-func (tu *GdprSettingsUsecase) Delete(c context.Context, GdprSettings *domain.GdprSettings) error {
+func (tu *GdprSettingsUsecase) Delete(c context.Context, GdprSettings string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.GdprSettingsRepository.Delete(ctx, GdprSettings)

@@ -31,7 +31,7 @@ func (tu *localizedpropertyUsecase) Update(c context.Context, localizedproperty 
 	return tu.localizedpropertyRepository.Update(ctx, localizedproperty)
 }
 
-func (tu *localizedpropertyUsecase) Delete(c context.Context, localizedproperty *domain.LocalizedProperty) error {
+func (tu *localizedpropertyUsecase) Delete(c context.Context, localizedproperty string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.localizedpropertyRepository.Delete(ctx, localizedproperty)

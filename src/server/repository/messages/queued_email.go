@@ -42,12 +42,17 @@ func (ur *queuedemailRepository) Update(c context.Context, queuedemail *domain.Q
 	return err
 }
 
-func (ur *queuedemailRepository) Delete(c context.Context, queuedemail *domain.QueuedEmail) error {
+func (ur *queuedemailRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": queuedemail.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *queuedemailRepository) Fetch(c context.Context) ([]domain.QueuedEmail, error) {

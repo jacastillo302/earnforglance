@@ -31,7 +31,7 @@ func (tu *pickuppointUsecase) Update(c context.Context, pickuppoint *domain.Pick
 	return tu.pickuppointRepository.Update(ctx, pickuppoint)
 }
 
-func (tu *pickuppointUsecase) Delete(c context.Context, pickuppoint *domain.PickupPoint) error {
+func (tu *pickuppointUsecase) Delete(c context.Context, pickuppoint string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.pickuppointRepository.Delete(ctx, pickuppoint)

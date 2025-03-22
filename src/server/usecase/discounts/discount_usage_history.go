@@ -31,7 +31,7 @@ func (tu *discountusagehistoryUsecase) Update(c context.Context, discountusagehi
 	return tu.discountusagehistoryRepository.Update(ctx, discountusagehistory)
 }
 
-func (tu *discountusagehistoryUsecase) Delete(c context.Context, discountusagehistory *domain.DiscountUsageHistory) error {
+func (tu *discountusagehistoryUsecase) Delete(c context.Context, discountusagehistory string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.discountusagehistoryRepository.Delete(ctx, discountusagehistory)

@@ -31,7 +31,7 @@ func (tu *captchaSettingsUsecase) Update(c context.Context, captchaSettings *dom
 	return tu.captchaSettingsRepository.Update(ctx, captchaSettings)
 }
 
-func (tu *captchaSettingsUsecase) Delete(c context.Context, captchaSettings *domain.CaptchaSettings) error {
+func (tu *captchaSettingsUsecase) Delete(c context.Context, captchaSettings string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.captchaSettingsRepository.Delete(ctx, captchaSettings)

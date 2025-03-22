@@ -43,11 +43,15 @@ func (ur *localestringresourceRepository) Update(c context.Context, localestring
 
 }
 
-func (ur *localestringresourceRepository) Delete(c context.Context, localestringresource *domain.LocaleStringResource) error {
+func (ur *localestringresourceRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": localestringresource.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
 
 }

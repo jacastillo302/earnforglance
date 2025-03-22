@@ -22,16 +22,16 @@ type CheckoutAttributeValue struct {
 type CheckoutAttributeValueRepository interface {
 	Create(c context.Context, checkout_attribute_value *CheckoutAttributeValue) error
 	Update(c context.Context, checkout_attribute_value *CheckoutAttributeValue) error
-	Delete(c context.Context, checkout_attribute_value *CheckoutAttributeValue) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]CheckoutAttributeValue, error)
-	FetchByID(c context.Context, checkout_attribute_valueID string) (CheckoutAttributeValue, error)
+	FetchByID(c context.Context, ID string) (CheckoutAttributeValue, error)
 }
 
 // CheckoutAttributeValueUsecase interface
 type CheckoutAttributeValueUsecase interface {
-	FetchByID(c context.Context, checkout_attribute_valueID string) (CheckoutAttributeValue, error)
+	FetchByID(c context.Context, ID string) (CheckoutAttributeValue, error)
 	Create(c context.Context, checkout_attribute_value *CheckoutAttributeValue) error
 	Update(c context.Context, checkout_attribute_value *CheckoutAttributeValue) error
-	Delete(c context.Context, checkout_attribute_value *CheckoutAttributeValue) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]CheckoutAttributeValue, error)
 }

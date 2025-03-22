@@ -22,15 +22,15 @@ type ProductManufacturer struct {
 type ProductManufacturerRepository interface {
 	Create(c context.Context, product_manufacturer *ProductManufacturer) error
 	Update(c context.Context, product_manufacturer *ProductManufacturer) error
-	Delete(c context.Context, product_manufacturer *ProductManufacturer) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProductManufacturer, error)
-	FetchByID(c context.Context, product_manufacturerID string) (ProductManufacturer, error)
+	FetchByID(c context.Context, ID string) (ProductManufacturer, error)
 }
 
 type ProductManufacturerUsecase interface {
-	FetchByID(c context.Context, product_manufacturerID string) (ProductManufacturer, error)
+	FetchByID(c context.Context, ID string) (ProductManufacturer, error)
 	Create(c context.Context, product_manufacturer *ProductManufacturer) error
 	Update(c context.Context, product_manufacturer *ProductManufacturer) error
-	Delete(c context.Context, product_manufacturer *ProductManufacturer) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProductManufacturer, error)
 }

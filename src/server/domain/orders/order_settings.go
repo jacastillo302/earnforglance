@@ -56,16 +56,16 @@ type OrderSettings struct {
 type OrderSettingsRepository interface {
 	Create(c context.Context, order_settings *OrderSettings) error
 	Update(c context.Context, order_settings *OrderSettings) error
-	Delete(c context.Context, order_settings *OrderSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]OrderSettings, error)
-	FetchByID(c context.Context, order_settingsID string) (OrderSettings, error)
+	FetchByID(c context.Context, ID string) (OrderSettings, error)
 }
 
 // OrderSettingsUsecase represents the usecase interface for OrderSettings
 type OrderSettingsUsecase interface {
-	FetchByID(c context.Context, order_settingsID string) (OrderSettings, error)
+	FetchByID(c context.Context, ID string) (OrderSettings, error)
 	Create(c context.Context, order_settings *OrderSettings) error
 	Update(c context.Context, order_settings *OrderSettings) error
-	Delete(c context.Context, order_settings *OrderSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]OrderSettings, error)
 }

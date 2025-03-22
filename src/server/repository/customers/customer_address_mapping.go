@@ -42,12 +42,17 @@ func (ur *customeraddressmappingRepository) Update(c context.Context, customerad
 	return err
 }
 
-func (ur *customeraddressmappingRepository) Delete(c context.Context, customeraddressmapping *domain.CustomerAddressMapping) error {
+func (ur *customeraddressmappingRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": customeraddressmapping.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *customeraddressmappingRepository) Fetch(c context.Context) ([]domain.CustomerAddressMapping, error) {

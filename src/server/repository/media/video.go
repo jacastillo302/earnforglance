@@ -42,12 +42,17 @@ func (ur *videoRepository) Update(c context.Context, video *domain.Video) error 
 	return err
 }
 
-func (ur *videoRepository) Delete(c context.Context, video *domain.Video) error {
+func (ur *videoRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": video.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *videoRepository) Fetch(c context.Context) ([]domain.Video, error) {

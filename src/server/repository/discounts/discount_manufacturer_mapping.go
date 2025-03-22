@@ -42,12 +42,17 @@ func (ur *discountmanufacturermappingRepository) Update(c context.Context, disco
 	return err
 }
 
-func (ur *discountmanufacturermappingRepository) Delete(c context.Context, discountmanufacturermapping *domain.DiscountManufacturerMapping) error {
+func (ur *discountmanufacturermappingRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": discountmanufacturermapping.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *discountmanufacturermappingRepository) Fetch(c context.Context) ([]domain.DiscountManufacturerMapping, error) {

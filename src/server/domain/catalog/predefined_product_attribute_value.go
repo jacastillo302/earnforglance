@@ -26,15 +26,15 @@ type PredefinedProductAttributeValue struct {
 type PredefinedProductAttributeValueRepository interface {
 	Create(c context.Context, predefined_product_attribute_value *PredefinedProductAttributeValue) error
 	Update(c context.Context, predefined_product_attribute_value *PredefinedProductAttributeValue) error
-	Delete(c context.Context, predefined_product_attribute_value *PredefinedProductAttributeValue) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]PredefinedProductAttributeValue, error)
-	FetchByID(c context.Context, PredefinedProductAttributeValueID string) (PredefinedProductAttributeValue, error)
+	FetchByID(c context.Context, ID string) (PredefinedProductAttributeValue, error)
 }
 
 type PredefinedProductAttributeValueUsecase interface {
-	FetchByID(c context.Context, predefined_product_attribute_valueID string) (PredefinedProductAttributeValue, error)
+	FetchByID(c context.Context, ID string) (PredefinedProductAttributeValue, error)
 	Create(c context.Context, predefined_product_attribute_value *PredefinedProductAttributeValue) error
 	Update(c context.Context, predefined_product_attribute_value *PredefinedProductAttributeValue) error
-	Delete(c context.Context, predefined_product_attribute_value *PredefinedProductAttributeValue) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]PredefinedProductAttributeValue, error)
 }

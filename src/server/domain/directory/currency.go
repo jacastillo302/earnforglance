@@ -31,15 +31,15 @@ type Currency struct {
 type CurrencyRepository interface {
 	Create(c context.Context, currency *Currency) error
 	Update(c context.Context, currency *Currency) error
-	Delete(c context.Context, currency *Currency) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Currency, error)
-	FetchByID(c context.Context, currencyID string) (Currency, error)
+	FetchByID(c context.Context, ID string) (Currency, error)
 }
 
 type CurrencyUsecase interface {
-	FetchByID(c context.Context, currencyID string) (Currency, error)
+	FetchByID(c context.Context, ID string) (Currency, error)
 	Create(c context.Context, currency *Currency) error
 	Update(c context.Context, currency *Currency) error
-	Delete(c context.Context, currency *Currency) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Currency, error)
 }

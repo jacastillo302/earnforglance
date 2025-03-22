@@ -34,16 +34,16 @@ type CommonSettings struct {
 type CommonSettingsRepository interface {
 	Create(c context.Context, common_settings *CommonSettings) error
 	Update(c context.Context, common_settings *CommonSettings) error
-	Delete(c context.Context, common_settings *CommonSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]CommonSettings, error)
-	FetchByID(c context.Context, common_settingsID string) (CommonSettings, error)
+	FetchByID(c context.Context, ID string) (CommonSettings, error)
 }
 
 type CommonSettingsUsecase interface {
-	FetchByID(c context.Context, common_settingsID string) (CommonSettings, error)
+	FetchByID(c context.Context, ID string) (CommonSettings, error)
 	Create(c context.Context, common_settings *CommonSettings) error
 	Update(c context.Context, common_settings *CommonSettings) error
-	Delete(c context.Context, common_settings *CommonSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]CommonSettings, error)
 }
 

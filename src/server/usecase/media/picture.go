@@ -31,7 +31,7 @@ func (pu *pictureUsecase) Update(c context.Context, picture *domain.Picture) err
 	return pu.pictureRepository.Update(ctx, picture)
 }
 
-func (pu *pictureUsecase) Delete(c context.Context, picture *domain.Picture) error {
+func (pu *pictureUsecase) Delete(c context.Context, picture string) error {
 	ctx, cancel := context.WithTimeout(c, pu.contextTimeout)
 	defer cancel()
 	return pu.pictureRepository.Delete(ctx, picture)

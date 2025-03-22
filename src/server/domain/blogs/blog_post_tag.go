@@ -20,15 +20,15 @@ type BlogPostTag struct {
 type BlogPostTagRepository interface {
 	Create(c context.Context, blog_post_tag *BlogPostTag) error
 	Update(c context.Context, blog_post_tag *BlogPostTag) error
-	Delete(c context.Context, blog_post_tag *BlogPostTag) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]BlogPostTag, error)
-	FetchByID(c context.Context, blog_post_tagID string) (BlogPostTag, error)
+	FetchByID(c context.Context, ID string) (BlogPostTag, error)
 }
 
 type BlogPostTagUsecase interface {
-	FetchByID(c context.Context, blog_post_tagID string) (BlogPostTag, error)
+	FetchByID(c context.Context, ID string) (BlogPostTag, error)
 	Create(c context.Context, blog_post_tag *BlogPostTag) error
 	Update(c context.Context, blog_post_tag *BlogPostTag) error
-	Delete(c context.Context, blog_post_tag *BlogPostTag) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]BlogPostTag, error)
 }

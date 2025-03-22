@@ -42,12 +42,17 @@ func (ur *bestcustomerreportlineRepository) Update(c context.Context, bestcustom
 	return err
 }
 
-func (ur *bestcustomerreportlineRepository) Delete(c context.Context, bestcustomerreportline *domain.BestCustomerReportLine) error {
+func (ur *bestcustomerreportlineRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": bestcustomerreportline.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *bestcustomerreportlineRepository) Fetch(c context.Context) ([]domain.BestCustomerReportLine, error) {

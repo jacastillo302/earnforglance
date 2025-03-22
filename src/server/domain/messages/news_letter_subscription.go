@@ -27,16 +27,16 @@ type NewsLetterSubscription struct {
 type NewsLetterSubscriptionRepository interface {
 	Create(c context.Context, newsletter_subscription *NewsLetterSubscription) error
 	Update(c context.Context, newsletter_subscription *NewsLetterSubscription) error
-	Delete(c context.Context, newsletter_subscription *NewsLetterSubscription) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]NewsLetterSubscription, error)
-	FetchByID(c context.Context, newsletter_subscriptionID string) (NewsLetterSubscription, error)
+	FetchByID(c context.Context, ID string) (NewsLetterSubscription, error)
 }
 
 // NewsLetterSubscriptionUsecase interface
 type NewsLetterSubscriptionUsecase interface {
-	FetchByID(c context.Context, newsletter_subscriptionID string) (NewsLetterSubscription, error)
+	FetchByID(c context.Context, ID string) (NewsLetterSubscription, error)
 	Create(c context.Context, newsletter_subscription *NewsLetterSubscription) error
 	Update(c context.Context, newsletter_subscription *NewsLetterSubscription) error
-	Delete(c context.Context, newsletter_subscription *NewsLetterSubscription) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]NewsLetterSubscription, error)
 }

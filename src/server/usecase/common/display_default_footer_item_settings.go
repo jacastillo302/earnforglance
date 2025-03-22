@@ -31,7 +31,7 @@ func (tu *displaydefaultfooteritemsettingsUsecase) Update(c context.Context, dis
 	return tu.displaydefaultfooteritemsettingsRepository.Update(ctx, displaydefaultfooteritemsettings)
 }
 
-func (tu *displaydefaultfooteritemsettingsUsecase) Delete(c context.Context, displaydefaultfooteritemsettings *domain.DisplayDefaultFooterItemSettings) error {
+func (tu *displaydefaultfooteritemsettingsUsecase) Delete(c context.Context, displaydefaultfooteritemsettings string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.displaydefaultfooteritemsettingsRepository.Delete(ctx, displaydefaultfooteritemsettings)

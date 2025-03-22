@@ -31,7 +31,7 @@ func (tu *blogposttagUsecase) Update(c context.Context, blogposttag *domain.Blog
 	return tu.blogposttagRepository.Update(ctx, blogposttag)
 }
 
-func (tu *blogposttagUsecase) Delete(c context.Context, blogposttag *domain.BlogPostTag) error {
+func (tu *blogposttagUsecase) Delete(c context.Context, blogposttag string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.blogposttagRepository.Delete(ctx, blogposttag)

@@ -26,16 +26,16 @@ type ShippingOption struct {
 type ShippingOptionRepository interface {
 	Create(c context.Context, shipping_option *ShippingOption) error
 	Update(c context.Context, shipping_option *ShippingOption) error
-	Delete(c context.Context, shipping_option *ShippingOption) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ShippingOption, error)
-	FetchByID(c context.Context, shipping_optionID string) (ShippingOption, error)
+	FetchByID(c context.Context, ID string) (ShippingOption, error)
 }
 
 // ShippingOptionUsecase defines the usecase interface for ShippingOption
 type ShippingOptionUsecase interface {
-	FetchByID(c context.Context, shipping_optionID string) (ShippingOption, error)
+	FetchByID(c context.Context, ID string) (ShippingOption, error)
 	Create(c context.Context, shipping_option *ShippingOption) error
 	Update(c context.Context, shipping_option *ShippingOption) error
-	Delete(c context.Context, shipping_option *ShippingOption) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ShippingOption, error)
 }

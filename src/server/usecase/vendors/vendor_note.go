@@ -31,7 +31,7 @@ func (tu *vendornoteUsecase) Update(c context.Context, vendornote *domain.Vendor
 	return tu.vendornoteRepository.Update(ctx, vendornote)
 }
 
-func (tu *vendornoteUsecase) Delete(c context.Context, vendornote *domain.VendorNote) error {
+func (tu *vendornoteUsecase) Delete(c context.Context, vendornote string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.vendornoteRepository.Delete(ctx, vendornote)

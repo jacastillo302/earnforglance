@@ -21,15 +21,15 @@ type CategoryTemplate struct {
 type CategoryTemplateRepository interface {
 	Create(c context.Context, category_template *CategoryTemplate) error
 	Update(c context.Context, category_template *CategoryTemplate) error
-	Delete(c context.Context, category_template *CategoryTemplate) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]CategoryTemplate, error)
-	FetchByID(c context.Context, category_templateID string) (CategoryTemplate, error)
+	FetchByID(c context.Context, ID string) (CategoryTemplate, error)
 }
 
 type CategoryTemplateUsecase interface {
-	FetchByID(c context.Context, category_templateID string) (CategoryTemplate, error)
+	FetchByID(c context.Context, ID string) (CategoryTemplate, error)
 	Create(c context.Context, category_template *CategoryTemplate) error
 	Update(c context.Context, category_template *CategoryTemplate) error
-	Delete(c context.Context, category_template *CategoryTemplate) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]CategoryTemplate, error)
 }

@@ -34,15 +34,15 @@ type AdminAreaSettings struct {
 type AdminAreaSettingsRepository interface {
 	Create(c context.Context, admin_area_settings *AdminAreaSettings) error
 	Update(c context.Context, admin_area_settings *AdminAreaSettings) error
-	Delete(c context.Context, admin_area_settings *AdminAreaSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]AdminAreaSettings, error)
-	FetchByID(c context.Context, admin_area_settingsID string) (AdminAreaSettings, error)
+	FetchByID(c context.Context, ID string) (AdminAreaSettings, error)
 }
 
 type AdminAreaSettingsUsecase interface {
-	FetchByID(c context.Context, admin_area_settingsID string) (AdminAreaSettings, error)
+	FetchByID(c context.Context, ID string) (AdminAreaSettings, error)
 	Create(c context.Context, admin_area_settings *AdminAreaSettings) error
 	Update(c context.Context, admin_area_settings *AdminAreaSettings) error
-	Delete(c context.Context, admin_area_settings *AdminAreaSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]AdminAreaSettings, error)
 }

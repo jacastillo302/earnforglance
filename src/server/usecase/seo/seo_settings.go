@@ -31,7 +31,7 @@ func (tu *seosettingsUsecase) Update(c context.Context, seosettings *domain.SeoS
 	return tu.seosettingsRepository.Update(ctx, seosettings)
 }
 
-func (tu *seosettingsUsecase) Delete(c context.Context, seosettings *domain.SeoSettings) error {
+func (tu *seosettingsUsecase) Delete(c context.Context, seosettings string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.seosettingsRepository.Delete(ctx, seosettings)

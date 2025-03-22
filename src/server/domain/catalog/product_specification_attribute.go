@@ -26,15 +26,15 @@ type ProductSpecificationAttribute struct {
 type ProductSpecificationAttributeRepository interface {
 	Create(c context.Context, product_specification_attribute *ProductSpecificationAttribute) error
 	Update(c context.Context, product_specification_attribute *ProductSpecificationAttribute) error
-	Delete(c context.Context, product_specification_attribute *ProductSpecificationAttribute) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProductSpecificationAttribute, error)
-	FetchByID(c context.Context, ProductSpecificationAttributeID string) (ProductSpecificationAttribute, error)
+	FetchByID(c context.Context, ID string) (ProductSpecificationAttribute, error)
 }
 
 type ProductSpecificationAttributeUsecase interface {
-	FetchByID(c context.Context, product_specification_attributeID string) (ProductSpecificationAttribute, error)
+	FetchByID(c context.Context, ID string) (ProductSpecificationAttribute, error)
 	Create(c context.Context, product_specification_attribute *ProductSpecificationAttribute) error
 	Update(c context.Context, product_specification_attribute *ProductSpecificationAttribute) error
-	Delete(c context.Context, product_specification_attribute *ProductSpecificationAttribute) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProductSpecificationAttribute, error)
 }

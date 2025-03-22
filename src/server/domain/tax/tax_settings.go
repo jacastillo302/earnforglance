@@ -52,15 +52,15 @@ func NewTaxSettings() *TaxSettings {
 type TaxSettingsRepository interface {
 	Create(c context.Context, tax_settings *TaxSettings) error
 	Update(c context.Context, tax_settings *TaxSettings) error
-	Delete(c context.Context, tax_settings *TaxSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]TaxSettings, error)
-	FetchByID(c context.Context, tax_settingsID string) (TaxSettings, error)
+	FetchByID(c context.Context, ID string) (TaxSettings, error)
 }
 
 type TaxSettingsUsecase interface {
-	FetchByID(c context.Context, tax_settingsID string) (TaxSettings, error)
+	FetchByID(c context.Context, ID string) (TaxSettings, error)
 	Create(c context.Context, tax_settings *TaxSettings) error
 	Update(c context.Context, tax_settings *TaxSettings) error
-	Delete(c context.Context, tax_settings *TaxSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]TaxSettings, error)
 }

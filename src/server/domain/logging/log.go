@@ -28,15 +28,15 @@ type Log struct {
 type LogRepository interface {
 	Create(c context.Context, log *Log) error
 	Update(c context.Context, log *Log) error
-	Delete(c context.Context, log *Log) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Log, error)
-	FetchByID(c context.Context, logID string) (Log, error)
+	FetchByID(c context.Context, ID string) (Log, error)
 }
 
 type LogUsecase interface {
-	FetchByID(c context.Context, logID string) (Log, error)
+	FetchByID(c context.Context, ID string) (Log, error)
 	Create(c context.Context, log *Log) error
 	Update(c context.Context, log *Log) error
-	Delete(c context.Context, log *Log) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Log, error)
 }

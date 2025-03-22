@@ -31,7 +31,7 @@ func (tu *stateprovinceUsecase) Update(c context.Context, stateprovince *domain.
 	return tu.stateprovinceRepository.Update(ctx, stateprovince)
 }
 
-func (tu *stateprovinceUsecase) Delete(c context.Context, stateprovince *domain.StateProvince) error {
+func (tu *stateprovinceUsecase) Delete(c context.Context, stateprovince string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.stateprovinceRepository.Delete(ctx, stateprovince)

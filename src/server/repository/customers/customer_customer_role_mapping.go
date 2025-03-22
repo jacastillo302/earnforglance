@@ -42,12 +42,17 @@ func (ur *customercustomerrolemappingRepository) Update(c context.Context, custo
 	return err
 }
 
-func (ur *customercustomerrolemappingRepository) Delete(c context.Context, customercustomerrolemapping *domain.CustomerCustomerRoleMapping) error {
+func (ur *customercustomerrolemappingRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": customercustomerrolemapping.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *customercustomerrolemappingRepository) Fetch(c context.Context) ([]domain.CustomerCustomerRoleMapping, error) {

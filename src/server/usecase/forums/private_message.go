@@ -31,7 +31,7 @@ func (tu *privateMessageUsecase) Update(c context.Context, privateMessage *domai
 	return tu.privateMessageRepository.Update(ctx, privateMessage)
 }
 
-func (tu *privateMessageUsecase) Delete(c context.Context, privateMessage *domain.PrivateMessage) error {
+func (tu *privateMessageUsecase) Delete(c context.Context, privateMessage string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.privateMessageRepository.Delete(ctx, privateMessage)

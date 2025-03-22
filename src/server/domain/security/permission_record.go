@@ -22,16 +22,16 @@ type PermissionRecord struct {
 type PermissionRecordRepository interface {
 	Create(c context.Context, permission_record *PermissionRecord) error
 	Update(c context.Context, permission_record *PermissionRecord) error
-	Delete(c context.Context, permission_record *PermissionRecord) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]PermissionRecord, error)
-	FetchByID(c context.Context, permission_recordID string) (PermissionRecord, error)
+	FetchByID(c context.Context, ID string) (PermissionRecord, error)
 }
 
 // PermissionRecordUsecase defines the usecase interface for PermissionRecord
 type PermissionRecordUsecase interface {
-	FetchByID(c context.Context, permission_recordID string) (PermissionRecord, error)
+	FetchByID(c context.Context, ID string) (PermissionRecord, error)
 	Create(c context.Context, permission_record *PermissionRecord) error
 	Update(c context.Context, permission_record *PermissionRecord) error
-	Delete(c context.Context, permission_record *PermissionRecord) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]PermissionRecord, error)
 }

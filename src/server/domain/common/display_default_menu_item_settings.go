@@ -25,15 +25,15 @@ type DisplayDefaultMenuItemSettings struct {
 type DisplayDefaultMenuItemSettingsRepository interface {
 	Create(c context.Context, display_default_menu_item_settings *DisplayDefaultMenuItemSettings) error
 	Update(c context.Context, display_default_menu_item_settings *DisplayDefaultMenuItemSettings) error
-	Delete(c context.Context, display_default_menu_item_settings *DisplayDefaultMenuItemSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]DisplayDefaultMenuItemSettings, error)
-	FetchByID(c context.Context, display_default_menu_item_settingsID string) (DisplayDefaultMenuItemSettings, error)
+	FetchByID(c context.Context, ID string) (DisplayDefaultMenuItemSettings, error)
 }
 
 type DisplayDefaultMenuItemSettingsUsecase interface {
-	FetchByID(c context.Context, display_default_menu_item_settingsID string) (DisplayDefaultMenuItemSettings, error)
+	FetchByID(c context.Context, ID string) (DisplayDefaultMenuItemSettings, error)
 	Create(c context.Context, display_default_menu_item_settings *DisplayDefaultMenuItemSettings) error
 	Update(c context.Context, display_default_menu_item_settings *DisplayDefaultMenuItemSettings) error
-	Delete(c context.Context, display_default_menu_item_settings *DisplayDefaultMenuItemSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]DisplayDefaultMenuItemSettings, error)
 }

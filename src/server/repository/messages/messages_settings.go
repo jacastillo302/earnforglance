@@ -42,12 +42,17 @@ func (ur *MessagesSettingsRepository) Update(c context.Context, MessagesSettings
 	return err
 }
 
-func (ur *MessagesSettingsRepository) Delete(c context.Context, MessagesSettings *domain.MessagesSettings) error {
+func (ur *MessagesSettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": MessagesSettings.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *MessagesSettingsRepository) Fetch(c context.Context) ([]domain.MessagesSettings, error) {

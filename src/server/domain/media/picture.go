@@ -25,16 +25,16 @@ type Picture struct {
 type PictureRepository interface {
 	Create(c context.Context, picture *Picture) error
 	Update(c context.Context, picture *Picture) error
-	Delete(c context.Context, picture *Picture) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Picture, error)
-	FetchByID(c context.Context, pictureID string) (Picture, error)
+	FetchByID(c context.Context, ID string) (Picture, error)
 }
 
 // PictureUsecase represents the picture usecase interface
 type PictureUsecase interface {
-	FetchByID(c context.Context, pictureID string) (Picture, error)
+	FetchByID(c context.Context, ID string) (Picture, error)
 	Create(c context.Context, picture *Picture) error
 	Update(c context.Context, picture *Picture) error
-	Delete(c context.Context, picture *Picture) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Picture, error)
 }

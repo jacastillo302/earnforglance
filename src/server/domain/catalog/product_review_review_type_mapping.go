@@ -21,15 +21,15 @@ type ProductReviewReviewTypeMapping struct {
 type ProductReviewReviewTypeMappingRepository interface {
 	Create(c context.Context, product_review_review_type_mapping *ProductReviewReviewTypeMapping) error
 	Update(c context.Context, product_review_review_type_mapping *ProductReviewReviewTypeMapping) error
-	Delete(c context.Context, product_review_review_type_mapping *ProductReviewReviewTypeMapping) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProductReviewReviewTypeMapping, error)
-	FetchByID(c context.Context, ProductReviewReviewTypeMappingID string) (ProductReviewReviewTypeMapping, error)
+	FetchByID(c context.Context, ID string) (ProductReviewReviewTypeMapping, error)
 }
 
 type ProductReviewReviewTypeMappingUsecase interface {
-	FetchByID(c context.Context, product_review_review_type_mappingID string) (ProductReviewReviewTypeMapping, error)
+	FetchByID(c context.Context, ID string) (ProductReviewReviewTypeMapping, error)
 	Create(c context.Context, product_review_review_type_mapping *ProductReviewReviewTypeMapping) error
 	Update(c context.Context, product_review_review_type_mapping *ProductReviewReviewTypeMapping) error
-	Delete(c context.Context, product_review_review_type_mapping *ProductReviewReviewTypeMapping) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProductReviewReviewTypeMapping, error)
 }

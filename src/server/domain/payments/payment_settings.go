@@ -32,15 +32,15 @@ func NewPaymentSettings() *PaymentSettings {
 type PaymentSettingsRepository interface {
 	Create(c context.Context, payment_settings *PaymentSettings) error
 	Update(c context.Context, payment_settings *PaymentSettings) error
-	Delete(c context.Context, payment_settings *PaymentSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]PaymentSettings, error)
-	FetchByID(c context.Context, payment_settingsID string) (PaymentSettings, error)
+	FetchByID(c context.Context, ID string) (PaymentSettings, error)
 }
 
 type PaymentSettingsUsecase interface {
-	FetchByID(c context.Context, payment_settingsID string) (PaymentSettings, error)
+	FetchByID(c context.Context, ID string) (PaymentSettings, error)
 	Create(c context.Context, payment_settings *PaymentSettings) error
 	Update(c context.Context, payment_settings *PaymentSettings) error
-	Delete(c context.Context, payment_settings *PaymentSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]PaymentSettings, error)
 }

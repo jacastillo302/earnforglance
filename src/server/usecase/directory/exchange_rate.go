@@ -31,7 +31,7 @@ func (tu *exchangeRateUsecase) Update(c context.Context, exchangeRate *domain.Ex
 	return tu.exchangeRateRepository.Update(ctx, exchangeRate)
 }
 
-func (tu *exchangeRateUsecase) Delete(c context.Context, exchangeRate *domain.ExchangeRate) error {
+func (tu *exchangeRateUsecase) Delete(c context.Context, exchangeRate string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.exchangeRateRepository.Delete(ctx, exchangeRate)

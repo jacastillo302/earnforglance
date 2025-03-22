@@ -23,15 +23,15 @@ type ReviewType struct {
 type ReviewTypeRepository interface {
 	Create(c context.Context, review_type *ReviewType) error
 	Update(c context.Context, review_type *ReviewType) error
-	Delete(c context.Context, review_type *ReviewType) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ReviewType, error)
-	FetchByID(c context.Context, review_typeID string) (ReviewType, error)
+	FetchByID(c context.Context, ID string) (ReviewType, error)
 }
 
 type ReviewTypeUsecase interface {
-	FetchByID(c context.Context, review_typeID string) (ReviewType, error)
+	FetchByID(c context.Context, ID string) (ReviewType, error)
 	Create(c context.Context, review_type *ReviewType) error
 	Update(c context.Context, review_type *ReviewType) error
-	Delete(c context.Context, review_type *ReviewType) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ReviewType, error)
 }

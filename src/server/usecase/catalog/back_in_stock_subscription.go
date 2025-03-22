@@ -31,7 +31,7 @@ func (tu *backinstocksubscriptionUsecase) Update(c context.Context, backinstocks
 	return tu.backinstocksubscriptionRepository.Update(ctx, backinstocksubscription)
 }
 
-func (tu *backinstocksubscriptionUsecase) Delete(c context.Context, backinstocksubscription *domain.BackInStockSubscription) error {
+func (tu *backinstocksubscriptionUsecase) Delete(c context.Context, backinstocksubscription string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.backinstocksubscriptionRepository.Delete(ctx, backinstocksubscription)

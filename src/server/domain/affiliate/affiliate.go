@@ -22,16 +22,16 @@ type Affiliate struct {
 type AffiliateRepository interface {
 	Create(c context.Context, affiliate *Affiliate) error
 	Update(c context.Context, affiliate *Affiliate) error
-	Delete(c context.Context, affiliate *Affiliate) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Affiliate, error)
 	GetActive(c context.Context, active bool) (Affiliate, error)
-	FetchByID(c context.Context, affiliateID string) (Affiliate, error)
+	FetchByID(c context.Context, ID string) (Affiliate, error)
 }
 
 type AffiliateUsecase interface {
-	FetchByID(c context.Context, affiliateID string) (Affiliate, error)
+	FetchByID(c context.Context, ID string) (Affiliate, error)
 	Create(c context.Context, affiliate *Affiliate) error
 	Update(c context.Context, affiliate *Affiliate) error
-	Delete(c context.Context, affiliate *Affiliate) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Affiliate, error)
 }

@@ -42,12 +42,17 @@ func (ur *topictemplateRepository) Update(c context.Context, topictemplate *doma
 	return err
 }
 
-func (ur *topictemplateRepository) Delete(c context.Context, topictemplate *domain.TopicTemplate) error {
+func (ur *topictemplateRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": topictemplate.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *topictemplateRepository) Fetch(c context.Context) ([]domain.TopicTemplate, error) {

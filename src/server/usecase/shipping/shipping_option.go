@@ -31,7 +31,7 @@ func (tu *shippingoptionUsecase) Update(c context.Context, shippingoption *domai
 	return tu.shippingoptionRepository.Update(ctx, shippingoption)
 }
 
-func (tu *shippingoptionUsecase) Delete(c context.Context, shippingoption *domain.ShippingOption) error {
+func (tu *shippingoptionUsecase) Delete(c context.Context, shippingoption string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.shippingoptionRepository.Delete(ctx, shippingoption)

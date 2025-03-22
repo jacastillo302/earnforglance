@@ -33,15 +33,15 @@ type DisplayDefaultFooterItemSettings struct {
 type DisplayDefaultFooterItemSettingsRepository interface {
 	Create(c context.Context, display_default_footer_item_settings *DisplayDefaultFooterItemSettings) error
 	Update(c context.Context, display_default_footer_item_settings *DisplayDefaultFooterItemSettings) error
-	Delete(c context.Context, display_default_footer_item_settings *DisplayDefaultFooterItemSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]DisplayDefaultFooterItemSettings, error)
-	FetchByID(c context.Context, display_default_footer_item_settingsID string) (DisplayDefaultFooterItemSettings, error)
+	FetchByID(c context.Context, ID string) (DisplayDefaultFooterItemSettings, error)
 }
 
 type DisplayDefaultFooterItemSettingsUsecase interface {
-	FetchByID(c context.Context, display_default_footer_item_settingsID string) (DisplayDefaultFooterItemSettings, error)
+	FetchByID(c context.Context, ID string) (DisplayDefaultFooterItemSettings, error)
 	Create(c context.Context, display_default_footer_item_settings *DisplayDefaultFooterItemSettings) error
 	Update(c context.Context, display_default_footer_item_settings *DisplayDefaultFooterItemSettings) error
-	Delete(c context.Context, display_default_footer_item_settings *DisplayDefaultFooterItemSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]DisplayDefaultFooterItemSettings, error)
 }

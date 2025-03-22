@@ -20,15 +20,15 @@ type SpecificationAttributeGroup struct {
 type SpecificationAttributeGroupRepository interface {
 	Create(c context.Context, specification_attribute_group *SpecificationAttributeGroup) error
 	Update(c context.Context, specification_attribute_group *SpecificationAttributeGroup) error
-	Delete(c context.Context, specification_attribute_group *SpecificationAttributeGroup) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]SpecificationAttributeGroup, error)
-	FetchByID(c context.Context, specification_attribute_groupID string) (SpecificationAttributeGroup, error)
+	FetchByID(c context.Context, ID string) (SpecificationAttributeGroup, error)
 }
 
 type SpecificationAttributeGroupUsecase interface {
-	FetchByID(c context.Context, specification_attribute_groupID string) (SpecificationAttributeGroup, error)
+	FetchByID(c context.Context, ID string) (SpecificationAttributeGroup, error)
 	Create(c context.Context, specification_attribute_group *SpecificationAttributeGroup) error
 	Update(c context.Context, specification_attribute_group *SpecificationAttributeGroup) error
-	Delete(c context.Context, specification_attribute_group *SpecificationAttributeGroup) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]SpecificationAttributeGroup, error)
 }

@@ -31,7 +31,7 @@ func (tu *specificationattributegroupUsecase) Update(c context.Context, specific
 	return tu.specificationattributegroupRepository.Update(ctx, specificationattributegroup)
 }
 
-func (tu *specificationattributegroupUsecase) Delete(c context.Context, specificationattributegroup *domain.SpecificationAttributeGroup) error {
+func (tu *specificationattributegroupUsecase) Delete(c context.Context, specificationattributegroup string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.specificationattributegroupRepository.Delete(ctx, specificationattributegroup)

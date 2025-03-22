@@ -32,7 +32,7 @@ func (tu *displaydefaultmenuitemsettingsUsecase) Update(c context.Context, displ
 	return tu.displaydefaultmenuitemsettingsRepository.Update(ctx, displaydefaultmenuitemsettings)
 }
 
-func (tu *displaydefaultmenuitemsettingsUsecase) Delete(c context.Context, displaydefaultmenuitemsettings *domain.DisplayDefaultMenuItemSettings) error {
+func (tu *displaydefaultmenuitemsettingsUsecase) Delete(c context.Context, displaydefaultmenuitemsettings string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.displaydefaultmenuitemsettingsRepository.Delete(ctx, displaydefaultmenuitemsettings)

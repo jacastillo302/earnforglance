@@ -31,7 +31,7 @@ func (tu *newsLetterSubscriptionUsecase) Update(c context.Context, newsLetterSub
 	return tu.newsLetterSubscriptionRepository.Update(ctx, newsLetterSubscription)
 }
 
-func (tu *newsLetterSubscriptionUsecase) Delete(c context.Context, newsLetterSubscription *domain.NewsLetterSubscription) error {
+func (tu *newsLetterSubscriptionUsecase) Delete(c context.Context, newsLetterSubscription string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.newsLetterSubscriptionRepository.Delete(ctx, newsLetterSubscription)

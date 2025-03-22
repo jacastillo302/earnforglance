@@ -38,15 +38,15 @@ func NewSeoSettings() *SeoSettings {
 type SeoSettingsRepository interface {
 	Create(c context.Context, seo_settings *SeoSettings) error
 	Update(c context.Context, seo_settings *SeoSettings) error
-	Delete(c context.Context, seo_settings *SeoSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]SeoSettings, error)
-	FetchByID(c context.Context, seo_settingsID string) (SeoSettings, error)
+	FetchByID(c context.Context, ID string) (SeoSettings, error)
 }
 
 type SeoSettingsUsecase interface {
-	FetchByID(c context.Context, seo_settingsID string) (SeoSettings, error)
+	FetchByID(c context.Context, ID string) (SeoSettings, error)
 	Create(c context.Context, seo_settings *SeoSettings) error
 	Update(c context.Context, seo_settings *SeoSettings) error
-	Delete(c context.Context, seo_settings *SeoSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]SeoSettings, error)
 }

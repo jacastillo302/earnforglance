@@ -31,7 +31,7 @@ func (tu *taxcategoryUsecase) Update(c context.Context, taxcategory *domain.TaxC
 	return tu.taxcategoryRepository.Update(ctx, taxcategory)
 }
 
-func (tu *taxcategoryUsecase) Delete(c context.Context, taxcategory *domain.TaxCategory) error {
+func (tu *taxcategoryUsecase) Delete(c context.Context, taxcategory string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.taxcategoryRepository.Delete(ctx, taxcategory)

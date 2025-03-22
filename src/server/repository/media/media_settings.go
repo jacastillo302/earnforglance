@@ -35,10 +35,17 @@ func (ur *MediaSettingsRepository) Update(c context.Context, MediaSettings *doma
 	return err
 }
 
-func (ur *MediaSettingsRepository) Delete(c context.Context, MediaSettings *domain.MediaSettings) error {
-	filter := bson.M{"_id": MediaSettings.ID}
-	_, err := ur.database.Collection(ur.collection).DeleteOne(c, filter)
+func (ur *MediaSettingsRepository) Delete(c context.Context, ID string) error {
+	collection := ur.database.Collection(ur.collection)
+
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *MediaSettingsRepository) Fetch(c context.Context) ([]domain.MediaSettings, error) {

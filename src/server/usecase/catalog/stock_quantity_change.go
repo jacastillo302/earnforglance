@@ -31,7 +31,7 @@ func (tu *StockQuantityChangeUsecase) Update(c context.Context, StockQuantityCha
 	return tu.StockQuantityChangeRepository.Update(ctx, StockQuantityChange)
 }
 
-func (tu *StockQuantityChangeUsecase) Delete(c context.Context, StockQuantityChange *domain.StockQuantityChange) error {
+func (tu *StockQuantityChangeUsecase) Delete(c context.Context, StockQuantityChange string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.StockQuantityChangeRepository.Delete(ctx, StockQuantityChange)

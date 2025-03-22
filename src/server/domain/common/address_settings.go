@@ -38,15 +38,15 @@ type AddressSettings struct {
 type AddressSettingsRepository interface {
 	Create(c context.Context, address_settings *AddressSettings) error
 	Update(c context.Context, address_settings *AddressSettings) error
-	Delete(c context.Context, address_settings *AddressSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]AddressSettings, error)
-	FetchByID(c context.Context, address_settingsID string) (AddressSettings, error)
+	FetchByID(c context.Context, ID string) (AddressSettings, error)
 }
 
 type AddressSettingsUsecase interface {
-	FetchByID(c context.Context, address_settingsID string) (AddressSettings, error)
+	FetchByID(c context.Context, ID string) (AddressSettings, error)
 	Create(c context.Context, address_settings *AddressSettings) error
 	Update(c context.Context, address_settings *AddressSettings) error
-	Delete(c context.Context, address_settings *AddressSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]AddressSettings, error)
 }

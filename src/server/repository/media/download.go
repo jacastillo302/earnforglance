@@ -43,11 +43,15 @@ func (ur *downloadRepository) Update(c context.Context, download *domain.Downloa
 
 }
 
-func (ur *downloadRepository) Delete(c context.Context, download *domain.Download) error {
+func (ur *downloadRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": download.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
 
 }

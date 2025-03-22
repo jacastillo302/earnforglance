@@ -32,7 +32,7 @@ func (tu *checkoutattributevalueUsecase) Update(c context.Context, checkoutattri
 	return tu.checkoutattributevalueRepository.Update(ctx, checkoutattributevalue)
 }
 
-func (tu *checkoutattributevalueUsecase) Delete(c context.Context, checkoutattributevalue *domain.CheckoutAttributeValue) error {
+func (tu *checkoutattributevalueUsecase) Delete(c context.Context, checkoutattributevalue string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.checkoutattributevalueRepository.Delete(ctx, checkoutattributevalue)

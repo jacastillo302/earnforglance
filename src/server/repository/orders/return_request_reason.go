@@ -42,12 +42,17 @@ func (ur *returnrequestreasonRepository) Update(c context.Context, returnrequest
 	return err
 }
 
-func (ur *returnrequestreasonRepository) Delete(c context.Context, returnrequestreason *domain.ReturnRequestReason) error {
+func (ur *returnrequestreasonRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": returnrequestreason.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *returnrequestreasonRepository) Fetch(c context.Context) ([]domain.ReturnRequestReason, error) {

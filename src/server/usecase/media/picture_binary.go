@@ -31,7 +31,7 @@ func (tu *picturebinaryUsecase) Update(c context.Context, picturebinary *domain.
 	return tu.picturebinaryRepository.Update(ctx, picturebinary)
 }
 
-func (tu *picturebinaryUsecase) Delete(c context.Context, picturebinary *domain.PictureBinary) error {
+func (tu *picturebinaryUsecase) Delete(c context.Context, picturebinary string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.picturebinaryRepository.Delete(ctx, picturebinary)

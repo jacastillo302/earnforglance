@@ -29,16 +29,16 @@ type SalesSummaryReportLine struct {
 type SalesSummaryReportLineRepository interface {
 	Create(c context.Context, sales_summary_report_line *SalesSummaryReportLine) error
 	Update(c context.Context, sales_summary_report_line *SalesSummaryReportLine) error
-	Delete(c context.Context, sales_summary_report_line *SalesSummaryReportLine) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]SalesSummaryReportLine, error)
-	FetchByID(c context.Context, sales_summary_report_lineID string) (SalesSummaryReportLine, error)
+	FetchByID(c context.Context, ID string) (SalesSummaryReportLine, error)
 }
 
 // SalesSummaryReportLineUsecase represents the use case interface for SalesSummaryReportLine
 type SalesSummaryReportLineUsecase interface {
-	FetchByID(c context.Context, sales_summary_report_lineID string) (SalesSummaryReportLine, error)
+	FetchByID(c context.Context, ID string) (SalesSummaryReportLine, error)
 	Create(c context.Context, sales_summary_report_line *SalesSummaryReportLine) error
 	Update(c context.Context, sales_summary_report_line *SalesSummaryReportLine) error
-	Delete(c context.Context, sales_summary_report_line *SalesSummaryReportLine) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]SalesSummaryReportLine, error)
 }

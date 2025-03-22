@@ -25,15 +25,15 @@ type ProxySettings struct {
 type ProxySettingsRepository interface {
 	Create(c context.Context, proxy_settings *ProxySettings) error
 	Update(c context.Context, proxy_settings *ProxySettings) error
-	Delete(c context.Context, proxy_settings *ProxySettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProxySettings, error)
-	FetchByID(c context.Context, proxy_settingsID string) (ProxySettings, error)
+	FetchByID(c context.Context, ID string) (ProxySettings, error)
 }
 
 type ProxySettingsUsecase interface {
-	FetchByID(c context.Context, proxy_settingsID string) (ProxySettings, error)
+	FetchByID(c context.Context, ID string) (ProxySettings, error)
 	Create(c context.Context, proxy_settings *ProxySettings) error
 	Update(c context.Context, proxy_settings *ProxySettings) error
-	Delete(c context.Context, proxy_settings *ProxySettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProxySettings, error)
 }

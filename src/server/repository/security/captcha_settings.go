@@ -43,11 +43,15 @@ func (ur *captchasettingsRepository) Update(c context.Context, captchasettings *
 
 }
 
-func (ur *captchasettingsRepository) Delete(c context.Context, captchasettings *domain.CaptchaSettings) error {
+func (ur *captchasettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": captchasettings.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
 
 }

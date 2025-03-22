@@ -42,15 +42,15 @@ type CaptchaSettings struct {
 type CaptchaSettingsRepository interface {
 	Create(c context.Context, capcha_settings *CaptchaSettings) error
 	Update(c context.Context, capcha_settings *CaptchaSettings) error
-	Delete(c context.Context, capcha_settings *CaptchaSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]CaptchaSettings, error)
-	FetchByID(c context.Context, capcha_settingsID string) (CaptchaSettings, error)
+	FetchByID(c context.Context, ID string) (CaptchaSettings, error)
 }
 
 type CaptchaSettingsUsecase interface {
-	FetchByID(c context.Context, capcha_settingsID string) (CaptchaSettings, error)
+	FetchByID(c context.Context, ID string) (CaptchaSettings, error)
 	Create(c context.Context, capcha_settings *CaptchaSettings) error
 	Update(c context.Context, capcha_settings *CaptchaSettings) error
-	Delete(c context.Context, capcha_settings *CaptchaSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]CaptchaSettings, error)
 }

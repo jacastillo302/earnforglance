@@ -42,12 +42,17 @@ func (ur *productreviewreviewtypemappingRepository) Update(c context.Context, pr
 	return err
 }
 
-func (ur *productreviewreviewtypemappingRepository) Delete(c context.Context, productreviewreviewtypemapping *domain.ProductReviewReviewTypeMapping) error {
+func (ur *productreviewreviewtypemappingRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": productreviewreviewtypemapping.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *productreviewreviewtypemappingRepository) Fetch(c context.Context) ([]domain.ProductReviewReviewTypeMapping, error) {

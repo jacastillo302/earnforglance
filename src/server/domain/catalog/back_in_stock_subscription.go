@@ -23,15 +23,15 @@ type BackInStockSubscription struct {
 type BackInStockSubscriptionRepository interface {
 	Create(c context.Context, back_in_stock_subscription *BackInStockSubscription) error
 	Update(c context.Context, back_in_stock_subscription *BackInStockSubscription) error
-	Delete(c context.Context, back_in_stock_subscription *BackInStockSubscription) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]BackInStockSubscription, error)
-	FetchByID(c context.Context, back_in_stock_subscriptionID string) (BackInStockSubscription, error)
+	FetchByID(c context.Context, ID string) (BackInStockSubscription, error)
 }
 
 type BackInStockSubscriptionUsecase interface {
-	FetchByID(c context.Context, back_in_stock_subscriptionID string) (BackInStockSubscription, error)
+	FetchByID(c context.Context, ID string) (BackInStockSubscription, error)
 	Create(c context.Context, back_in_stock_subscription *BackInStockSubscription) error
 	Update(c context.Context, back_in_stock_subscription *BackInStockSubscription) error
-	Delete(c context.Context, back_in_stock_subscription *BackInStockSubscription) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]BackInStockSubscription, error)
 }

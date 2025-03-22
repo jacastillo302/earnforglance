@@ -42,12 +42,17 @@ func (ur *customerpermanentlydeletedRepository) Update(c context.Context, custom
 	return err
 }
 
-func (ur *customerpermanentlydeletedRepository) Delete(c context.Context, customerpermanentlydeleted *domain.CustomerPermanentlyDeleted) error {
+func (ur *customerpermanentlydeletedRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": customerpermanentlydeleted.CustomerID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *customerpermanentlydeletedRepository) Fetch(c context.Context) ([]domain.CustomerPermanentlyDeleted, error) {

@@ -31,7 +31,7 @@ func (tu *tierpriceUsecase) Update(c context.Context, tierprice *domain.TierPric
 	return tu.tierpriceRepository.Update(ctx, tierprice)
 }
 
-func (tu *tierpriceUsecase) Delete(c context.Context, tierprice *domain.TierPrice) error {
+func (tu *tierpriceUsecase) Delete(c context.Context, tierprice string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.tierpriceRepository.Delete(ctx, tierprice)

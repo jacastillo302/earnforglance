@@ -22,15 +22,15 @@ type DiscountUsageHistory struct {
 type DiscountUsageHistoryRepository interface {
 	Create(c context.Context, discount_usage_history *DiscountUsageHistory) error
 	Update(c context.Context, discount_usage_history *DiscountUsageHistory) error
-	Delete(c context.Context, discount_usage_history *DiscountUsageHistory) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]DiscountUsageHistory, error)
-	FetchByID(c context.Context, discount_usage_historyID string) (DiscountUsageHistory, error)
+	FetchByID(c context.Context, ID string) (DiscountUsageHistory, error)
 }
 
 type DiscountUsageHistoryUsecase interface {
-	FetchByID(c context.Context, discount_usage_historyID string) (DiscountUsageHistory, error)
+	FetchByID(c context.Context, ID string) (DiscountUsageHistory, error)
 	Create(c context.Context, discount_usage_history *DiscountUsageHistory) error
 	Update(c context.Context, discount_usage_history *DiscountUsageHistory) error
-	Delete(c context.Context, discount_usage_history *DiscountUsageHistory) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]DiscountUsageHistory, error)
 }

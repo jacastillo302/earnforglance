@@ -40,16 +40,16 @@ type OrderItem struct {
 type OrderItemRepository interface {
 	Create(c context.Context, order_item *OrderItem) error
 	Update(c context.Context, order_item *OrderItem) error
-	Delete(c context.Context, order_item *OrderItem) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]OrderItem, error)
-	FetchByID(c context.Context, order_itemID string) (OrderItem, error)
+	FetchByID(c context.Context, ID string) (OrderItem, error)
 }
 
 // OrderItemUsecase represents the usecase interface for OrderItem
 type OrderItemUsecase interface {
-	FetchByID(c context.Context, order_itemID string) (OrderItem, error)
+	FetchByID(c context.Context, ID string) (OrderItem, error)
 	Create(c context.Context, order_item *OrderItem) error
 	Update(c context.Context, order_item *OrderItem) error
-	Delete(c context.Context, order_item *OrderItem) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]OrderItem, error)
 }

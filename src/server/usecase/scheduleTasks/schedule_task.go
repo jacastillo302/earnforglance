@@ -31,7 +31,7 @@ func (tu *scheduletaskUsecase) Update(c context.Context, scheduletask *domain.Sc
 	return tu.scheduletaskRepository.Update(ctx, scheduletask)
 }
 
-func (tu *scheduletaskUsecase) Delete(c context.Context, scheduletask *domain.ScheduleTask) error {
+func (tu *scheduletaskUsecase) Delete(c context.Context, scheduletask string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.scheduletaskRepository.Delete(ctx, scheduletask)

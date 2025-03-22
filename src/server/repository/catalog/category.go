@@ -42,12 +42,17 @@ func (ur *categoryRepository) Update(c context.Context, category *domain.Categor
 	return err
 }
 
-func (ur *categoryRepository) Delete(c context.Context, category *domain.Category) error {
+func (ur *categoryRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": category.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *categoryRepository) Fetch(c context.Context) ([]domain.Category, error) {

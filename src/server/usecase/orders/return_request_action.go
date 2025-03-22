@@ -31,7 +31,7 @@ func (tu *returnrequestactionUsecase) Update(c context.Context, returnrequestact
 	return tu.returnrequestactionRepository.Update(ctx, returnrequestaction)
 }
 
-func (tu *returnrequestactionUsecase) Delete(c context.Context, returnrequestaction *domain.ReturnRequestAction) error {
+func (tu *returnrequestactionUsecase) Delete(c context.Context, returnrequestaction string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.returnrequestactionRepository.Delete(ctx, returnrequestaction)

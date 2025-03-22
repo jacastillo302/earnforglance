@@ -31,7 +31,7 @@ func (tu *topicTemplateUsecase) Update(c context.Context, topicTemplate *domain.
 	return tu.topicTemplateRepository.Update(ctx, topicTemplate)
 }
 
-func (tu *topicTemplateUsecase) Delete(c context.Context, topicTemplate *domain.TopicTemplate) error {
+func (tu *topicTemplateUsecase) Delete(c context.Context, topicTemplate string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.topicTemplateRepository.Delete(ctx, topicTemplate)

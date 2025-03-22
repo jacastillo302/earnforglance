@@ -70,28 +70,20 @@ func (tc *DiscountProductMappingController) Update(c *gin.Context) {
 }
 
 func (tc *DiscountProductMappingController) Delete(c *gin.Context) {
-	var task domain.DiscountProductMapping
-	body, err := io.ReadAll(c.Request.Body)
-
-	if err != nil {
-		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+	ID := c.Query("id")
+	if ID == "" {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "invalid ID format"})
 		return
 	}
 
-	err = json.Unmarshal(body, &task)
+	err := tc.DiscountProductMappingUsecase.Delete(c, ID)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
-		return
-	}
-
-	err = tc.DiscountProductMappingUsecase.Delete(c, &task)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		c.JSON(http.StatusNotFound, common.ErrorResponse{Message: ID})
 		return
 	}
 
 	c.JSON(http.StatusOK, common.SuccessResponse{
-		Message: "DiscountProductMapping update successfully",
+		Message: "Record deleted successfully",
 	})
 }
 

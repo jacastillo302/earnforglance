@@ -31,7 +31,7 @@ func (tu *proxySettingsUsecase) Update(c context.Context, proxySettings *domain.
 	return tu.proxySettingsRepository.Update(ctx, proxySettings)
 }
 
-func (tu *proxySettingsUsecase) Delete(c context.Context, proxySettings *domain.ProxySettings) error {
+func (tu *proxySettingsUsecase) Delete(c context.Context, proxySettings string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.proxySettingsRepository.Delete(ctx, proxySettings)

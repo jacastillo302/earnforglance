@@ -25,16 +25,16 @@ type GdprConsent struct {
 type GdprConsentRepository interface {
 	Create(c context.Context, gdpr_consent *GdprConsent) error
 	Update(c context.Context, gdpr_consent *GdprConsent) error
-	Delete(c context.Context, gdpr_consent *GdprConsent) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]GdprConsent, error)
-	FetchByID(c context.Context, gdpr_consentID string) (GdprConsent, error)
+	FetchByID(c context.Context, ID string) (GdprConsent, error)
 }
 
 // GdprConsentUsecase interface
 type GdprConsentUsecase interface {
-	FetchByID(c context.Context, gdpr_consentID string) (GdprConsent, error)
+	FetchByID(c context.Context, ID string) (GdprConsent, error)
 	Create(c context.Context, gdpr_consent *GdprConsent) error
 	Update(c context.Context, gdpr_consent *GdprConsent) error
-	Delete(c context.Context, gdpr_consent *GdprConsent) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]GdprConsent, error)
 }

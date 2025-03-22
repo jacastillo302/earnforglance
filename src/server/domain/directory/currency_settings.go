@@ -23,15 +23,15 @@ type CurrencySettings struct {
 type CurrencySettingsRepository interface {
 	Create(c context.Context, currency_settings *CurrencySettings) error
 	Update(c context.Context, currency_settings *CurrencySettings) error
-	Delete(c context.Context, currency_settings *CurrencySettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]CurrencySettings, error)
-	FetchByID(c context.Context, currency_settingsID string) (CurrencySettings, error)
+	FetchByID(c context.Context, ID string) (CurrencySettings, error)
 }
 
 type CurrencySettingsUsecase interface {
-	FetchByID(c context.Context, currency_settingsID string) (CurrencySettings, error)
+	FetchByID(c context.Context, ID string) (CurrencySettings, error)
 	Create(c context.Context, currency_settings *CurrencySettings) error
 	Update(c context.Context, currency_settings *CurrencySettings) error
-	Delete(c context.Context, currency_settings *CurrencySettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]CurrencySettings, error)
 }

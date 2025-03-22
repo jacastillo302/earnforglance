@@ -19,16 +19,16 @@ type WidgetSettings struct {
 type WidgetSettingsRepository interface {
 	Create(c context.Context, widget_settings *WidgetSettings) error
 	Update(c context.Context, widget_settings *WidgetSettings) error
-	Delete(c context.Context, widget_settings *WidgetSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]WidgetSettings, error)
-	FetchByID(c context.Context, widget_settingsID string) (WidgetSettings, error)
+	FetchByID(c context.Context, ID string) (WidgetSettings, error)
 }
 
 type WidgetSettingsUsecase interface {
-	FetchByID(c context.Context, widget_settingsID string) (WidgetSettings, error)
+	FetchByID(c context.Context, ID string) (WidgetSettings, error)
 	Create(c context.Context, widget_settings *WidgetSettings) error
 	Update(c context.Context, widget_settings *WidgetSettings) error
-	Delete(c context.Context, widget_settings *WidgetSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]WidgetSettings, error)
 }
 

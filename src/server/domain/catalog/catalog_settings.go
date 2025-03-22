@@ -137,15 +137,15 @@ type CatalogSettings struct {
 type CatalogSettingsRepository interface {
 	Create(c context.Context, catalog_settings *CatalogSettings) error
 	Update(c context.Context, catalog_settings *CatalogSettings) error
-	Delete(c context.Context, catalog_settings *CatalogSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]CatalogSettings, error)
-	FetchByID(c context.Context, catalog_settingsID string) (CatalogSettings, error)
+	FetchByID(c context.Context, ID string) (CatalogSettings, error)
 }
 
 type CatalogSettingsUsecase interface {
-	FetchByID(c context.Context, catalog_settingsID string) (CatalogSettings, error)
+	FetchByID(c context.Context, ID string) (CatalogSettings, error)
 	Create(c context.Context, catalog_settings *CatalogSettings) error
 	Update(c context.Context, catalog_settings *CatalogSettings) error
-	Delete(c context.Context, catalog_settings *CatalogSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]CatalogSettings, error)
 }

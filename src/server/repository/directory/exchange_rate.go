@@ -42,12 +42,17 @@ func (ur *exchangeRateRepository) Update(c context.Context, exchangeRate *domain
 	return err
 }
 
-func (ur *exchangeRateRepository) Delete(c context.Context, exchangeRate *domain.ExchangeRate) error {
+func (ur *exchangeRateRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": exchangeRate.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *exchangeRateRepository) Fetch(c context.Context) ([]domain.ExchangeRate, error) {

@@ -20,16 +20,16 @@ type DiscountMapping struct {
 type DiscountMappingRepository interface {
 	Create(c context.Context, discount_mapping *DiscountMapping) error
 	Update(c context.Context, discount_mapping *DiscountMapping) error
-	Delete(c context.Context, discount_mapping *DiscountMapping) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]DiscountMapping, error)
-	FetchByID(c context.Context, discount_mappingID string) (DiscountMapping, error)
+	FetchByID(c context.Context, ID string) (DiscountMapping, error)
 }
 
 type DiscountMappingUsecase interface {
-	FetchByID(c context.Context, discount_mappingID string) (DiscountMapping, error)
+	FetchByID(c context.Context, ID string) (DiscountMapping, error)
 	Create(c context.Context, discount_mapping *DiscountMapping) error
 	Update(c context.Context, discount_mapping *DiscountMapping) error
-	Delete(c context.Context, discount_mapping *DiscountMapping) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]DiscountMapping, error)
 }
 

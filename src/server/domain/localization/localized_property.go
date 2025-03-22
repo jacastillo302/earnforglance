@@ -23,15 +23,15 @@ type LocalizedProperty struct {
 type LocalizedPropertyRepository interface {
 	Create(c context.Context, localization_settings *LocalizedProperty) error
 	Update(c context.Context, localization_settings *LocalizedProperty) error
-	Delete(c context.Context, localization_settings *LocalizedProperty) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]LocalizedProperty, error)
-	FetchByID(c context.Context, localization_settingsID string) (LocalizedProperty, error)
+	FetchByID(c context.Context, ID string) (LocalizedProperty, error)
 }
 
 type LocalizedPropertyUsecase interface {
-	FetchByID(c context.Context, localization_settingsID string) (LocalizedProperty, error)
+	FetchByID(c context.Context, ID string) (LocalizedProperty, error)
 	Create(c context.Context, localization_settings *LocalizedProperty) error
 	Update(c context.Context, localization_settings *LocalizedProperty) error
-	Delete(c context.Context, localization_settings *LocalizedProperty) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]LocalizedProperty, error)
 }

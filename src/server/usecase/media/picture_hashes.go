@@ -31,7 +31,7 @@ func (tu *PictureHashesUsecase) Update(c context.Context, PictureHashes *domain.
 	return tu.PictureHashesRepository.Update(ctx, PictureHashes)
 }
 
-func (tu *PictureHashesUsecase) Delete(c context.Context, PictureHashes *domain.PictureHashes) error {
+func (tu *PictureHashesUsecase) Delete(c context.Context, PictureHashes string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.PictureHashesRepository.Delete(ctx, PictureHashes)

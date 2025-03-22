@@ -67,16 +67,16 @@ type Customer struct {
 type CustomerRepository interface {
 	Create(c context.Context, customer *Customer) error
 	Update(c context.Context, customer *Customer) error
-	Delete(c context.Context, customer *Customer) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Customer, error)
-	FetchByID(c context.Context, customerID string) (Customer, error)
+	FetchByID(c context.Context, ID string) (Customer, error)
 }
 
 type CustomerUsecase interface {
-	FetchByID(c context.Context, customerID string) (Customer, error)
+	FetchByID(c context.Context, ID string) (Customer, error)
 	Create(c context.Context, customer *Customer) error
 	Update(c context.Context, customer *Customer) error
-	Delete(c context.Context, customer *Customer) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Customer, error)
 }
 

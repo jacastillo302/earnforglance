@@ -23,16 +23,16 @@ type ExchangeRate struct {
 type ExchangeRateRepository interface {
 	Create(c context.Context, exchange_rate *ExchangeRate) error
 	Update(c context.Context, exchange_rate *ExchangeRate) error
-	Delete(c context.Context, exchange_rate *ExchangeRate) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ExchangeRate, error)
-	FetchByID(c context.Context, exchange_rateID string) (ExchangeRate, error)
+	FetchByID(c context.Context, ID string) (ExchangeRate, error)
 }
 
 type ExchangeRateUsecase interface {
-	FetchByID(c context.Context, exchange_rateID string) (ExchangeRate, error)
+	FetchByID(c context.Context, ID string) (ExchangeRate, error)
 	Create(c context.Context, exchange_rate *ExchangeRate) error
 	Update(c context.Context, exchange_rate *ExchangeRate) error
-	Delete(c context.Context, exchange_rate *ExchangeRate) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ExchangeRate, error)
 }
 

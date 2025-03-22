@@ -31,7 +31,7 @@ func (tu *MessagesSettingsUsecase) Update(c context.Context, MessagesSettings *d
 	return tu.MessagesSettingsRepository.Update(ctx, MessagesSettings)
 }
 
-func (tu *MessagesSettingsUsecase) Delete(c context.Context, MessagesSettings *domain.MessagesSettings) error {
+func (tu *MessagesSettingsUsecase) Delete(c context.Context, MessagesSettings string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.MessagesSettingsRepository.Delete(ctx, MessagesSettings)

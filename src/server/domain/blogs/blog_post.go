@@ -33,15 +33,15 @@ type BlogPost struct {
 type BlogPostRepository interface {
 	Create(c context.Context, blog_post *BlogPost) error
 	Update(c context.Context, blog_post *BlogPost) error
-	Delete(c context.Context, blog_post *BlogPost) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]BlogPost, error)
-	FetchByID(c context.Context, blog_postID string) (BlogPost, error)
+	FetchByID(c context.Context, ID string) (BlogPost, error)
 }
 
 type BlogPostUsecase interface {
-	FetchByID(c context.Context, blog_postID string) (BlogPost, error)
+	FetchByID(c context.Context, ID string) (BlogPost, error)
 	Create(c context.Context, blog_post *BlogPost) error
 	Update(c context.Context, blog_post *BlogPost) error
-	Delete(c context.Context, blog_post *BlogPost) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]BlogPost, error)
 }

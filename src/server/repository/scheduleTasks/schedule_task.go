@@ -42,12 +42,17 @@ func (ur *scheduletaskRepository) Update(c context.Context, scheduletask *domain
 	return err
 }
 
-func (ur *scheduletaskRepository) Delete(c context.Context, scheduletask *domain.ScheduleTask) error {
+func (ur *scheduletaskRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": scheduletask.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *scheduletaskRepository) Fetch(c context.Context) ([]domain.ScheduleTask, error) {

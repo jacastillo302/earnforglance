@@ -24,16 +24,16 @@ type DiscountRequirement struct {
 type DiscountRequirementRepository interface {
 	Create(c context.Context, discount_requirement *DiscountRequirement) error
 	Update(c context.Context, discount_requirement *DiscountRequirement) error
-	Delete(c context.Context, discount_requirement *DiscountRequirement) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]DiscountRequirement, error)
-	FetchByID(c context.Context, discount_requirementID string) (DiscountRequirement, error)
+	FetchByID(c context.Context, ID string) (DiscountRequirement, error)
 }
 
 type DiscountRequirementUsecase interface {
-	FetchByID(c context.Context, discount_requirementID string) (DiscountRequirement, error)
+	FetchByID(c context.Context, ID string) (DiscountRequirement, error)
 	Create(c context.Context, discount_requirement *DiscountRequirement) error
 	Update(c context.Context, discount_requirement *DiscountRequirement) error
-	Delete(c context.Context, discount_requirement *DiscountRequirement) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]DiscountRequirement, error)
 }
 

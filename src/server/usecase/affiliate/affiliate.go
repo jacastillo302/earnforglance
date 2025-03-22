@@ -31,10 +31,10 @@ func (tu *affiliateUsecase) Update(c context.Context, affiliate *domain.Affiliat
 	return tu.affiliateRepository.Update(ctx, affiliate)
 }
 
-func (tu *affiliateUsecase) Delete(c context.Context, affiliate *domain.Affiliate) error {
+func (tu *affiliateUsecase) Delete(c context.Context, affiliateID string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
-	return tu.affiliateRepository.Delete(ctx, affiliate)
+	return tu.affiliateRepository.Delete(ctx, affiliateID)
 }
 
 func (lu *affiliateUsecase) FetchByID(c context.Context, affiliateID string) (domain.Affiliate, error) {

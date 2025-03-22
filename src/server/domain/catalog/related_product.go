@@ -21,15 +21,15 @@ type RelatedProduct struct {
 type RelatedProductRepository interface {
 	Create(c context.Context, related_product *RelatedProduct) error
 	Update(c context.Context, related_product *RelatedProduct) error
-	Delete(c context.Context, related_product *RelatedProduct) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]RelatedProduct, error)
-	FetchByID(c context.Context, related_productID string) (RelatedProduct, error)
+	FetchByID(c context.Context, ID string) (RelatedProduct, error)
 }
 
 type RelatedProductUsecase interface {
-	FetchByID(c context.Context, related_productID string) (RelatedProduct, error)
+	FetchByID(c context.Context, ID string) (RelatedProduct, error)
 	Create(c context.Context, related_product *RelatedProduct) error
 	Update(c context.Context, related_product *RelatedProduct) error
-	Delete(c context.Context, related_product *RelatedProduct) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]RelatedProduct, error)
 }

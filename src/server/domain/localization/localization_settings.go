@@ -26,15 +26,15 @@ type LocalizationSettings struct {
 type LocalizationSettingsRepository interface {
 	Create(c context.Context, localization_settings *LocalizationSettings) error
 	Update(c context.Context, localization_settings *LocalizationSettings) error
-	Delete(c context.Context, localization_settings *LocalizationSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]LocalizationSettings, error)
-	FetchByID(c context.Context, localization_settingsID string) (LocalizationSettings, error)
+	FetchByID(c context.Context, ID string) (LocalizationSettings, error)
 }
 
 type LocalizationSettingsUsecase interface {
-	FetchByID(c context.Context, localization_settingsID string) (LocalizationSettings, error)
+	FetchByID(c context.Context, ID string) (LocalizationSettings, error)
 	Create(c context.Context, localization_settings *LocalizationSettings) error
 	Update(c context.Context, localization_settings *LocalizationSettings) error
-	Delete(c context.Context, localization_settings *LocalizationSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]LocalizationSettings, error)
 }

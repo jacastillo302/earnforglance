@@ -20,15 +20,15 @@ type ProductProductTagMapping struct {
 type ProductProductTagMappingRepository interface {
 	Create(c context.Context, product_product_tag_mappings *ProductProductTagMapping) error
 	Update(c context.Context, product_product_tag_mappings *ProductProductTagMapping) error
-	Delete(c context.Context, product_product_tag_mappings *ProductProductTagMapping) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProductProductTagMapping, error)
-	FetchByID(c context.Context, product_product_tag_mappingsID string) (ProductProductTagMapping, error)
+	FetchByID(c context.Context, ID string) (ProductProductTagMapping, error)
 }
 
 type ProductProductTagMappingUsecase interface {
-	FetchByID(c context.Context, product_product_tag_mappingsID string) (ProductProductTagMapping, error)
+	FetchByID(c context.Context, ID string) (ProductProductTagMapping, error)
 	Create(c context.Context, product_product_tag_mappings *ProductProductTagMapping) error
 	Update(c context.Context, product_product_tag_mappings *ProductProductTagMapping) error
-	Delete(c context.Context, product_product_tag_mappings *ProductProductTagMapping) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ProductProductTagMapping, error)
 }

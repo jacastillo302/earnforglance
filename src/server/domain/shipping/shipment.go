@@ -28,16 +28,16 @@ type Shipment struct {
 type ShipmentRepository interface {
 	Create(c context.Context, shipment *Shipment) error
 	Update(c context.Context, shipment *Shipment) error
-	Delete(c context.Context, shipment *Shipment) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Shipment, error)
-	FetchByID(c context.Context, shipmentID string) (Shipment, error)
+	FetchByID(c context.Context, ID string) (Shipment, error)
 }
 
 // ShipmentUsecase defines the use case interface for Shipment
 type ShipmentUsecase interface {
-	FetchByID(c context.Context, shipmentID string) (Shipment, error)
+	FetchByID(c context.Context, ID string) (Shipment, error)
 	Create(c context.Context, shipment *Shipment) error
 	Update(c context.Context, shipment *Shipment) error
-	Delete(c context.Context, shipment *Shipment) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Shipment, error)
 }

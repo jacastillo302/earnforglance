@@ -31,7 +31,7 @@ func (lu *languageUsecase) Update(c context.Context, language *domain.Language) 
 	return lu.languageRepository.Update(ctx, language)
 }
 
-func (lu *languageUsecase) Delete(c context.Context, language *domain.Language) error {
+func (lu *languageUsecase) Delete(c context.Context, language string) error {
 	ctx, cancel := context.WithTimeout(c, lu.contextTimeout)
 	defer cancel()
 	return lu.languageRepository.Delete(ctx, language)

@@ -31,7 +31,7 @@ func (tu *measureweightUsecase) Update(c context.Context, measureweight *domain.
 	return tu.measureweightRepository.Update(ctx, measureweight)
 }
 
-func (tu *measureweightUsecase) Delete(c context.Context, measureweight *domain.MeasureWeight) error {
+func (tu *measureweightUsecase) Delete(c context.Context, measureweight string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.measureweightRepository.Delete(ctx, measureweight)

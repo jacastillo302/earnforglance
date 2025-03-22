@@ -42,12 +42,17 @@ func (ur *gdprsettingsRepository) Update(c context.Context, gdprsettings *domain
 	return err
 }
 
-func (ur *gdprsettingsRepository) Delete(c context.Context, gdprsettings *domain.GdprSettings) error {
+func (ur *gdprsettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": gdprsettings.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *gdprsettingsRepository) Fetch(c context.Context) ([]domain.GdprSettings, error) {

@@ -22,15 +22,15 @@ type BaseAttributeValue struct {
 type BaseAttributeValueRepository interface {
 	Create(c context.Context, base_attribute *BaseAttributeValue) error
 	Update(c context.Context, base_attribute *BaseAttributeValue) error
-	Delete(c context.Context, base_attribute *BaseAttributeValue) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]BaseAttributeValue, error)
-	FetchByID(c context.Context, base_attributeID string) (BaseAttributeValue, error)
+	FetchByID(c context.Context, ID string) (BaseAttributeValue, error)
 }
 
 type BaseAttributeValueUsecase interface {
-	FetchByID(c context.Context, base_attributeID string) (BaseAttributeValue, error)
+	FetchByID(c context.Context, ID string) (BaseAttributeValue, error)
 	Create(c context.Context, base_attribute *BaseAttributeValue) error
 	Update(c context.Context, base_attribute *BaseAttributeValue) error
-	Delete(c context.Context, base_attribute *BaseAttributeValue) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]BaseAttributeValue, error)
 }

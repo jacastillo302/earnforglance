@@ -20,16 +20,16 @@ type PictureHashes struct {
 type PictureHashesRepository interface {
 	Create(c context.Context, picture_hashes *PictureHashes) error
 	Update(c context.Context, picture_hashes *PictureHashes) error
-	Delete(c context.Context, picture_hashes *PictureHashes) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]PictureHashes, error)
-	FetchByID(c context.Context, picture_hashesID string) (PictureHashes, error)
+	FetchByID(c context.Context, ID string) (PictureHashes, error)
 }
 
 // PictureHashesUsecase defines the usecase interface for PictureHashes
 type PictureHashesUsecase interface {
-	FetchByID(c context.Context, picture_hashesID string) (PictureHashes, error)
+	FetchByID(c context.Context, ID string) (PictureHashes, error)
 	Create(c context.Context, picture_hashes *PictureHashes) error
 	Update(c context.Context, picture_hashes *PictureHashes) error
-	Delete(c context.Context, picture_hashes *PictureHashes) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]PictureHashes, error)
 }

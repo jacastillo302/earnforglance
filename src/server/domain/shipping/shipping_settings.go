@@ -53,16 +53,16 @@ func NewShippingSettings() *ShippingSettings {
 type ShippingSettingsRepository interface {
 	Create(c context.Context, shipping_settings *ShippingSettings) error
 	Update(c context.Context, shipping_settings *ShippingSettings) error
-	Delete(c context.Context, shipping_settings *ShippingSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ShippingSettings, error)
-	FetchByID(c context.Context, shipping_settingsID string) (ShippingSettings, error)
+	FetchByID(c context.Context, ID string) (ShippingSettings, error)
 }
 
 // ShippingSettingsUsecase defines the usecase interface for ShippingSettings
 type ShippingSettingsUsecase interface {
-	FetchByID(c context.Context, shipping_settingsID string) (ShippingSettings, error)
+	FetchByID(c context.Context, ID string) (ShippingSettings, error)
 	Create(c context.Context, shipping_settings *ShippingSettings) error
 	Update(c context.Context, shipping_settings *ShippingSettings) error
-	Delete(c context.Context, shipping_settings *ShippingSettings) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ShippingSettings, error)
 }

@@ -31,7 +31,7 @@ func (tu *permissionrecordUsecase) Update(c context.Context, permissionrecord *d
 	return tu.permissionrecordRepository.Update(ctx, permissionrecord)
 }
 
-func (tu *permissionrecordUsecase) Delete(c context.Context, permissionrecord *domain.PermissionRecord) error {
+func (tu *permissionrecordUsecase) Delete(c context.Context, permissionrecord string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.permissionrecordRepository.Delete(ctx, permissionrecord)

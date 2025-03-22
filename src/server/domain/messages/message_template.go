@@ -31,16 +31,16 @@ type MessageTemplate struct {
 type MessageTemplateRepository interface {
 	Create(c context.Context, message_template *MessageTemplate) error
 	Update(c context.Context, message_template *MessageTemplate) error
-	Delete(c context.Context, message_template *MessageTemplate) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]MessageTemplate, error)
-	FetchByID(c context.Context, message_templateID string) (MessageTemplate, error)
+	FetchByID(c context.Context, ID string) (MessageTemplate, error)
 }
 
 // MessageTemplateUsecase represents the usecase interface for MessageTemplate
 type MessageTemplateUsecase interface {
-	FetchByID(c context.Context, message_templateID string) (MessageTemplate, error)
+	FetchByID(c context.Context, ID string) (MessageTemplate, error)
 	Create(c context.Context, message_template *MessageTemplate) error
 	Update(c context.Context, message_template *MessageTemplate) error
-	Delete(c context.Context, message_template *MessageTemplate) error
+	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]MessageTemplate, error)
 }

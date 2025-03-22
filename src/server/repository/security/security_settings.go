@@ -42,12 +42,17 @@ func (ur *securitysettingRepository) Update(c context.Context, securitysetting *
 	return err
 }
 
-func (ur *securitysettingRepository) Delete(c context.Context, securitysetting *domain.SecuritySettings) error {
+func (ur *securitysettingRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": securitysetting.ID}
-	_, err := collection.DeleteOne(c, filter)
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return err
+	}
+	_, err = collection.DeleteOne(c, bson.M{"_id": idHex})
+
 	return err
+
 }
 
 func (ur *securitysettingRepository) Fetch(c context.Context) ([]domain.SecuritySettings, error) {

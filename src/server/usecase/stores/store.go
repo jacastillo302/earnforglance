@@ -31,7 +31,7 @@ func (tu *storeUsecase) Update(c context.Context, store *domain.Store) error {
 	return tu.storeRepository.Update(ctx, store)
 }
 
-func (tu *storeUsecase) Delete(c context.Context, store *domain.Store) error {
+func (tu *storeUsecase) Delete(c context.Context, store string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.storeRepository.Delete(ctx, store)
