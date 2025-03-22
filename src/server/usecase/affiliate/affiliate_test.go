@@ -3,6 +3,7 @@ package usecase
 import (
 	"context"
 	domian "earnforglance/server/domain/affiliate"
+	mocks "earnforglance/server/domain/mocks"
 	"testing"
 	"time"
 
@@ -12,7 +13,7 @@ import (
 )
 
 func TestAffiliateUsecase_FetchByID(t *testing.T) {
-	mockRepo := new(domian.MockAffiliateRepository)
+	mockRepo := new(mocks.AffiliateRepository)
 	time := time.Duration(10)
 	usecase := NewAffiliateUsecase(mockRepo, time) // Assuming a constructor exists
 
@@ -35,7 +36,7 @@ func TestAffiliateUsecase_FetchByID(t *testing.T) {
 }
 
 func TestAffiliateUsecase_Create(t *testing.T) {
-	mockRepo := new(domian.MockAffiliateRepository)
+	mockRepo := new(mocks.AffiliateRepository)
 	time := time.Duration(10)
 	usecase := NewAffiliateUsecase(mockRepo, time) // Assuming a constructor exists
 
@@ -55,7 +56,7 @@ func TestAffiliateUsecase_Create(t *testing.T) {
 }
 
 func TestAffiliateUsecase_Update(t *testing.T) {
-	mockRepo := new(domian.MockAffiliateRepository)
+	mockRepo := new(mocks.AffiliateRepository)
 	time := time.Duration(10)
 	usecase := NewAffiliateUsecase(mockRepo, time) // Assuming a constructor exists
 
@@ -76,7 +77,7 @@ func TestAffiliateUsecase_Update(t *testing.T) {
 }
 
 func TestAffiliateUsecase_Delete(t *testing.T) {
-	mockRepo := new(domian.MockAffiliateRepository)
+	mockRepo := new(mocks.AffiliateRepository)
 	time := time.Duration(10)
 	usecase := NewAffiliateUsecase(mockRepo, time) // Assuming a constructor exists
 
@@ -91,7 +92,7 @@ func TestAffiliateUsecase_Delete(t *testing.T) {
 }
 
 func TestAffiliateUsecase_Fetch(t *testing.T) {
-	mockRepo := new(domian.MockAffiliateRepository)
+	mockRepo := new(mocks.AffiliateRepository)
 	time := time.Duration(10)
 	usecase := NewAffiliateUsecase(mockRepo, time) // Assuming a constructor exists
 

@@ -13,8 +13,8 @@ const (
 // CrossSellProduct represents a cross-sell product
 type CrossSellProduct struct {
 	ID         primitive.ObjectID `bson:"_id,omitempty"`
-	ProductID1 int                `bson:"product_id1"`
-	ProductID2 int                `bson:"product_id2"`
+	ProductID1 primitive.ObjectID `bson:"product_id1"`
+	ProductID2 primitive.ObjectID `bson:"product_id2"`
 }
 
 type CrossSellProductRepository interface {

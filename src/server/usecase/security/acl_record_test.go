@@ -1,0 +1,118 @@
+package usecase
+
+import (
+	"context"
+	mocks "earnforglance/server/domain/mocks"
+	domain "earnforglance/server/domain/security"
+	"testing"
+	"time"
+
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/mock"
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
+
+func TestAclRecordUsecase_FetchByID(t *testing.T) {
+	mockRepo := new(mocks.AclRecordRepository)
+	timeout := time.Duration(10)
+	usecase := NewAclRecordUsecase(mockRepo, timeout)
+
+	aclRecordID := primitive.NewObjectID().Hex()
+	updatedAclRecord := domain.AclRecord{
+		ID:             primitive.NewObjectID(), // Existing ID of the record to update
+		EntityID:       primitive.NewObjectID(),
+		EntityName:     "Category",
+		CustomerRoleID: primitive.NewObjectID(),
+	}
+
+	mockRepo.On("FetchByID", mock.Anything, aclRecordID).Return(updatedAclRecord, nil)
+
+	result, err := usecase.FetchByID(context.Background(), aclRecordID)
+
+	assert.NoError(t, err)
+	assert.Equal(t, updatedAclRecord, result)
+	mockRepo.AssertExpectations(t)
+}
+
+func TestAclRecordUsecase_Create(t *testing.T) {
+	mockRepo := new(mocks.AclRecordRepository)
+	timeout := time.Duration(10)
+	usecase := NewAclRecordUsecase(mockRepo, timeout)
+
+	newAclRecord := &domain.AclRecord{
+		EntityID:       primitive.NewObjectID(),
+		EntityName:     "Product",
+		CustomerRoleID: primitive.NewObjectID(),
+	}
+
+	mockRepo.On("Create", mock.Anything, newAclRecord).Return(nil)
+
+	err := usecase.Create(context.Background(), newAclRecord)
+
+	assert.NoError(t, err)
+	mockRepo.AssertExpectations(t)
+}
+
+func TestAclRecordUsecase_Update(t *testing.T) {
+	mockRepo := new(mocks.AclRecordRepository)
+	timeout := time.Duration(10)
+	usecase := NewAclRecordUsecase(mockRepo, timeout)
+
+	updatedAclRecord := &domain.AclRecord{
+		ID:             primitive.NewObjectID(), // Existing ID of the record to update
+		EntityID:       primitive.NewObjectID(),
+		EntityName:     "Category",
+		CustomerRoleID: primitive.NewObjectID(),
+	}
+
+	mockRepo.On("Update", mock.Anything, updatedAclRecord).Return(nil)
+
+	err := usecase.Update(context.Background(), updatedAclRecord)
+
+	assert.NoError(t, err)
+	mockRepo.AssertExpectations(t)
+}
+
+func TestAclRecordUsecase_Delete(t *testing.T) {
+	mockRepo := new(mocks.AclRecordRepository)
+	timeout := time.Duration(10)
+	usecase := NewAclRecordUsecase(mockRepo, timeout)
+
+	aclRecordID := primitive.NewObjectID().Hex()
+
+	mockRepo.On("Delete", mock.Anything, aclRecordID).Return(nil)
+
+	err := usecase.Delete(context.Background(), aclRecordID)
+
+	assert.NoError(t, err)
+	mockRepo.AssertExpectations(t)
+}
+
+func TestAclRecordUsecase_Fetch(t *testing.T) {
+	mockRepo := new(mocks.AclRecordRepository)
+	timeout := time.Duration(10)
+	usecase := NewAclRecordUsecase(mockRepo, timeout)
+
+	fetchedAclRecords := []domain.AclRecord{
+		{
+			ID:             primitive.NewObjectID(),
+			EntityID:       primitive.NewObjectID(),
+			EntityName:     "Product",
+			CustomerRoleID: primitive.NewObjectID(),
+		},
+		{
+			ID:             primitive.NewObjectID(),
+			EntityID:       primitive.NewObjectID(),
+			EntityName:     "Category",
+			CustomerRoleID: primitive.NewObjectID(),
+		},
+	}
+
+	mockRepo.On("Fetch", mock.Anything).Return(fetchedAclRecords, nil)
+
+	result, err := usecase.Fetch(context.Background())
+
+	assert.NoError(t, err)
+	assert.Equal(t, fetchedAclRecords, result)
+	mockRepo.AssertExpectations(t)
+}
