@@ -37,9 +37,26 @@ import (
 	"earnforglance/server/mongo"
 
 	"github.com/gin-gonic/gin"
+
+	cors "github.com/rs/cors/wrapper/gin"
 )
 
+// RouterFunc defines the signature for router registration functions
+type RouterFunc func(*bootstrap.Env, time.Duration, mongo.Database, *gin.RouterGroup)
+
+// ModuleRouters defines a map of module routers grouped by domain
+type ModuleRouters map[string][]RouterFunc
+
 func Setup(env *bootstrap.Env, timeout time.Duration, db mongo.Database, gin *gin.Engine) {
+
+	corsConfig := cors.New(cors.Options{
+		AllowedOrigins:   []string{"*"},
+		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE"},
+		AllowedHeaders:   []string{"Origin", "Content-Type"},
+		AllowCredentials: true,
+	})
+
+	gin.Use(corsConfig)
 
 	publicRouter := gin.Group("/api")
 	// All Public APIs
@@ -50,178 +67,249 @@ func Setup(env *bootstrap.Env, timeout time.Duration, db mongo.Database, gin *gi
 	protectedRouter := gin.Group("/api")
 	// Middleware to verify AccessToken
 	protectedRouter.Use(middleware.JwtAuthMiddleware(env.AccessTokenSecret))
-	// All Private APIs
+
+	// Core APIs
 	ProfileRouter(env, timeout, db, protectedRouter)
 	TaskRouter(env, timeout, db, protectedRouter)
 
-	affiliate.AffiliateRouter(env, timeout, db, protectedRouter)
-	attributes.BaseAttributeRouter(env, timeout, db, protectedRouter)
-	attributes.BaseAttributeValueRouter(env, timeout, db, protectedRouter)
-	blogs.BlogCommentRouter(env, timeout, db, protectedRouter)
-	blogs.BlogPostRouter(env, timeout, db, protectedRouter)
-	blogs.BlogPostTagRouter(env, timeout, db, protectedRouter)
-	blogs.BlogSettingsRouter(env, timeout, db, protectedRouter)
-	catalog.BackInStockSubscriptionRouter(env, timeout, db, protectedRouter)
-	catalog.CatalogSettingsRouter(env, timeout, db, protectedRouter)
-	catalog.CategoryRouter(env, timeout, db, protectedRouter)
-	catalog.CategoryTemplateRouter(env, timeout, db, protectedRouter)
-	catalog.CrossSellProductRouter(env, timeout, db, protectedRouter)
-	catalog.ManufacturerRouter(env, timeout, db, protectedRouter)
-	catalog.ManufacturerTemplateRouter(env, timeout, db, protectedRouter)
-	catalog.PredefinedProductAttributeValueRouter(env, timeout, db, protectedRouter)
-	catalog.ProductRouter(env, timeout, db, protectedRouter)
-	catalog.ProductAttributeRouter(env, timeout, db, protectedRouter)
-	catalog.ProductAttributeCombinationRouter(env, timeout, db, protectedRouter)
-	catalog.ProductAttributeCombinationPictureRouter(env, timeout, db, protectedRouter)
-	catalog.ProductAttributeMappingRouter(env, timeout, db, protectedRouter)
-	catalog.ProductAttributeValueRouter(env, timeout, db, protectedRouter)
-	catalog.ProductAttributeValuePictureRouter(env, timeout, db, protectedRouter)
-	catalog.ProductCategoryRouter(env, timeout, db, protectedRouter)
-	catalog.ProductEditorSettingsRouter(env, timeout, db, protectedRouter)
-	catalog.ProductManufacturerRouter(env, timeout, db, protectedRouter)
-	catalog.ProductPictureRouter(env, timeout, db, protectedRouter)
-	catalog.ProductProductTagMappingRouter(env, timeout, db, protectedRouter)
-	catalog.ProductReviewRouter(env, timeout, db, protectedRouter)
-	catalog.ProductReviewHelpfulnessRouter(env, timeout, db, protectedRouter)
-	catalog.ProductReviewReviewTypeMappingRouter(env, timeout, db, protectedRouter)
-	catalog.ProductSpecificationAttributeRouter(env, timeout, db, protectedRouter)
-	catalog.ProductTagRouter(env, timeout, db, protectedRouter)
-	catalog.ProductTemplateRouter(env, timeout, db, protectedRouter)
-	catalog.ProductVideoRouter(env, timeout, db, protectedRouter)
-	catalog.ProductWarehouseInventoryRouter(env, timeout, db, protectedRouter)
-	catalog.RelatedProductRouter(env, timeout, db, protectedRouter)
-	catalog.ReviewTypeRouter(env, timeout, db, protectedRouter)
-	catalog.SpecificationAttributeRouter(env, timeout, db, protectedRouter)
-	catalog.SpecificationAttributeGroupRouter(env, timeout, db, protectedRouter)
-	catalog.SpecificationAttributeOptionRouter(env, timeout, db, protectedRouter)
-	catalog.StockQuantityChangeRouter(env, timeout, db, protectedRouter)
-	catalog.TierPriceRouter(env, timeout, db, protectedRouter)
-	cms.WidgetSettingsRouter(env, timeout, db, protectedRouter)
-	common.AddressRouter(env, timeout, db, protectedRouter)
-	common.AddressAttributeRouter(env, timeout, db, protectedRouter)
-	common.AddressAttributeValueRouter(env, timeout, db, protectedRouter)
-	common.AddressSettingsRouter(env, timeout, db, protectedRouter)
-	common.AdminAreaSettingsRouter(env, timeout, db, protectedRouter)
-	common.CommonSettingsRouter(env, timeout, db, protectedRouter)
-	common.DisplayDefaultFooterItemSettingsRouter(env, timeout, db, protectedRouter)
-	common.DisplayDefaultMenuItemSettingsRouter(env, timeout, db, protectedRouter)
-	common.GenericAttributeRouter(env, timeout, db, protectedRouter)
-	common.PdfSettingsRouter(env, timeout, db, protectedRouter)
-	common.SearchTermRouter(env, timeout, db, protectedRouter)
-	common.SearchTermReportLineRouter(env, timeout, db, protectedRouter)
-	common.SitemapSettingsRouter(env, timeout, db, protectedRouter)
-	common.SitemapXmlSettingsRouter(env, timeout, db, protectedRouter)
-	configuration.SettingRouter(env, timeout, db, protectedRouter)
-	customers.BestCustomerReportLineRouter(env, timeout, db, protectedRouter)
-	customers.CustomerRouter(env, timeout, db, protectedRouter)
-	customers.CustomerAddressMappingRouter(env, timeout, db, protectedRouter)
-	customers.CustomerAttributeRouter(env, timeout, db, protectedRouter)
-	customers.CustomerAttributeValueRouter(env, timeout, db, protectedRouter)
-	customers.CustomerCustomerRoleMappingRouter(env, timeout, db, protectedRouter)
-	customers.RewardPointsHistoryRouter(env, timeout, db, protectedRouter)
-	customers.RewardPointsSettingsRouter(env, timeout, db, protectedRouter)
-	directory.CountryRouter(env, timeout, db, protectedRouter)
-	directory.CurrencyRouter(env, timeout, db, protectedRouter)
-	directory.CurrencySettingsRouter(env, timeout, db, protectedRouter)
-	directory.ExchangeRateRouter(env, timeout, db, protectedRouter)
-	directory.MeasureDimensionRouter(env, timeout, db, protectedRouter)
-	directory.MeasureSettingsRouter(env, timeout, db, protectedRouter)
-	directory.MeasureWeightRouter(env, timeout, db, protectedRouter)
-	directory.StateProvinceRouter(env, timeout, db, protectedRouter)
-	discounts.DiscountRouter(env, timeout, db, protectedRouter)
-	discounts.DiscountCategoryMappingRouter(env, timeout, db, protectedRouter)
-	discounts.DiscountManufacturerMappingRouter(env, timeout, db, protectedRouter)
-	discounts.DiscountMappingRouter(env, timeout, db, protectedRouter)
-	discounts.DiscountProductMappingRouter(env, timeout, db, protectedRouter)
-	discounts.DiscountRequirementRouter(env, timeout, db, protectedRouter)
-	discounts.DiscountUsageHistoryRouter(env, timeout, db, protectedRouter)
-	forums.ForumRouter(env, timeout, db, protectedRouter)
-	forums.ForumGroupRouter(env, timeout, db, protectedRouter)
-	forums.ForumPostRouter(env, timeout, db, protectedRouter)
-	forums.ForumPostVoteRouter(env, timeout, db, protectedRouter)
-	forums.ForumSettingsRouter(env, timeout, db, protectedRouter)
-	forums.ForumSubscriptionRouter(env, timeout, db, protectedRouter)
-	forums.ForumTopicRouter(env, timeout, db, protectedRouter)
-	forums.PrivateMessageRouter(env, timeout, db, protectedRouter)
-	gdpr.CustomerPermanentlyDeletedRouter(env, timeout, db, protectedRouter)
-	gdpr.GdprConsentRouter(env, timeout, db, protectedRouter)
-	gdpr.GdprLogRouter(env, timeout, db, protectedRouter)
-	gdpr.GdprSettingsRouter(env, timeout, db, protectedRouter)
-	localization.LanguageRouter(env, timeout, db, protectedRouter)
-	localization.LocaleStringResourceRouter(env, timeout, db, protectedRouter)
-	localization.LocalizationSettingsRouter(env, timeout, db, protectedRouter)
-	localization.LocalizedPropertyRouter(env, timeout, db, protectedRouter)
-	logging.ActivityLogRouter(env, timeout, db, protectedRouter)
-	logging.ActivityLogTypeRouter(env, timeout, db, protectedRouter)
-	logging.LogRouter(env, timeout, db, protectedRouter)
-	media.DownloadRouter(env, timeout, db, protectedRouter)
-	media.MediaSettingsRouter(env, timeout, db, protectedRouter)
-	media.PictureRouter(env, timeout, db, protectedRouter)
-	media.PictureBinaryRouter(env, timeout, db, protectedRouter)
-	media.PictureHashesRouter(env, timeout, db, protectedRouter)
-	media.VideoRouter(env, timeout, db, protectedRouter)
-	messages.CampaignRouter(env, timeout, db, protectedRouter)
-	messages.EmailAccountRouter(env, timeout, db, protectedRouter)
-	messages.EmailAccountSettingsRouter(env, timeout, db, protectedRouter)
-	messages.MessagesSettingsRouter(env, timeout, db, protectedRouter)
-	messages.MessageTemplateRouter(env, timeout, db, protectedRouter)
-	messages.MessageTemplatesSettingsRouter(env, timeout, db, protectedRouter)
-	messages.NewsLetterSubscriptionRouter(env, timeout, db, protectedRouter)
-	messages.QueuedEmailRouter(env, timeout, db, protectedRouter)
-	news.NewsCommentRouter(env, timeout, db, protectedRouter)
-	news.NewsItemRouter(env, timeout, db, protectedRouter)
-	news.NewsSettingsRouter(env, timeout, db, protectedRouter)
-	orders.BestSellersReportLineRouter(env, timeout, db, protectedRouter)
-	orders.CheckoutAttributeRouter(env, timeout, db, protectedRouter)
-	orders.CheckoutAttributeValueRouter(env, timeout, db, protectedRouter)
-	orders.GiftCardRouter(env, timeout, db, protectedRouter)
-	orders.GiftCardUsageHistoryRouter(env, timeout, db, protectedRouter)
-	orders.OrderRouter(env, timeout, db, protectedRouter)
-	orders.OrderItemRouter(env, timeout, db, protectedRouter)
-	orders.OrderNoteRouter(env, timeout, db, protectedRouter)
-	orders.OrderSettingsRouter(env, timeout, db, protectedRouter)
-	orders.RecurringPaymentRouter(env, timeout, db, protectedRouter)
-	orders.RecurringPaymentHistoryRouter(env, timeout, db, protectedRouter)
-	orders.ReturnRequestRouter(env, timeout, db, protectedRouter)
-	orders.ReturnRequestActionRouter(env, timeout, db, protectedRouter)
-	orders.ReturnRequestReasonRouter(env, timeout, db, protectedRouter)
-	orders.SalesSummaryReportLineRouter(env, timeout, db, protectedRouter)
-	orders.ShoppingCartItemRouter(env, timeout, db, protectedRouter)
-	orders.ShoppingCartSettingsRouter(env, timeout, db, protectedRouter)
-	payments.PaymentSettingsRouter(env, timeout, db, protectedRouter)
-	polls.PollRouter(env, timeout, db, protectedRouter)
-	polls.PollAnswerRouter(env, timeout, db, protectedRouter)
-	polls.PollVotingRecordRouter(env, timeout, db, protectedRouter)
-	scheduleTasks.ScheduleTaskRouter(env, timeout, db, protectedRouter)
-	security.AclRecordRouter(env, timeout, db, protectedRouter)
-	security.CaptchaSettingsRouter(env, timeout, db, protectedRouter)
-	security.PermissionRecordRouter(env, timeout, db, protectedRouter)
-	security.PermissionRecordCustomerRoleMappingRouter(env, timeout, db, protectedRouter)
-	security.ProxySettingsRouter(env, timeout, db, protectedRouter)
-	security.RobotsTxtSettingsRouter(env, timeout, db, protectedRouter)
-	security.SecuritySettingsRouter(env, timeout, db, protectedRouter)
-	seo.SeoSettingsRouter(env, timeout, db, protectedRouter)
-	seo.UrlRecordRouter(env, timeout, db, protectedRouter)
-	shipping.DeliveryDateRouter(env, timeout, db, protectedRouter)
-	shipping.PickupPointRouter(env, timeout, db, protectedRouter)
-	shipping.ProductAvailabilityRangeRouter(env, timeout, db, protectedRouter)
-	shipping.ShipmentRouter(env, timeout, db, protectedRouter)
-	shipping.ShipmentItemRouter(env, timeout, db, protectedRouter)
-	shipping.ShippingMethodRouter(env, timeout, db, protectedRouter)
-	shipping.ShippingMethodCountryMappingRouter(env, timeout, db, protectedRouter)
-	shipping.ShippingOptionRouter(env, timeout, db, protectedRouter)
-	shipping.ShippingSettingsRouter(env, timeout, db, protectedRouter)
-	shipping.WarehouseRouter(env, timeout, db, protectedRouter)
-	stores.StoreRouter(env, timeout, db, protectedRouter)
-	stores.StoreMappingRouter(env, timeout, db, protectedRouter)
-	tax.TaxCategoryRouter(env, timeout, db, protectedRouter)
-	tax.TaxSettingsRouter(env, timeout, db, protectedRouter)
-	topics.TopicRouter(env, timeout, db, protectedRouter)
-	topics.TopicTemplateRouter(env, timeout, db, protectedRouter)
-	vendors.VendorRouter(env, timeout, db, protectedRouter)
-	vendors.VendorAttributeRouter(env, timeout, db, protectedRouter)
-	vendors.VendorAttributeValueRouter(env, timeout, db, protectedRouter)
-	vendors.VendorNoteRouter(env, timeout, db, protectedRouter)
-	vendors.VendorSettingsRouter(env, timeout, db, protectedRouter)
+	// Register all domain-specific routers
+	registerModuleRouters(env, timeout, db, protectedRouter)
+}
 
+func registerModuleRouters(env *bootstrap.Env, timeout time.Duration, db mongo.Database, router *gin.RouterGroup) {
+	// Define routers grouped by module for better organization and maintenance
+	moduleRouters := ModuleRouters{
+		"affiliate": {
+			affiliate.AffiliateRouter,
+		},
+		"attributes": {
+			attributes.BaseAttributeRouter,
+			attributes.BaseAttributeValueRouter,
+		},
+		"blogs": {
+			blogs.BlogCommentRouter,
+			blogs.BlogPostRouter,
+			blogs.BlogPostTagRouter,
+			blogs.BlogSettingsRouter,
+		},
+		"catalog": {
+			catalog.BackInStockSubscriptionRouter,
+			catalog.CatalogSettingsRouter,
+			catalog.CategoryRouter,
+			catalog.CategoryTemplateRouter,
+			catalog.CrossSellProductRouter,
+			catalog.ManufacturerRouter,
+			catalog.ManufacturerTemplateRouter,
+			catalog.PredefinedProductAttributeValueRouter,
+			catalog.ProductRouter,
+			catalog.ProductAttributeRouter,
+			catalog.ProductAttributeCombinationRouter,
+			catalog.ProductAttributeCombinationPictureRouter,
+			catalog.ProductAttributeMappingRouter,
+			catalog.ProductAttributeValueRouter,
+			catalog.ProductAttributeValuePictureRouter,
+			catalog.ProductCategoryRouter,
+			catalog.ProductEditorSettingsRouter,
+			catalog.ProductManufacturerRouter,
+			catalog.ProductPictureRouter,
+			catalog.ProductProductTagMappingRouter,
+			catalog.ProductReviewRouter,
+			catalog.ProductReviewHelpfulnessRouter,
+			catalog.ProductReviewReviewTypeMappingRouter,
+			catalog.ProductSpecificationAttributeRouter,
+			catalog.ProductTagRouter,
+			catalog.ProductTemplateRouter,
+			catalog.ProductVideoRouter,
+			catalog.ProductWarehouseInventoryRouter,
+			catalog.RelatedProductRouter,
+			catalog.ReviewTypeRouter,
+			catalog.SpecificationAttributeRouter,
+			catalog.SpecificationAttributeGroupRouter,
+			catalog.SpecificationAttributeOptionRouter,
+			catalog.StockQuantityChangeRouter,
+			catalog.TierPriceRouter,
+		},
+		"cms": {
+			cms.WidgetSettingsRouter,
+		},
+		"common": {
+			common.AddressRouter,
+			common.AddressAttributeRouter,
+			common.AddressAttributeValueRouter,
+			common.AddressSettingsRouter,
+			common.AdminAreaSettingsRouter,
+			common.CommonSettingsRouter,
+			common.DisplayDefaultFooterItemSettingsRouter,
+			common.DisplayDefaultMenuItemSettingsRouter,
+			common.GenericAttributeRouter,
+			common.PdfSettingsRouter,
+			common.SearchTermRouter,
+			common.SearchTermReportLineRouter,
+			common.SitemapSettingsRouter,
+			common.SitemapXmlSettingsRouter,
+		},
+		"configuration": {
+			configuration.SettingRouter,
+		},
+		"customers": {
+			customers.BestCustomerReportLineRouter,
+			customers.CustomerRouter,
+			customers.CustomerAddressMappingRouter,
+			customers.CustomerAttributeRouter,
+			customers.CustomerAttributeValueRouter,
+			customers.CustomerCustomerRoleMappingRouter,
+			customers.RewardPointsHistoryRouter,
+			customers.RewardPointsSettingsRouter,
+		},
+		"directory": {
+			directory.CountryRouter,
+			directory.CurrencyRouter,
+			directory.CurrencySettingsRouter,
+			directory.ExchangeRateRouter,
+			directory.MeasureDimensionRouter,
+			directory.MeasureSettingsRouter,
+			directory.MeasureWeightRouter,
+			directory.StateProvinceRouter,
+		},
+		"discounts": {
+			discounts.DiscountRouter,
+			discounts.DiscountCategoryMappingRouter,
+			discounts.DiscountManufacturerMappingRouter,
+			discounts.DiscountMappingRouter,
+			discounts.DiscountProductMappingRouter,
+			discounts.DiscountRequirementRouter,
+			discounts.DiscountUsageHistoryRouter,
+		},
+		"forums": {
+			forums.ForumRouter,
+			forums.ForumGroupRouter,
+			forums.ForumPostRouter,
+			forums.ForumPostVoteRouter,
+			forums.ForumSettingsRouter,
+			forums.ForumSubscriptionRouter,
+			forums.ForumTopicRouter,
+			forums.PrivateMessageRouter,
+		},
+		"gdpr": {
+			gdpr.CustomerPermanentlyDeletedRouter,
+			gdpr.GdprSettingsRouter,
+			gdpr.GdprConsentRouter,
+			gdpr.GdprLogRouter,
+		},
+		"localization": {
+			localization.LanguageRouter,
+			localization.LocaleStringResourceRouter,
+			localization.LocalizationSettingsRouter,
+			localization.LocalizedPropertyRouter,
+		},
+		"logging": {
+			logging.ActivityLogRouter,
+			logging.ActivityLogTypeRouter,
+			logging.LogRouter,
+		},
+		"media": {
+			media.DownloadRouter,
+			media.MediaSettingsRouter,
+			media.PictureRouter,
+			media.PictureBinaryRouter,
+			media.PictureHashesRouter,
+			media.VideoRouter,
+		},
+		"messages": {
+			messages.CampaignRouter,
+			messages.EmailAccountRouter,
+			messages.EmailAccountSettingsRouter,
+			messages.MessagesSettingsRouter,
+			messages.MessageTemplateRouter,
+			messages.MessageTemplatesSettingsRouter,
+			messages.NewsLetterSubscriptionRouter,
+			messages.QueuedEmailRouter,
+		},
+		"news": {
+			news.NewsItemRouter,
+			news.NewsCommentRouter,
+			news.NewsSettingsRouter,
+		},
+		"orders": {
+			orders.BestSellersReportLineRouter,
+			orders.CheckoutAttributeRouter,
+			orders.CheckoutAttributeValueRouter,
+			orders.GiftCardRouter,
+			orders.GiftCardUsageHistoryRouter,
+			orders.OrderRouter,
+			orders.OrderItemRouter,
+			orders.OrderNoteRouter,
+			orders.OrderSettingsRouter,
+			orders.RecurringPaymentRouter,
+			orders.RecurringPaymentHistoryRouter,
+			orders.ReturnRequestRouter,
+			orders.ReturnRequestActionRouter,
+			orders.ReturnRequestReasonRouter,
+			orders.SalesSummaryReportLineRouter,
+			orders.ShoppingCartItemRouter,
+			orders.ShoppingCartSettingsRouter,
+		},
+		"payments": {
+			payments.PaymentSettingsRouter,
+		},
+		"polls": {
+			polls.PollRouter,
+			polls.PollAnswerRouter,
+			polls.PollVotingRecordRouter,
+		},
+		"scheduleTasks": {
+			scheduleTasks.ScheduleTaskRouter,
+		},
+		"security": {
+			security.AclRecordRouter,
+			security.CaptchaSettingsRouter,
+			security.PermissionRecordRouter,
+			security.PermissionRecordCustomerRoleMappingRouter,
+			security.ProxySettingsRouter,
+			security.RobotsTxtSettingsRouter,
+			security.SecuritySettingsRouter,
+		},
+		"seo": {
+			seo.UrlRecordRouter,
+			seo.SeoSettingsRouter,
+		},
+		"shipping": {
+			shipping.DeliveryDateRouter,
+			shipping.PickupPointRouter,
+			shipping.ProductAvailabilityRangeRouter,
+			shipping.ShipmentRouter,
+			shipping.ShipmentItemRouter,
+			shipping.ShippingMethodRouter,
+			shipping.ShippingMethodCountryMappingRouter,
+			shipping.ShippingOptionRouter,
+			shipping.ShippingSettingsRouter,
+			shipping.WarehouseRouter,
+		},
+		"stores": {
+			stores.StoreRouter,
+			stores.StoreMappingRouter,
+		},
+		"tax": {
+			tax.TaxCategoryRouter,
+			tax.TaxSettingsRouter,
+		},
+		"topics": {
+			topics.TopicRouter,
+			topics.TopicTemplateRouter,
+		},
+		"vendors": {
+			vendors.VendorRouter,
+			vendors.VendorAttributeRouter,
+			vendors.VendorAttributeValueRouter,
+			vendors.VendorNoteRouter,
+			vendors.VendorSettingsRouter,
+		},
+	}
+
+	// Register all routers from all modules
+	for _, routerFuncs := range moduleRouters {
+		for _, routerFunc := range routerFuncs {
+			routerFunc(env, timeout, db, router)
+		}
+	}
 }
