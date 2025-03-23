@@ -1,0 +1,126 @@
+package repository_test
+
+import (
+	"context"
+	"errors"
+	"testing"
+
+	domain "earnforglance/server/domain/common"
+	"earnforglance/server/mongo/mocks"
+	repository "earnforglance/server/repository/common"
+
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/mock"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
+
+type MockSingleResultAdminAreaSettings struct {
+	mock.Mock
+}
+
+func (m *MockSingleResultAdminAreaSettings) Decode(v interface{}) error {
+	args := m.Called(v)
+	if result, ok := args.Get(0).(*domain.AdminAreaSettings); ok {
+		*v.(*domain.AdminAreaSettings) = *result
+	}
+	return args.Error(1)
+}
+
+var mockItemAdminAreaSettings = &domain.AdminAreaSettings{
+	ID:                              primitive.NewObjectID(), // Existing ID of the record to update
+	DefaultGridPageSize:             30,
+	ProductsBulkEditGridPageSize:    100,
+	PopupGridPageSize:               15,
+	GridPageSizes:                   "15,30,60,120",
+	RichEditorAdditionalSettings:    "font-family, background-color",
+	RichEditorAllowJavaScript:       true,
+	RichEditorAllowStyleTag:         false,
+	UseRichEditorForCustomerEmails:  false,
+	UseRichEditorInMessageTemplates: false,
+	HideAdvertisementsOnAdminArea:   false,
+	CheckLicense:                    false,
+	LastNewsTitleAdminArea:          "Updated News",
+	UseIsoDateFormatInJsonResult:    false,
+	ShowDocumentationReferenceLinks: true,
+	UseStickyHeaderLayout:           false,
+	MinimumDropdownItemsForSearch:   10,
+}
+
+func TestAdminAreaSettingsRepository_FetchByID(t *testing.T) {
+	var databaseHelper *mocks.Database
+	var collectionHelper *mocks.Collection
+
+	databaseHelper = &mocks.Database{}
+	collectionHelper = &mocks.Collection{}
+
+	collectionName := domain.CollectionAdminAreaSettings
+
+	t.Run("success", func(t *testing.T) {
+		mockSingleResult := &MockSingleResultAdminAreaSettings{}
+		mockSingleResult.On("Decode", mock.Anything).Return(mockItemAdminAreaSettings, nil)
+
+		collectionHelper.On("FindOne", mock.Anything, mock.Anything).Return(mockSingleResult).Once()
+		databaseHelper.On("Collection", collectionName).Return(collectionHelper)
+
+		ur := repository.NewAdminAreaSettingsRepository(databaseHelper, collectionName)
+
+		_, err := ur.FetchByID(context.Background(), mockItemAdminAreaSettings.ID.Hex())
+
+		assert.NoError(t, err)
+		collectionHelper.AssertExpectations(t)
+		mockSingleResult.AssertExpectations(t)
+	})
+
+	t.Run("error", func(t *testing.T) {
+		mockSingleResult := &MockSingleResultAdminAreaSettings{}
+		mockSingleResult.On("Decode", mock.Anything).Return(nil, errors.New("Unexpected"))
+
+		collectionHelper.On("FindOne", mock.Anything, mock.Anything).Return(mockSingleResult).Once()
+		databaseHelper.On("Collection", collectionName).Return(collectionHelper)
+
+		ur := repository.NewAdminAreaSettingsRepository(databaseHelper, collectionName)
+
+		_, err := ur.FetchByID(context.Background(), mockItemAdminAreaSettings.ID.Hex())
+
+		assert.Error(t, err)
+
+		collectionHelper.AssertExpectations(t)
+		mockSingleResult.AssertExpectations(t)
+	})
+}
+
+func TestAdminAreaSettingsRepository_Create(t *testing.T) {
+	databaseHelper := &mocks.Database{}
+	collectionHelper := &mocks.Collection{}
+	collectionName := domain.CollectionAdminAreaSettings
+
+	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
+	collectionHelper.On("InsertOne", mock.Anything, mockItemAdminAreaSettings).Return(nil, nil).Once()
+
+	repo := repository.NewAdminAreaSettingsRepository(databaseHelper, collectionName)
+
+	err := repo.Create(context.Background(), mockItemAdminAreaSettings)
+
+	assert.NoError(t, err)
+	collectionHelper.AssertExpectations(t)
+}
+
+func TestAdminAreaSettingsRepository_Update(t *testing.T) {
+	databaseHelper := &mocks.Database{}
+	collectionHelper := &mocks.Collection{}
+	collectionName := domain.CollectionAdminAreaSettings
+
+	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
+	filter := bson.M{"_id": mockItemAdminAreaSettings.ID}
+	update := bson.M{"$set": mockItemAdminAreaSettings}
+
+	collectionHelper.On("UpdateOne", mock.Anything, filter, update).Return(nil, nil).Once()
+
+	repo := repository.NewAdminAreaSettingsRepository(databaseHelper, collectionName)
+
+	err := repo.Update(context.Background(), mockItemAdminAreaSettings)
+
+	assert.NoError(t, err)
+	collectionHelper.AssertExpectations(t)
+}

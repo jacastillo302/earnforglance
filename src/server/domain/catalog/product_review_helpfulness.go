@@ -15,7 +15,7 @@ type ProductReviewHelpfulness struct {
 	ID              primitive.ObjectID `bson:"_id,omitempty"`
 	ProductReviewID primitive.ObjectID `bson:"product_review_id"`
 	WasHelpful      bool               `bson:"was_helpful"`
-	CustomerID      int                `bson:"customer_id"`
+	CustomerID      primitive.ObjectID `bson:"customer_id"`
 }
 
 type ProductReviewHelpfulnessRepository interface {
