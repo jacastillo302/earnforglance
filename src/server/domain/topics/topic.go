@@ -49,6 +49,7 @@ type TopicRepository interface {
 
 // TopicUsecase defines the use case interface for Topic
 type TopicUsecase interface {
+	CreateMany(c context.Context, items []Topic) error
 	FetchByID(c context.Context, ID string) (Topic, error)
 	Create(c context.Context, topic *Topic) error
 	Update(c context.Context, topic *Topic) error

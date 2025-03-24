@@ -39,6 +39,7 @@ type MessageTemplateRepository interface {
 
 // MessageTemplateUsecase represents the usecase interface for MessageTemplate
 type MessageTemplateUsecase interface {
+	CreateMany(c context.Context, items []MessageTemplate) error
 	FetchByID(c context.Context, ID string) (MessageTemplate, error)
 	Create(c context.Context, message_template *MessageTemplate) error
 	Update(c context.Context, message_template *MessageTemplate) error

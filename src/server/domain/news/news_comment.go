@@ -35,6 +35,7 @@ type NewsCommentRepository interface {
 
 // NewsCommentUsecase interface
 type NewsCommentUsecase interface {
+	CreateMany(c context.Context, items []NewsComment) error
 	FetchByID(c context.Context, ID string) (NewsComment, error)
 	Create(c context.Context, news_comment *NewsComment) error
 	Update(c context.Context, news_comment *NewsComment) error

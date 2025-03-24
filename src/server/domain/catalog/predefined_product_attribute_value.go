@@ -33,6 +33,7 @@ type PredefinedProductAttributeValueRepository interface {
 }
 
 type PredefinedProductAttributeValueUsecase interface {
+	CreateMany(c context.Context, items []PredefinedProductAttributeValue) error
 	FetchByID(c context.Context, ID string) (PredefinedProductAttributeValue, error)
 	Create(c context.Context, predefined_product_attribute_value *PredefinedProductAttributeValue) error
 	Update(c context.Context, predefined_product_attribute_value *PredefinedProductAttributeValue) error

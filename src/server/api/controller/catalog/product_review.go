@@ -17,6 +17,32 @@ type ProductReviewController struct {
 	Env                  *bootstrap.Env
 }
 
+func (tc *ProductReviewController) CreateMany(c *gin.Context) {
+	var task []domain.ProductReview
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.ProductReviewUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "ProductReview created successfully",
+	})
+}
+
 func (tc *ProductReviewController) Create(c *gin.Context) {
 	var task domain.ProductReview
 	body, err := io.ReadAll(c.Request.Body)

@@ -33,6 +33,7 @@ type LocalizationSettingsRepository interface {
 }
 
 type LocalizationSettingsUsecase interface {
+	CreateMany(c context.Context, items []LocalizationSettings) error
 	FetchByID(c context.Context, ID string) (LocalizationSettings, error)
 	Create(c context.Context, localization_settings *LocalizationSettings) error
 	Update(c context.Context, localization_settings *LocalizationSettings) error

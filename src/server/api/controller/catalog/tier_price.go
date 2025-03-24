@@ -17,6 +17,32 @@ type TierPriceController struct {
 	Env              *bootstrap.Env
 }
 
+func (tc *TierPriceController) CreateMany(c *gin.Context) {
+	var task []domain.TierPrice
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.TierPriceUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "TierPrice created successfully",
+	})
+}
+
 func (tc *TierPriceController) Create(c *gin.Context) {
 	var task domain.TierPrice
 	body, err := io.ReadAll(c.Request.Body)

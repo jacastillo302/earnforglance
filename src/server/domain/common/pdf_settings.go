@@ -35,6 +35,7 @@ type PdfSettingsRepository interface {
 }
 
 type PdfSettingsUsecase interface {
+	CreateMany(c context.Context, items []PdfSettings) error
 	FetchByID(c context.Context, ID string) (PdfSettings, error)
 	Create(c context.Context, PdfSettings *PdfSettings) error
 	Update(c context.Context, PdfSettings *PdfSettings) error

@@ -30,6 +30,7 @@ type GdprSettingsRepository interface {
 }
 
 type GdprSettingsUsecase interface {
+	CreateMany(c context.Context, items []GdprSettings) error
 	FetchByID(c context.Context, ID string) (GdprSettings, error)
 	Create(c context.Context, gdpr_settings *GdprSettings) error
 	Update(c context.Context, gdpr_settings *GdprSettings) error

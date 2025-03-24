@@ -28,6 +28,7 @@ type SettingRepository interface {
 }
 
 type SettingUsecase interface {
+	CreateMany(c context.Context, items []Setting) error
 	FetchByID(c context.Context, ID string) (Setting, error)
 	Create(c context.Context, setting *Setting) error
 	Update(c context.Context, setting *Setting) error

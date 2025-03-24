@@ -47,6 +47,7 @@ type VendorRepository interface {
 
 // VendorUsecase defines the use case interface for Vendor
 type VendorUsecase interface {
+	CreateMany(c context.Context, items []Vendor) error
 	FetchByID(c context.Context, ID string) (Vendor, error)
 	Create(c context.Context, vendor *Vendor) error
 	Update(c context.Context, vendor *Vendor) error

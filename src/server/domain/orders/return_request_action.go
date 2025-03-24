@@ -29,6 +29,7 @@ type ReturnRequestActionRepository interface {
 
 // ReturnRequestActionUsecase interface
 type ReturnRequestActionUsecase interface {
+	CreateMany(c context.Context, items []ReturnRequestAction) error
 	FetchByID(c context.Context, ID string) (ReturnRequestAction, error)
 	Create(c context.Context, return_request_action *ReturnRequestAction) error
 	Update(c context.Context, return_request_action *ReturnRequestAction) error

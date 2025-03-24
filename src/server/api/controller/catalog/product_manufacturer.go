@@ -17,6 +17,32 @@ type ProductManufacturerController struct {
 	Env                        *bootstrap.Env
 }
 
+func (tc *ProductManufacturerController) CreateMany(c *gin.Context) {
+	var task []domain.ProductManufacturer
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.ProductManufacturerUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "ProductManufacturer created successfully",
+	})
+}
+
 func (tc *ProductManufacturerController) Create(c *gin.Context) {
 	var task domain.ProductManufacturer
 	body, err := io.ReadAll(c.Request.Body)

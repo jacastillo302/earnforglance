@@ -17,6 +17,32 @@ type StoreController struct {
 	Env          *bootstrap.Env
 }
 
+func (tc *StoreController) CreateMany(c *gin.Context) {
+	var task []domain.Store
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.StoreUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "Store created successfully",
+	})
+}
+
 func (tc *StoreController) Create(c *gin.Context) {
 	var task domain.Store
 	body, err := io.ReadAll(c.Request.Body)

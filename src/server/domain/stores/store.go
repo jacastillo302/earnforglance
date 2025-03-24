@@ -43,6 +43,7 @@ type StoreRepository interface {
 
 // StoreUsecase defines the use case interface for Store
 type StoreUsecase interface {
+	CreateMany(c context.Context, items []Store) error
 	FetchByID(c context.Context, ID string) (Store, error)
 	Create(c context.Context, store *Store) error
 	Update(c context.Context, store *Store) error

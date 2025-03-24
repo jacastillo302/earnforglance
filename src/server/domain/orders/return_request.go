@@ -43,6 +43,7 @@ type ReturnRequestRepository interface {
 
 // ReturnRequestUsecase represents the usecase interface for ReturnRequest
 type ReturnRequestUsecase interface {
+	CreateMany(c context.Context, items []ReturnRequest) error
 	FetchByID(c context.Context, ID string) (ReturnRequest, error)
 	Create(c context.Context, return_request *ReturnRequest) error
 	Update(c context.Context, return_request *ReturnRequest) error

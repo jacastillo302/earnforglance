@@ -17,6 +17,32 @@ type ReturnRequestActionController struct {
 	Env                        *bootstrap.Env
 }
 
+func (tc *ReturnRequestActionController) CreateMany(c *gin.Context) {
+	var task []domain.ReturnRequestAction
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.ReturnRequestActionUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "ReturnRequestAction created successfully",
+	})
+}
+
 func (tc *ReturnRequestActionController) Create(c *gin.Context) {
 	var task domain.ReturnRequestAction
 	body, err := io.ReadAll(c.Request.Body)

@@ -28,6 +28,7 @@ type PictureHashesRepository interface {
 
 // PictureHashesUsecase defines the usecase interface for PictureHashes
 type PictureHashesUsecase interface {
+	CreateMany(c context.Context, items []PictureHashes) error
 	FetchByID(c context.Context, ID string) (PictureHashes, error)
 	Create(c context.Context, picture_hashes *PictureHashes) error
 	Update(c context.Context, picture_hashes *PictureHashes) error

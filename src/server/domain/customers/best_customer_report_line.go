@@ -28,6 +28,7 @@ type BestCustomerReportLineRepository interface {
 }
 
 type BestCustomerReportLineUsecase interface {
+	CreateMany(c context.Context, items []BestCustomerReportLine) error
 	FetchByID(c context.Context, ID string) (BestCustomerReportLine, error)
 	Create(c context.Context, best_customer_repor_line *BestCustomerReportLine) error
 	Update(c context.Context, best_customer_repor_line *BestCustomerReportLine) error

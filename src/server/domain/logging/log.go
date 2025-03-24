@@ -35,6 +35,7 @@ type LogRepository interface {
 }
 
 type LogUsecase interface {
+	CreateMany(c context.Context, items []Log) error
 	FetchByID(c context.Context, ID string) (Log, error)
 	Create(c context.Context, log *Log) error
 	Update(c context.Context, log *Log) error

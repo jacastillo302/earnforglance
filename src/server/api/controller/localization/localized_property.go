@@ -17,6 +17,32 @@ type LocalizedPropertyController struct {
 	Env                      *bootstrap.Env
 }
 
+func (tc *LocalizedPropertyController) CreateMany(c *gin.Context) {
+	var task []domain.LocalizedProperty
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.LocalizedPropertyUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "LocalizedProperty created successfully",
+	})
+}
 func (tc *LocalizedPropertyController) Create(c *gin.Context) {
 	var task domain.LocalizedProperty
 	body, err := io.ReadAll(c.Request.Body)

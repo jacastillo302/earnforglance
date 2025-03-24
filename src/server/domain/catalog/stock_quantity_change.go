@@ -33,6 +33,7 @@ type StockQuantityChangeRepository interface {
 }
 
 type StockQuantityChangeUsecase interface {
+	CreateMany(c context.Context, items []StockQuantityChange) error
 	FetchByID(c context.Context, ID string) (StockQuantityChange, error)
 	Create(c context.Context, stock_quantity_change *StockQuantityChange) error
 	Update(c context.Context, stock_quantity_change *StockQuantityChange) error

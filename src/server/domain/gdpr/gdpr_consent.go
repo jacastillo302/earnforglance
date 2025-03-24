@@ -33,6 +33,7 @@ type GdprConsentRepository interface {
 
 // GdprConsentUsecase interface
 type GdprConsentUsecase interface {
+	CreateMany(c context.Context, items []GdprConsent) error
 	FetchByID(c context.Context, ID string) (GdprConsent, error)
 	Create(c context.Context, gdpr_consent *GdprConsent) error
 	Update(c context.Context, gdpr_consent *GdprConsent) error

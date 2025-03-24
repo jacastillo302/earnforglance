@@ -17,6 +17,32 @@ type QueuedEmailController struct {
 	Env                *bootstrap.Env
 }
 
+func (tc *QueuedEmailController) CreateMany(c *gin.Context) {
+	var task []domain.QueuedEmail
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.QueuedEmailUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "QueuedEmail created successfully",
+	})
+}
+
 func (tc *QueuedEmailController) Create(c *gin.Context) {
 	var task domain.QueuedEmail
 	body, err := io.ReadAll(c.Request.Body)

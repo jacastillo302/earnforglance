@@ -38,6 +38,7 @@ type PollRepository interface {
 
 // PollUsecase defines the use case interface for Poll
 type PollUsecase interface {
+	CreateMany(c context.Context, items []Poll) error
 	FetchByID(c context.Context, ID string) (Poll, error)
 	Create(c context.Context, poll *Poll) error
 	Update(c context.Context, poll *Poll) error

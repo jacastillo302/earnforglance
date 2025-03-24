@@ -32,6 +32,7 @@ type DisplayDefaultMenuItemSettingsRepository interface {
 }
 
 type DisplayDefaultMenuItemSettingsUsecase interface {
+	CreateMany(c context.Context, items []DisplayDefaultMenuItemSettings) error
 	FetchByID(c context.Context, ID string) (DisplayDefaultMenuItemSettings, error)
 	Create(c context.Context, display_default_menu_item_settings *DisplayDefaultMenuItemSettings) error
 	Update(c context.Context, display_default_menu_item_settings *DisplayDefaultMenuItemSettings) error

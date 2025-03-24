@@ -34,6 +34,7 @@ type SitemapSettingsRepository interface {
 }
 
 type SitemapSettingsUsecase interface {
+	CreateMany(c context.Context, items []SitemapSettings) error
 	FetchByID(c context.Context, ID string) (SitemapSettings, error)
 	Create(c context.Context, sitemap_settings *SitemapSettings) error
 	Update(c context.Context, sitemap_settings *SitemapSettings) error

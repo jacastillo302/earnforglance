@@ -45,6 +45,7 @@ type SeoSettingsRepository interface {
 }
 
 type SeoSettingsUsecase interface {
+	CreateMany(c context.Context, items []SeoSettings) error
 	FetchByID(c context.Context, ID string) (SeoSettings, error)
 	Create(c context.Context, seo_settings *SeoSettings) error
 	Update(c context.Context, seo_settings *SeoSettings) error

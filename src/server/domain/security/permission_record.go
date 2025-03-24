@@ -30,6 +30,7 @@ type PermissionRecordRepository interface {
 
 // PermissionRecordUsecase defines the usecase interface for PermissionRecord
 type PermissionRecordUsecase interface {
+	CreateMany(c context.Context, items []PermissionRecord) error
 	FetchByID(c context.Context, ID string) (PermissionRecord, error)
 	Create(c context.Context, permission_record *PermissionRecord) error
 	Update(c context.Context, permission_record *PermissionRecord) error

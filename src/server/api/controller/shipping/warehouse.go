@@ -17,6 +17,32 @@ type WarehouseController struct {
 	Env              *bootstrap.Env
 }
 
+func (tc *WarehouseController) CreateMany(c *gin.Context) {
+	var task []domain.Warehouse
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.WarehouseUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "Warehouse created successfully",
+	})
+}
+
 func (tc *WarehouseController) Create(c *gin.Context) {
 	var task domain.Warehouse
 	body, err := io.ReadAll(c.Request.Body)

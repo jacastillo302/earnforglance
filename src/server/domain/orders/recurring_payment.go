@@ -38,6 +38,7 @@ type RecurringPaymentRepository interface {
 
 // RecurringPaymentUsecase interface
 type RecurringPaymentUsecase interface {
+	CreateMany(c context.Context, items []RecurringPayment) error
 	FetchByID(c context.Context, ID string) (RecurringPayment, error)
 	Create(c context.Context, recurring_payment *RecurringPayment) error
 	Update(c context.Context, recurring_payment *RecurringPayment) error

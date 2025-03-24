@@ -32,6 +32,7 @@ type GenericAttributeRepository interface {
 }
 
 type GenericAttributeUsecase interface {
+	CreateMany(c context.Context, items []GenericAttribute) error
 	FetchByID(c context.Context, ID string) (GenericAttribute, error)
 	Create(c context.Context, generic_attribute *GenericAttribute) error
 	Update(c context.Context, generic_attribute *GenericAttribute) error

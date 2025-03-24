@@ -30,6 +30,7 @@ type LocalizedPropertyRepository interface {
 }
 
 type LocalizedPropertyUsecase interface {
+	CreateMany(c context.Context, items []LocalizedProperty) error
 	FetchByID(c context.Context, ID string) (LocalizedProperty, error)
 	Create(c context.Context, localization_settings *LocalizedProperty) error
 	Update(c context.Context, localization_settings *LocalizedProperty) error

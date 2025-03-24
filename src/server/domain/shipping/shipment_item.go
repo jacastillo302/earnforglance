@@ -31,6 +31,7 @@ type ShipmentItemRepository interface {
 
 // ShipmentItemUsecase defines the use case interface for ShipmentItem
 type ShipmentItemUsecase interface {
+	CreateMany(c context.Context, items []ShipmentItem) error
 	FetchByID(c context.Context, ID string) (ShipmentItem, error)
 	Create(c context.Context, shipment_item *ShipmentItem) error
 	Update(c context.Context, shipment_item *ShipmentItem) error

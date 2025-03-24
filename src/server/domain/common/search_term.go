@@ -28,6 +28,7 @@ type SearchTermRepository interface {
 }
 
 type SearchTermUsecase interface {
+	CreateMany(c context.Context, items []SearchTerm) error
 	FetchByID(c context.Context, ID string) (SearchTerm, error)
 	Create(c context.Context, search_term *SearchTerm) error
 	Update(c context.Context, search_term *SearchTerm) error

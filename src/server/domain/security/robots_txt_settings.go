@@ -43,6 +43,7 @@ type RobotsTxtSettingsRepository interface {
 
 // RobotsTxtSettingsUsecase defines the use case interface for RobotsTxtSettings
 type RobotsTxtSettingsUsecase interface {
+	CreateMany(c context.Context, items []RobotsTxtSettings) error
 	FetchByID(c context.Context, ID string) (RobotsTxtSettings, error)
 	Create(c context.Context, robotsTxtSettings *RobotsTxtSettings) error
 	Update(c context.Context, robotsTxtSettings *RobotsTxtSettings) error

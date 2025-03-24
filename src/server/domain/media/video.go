@@ -28,6 +28,7 @@ type VideoRepository interface {
 
 // VideoUsecase represents the video usecase interface
 type VideoUsecase interface {
+	CreateMany(c context.Context, items []Video) error
 	FetchByID(c context.Context, ID string) (Video, error)
 	Create(c context.Context, video *Video) error
 	Update(c context.Context, video *Video) error

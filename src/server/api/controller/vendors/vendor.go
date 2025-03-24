@@ -17,6 +17,32 @@ type VendorController struct {
 	Env           *bootstrap.Env
 }
 
+func (tc *VendorController) CreateMany(c *gin.Context) {
+	var task []domain.Vendor
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.VendorUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "Vendor created successfully",
+	})
+}
+
 func (tc *VendorController) Create(c *gin.Context) {
 	var task domain.Vendor
 	body, err := io.ReadAll(c.Request.Body)

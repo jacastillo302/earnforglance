@@ -35,6 +35,7 @@ type GdprLogRepository interface {
 
 // GdprLogUsecase interface
 type GdprLogUsecase interface {
+	CreateMany(c context.Context, items []GdprLog) error
 	FetchByID(c context.Context, ID string) (GdprLog, error)
 	Create(c context.Context, gdpr_log *GdprLog) error
 	Update(c context.Context, gdpr_log *GdprLog) error

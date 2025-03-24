@@ -30,6 +30,7 @@ type ForumPostVoteRepository interface {
 }
 
 type ForumPostVoteUsecase interface {
+	CreateMany(c context.Context, items []ForumPostVote) error
 	FetchByID(c context.Context, ID string) (ForumPostVote, error)
 	Create(c context.Context, product_tag *ForumPostVote) error
 	Update(c context.Context, product_tag *ForumPostVote) error

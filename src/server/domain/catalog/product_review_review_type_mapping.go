@@ -28,6 +28,7 @@ type ProductReviewReviewTypeMappingRepository interface {
 }
 
 type ProductReviewReviewTypeMappingUsecase interface {
+	CreateMany(c context.Context, items []ProductReviewReviewTypeMapping) error
 	FetchByID(c context.Context, ID string) (ProductReviewReviewTypeMapping, error)
 	Create(c context.Context, product_review_review_type_mapping *ProductReviewReviewTypeMapping) error
 	Update(c context.Context, product_review_review_type_mapping *ProductReviewReviewTypeMapping) error

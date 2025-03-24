@@ -29,6 +29,7 @@ type MeasureWeightRepository interface {
 }
 
 type MeasureWeightUsecase interface {
+	CreateMany(c context.Context, items []MeasureWeight) error
 	FetchByID(c context.Context, ID string) (MeasureWeight, error)
 	Create(c context.Context, measure_weight *MeasureWeight) error
 	Update(c context.Context, measure_weight *MeasureWeight) error

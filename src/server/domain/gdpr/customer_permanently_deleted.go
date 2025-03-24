@@ -36,6 +36,7 @@ type CustomerPermanentlyDeletedRepository interface {
 
 // CustomerPermanentlyDeletedUsecase defines the usecase interface for CustomerPermanentlyDeleted
 type CustomerPermanentlyDeletedUsecase interface {
+	CreateMany(c context.Context, items []CustomerPermanentlyDeleted) error
 	FetchByID(c context.Context, ID string) (CustomerPermanentlyDeleted, error)
 	Create(c context.Context, customer_permanently_deleted *CustomerPermanentlyDeleted) error
 	Update(c context.Context, customer_permanently_deleted *CustomerPermanentlyDeleted) error

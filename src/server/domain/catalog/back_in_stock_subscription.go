@@ -30,6 +30,7 @@ type BackInStockSubscriptionRepository interface {
 }
 
 type BackInStockSubscriptionUsecase interface {
+	CreateMany(c context.Context, items []BackInStockSubscription) error
 	FetchByID(c context.Context, ID string) (BackInStockSubscription, error)
 	Create(c context.Context, back_in_stock_subscription *BackInStockSubscription) error
 	Update(c context.Context, back_in_stock_subscription *BackInStockSubscription) error

@@ -33,6 +33,7 @@ type BlogSettingsRepository interface {
 }
 
 type BlogSettingsUsecase interface {
+	CreateMany(c context.Context, items []BlogSettings) error
 	FetchByID(c context.Context, ID string) (BlogSettings, error)
 	Create(c context.Context, blog_settings *BlogSettings) error
 	Update(c context.Context, blog_settings *BlogSettings) error

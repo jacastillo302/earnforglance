@@ -32,6 +32,7 @@ type ProxySettingsRepository interface {
 }
 
 type ProxySettingsUsecase interface {
+	CreateMany(c context.Context, items []ProxySettings) error
 	FetchByID(c context.Context, ID string) (ProxySettings, error)
 	Create(c context.Context, proxy_settings *ProxySettings) error
 	Update(c context.Context, proxy_settings *ProxySettings) error

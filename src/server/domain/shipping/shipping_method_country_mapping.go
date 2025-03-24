@@ -29,6 +29,7 @@ type ShippingMethodCountryMappingRepository interface {
 
 // ShippingMethodCountryMappingUsecase defines the use case interface for ShippingMethodCountryMapping
 type ShippingMethodCountryMappingUsecase interface {
+	CreateMany(c context.Context, items []ShippingMethodCountryMapping) error
 	FetchByID(c context.Context, ID string) (ShippingMethodCountryMapping, error)
 	Create(c context.Context, shipping_method_country *ShippingMethodCountryMapping) error
 	Update(c context.Context, shipping_method_country *ShippingMethodCountryMapping) error

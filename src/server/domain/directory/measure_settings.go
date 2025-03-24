@@ -27,6 +27,7 @@ type MeasureSettingsRepository interface {
 }
 
 type MeasureSettingsUsecase interface {
+	CreateMany(c context.Context, items []MeasureSettings) error
 	FetchByID(c context.Context, ID string) (MeasureSettings, error)
 	Create(c context.Context, measure_settings *MeasureSettings) error
 	Update(c context.Context, measure_settings *MeasureSettings) error

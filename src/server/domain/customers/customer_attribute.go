@@ -35,6 +35,7 @@ type CustomerAttributeRepository interface {
 }
 
 type CustomerAttributeUsecase interface {
+	CreateMany(c context.Context, items []CustomerAttribute) error
 	FetchByID(c context.Context, ID string) (CustomerAttribute, error)
 	Create(c context.Context, customer_attribute *CustomerAttribute) error
 	Update(c context.Context, customer_attribute *CustomerAttribute) error

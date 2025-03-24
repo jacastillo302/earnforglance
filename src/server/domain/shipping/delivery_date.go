@@ -29,6 +29,7 @@ type DeliveryDateRepository interface {
 
 // DeliveryDateUsecase defines the use case interface for DeliveryDate
 type DeliveryDateUsecase interface {
+	CreateMany(c context.Context, items []DeliveryDate) error
 	FetchByID(c context.Context, ID string) (DeliveryDate, error)
 	Create(c context.Context, delivery_date *DeliveryDate) error
 	Update(c context.Context, delivery_date *DeliveryDate) error

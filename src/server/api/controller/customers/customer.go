@@ -17,6 +17,32 @@ type CustomerController struct {
 	Env             *bootstrap.Env
 }
 
+func (tc *CustomerController) CreateMany(c *gin.Context) {
+	var task []domain.Customer
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.CustomerUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "Customer created successfully",
+	})
+}
+
 func (tc *CustomerController) Create(c *gin.Context) {
 	var task domain.Customer
 	body, err := io.ReadAll(c.Request.Body)

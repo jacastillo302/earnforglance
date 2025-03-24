@@ -30,6 +30,7 @@ type TopicTemplateRepository interface {
 
 // TopicTemplateUsecase defines the use case interface for TopicTemplate
 type TopicTemplateUsecase interface {
+	CreateMany(c context.Context, items []TopicTemplate) error
 	FetchByID(c context.Context, ID string) (TopicTemplate, error)
 	Create(c context.Context, topic_template *TopicTemplate) error
 	Update(c context.Context, topic_template *TopicTemplate) error

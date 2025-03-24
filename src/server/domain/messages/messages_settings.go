@@ -27,6 +27,7 @@ type MessagesSettingsRepository interface {
 }
 
 type MessagesSettingsUsecase interface {
+	CreateMany(c context.Context, items []MessagesSettings) error
 	FetchByID(c context.Context, ID string) (MessagesSettings, error)
 	Create(c context.Context, messages_settings *MessagesSettings) error
 	Update(c context.Context, messages_settings *MessagesSettings) error

@@ -28,6 +28,7 @@ type LocaleStringResourceRepository interface {
 }
 
 type LocaleStringResourceUsecase interface {
+	CreateMany(c context.Context, items []LocaleStringResource) error
 	FetchByID(c context.Context, ID string) (LocaleStringResource, error)
 	Create(c context.Context, locale_string_resource *LocaleStringResource) error
 	Update(c context.Context, locale_string_resource *LocaleStringResource) error

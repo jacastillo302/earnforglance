@@ -37,6 +37,7 @@ type StoreInformationSettingsRepository interface {
 
 // StoreInformationSettingsUsecase defines the use case interface for StoreInformationSettings
 type StoreInformationSettingsUsecase interface {
+	CreateMany(c context.Context, items []StoreInformationSettings) error
 	FetchByID(c context.Context, ID string) (StoreInformationSettings, error)
 	Create(c context.Context, store_information_settings *StoreInformationSettings) error
 	Update(c context.Context, store_information_settings *StoreInformationSettings) error

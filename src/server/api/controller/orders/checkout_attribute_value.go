@@ -17,6 +17,32 @@ type CheckoutAttributeValueController struct {
 	Env                           *bootstrap.Env
 }
 
+func (tc *CheckoutAttributeValueController) CreateMany(c *gin.Context) {
+	var task []domain.CheckoutAttributeValue
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.CheckoutAttributeValueUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "CheckoutAttributeValue created successfully",
+	})
+}
+
 func (tc *CheckoutAttributeValueController) Create(c *gin.Context) {
 	var task domain.CheckoutAttributeValue
 	body, err := io.ReadAll(c.Request.Body)

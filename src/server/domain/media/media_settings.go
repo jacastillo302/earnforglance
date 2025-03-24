@@ -51,6 +51,7 @@ type MediaSettingsRepository interface {
 }
 
 type MediaSettingsUsecase interface {
+	CreateMany(c context.Context, items []MediaSettings) error
 	FetchByID(c context.Context, ID string) (MediaSettings, error)
 	Create(c context.Context, media_settings *MediaSettings) error
 	Update(c context.Context, media_settings *MediaSettings) error

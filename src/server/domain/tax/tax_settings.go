@@ -59,6 +59,7 @@ type TaxSettingsRepository interface {
 }
 
 type TaxSettingsUsecase interface {
+	CreateMany(c context.Context, items []TaxSettings) error
 	FetchByID(c context.Context, ID string) (TaxSettings, error)
 	Create(c context.Context, tax_settings *TaxSettings) error
 	Update(c context.Context, tax_settings *TaxSettings) error

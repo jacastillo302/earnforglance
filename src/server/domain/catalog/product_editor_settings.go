@@ -85,6 +85,7 @@ type ProductEditorSettingsRepository interface {
 }
 
 type ProductEditorSettingsUsecase interface {
+	CreateMany(c context.Context, items []ProductEditorSettings) error
 	FetchByID(c context.Context, ID string) (ProductEditorSettings, error)
 	Create(c context.Context, product_editor_settings *ProductEditorSettings) error
 	Update(c context.Context, product_editor_settings *ProductEditorSettings) error

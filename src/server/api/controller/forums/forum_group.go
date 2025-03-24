@@ -17,6 +17,32 @@ type ForumGroupController struct {
 	Env               *bootstrap.Env
 }
 
+func (tc *ForumGroupController) CreateMany(c *gin.Context) {
+	var task []domain.ForumGroup
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.ForumGroupUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "ForumGroup created successfully",
+	})
+}
+
 func (tc *ForumGroupController) Create(c *gin.Context) {
 	var task domain.ForumGroup
 	body, err := io.ReadAll(c.Request.Body)

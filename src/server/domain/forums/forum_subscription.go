@@ -34,6 +34,7 @@ type ForumSubscriptionRepository interface {
 
 // ForumSubscriptionUsecase interface
 type ForumSubscriptionUsecase interface {
+	CreateMany(c context.Context, items []ForumSubscription) error
 	FetchByID(c context.Context, ID string) (ForumSubscription, error)
 	Create(c context.Context, forum_subscription *ForumSubscription) error
 	Update(c context.Context, forum_subscription *ForumSubscription) error

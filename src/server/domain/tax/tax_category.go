@@ -27,6 +27,7 @@ type TaxCategoryRepository interface {
 }
 
 type TaxCategoryUsecase interface {
+	CreateMany(c context.Context, items []TaxCategory) error
 	FetchByID(c context.Context, ID string) (TaxCategory, error)
 	Create(c context.Context, tax_category *TaxCategory) error
 	Update(c context.Context, tax_category *TaxCategory) error

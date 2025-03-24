@@ -16,6 +16,32 @@ type DisplayDefaultMenuItemSettingsController struct {
 	Env                                   *bootstrap.Env
 }
 
+func (tc *DisplayDefaultMenuItemSettingsController) CreateMany(c *gin.Context) {
+	var task []common.DisplayDefaultMenuItemSettings
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.DisplayDefaultMenuItemSettingsUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "DisplayDefaultMenuItemSettings created successfully",
+	})
+}
+
 func (tc *DisplayDefaultMenuItemSettingsController) Create(c *gin.Context) {
 	var task common.DisplayDefaultMenuItemSettings
 	body, err := io.ReadAll(c.Request.Body)

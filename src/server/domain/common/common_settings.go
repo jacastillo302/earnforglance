@@ -41,6 +41,7 @@ type CommonSettingsRepository interface {
 }
 
 type CommonSettingsUsecase interface {
+	CreateMany(c context.Context, items []CommonSettings) error
 	FetchByID(c context.Context, ID string) (CommonSettings, error)
 	Create(c context.Context, common_settings *CommonSettings) error
 	Update(c context.Context, common_settings *CommonSettings) error

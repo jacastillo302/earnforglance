@@ -26,6 +26,7 @@ type WidgetSettingsRepository interface {
 }
 
 type WidgetSettingsUsecase interface {
+	CreateMany(c context.Context, items []WidgetSettings) error
 	FetchByID(c context.Context, ID string) (WidgetSettings, error)
 	Create(c context.Context, widget_settings *WidgetSettings) error
 	Update(c context.Context, widget_settings *WidgetSettings) error

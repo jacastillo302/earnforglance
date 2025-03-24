@@ -89,6 +89,7 @@ type OrderRepository interface {
 
 // OrderUsecase represents the order usecase interface
 type OrderUsecase interface {
+	CreateMany(c context.Context, items []Order) error
 	FetchByID(c context.Context, ID string) (Order, error)
 	Create(c context.Context, order *Order) error
 	Update(c context.Context, order *Order) error

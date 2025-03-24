@@ -144,6 +144,7 @@ type CatalogSettingsRepository interface {
 }
 
 type CatalogSettingsUsecase interface {
+	CreateMany(c context.Context, items []CatalogSettings) error
 	FetchByID(c context.Context, ID string) (CatalogSettings, error)
 	Create(c context.Context, catalog_settings *CatalogSettings) error
 	Update(c context.Context, catalog_settings *CatalogSettings) error

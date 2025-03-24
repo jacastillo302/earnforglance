@@ -41,6 +41,7 @@ type GiftCardRepository interface {
 
 // GiftCardUsecase interface
 type GiftCardUsecase interface {
+	CreateMany(c context.Context, items []GiftCard) error
 	FetchByID(c context.Context, ID string) (GiftCard, error)
 	Create(c context.Context, gift_card *GiftCard) error
 	Update(c context.Context, gift_card *GiftCard) error

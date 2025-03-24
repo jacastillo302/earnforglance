@@ -30,6 +30,7 @@ type StateProvinceRepository interface {
 }
 
 type StateProvinceUsecase interface {
+	CreateMany(c context.Context, items []StateProvince) error
 	FetchByID(c context.Context, ID string) (StateProvince, error)
 	Create(c context.Context, state_province *StateProvince) error
 	Update(c context.Context, state_province *StateProvince) error

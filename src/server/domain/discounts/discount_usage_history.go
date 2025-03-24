@@ -29,6 +29,7 @@ type DiscountUsageHistoryRepository interface {
 }
 
 type DiscountUsageHistoryUsecase interface {
+	CreateMany(c context.Context, items []DiscountUsageHistory) error
 	FetchByID(c context.Context, ID string) (DiscountUsageHistory, error)
 	Create(c context.Context, discount_usage_history *DiscountUsageHistory) error
 	Update(c context.Context, discount_usage_history *DiscountUsageHistory) error

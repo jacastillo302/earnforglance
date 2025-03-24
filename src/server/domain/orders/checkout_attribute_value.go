@@ -30,6 +30,7 @@ type CheckoutAttributeValueRepository interface {
 
 // CheckoutAttributeValueUsecase interface
 type CheckoutAttributeValueUsecase interface {
+	CreateMany(c context.Context, items []CheckoutAttributeValue) error
 	FetchByID(c context.Context, ID string) (CheckoutAttributeValue, error)
 	Create(c context.Context, checkout_attribute_value *CheckoutAttributeValue) error
 	Update(c context.Context, checkout_attribute_value *CheckoutAttributeValue) error

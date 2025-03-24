@@ -37,6 +37,7 @@ type SalesSummaryReportLineRepository interface {
 
 // SalesSummaryReportLineUsecase represents the use case interface for SalesSummaryReportLine
 type SalesSummaryReportLineUsecase interface {
+	CreateMany(c context.Context, items []SalesSummaryReportLine) error
 	FetchByID(c context.Context, ID string) (SalesSummaryReportLine, error)
 	Create(c context.Context, sales_summary_report_line *SalesSummaryReportLine) error
 	Update(c context.Context, sales_summary_report_line *SalesSummaryReportLine) error

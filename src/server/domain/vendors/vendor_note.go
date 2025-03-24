@@ -31,6 +31,7 @@ type VendorNoteRepository interface {
 
 // VendorNoteUsecase defines the use case interface for VendorNote
 type VendorNoteUsecase interface {
+	CreateMany(c context.Context, items []VendorNote) error
 	FetchByID(c context.Context, ID string) (VendorNote, error)
 	Create(c context.Context, vendor_note *VendorNote) error
 	Update(c context.Context, vendor_note *VendorNote) error

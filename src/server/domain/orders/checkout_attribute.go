@@ -38,6 +38,7 @@ type CheckoutAttributeRepository interface {
 
 // CheckoutAttributeUsecase interface
 type CheckoutAttributeUsecase interface {
+	CreateMany(c context.Context, items []CheckoutAttribute) error
 	FetchByID(c context.Context, ID string) (CheckoutAttribute, error)
 	Create(c context.Context, checkout_attribute *CheckoutAttribute) error
 	Update(c context.Context, checkout_attribute *CheckoutAttribute) error

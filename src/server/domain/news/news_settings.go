@@ -36,6 +36,7 @@ type NewsSettingsRepository interface {
 
 // NewsSettingsUsecase interface
 type NewsSettingsUsecase interface {
+	CreateMany(c context.Context, items []NewsSettings) error
 	FetchByID(c context.Context, ID string) (NewsSettings, error)
 	Create(c context.Context, news_settings *NewsSettings) error
 	Update(c context.Context, news_settings *NewsSettings) error

@@ -29,6 +29,7 @@ type MeasureDimensionRepository interface {
 }
 
 type MeasureDimensionUsecase interface {
+	CreateMany(c context.Context, items []MeasureDimension) error
 	FetchByID(c context.Context, ID string) (MeasureDimension, error)
 	Create(c context.Context, measure_dimension *MeasureDimension) error
 	Update(c context.Context, measure_dimension *MeasureDimension) error

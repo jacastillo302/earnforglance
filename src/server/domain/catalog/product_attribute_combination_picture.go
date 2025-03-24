@@ -27,6 +27,7 @@ type ProductAttributeCombinationPictureRepository interface {
 }
 
 type ProductAttributeCombinationPictureUsecase interface {
+	CreateMany(c context.Context, items []ProductAttributeCombinationPicture) error
 	FetchByID(c context.Context, ID string) (ProductAttributeCombinationPicture, error)
 	Create(c context.Context, product_attribute_combination_picture *ProductAttributeCombinationPicture) error
 	Update(c context.Context, product_attribute_combination_picture *ProductAttributeCombinationPicture) error

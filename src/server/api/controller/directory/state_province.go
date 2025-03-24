@@ -17,6 +17,32 @@ type StateProvinceController struct {
 	Env                  *bootstrap.Env
 }
 
+func (tc *StateProvinceController) CreateMany(c *gin.Context) {
+	var task []domain.StateProvince
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.StateProvinceUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "StateProvince created successfully",
+	})
+}
+
 func (tc *StateProvinceController) Create(c *gin.Context) {
 	var task domain.StateProvince
 	body, err := io.ReadAll(c.Request.Body)

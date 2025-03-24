@@ -64,6 +64,7 @@ type OrderSettingsRepository interface {
 
 // OrderSettingsUsecase represents the usecase interface for OrderSettings
 type OrderSettingsUsecase interface {
+	CreateMany(c context.Context, items []OrderSettings) error
 	FetchByID(c context.Context, ID string) (OrderSettings, error)
 	Create(c context.Context, order_settings *OrderSettings) error
 	Update(c context.Context, order_settings *OrderSettings) error

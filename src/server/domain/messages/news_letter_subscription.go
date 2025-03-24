@@ -35,6 +35,7 @@ type NewsLetterSubscriptionRepository interface {
 
 // NewsLetterSubscriptionUsecase interface
 type NewsLetterSubscriptionUsecase interface {
+	CreateMany(c context.Context, items []NewsLetterSubscription) error
 	FetchByID(c context.Context, ID string) (NewsLetterSubscription, error)
 	Create(c context.Context, newsletter_subscription *NewsLetterSubscription) error
 	Update(c context.Context, newsletter_subscription *NewsLetterSubscription) error

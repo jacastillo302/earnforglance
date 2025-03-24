@@ -30,6 +30,7 @@ type ExchangeRateRepository interface {
 }
 
 type ExchangeRateUsecase interface {
+	CreateMany(c context.Context, items []ExchangeRate) error
 	FetchByID(c context.Context, ID string) (ExchangeRate, error)
 	Create(c context.Context, exchange_rate *ExchangeRate) error
 	Update(c context.Context, exchange_rate *ExchangeRate) error

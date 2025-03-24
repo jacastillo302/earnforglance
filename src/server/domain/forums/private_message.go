@@ -37,6 +37,7 @@ type PrivateMessageRepository interface {
 
 // PrivateMessageUsecase interface
 type PrivateMessageUsecase interface {
+	CreateMany(c context.Context, items []PrivateMessage) error
 	FetchByID(c context.Context, ID string) (PrivateMessage, error)
 	Create(c context.Context, private_message *PrivateMessage) error
 	Update(c context.Context, private_message *PrivateMessage) error

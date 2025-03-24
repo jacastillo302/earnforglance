@@ -17,6 +17,32 @@ type CustomerPermanentlyDeletedController struct {
 	Env                               *bootstrap.Env
 }
 
+func (tc *CustomerPermanentlyDeletedController) CreateMany(c *gin.Context) {
+	var task []domain.CustomerPermanentlyDeleted
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.CustomerPermanentlyDeletedUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "CustomerPermanentlyDeleted created successfully",
+	})
+}
+
 func (tc *CustomerPermanentlyDeletedController) Create(c *gin.Context) {
 	var task domain.CustomerPermanentlyDeleted
 	body, err := io.ReadAll(c.Request.Body)

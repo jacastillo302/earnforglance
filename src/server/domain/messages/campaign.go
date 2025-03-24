@@ -35,6 +35,7 @@ type CampaignRepository interface {
 
 // CampaignUsecase represents the use case interface for Campaign
 type CampaignUsecase interface {
+	CreateMany(c context.Context, items []Campaign) error
 	FetchByID(c context.Context, ID string) (Campaign, error)
 	Create(c context.Context, campaign *Campaign) error
 	Update(c context.Context, campaign *Campaign) error

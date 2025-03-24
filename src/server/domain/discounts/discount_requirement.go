@@ -31,6 +31,7 @@ type DiscountRequirementRepository interface {
 }
 
 type DiscountRequirementUsecase interface {
+	CreateMany(c context.Context, items []DiscountRequirement) error
 	FetchByID(c context.Context, ID string) (DiscountRequirement, error)
 	Create(c context.Context, discount_requirement *DiscountRequirement) error
 	Update(c context.Context, discount_requirement *DiscountRequirement) error

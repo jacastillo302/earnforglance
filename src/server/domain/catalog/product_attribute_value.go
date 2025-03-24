@@ -41,6 +41,7 @@ type ProductAttributeValueRepository interface {
 }
 
 type ProductAttributeValueUsecase interface {
+	CreateMany(c context.Context, items []ProductAttributeValue) error
 	FetchByID(c context.Context, ID string) (ProductAttributeValue, error)
 	Create(c context.Context, product_attribute_value_picture *ProductAttributeValue) error
 	Update(c context.Context, product_attribute_value_picture *ProductAttributeValue) error

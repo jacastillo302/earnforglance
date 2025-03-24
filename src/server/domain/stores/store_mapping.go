@@ -30,6 +30,7 @@ type StoreMappingRepository interface {
 
 // StoreMappingUsecase defines the use case interface for StoreMapping
 type StoreMappingUsecase interface {
+	CreateMany(c context.Context, items []StoreMapping) error
 	FetchByID(c context.Context, ID string) (StoreMapping, error)
 	Create(c context.Context, store_mapping *StoreMapping) error
 	Update(c context.Context, store_mapping *StoreMapping) error

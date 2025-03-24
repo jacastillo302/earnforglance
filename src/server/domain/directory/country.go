@@ -35,6 +35,7 @@ type CountryRepository interface {
 }
 
 type CountryUsecase interface {
+	CreateMany(c context.Context, items []Country) error
 	FetchByID(c context.Context, ID string) (Country, error)
 	Create(c context.Context, country *Country) error
 	Update(c context.Context, country *Country) error

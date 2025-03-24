@@ -28,6 +28,7 @@ type EmailAccountSettingsRepository interface {
 
 // EmailAccountSettingsUsecase represents the use case interface for EmailAccountSettings
 type EmailAccountSettingsUsecase interface {
+	CreateMany(c context.Context, items []EmailAccountSettings) error
 	FetchByID(c context.Context, ID string) (EmailAccountSettings, error)
 	Create(c context.Context, email_account_settings *EmailAccountSettings) error
 	Update(c context.Context, email_account_settings *EmailAccountSettings) error

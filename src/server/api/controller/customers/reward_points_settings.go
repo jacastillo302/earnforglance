@@ -17,6 +17,32 @@ type RewardPointsSettingsController struct {
 	Env                         *bootstrap.Env
 }
 
+func (tc *RewardPointsSettingsController) CreateMany(c *gin.Context) {
+	var task []domain.RewardPointsSettings
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.RewardPointsSettingsUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "RewardPointsSettings created successfully",
+	})
+}
+
 func (tc *RewardPointsSettingsController) Create(c *gin.Context) {
 	var task domain.RewardPointsSettings
 	body, err := io.ReadAll(c.Request.Body)

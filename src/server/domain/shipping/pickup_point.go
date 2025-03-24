@@ -43,6 +43,7 @@ type PickupPointRepository interface {
 
 // PickupPointUsecase defines the use case interface for PickupPoint
 type PickupPointUsecase interface {
+	CreateMany(c context.Context, items []PickupPoint) error
 	FetchByID(c context.Context, ID string) (PickupPoint, error)
 	Create(c context.Context, pickup_point *PickupPoint) error
 	Update(c context.Context, pickup_point *PickupPoint) error

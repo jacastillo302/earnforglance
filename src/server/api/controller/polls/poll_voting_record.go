@@ -17,6 +17,32 @@ type PollVotingRecordController struct {
 	Env                     *bootstrap.Env
 }
 
+func (tc *PollVotingRecordController) CreateMany(c *gin.Context) {
+	var task []domain.PollVotingRecord
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.PollVotingRecordUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "PollVotingRecord created successfully",
+	})
+}
+
 func (tc *PollVotingRecordController) Create(c *gin.Context) {
 	var task domain.PollVotingRecord
 	body, err := io.ReadAll(c.Request.Body)

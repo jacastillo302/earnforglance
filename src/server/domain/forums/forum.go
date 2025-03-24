@@ -40,6 +40,7 @@ type ForumRepository interface {
 
 // ForumUsecase interface
 type ForumUsecase interface {
+	CreateMany(c context.Context, items []Forum) error
 	FetchByID(c context.Context, ID string) (Forum, error)
 	Create(c context.Context, forum *Forum) error
 	Update(c context.Context, forum *Forum) error

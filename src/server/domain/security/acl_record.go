@@ -30,6 +30,7 @@ type AclRecordRepository interface {
 
 // AclRecordUsecase defines the use case interface for AclRecord
 type AclRecordUsecase interface {
+	CreateMany(c context.Context, items []AclRecord) error
 	FetchByID(c context.Context, ID string) (AclRecord, error)
 	Create(c context.Context, acl_record *AclRecord) error
 	Update(c context.Context, acl_record *AclRecord) error

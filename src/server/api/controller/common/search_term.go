@@ -16,6 +16,32 @@ type SearchTermController struct {
 	Env               *bootstrap.Env
 }
 
+func (tc *SearchTermController) CreateMany(c *gin.Context) {
+	var task []common.SearchTerm
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.SearchTermUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "SearchTerm created successfully",
+	})
+}
+
 func (tc *SearchTermController) Create(c *gin.Context) {
 	var task common.SearchTerm
 	body, err := io.ReadAll(c.Request.Body)

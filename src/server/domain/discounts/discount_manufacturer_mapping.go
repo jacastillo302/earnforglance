@@ -26,6 +26,7 @@ type DiscountManufacturerMappingRepository interface {
 }
 
 type DiscountManufacturerMappingUsecase interface {
+	CreateMany(c context.Context, items []DiscountManufacturerMapping) error
 	FetchByID(c context.Context, discount_manufacturer_mappingID string) (DiscountManufacturerMapping, error)
 	Create(c context.Context, discount_manufacturer_mapping *DiscountManufacturerMapping) error
 	Update(c context.Context, discount_manufacturer_mapping *DiscountManufacturerMapping) error

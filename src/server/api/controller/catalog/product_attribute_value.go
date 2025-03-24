@@ -17,6 +17,32 @@ type ProductAttributeValueController struct {
 	Env                          *bootstrap.Env
 }
 
+func (tc *ProductAttributeValueController) CreateMany(c *gin.Context) {
+	var task []domain.ProductAttributeValue
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.ProductAttributeValueUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "ProductAttributeValue created successfully",
+	})
+}
+
 func (tc *ProductAttributeValueController) Create(c *gin.Context) {
 	var task domain.ProductAttributeValue
 	body, err := io.ReadAll(c.Request.Body)

@@ -31,6 +31,7 @@ type PollVotingRecordRepository interface {
 
 // PollVotingRecordUsecase defines the usecase interface for PollVotingRecord
 type PollVotingRecordUsecase interface {
+	CreateMany(c context.Context, items []PollVotingRecord) error
 	FetchByID(c context.Context, ID string) (PollVotingRecord, error)
 	Create(c context.Context, poll_voting_record *PollVotingRecord) error
 	Update(c context.Context, poll_voting_record *PollVotingRecord) error

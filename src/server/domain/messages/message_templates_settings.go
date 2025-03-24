@@ -31,6 +31,7 @@ type MessageTemplatesSettingsRepository interface {
 
 // MessageTemplatesSettingsUsecase interface
 type MessageTemplatesSettingsUsecase interface {
+	CreateMany(c context.Context, items []MessageTemplatesSettings) error
 	FetchByID(c context.Context, ID string) (MessageTemplatesSettings, error)
 	Create(c context.Context, message_template_settings *MessageTemplatesSettings) error
 	Update(c context.Context, message_template_settings *MessageTemplatesSettings) error

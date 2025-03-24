@@ -32,6 +32,7 @@ type BlogCommentRepository interface {
 }
 
 type BlogCommentUsecase interface {
+	CreateMany(c context.Context, items []BlogComment) error
 	FetchByID(c context.Context, blog_commentID string) (BlogComment, error)
 	Create(c context.Context, blog_comment *BlogComment) error
 	Update(c context.Context, blog_comment *BlogComment) error

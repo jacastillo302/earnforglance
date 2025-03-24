@@ -16,6 +16,32 @@ type CommonSettingsController struct {
 	Env                   *bootstrap.Env
 }
 
+func (tc *CommonSettingsController) CreateMany(c *gin.Context) {
+	var task []common.CommonSettings
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.CommonSettingsUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "CommonSettings created successfully",
+	})
+}
+
 func (tc *CommonSettingsController) Create(c *gin.Context) {
 	var task common.CommonSettings
 	body, err := io.ReadAll(c.Request.Body)

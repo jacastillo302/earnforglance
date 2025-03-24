@@ -48,6 +48,7 @@ type ShoppingCartSettingsRepository interface {
 
 // ShoppingCartSettingsUsecase defines the use case interface for ShoppingCartSettings
 type ShoppingCartSettingsUsecase interface {
+	CreateMany(c context.Context, items []ShoppingCartSettings) error
 	FetchByID(c context.Context, ID string) (ShoppingCartSettings, error)
 	Create(c context.Context, shopping_cart_settings *ShoppingCartSettings) error
 	Update(c context.Context, shopping_cart_settings *ShoppingCartSettings) error

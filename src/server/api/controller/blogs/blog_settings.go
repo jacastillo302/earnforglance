@@ -17,6 +17,32 @@ type BlogSettingsController struct {
 	Env                 *bootstrap.Env
 }
 
+func (tc *BlogSettingsController) CreateMany(c *gin.Context) {
+	var task []domain.BlogSettings
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.BlogSettingsUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "BlogSettings created successfully",
+	})
+}
+
 func (tc *BlogSettingsController) Create(c *gin.Context) {
 	var task domain.BlogSettings
 	body, err := io.ReadAll(c.Request.Body)

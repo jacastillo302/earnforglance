@@ -37,6 +37,7 @@ type ScheduleTaskRepository interface {
 
 // ScheduleTaskUsecase defines the usecase interface for ScheduleTask
 type ScheduleTaskUsecase interface {
+	CreateMany(c context.Context, items []ScheduleTask) error
 	FetchByID(c context.Context, ID string) (ScheduleTask, error)
 	Create(c context.Context, schedule_task *ScheduleTask) error
 	Update(c context.Context, schedule_task *ScheduleTask) error

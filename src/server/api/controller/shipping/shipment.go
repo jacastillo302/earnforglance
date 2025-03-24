@@ -17,6 +17,32 @@ type ShipmentController struct {
 	Env             *bootstrap.Env
 }
 
+func (tc *ShipmentController) CreateMany(c *gin.Context) {
+	var task []domain.Shipment
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.ShipmentUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "Shipment created successfully",
+	})
+}
+
 func (tc *ShipmentController) Create(c *gin.Context) {
 	var task domain.Shipment
 	body, err := io.ReadAll(c.Request.Body)

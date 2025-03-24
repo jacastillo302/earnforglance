@@ -28,6 +28,7 @@ type ProductVideoRepository interface {
 }
 
 type ProductVideoUsecase interface {
+	CreateMany(c context.Context, items []ProductVideo) error
 	FetchByID(c context.Context, ID string) (ProductVideo, error)
 	Create(c context.Context, product_video *ProductVideo) error
 	Update(c context.Context, product_video *ProductVideo) error

@@ -33,6 +33,7 @@ type OrderNoteRepository interface {
 
 // OrderNoteUsecase interface
 type OrderNoteUsecase interface {
+	CreateMany(c context.Context, items []OrderNote) error
 	FetchByID(c context.Context, ID string) (OrderNote, error)
 	Create(c context.Context, order_note *OrderNote) error
 	Update(c context.Context, order_note *OrderNote) error

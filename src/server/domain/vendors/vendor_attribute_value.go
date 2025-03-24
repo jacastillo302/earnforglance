@@ -26,6 +26,7 @@ type VendorAttributeValueRepository interface {
 }
 
 type VendorAttributeValueUsecase interface {
+	CreateMany(c context.Context, items []VendorAttributeValue) error
 	FetchByID(c context.Context, ID string) (VendorAttributeValue, error)
 	Create(c context.Context, vendor_attribute_value *VendorAttributeValue) error
 	Update(c context.Context, vendor_attribute_value *VendorAttributeValue) error

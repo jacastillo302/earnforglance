@@ -29,6 +29,7 @@ type ProductTagRepository interface {
 }
 
 type ProductTagUsecase interface {
+	CreateMany(c context.Context, items []ProductTag) error
 	FetchByID(c context.Context, ID string) (ProductTag, error)
 	Create(c context.Context, product_tag *ProductTag) error
 	Update(c context.Context, product_tag *ProductTag) error

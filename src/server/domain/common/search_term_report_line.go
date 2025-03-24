@@ -27,6 +27,7 @@ type SearchTermReportLineRepository interface {
 }
 
 type SearchTermReportLineUsecase interface {
+	CreateMany(c context.Context, items []SearchTermReportLine) error
 	FetchByID(c context.Context, ID string) (SearchTermReportLine, error)
 	Create(c context.Context, search_term_record_line *SearchTermReportLine) error
 	Update(c context.Context, search_term_record_line *SearchTermReportLine) error

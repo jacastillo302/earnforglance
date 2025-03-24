@@ -17,6 +17,32 @@ type GiftCardUsageHistoryController struct {
 	Env                         *bootstrap.Env
 }
 
+func (tc *GiftCardUsageHistoryController) CreateMany(c *gin.Context) {
+	var task []domain.GiftCardUsageHistory
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.GiftCardUsageHistoryUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "GiftCardUsageHistory created successfully",
+	})
+}
+
 func (tc *GiftCardUsageHistoryController) Create(c *gin.Context) {
 	var task domain.GiftCardUsageHistory
 	body, err := io.ReadAll(c.Request.Body)

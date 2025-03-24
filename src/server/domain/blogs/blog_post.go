@@ -40,6 +40,7 @@ type BlogPostRepository interface {
 }
 
 type BlogPostUsecase interface {
+	CreateMany(c context.Context, items []BlogPost) error
 	FetchByID(c context.Context, ID string) (BlogPost, error)
 	Create(c context.Context, blog_post *BlogPost) error
 	Update(c context.Context, blog_post *BlogPost) error

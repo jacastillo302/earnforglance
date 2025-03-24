@@ -34,6 +34,7 @@ type LanguageRepository interface {
 }
 
 type LanguageUsecase interface {
+	CreateMany(c context.Context, items []Language) error
 	FetchByID(c context.Context, ID string) (Language, error)
 	Create(c context.Context, language *Language) error
 	Update(c context.Context, language *Language) error

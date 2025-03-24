@@ -27,6 +27,7 @@ type BlogPostTagRepository interface {
 }
 
 type BlogPostTagUsecase interface {
+	CreateMany(c context.Context, items []BlogPostTag) error
 	FetchByID(c context.Context, ID string) (BlogPostTag, error)
 	Create(c context.Context, blog_post_tag *BlogPostTag) error
 	Update(c context.Context, blog_post_tag *BlogPostTag) error

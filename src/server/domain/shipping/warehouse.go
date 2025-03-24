@@ -28,6 +28,7 @@ type WarehouseRepository interface {
 }
 
 type WarehouseUsecase interface {
+	CreateMany(c context.Context, items []Warehouse) error
 	FetchByID(c context.Context, ID string) (Warehouse, error)
 	Create(c context.Context, warehouse *Warehouse) error
 	Update(c context.Context, warehouse *Warehouse) error

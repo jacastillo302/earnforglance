@@ -33,6 +33,7 @@ type TierPriceRepository interface {
 }
 
 type TierPriceUsecase interface {
+	CreateMany(c context.Context, items []TierPrice) error
 	FetchByID(c context.Context, ID string) (TierPrice, error)
 	Create(c context.Context, tier_price *TierPrice) error
 	Update(c context.Context, tier_price *TierPrice) error

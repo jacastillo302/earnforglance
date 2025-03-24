@@ -17,6 +17,32 @@ type DiscountMappingController struct {
 	Env                    *bootstrap.Env
 }
 
+func (tc *DiscountMappingController) CreateMany(c *gin.Context) {
+	var task []domain.DiscountMapping
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.DiscountMappingUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "DiscountMapping created successfully",
+	})
+}
+
 func (tc *DiscountMappingController) Create(c *gin.Context) {
 	var task domain.DiscountMapping
 	body, err := io.ReadAll(c.Request.Body)

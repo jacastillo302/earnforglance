@@ -48,6 +48,7 @@ type QueuedEmailRepository interface {
 
 // QueuedEmailUsecase interface
 type QueuedEmailUsecase interface {
+	CreateMany(c context.Context, items []QueuedEmail) error
 	FetchByID(c context.Context, ID string) (QueuedEmail, error)
 	Create(c context.Context, queued_email *QueuedEmail) error
 	Update(c context.Context, queued_email *QueuedEmail) error

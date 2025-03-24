@@ -28,6 +28,7 @@ type CategoryTemplateRepository interface {
 }
 
 type CategoryTemplateUsecase interface {
+	CreateMany(c context.Context, items []CategoryTemplate) error
 	FetchByID(c context.Context, ID string) (CategoryTemplate, error)
 	Create(c context.Context, category_template *CategoryTemplate) error
 	Update(c context.Context, category_template *CategoryTemplate) error

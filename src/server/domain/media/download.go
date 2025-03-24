@@ -40,6 +40,7 @@ type DownloadRepository interface {
 // business logic provider needs to implement to
 // manage downloads
 type DownloadUsecase interface {
+	CreateMany(c context.Context, items []Download) error
 	FetchByID(c context.Context, ID string) (Download, error)
 	Create(c context.Context, download *Download) error
 	Update(c context.Context, download *Download) error

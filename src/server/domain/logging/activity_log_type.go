@@ -28,6 +28,7 @@ type ActivityLogTypeRepository interface {
 }
 
 type ActivityLogTypeUsecase interface {
+	CreateMany(c context.Context, items []ActivityLogType) error
 	FetchByID(c context.Context, ID string) (ActivityLogType, error)
 	Create(c context.Context, activity_log_type *ActivityLogType) error
 	Update(c context.Context, activity_log_type *ActivityLogType) error

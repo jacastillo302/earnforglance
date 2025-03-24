@@ -40,6 +40,7 @@ type ForumTopicRepository interface {
 
 // ForumTopicUsecase represents the forum topic usecase interface
 type ForumTopicUsecase interface {
+	CreateMany(c context.Context, items []ForumTopic) error
 	FetchByID(c context.Context, ID string) (ForumTopic, error)
 	Create(c context.Context, forum_topic *ForumTopic) error
 	Update(c context.Context, forum_topic *ForumTopic) error

@@ -38,6 +38,7 @@ type CurrencyRepository interface {
 }
 
 type CurrencyUsecase interface {
+	CreateMany(c context.Context, items []Currency) error
 	FetchByID(c context.Context, ID string) (Currency, error)
 	Create(c context.Context, currency *Currency) error
 	Update(c context.Context, currency *Currency) error

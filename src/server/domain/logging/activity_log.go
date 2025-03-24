@@ -33,6 +33,7 @@ type ActivityLogRepository interface {
 }
 
 type ActivityLogUsecase interface {
+	CreateMany(c context.Context, items []ActivityLog) error
 	FetchByID(c context.Context, ID string) (ActivityLog, error)
 	Create(c context.Context, activity_log *ActivityLog) error
 	Update(c context.Context, activity_log *ActivityLog) error

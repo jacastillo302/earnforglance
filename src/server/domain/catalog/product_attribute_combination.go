@@ -36,6 +36,7 @@ type ProductAttributeCombinationRepository interface {
 }
 
 type ProductAttributeCombinationUsecase interface {
+	CreateMany(c context.Context, items []ProductAttributeCombination) error
 	FetchByID(c context.Context, ID string) (ProductAttributeCombination, error)
 	Create(c context.Context, product_attribute_combination *ProductAttributeCombination) error
 	Update(c context.Context, product_attribute_combination *ProductAttributeCombination) error

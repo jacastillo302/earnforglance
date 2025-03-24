@@ -16,6 +16,32 @@ type PdfSettingsController struct {
 	Env                *bootstrap.Env
 }
 
+func (tc *PdfSettingsController) CreateMany(c *gin.Context) {
+	var task []common.PdfSettings
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.PdfSettingsUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "PdfSettings created successfully",
+	})
+}
+
 func (tc *PdfSettingsController) Create(c *gin.Context) {
 	var task common.PdfSettings
 	body, err := io.ReadAll(c.Request.Body)

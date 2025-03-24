@@ -40,6 +40,7 @@ type DisplayDefaultFooterItemSettingsRepository interface {
 }
 
 type DisplayDefaultFooterItemSettingsUsecase interface {
+	CreateMany(c context.Context, items []DisplayDefaultFooterItemSettings) error
 	FetchByID(c context.Context, ID string) (DisplayDefaultFooterItemSettings, error)
 	Create(c context.Context, display_default_footer_item_settings *DisplayDefaultFooterItemSettings) error
 	Update(c context.Context, display_default_footer_item_settings *DisplayDefaultFooterItemSettings) error

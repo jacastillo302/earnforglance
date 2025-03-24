@@ -31,6 +31,7 @@ type RecurringPaymentHistoryRepository interface {
 
 // RecurringPaymentHistoryUsecase represents the use case interface for RecurringPaymentHistory
 type RecurringPaymentHistoryUsecase interface {
+	CreateMany(c context.Context, items []RecurringPaymentHistory) error
 	FetchByID(c context.Context, ID string) (RecurringPaymentHistory, error)
 	Create(c context.Context, recurring_payment_history *RecurringPaymentHistory) error
 	Update(c context.Context, recurring_payment_history *RecurringPaymentHistory) error

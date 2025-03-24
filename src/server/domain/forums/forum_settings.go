@@ -60,6 +60,7 @@ type ForumSettingsRepository interface {
 
 // ForumSettingsUsecase represents the forum settings usecase interface
 type ForumSettingsUsecase interface {
+	CreateMany(c context.Context, items []ForumSettings) error
 	FetchByID(c context.Context, ID string) (ForumSettings, error)
 	Create(c context.Context, forum_settings *ForumSettings) error
 	Update(c context.Context, forum_settings *ForumSettings) error

@@ -28,6 +28,7 @@ type ManufacturerTemplateRepository interface {
 }
 
 type ManufacturerTemplateUsecase interface {
+	CreateMany(c context.Context, items []ManufacturerTemplate) error
 	FetchByID(c context.Context, ID string) (ManufacturerTemplate, error)
 	Create(c context.Context, manufacturer_template *ManufacturerTemplate) error
 	Update(c context.Context, manufacturer_template *ManufacturerTemplate) error

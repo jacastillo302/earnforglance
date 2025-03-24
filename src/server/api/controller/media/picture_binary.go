@@ -17,6 +17,32 @@ type PictureBinaryController struct {
 	Env                  *bootstrap.Env
 }
 
+func (tc *PictureBinaryController) CreateMany(c *gin.Context) {
+	var task []domain.PictureBinary
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.PictureBinaryUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "PictureBinary created successfully",
+	})
+}
+
 func (tc *PictureBinaryController) Create(c *gin.Context) {
 	var task domain.PictureBinary
 	body, err := io.ReadAll(c.Request.Body)

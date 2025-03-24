@@ -29,6 +29,7 @@ type PictureBinaryRepository interface {
 
 // PictureBinaryUsecase defines the usecase interface for PictureBinary
 type PictureBinaryUsecase interface {
+	CreateMany(c context.Context, items []PictureBinary) error
 	FetchByID(c context.Context, ID string) (PictureBinary, error)
 	Create(c context.Context, picture_binary *PictureBinary) error
 	Update(c context.Context, picture_binary *PictureBinary) error

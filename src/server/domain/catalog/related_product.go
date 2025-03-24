@@ -28,6 +28,7 @@ type RelatedProductRepository interface {
 }
 
 type RelatedProductUsecase interface {
+	CreateMany(c context.Context, items []RelatedProduct) error
 	FetchByID(c context.Context, ID string) (RelatedProduct, error)
 	Create(c context.Context, related_product *RelatedProduct) error
 	Update(c context.Context, related_product *RelatedProduct) error

@@ -40,6 +40,7 @@ type SecuritySettingsRepository interface {
 }
 
 type SecuritySettingsUsecase interface {
+	CreateMany(c context.Context, items []SecuritySettings) error
 	FetchByID(c context.Context, security_settingsID string) (SecuritySettings, error)
 	Create(c context.Context, security_settings *SecuritySettings) error
 	Update(c context.Context, security_settings *SecuritySettings) error

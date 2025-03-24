@@ -33,6 +33,7 @@ type ProductSpecificationAttributeRepository interface {
 }
 
 type ProductSpecificationAttributeUsecase interface {
+	CreateMany(c context.Context, items []ProductSpecificationAttribute) error
 	FetchByID(c context.Context, ID string) (ProductSpecificationAttribute, error)
 	Create(c context.Context, product_specification_attribute *ProductSpecificationAttribute) error
 	Update(c context.Context, product_specification_attribute *ProductSpecificationAttribute) error

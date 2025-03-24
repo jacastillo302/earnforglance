@@ -27,6 +27,7 @@ type CrossSellProductRepository interface {
 }
 
 type CrossSellProductUsecase interface {
+	CreateMany(c context.Context, items []CrossSellProduct) error
 	FetchByID(c context.Context, ID string) (CrossSellProduct, error)
 	Create(c context.Context, cross_sell_product *CrossSellProduct) error
 	Update(c context.Context, cross_sell_product *CrossSellProduct) error

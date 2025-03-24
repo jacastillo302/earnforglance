@@ -17,6 +17,32 @@ type CurrencyController struct {
 	Env             *bootstrap.Env
 }
 
+func (tc *CurrencyController) CreateMany(c *gin.Context) {
+	var task []domain.Currency
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.CurrencyUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "Currency created successfully",
+	})
+}
+
 func (tc *CurrencyController) Create(c *gin.Context) {
 	var task domain.Currency
 	body, err := io.ReadAll(c.Request.Body)

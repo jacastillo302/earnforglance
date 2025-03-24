@@ -46,6 +46,7 @@ type DiscountRepository interface {
 }
 
 type DiscountUsecase interface {
+	CreateMany(c context.Context, items []Discount) error
 	FetchByID(c context.Context, ID string) (Discount, error)
 	Create(c context.Context, discount *Discount) error
 	Update(c context.Context, discount *Discount) error

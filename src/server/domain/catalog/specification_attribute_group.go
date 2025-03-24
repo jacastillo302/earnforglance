@@ -27,6 +27,7 @@ type SpecificationAttributeGroupRepository interface {
 }
 
 type SpecificationAttributeGroupUsecase interface {
+	CreateMany(c context.Context, items []SpecificationAttributeGroup) error
 	FetchByID(c context.Context, ID string) (SpecificationAttributeGroup, error)
 	Create(c context.Context, specification_attribute_group *SpecificationAttributeGroup) error
 	Update(c context.Context, specification_attribute_group *SpecificationAttributeGroup) error

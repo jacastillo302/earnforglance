@@ -27,6 +27,7 @@ type PermissionRecordCustomerRoleMappingRepository interface {
 }
 
 type PermissionRecordCustomerRoleMappingUsecase interface {
+	CreateMany(c context.Context, items []PermissionRecordCustomerRoleMapping) error
 	FetchByID(c context.Context, ID string) (PermissionRecordCustomerRoleMapping, error)
 	Create(c context.Context, permission_record_customer_role_mapping *PermissionRecordCustomerRoleMapping) error
 	Update(c context.Context, permission_record_customer_role_mapping *PermissionRecordCustomerRoleMapping) error

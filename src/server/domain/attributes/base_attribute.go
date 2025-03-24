@@ -31,6 +31,7 @@ type BaseAttributeRepository interface {
 }
 
 type BaseAttributeUsecase interface {
+	CreateMany(c context.Context, items []BaseAttribute) error
 	FetchByID(c context.Context, ID string) (BaseAttribute, error)
 	Create(c context.Context, base_attribute *BaseAttribute) error
 	Update(c context.Context, base_attribute *BaseAttribute) error

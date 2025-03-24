@@ -29,6 +29,7 @@ type ProductAvailabilityRangeRepository interface {
 
 // ProductAvailabilityRangeUsecase defines the use case interface for ProductAvailabilityRange
 type ProductAvailabilityRangeUsecase interface {
+	CreateMany(c context.Context, items []ProductAvailabilityRange) error
 	FetchByID(c context.Context, ID string) (ProductAvailabilityRange, error)
 	Create(c context.Context, product_availability_range *ProductAvailabilityRange) error
 	Update(c context.Context, product_availability_range *ProductAvailabilityRange) error

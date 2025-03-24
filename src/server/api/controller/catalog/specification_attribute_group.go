@@ -17,6 +17,32 @@ type SpecificationAttributeGroupController struct {
 	Env                                *bootstrap.Env
 }
 
+func (tc *SpecificationAttributeGroupController) CreateMany(c *gin.Context) {
+	var task []domain.SpecificationAttributeGroup
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.SpecificationAttributeGroupUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "SpecificationAttributeGroup created successfully",
+	})
+}
+
 func (tc *SpecificationAttributeGroupController) Create(c *gin.Context) {
 	var task domain.SpecificationAttributeGroup
 	body, err := io.ReadAll(c.Request.Body)

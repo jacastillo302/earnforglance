@@ -41,6 +41,7 @@ type RewardPointsSettingsRepository interface {
 }
 
 type RewardPointsSettingsUsecase interface {
+	CreateMany(c context.Context, items []RewardPointsSettings) error
 	FetchByID(c context.Context, ID string) (RewardPointsSettings, error)
 	Create(c context.Context, reward_points_settings *RewardPointsSettings) error
 	Update(c context.Context, reward_points_settings *RewardPointsSettings) error

@@ -33,6 +33,7 @@ type PictureRepository interface {
 
 // PictureUsecase represents the picture usecase interface
 type PictureUsecase interface {
+	CreateMany(c context.Context, items []Picture) error
 	FetchByID(c context.Context, ID string) (Picture, error)
 	Create(c context.Context, picture *Picture) error
 	Update(c context.Context, picture *Picture) error

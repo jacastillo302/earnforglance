@@ -32,6 +32,7 @@ type UrlRecordRepository interface {
 
 // UrlRecordUsecase defines the use case interface for UrlRecord
 type UrlRecordUsecase interface {
+	CreateMany(c context.Context, items []UrlRecord) error
 	FetchByID(c context.Context, ID string) (UrlRecord, error)
 	Create(c context.Context, url_record *UrlRecord) error
 	Update(c context.Context, url_record *UrlRecord) error

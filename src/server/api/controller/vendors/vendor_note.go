@@ -17,6 +17,32 @@ type VendorNoteController struct {
 	Env               *bootstrap.Env
 }
 
+func (tc *VendorNoteController) CreateMany(c *gin.Context) {
+	var task []domain.VendorNote
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.VendorNoteUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "VendorNote created successfully",
+	})
+}
+
 func (tc *VendorNoteController) Create(c *gin.Context) {
 	var task domain.VendorNote
 	body, err := io.ReadAll(c.Request.Body)

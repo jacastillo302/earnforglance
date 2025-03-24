@@ -17,6 +17,32 @@ type NewsItemController struct {
 	Env             *bootstrap.Env
 }
 
+func (tc *NewsItemController) CreateMany(c *gin.Context) {
+	var task []domain.NewsItem
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.NewsItemUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "NewsItem created successfully",
+	})
+}
+
 func (tc *NewsItemController) Create(c *gin.Context) {
 	var task domain.NewsItem
 	body, err := io.ReadAll(c.Request.Body)

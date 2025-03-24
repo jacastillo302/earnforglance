@@ -137,6 +137,7 @@ type ProductRepository interface {
 }
 
 type ProductUsecase interface {
+	CreateMany(c context.Context, items []Product) error
 	FetchByID(c context.Context, ID string) (Product, error)
 	Create(c context.Context, product *Product) error
 	Update(c context.Context, product *Product) error

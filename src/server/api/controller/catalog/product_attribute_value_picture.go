@@ -17,6 +17,32 @@ type ProductAttributeValuePictureController struct {
 	Env                                 *bootstrap.Env
 }
 
+func (tc *ProductAttributeValuePictureController) CreateMany(c *gin.Context) {
+	var task []domain.ProductAttributeValuePicture
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.ProductAttributeValuePictureUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "ProductAttributeValuePicture created successfully",
+	})
+}
+
 func (tc *ProductAttributeValuePictureController) Create(c *gin.Context) {
 	var task domain.ProductAttributeValuePicture
 	body, err := io.ReadAll(c.Request.Body)

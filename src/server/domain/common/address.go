@@ -41,6 +41,7 @@ type AddressRepository interface {
 }
 
 type AddressUsecase interface {
+	CreateMany(c context.Context, items []Address) error
 	FetchByID(c context.Context, ID string) (Address, error)
 	Create(c context.Context, product_tag *Address) error
 	Update(c context.Context, product_tag *Address) error

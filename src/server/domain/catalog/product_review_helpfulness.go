@@ -28,6 +28,7 @@ type ProductReviewHelpfulnessRepository interface {
 }
 
 type ProductReviewHelpfulnessUsecase interface {
+	CreateMany(c context.Context, items []ProductReviewHelpfulness) error
 	FetchByID(c context.Context, ID string) (ProductReviewHelpfulness, error)
 	Create(c context.Context, product_review_helpfulnes *ProductReviewHelpfulness) error
 	Update(c context.Context, product_review_helpfulness *ProductReviewHelpfulness) error

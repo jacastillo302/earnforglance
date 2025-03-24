@@ -29,6 +29,7 @@ type ReturnRequestReasonRepository interface {
 
 // ReturnRequestReasonUsecase represents the use case interface for ReturnRequestReason
 type ReturnRequestReasonUsecase interface {
+	CreateMany(c context.Context, items []ReturnRequestReason) error
 	FetchByID(c context.Context, ID string) (ReturnRequestReason, error)
 	Create(c context.Context, return_request_reason *ReturnRequestReason) error
 	Update(c context.Context, return_request_reason *ReturnRequestReason) error

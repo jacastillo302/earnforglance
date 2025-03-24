@@ -17,6 +17,32 @@ type LanguageController struct {
 	Env             *bootstrap.Env
 }
 
+func (tc *LanguageController) CreateMany(c *gin.Context) {
+	var task []domain.Language
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.LanguageUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "Language created successfully",
+	})
+}
+
 func (tc *LanguageController) Create(c *gin.Context) {
 	var task domain.Language
 	body, err := io.ReadAll(c.Request.Body)

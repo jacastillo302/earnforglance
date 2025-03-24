@@ -29,6 +29,7 @@ type SpecificationAttributeOptionRepository interface {
 }
 
 type SpecificationAttributeOptionUsecase interface {
+	CreateMany(c context.Context, items []SpecificationAttributeOption) error
 	FetchByID(c context.Context, ID string) (SpecificationAttributeOption, error)
 	Create(c context.Context, specification_attribute_option *SpecificationAttributeOption) error
 	Update(c context.Context, specification_attribute_option *SpecificationAttributeOption) error

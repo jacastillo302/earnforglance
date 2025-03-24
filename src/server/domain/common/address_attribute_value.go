@@ -29,6 +29,7 @@ type AddressAttributeValueRepository interface {
 }
 
 type AddressAttributeValueUsecase interface {
+	CreateMany(c context.Context, items []AddressAttributeValue) error
 	FetchByID(c context.Context, ID string) (AddressAttributeValue, error)
 	Create(c context.Context, address_attribute_value *AddressAttributeValue) error
 	Update(c context.Context, address_attribute_value *AddressAttributeValue) error

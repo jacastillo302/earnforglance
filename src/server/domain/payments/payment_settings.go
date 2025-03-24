@@ -39,6 +39,7 @@ type PaymentSettingsRepository interface {
 }
 
 type PaymentSettingsUsecase interface {
+	CreateMany(c context.Context, items []PaymentSettings) error
 	FetchByID(c context.Context, ID string) (PaymentSettings, error)
 	Create(c context.Context, payment_settings *PaymentSettings) error
 	Update(c context.Context, payment_settings *PaymentSettings) error

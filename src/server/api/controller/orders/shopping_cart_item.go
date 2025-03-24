@@ -17,6 +17,32 @@ type ShoppingCartItemController struct {
 	Env                     *bootstrap.Env
 }
 
+func (tc *ShoppingCartItemController) CreateMany(c *gin.Context) {
+	var task []domain.ShoppingCartItem
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.ShoppingCartItemUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "ShoppingCartItem created successfully",
+	})
+}
+
 func (tc *ShoppingCartItemController) Create(c *gin.Context) {
 	var task domain.ShoppingCartItem
 	body, err := io.ReadAll(c.Request.Body)

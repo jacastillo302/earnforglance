@@ -32,6 +32,7 @@ type GiftCardUsageHistoryRepository interface {
 
 // GiftCardUsageHistoryUsecase defines the usecase interface for GiftCardUsageHistory
 type GiftCardUsageHistoryUsecase interface {
+	CreateMany(c context.Context, items []GiftCardUsageHistory) error
 	FetchByID(c context.Context, ID string) (GiftCardUsageHistory, error)
 	Create(c context.Context, gift_card_usage_history *GiftCardUsageHistory) error
 	Update(c context.Context, gift_card_usage_history *GiftCardUsageHistory) error

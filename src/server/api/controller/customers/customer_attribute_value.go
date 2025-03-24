@@ -17,6 +17,32 @@ type CustomerAttributeValueController struct {
 	Env                           *bootstrap.Env
 }
 
+func (tc *CustomerAttributeValueController) CreateMany(c *gin.Context) {
+	var task []domain.CustomerAttributeValue
+	body, err := io.ReadAll(c.Request.Body)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(body, &task)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	err = tc.CustomerAttributeValueUsecase.CreateMany(c, task)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, common.SuccessResponse{
+		Message: "CustomerAttributeValue created successfully",
+	})
+}
+
 func (tc *CustomerAttributeValueController) Create(c *gin.Context) {
 	var task domain.CustomerAttributeValue
 	body, err := io.ReadAll(c.Request.Body)

@@ -61,6 +61,7 @@ type ShippingSettingsRepository interface {
 
 // ShippingSettingsUsecase defines the usecase interface for ShippingSettings
 type ShippingSettingsUsecase interface {
+	CreateMany(c context.Context, items []ShippingSettings) error
 	FetchByID(c context.Context, ID string) (ShippingSettings, error)
 	Create(c context.Context, shipping_settings *ShippingSettings) error
 	Update(c context.Context, shipping_settings *ShippingSettings) error
