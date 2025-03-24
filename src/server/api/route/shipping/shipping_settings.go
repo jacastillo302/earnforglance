@@ -26,5 +26,5 @@ func ShippingSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.
 	group.POST("/shipping_setting", lc.Create)
 	group.POST("/shipping_settings", lc.CreateMany)
 	group.PUT("/shipping_setting", lc.Update)
-	group.DELETE("shipping_setting", lc.Delete)
+	group.DELETE("/shipping_setting", lc.Delete)
 }

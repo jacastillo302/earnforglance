@@ -26,5 +26,5 @@ func SitemapSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.D
 	group.POST("/sitemap_setting", lc.Create)
 	group.POST("/sitemap_settings", lc.CreateMany)
 	group.PUT("/sitemap_setting", lc.Update)
-	group.DELETE("sitemap_setting", lc.Delete)
+	group.DELETE("/sitemap_setting", lc.Delete)
 }

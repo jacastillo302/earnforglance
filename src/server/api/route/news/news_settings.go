@@ -26,5 +26,5 @@ func NewsSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Data
 	group.POST("/news_setting", lc.Create)
 	group.POST("/news_settings", lc.CreateMany)
 	group.PUT("/news_setting", lc.Update)
-	group.DELETE("news_setting", lc.Delete)
+	group.DELETE("/news_setting", lc.Delete)
 }

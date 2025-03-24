@@ -26,5 +26,5 @@ func ProxySettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Dat
 	group.POST("/proxy_setting", lc.Create)
 	group.POST("/proxy_settings", lc.CreateMany)
 	group.PUT("/proxy_setting", lc.Update)
-	group.DELETE("proxy_setting", lc.Delete)
+	group.DELETE("/proxy_setting", lc.Delete)
 }

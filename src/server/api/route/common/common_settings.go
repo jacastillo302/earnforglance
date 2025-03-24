@@ -26,5 +26,5 @@ func CommonSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Da
 	group.POST("/common_setting", lc.Create)
 	group.POST("/common_settings", lc.CreateMany)
 	group.PUT("/common_setting", lc.Update)
-	group.DELETE("common_setting", lc.Delete)
+	group.DELETE("/common_setting", lc.Delete)
 }

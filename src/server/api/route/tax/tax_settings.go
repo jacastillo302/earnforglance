@@ -26,5 +26,5 @@ func TaxSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Datab
 	group.POST("/tax_setting", lc.Create)
 	group.POST("/tax_settings", lc.CreateMany)
 	group.PUT("/tax_setting", lc.Update)
-	group.DELETE("tax_setting", lc.Delete)
+	group.DELETE("/tax_setting", lc.Delete)
 }

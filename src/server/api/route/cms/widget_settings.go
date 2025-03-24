@@ -26,5 +26,5 @@ func WidgetSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Da
 	group.POST("/widget_setting", lc.Create)
 	group.POST("/widget_settings", lc.CreateMany)
 	group.PUT("/widget_setting", lc.Update)
-	group.DELETE("widget_setting", lc.Delete)
+	group.DELETE("/widget_setting", lc.Delete)
 }

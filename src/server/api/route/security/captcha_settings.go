@@ -26,5 +26,5 @@ func CaptchaSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.D
 	group.POST("/captcha_setting", lc.Create)
 	group.POST("/captcha_settings", lc.CreateMany)
 	group.PUT("/captcha_setting", lc.Update)
-	group.DELETE("captcha_setting", lc.Delete)
+	group.DELETE("/captcha_setting", lc.Delete)
 }

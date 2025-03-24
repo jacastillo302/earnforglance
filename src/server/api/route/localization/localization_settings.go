@@ -26,5 +26,5 @@ func LocalizationSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mo
 	group.POST("/localization_setting", lc.Create)
 	group.POST("/localization_settings", lc.CreateMany)
 	group.PUT("/localization_setting", lc.Update)
-	group.DELETE("localization_setting", lc.Delete)
+	group.DELETE("/localization_setting", lc.Delete)
 }
