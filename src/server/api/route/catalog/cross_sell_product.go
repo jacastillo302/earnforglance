@@ -24,6 +24,7 @@ func CrossSellProductRouter(env *bootstrap.Env, timeout time.Duration, db mongo.
 	group.GET("/cross_sell_products", lc.Fetch)
 	group.GET("/cross_sell_product", lc.FetchByID)
 	group.POST("/cross_sell_product", lc.Create)
+	group.POST("/cross_sell_products", lc.CreateMany)
 	group.PUT("/cross_sell_product", lc.Update)
 	group.DELETE("/cross_sell_product", lc.Delete)
 }

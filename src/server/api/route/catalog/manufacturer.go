@@ -24,6 +24,7 @@ func ManufacturerRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Data
 	group.GET("/manufacturers", lc.Fetch)
 	group.GET("/manufacturer", lc.FetchByID)
 	group.POST("/manufacturer", lc.Create)
+	group.POST("/manufacturers", lc.CreateMany)
 	group.PUT("/manufacturer", lc.Update)
 	group.DELETE("/manufacturer", lc.Delete)
 }

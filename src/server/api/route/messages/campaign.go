@@ -24,6 +24,7 @@ func CampaignRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database
 	group.GET("/campaigns", lc.Fetch)
 	group.GET("/campaign", lc.FetchByID)
 	group.POST("/campaign", lc.Create)
+	group.POST("/campaigns", lc.CreateMany)
 	group.PUT("/campaign", lc.Update)
 	group.DELETE("/campaign", lc.Delete)
 }

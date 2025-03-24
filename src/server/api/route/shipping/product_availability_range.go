@@ -24,6 +24,7 @@ func ProductAvailabilityRangeRouter(env *bootstrap.Env, timeout time.Duration, d
 	group.GET("/product_availability_ranges", lc.Fetch)
 	group.GET("/product_availability_range", lc.FetchByID)
 	group.POST("/product_availability_range", lc.Create)
+	group.POST("/product_availability_ranges", lc.CreateMany)
 	group.PUT("/product_availability_range", lc.Update)
 	group.DELETE("/product_availability_range", lc.Delete)
 }

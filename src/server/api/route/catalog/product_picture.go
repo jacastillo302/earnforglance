@@ -24,6 +24,7 @@ func ProductPictureRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Da
 	group.GET("/product_pictures", lc.Fetch)
 	group.GET("/product_picture", lc.FetchByID)
 	group.POST("/product_picture", lc.Create)
+	group.POST("/product_pictures", lc.CreateMany)
 	group.PUT("/product_picture", lc.Update)
 	group.DELETE("/product_picture", lc.Delete)
 }

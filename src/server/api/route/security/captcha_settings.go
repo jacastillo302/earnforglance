@@ -21,9 +21,10 @@ func CaptchaSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.D
 		Env:                    env,
 	}
 
-	group.GET("/captcha_settingss", lc.Fetch)
-	group.GET("/captcha_settings", lc.FetchByID)
-	group.POST("/captcha_settings", lc.Create)
-	group.PUT("/captcha_settings", lc.Update)
-	group.DELETE("captcha_settings", lc.Delete)
+	group.GET("/captcha_settings", lc.Fetch)
+	group.GET("/captcha_setting", lc.FetchByID)
+	group.POST("/captcha_setting", lc.Create)
+	group.POST("/captcha_settings", lc.CreateMany)
+	group.PUT("/captcha_setting", lc.Update)
+	group.DELETE("captcha_setting", lc.Delete)
 }

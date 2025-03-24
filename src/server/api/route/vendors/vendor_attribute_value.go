@@ -24,6 +24,7 @@ func VendorAttributeValueRouter(env *bootstrap.Env, timeout time.Duration, db mo
 	group.GET("/vendor_attribute_values", lc.Fetch)
 	group.GET("/vendor_attribute_value", lc.FetchByID)
 	group.POST("/vendor_attribute_value", lc.Create)
+	group.POST("/vendor_attribute_values", lc.CreateMany)
 	group.PUT("/vendor_attribute_value", lc.Update)
 	group.DELETE("/vendor_attribute_value", lc.Delete)
 }

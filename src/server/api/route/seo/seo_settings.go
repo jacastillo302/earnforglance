@@ -24,6 +24,7 @@ func SeoSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Datab
 	group.GET("/seo_settings", lc.Fetch)
 	group.GET("/seo_setting", lc.FetchByID)
 	group.POST("/seo_setting", lc.Create)
+	group.POST("/seo_settings", lc.CreateMany)
 	group.PUT("/seo_setting", lc.Update)
 	group.DELETE("/seo_setting", lc.Delete)
 }

@@ -24,6 +24,7 @@ func StockQuantityChangeRouter(env *bootstrap.Env, timeout time.Duration, db mon
 	group.GET("/stock_quantity_changes", lc.Fetch)
 	group.GET("/stock_quantity_change", lc.FetchByID)
 	group.POST("/stock_quantity_change", lc.Create)
+	group.POST("/stock_quantity_changes", lc.CreateMany)
 	group.PUT("/stock_quantity_change", lc.Update)
 	group.DELETE("/stock_quantity_change", lc.Delete)
 }

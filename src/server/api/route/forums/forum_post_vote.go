@@ -24,6 +24,7 @@ func ForumPostVoteRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Dat
 	group.GET("/forum_post_votes", lc.Fetch)
 	group.GET("/forum_post_vote", lc.FetchByID)
 	group.POST("/forum_post_vote", lc.Create)
+	group.POST("/forum_post_votes", lc.CreateMany)
 	group.PUT("/forum_post_vote", lc.Update)
 	group.DELETE("/forum_post_vote", lc.Delete)
 }

@@ -24,6 +24,7 @@ func StoreMappingRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Data
 	group.GET("/store_mappings", lc.Fetch)
 	group.GET("/store_mapping", lc.FetchByID)
 	group.POST("/store_mapping", lc.Create)
+	group.POST("/store_mappings", lc.CreateMany)
 	group.PUT("/store_mapping", lc.Update)
 	group.DELETE("/store_mapping", lc.Delete)
 }

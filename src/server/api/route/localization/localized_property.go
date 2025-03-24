@@ -24,6 +24,7 @@ func LocalizedPropertyRouter(env *bootstrap.Env, timeout time.Duration, db mongo
 	group.GET("/localized_properties", lc.Fetch)
 	group.GET("/localized_property", lc.FetchByID)
 	group.POST("/localized_property", lc.Create)
+	group.POST("/localized_properties", lc.CreateMany)
 	group.PUT("/localized_property", lc.Update)
 	group.DELETE("/localized_property", lc.Delete)
 }

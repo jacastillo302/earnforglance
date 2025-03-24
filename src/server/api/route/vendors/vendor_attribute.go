@@ -24,6 +24,7 @@ func VendorAttributeRouter(env *bootstrap.Env, timeout time.Duration, db mongo.D
 	group.GET("/vendor_attributes", lc.Fetch)
 	group.GET("/vendor_attribute", lc.FetchByID)
 	group.POST("/vendor_attribute", lc.Create)
+	group.POST("/vendor_attributes", lc.CreateMany)
 	group.PUT("/vendor_attribute", lc.Update)
 	group.DELETE("/vendor_attribute", lc.Delete)
 }

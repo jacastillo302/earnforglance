@@ -21,9 +21,10 @@ func RewardPointsSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mo
 		Env:                         env,
 	}
 
-	group.GET("/reward_points_settingss", lc.Fetch)
-	group.GET("/reward_points_settings", lc.FetchByID)
-	group.POST("/reward_points_settings", lc.Create)
-	group.PUT("/reward_points_settings", lc.Update)
-	group.DELETE("/reward_points_settings", lc.Delete)
+	group.GET("/reward_points_settings", lc.Fetch)
+	group.GET("/reward_points_setting", lc.FetchByID)
+	group.POST("/reward_points_setting", lc.Create)
+	group.POST("/reward_points_settings", lc.CreateMany)
+	group.PUT("/reward_points_setting", lc.Update)
+	group.DELETE("/reward_points_setting", lc.Delete)
 }

@@ -24,6 +24,7 @@ func AddressRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database,
 	group.GET("/addresses", lc.Fetch)
 	group.GET("/address", lc.FetchByID)
 	group.POST("/address", lc.Create)
+	group.POST("/addresses", lc.CreateMany)
 	group.PUT("/address", lc.Update)
 	group.DELETE("/address", lc.Delete)
 }

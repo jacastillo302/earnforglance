@@ -24,6 +24,7 @@ func NewsLetterSubscriptionRouter(env *bootstrap.Env, timeout time.Duration, db 
 	group.GET("/news_letter_subscriptions", lc.Fetch)
 	group.GET("/news_letter_subscription", lc.FetchByID)
 	group.POST("/news_letter_subscription", lc.Create)
+	group.POST("/news_letter_subscriptions", lc.CreateMany)
 	group.PUT("/news_letter_subscription", lc.Update)
 	group.DELETE("/news_letter_subscription", lc.Delete)
 }

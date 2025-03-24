@@ -24,6 +24,7 @@ func VendorSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Da
 	group.GET("/vendor_settings", lc.Fetch)
 	group.GET("/vendor_setting", lc.FetchByID)
 	group.POST("/vendor_setting", lc.Create)
+	group.POST("/vendor_settings", lc.CreateMany)
 	group.PUT("/vendor_setting", lc.Update)
 	group.DELETE("vendor_setting", lc.Delete)
 }

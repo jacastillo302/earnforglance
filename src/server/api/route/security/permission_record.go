@@ -24,6 +24,7 @@ func PermissionRecordRouter(env *bootstrap.Env, timeout time.Duration, db mongo.
 	group.GET("/permission_records", lc.Fetch)
 	group.GET("/permission_record", lc.FetchByID)
 	group.POST("/permission_record", lc.Create)
+	group.POST("/permission_records", lc.CreateMany)
 	group.PUT("/permission_record", lc.Update)
 	group.DELETE("/permission_record", lc.Delete)
 }

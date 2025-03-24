@@ -21,9 +21,10 @@ func ForumSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Dat
 		Env:                  env,
 	}
 
-	group.GET("/forum_settingss", lc.Fetch)
-	group.GET("/forum_settings", lc.FetchByID)
-	group.POST("/forum_settings", lc.Create)
-	group.PUT("/forum_settings", lc.Update)
-	group.DELETE("forum_settings", lc.Delete)
+	group.GET("/forum_settings", lc.Fetch)
+	group.GET("/forum_setting", lc.FetchByID)
+	group.POST("/forum_setting", lc.Create)
+	group.POST("/forum_settings", lc.CreateMany)
+	group.PUT("/forum_setting", lc.Update)
+	group.DELETE("forum_setting", lc.Delete)
 }

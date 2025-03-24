@@ -24,6 +24,7 @@ func ForumSubscriptionRouter(env *bootstrap.Env, timeout time.Duration, db mongo
 	group.GET("/forum_subscriptions", lc.Fetch)
 	group.GET("/forum_subscription", lc.FetchByID)
 	group.POST("/forum_subscription", lc.Create)
+	group.POST("/forum_subscriptions", lc.CreateMany)
 	group.PUT("/forum_subscription", lc.Update)
 	group.DELETE("/forum_subscription", lc.Delete)
 }

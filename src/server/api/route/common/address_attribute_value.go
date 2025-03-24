@@ -24,6 +24,7 @@ func AddressAttributeValueRouter(env *bootstrap.Env, timeout time.Duration, db m
 	group.GET("/address_attribute_values", lc.Fetch)
 	group.GET("/address_attribute_value", lc.FetchByID)
 	group.POST("/address_attribute_value", lc.Create)
+	group.POST("/address_attribute_values", lc.CreateMany)
 	group.PUT("/address_attribute_value", lc.Update)
 	group.DELETE("address_attribute_value", lc.Delete)
 }

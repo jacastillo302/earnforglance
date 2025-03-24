@@ -24,6 +24,7 @@ func EmailAccountRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Data
 	group.GET("/email_accounts", lc.Fetch)
 	group.GET("/email_account", lc.FetchByID)
 	group.POST("/email_account", lc.Create)
+	group.POST("/email_accounts", lc.CreateMany)
 	group.PUT("/email_account", lc.Update)
 	group.DELETE("/email_account", lc.Delete)
 }

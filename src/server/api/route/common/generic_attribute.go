@@ -24,6 +24,7 @@ func GenericAttributeRouter(env *bootstrap.Env, timeout time.Duration, db mongo.
 	group.GET("/generic_attributes", lc.Fetch)
 	group.GET("/generic_attribute", lc.FetchByID)
 	group.POST("/generic_attribute", lc.Create)
+	group.POST("/generic_attributes", lc.CreateMany)
 	group.PUT("/generic_attribute", lc.Update)
 	group.DELETE("/generic_attribute", lc.Delete)
 }

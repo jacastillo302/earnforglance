@@ -21,9 +21,10 @@ func OrderSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Dat
 		Env:                  env,
 	}
 
-	group.GET("/ordersettingss", lc.Fetch)
-	group.GET("/ordersettings", lc.FetchByID)
-	group.POST("/ordersettings", lc.Create)
-	group.PUT("/ordersettings", lc.Update)
-	group.DELETE("/ordersettings", lc.Delete)
+	group.GET("/ordersettings", lc.Fetch)
+	group.GET("/ordersetting", lc.FetchByID)
+	group.POST("/ordersetting", lc.Create)
+	group.POST("/ordersettings", lc.CreateMany)
+	group.PUT("/ordersetting", lc.Update)
+	group.DELETE("/ordersetting", lc.Delete)
 }

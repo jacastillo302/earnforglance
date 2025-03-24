@@ -24,6 +24,7 @@ func BaseAttributeValueRouter(env *bootstrap.Env, timeout time.Duration, db mong
 	group.GET("/base_attribute_values", lc.Fetch)
 	group.GET("/base_attribute_value", lc.FetchByID)
 	group.POST("/base_attribute_value", lc.Create)
+	group.POST("/base_attribute_values", lc.CreateMany)
 	group.PUT("/base_attribute_value", lc.Update)
 	group.DELETE("/base_attribute_value", lc.Delete)
 }

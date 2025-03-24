@@ -24,6 +24,7 @@ func VideoRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database, g
 	group.GET("/videos", lc.Fetch)
 	group.GET("/video", lc.FetchByID)
 	group.POST("/video", lc.Create)
+	group.POST("/videos", lc.CreateMany)
 	group.PUT("/video", lc.Update)
 	group.DELETE("/video", lc.Delete)
 }

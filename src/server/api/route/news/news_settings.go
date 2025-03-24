@@ -21,9 +21,10 @@ func NewsSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Data
 		Env:                 env,
 	}
 
-	group.GET("/news_settingss", lc.Fetch)
-	group.GET("/news_settings", lc.FetchByID)
-	group.POST("/news_settings", lc.Create)
-	group.PUT("/news_settings", lc.Update)
-	group.DELETE("news_settings", lc.Delete)
+	group.GET("/news_settings", lc.Fetch)
+	group.GET("/news_setting", lc.FetchByID)
+	group.POST("/news_setting", lc.Create)
+	group.POST("/news_settings", lc.CreateMany)
+	group.PUT("/news_setting", lc.Update)
+	group.DELETE("news_setting", lc.Delete)
 }

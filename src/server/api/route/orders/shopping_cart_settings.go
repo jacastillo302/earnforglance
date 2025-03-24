@@ -21,9 +21,10 @@ func ShoppingCartSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mo
 		Env:                         env,
 	}
 
-	group.GET("/shopping_cart_settingss", lc.Fetch)
-	group.GET("/shopping_cart_settings", lc.FetchByID)
-	group.POST("/shopping_cart_settings", lc.Create)
-	group.PUT("/shopping_cart_settings", lc.Update)
-	group.DELETE("/shopping_cart_settings", lc.Delete)
+	group.GET("/shopping_cart_settings", lc.Fetch)
+	group.GET("/shopping_cart_setting", lc.FetchByID)
+	group.POST("/shopping_cart_setting", lc.Create)
+	group.POST("/shopping_cart_settings", lc.CreateMany)
+	group.PUT("/shopping_cart_setting", lc.Update)
+	group.DELETE("/shopping_cart_setting", lc.Delete)
 }

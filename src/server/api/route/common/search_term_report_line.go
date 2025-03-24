@@ -24,6 +24,7 @@ func SearchTermReportLineRouter(env *bootstrap.Env, timeout time.Duration, db mo
 	group.GET("/search_term_report_lines", lc.Fetch)
 	group.GET("/search_term_report_line", lc.FetchByID)
 	group.POST("/search_term_report_line", lc.Create)
+	group.POST("/search_term_report_lines", lc.CreateMany)
 	group.PUT("/search_term_report_line", lc.Update)
 	group.DELETE("/search_term_report_line", lc.Delete)
 }

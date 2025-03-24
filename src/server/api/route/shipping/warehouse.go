@@ -24,6 +24,7 @@ func WarehouseRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Databas
 	group.GET("/warehouses", lc.Fetch)
 	group.GET("/warehouse", lc.FetchByID)
 	group.POST("/warehouse", lc.Create)
+	group.POST("/warehouses", lc.CreateMany)
 	group.PUT("/warehouse", lc.Update)
 	group.DELETE("/warehouse", lc.Delete)
 }

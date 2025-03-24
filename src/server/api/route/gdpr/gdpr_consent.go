@@ -24,6 +24,7 @@ func GdprConsentRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Datab
 	group.GET("/gdpr_consents", lc.Fetch)
 	group.GET("/gdpr_consent", lc.FetchByID)
 	group.POST("/gdpr_consent", lc.Create)
+	group.POST("/gdpr_consents", lc.CreateMany)
 	group.PUT("/gdpr_consent", lc.Update)
 	group.DELETE("/gdpr_consent", lc.Delete)
 }

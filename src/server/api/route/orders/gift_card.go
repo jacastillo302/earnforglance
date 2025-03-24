@@ -24,6 +24,7 @@ func GiftCardRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database
 	group.GET("/gift_cards", lc.Fetch)
 	group.GET("/gift_card", lc.FetchByID)
 	group.POST("/gift_card", lc.Create)
+	group.POST("/gift_cards", lc.CreateMany)
 	group.PUT("/gift_card", lc.Update)
 	group.DELETE("/gift_card", lc.Delete)
 }

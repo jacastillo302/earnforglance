@@ -24,6 +24,7 @@ func DownloadRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database
 	group.GET("/downloads", lc.Fetch)
 	group.GET("/download", lc.FetchByID)
 	group.POST("/download", lc.Create)
+	group.POST("/downloads", lc.CreateMany)
 	group.PUT("/download", lc.Update)
 	group.DELETE("/download", lc.Delete)
 }

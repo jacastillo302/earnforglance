@@ -24,6 +24,7 @@ func BestCustomerReportLineRouter(env *bootstrap.Env, timeout time.Duration, db 
 	group.GET("/best_customer_report_lines", lc.Fetch)
 	group.GET("/best_customer_report_line", lc.FetchByID)
 	group.POST("/best_customer_report_line", lc.Create)
+	group.POST("/best_customer_report_lines", lc.CreateMany)
 	group.PUT("/best_customer_report_line", lc.Update)
 	group.DELETE("/best_customer_report_line", lc.Delete)
 }

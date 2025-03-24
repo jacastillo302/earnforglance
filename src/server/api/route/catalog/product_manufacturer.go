@@ -24,6 +24,7 @@ func ProductManufacturerRouter(env *bootstrap.Env, timeout time.Duration, db mon
 	group.GET("/product_manufacturers", lc.Fetch)
 	group.GET("/product_manufacturer", lc.FetchByID)
 	group.POST("/product_manufacturer", lc.Create)
+	group.POST("/product_manufacturers", lc.CreateMany)
 	group.PUT("/product_manufacturer", lc.Update)
 	group.DELETE("/product_manufacturer", lc.Delete)
 }

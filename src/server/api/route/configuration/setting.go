@@ -24,6 +24,7 @@ func SettingRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database,
 	group.GET("/settings", lc.Fetch)
 	group.GET("/setting", lc.FetchByID)
 	group.POST("/setting", lc.Create)
+	group.POST("/settings", lc.CreateMany)
 	group.PUT("/setting", lc.Update)
 	group.DELETE("setting", lc.Delete)
 }

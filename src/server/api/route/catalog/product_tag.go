@@ -24,6 +24,7 @@ func ProductTagRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Databa
 	group.GET("/product_tags", lc.Fetch)
 	group.GET("/product_tag", lc.FetchByID)
 	group.POST("/product_tag", lc.Create)
+	group.POST("/product_tags", lc.CreateMany)
 	group.PUT("/product_tag", lc.Update)
 	group.DELETE("/product_tag", lc.Delete)
 }

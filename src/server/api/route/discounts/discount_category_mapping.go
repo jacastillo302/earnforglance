@@ -24,6 +24,7 @@ func DiscountCategoryMappingRouter(env *bootstrap.Env, timeout time.Duration, db
 	group.GET("/discount_category_mappings", lc.Fetch)
 	group.GET("/discount_category_mapping", lc.FetchByID)
 	group.POST("/discount_category_mapping", lc.Create)
+	group.POST("/discount_category_mappings", lc.CreateMany)
 	group.PUT("/discount_category_mapping", lc.Update)
 	group.DELETE("/discount_category_mapping", lc.Delete)
 }

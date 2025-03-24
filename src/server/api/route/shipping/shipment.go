@@ -24,6 +24,7 @@ func ShipmentRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database
 	group.GET("/shipments", lc.Fetch)
 	group.GET("/shipment", lc.FetchByID)
 	group.POST("/shipment", lc.Create)
+	group.POST("/shipments", lc.CreateMany)
 	group.PUT("/shipment", lc.Update)
 	group.DELETE("/shipment", lc.Delete)
 }

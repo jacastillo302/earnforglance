@@ -24,6 +24,7 @@ func CheckoutAttributeValueRouter(env *bootstrap.Env, timeout time.Duration, db 
 	group.GET("/checkout_attribute_values", lc.Fetch)
 	group.GET("/checkout_attribute_value", lc.FetchByID)
 	group.POST("/checkout_attribute_value", lc.Create)
+	group.POST("/checkout_attribute_values", lc.CreateMany)
 	group.PUT("/checkout_attribute_value", lc.Update)
 	group.DELETE("/checkout_attribute_value", lc.Delete)
 }

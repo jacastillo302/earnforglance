@@ -24,6 +24,7 @@ func ProductProductTagMappingRouter(env *bootstrap.Env, timeout time.Duration, d
 	group.GET("/product_product_tag_mappings", lc.Fetch)
 	group.GET("/product_product_tag_mapping", lc.FetchByID)
 	group.POST("/product_product_tag_mapping", lc.Create)
+	group.POST("/product_product_tag_mappings", lc.CreateMany)
 	group.PUT("/product_product_tag_mapping", lc.Update)
 	group.DELETE("/product_product_tag_mapping", lc.Delete)
 }

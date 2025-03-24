@@ -24,6 +24,7 @@ func SalesSummaryReportLineRouter(env *bootstrap.Env, timeout time.Duration, db 
 	group.GET("/sales_summary_report_lines", lc.Fetch)
 	group.GET("/sales_summary_report_line", lc.FetchByID)
 	group.POST("/sales_summary_report_line", lc.Create)
+	group.POST("/sales_summary_report_lines", lc.CreateMany)
 	group.PUT("/sales_summary_report_line", lc.Update)
 	group.DELETE("/sales_summary_report_line", lc.Delete)
 }

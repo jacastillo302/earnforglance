@@ -24,6 +24,7 @@ func PollAnswerRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Databa
 	group.GET("/poll_answers", lc.Fetch)
 	group.GET("/poll_answer", lc.FetchByID)
 	group.POST("/poll_answer", lc.Create)
+	group.POST("/poll_answers", lc.CreateMany)
 	group.PUT("/poll_answer", lc.Update)
 	group.DELETE("/poll_answer", lc.Delete)
 }

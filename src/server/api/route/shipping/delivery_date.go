@@ -24,6 +24,7 @@ func DeliveryDateRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Data
 	group.GET("/delivery_dates", lc.Fetch)
 	group.GET("/delivery_date", lc.FetchByID)
 	group.POST("/delivery_date", lc.Create)
+	group.POST("/delivery_dates", lc.CreateMany)
 	group.PUT("/delivery_date", lc.Update)
 	group.DELETE("/delivery_date", lc.Delete)
 }

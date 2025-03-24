@@ -24,6 +24,7 @@ func ForumPostRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Databas
 	group.GET("/forumposts", lc.Fetch)
 	group.GET("/forumpost", lc.FetchByID)
 	group.POST("/forumpost", lc.Create)
+	group.POST("/forumposts", lc.CreateMany)
 	group.PUT("/forumpost", lc.Update)
 	group.DELETE("/forumpost", lc.Delete)
 }

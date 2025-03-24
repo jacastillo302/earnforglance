@@ -24,6 +24,7 @@ func OrderNoteRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Databas
 	group.GET("/ordernotes", lc.Fetch)
 	group.GET("/ordernote", lc.FetchByID)
 	group.POST("/ordernote", lc.Create)
+	group.POST("/ordernotes", lc.CreateMany)
 	group.PUT("/ordernote", lc.Update)
 	group.DELETE("/ordernote", lc.Delete)
 }

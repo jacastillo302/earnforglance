@@ -24,6 +24,7 @@ func RecurringPaymentRouter(env *bootstrap.Env, timeout time.Duration, db mongo.
 	group.GET("/recurring_payments", lc.Fetch)
 	group.GET("/recurring_payment", lc.FetchByID)
 	group.POST("/recurring_payment", lc.Create)
+	group.POST("/recurring_payments", lc.CreateMany)
 	group.PUT("/recurring_payment", lc.Update)
 	group.DELETE("/recurring_payment", lc.Delete)
 }

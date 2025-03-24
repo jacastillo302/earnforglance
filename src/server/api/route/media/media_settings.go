@@ -24,6 +24,7 @@ func MediaSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Dat
 	group.GET("/media_settings", lc.Fetch)
 	group.GET("/media_setting", lc.FetchByID)
 	group.POST("/media_setting", lc.Create)
+	group.POST("/media_settings", lc.CreateMany)
 	group.PUT("/media_setting", lc.Update)
 	group.DELETE("/media_setting", lc.Delete)
 }

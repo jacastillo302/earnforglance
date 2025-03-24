@@ -24,6 +24,7 @@ func SearchTermRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Databa
 	group.GET("/search_terms", lc.Fetch)
 	group.GET("/search_term", lc.FetchByID)
 	group.POST("/search_term", lc.Create)
+	group.POST("/search_terms", lc.CreateMany)
 	group.PUT("/search_term", lc.Update)
 	group.DELETE("/search_term", lc.Delete)
 }

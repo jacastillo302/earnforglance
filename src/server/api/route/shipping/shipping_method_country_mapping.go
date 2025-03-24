@@ -24,6 +24,7 @@ func ShippingMethodCountryMappingRouter(env *bootstrap.Env, timeout time.Duratio
 	group.GET("/shipping_method_country_mappings", lc.Fetch)
 	group.GET("/shipping_method_country_mapping", lc.FetchByID)
 	group.POST("/shipping_method_country_mapping", lc.Create)
+	group.POST("/shipping_method_country_mappings", lc.CreateMany)
 	group.PUT("/shipping_method_country_mapping", lc.Update)
 	group.DELETE("/shipping_method_country_mapping", lc.Delete)
 }

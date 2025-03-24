@@ -24,6 +24,7 @@ func ReturnRequestActionRouter(env *bootstrap.Env, timeout time.Duration, db mon
 	group.GET("/return_request_actions", lc.Fetch)
 	group.GET("/return_request_action", lc.FetchByID)
 	group.POST("/return_request_action", lc.Create)
+	group.POST("/return_request_actions", lc.CreateMany)
 	group.PUT("/return_request_action", lc.Update)
 	group.DELETE("/return_request_action", lc.Delete)
 }

@@ -24,6 +24,7 @@ func CurrencySettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.
 	group.GET("/currency_settings", lc.Fetch)
 	group.GET("/currency_setting", lc.FetchByID)
 	group.POST("/currency_setting", lc.Create)
+	group.POST("/currency_settings", lc.CreateMany)
 	group.PUT("/currency_setting", lc.Update)
 	group.DELETE("/currency_setting", lc.Delete)
 }

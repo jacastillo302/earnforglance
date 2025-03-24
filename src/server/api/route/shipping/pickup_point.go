@@ -24,6 +24,7 @@ func PickupPointRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Datab
 	group.GET("/pickup_points", lc.Fetch)
 	group.GET("/pickup_point", lc.FetchByID)
 	group.POST("/pickup_point", lc.Create)
+	group.POST("/pickup_points", lc.CreateMany)
 	group.PUT("/pickup_point", lc.Update)
 	group.DELETE("/pickup_point", lc.Delete)
 }

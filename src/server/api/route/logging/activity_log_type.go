@@ -24,6 +24,7 @@ func ActivityLogTypeRouter(env *bootstrap.Env, timeout time.Duration, db mongo.D
 	group.GET("/activity_log_types", lc.Fetch)
 	group.GET("/activity_log_type", lc.FetchByID)
 	group.POST("/activity_log_type", lc.Create)
+	group.POST("/activity_log_types", lc.CreateMany)
 	group.PUT("/activity_log_type", lc.Update)
 	group.DELETE("/activity_log_type", lc.Delete)
 }

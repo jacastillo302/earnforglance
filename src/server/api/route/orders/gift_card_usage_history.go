@@ -24,6 +24,7 @@ func GiftCardUsageHistoryRouter(env *bootstrap.Env, timeout time.Duration, db mo
 	group.GET("/gift_card_usage_histories", lc.Fetch)
 	group.GET("/gift_card_usage_history", lc.FetchByID)
 	group.POST("/gift_card_usage_history", lc.Create)
+	group.POST("/gift_card_usage_histories", lc.CreateMany)
 	group.PUT("/gift_card_usage_history", lc.Update)
 	group.DELETE("/gift_card_usage_history", lc.Delete)
 }

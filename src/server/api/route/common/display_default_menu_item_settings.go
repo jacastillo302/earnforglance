@@ -21,9 +21,10 @@ func DisplayDefaultMenuItemSettingsRouter(env *bootstrap.Env, timeout time.Durat
 		Env:                                   env,
 	}
 
-	group.GET("/display_default_menu_item_settingss", lc.Fetch)
-	group.GET("/display_default_menu_item_settings", lc.FetchByID)
-	group.POST("/display_default_menu_item_settings", lc.Create)
-	group.PUT("/display_default_menu_item_settings", lc.Update)
-	group.DELETE("/display_default_menu_item_settings", lc.Delete)
+	group.GET("/display_default_menu_item_settings", lc.Fetch)
+	group.GET("/display_default_menu_item_setting", lc.FetchByID)
+	group.POST("/display_default_menu_item_setting", lc.Create)
+	group.POST("/display_default_menu_item_settings", lc.CreateMany)
+	group.PUT("/display_default_menu_item_setting", lc.Update)
+	group.DELETE("/display_default_menu_item_setting", lc.Delete)
 }

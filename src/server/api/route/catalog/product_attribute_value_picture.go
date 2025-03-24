@@ -24,6 +24,7 @@ func ProductAttributeValuePictureRouter(env *bootstrap.Env, timeout time.Duratio
 	group.GET("/product_attribute_value_pictures", lc.Fetch)
 	group.GET("/product_attribute_value_picture", lc.FetchByID)
 	group.POST("/product_attribute_value_picture", lc.Create)
+	group.POST("/product_attribute_value_pictures", lc.CreateMany)
 	group.PUT("/product_attribute_value_picture", lc.Update)
 	group.DELETE("/product_attribute_value_picture", lc.Delete)
 }

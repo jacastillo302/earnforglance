@@ -24,6 +24,7 @@ func SecuritySettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.
 	group.GET("/security_settings", lc.Fetch)
 	group.GET("/security_setting", lc.FetchByID)
 	group.POST("/security_setting", lc.Create)
+	group.POST("/security_settings", lc.CreateMany)
 	group.PUT("/security_setting", lc.Update)
 	group.DELETE("security_setting", lc.Delete)
 }

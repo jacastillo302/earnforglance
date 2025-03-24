@@ -24,6 +24,7 @@ func TierPriceRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Databas
 	group.GET("/tier_prices", lc.Fetch)
 	group.GET("/tier_price", lc.FetchByID)
 	group.POST("/tier_price", lc.Create)
+	group.POST("/tier_prices", lc.CreateMany)
 	group.PUT("/tier_price", lc.Update)
 	group.DELETE("/tier_price", lc.Delete)
 }

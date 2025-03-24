@@ -24,6 +24,7 @@ func TopicTemplateRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Dat
 	group.GET("/topic_templates", lc.Fetch)
 	group.GET("/topic_template", lc.FetchByID)
 	group.POST("/topic_template", lc.Create)
+	group.POST("/topic_templates", lc.CreateMany)
 	group.PUT("/topic_template", lc.Update)
 	group.DELETE("/topic_template", lc.Delete)
 }

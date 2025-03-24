@@ -24,6 +24,7 @@ func ProductWarehouseInventoryRouter(env *bootstrap.Env, timeout time.Duration, 
 	group.GET("/product_warehouse_inventories", lc.Fetch)
 	group.GET("/product_warehouse_inventory", lc.FetchByID)
 	group.POST("/product_warehouse_inventory", lc.Create)
+	group.POST("/product_warehouse_inventories", lc.CreateMany)
 	group.PUT("/product_warehouse_inventory", lc.Update)
 	group.DELETE("/product_warehouse_inventory", lc.Delete)
 }

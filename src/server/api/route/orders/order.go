@@ -24,6 +24,7 @@ func OrderRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database, g
 	group.GET("/orders", lc.Fetch)
 	group.GET("/order", lc.FetchByID)
 	group.POST("/order", lc.Create)
+	group.POST("/orders", lc.CreateMany)
 	group.PUT("/order", lc.Update)
 	group.DELETE("/order", lc.Delete)
 }

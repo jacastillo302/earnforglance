@@ -24,6 +24,7 @@ func ScheduleTaskRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Data
 	group.GET("/schedule_tasks", lc.Fetch)
 	group.GET("/schedule_task", lc.FetchByID)
 	group.POST("/schedule_task", lc.Create)
+	group.POST("/schedule_tasks", lc.CreateMany)
 	group.PUT("/schedule_task", lc.Update)
 	group.DELETE("/schedule_task", lc.Delete)
 }

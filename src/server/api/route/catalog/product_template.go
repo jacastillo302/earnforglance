@@ -24,6 +24,7 @@ func ProductTemplateRouter(env *bootstrap.Env, timeout time.Duration, db mongo.D
 	group.GET("/product_templates", lc.Fetch)
 	group.GET("/product_template", lc.FetchByID)
 	group.POST("/product_template", lc.Create)
+	group.POST("/product_templates", lc.CreateMany)
 	group.PUT("/product_template", lc.Update)
 	group.DELETE("/product_template", lc.Delete)
 }

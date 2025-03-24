@@ -24,6 +24,7 @@ func RewardPointsHistoryRouter(env *bootstrap.Env, timeout time.Duration, db mon
 	group.GET("/reward_points_histories", lc.Fetch)
 	group.GET("/reward_points_history", lc.FetchByID)
 	group.POST("/reward_points_history", lc.Create)
+	group.POST("/reward_points_histories", lc.CreateMany)
 	group.PUT("/reward_points_history", lc.Update)
 	group.DELETE("/reward_points_history", lc.Delete)
 }

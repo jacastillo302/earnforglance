@@ -24,6 +24,7 @@ func ReturnRequestReasonRouter(env *bootstrap.Env, timeout time.Duration, db mon
 	group.GET("/return_request_reasons", lc.Fetch)
 	group.GET("/return_request_reason", lc.FetchByID)
 	group.POST("/return_request_reason", lc.Create)
+	group.POST("/return_request_reasons", lc.CreateMany)
 	group.PUT("/return_request_reason", lc.Update)
 	group.DELETE("/return_request_reason", lc.Delete)
 }

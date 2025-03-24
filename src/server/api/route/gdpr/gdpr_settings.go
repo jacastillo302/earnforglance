@@ -21,9 +21,10 @@ func GdprSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Data
 		Env:                 env,
 	}
 
-	group.GET("/gdpr_settingss", lc.Fetch)
-	group.GET("/gdpr_settings", lc.FetchByID)
-	group.POST("/gdpr_settings", lc.Create)
-	group.PUT("/gdpr_settings", lc.Update)
-	group.DELETE("/gdpr_settings", lc.Delete)
+	group.GET("/gdpr_settings", lc.Fetch)
+	group.GET("/gdpr_setting", lc.FetchByID)
+	group.POST("/gdpr_setting", lc.Create)
+	group.POST("/gdpr_settings", lc.CreateMany)
+	group.PUT("/gdpr_setting", lc.Update)
+	group.DELETE("/gdpr_setting", lc.Delete)
 }

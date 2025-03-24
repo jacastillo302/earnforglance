@@ -24,6 +24,7 @@ func ProductReviewHelpfulnessRouter(env *bootstrap.Env, timeout time.Duration, d
 	group.GET("/product_review_helpfulnesses", lc.Fetch)
 	group.GET("/product_review_helpfulness", lc.FetchByID)
 	group.POST("/product_review_helpfulness", lc.Create)
+	group.POST("/product_review_helpfulnesses", lc.CreateMany)
 	group.PUT("/product_review_helpfulness", lc.Update)
 	group.DELETE("/product_review_helpfulness", lc.Delete)
 }

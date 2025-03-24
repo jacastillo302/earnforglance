@@ -24,6 +24,7 @@ func LogRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database, gro
 	group.GET("/logs", lc.Fetch)
 	group.GET("/log", lc.FetchByID)
 	group.POST("/log", lc.Create)
+	group.POST("/logs", lc.CreateMany)
 	group.PUT("/log", lc.Update)
 	group.DELETE("/log", lc.Delete)
 }

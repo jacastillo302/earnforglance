@@ -24,6 +24,7 @@ func ReturnRequestRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Dat
 	group.GET("/return_requests", lc.Fetch)
 	group.GET("/return_request", lc.FetchByID)
 	group.POST("/return_request", lc.Create)
+	group.POST("/return_requests", lc.CreateMany)
 	group.PUT("/return_request", lc.Update)
 	group.DELETE("/return_request", lc.Delete)
 }

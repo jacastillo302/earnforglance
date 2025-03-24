@@ -24,6 +24,7 @@ func DiscountMappingRouter(env *bootstrap.Env, timeout time.Duration, db mongo.D
 	group.GET("/discount_mappings", lc.Fetch)
 	group.GET("/discount_mapping", lc.FetchByID)
 	group.POST("/discount_mapping", lc.Create)
+	group.POST("/discount_mappings", lc.CreateMany)
 	group.PUT("/discount_mapping", lc.Update)
 	group.DELETE("/discount_mapping", lc.Delete)
 }

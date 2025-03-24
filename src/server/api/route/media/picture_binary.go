@@ -21,9 +21,10 @@ func PictureBinaryRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Dat
 		Env:                  env,
 	}
 
-	group.GET("/picture_binarys", lc.Fetch)
+	group.GET("/picture_binaries", lc.Fetch)
 	group.GET("/picture_binary", lc.FetchByID)
 	group.POST("/picture_binary", lc.Create)
+	group.POST("/picture_binaries", lc.CreateMany)
 	group.PUT("/picture_binary", lc.Update)
 	group.DELETE("/picture_binary", lc.Delete)
 }

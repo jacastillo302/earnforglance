@@ -21,9 +21,10 @@ func SitemapXmlSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mong
 		Env:                       env,
 	}
 
-	group.GET("/sitemap_xml_settingss", lc.Fetch)
-	group.GET("/sitemap_xml_settings", lc.FetchByID)
-	group.POST("/sitemap_xml_settings", lc.Create)
-	group.PUT("/sitemap_xml_settings", lc.Update)
-	group.DELETE("sitemap_xml_settings", lc.Delete)
+	group.GET("/sitemap_xml_settings", lc.Fetch)
+	group.GET("/sitemap_xml_setting", lc.FetchByID)
+	group.POST("/sitemap_xml_setting", lc.Create)
+	group.POST("/sitemap_xml_settings", lc.CreateMany)
+	group.PUT("/sitemap_xml_setting", lc.Update)
+	group.DELETE("sitemap_xml_setting", lc.Delete)
 }

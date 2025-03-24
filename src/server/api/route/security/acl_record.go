@@ -24,6 +24,7 @@ func AclRecordRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Databas
 	group.GET("/acl_records", lc.Fetch)
 	group.GET("/acl_record", lc.FetchByID)
 	group.POST("/acl_record", lc.Create)
+	group.POST("/acl_records", lc.CreateMany)
 	group.PUT("/acl_record", lc.Update)
 	group.DELETE("/acl_record", lc.Delete)
 }

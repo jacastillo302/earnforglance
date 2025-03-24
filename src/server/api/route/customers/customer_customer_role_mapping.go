@@ -24,6 +24,7 @@ func CustomerCustomerRoleMappingRouter(env *bootstrap.Env, timeout time.Duration
 	group.GET("/customer_customer_role_mappings", lc.Fetch)
 	group.GET("/customer_customer_role_mapping", lc.FetchByID)
 	group.POST("/customer_customer_role_mapping", lc.Create)
+	group.POST("/customer_customer_role_mappings", lc.CreateMany)
 	group.PUT("/customer_customer_role_mapping", lc.Update)
 	group.DELETE("/customer_customer_role_mapping", lc.Delete)
 }

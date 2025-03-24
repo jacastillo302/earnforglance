@@ -24,6 +24,7 @@ func VendorNoteRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Databa
 	group.GET("/vendor_notes", lc.Fetch)
 	group.GET("/vendor_note", lc.FetchByID)
 	group.POST("/vendor_note", lc.Create)
+	group.POST("/vendor_notes", lc.CreateMany)
 	group.PUT("/vendor_note", lc.Update)
 	group.DELETE("/vendor_note", lc.Delete)
 }

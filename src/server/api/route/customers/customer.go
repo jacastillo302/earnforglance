@@ -24,6 +24,7 @@ func CustomerRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database
 	group.GET("/customers", lc.Fetch)
 	group.GET("/customer", lc.FetchByID)
 	group.POST("/customer", lc.Create)
+	group.POST("/customers", lc.CreateMany)
 	group.PUT("/customer", lc.Update)
 	group.DELETE("/customer", lc.Delete)
 }

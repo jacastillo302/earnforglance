@@ -24,6 +24,7 @@ func CategoryRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database
 	group.GET("/categories", lc.Fetch)
 	group.GET("/category", lc.FetchByID)
 	group.POST("/category", lc.Create)
+	group.POST("/categories", lc.CreateMany)
 	group.PUT("/category", lc.Update)
 	group.DELETE("/category", lc.Delete)
 }

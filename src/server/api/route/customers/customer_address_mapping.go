@@ -24,6 +24,7 @@ func CustomerAddressMappingRouter(env *bootstrap.Env, timeout time.Duration, db 
 	group.GET("/customer_address_mappings", lc.Fetch)
 	group.GET("/customer_address_mapping", lc.FetchByID)
 	group.POST("/customer_address_mapping", lc.Create)
+	group.POST("/customer_address_mappings", lc.CreateMany)
 	group.PUT("/customer_address_mapping", lc.Update)
 	group.DELETE("/customer_address_mapping", lc.Delete)
 }

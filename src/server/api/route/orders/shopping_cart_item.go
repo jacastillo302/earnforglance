@@ -24,6 +24,7 @@ func ShoppingCartItemRouter(env *bootstrap.Env, timeout time.Duration, db mongo.
 	group.GET("/shoppingcartitems", lc.Fetch)
 	group.GET("/shoppingcartitem", lc.FetchByID)
 	group.POST("/shoppingcartitem", lc.Create)
+	group.POST("/shoppingcartitems", lc.CreateMany)
 	group.PUT("/shoppingcartitem", lc.Update)
 	group.DELETE("/shoppingcartitem", lc.Delete)
 }

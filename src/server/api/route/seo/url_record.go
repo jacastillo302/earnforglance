@@ -24,6 +24,7 @@ func UrlRecordRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Databas
 	group.GET("/url_records", lc.Fetch)
 	group.GET("/url_record", lc.FetchByID)
 	group.POST("/url_record", lc.Create)
+	group.POST("/url_records", lc.CreateMany)
 	group.PUT("/url_record", lc.Update)
 	group.DELETE("/url_record", lc.Delete)
 }

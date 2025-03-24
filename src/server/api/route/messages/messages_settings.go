@@ -24,6 +24,7 @@ func MessagesSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.
 	group.GET("/messages_settings", lc.Fetch)
 	group.GET("/messages_setting", lc.FetchByID)
 	group.POST("/messages_setting", lc.Create)
+	group.POST("/messages_settings", lc.CreateMany)
 	group.PUT("/messages_setting", lc.Update)
 	group.DELETE("/messages_setting", lc.Delete)
 }

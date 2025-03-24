@@ -24,6 +24,7 @@ func LanguageRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database
 	group.GET("/languages", lc.Fetch)
 	group.GET("/language", lc.FetchByID)
 	group.POST("/language", lc.Create)
+	group.POST("/languages", lc.CreateMany)
 	group.PUT("/language", lc.Update)
 	group.DELETE("/language", lc.Delete)
 }

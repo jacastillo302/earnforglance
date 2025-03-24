@@ -24,6 +24,7 @@ func AffiliateRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Databas
 	group.GET("/affiliates", lc.Fetch)
 	group.GET("/affiliate", lc.FetchByID)
 	group.POST("/affiliate", lc.Create)
+	group.POST("/affiliates", lc.CreateMany)
 	group.PUT("/affiliate", lc.Update)
 	group.DELETE("/affiliate", lc.Delete)
 }

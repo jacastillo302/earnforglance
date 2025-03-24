@@ -24,6 +24,7 @@ func ReviewTypeRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Databa
 	group.GET("/review_types", lc.Fetch)
 	group.GET("/review_type", lc.FetchByID)
 	group.POST("/review_type", lc.Create)
+	group.POST("/review_types", lc.CreateMany)
 	group.PUT("/review_type", lc.Update)
 	group.DELETE("/review_type", lc.Delete)
 }

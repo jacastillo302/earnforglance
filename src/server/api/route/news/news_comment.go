@@ -24,6 +24,7 @@ func NewsCommentRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Datab
 	group.GET("/news_comments", lc.Fetch)
 	group.GET("/news_comment", lc.FetchByID)
 	group.POST("/news_comment", lc.Create)
+	group.POST("/news_comments", lc.CreateMany)
 	group.PUT("/news_comment", lc.Update)
 	group.DELETE("/news_comment", lc.Delete)
 }

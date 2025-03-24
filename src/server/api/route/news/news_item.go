@@ -24,6 +24,7 @@ func NewsItemRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database
 	group.GET("/newsitems", lc.Fetch)
 	group.GET("/newsitem", lc.FetchByID)
 	group.POST("/newsitem", lc.Create)
+	group.POST("/newsitems", lc.CreateMany)
 	group.PUT("/newsitem", lc.Update)
 	group.DELETE("/newsitem", lc.Delete)
 }

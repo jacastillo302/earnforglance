@@ -24,6 +24,7 @@ func CheckoutAttributeRouter(env *bootstrap.Env, timeout time.Duration, db mongo
 	group.GET("/checkout_attributes", lc.Fetch)
 	group.GET("/checkout_attribute", lc.FetchByID)
 	group.POST("/checkout_attribute", lc.Create)
+	group.POST("/checkout_attributes", lc.CreateMany)
 	group.PUT("/checkout_attribute", lc.Update)
 	group.DELETE("/checkout_attribute", lc.Delete)
 }

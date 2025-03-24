@@ -24,6 +24,7 @@ func PrivateMessageRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Da
 	group.GET("/private_messages", lc.Fetch)
 	group.GET("/private_message", lc.FetchByID)
 	group.POST("/private_message", lc.Create)
+	group.POST("/private_messages", lc.CreateMany)
 	group.PUT("/private_message", lc.Update)
 	group.DELETE("/private_message", lc.Delete)
 }

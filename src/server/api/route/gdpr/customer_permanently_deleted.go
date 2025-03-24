@@ -24,6 +24,7 @@ func CustomerPermanentlyDeletedRouter(env *bootstrap.Env, timeout time.Duration,
 	group.GET("/customer_permanently_deleteds", lc.Fetch)
 	group.GET("/customer_permanently_deleted", lc.FetchByID)
 	group.POST("/customer_permanently_deleted", lc.Create)
+	group.POST("/customer_permanently_deleteds", lc.CreateMany)
 	group.PUT("/customer_permanently_deleted", lc.Update)
 	group.DELETE("/customer_permanently_deleted", lc.Delete)
 }

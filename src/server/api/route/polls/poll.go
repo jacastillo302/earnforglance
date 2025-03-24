@@ -24,6 +24,7 @@ func PollRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database, gr
 	group.GET("/polls", lc.Fetch)
 	group.GET("/poll", lc.FetchByID)
 	group.POST("/poll", lc.Create)
+	group.POST("/polls", lc.CreateMany)
 	group.PUT("/poll", lc.Update)
 	group.DELETE("/poll", lc.Delete)
 }

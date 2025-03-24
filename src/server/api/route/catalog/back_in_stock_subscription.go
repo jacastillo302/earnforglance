@@ -24,6 +24,7 @@ func BackInStockSubscriptionRouter(env *bootstrap.Env, timeout time.Duration, db
 	group.GET("/back_in_stock_subscriptions", lc.Fetch)
 	group.GET("/back_in_stock_subscription", lc.FetchByID)
 	group.POST("/back_in_stock_subscription", lc.Create)
+	group.POST("/back_in_stock_subscriptions", lc.CreateMany)
 	group.PUT("/back_in_stock_subscription", lc.Update)
 	group.DELETE("/back_in_stock_subscription", lc.Delete)
 }

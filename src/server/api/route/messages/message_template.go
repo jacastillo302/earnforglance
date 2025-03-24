@@ -24,6 +24,7 @@ func MessageTemplateRouter(env *bootstrap.Env, timeout time.Duration, db mongo.D
 	group.GET("/message_templates", lc.Fetch)
 	group.GET("/message_template", lc.FetchByID)
 	group.POST("/message_template", lc.Create)
+	group.POST("/message_templates", lc.CreateMany)
 	group.PUT("/message_template", lc.Update)
 	group.DELETE("/message_template", lc.Delete)
 }

@@ -24,6 +24,7 @@ func BlogPostTagRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Datab
 	group.GET("/blog_post_tags", lc.Fetch)
 	group.GET("/blog_post_tag", lc.FetchByID)
 	group.POST("/blog_post_tag", lc.Create)
+	group.POST("/blog_post_tags", lc.CreateMany)
 	group.PUT("/blog_post_tag", lc.Update)
 	group.DELETE("blog_post_tag", lc.Delete)
 }

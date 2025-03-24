@@ -24,6 +24,7 @@ func StoreRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database, g
 	group.GET("/stores", lc.Fetch)
 	group.GET("/store", lc.FetchByID)
 	group.POST("/store", lc.Create)
+	group.POST("/stores", lc.CreateMany)
 	group.PUT("/store", lc.Update)
 	group.DELETE("/store", lc.Delete)
 }

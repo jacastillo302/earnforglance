@@ -24,6 +24,7 @@ func StateProvinceRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Dat
 	group.GET("/state_provinces", lc.Fetch)
 	group.GET("/state_province", lc.FetchByID)
 	group.POST("/state_province", lc.Create)
+	group.POST("/state_provinces", lc.CreateMany)
 	group.PUT("/state_province", lc.Update)
 	group.DELETE("/state_province", lc.Delete)
 }

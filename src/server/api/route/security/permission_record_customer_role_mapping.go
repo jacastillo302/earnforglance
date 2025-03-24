@@ -24,6 +24,7 @@ func PermissionRecordCustomerRoleMappingRouter(env *bootstrap.Env, timeout time.
 	group.GET("/permission_record_customer_role_mappings", lc.Fetch)
 	group.GET("/permission_record_customer_role_mapping", lc.FetchByID)
 	group.POST("/permission_record_customer_role_mapping", lc.Create)
+	group.POST("/permission_record_customer_role_mappings", lc.CreateMany)
 	group.PUT("/permission_record_customer_role_mapping", lc.Update)
 	group.DELETE("/permission_record_customer_role_mapping", lc.Delete)
 }

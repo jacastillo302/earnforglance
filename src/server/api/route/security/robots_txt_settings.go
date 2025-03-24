@@ -24,6 +24,7 @@ func RobotsTxtSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo
 	group.GET("/robots_txt_settings", lc.Fetch)
 	group.GET("/robots_txt_setting", lc.FetchByID)
 	group.POST("/robots_txt_setting", lc.Create)
+	group.POST("/robots_txt_settings", lc.CreateMany)
 	group.PUT("/robots_txt_setting", lc.Update)
 	group.DELETE("robots_txt_setting", lc.Delete)
 }

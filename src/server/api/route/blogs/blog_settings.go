@@ -23,7 +23,8 @@ func BlogSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Data
 
 	group.GET("/blog_settings", lc.Fetch)
 	group.GET("/blog_setting", lc.FetchByID)
-	group.POST("/blog_settings", lc.Create)
-	group.PUT("/blog_settings", lc.Update)
-	group.DELETE("blog_settings", lc.Delete)
+	group.POST("/blog_setting", lc.Create)
+	group.POST("/blog_settings", lc.CreateMany)
+	group.PUT("/blog_setting", lc.Update)
+	group.DELETE("blog_setting", lc.Delete)
 }

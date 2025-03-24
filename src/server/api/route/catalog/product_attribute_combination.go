@@ -24,6 +24,7 @@ func ProductAttributeCombinationRouter(env *bootstrap.Env, timeout time.Duration
 	group.GET("/product_attribute_combinations", lc.Fetch)
 	group.GET("/product_attribute_combination", lc.FetchByID)
 	group.POST("/product_attribute_combination", lc.Create)
+	group.POST("/product_attribute_combinations", lc.CreateMany)
 	group.PUT("/product_attribute_combination", lc.Update)
 	group.DELETE("/product_attribute_combination", lc.Delete)
 }
