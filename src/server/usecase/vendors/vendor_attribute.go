@@ -19,6 +19,12 @@ func NewVendorAttributeUsecase(vendorattributeRepository domain.VendorAttributeR
 	}
 }
 
+func (tu *vendorattributeUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.VendorAttribute) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.vendorattributeRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *vendorattributeUsecase) Create(c context.Context, vendorattribute *domain.VendorAttribute) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

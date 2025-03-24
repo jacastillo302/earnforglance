@@ -19,6 +19,13 @@ func NewStateProvinceUsecase(stateprovinceRepository domain.StateProvinceReposit
 	}
 }
 
+func (tu *stateprovinceUsecase) CreateMany(c context.Context, items []domain.StateProvince) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.stateprovinceRepository.CreateMany(ctx, items)
+}
+
 func (tu *stateprovinceUsecase) Create(c context.Context, stateprovince *domain.StateProvince) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

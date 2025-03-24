@@ -19,6 +19,13 @@ func NewLocalizedPropertyUsecase(localizedpropertyRepository domain.LocalizedPro
 	}
 }
 
+func (tu *localizedpropertyUsecase) CreateMany(c context.Context, items []domain.LocalizedProperty) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.localizedpropertyRepository.CreateMany(ctx, items)
+}
+
 func (tu *localizedpropertyUsecase) Create(c context.Context, localizedproperty *domain.LocalizedProperty) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

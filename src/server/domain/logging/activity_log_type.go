@@ -19,6 +19,7 @@ type ActivityLogType struct {
 }
 
 type ActivityLogTypeRepository interface {
+	CreateMany(c context.Context, items []ActivityLogType) error
 	Create(c context.Context, activity_log_type *ActivityLogType) error
 	Update(c context.Context, activity_log_type *ActivityLogType) error
 	Delete(c context.Context, ID string) error

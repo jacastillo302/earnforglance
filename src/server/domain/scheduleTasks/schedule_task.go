@@ -27,6 +27,7 @@ type ScheduleTask struct {
 
 // ScheduleTaskRepository defines the repository interface for ScheduleTask
 type ScheduleTaskRepository interface {
+	CreateMany(c context.Context, items []ScheduleTask) error
 	Create(c context.Context, schedule_task *ScheduleTask) error
 	Update(c context.Context, schedule_task *ScheduleTask) error
 	Delete(c context.Context, ID string) error

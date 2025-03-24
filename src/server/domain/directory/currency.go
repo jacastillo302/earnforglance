@@ -29,6 +29,7 @@ type Currency struct {
 }
 
 type CurrencyRepository interface {
+	CreateMany(c context.Context, items []Currency) error
 	Create(c context.Context, currency *Currency) error
 	Update(c context.Context, currency *Currency) error
 	Delete(c context.Context, ID string) error

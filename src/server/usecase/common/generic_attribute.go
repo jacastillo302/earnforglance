@@ -19,6 +19,13 @@ func NewGenericAttributeUsecase(genericattributeRepository domain.GenericAttribu
 	}
 }
 
+func (tu *genericattributeUsecase) CreateMany(c context.Context, items []domain.GenericAttribute) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.genericattributeRepository.CreateMany(ctx, items)
+}
+
 func (tu *genericattributeUsecase) Create(c context.Context, genericattribute *domain.GenericAttribute) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

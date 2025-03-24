@@ -19,6 +19,13 @@ func NewActivityLogTypeUsecase(activitylogtypeRepository domain.ActivityLogTypeR
 	}
 }
 
+func (tu *activitylogtypeUsecase) CreateMany(c context.Context, items []domain.ActivityLogType) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.activitylogtypeRepository.CreateMany(ctx, items)
+}
+
 func (tu *activitylogtypeUsecase) Create(c context.Context, activitylogtype *domain.ActivityLogType) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

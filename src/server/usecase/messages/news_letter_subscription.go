@@ -19,6 +19,12 @@ func NewNewsLetterSubscriptionUsecase(newsLetterSubscriptionRepository domain.Ne
 	}
 }
 
+func (tu *newsLetterSubscriptionUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.NewsLetterSubscription) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.newsLetterSubscriptionRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *newsLetterSubscriptionUsecase) Create(c context.Context, newsLetterSubscription *domain.NewsLetterSubscription) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

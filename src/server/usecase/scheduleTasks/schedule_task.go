@@ -19,6 +19,12 @@ func NewScheduleTaskUsecase(scheduletaskRepository domain.ScheduleTaskRepository
 	}
 }
 
+func (tu *scheduletaskUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.ScheduleTask) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.scheduletaskRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *scheduletaskUsecase) Create(c context.Context, scheduletask *domain.ScheduleTask) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

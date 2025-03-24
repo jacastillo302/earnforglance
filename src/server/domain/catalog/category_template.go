@@ -19,6 +19,7 @@ type CategoryTemplate struct {
 }
 
 type CategoryTemplateRepository interface {
+	CreateMany(c context.Context, items []CategoryTemplate) error
 	Create(c context.Context, category_template *CategoryTemplate) error
 	Update(c context.Context, category_template *CategoryTemplate) error
 	Delete(c context.Context, ID string) error

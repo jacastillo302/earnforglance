@@ -19,6 +19,12 @@ func NewReturnRequestUsecase(returnrequestRepository domain.ReturnRequestReposit
 	}
 }
 
+func (tu *returnrequestUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.ReturnRequest) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.returnrequestRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *returnrequestUsecase) Create(c context.Context, returnrequest *domain.ReturnRequest) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

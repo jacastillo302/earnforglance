@@ -20,6 +20,12 @@ func NewBaseAttributeValueUsecase(baseattributevalueRepository domain.BaseAttrib
 	}
 }
 
+func (tu *baseattributevalueUsecase) CreateMany(c context.Context, items []domain.BaseAttributeValue) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.baseattributevalueRepository.CreateMany(ctx, items)
+}
+
 func (tu *baseattributevalueUsecase) Create(c context.Context, baseAttributeValue *domain.BaseAttributeValue) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

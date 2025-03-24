@@ -50,6 +50,7 @@ func NewTaxSettings() *TaxSettings {
 }
 
 type TaxSettingsRepository interface {
+	CreateMany(c context.Context, items []TaxSettings) error
 	Create(c context.Context, tax_settings *TaxSettings) error
 	Update(c context.Context, tax_settings *TaxSettings) error
 	Delete(c context.Context, ID string) error

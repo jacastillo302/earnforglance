@@ -19,6 +19,12 @@ func NewTierPriceUsecase(tierpriceRepository domain.TierPriceRepository, timeout
 	}
 }
 
+func (tu *tierpriceUsecase) CreateMany(c context.Context, items []domain.TierPrice) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.tierpriceRepository.CreateMany(ctx, items)
+}
+
 func (tu *tierpriceUsecase) Create(c context.Context, tierprice *domain.TierPrice) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

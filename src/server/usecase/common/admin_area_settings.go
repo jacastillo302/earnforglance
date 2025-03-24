@@ -19,6 +19,13 @@ func NewAdminAreaSettingsUsecase(adminareasettingsRepository domain.AdminAreaSet
 	}
 }
 
+func (tu *adminareasettingsUsecase) CreateMany(c context.Context, items []domain.AdminAreaSettings) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.adminareasettingsRepository.CreateMany(ctx, items)
+}
+
 func (tu *adminareasettingsUsecase) Create(c context.Context, adminareasettings *domain.AdminAreaSettings) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

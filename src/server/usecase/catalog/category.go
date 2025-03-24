@@ -19,6 +19,12 @@ func NewCategoryUsecase(categoryRepository domain.CategoryRepository, timeout ti
 	}
 }
 
+func (tu *categoryUsecase) CreateMany(c context.Context, items []domain.Category) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.categoryRepository.CreateMany(ctx, items)
+}
+
 func (cu *categoryUsecase) Create(c context.Context, category *domain.Category) error {
 	ctx, cancel := context.WithTimeout(c, cu.contextTimeout)
 	defer cancel()

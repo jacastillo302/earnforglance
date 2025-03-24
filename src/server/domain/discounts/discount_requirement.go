@@ -22,6 +22,7 @@ type DiscountRequirement struct {
 }
 
 type DiscountRequirementRepository interface {
+	CreateMany(c context.Context, items []DiscountRequirement) error
 	Create(c context.Context, discount_requirement *DiscountRequirement) error
 	Update(c context.Context, discount_requirement *DiscountRequirement) error
 	Delete(c context.Context, ID string) error

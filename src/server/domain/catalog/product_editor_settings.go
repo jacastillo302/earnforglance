@@ -76,6 +76,7 @@ type ProductEditorSettings struct {
 }
 
 type ProductEditorSettingsRepository interface {
+	CreateMany(c context.Context, items []ProductEditorSettings) error
 	Create(c context.Context, product_editor_settings *ProductEditorSettings) error
 	Update(c context.Context, product_editor_settings *ProductEditorSettings) error
 	Delete(c context.Context, ID string) error

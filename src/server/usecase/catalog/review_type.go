@@ -19,6 +19,12 @@ func NewReviewTypeUsecase(reviewtypeRepository domain.ReviewTypeRepository, time
 	}
 }
 
+func (tu *reviewtypeUsecase) CreateMany(c context.Context, items []domain.ReviewType) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.reviewtypeRepository.CreateMany(ctx, items)
+}
+
 func (tu *reviewtypeUsecase) Create(c context.Context, reviewtype *domain.ReviewType) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

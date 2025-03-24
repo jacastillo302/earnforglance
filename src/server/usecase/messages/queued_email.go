@@ -19,6 +19,12 @@ func NewQueuedEmailUsecase(queuedEmailRepository domain.QueuedEmailRepository, t
 	}
 }
 
+func (tu *queuedEmailUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.QueuedEmail) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.queuedEmailRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *queuedEmailUsecase) Create(c context.Context, queuedEmail *domain.QueuedEmail) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

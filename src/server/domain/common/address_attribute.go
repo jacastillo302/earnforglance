@@ -26,6 +26,7 @@ type AddressAttribute struct {
 }
 
 type AddressAttributeRepository interface {
+	CreateMany(c context.Context, items []AddressAttribute) error
 	Create(c context.Context, address_attribute *AddressAttribute) error
 	Update(c context.Context, address_attribute *AddressAttribute) error
 	Delete(c context.Context, ID string) error

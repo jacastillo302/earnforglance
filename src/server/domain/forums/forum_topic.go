@@ -30,6 +30,7 @@ type ForumTopic struct {
 
 // ForumTopicRepository represents the forum topic repository interface
 type ForumTopicRepository interface {
+	CreateMany(c context.Context, items []ForumTopic) error
 	Create(c context.Context, forum_topic *ForumTopic) error
 	Update(c context.Context, forum_topic *ForumTopic) error
 	Delete(c context.Context, ID string) error

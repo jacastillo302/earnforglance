@@ -19,6 +19,13 @@ func NewPrivateMessageUsecase(privateMessageRepository domain.PrivateMessageRepo
 	}
 }
 
+func (tu *privateMessageUsecase) CreateMany(c context.Context, items []domain.PrivateMessage) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.privateMessageRepository.CreateMany(ctx, items)
+}
+
 func (tu *privateMessageUsecase) Create(c context.Context, privateMessage *domain.PrivateMessage) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

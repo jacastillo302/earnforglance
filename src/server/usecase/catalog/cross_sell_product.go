@@ -19,6 +19,12 @@ func NewCrossSellProductUsecase(crosssellproductRepository domain.CrossSellProdu
 	}
 }
 
+func (tu *crosssellproductUsecase) CreateMany(c context.Context, items []domain.CrossSellProduct) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.crosssellproductRepository.CreateMany(ctx, items)
+}
+
 func (tu *crosssellproductUsecase) Create(c context.Context, affiliate *domain.CrossSellProduct) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

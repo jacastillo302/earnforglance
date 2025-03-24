@@ -19,6 +19,13 @@ func NewPictureBinaryUsecase(picturebinaryRepository domain.PictureBinaryReposit
 	}
 }
 
+func (tu *picturebinaryUsecase) CreateMany(c context.Context, items []domain.PictureBinary) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.picturebinaryRepository.CreateMany(ctx, items)
+}
+
 func (tu *picturebinaryUsecase) Create(c context.Context, picturebinary *domain.PictureBinary) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

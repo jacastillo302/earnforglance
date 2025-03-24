@@ -51,6 +51,7 @@ func NewShippingSettings() *ShippingSettings {
 
 // ShippingSettingsRepository defines the repository interface for ShippingSettings
 type ShippingSettingsRepository interface {
+	CreateMany(c context.Context, items []ShippingSettings) error
 	Create(c context.Context, shipping_settings *ShippingSettings) error
 	Update(c context.Context, shipping_settings *ShippingSettings) error
 	Delete(c context.Context, ID string) error

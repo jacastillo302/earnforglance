@@ -24,6 +24,7 @@ type ShippingOption struct {
 
 // ShippingOptionRepository defines the repository interface for ShippingOption
 type ShippingOptionRepository interface {
+	CreateMany(c context.Context, items []ShippingOption) error
 	Create(c context.Context, shipping_option *ShippingOption) error
 	Update(c context.Context, shipping_option *ShippingOption) error
 	Delete(c context.Context, ID string) error

@@ -20,6 +20,7 @@ type CustomerAttributeValue struct {
 }
 
 type CustomerAttributeValueRepository interface {
+	CreateMany(c context.Context, items []CustomerAttributeValue) error
 	Create(c context.Context, customer_attribute_value *CustomerAttributeValue) error
 	Update(c context.Context, customer_attribute_value *CustomerAttributeValue) error
 	Delete(c context.Context, ID string) error

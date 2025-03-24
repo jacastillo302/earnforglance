@@ -19,6 +19,12 @@ func NewProductAttributeValuePictureUsecase(productattributevaluepictureReposito
 	}
 }
 
+func (tu *productattributevaluepictureUsecase) CreateMany(c context.Context, items []domain.ProductAttributeValuePicture) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.productattributevaluepictureRepository.CreateMany(ctx, items)
+}
+
 func (tu *productattributevaluepictureUsecase) Create(c context.Context, productattributevaluepicture *domain.ProductAttributeValuePicture) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

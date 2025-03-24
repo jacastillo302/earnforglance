@@ -26,6 +26,7 @@ type PdfSettings struct {
 }
 
 type PdfSettingsRepository interface {
+	CreateMany(c context.Context, items []PdfSettings) error
 	Create(c context.Context, PdfSettings *PdfSettings) error
 	Update(c context.Context, PdfSettings *PdfSettings) error
 	Delete(c context.Context, ID string) error

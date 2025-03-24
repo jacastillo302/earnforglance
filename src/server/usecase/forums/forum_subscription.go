@@ -19,6 +19,13 @@ func NewForumSubscriptionUsecase(forumSubscriptionRepository domain.ForumSubscri
 	}
 }
 
+func (tu *forumSubscriptionUsecase) CreateMany(c context.Context, items []domain.ForumSubscription) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.forumSubscriptionRepository.CreateMany(ctx, items)
+}
+
 func (tu *forumSubscriptionUsecase) Create(c context.Context, forumSubscription *domain.ForumSubscription) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

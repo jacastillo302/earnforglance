@@ -18,6 +18,7 @@ type SearchTermReportLine struct {
 }
 
 type SearchTermReportLineRepository interface {
+	CreateMany(c context.Context, items []SearchTermReportLine) error
 	Create(c context.Context, search_term_record_line *SearchTermReportLine) error
 	Update(c context.Context, search_term_record_line *SearchTermReportLine) error
 	Delete(c context.Context, ID string) error

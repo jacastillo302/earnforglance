@@ -21,6 +21,7 @@ type ForumPostVote struct {
 }
 
 type ForumPostVoteRepository interface {
+	CreateMany(c context.Context, items []ForumPostVote) error
 	Create(c context.Context, product_tag *ForumPostVote) error
 	Update(c context.Context, product_tag *ForumPostVote) error
 	Delete(c context.Context, ID string) error

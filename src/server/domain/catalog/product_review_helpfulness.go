@@ -19,6 +19,7 @@ type ProductReviewHelpfulness struct {
 }
 
 type ProductReviewHelpfulnessRepository interface {
+	CreateMany(c context.Context, items []ProductReviewHelpfulness) error
 	Create(c context.Context, product_review_helpfulness *ProductReviewHelpfulness) error
 	Update(c context.Context, product_review_helpfulness *ProductReviewHelpfulness) error
 	Delete(c context.Context, ID string) error

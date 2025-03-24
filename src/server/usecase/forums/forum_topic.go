@@ -19,6 +19,13 @@ func NewForumTopicUsecase(forumtopicRepository domain.ForumTopicRepository, time
 	}
 }
 
+func (tu *forumtopicUsecase) CreateMany(c context.Context, items []domain.ForumTopic) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.forumtopicRepository.CreateMany(ctx, items)
+}
+
 func (tu *forumtopicUsecase) Create(c context.Context, forumtopic *domain.ForumTopic) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

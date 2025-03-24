@@ -30,6 +30,7 @@ type AffiliateRepository interface {
 }
 
 type AffiliateUsecase interface {
+	CreateMany(c context.Context, items []Affiliate) error
 	FetchByID(c context.Context, ID string) (Affiliate, error)
 	Create(c context.Context, affiliate *Affiliate) error
 	Update(c context.Context, affiliate *Affiliate) error

@@ -30,6 +30,7 @@ type EmailAccount struct {
 
 // EmailAccountRepository represents the repository interface for EmailAccount
 type EmailAccountRepository interface {
+	CreateMany(c context.Context, items []EmailAccount) error
 	Create(c context.Context, email_account *EmailAccount) error
 	Update(c context.Context, email_account *EmailAccount) error
 	Delete(c context.Context, ID string) error

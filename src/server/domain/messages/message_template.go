@@ -29,6 +29,7 @@ type MessageTemplate struct {
 
 // MessageTemplateRepository represents the repository interface for MessageTemplate
 type MessageTemplateRepository interface {
+	CreateMany(c context.Context, items []MessageTemplate) error
 	Create(c context.Context, message_template *MessageTemplate) error
 	Update(c context.Context, message_template *MessageTemplate) error
 	Delete(c context.Context, ID string) error

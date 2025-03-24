@@ -18,6 +18,7 @@ type EmailAccountSettings struct {
 
 // EmailAccountSettingsRepository represents the repository interface for EmailAccountSettings
 type EmailAccountSettingsRepository interface {
+	CreateMany(c context.Context, items []EmailAccountSettings) error
 	Create(c context.Context, email_account_settings *EmailAccountSettings) error
 	Update(c context.Context, email_account_settings *EmailAccountSettings) error
 	Delete(c context.Context, ID string) error

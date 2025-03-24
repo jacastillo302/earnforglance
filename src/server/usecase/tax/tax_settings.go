@@ -19,6 +19,12 @@ func NewTaxSettingsUsecase(TaxSettingsRepository domain.TaxSettingsRepository, t
 	}
 }
 
+func (tu *TaxSettingsUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.TaxSettings) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.TaxSettingsRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *TaxSettingsUsecase) Create(c context.Context, TaxSettings *domain.TaxSettings) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

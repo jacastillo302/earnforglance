@@ -19,6 +19,12 @@ func NewShoppingCartSettingsUsecase(shoppingCartSettingsRepository domain.Shoppi
 	}
 }
 
+func (tu *shoppingCartSettingsUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.ShoppingCartSettings) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.shoppingCartSettingsRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *shoppingCartSettingsUsecase) Create(c context.Context, shoppingCartSettings *domain.ShoppingCartSettings) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

@@ -21,6 +21,7 @@ type ForumGroup struct {
 }
 
 type ForumGroupRepository interface {
+	CreateMany(c context.Context, items []ForumGroup) error
 	Create(c context.Context, forum_group *ForumGroup) error
 	Update(c context.Context, forum_group *ForumGroup) error
 	Delete(c context.Context, ID string) error

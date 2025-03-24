@@ -19,6 +19,12 @@ func NewPickupPointUsecase(pickuppointRepository domain.PickupPointRepository, t
 	}
 }
 
+func (tu *pickuppointUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.PickupPoint) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.pickuppointRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *pickuppointUsecase) Create(c context.Context, pickuppoint *domain.PickupPoint) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

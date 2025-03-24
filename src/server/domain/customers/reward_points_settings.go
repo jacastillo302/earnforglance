@@ -32,6 +32,7 @@ type RewardPointsSettings struct {
 }
 
 type RewardPointsSettingsRepository interface {
+	CreateMany(c context.Context, items []RewardPointsSettings) error
 	Create(c context.Context, reward_points_settings *RewardPointsSettings) error
 	Update(c context.Context, reward_points_settings *RewardPointsSettings) error
 	Delete(c context.Context, ID string) error

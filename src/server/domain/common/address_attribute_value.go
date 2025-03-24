@@ -20,6 +20,7 @@ type AddressAttributeValue struct {
 }
 
 type AddressAttributeValueRepository interface {
+	CreateMany(c context.Context, items []AddressAttributeValue) error
 	Create(c context.Context, address_attribute_value *AddressAttributeValue) error
 	Update(c context.Context, address_attribute_value *AddressAttributeValue) error
 	Delete(c context.Context, ID string) error

@@ -19,6 +19,13 @@ func NewMeasureDimensionUsecase(MeasureDimensionRepository domain.MeasureDimensi
 	}
 }
 
+func (tu *measuredimensionUsecase) CreateMany(c context.Context, items []domain.MeasureDimension) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.MeasureDimensionRepository.CreateMany(ctx, items)
+}
+
 func (tu *measuredimensionUsecase) Create(c context.Context, measuredimension *domain.MeasureDimension) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

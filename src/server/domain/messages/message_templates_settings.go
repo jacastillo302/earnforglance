@@ -21,6 +21,7 @@ type MessageTemplatesSettings struct {
 
 // MessageTemplatesSettingsRepository interface
 type MessageTemplatesSettingsRepository interface {
+	CreateMany(c context.Context, items []MessageTemplatesSettings) error
 	Create(c context.Context, message_template_settings *MessageTemplatesSettings) error
 	Update(c context.Context, message_template_settings *MessageTemplatesSettings) error
 	Delete(c context.Context, ID string) error

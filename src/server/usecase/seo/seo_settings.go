@@ -19,6 +19,12 @@ func NewSeoSettingsUsecase(seosettingsRepository domain.SeoSettingsRepository, t
 	}
 }
 
+func (tu *seosettingsUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.SeoSettings) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.seosettingsRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *seosettingsUsecase) Create(c context.Context, seosettings *domain.SeoSettings) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

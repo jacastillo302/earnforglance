@@ -19,6 +19,12 @@ func NewAffiliateUsecase(affiliateRepository domain.AffiliateRepository, timeout
 	}
 }
 
+func (tu *affiliateUsecase) CreateMany(c context.Context, items []domain.Affiliate) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.affiliateRepository.CreateMany(ctx, items)
+}
+
 func (tu *affiliateUsecase) Create(c context.Context, affiliate *domain.Affiliate) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

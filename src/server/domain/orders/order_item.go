@@ -38,6 +38,7 @@ type OrderItem struct {
 
 // OrderItemRepository represents the repository interface for OrderItem
 type OrderItemRepository interface {
+	CreateMany(c context.Context, items []OrderItem) error
 	Create(c context.Context, order_item *OrderItem) error
 	Update(c context.Context, order_item *OrderItem) error
 	Delete(c context.Context, ID string) error

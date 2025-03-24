@@ -17,6 +17,7 @@ type WidgetSettings struct {
 }
 
 type WidgetSettingsRepository interface {
+	CreateMany(c context.Context, items []WidgetSettings) error
 	Create(c context.Context, widget_settings *WidgetSettings) error
 	Update(c context.Context, widget_settings *WidgetSettings) error
 	Delete(c context.Context, ID string) error

@@ -19,6 +19,12 @@ func NewStoreUsecase(storeRepository domain.StoreRepository, timeout time.Durati
 	}
 }
 
+func (tu *storeUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.Store) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.storeRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *storeUsecase) Create(c context.Context, store *domain.Store) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

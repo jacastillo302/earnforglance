@@ -19,6 +19,13 @@ func NewCampaignUsecase(campaignRepository domain.CampaignRepository, timeout ti
 	}
 }
 
+func (tu *campaignUsecase) CreateMany(c context.Context, items []domain.Campaign) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.campaignRepository.CreateMany(ctx, items)
+}
+
 func (tu *campaignUsecase) Create(c context.Context, campaign *domain.Campaign) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

@@ -65,6 +65,7 @@ type Customer struct {
 }
 
 type CustomerRepository interface {
+	CreateMany(c context.Context, items []Customer) error
 	Create(c context.Context, customer *Customer) error
 	Update(c context.Context, customer *Customer) error
 	Delete(c context.Context, ID string) error

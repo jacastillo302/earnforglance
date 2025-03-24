@@ -36,6 +36,7 @@ type AddressSettings struct {
 }
 
 type AddressSettingsRepository interface {
+	CreateMany(c context.Context, items []AddressSettings) error
 	Create(c context.Context, address_settings *AddressSettings) error
 	Update(c context.Context, address_settings *AddressSettings) error
 	Delete(c context.Context, ID string) error

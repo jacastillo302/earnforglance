@@ -19,6 +19,13 @@ func NewCustomerAddressMappingUsecase(customeraddressmappingRepository domain.Cu
 	}
 }
 
+func (tu *customeraddressmappingUsecase) CreateMany(c context.Context, items []domain.CustomerAddressMapping) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.customeraddressmappingRepository.CreateMany(ctx, items)
+}
+
 func (tu *customeraddressmappingUsecase) Create(c context.Context, customeraddressmapping *domain.CustomerAddressMapping) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

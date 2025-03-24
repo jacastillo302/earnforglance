@@ -21,6 +21,7 @@ type PollAnswer struct {
 
 // PollAnswerRepository defines the repository interface for PollAnswer
 type PollAnswerRepository interface {
+	CreateMany(c context.Context, items []PollAnswer) error
 	Create(c context.Context, poll_answer *PollAnswer) error
 	Update(c context.Context, poll_answer *PollAnswer) error
 	Delete(c context.Context, ID string) error

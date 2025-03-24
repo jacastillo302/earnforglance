@@ -26,6 +26,7 @@ type Country struct {
 }
 
 type CountryRepository interface {
+	CreateMany(c context.Context, items []Country) error
 	Create(c context.Context, country *Country) error
 	Update(c context.Context, country *Country) error
 	Delete(c context.Context, ID string) error

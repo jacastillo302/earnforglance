@@ -19,6 +19,7 @@ type SearchTerm struct {
 }
 
 type SearchTermRepository interface {
+	CreateMany(c context.Context, items []SearchTerm) error
 	Create(c context.Context, search_term *SearchTerm) error
 	Update(c context.Context, search_term *SearchTerm) error
 	Delete(c context.Context, ID string) error

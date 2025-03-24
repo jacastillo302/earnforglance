@@ -19,6 +19,13 @@ func NewCustomerCustomerRoleMappingUsecase(customerCustomerRoleMappingRepository
 	}
 }
 
+func (tu *customerCustomerRoleMappingUsecase) CreateMany(c context.Context, items []domain.CustomerCustomerRoleMapping) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.customerCustomerRoleMappingRepository.CreateMany(ctx, items)
+}
+
 func (tu *customerCustomerRoleMappingUsecase) Create(c context.Context, customerCustomerRoleMapping *domain.CustomerCustomerRoleMapping) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

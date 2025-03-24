@@ -19,6 +19,13 @@ func NewSettingUsecase(settingRepository domain.SettingRepository, timeout time.
 	}
 }
 
+func (tu *settingUsecase) CreateMany(c context.Context, items []domain.Setting) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.settingRepository.CreateMany(ctx, items)
+}
+
 func (tu *settingUsecase) Create(c context.Context, setting *domain.Setting) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

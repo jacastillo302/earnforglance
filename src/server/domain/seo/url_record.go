@@ -22,6 +22,7 @@ type UrlRecord struct {
 
 // UrlRecordRepository defines the repository interface for UrlRecord
 type UrlRecordRepository interface {
+	CreateMany(c context.Context, items []UrlRecord) error
 	Create(c context.Context, url_record *UrlRecord) error
 	Update(c context.Context, url_record *UrlRecord) error
 	Delete(c context.Context, ID string) error

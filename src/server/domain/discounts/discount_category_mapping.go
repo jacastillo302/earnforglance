@@ -17,6 +17,7 @@ type DiscountCategoryMapping struct {
 }
 
 type DiscountCategoryMappingRepository interface {
+	CreateMany(c context.Context, items []DiscountCategoryMapping) error
 	Create(c context.Context, discount_category_mapping *DiscountCategoryMapping) error
 	Update(c context.Context, discount_category_mapping *DiscountCategoryMapping) error
 	Delete(c context.Context, ID string) error

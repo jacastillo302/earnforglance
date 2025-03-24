@@ -27,6 +27,7 @@ type ProductAttributeCombination struct {
 }
 
 type ProductAttributeCombinationRepository interface {
+	CreateMany(c context.Context, items []ProductAttributeCombination) error
 	Create(c context.Context, product_attribute_combination *ProductAttributeCombination) error
 	Update(c context.Context, product_attribute_combination *ProductAttributeCombination) error
 	Delete(c context.Context, ID string) error

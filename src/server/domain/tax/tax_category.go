@@ -18,6 +18,7 @@ type TaxCategory struct {
 }
 
 type TaxCategoryRepository interface {
+	CreateMany(c context.Context, items []TaxCategory) error
 	Create(c context.Context, tax_category *TaxCategory) error
 	Update(c context.Context, tax_category *TaxCategory) error
 	Delete(c context.Context, ID string) error

@@ -23,6 +23,7 @@ type GdprConsent struct {
 
 // GdprConsentRepository interface
 type GdprConsentRepository interface {
+	CreateMany(c context.Context, items []GdprConsent) error
 	Create(c context.Context, gdpr_consent *GdprConsent) error
 	Update(c context.Context, gdpr_consent *GdprConsent) error
 	Delete(c context.Context, ID string) error

@@ -23,6 +23,7 @@ type OrderNote struct {
 
 // OrderNoteRepository interface
 type OrderNoteRepository interface {
+	CreateMany(c context.Context, items []OrderNote) error
 	Create(c context.Context, order_note *OrderNote) error
 	Update(c context.Context, order_note *OrderNote) error
 	Delete(c context.Context, ID string) error

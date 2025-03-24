@@ -28,6 +28,7 @@ type SitemapXmlSettings struct {
 }
 
 type SitemapXmlSettingsRepository interface {
+	CreateMany(c context.Context, items []SitemapXmlSettings) error
 	Create(c context.Context, sitemap_xml_settings *SitemapXmlSettings) error
 	Update(c context.Context, sitemap_xml_settings *SitemapXmlSettings) error
 	Delete(c context.Context, ID string) error

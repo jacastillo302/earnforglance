@@ -19,6 +19,12 @@ func NewNewsItemUsecase(newsitemRepository domain.NewsItemRepository, timeout ti
 	}
 }
 
+func (tu *newsitemUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.NewsItem) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.newsitemRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *newsitemUsecase) Create(c context.Context, newsitem *domain.NewsItem) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

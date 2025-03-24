@@ -20,6 +20,12 @@ func NewCheckoutAttributeValueUsecase(checkoutattributevalueRepository domain.Ch
 	}
 }
 
+func (tu *checkoutattributevalueUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.CheckoutAttributeValue) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.checkoutattributevalueRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *checkoutattributevalueUsecase) Create(c context.Context, checkoutattributevalue *domain.CheckoutAttributeValue) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

@@ -31,6 +31,7 @@ type GiftCard struct {
 
 // GiftCardRepository interface
 type GiftCardRepository interface {
+	CreateMany(c context.Context, items []GiftCard) error
 	Create(c context.Context, gift_card *GiftCard) error
 	Update(c context.Context, gift_card *GiftCard) error
 	Delete(c context.Context, ID string) error

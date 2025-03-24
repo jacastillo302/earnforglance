@@ -20,6 +20,7 @@ type ProductTag struct {
 }
 
 type ProductTagRepository interface {
+	CreateMany(c context.Context, items []ProductTag) error
 	Create(c context.Context, product_tag *ProductTag) error
 	Update(c context.Context, product_tag *ProductTag) error
 	Delete(c context.Context, ID string) error

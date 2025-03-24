@@ -17,6 +17,7 @@ type VendorAttribute struct {
 }
 
 type VendorAttributeRepository interface {
+	CreateMany(c context.Context, items []VendorAttribute) error
 	Create(c context.Context, vendor_attribute *VendorAttribute) error
 	Update(c context.Context, vendor_attribute *VendorAttribute) error
 	Delete(c context.Context, ID string) error

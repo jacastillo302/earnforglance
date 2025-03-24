@@ -19,6 +19,7 @@ type ProductAvailabilityRange struct {
 
 // ProductAvailabilityRangeRepository defines the repository interface for ProductAvailabilityRange
 type ProductAvailabilityRangeRepository interface {
+	CreateMany(c context.Context, items []ProductAvailabilityRange) error
 	Create(c context.Context, product_availability_range *ProductAvailabilityRange) error
 	Update(c context.Context, product_availability_range *ProductAvailabilityRange) error
 	Delete(c context.Context, ID string) error

@@ -25,6 +25,7 @@ type GdprLog struct {
 
 // GdprLogRepository interface
 type GdprLogRepository interface {
+	CreateMany(c context.Context, items []GdprLog) error
 	Create(c context.Context, gdpr_log *GdprLog) error
 	Update(c context.Context, gdpr_log *GdprLog) error
 	Delete(c context.Context, ID string) error

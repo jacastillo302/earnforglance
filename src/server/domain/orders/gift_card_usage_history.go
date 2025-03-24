@@ -22,6 +22,7 @@ type GiftCardUsageHistory struct {
 
 // GiftCardUsageHistoryRepository defines the repository interface for GiftCardUsageHistory
 type GiftCardUsageHistoryRepository interface {
+	CreateMany(c context.Context, items []GiftCardUsageHistory) error
 	Create(c context.Context, gift_card_usage_history *GiftCardUsageHistory) error
 	Update(c context.Context, gift_card_usage_history *GiftCardUsageHistory) error
 	Delete(c context.Context, ID string) error

@@ -23,6 +23,7 @@ type Picture struct {
 
 // PictureRepository represents the picture repository interface
 type PictureRepository interface {
+	CreateMany(c context.Context, items []Picture) error
 	Create(c context.Context, picture *Picture) error
 	Update(c context.Context, picture *Picture) error
 	Delete(c context.Context, ID string) error

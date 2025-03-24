@@ -19,6 +19,13 @@ func NewDiscountCategoryMappingUsecase(discountcategorymappingRepository domain.
 	}
 }
 
+func (tu *discountcategorymappingUsecase) CreateMany(c context.Context, items []domain.DiscountCategoryMapping) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.discountcategorymappingRepository.CreateMany(ctx, items)
+}
+
 func (tu *discountcategorymappingUsecase) Create(c context.Context, discountcategorymapping *domain.DiscountCategoryMapping) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

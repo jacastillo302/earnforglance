@@ -18,6 +18,7 @@ type ProductProductTagMapping struct {
 }
 
 type ProductProductTagMappingRepository interface {
+	CreateMany(c context.Context, items []ProductProductTagMapping) error
 	Create(c context.Context, product_product_tag_mappings *ProductProductTagMapping) error
 	Update(c context.Context, product_product_tag_mappings *ProductProductTagMapping) error
 	Delete(c context.Context, ID string) error

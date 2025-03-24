@@ -32,6 +32,7 @@ type CommonSettings struct {
 }
 
 type CommonSettingsRepository interface {
+	CreateMany(c context.Context, items []CommonSettings) error
 	Create(c context.Context, common_settings *CommonSettings) error
 	Update(c context.Context, common_settings *CommonSettings) error
 	Delete(c context.Context, ID string) error

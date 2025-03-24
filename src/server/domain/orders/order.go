@@ -79,6 +79,7 @@ type Order struct {
 
 // OrderRepository represents the order repository interface
 type OrderRepository interface {
+	CreateMany(c context.Context, items []Order) error
 	Create(c context.Context, order *Order) error
 	Update(c context.Context, order *Order) error
 	Delete(c context.Context, ID string) error

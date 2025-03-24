@@ -19,6 +19,12 @@ func NewProductEditorSettingsUsecase(producteditorsettingsRepository domain.Prod
 	}
 }
 
+func (tu *producteditorsettingsUsecase) CreateMany(c context.Context, items []domain.ProductEditorSettings) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.producteditorsettingsRepository.CreateMany(ctx, items)
+}
+
 func (tu *producteditorsettingsUsecase) Create(c context.Context, producteditorsettings *domain.ProductEditorSettings) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

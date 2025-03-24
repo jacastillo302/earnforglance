@@ -19,6 +19,13 @@ func NewGdprLogUsecase(GdprLogRepository domain.GdprLogRepository, timeout time.
 	}
 }
 
+func (tu *GdprLogUsecase) CreateMany(c context.Context, items []domain.GdprLog) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.GdprLogRepository.CreateMany(ctx, items)
+}
+
 func (tu *GdprLogUsecase) Create(c context.Context, GdprLog *domain.GdprLog) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

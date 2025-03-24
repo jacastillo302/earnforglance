@@ -31,6 +31,7 @@ type DisplayDefaultFooterItemSettings struct {
 }
 
 type DisplayDefaultFooterItemSettingsRepository interface {
+	CreateMany(c context.Context, items []DisplayDefaultFooterItemSettings) error
 	Create(c context.Context, display_default_footer_item_settings *DisplayDefaultFooterItemSettings) error
 	Update(c context.Context, display_default_footer_item_settings *DisplayDefaultFooterItemSettings) error
 	Delete(c context.Context, ID string) error

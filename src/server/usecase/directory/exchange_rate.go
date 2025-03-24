@@ -19,6 +19,13 @@ func NewExchangeRateUsecase(exchangeRateRepository domain.ExchangeRateRepository
 	}
 }
 
+func (tu *exchangeRateUsecase) CreateMany(c context.Context, items []domain.ExchangeRate) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.exchangeRateRepository.CreateMany(ctx, items)
+}
+
 func (tu *exchangeRateUsecase) Create(c context.Context, exchangeRate *domain.ExchangeRate) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

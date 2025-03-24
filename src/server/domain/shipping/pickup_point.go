@@ -33,6 +33,7 @@ type PickupPoint struct {
 
 // PickupPointRepository defines the repository interface for PickupPoint
 type PickupPointRepository interface {
+	CreateMany(c context.Context, items []PickupPoint) error
 	Create(c context.Context, pickup_point *PickupPoint) error
 	Update(c context.Context, pickup_point *PickupPoint) error
 	Delete(c context.Context, ID string) error

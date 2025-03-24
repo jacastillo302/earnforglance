@@ -20,6 +20,7 @@ type ProductCategory struct {
 }
 
 type ProductCategoryRepository interface {
+	CreateMany(c context.Context, items []ProductCategory) error
 	Create(c context.Context, product_category *ProductCategory) error
 	Update(c context.Context, product_category *ProductCategory) error
 	Delete(c context.Context, ID string) error

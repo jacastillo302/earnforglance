@@ -19,6 +19,12 @@ func NewProductSpecificationAttributeUsecase(productSpecificationAttributeReposi
 	}
 }
 
+func (tu *productSpecificationAttributeUsecase) CreateMany(c context.Context, items []domain.ProductSpecificationAttribute) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.productSpecificationAttributeRepository.CreateMany(ctx, items)
+}
+
 func (tu *productSpecificationAttributeUsecase) Create(c context.Context, productSpecificationAttribute *domain.ProductSpecificationAttribute) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

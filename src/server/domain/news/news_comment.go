@@ -25,6 +25,7 @@ type NewsComment struct {
 
 // NewsCommentRepository interface
 type NewsCommentRepository interface {
+	CreateMany(c context.Context, items []NewsComment) error
 	Create(c context.Context, news_comment *NewsComment) error
 	Update(c context.Context, news_comment *NewsComment) error
 	Delete(c context.Context, ID string) error

@@ -26,6 +26,7 @@ type CustomerAttribute struct {
 }
 
 type CustomerAttributeRepository interface {
+	CreateMany(c context.Context, items []CustomerAttribute) error
 	Create(c context.Context, customer_attribute *CustomerAttribute) error
 	Update(c context.Context, customer_attribute *CustomerAttribute) error
 	Delete(c context.Context, ID string) error

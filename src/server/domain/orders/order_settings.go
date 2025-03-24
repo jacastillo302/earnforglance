@@ -54,6 +54,7 @@ type OrderSettings struct {
 
 // OrderSettingsRepository represents the repository interface for OrderSettings
 type OrderSettingsRepository interface {
+	CreateMany(c context.Context, items []OrderSettings) error
 	Create(c context.Context, order_settings *OrderSettings) error
 	Update(c context.Context, order_settings *OrderSettings) error
 	Delete(c context.Context, ID string) error

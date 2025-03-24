@@ -21,6 +21,7 @@ type GdprSettings struct {
 }
 
 type GdprSettingsRepository interface {
+	CreateMany(c context.Context, items []GdprSettings) error
 	Create(c context.Context, gdpr_settings *GdprSettings) error
 	Update(c context.Context, gdpr_settings *GdprSettings) error
 	Delete(c context.Context, ID string) error

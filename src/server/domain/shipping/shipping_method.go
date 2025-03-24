@@ -20,6 +20,7 @@ type ShippingMethod struct {
 
 // ShippingMethodRepository defines the repository interface for ShippingMethod
 type ShippingMethodRepository interface {
+	CreateMany(c context.Context, items []ShippingMethod) error
 	Create(c context.Context, shipping_method *ShippingMethod) error
 	Update(c context.Context, shipping_method *ShippingMethod) error
 	Delete(c context.Context, ID string) error

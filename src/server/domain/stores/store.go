@@ -33,6 +33,7 @@ type Store struct {
 
 // StoreRepository defines the repository interface for Store
 type StoreRepository interface {
+	CreateMany(c context.Context, items []Store) error
 	Create(c context.Context, store *Store) error
 	Update(c context.Context, store *Store) error
 	Delete(c context.Context, ID string) error

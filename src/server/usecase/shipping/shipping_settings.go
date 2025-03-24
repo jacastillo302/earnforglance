@@ -19,6 +19,12 @@ func NewShippingSettingsUsecase(shippingSettingsRepository domain.ShippingSettin
 	}
 }
 
+func (tu *shippingSettingsUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.ShippingSettings) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.shippingSettingsRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *shippingSettingsUsecase) Create(c context.Context, shippingSettings *domain.ShippingSettings) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

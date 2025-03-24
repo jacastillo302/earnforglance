@@ -19,6 +19,12 @@ func NewCategoryTemplateUsecase(categorytemplateRepository domain.CategoryTempla
 	}
 }
 
+func (tu *categorytemplateUsecase) CreateMany(c context.Context, items []domain.CategoryTemplate) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.categorytemplateRepository.CreateMany(ctx, items)
+}
+
 func (tu *categorytemplateUsecase) Create(c context.Context, affiliate *domain.CategoryTemplate) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

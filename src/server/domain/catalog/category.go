@@ -42,6 +42,7 @@ type Category struct {
 }
 
 type CategoryRepository interface {
+	CreateMany(c context.Context, items []Category) error
 	Create(c context.Context, category *Category) error
 	Update(c context.Context, category *Category) error
 	Delete(c context.Context, ID string) error

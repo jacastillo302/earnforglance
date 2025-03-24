@@ -19,6 +19,13 @@ func NewCountryUsecase(countryRepository domain.CountryRepository, timeout time.
 	}
 }
 
+func (tu *countryUsecase) CreateMany(c context.Context, items []domain.Country) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.countryRepository.CreateMany(ctx, items)
+}
+
 func (tu *countryUsecase) Create(c context.Context, country *domain.Country) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

@@ -28,6 +28,7 @@ type Download struct {
 // data storage provider needs to implement to get
 // and store downloads
 type DownloadRepository interface {
+	CreateMany(c context.Context, items []Download) error
 	Create(c context.Context, download *Download) error
 	Update(c context.Context, download *Download) error
 	Delete(c context.Context, ID string) error

@@ -19,6 +19,13 @@ func NewDisplayDefaultFooterItemSettingsUsecase(displaydefaultfooteritemsettings
 	}
 }
 
+func (tu *displaydefaultfooteritemsettingsUsecase) CreateMany(c context.Context, items []domain.DisplayDefaultFooterItemSettings) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.displaydefaultfooteritemsettingsRepository.CreateMany(ctx, items)
+}
+
 func (tu *displaydefaultfooteritemsettingsUsecase) Create(c context.Context, displaydefaultfooteritemsettings *domain.DisplayDefaultFooterItemSettings) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

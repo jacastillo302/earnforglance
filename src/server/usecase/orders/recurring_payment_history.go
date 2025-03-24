@@ -19,6 +19,12 @@ func NewRecurringPaymentHistoryUsecase(recurringpaymenthistoryRepository domain.
 	}
 }
 
+func (tu *recurringpaymenthistoryUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.RecurringPaymentHistory) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.recurringpaymenthistoryRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *recurringpaymenthistoryUsecase) Create(c context.Context, recurringpaymenthistory *domain.RecurringPaymentHistory) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

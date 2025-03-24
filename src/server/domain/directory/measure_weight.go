@@ -20,6 +20,7 @@ type MeasureWeight struct {
 }
 
 type MeasureWeightRepository interface {
+	CreateMany(c context.Context, items []MeasureWeight) error
 	Create(c context.Context, measure_weight *MeasureWeight) error
 	Update(c context.Context, measure_weight *MeasureWeight) error
 	Delete(c context.Context, ID string) error

@@ -27,6 +27,7 @@ type SalesSummaryReportLine struct {
 
 // SalesSummaryReportLineRepository represents the repository interface for SalesSummaryReportLine
 type SalesSummaryReportLineRepository interface {
+	CreateMany(c context.Context, items []SalesSummaryReportLine) error
 	Create(c context.Context, sales_summary_report_line *SalesSummaryReportLine) error
 	Update(c context.Context, sales_summary_report_line *SalesSummaryReportLine) error
 	Delete(c context.Context, ID string) error

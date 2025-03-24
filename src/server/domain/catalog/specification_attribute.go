@@ -19,6 +19,7 @@ type SpecificationAttribute struct {
 }
 
 type SpecificationAttributeRepository interface {
+	CreateMany(c context.Context, items []SpecificationAttribute) error
 	Create(c context.Context, specification_attribute *SpecificationAttribute) error
 	Update(c context.Context, specification_attribute *SpecificationAttribute) error
 	Delete(c context.Context, ID string) error

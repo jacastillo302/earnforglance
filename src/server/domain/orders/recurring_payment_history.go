@@ -21,6 +21,7 @@ type RecurringPaymentHistory struct {
 
 // RecurringPaymentHistoryRepository represents the repository interface for RecurringPaymentHistory
 type RecurringPaymentHistoryRepository interface {
+	CreateMany(c context.Context, items []RecurringPaymentHistory) error
 	Create(c context.Context, recurring_payment_history *RecurringPaymentHistory) error
 	Update(c context.Context, recurring_payment_history *RecurringPaymentHistory) error
 	Delete(c context.Context, ID string) error

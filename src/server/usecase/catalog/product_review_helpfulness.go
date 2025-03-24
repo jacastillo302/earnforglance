@@ -19,6 +19,12 @@ func NewProductReviewHelpfulnessUsecase(productreviewhelpfulnessRepository domai
 	}
 }
 
+func (tu *productreviewhelpfulnessUsecase) CreateMany(c context.Context, items []domain.ProductReviewHelpfulness) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.productreviewhelpfulnessRepository.CreateMany(ctx, items)
+}
+
 func (tu *productreviewhelpfulnessUsecase) Create(c context.Context, productreviewhelpfulness *domain.ProductReviewHelpfulness) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

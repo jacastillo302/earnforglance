@@ -19,6 +19,7 @@ type ReturnRequestAction struct {
 
 // ReturnRequestActionRepository interface
 type ReturnRequestActionRepository interface {
+	CreateMany(c context.Context, items []ReturnRequestAction) error
 	Create(c context.Context, return_request_action *ReturnRequestAction) error
 	Update(c context.Context, return_request_action *ReturnRequestAction) error
 	Delete(c context.Context, ID string) error

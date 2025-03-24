@@ -20,6 +20,7 @@ type AclRecord struct {
 
 // AclRecordRepository defines the repository interface for AclRecord
 type AclRecordRepository interface {
+	CreateMany(c context.Context, items []AclRecord) error
 	Create(c context.Context, acl_record *AclRecord) error
 	Update(c context.Context, acl_record *AclRecord) error
 	Delete(c context.Context, ID string) error

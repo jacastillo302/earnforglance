@@ -31,6 +31,7 @@ func NewSecuritySettings() *SecuritySettings {
 }
 
 type SecuritySettingsRepository interface {
+	CreateMany(c context.Context, items []SecuritySettings) error
 	Create(c context.Context, security_settings *SecuritySettings) error
 	Update(c context.Context, security_settings *SecuritySettings) error
 	Delete(c context.Context, ID string) error

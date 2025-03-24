@@ -19,6 +19,12 @@ func NewCatalogSettingsUsecase(catalogsettingsRepository domain.CatalogSettingsR
 	}
 }
 
+func (tu *catalogsettingsUsecase) CreateMany(c context.Context, items []domain.CatalogSettings) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.catalogsettingsRepository.CreateMany(ctx, items)
+}
+
 func (tu *catalogsettingsUsecase) Create(c context.Context, affiliate *domain.CatalogSettings) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

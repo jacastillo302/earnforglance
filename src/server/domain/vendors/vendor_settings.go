@@ -35,6 +35,7 @@ func NewVendorSettings() *VendorSettings {
 
 // VendorSettingsRepository defines the repository interface for VendorSettings
 type VendorSettingsRepository interface {
+	CreateMany(c context.Context, items []VendorSettings) error
 	Create(c context.Context, vendor_settings *VendorSettings) error
 	Update(c context.Context, vendor_settings *VendorSettings) error
 	Delete(c context.Context, ID string) error

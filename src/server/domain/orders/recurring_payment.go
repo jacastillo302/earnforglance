@@ -28,6 +28,7 @@ type RecurringPayment struct {
 
 // RecurringPaymentRepository interface
 type RecurringPaymentRepository interface {
+	CreateMany(c context.Context, items []RecurringPayment) error
 	Create(c context.Context, recurring_payment *RecurringPayment) error
 	Update(c context.Context, recurring_payment *RecurringPayment) error
 	Delete(c context.Context, ID string) error

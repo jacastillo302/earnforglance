@@ -19,6 +19,12 @@ func NewPermissionRecordCustomerRoleMappingUsecase(permissionrecordcustomerrolem
 	}
 }
 
+func (tu *permissionrecordcustomerrolemappingUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.PermissionRecordCustomerRoleMapping) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.permissionrecordcustomerrolemappingRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *permissionrecordcustomerrolemappingUsecase) Create(c context.Context, permissionrecordcustomerrolemapping *domain.PermissionRecordCustomerRoleMapping) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

@@ -19,6 +19,7 @@ type LocaleStringResource struct {
 }
 
 type LocaleStringResourceRepository interface {
+	CreateMany(c context.Context, items []LocaleStringResource) error
 	Create(c context.Context, locale_string_resource *LocaleStringResource) error
 	Update(c context.Context, locale_string_resource *LocaleStringResource) error
 	Delete(c context.Context, ID string) error

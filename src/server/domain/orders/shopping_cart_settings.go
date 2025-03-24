@@ -38,6 +38,7 @@ type ShoppingCartSettings struct {
 
 // ShoppingCartSettingsRepository defines the repository interface for ShoppingCartSettings
 type ShoppingCartSettingsRepository interface {
+	CreateMany(c context.Context, items []ShoppingCartSettings) error
 	Create(c context.Context, shopping_cart_settings *ShoppingCartSettings) error
 	Update(c context.Context, shopping_cart_settings *ShoppingCartSettings) error
 	Delete(c context.Context, ID string) error

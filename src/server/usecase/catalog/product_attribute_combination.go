@@ -19,6 +19,12 @@ func NewProductAttributeCombinationUsecase(productattributecombinationRepository
 	}
 }
 
+func (tu *productattributecombinationUsecase) CreateMany(c context.Context, items []domain.ProductAttributeCombination) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.productattributecombinationRepository.CreateMany(ctx, items)
+}
+
 func (tu *productattributecombinationUsecase) Create(c context.Context, productattributecombination *domain.ProductAttributeCombination) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

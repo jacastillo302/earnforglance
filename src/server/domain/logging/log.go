@@ -26,6 +26,7 @@ type Log struct {
 }
 
 type LogRepository interface {
+	CreateMany(c context.Context, items []Log) error
 	Create(c context.Context, log *Log) error
 	Update(c context.Context, log *Log) error
 	Delete(c context.Context, ID string) error

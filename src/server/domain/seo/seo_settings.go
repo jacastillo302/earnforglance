@@ -36,6 +36,7 @@ func NewSeoSettings() *SeoSettings {
 }
 
 type SeoSettingsRepository interface {
+	CreateMany(c context.Context, items []SeoSettings) error
 	Create(c context.Context, seo_settings *SeoSettings) error
 	Update(c context.Context, seo_settings *SeoSettings) error
 	Delete(c context.Context, ID string) error

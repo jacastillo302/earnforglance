@@ -18,6 +18,7 @@ type PermissionRecordCustomerRoleMapping struct {
 }
 
 type PermissionRecordCustomerRoleMappingRepository interface {
+	CreateMany(c context.Context, items []PermissionRecordCustomerRoleMapping) error
 	Create(c context.Context, permission_record_customer_role_mapping *PermissionRecordCustomerRoleMapping) error
 	Update(c context.Context, permission_record_customer_role_mapping *PermissionRecordCustomerRoleMapping) error
 	Delete(c context.Context, ID string) error

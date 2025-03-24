@@ -19,6 +19,13 @@ func NewSearchTermReportLineUsecase(SearchTermReportLineRepository domain.Search
 	}
 }
 
+func (tu *SearchTermReportLineUsecase) CreateMany(c context.Context, items []domain.SearchTermReportLine) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.SearchTermReportLineRepository.CreateMany(ctx, items)
+}
+
 func (tu *SearchTermReportLineUsecase) Create(c context.Context, SearchTermReportLine *domain.SearchTermReportLine) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

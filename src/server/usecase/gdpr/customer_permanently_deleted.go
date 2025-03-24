@@ -19,6 +19,13 @@ func NewCustomerPermanentlyDeletedUsecase(customerPermanentlyDeletedRepository d
 	}
 }
 
+func (tu *customerPermanentlyDeletedUsecase) CreateMany(c context.Context, items []domain.CustomerPermanentlyDeleted) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.customerPermanentlyDeletedRepository.CreateMany(ctx, items)
+}
+
 func (tu *customerPermanentlyDeletedUsecase) Create(c context.Context, customerPermanentlyDeleted *domain.CustomerPermanentlyDeleted) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

@@ -33,6 +33,7 @@ type ReturnRequest struct {
 
 // ReturnRequestRepository represents the repository interface for ReturnRequest
 type ReturnRequestRepository interface {
+	CreateMany(c context.Context, items []ReturnRequest) error
 	Create(c context.Context, return_request *ReturnRequest) error
 	Update(c context.Context, return_request *ReturnRequest) error
 	Delete(c context.Context, ID string) error

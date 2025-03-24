@@ -19,6 +19,12 @@ func NewPermissionRecordUsecase(permissionrecordRepository domain.PermissionReco
 	}
 }
 
+func (tu *permissionrecordUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.PermissionRecord) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.permissionrecordRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *permissionrecordUsecase) Create(c context.Context, permissionrecord *domain.PermissionRecord) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

@@ -31,6 +31,7 @@ type BlogPost struct {
 }
 
 type BlogPostRepository interface {
+	CreateMany(c context.Context, items []BlogPost) error
 	Create(c context.Context, blog_post *BlogPost) error
 	Update(c context.Context, blog_post *BlogPost) error
 	Delete(c context.Context, ID string) error

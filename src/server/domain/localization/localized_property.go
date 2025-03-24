@@ -21,6 +21,7 @@ type LocalizedProperty struct {
 }
 
 type LocalizedPropertyRepository interface {
+	CreateMany(c context.Context, items []LocalizedProperty) error
 	Create(c context.Context, localization_settings *LocalizedProperty) error
 	Update(c context.Context, localization_settings *LocalizedProperty) error
 	Delete(c context.Context, ID string) error

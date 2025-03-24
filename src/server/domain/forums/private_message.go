@@ -27,6 +27,7 @@ type PrivateMessage struct {
 
 // PrivateMessageRepository interface
 type PrivateMessageRepository interface {
+	CreateMany(c context.Context, items []PrivateMessage) error
 	Create(c context.Context, private_message *PrivateMessage) error
 	Update(c context.Context, private_message *PrivateMessage) error
 	Delete(c context.Context, ID string) error

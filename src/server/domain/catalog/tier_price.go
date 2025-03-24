@@ -24,6 +24,7 @@ type TierPrice struct {
 }
 
 type TierPriceRepository interface {
+	CreateMany(c context.Context, items []TierPrice) error
 	Create(c context.Context, tier_price *TierPrice) error
 	Update(c context.Context, tier_price *TierPrice) error
 	Delete(c context.Context, ID string) error

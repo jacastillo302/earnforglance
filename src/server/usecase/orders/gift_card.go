@@ -19,6 +19,12 @@ func NewGiftCardUsecase(giftcardRepository domain.GiftCardRepository, timeout ti
 	}
 }
 
+func (tu *giftcardUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.GiftCard) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.giftcardRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *giftcardUsecase) Create(c context.Context, giftcard *domain.GiftCard) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

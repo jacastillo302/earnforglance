@@ -20,6 +20,7 @@ type BaseAttributeValue struct {
 }
 
 type BaseAttributeValueRepository interface {
+	CreateMany(c context.Context, items []BaseAttributeValue) error
 	Create(c context.Context, base_attribute *BaseAttributeValue) error
 	Update(c context.Context, base_attribute *BaseAttributeValue) error
 	Delete(c context.Context, ID string) error
@@ -28,6 +29,7 @@ type BaseAttributeValueRepository interface {
 }
 
 type BaseAttributeValueUsecase interface {
+	CreateMany(c context.Context, items []BaseAttributeValue) error
 	FetchByID(c context.Context, ID string) (BaseAttributeValue, error)
 	Create(c context.Context, base_attribute *BaseAttributeValue) error
 	Update(c context.Context, base_attribute *BaseAttributeValue) error

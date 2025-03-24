@@ -20,6 +20,7 @@ type StoreMapping struct {
 
 // StoreMappingRepository defines the repository interface for StoreMapping
 type StoreMappingRepository interface {
+	CreateMany(c context.Context, items []StoreMapping) error
 	Create(c context.Context, store_mapping *StoreMapping) error
 	Update(c context.Context, store_mapping *StoreMapping) error
 	Delete(c context.Context, ID string) error

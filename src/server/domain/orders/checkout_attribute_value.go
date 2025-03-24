@@ -20,6 +20,7 @@ type CheckoutAttributeValue struct {
 
 // CheckoutAttributeValueRepository interface
 type CheckoutAttributeValueRepository interface {
+	CreateMany(c context.Context, items []CheckoutAttributeValue) error
 	Create(c context.Context, checkout_attribute_value *CheckoutAttributeValue) error
 	Update(c context.Context, checkout_attribute_value *CheckoutAttributeValue) error
 	Delete(c context.Context, ID string) error

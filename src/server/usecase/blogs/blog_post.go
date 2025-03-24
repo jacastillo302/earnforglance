@@ -19,6 +19,12 @@ func NewBlogPostUsecase(blogpostRepository domain.BlogPostRepository, timeout ti
 	}
 }
 
+func (tu *blogpostUsecase) CreateMany(c context.Context, items []domain.BlogPost) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.blogpostRepository.CreateMany(ctx, items)
+}
+
 func (tu *blogpostUsecase) Create(c context.Context, blogpost *domain.BlogPost) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

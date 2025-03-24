@@ -19,6 +19,13 @@ func NewAddressAttributeValueUsecase(addressAttributeValueRepository domain.Addr
 	}
 }
 
+func (tu *addressAttributeValueUsecase) CreateMany(c context.Context, items []domain.AddressAttributeValue) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.addressAttributeValueRepository.CreateMany(ctx, items)
+}
+
 func (tu *addressAttributeValueUsecase) Create(c context.Context, addressAttributeValue *domain.AddressAttributeValue) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

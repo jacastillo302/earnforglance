@@ -19,6 +19,12 @@ func NewPaymentSettingsUsecase(paymentsettingsRepository domain.PaymentSettingsR
 	}
 }
 
+func (tu *paymentsettingsUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.PaymentSettings) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.paymentsettingsRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *paymentsettingsUsecase) Create(c context.Context, paymentsettings *domain.PaymentSettings) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

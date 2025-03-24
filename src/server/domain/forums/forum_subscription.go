@@ -24,6 +24,7 @@ type ForumSubscription struct {
 
 // ForumSubscriptionRepository interface
 type ForumSubscriptionRepository interface {
+	CreateMany(c context.Context, items []ForumSubscription) error
 	Create(c context.Context, forum_subscription *ForumSubscription) error
 	Update(c context.Context, forum_subscription *ForumSubscription) error
 	Delete(c context.Context, ID string) error

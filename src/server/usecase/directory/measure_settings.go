@@ -19,6 +19,13 @@ func NewMeasureSettingsUsecase(measuresettingsRepository domain.MeasureSettingsR
 	}
 }
 
+func (tu *measuresettingsUsecase) CreateMany(c context.Context, items []domain.MeasureSettings) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.measuresettingsRepository.CreateMany(ctx, items)
+}
+
 func (tu *measuresettingsUsecase) Create(c context.Context, measuresettings *domain.MeasureSettings) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

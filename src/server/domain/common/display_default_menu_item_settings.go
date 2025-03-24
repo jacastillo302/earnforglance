@@ -23,6 +23,7 @@ type DisplayDefaultMenuItemSettings struct {
 }
 
 type DisplayDefaultMenuItemSettingsRepository interface {
+	CreateMany(c context.Context, items []DisplayDefaultMenuItemSettings) error
 	Create(c context.Context, display_default_menu_item_settings *DisplayDefaultMenuItemSettings) error
 	Update(c context.Context, display_default_menu_item_settings *DisplayDefaultMenuItemSettings) error
 	Delete(c context.Context, ID string) error

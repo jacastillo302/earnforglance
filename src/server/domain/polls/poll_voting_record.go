@@ -21,6 +21,7 @@ type PollVotingRecord struct {
 
 // PollVotingRecordRepository defines the repository interface for PollVotingRecord
 type PollVotingRecordRepository interface {
+	CreateMany(c context.Context, items []PollVotingRecord) error
 	Create(c context.Context, poll_voting_record *PollVotingRecord) error
 	Update(c context.Context, poll_voting_record *PollVotingRecord) error
 	Delete(c context.Context, ID string) error

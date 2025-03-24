@@ -19,6 +19,12 @@ func NewSalesSummaryReportLineUsecase(salesSummaryReportLineRepository domain.Sa
 	}
 }
 
+func (tu *salesSummaryReportLineUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.SalesSummaryReportLine) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.salesSummaryReportLineRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *salesSummaryReportLineUsecase) Create(c context.Context, salesSummaryReportLine *domain.SalesSummaryReportLine) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

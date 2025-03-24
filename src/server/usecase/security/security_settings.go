@@ -19,6 +19,12 @@ func NewSecuritySettingsUsecase(securitySettingsRepository domain.SecuritySettin
 	}
 }
 
+func (tu *securitySettingsUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.SecuritySettings) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.securitySettingsRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *securitySettingsUsecase) Create(c context.Context, securitySettings *domain.SecuritySettings) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

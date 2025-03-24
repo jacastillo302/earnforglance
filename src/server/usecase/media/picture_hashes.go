@@ -19,6 +19,13 @@ func NewPictureHashesUsecase(PictureHashesRepository domain.PictureHashesReposit
 	}
 }
 
+func (tu *PictureHashesUsecase) CreateMany(c context.Context, items []domain.PictureHashes) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.PictureHashesRepository.CreateMany(ctx, items)
+}
+
 func (tu *PictureHashesUsecase) Create(c context.Context, PictureHashes *domain.PictureHashes) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

@@ -19,6 +19,12 @@ func NewBestSellersReportLineUsecase(bestsellersreportlineRepository domain.Best
 	}
 }
 
+func (tu *bestsellersreportlineUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.BestSellersReportLine) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.bestsellersreportlineRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *bestsellersreportlineUsecase) Create(c context.Context, bestsellersreportline *domain.BestSellersReportLine) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

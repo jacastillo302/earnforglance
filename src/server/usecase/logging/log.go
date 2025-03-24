@@ -19,6 +19,13 @@ func NewLogUsecase(logRepository domain.LogRepository, timeout time.Duration) do
 	}
 }
 
+func (tu *logUsecase) CreateMany(c context.Context, items []domain.Log) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.logRepository.CreateMany(ctx, items)
+}
+
 func (lu *logUsecase) Create(c context.Context, log *domain.Log) error {
 	ctx, cancel := context.WithTimeout(c, lu.contextTimeout)
 	defer cancel()

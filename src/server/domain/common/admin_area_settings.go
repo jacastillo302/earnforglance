@@ -32,6 +32,7 @@ type AdminAreaSettings struct {
 }
 
 type AdminAreaSettingsRepository interface {
+	CreateMany(c context.Context, items []AdminAreaSettings) error
 	Create(c context.Context, admin_area_settings *AdminAreaSettings) error
 	Update(c context.Context, admin_area_settings *AdminAreaSettings) error
 	Delete(c context.Context, ID string) error

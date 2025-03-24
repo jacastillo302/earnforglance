@@ -19,6 +19,12 @@ func NewShippingMethodCountryMappingUsecase(shippingmethodcountrymappingReposito
 	}
 }
 
+func (tu *shippingmethodcountrymappingUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.ShippingMethodCountryMapping) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.shippingmethodcountrymappingRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *shippingmethodcountrymappingUsecase) Create(c context.Context, shippingmethodcountrymapping *domain.ShippingMethodCountryMapping) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

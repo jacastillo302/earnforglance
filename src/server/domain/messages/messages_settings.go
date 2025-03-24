@@ -18,6 +18,7 @@ type MessagesSettings struct {
 }
 
 type MessagesSettingsRepository interface {
+	CreateMany(c context.Context, items []MessagesSettings) error
 	Create(c context.Context, messages_settings *MessagesSettings) error
 	Update(c context.Context, messages_settings *MessagesSettings) error
 	Delete(c context.Context, ID string) error

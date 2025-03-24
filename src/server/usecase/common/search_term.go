@@ -19,6 +19,13 @@ func NewSearchTermUsecase(searchtermRepository domain.SearchTermRepository, time
 	}
 }
 
+func (tu *searchtermUsecase) CreateMany(c context.Context, items []domain.SearchTerm) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.searchtermRepository.CreateMany(ctx, items)
+}
+
 func (tu *searchtermUsecase) Create(c context.Context, searchterm *domain.SearchTerm) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

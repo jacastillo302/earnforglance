@@ -19,6 +19,13 @@ func NewCommonSettingsUsecase(commonsettingsRepository domain.CommonSettingsRepo
 	}
 }
 
+func (tu *commonsettingsUsecase) CreateMany(c context.Context, items []domain.CommonSettings) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.commonsettingsRepository.CreateMany(ctx, items)
+}
+
 func (tu *commonsettingsUsecase) Create(c context.Context, commonsettings *domain.CommonSettings) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

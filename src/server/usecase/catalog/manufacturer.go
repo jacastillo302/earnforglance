@@ -19,6 +19,12 @@ func NewManufacturerUsecase(manufacturerRepository domain.ManufacturerRepository
 	}
 }
 
+func (tu *manufacturerUsecase) CreateMany(c context.Context, items []domain.Manufacturer) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.manufacturerRepository.CreateMany(ctx, items)
+}
+
 func (tu *manufacturerUsecase) Create(c context.Context, manufacturer *domain.Manufacturer) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

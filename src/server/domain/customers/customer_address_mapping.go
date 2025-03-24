@@ -18,6 +18,7 @@ type CustomerAddressMapping struct {
 }
 
 type CustomerAddressMappingRepository interface {
+	CreateMany(c context.Context, items []CustomerAddressMapping) error
 	Create(c context.Context, customer_address_mapping *CustomerAddressMapping) error
 	Update(c context.Context, customer_address_mapping *CustomerAddressMapping) error
 	Delete(c context.Context, ID string) error

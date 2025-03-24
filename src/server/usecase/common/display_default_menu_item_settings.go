@@ -20,6 +20,13 @@ func NewDisplayDefaultMenuItemSettingsUsecase(displaydefaultmenuitemsettingsRepo
 	}
 }
 
+func (tu *displaydefaultmenuitemsettingsUsecase) CreateMany(c context.Context, items []domain.DisplayDefaultMenuItemSettings) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.displaydefaultmenuitemsettingsRepository.CreateMany(ctx, items)
+}
+
 func (tu *displaydefaultmenuitemsettingsUsecase) Create(c context.Context, displaydefaultmenuitemsettings *domain.DisplayDefaultMenuItemSettings) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

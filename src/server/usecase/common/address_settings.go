@@ -19,6 +19,13 @@ func NewAddressSettingsUsecase(addresssettingsRepository domain.AddressSettingsR
 	}
 }
 
+func (tu *addresssettingsUsecase) CreateMany(c context.Context, items []domain.AddressSettings) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.addresssettingsRepository.CreateMany(ctx, items)
+}
+
 func (tu *addresssettingsUsecase) Create(c context.Context, addresssettings *domain.AddressSettings) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

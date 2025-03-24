@@ -39,6 +39,7 @@ type Topic struct {
 
 // TopicRepository defines the repository interface for Topic
 type TopicRepository interface {
+	CreateMany(c context.Context, items []Topic) error
 	Create(c context.Context, topic *Topic) error
 	Update(c context.Context, topic *Topic) error
 	Delete(c context.Context, ID string) error

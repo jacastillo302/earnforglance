@@ -28,6 +28,7 @@ type Poll struct {
 
 // PollRepository defines the repository interface for Poll
 type PollRepository interface {
+	CreateMany(c context.Context, items []Poll) error
 	Create(c context.Context, poll *Poll) error
 	Update(c context.Context, poll *Poll) error
 	Delete(c context.Context, ID string) error

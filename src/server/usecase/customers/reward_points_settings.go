@@ -19,6 +19,13 @@ func NewRewardPointsSettingsUsecase(rewardpointssettingsRepository domain.Reward
 	}
 }
 
+func (tu *rewardpointssettingsUsecase) CreateMany(c context.Context, items []domain.RewardPointsSettings) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.rewardpointssettingsRepository.CreateMany(ctx, items)
+}
+
 func (tu *rewardpointssettingsUsecase) Create(c context.Context, rewardpointssettings *domain.RewardPointsSettings) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

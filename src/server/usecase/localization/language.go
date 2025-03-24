@@ -19,6 +19,13 @@ func NewLanguageUsecase(languageRepository domain.LanguageRepository, timeout ti
 	}
 }
 
+func (tu *languageUsecase) CreateMany(c context.Context, items []domain.Language) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.languageRepository.CreateMany(ctx, items)
+}
+
 func (lu *languageUsecase) Create(c context.Context, language *domain.Language) error {
 	ctx, cancel := context.WithTimeout(c, lu.contextTimeout)
 	defer cancel()

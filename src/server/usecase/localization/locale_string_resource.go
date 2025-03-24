@@ -19,6 +19,13 @@ func NewLocaleStringResourceUsecase(localestringresourceRepository domain.Locale
 	}
 }
 
+func (tu *localestringresourceUsecase) CreateMany(c context.Context, items []domain.LocaleStringResource) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.localestringresourceRepository.CreateMany(ctx, items)
+}
+
 func (tu *localestringresourceUsecase) Create(c context.Context, localestringresource *domain.LocaleStringResource) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

@@ -19,6 +19,12 @@ func NewProductReviewReviewTypeMappingUsecase(productreviewreviewtypemappingRepo
 	}
 }
 
+func (tu *productreviewreviewtypemappingUsecase) CreateMany(c context.Context, items []domain.ProductReviewReviewTypeMapping) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.productreviewreviewtypemappingRepository.CreateMany(ctx, items)
+}
+
 func (tu *productreviewreviewtypemappingUsecase) Create(c context.Context, productreviewreviewtypemapping *domain.ProductReviewReviewTypeMapping) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

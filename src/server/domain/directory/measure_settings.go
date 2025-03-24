@@ -18,6 +18,7 @@ type MeasureSettings struct {
 }
 
 type MeasureSettingsRepository interface {
+	CreateMany(c context.Context, items []MeasureSettings) error
 	Create(c context.Context, measure_settings *MeasureSettings) error
 	Update(c context.Context, measure_settings *MeasureSettings) error
 	Delete(c context.Context, ID string) error

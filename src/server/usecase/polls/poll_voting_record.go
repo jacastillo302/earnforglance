@@ -19,6 +19,12 @@ func NewPollVotingRecordUsecase(pollVotingRecordRepository domain.PollVotingReco
 	}
 }
 
+func (tu *pollVotingRecordUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.PollVotingRecord) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.pollVotingRecordRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *pollVotingRecordUsecase) Create(c context.Context, pollVotingRecord *domain.PollVotingRecord) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

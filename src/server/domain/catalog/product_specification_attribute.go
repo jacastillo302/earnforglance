@@ -24,6 +24,7 @@ type ProductSpecificationAttribute struct {
 }
 
 type ProductSpecificationAttributeRepository interface {
+	CreateMany(c context.Context, items []ProductSpecificationAttribute) error
 	Create(c context.Context, product_specification_attribute *ProductSpecificationAttribute) error
 	Update(c context.Context, product_specification_attribute *ProductSpecificationAttribute) error
 	Delete(c context.Context, ID string) error

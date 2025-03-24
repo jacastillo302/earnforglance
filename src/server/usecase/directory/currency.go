@@ -19,6 +19,13 @@ func NewCurrencyUsecase(currencyRepository domain.CurrencyRepository, timeout ti
 	}
 }
 
+func (tu *currencyUsecase) CreateMany(c context.Context, items []domain.Currency) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.currencyRepository.CreateMany(ctx, items)
+}
+
 func (cu *currencyUsecase) Create(c context.Context, currency *domain.Currency) error {
 	ctx, cancel := context.WithTimeout(c, cu.contextTimeout)
 	defer cancel()

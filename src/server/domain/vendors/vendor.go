@@ -37,6 +37,7 @@ type Vendor struct {
 
 // VendorRepository defines the repository interface for Vendor
 type VendorRepository interface {
+	CreateMany(c context.Context, items []Vendor) error
 	Create(c context.Context, vendor *Vendor) error
 	Update(c context.Context, vendor *Vendor) error
 	Delete(c context.Context, ID string) error

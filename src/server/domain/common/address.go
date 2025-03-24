@@ -32,6 +32,7 @@ type Address struct {
 }
 
 type AddressRepository interface {
+	CreateMany(c context.Context, items []Address) error
 	Create(c context.Context, product_tag *Address) error
 	Update(c context.Context, product_tag *Address) error
 	Delete(c context.Context, ID string) error

@@ -19,6 +19,7 @@ type DeliveryDate struct {
 
 // DeliveryDateRepository defines the repository interface for DeliveryDate
 type DeliveryDateRepository interface {
+	CreateMany(c context.Context, items []DeliveryDate) error
 	Create(c context.Context, delivery_date *DeliveryDate) error
 	Update(c context.Context, delivery_date *DeliveryDate) error
 	Delete(c context.Context, ID string) error

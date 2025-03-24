@@ -19,6 +19,7 @@ type ManufacturerTemplate struct {
 }
 
 type ManufacturerTemplateRepository interface {
+	CreateMany(c context.Context, items []ManufacturerTemplate) error
 	Create(c context.Context, manufacturer_template *ManufacturerTemplate) error
 	Update(c context.Context, manufacturer_template *ManufacturerTemplate) error
 	Delete(c context.Context, ID string) error

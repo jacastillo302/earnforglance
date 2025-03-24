@@ -23,6 +23,7 @@ type GenericAttribute struct {
 }
 
 type GenericAttributeRepository interface {
+	CreateMany(c context.Context, items []GenericAttribute) error
 	Create(c context.Context, generic_attribute *GenericAttribute) error
 	Update(c context.Context, generic_attribute *GenericAttribute) error
 	Delete(c context.Context, ID string) error

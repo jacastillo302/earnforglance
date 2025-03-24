@@ -37,6 +37,7 @@ type Discount struct {
 }
 
 type DiscountRepository interface {
+	CreateMany(c context.Context, items []Discount) error
 	Create(c context.Context, discount *Discount) error
 	Update(c context.Context, discount *Discount) error
 	Delete(c context.Context, ID string) error

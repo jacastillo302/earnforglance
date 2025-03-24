@@ -30,6 +30,7 @@ type Forum struct {
 
 // ForumRepository interface
 type ForumRepository interface {
+	CreateMany(c context.Context, items []Forum) error
 	Create(c context.Context, forum *Forum) error
 	Update(c context.Context, forum *Forum) error
 	Delete(c context.Context, ID string) error

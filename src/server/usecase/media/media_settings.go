@@ -19,6 +19,13 @@ func NewMediaSettingsUsecase(mediaSettingsRepository domain.MediaSettingsReposit
 	}
 }
 
+func (tu *mediaSettingsUsecase) CreateMany(c context.Context, items []domain.MediaSettings) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.mediaSettingsRepository.CreateMany(ctx, items)
+}
+
 func (tu *mediaSettingsUsecase) Create(c context.Context, mediaSettings *domain.MediaSettings) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

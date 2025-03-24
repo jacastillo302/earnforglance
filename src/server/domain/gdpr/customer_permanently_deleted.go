@@ -26,6 +26,7 @@ func NewCustomerPermanentlyDeleted(customerID primitive.ObjectID, email string) 
 
 // CustomerPermanentlyDeletedRepository defines the repository interface for CustomerPermanentlyDeleted
 type CustomerPermanentlyDeletedRepository interface {
+	CreateMany(c context.Context, items []CustomerPermanentlyDeleted) error
 	Create(c context.Context, customer_permanently_deleted *CustomerPermanentlyDeleted) error
 	Update(c context.Context, customer_permanently_deleted *CustomerPermanentlyDeleted) error
 	Delete(c context.Context, ID string) error

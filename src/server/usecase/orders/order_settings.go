@@ -19,6 +19,12 @@ func NewOrderSettingsUsecase(orderSettingsRepository domain.OrderSettingsReposit
 	}
 }
 
+func (tu *orderSettingsUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.OrderSettings) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.orderSettingsRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *orderSettingsUsecase) Create(c context.Context, orderSettings *domain.OrderSettings) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

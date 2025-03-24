@@ -23,6 +23,7 @@ type BlogComment struct {
 }
 
 type BlogCommentRepository interface {
+	CreateMany(c context.Context, items []BlogComment) error
 	Create(c context.Context, blog_comment *BlogComment) error
 	Update(c context.Context, blog_comment *BlogComment) error
 	Delete(c context.Context, ID string) error

@@ -19,6 +19,12 @@ func NewBackInStockSubscriptionUsecase(backinstocksubscriptionRepository domain.
 	}
 }
 
+func (tu *backinstocksubscriptionUsecase) CreateMany(c context.Context, items []domain.BackInStockSubscription) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.backinstocksubscriptionRepository.CreateMany(ctx, items)
+}
+
 func (tu *backinstocksubscriptionUsecase) Create(c context.Context, backinstocksubscription *domain.BackInStockSubscription) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

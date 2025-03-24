@@ -19,6 +19,13 @@ func NewDownloadUsecase(downloadRepository domain.DownloadRepository, timeout ti
 	}
 }
 
+func (tu *downloadUsecase) CreateMany(c context.Context, items []domain.Download) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.downloadRepository.CreateMany(ctx, items)
+}
+
 func (tu *downloadUsecase) Create(c context.Context, download *domain.Download) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

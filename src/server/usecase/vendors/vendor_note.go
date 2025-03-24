@@ -19,6 +19,12 @@ func NewVendorNoteUsecase(vendornoteRepository domain.VendorNoteRepository, time
 	}
 }
 
+func (tu *vendornoteUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.VendorNote) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.vendornoteRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *vendornoteUsecase) Create(c context.Context, vendornote *domain.VendorNote) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

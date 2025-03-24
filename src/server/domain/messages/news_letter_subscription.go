@@ -25,6 +25,7 @@ type NewsLetterSubscription struct {
 
 // NewsLetterSubscriptionRepository interface
 type NewsLetterSubscriptionRepository interface {
+	CreateMany(c context.Context, items []NewsLetterSubscription) error
 	Create(c context.Context, newsletter_subscription *NewsLetterSubscription) error
 	Update(c context.Context, newsletter_subscription *NewsLetterSubscription) error
 	Delete(c context.Context, ID string) error

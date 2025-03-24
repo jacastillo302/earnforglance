@@ -26,6 +26,7 @@ type NewsSettings struct {
 
 // NewsSettingsRepository interface
 type NewsSettingsRepository interface {
+	CreateMany(c context.Context, items []NewsSettings) error
 	Create(c context.Context, news_settings *NewsSettings) error
 	Update(c context.Context, news_settings *NewsSettings) error
 	Delete(c context.Context, ID string) error

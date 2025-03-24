@@ -19,6 +19,13 @@ func NewEmailAccountSettingsUsecase(emailaccountsettingsRepository domain.EmailA
 	}
 }
 
+func (tu *emailaccountsettingsUsecase) CreateMany(c context.Context, items []domain.EmailAccountSettings) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.emailaccountsettingsRepository.CreateMany(ctx, items)
+}
+
 func (tu *emailaccountsettingsUsecase) Create(c context.Context, emailaccountsettings *domain.EmailAccountSettings) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

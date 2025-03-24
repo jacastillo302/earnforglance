@@ -18,6 +18,7 @@ type Video struct {
 
 // VideoRepository represents the video repository interface
 type VideoRepository interface {
+	CreateMany(c context.Context, items []Video) error
 	Create(c context.Context, video *Video) error
 	Update(c context.Context, video *Video) error
 	Delete(c context.Context, ID string) error

@@ -29,6 +29,7 @@ type ProductAttributeMapping struct {
 }
 
 type ProductAttributeMappingRepository interface {
+	CreateMany(c context.Context, items []ProductAttributeMapping) error
 	Create(c context.Context, product_attribute_mapping *ProductAttributeMapping) error
 	Update(c context.Context, product_attribute_mapping *ProductAttributeMapping) error
 	Delete(c context.Context, ID string) error

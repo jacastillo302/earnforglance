@@ -40,6 +40,7 @@ type CaptchaSettings struct {
 }
 
 type CaptchaSettingsRepository interface {
+	CreateMany(c context.Context, items []CaptchaSettings) error
 	Create(c context.Context, capcha_settings *CaptchaSettings) error
 	Update(c context.Context, capcha_settings *CaptchaSettings) error
 	Delete(c context.Context, ID string) error

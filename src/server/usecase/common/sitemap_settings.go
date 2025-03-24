@@ -20,6 +20,13 @@ func NewSitemapSettingsUsecase(sitemapsettingsRepository domain.SitemapSettingsR
 	}
 }
 
+func (tu *sitemapsettingsUsecase) CreateMany(c context.Context, items []domain.SitemapSettings) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.sitemapsettingsRepository.CreateMany(ctx, items)
+}
+
 func (tu *sitemapsettingsUsecase) Create(c context.Context, sitemapsettings *domain.SitemapSettings) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

@@ -19,6 +19,7 @@ type BestCustomerReportLine struct {
 }
 
 type BestCustomerReportLineRepository interface {
+	CreateMany(c context.Context, items []BestCustomerReportLine) error
 	Create(c context.Context, best_customer_repor_line *BestCustomerReportLine) error
 	Update(c context.Context, best_customer_repor_line *BestCustomerReportLine) error
 	Delete(c context.Context, ID string) error

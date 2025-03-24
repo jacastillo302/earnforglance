@@ -20,6 +20,7 @@ type ProductTemplate struct {
 }
 
 type ProductTemplateRepository interface {
+	CreateMany(c context.Context, items []ProductTemplate) error
 	Create(c context.Context, product_template *ProductTemplate) error
 	Update(c context.Context, product_template *ProductTemplate) error
 	Delete(c context.Context, ID string) error

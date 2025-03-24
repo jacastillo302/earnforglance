@@ -19,6 +19,7 @@ type PictureBinary struct {
 
 // PictureBinaryRepository defines the repository interface for PictureBinary
 type PictureBinaryRepository interface {
+	CreateMany(c context.Context, items []PictureBinary) error
 	Create(c context.Context, picture_binary *PictureBinary) error
 	Update(c context.Context, picture_binary *PictureBinary) error
 	Delete(c context.Context, ID string) error

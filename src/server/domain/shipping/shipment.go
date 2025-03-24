@@ -26,6 +26,7 @@ type Shipment struct {
 
 // ShipmentRepository defines the repository interface for Shipment
 type ShipmentRepository interface {
+	CreateMany(c context.Context, items []Shipment) error
 	Create(c context.Context, shipment *Shipment) error
 	Update(c context.Context, shipment *Shipment) error
 	Delete(c context.Context, ID string) error

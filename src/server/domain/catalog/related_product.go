@@ -19,6 +19,7 @@ type RelatedProduct struct {
 }
 
 type RelatedProductRepository interface {
+	CreateMany(c context.Context, items []RelatedProduct) error
 	Create(c context.Context, related_product *RelatedProduct) error
 	Update(c context.Context, related_product *RelatedProduct) error
 	Delete(c context.Context, ID string) error

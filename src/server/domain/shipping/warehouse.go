@@ -19,6 +19,7 @@ type Warehouse struct {
 }
 
 type WarehouseRepository interface {
+	CreateMany(c context.Context, items []Warehouse) error
 	Create(c context.Context, warehouse *Warehouse) error
 	Update(c context.Context, warehouse *Warehouse) error
 	Delete(c context.Context, ID string) error

@@ -21,6 +21,7 @@ type BackInStockSubscription struct {
 }
 
 type BackInStockSubscriptionRepository interface {
+	CreateMany(c context.Context, items []BackInStockSubscription) error
 	Create(c context.Context, back_in_stock_subscription *BackInStockSubscription) error
 	Update(c context.Context, back_in_stock_subscription *BackInStockSubscription) error
 	Delete(c context.Context, ID string) error

@@ -30,6 +30,7 @@ func NewPaymentSettings() *PaymentSettings {
 }
 
 type PaymentSettingsRepository interface {
+	CreateMany(c context.Context, items []PaymentSettings) error
 	Create(c context.Context, payment_settings *PaymentSettings) error
 	Update(c context.Context, payment_settings *PaymentSettings) error
 	Delete(c context.Context, ID string) error

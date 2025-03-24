@@ -19,6 +19,12 @@ func NewTopicTemplateUsecase(topicTemplateRepository domain.TopicTemplateReposit
 	}
 }
 
+func (tu *topicTemplateUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.TopicTemplate) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.topicTemplateRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *topicTemplateUsecase) Create(c context.Context, topicTemplate *domain.TopicTemplate) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

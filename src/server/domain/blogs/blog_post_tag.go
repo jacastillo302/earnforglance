@@ -18,6 +18,7 @@ type BlogPostTag struct {
 }
 
 type BlogPostTagRepository interface {
+	CreateMany(c context.Context, items []BlogPostTag) error
 	Create(c context.Context, blog_post_tag *BlogPostTag) error
 	Update(c context.Context, blog_post_tag *BlogPostTag) error
 	Delete(c context.Context, ID string) error

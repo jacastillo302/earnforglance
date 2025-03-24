@@ -19,6 +19,12 @@ func NewProductWarehouseInventoryUsecase(ProductWarehouseInventoryRepository dom
 	}
 }
 
+func (tu *ProductWarehouseInventoryUsecase) CreateMany(c context.Context, items []domain.ProductWarehouseInventory) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.ProductWarehouseInventoryRepository.CreateMany(ctx, items)
+}
+
 func (tu *ProductWarehouseInventoryUsecase) Create(c context.Context, ProductWarehouseInventory *domain.ProductWarehouseInventory) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

@@ -21,6 +21,7 @@ type ExchangeRate struct {
 }
 
 type ExchangeRateRepository interface {
+	CreateMany(c context.Context, items []ExchangeRate) error
 	Create(c context.Context, exchange_rate *ExchangeRate) error
 	Update(c context.Context, exchange_rate *ExchangeRate) error
 	Delete(c context.Context, ID string) error

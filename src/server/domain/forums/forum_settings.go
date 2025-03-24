@@ -50,6 +50,7 @@ type ForumSettings struct {
 
 // ForumSettingsRepository represents the forum settings repository interface
 type ForumSettingsRepository interface {
+	CreateMany(c context.Context, items []ForumSettings) error
 	Create(c context.Context, forum_settings *ForumSettings) error
 	Update(c context.Context, forum_settings *ForumSettings) error
 	Delete(c context.Context, ID string) error

@@ -19,6 +19,12 @@ func NewDeliveryDateUsecase(deliverydateRepository domain.DeliveryDateRepository
 	}
 }
 
+func (tu *deliverydateUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.DeliveryDate) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.deliverydateRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *deliverydateUsecase) Create(c context.Context, deliverydate *domain.DeliveryDate) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

@@ -19,6 +19,13 @@ func NewAddressUsecase(addressRepository domain.AddressRepository, timeout time.
 	}
 }
 
+func (tu *addressUsecase) CreateMany(c context.Context, items []domain.Address) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.addressRepository.CreateMany(ctx, items)
+}
+
 func (tu *addressUsecase) Create(c context.Context, address *domain.Address) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

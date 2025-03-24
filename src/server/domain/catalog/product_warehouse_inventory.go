@@ -20,6 +20,7 @@ type ProductWarehouseInventory struct {
 }
 
 type ProductWarehouseInventoryRepository interface {
+	CreateMany(c context.Context, items []ProductWarehouseInventory) error
 	Create(c context.Context, product_inventory_warehouse *ProductWarehouseInventory) error
 	Update(c context.Context, product_inventory_warehouse *ProductWarehouseInventory) error
 	Delete(c context.Context, ID string) error

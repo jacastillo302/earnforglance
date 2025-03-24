@@ -19,6 +19,12 @@ func NewWidgetSettingsUsecase(widgetsettingsRepository domain.WidgetSettingsRepo
 	}
 }
 
+func (tu *widgetsettingsUsecase) CreateMany(c context.Context, items []domain.WidgetSettings) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.widgetsettingsRepository.CreateMany(ctx, items)
+}
+
 func (tu *widgetsettingsUsecase) Create(c context.Context, widgetsettings *domain.WidgetSettings) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

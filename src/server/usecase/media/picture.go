@@ -19,6 +19,13 @@ func NewPictureUsecase(pictureRepository domain.PictureRepository, timeout time.
 	}
 }
 
+func (tu *pictureUsecase) CreateMany(c context.Context, items []domain.Picture) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.pictureRepository.CreateMany(ctx, items)
+}
+
 func (pu *pictureUsecase) Create(c context.Context, picture *domain.Picture) error {
 	ctx, cancel := context.WithTimeout(c, pu.contextTimeout)
 	defer cancel()

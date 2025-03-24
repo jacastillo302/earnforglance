@@ -135,6 +135,7 @@ type CatalogSettings struct {
 }
 
 type CatalogSettingsRepository interface {
+	CreateMany(c context.Context, items []CatalogSettings) error
 	Create(c context.Context, catalog_settings *CatalogSettings) error
 	Update(c context.Context, catalog_settings *CatalogSettings) error
 	Delete(c context.Context, ID string) error

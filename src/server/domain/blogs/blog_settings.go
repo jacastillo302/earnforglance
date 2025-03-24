@@ -24,6 +24,7 @@ type BlogSettings struct {
 }
 
 type BlogSettingsRepository interface {
+	CreateMany(c context.Context, items []BlogSettings) error
 	Create(c context.Context, blog_settings *BlogSettings) error
 	Update(c context.Context, blog_settings *BlogSettings) error
 	Delete(c context.Context, ID string) error

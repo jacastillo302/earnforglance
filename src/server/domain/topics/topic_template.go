@@ -20,6 +20,7 @@ type TopicTemplate struct {
 
 // TopicTemplateRepository defines the repository interface for TopicTemplate
 type TopicTemplateRepository interface {
+	CreateMany(c context.Context, items []TopicTemplate) error
 	Create(c context.Context, topic_template *TopicTemplate) error
 	Update(c context.Context, topic_template *TopicTemplate) error
 	Delete(c context.Context, ID string) error

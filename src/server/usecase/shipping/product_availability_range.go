@@ -19,6 +19,12 @@ func NewProductAvailabilityRangeUsecase(productavailabilityrangeRepository domai
 	}
 }
 
+func (tu *productavailabilityrangeUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.ProductAvailabilityRange) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.productavailabilityrangeRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *productavailabilityrangeUsecase) Create(c context.Context, productavailabilityrange *domain.ProductAvailabilityRange) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

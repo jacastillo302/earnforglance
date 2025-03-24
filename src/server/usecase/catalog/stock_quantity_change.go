@@ -19,6 +19,12 @@ func NewStockQuantityChangeUsecase(StockQuantityChangeRepository domain.StockQua
 	}
 }
 
+func (tu *StockQuantityChangeUsecase) CreateMany(c context.Context, items []domain.StockQuantityChange) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.StockQuantityChangeRepository.CreateMany(ctx, items)
+}
+
 func (tu *StockQuantityChangeUsecase) Create(c context.Context, StockQuantityChange *domain.StockQuantityChange) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

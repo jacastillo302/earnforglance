@@ -18,6 +18,7 @@ type SpecificationAttributeGroup struct {
 }
 
 type SpecificationAttributeGroupRepository interface {
+	CreateMany(c context.Context, items []SpecificationAttributeGroup) error
 	Create(c context.Context, specification_attribute_group *SpecificationAttributeGroup) error
 	Update(c context.Context, specification_attribute_group *SpecificationAttributeGroup) error
 	Delete(c context.Context, ID string) error

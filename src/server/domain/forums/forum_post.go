@@ -25,6 +25,7 @@ type ForumPost struct {
 
 // ForumPostRepository interface
 type ForumPostRepository interface {
+	CreateMany(c context.Context, items []ForumPost) error
 	Create(c context.Context, forum_post *ForumPost) error
 	Update(c context.Context, forum_post *ForumPost) error
 	Delete(c context.Context, ID string) error

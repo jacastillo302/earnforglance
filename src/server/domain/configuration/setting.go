@@ -19,6 +19,7 @@ type Setting struct {
 }
 
 type SettingRepository interface {
+	CreateMany(c context.Context, items []Setting) error
 	Create(c context.Context, setting *Setting) error
 	Update(c context.Context, setting *Setting) error
 	Delete(c context.Context, ID string) error

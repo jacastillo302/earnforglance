@@ -20,6 +20,7 @@ type DiscountUsageHistory struct {
 }
 
 type DiscountUsageHistoryRepository interface {
+	CreateMany(c context.Context, items []DiscountUsageHistory) error
 	Create(c context.Context, discount_usage_history *DiscountUsageHistory) error
 	Update(c context.Context, discount_usage_history *DiscountUsageHistory) error
 	Delete(c context.Context, ID string) error

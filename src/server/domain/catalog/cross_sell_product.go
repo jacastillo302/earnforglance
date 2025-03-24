@@ -18,6 +18,7 @@ type CrossSellProduct struct {
 }
 
 type CrossSellProductRepository interface {
+	CreateMany(c context.Context, items []CrossSellProduct) error
 	Create(c context.Context, cross_sell_product *CrossSellProduct) error
 	Update(c context.Context, cross_sell_product *CrossSellProduct) error
 	Delete(c context.Context, ID string) error

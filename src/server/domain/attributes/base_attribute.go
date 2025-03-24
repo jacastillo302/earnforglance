@@ -22,6 +22,7 @@ type BaseAttribute struct {
 }
 
 type BaseAttributeRepository interface {
+	CreateMany(c context.Context, items []BaseAttribute) error
 	Create(c context.Context, base_attribute *BaseAttribute) error
 	Update(c context.Context, base_attribute *BaseAttribute) error
 	Delete(c context.Context, ID string) error

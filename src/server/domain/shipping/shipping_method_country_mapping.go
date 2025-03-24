@@ -19,6 +19,7 @@ type ShippingMethodCountryMapping struct {
 
 // ShippingMethodCountryMappingRepository defines the repository interface for ShippingMethodCountryMapping
 type ShippingMethodCountryMappingRepository interface {
+	CreateMany(c context.Context, items []ShippingMethodCountryMapping) error
 	Create(c context.Context, shipping_method_country *ShippingMethodCountryMapping) error
 	Update(c context.Context, shipping_method_country *ShippingMethodCountryMapping) error
 	Delete(c context.Context, ID string) error

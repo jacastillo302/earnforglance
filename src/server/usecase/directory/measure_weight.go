@@ -19,6 +19,13 @@ func NewMeasureWeightUsecase(measureweightRepository domain.MeasureWeightReposit
 	}
 }
 
+func (tu *measureweightUsecase) CreateMany(c context.Context, items []domain.MeasureWeight) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.measureweightRepository.CreateMany(ctx, items)
+}
+
 func (tu *measureweightUsecase) Create(c context.Context, measureweight *domain.MeasureWeight) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

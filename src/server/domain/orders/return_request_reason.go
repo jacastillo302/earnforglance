@@ -19,6 +19,7 @@ type ReturnRequestReason struct {
 
 // ReturnRequestReasonRepository represents the repository interface for ReturnRequestReason
 type ReturnRequestReasonRepository interface {
+	CreateMany(c context.Context, items []ReturnRequestReason) error
 	Create(c context.Context, return_request_reason *ReturnRequestReason) error
 	Update(c context.Context, return_request_reason *ReturnRequestReason) error
 	Delete(c context.Context, ID string) error

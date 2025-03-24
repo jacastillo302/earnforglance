@@ -19,6 +19,12 @@ func NewProxySettingsUsecase(proxySettingsRepository domain.ProxySettingsReposit
 	}
 }
 
+func (tu *proxySettingsUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.ProxySettings) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.proxySettingsRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *proxySettingsUsecase) Create(c context.Context, proxySettings *domain.ProxySettings) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

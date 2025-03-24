@@ -19,6 +19,12 @@ func NewCaptchaSettingsUsecase(captchaSettingsRepository domain.CaptchaSettingsR
 	}
 }
 
+func (tu *captchaSettingsUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.CaptchaSettings) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.captchaSettingsRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *captchaSettingsUsecase) Create(c context.Context, captchaSettings *domain.CaptchaSettings) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

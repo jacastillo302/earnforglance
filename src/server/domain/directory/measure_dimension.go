@@ -20,6 +20,7 @@ type MeasureDimension struct {
 }
 
 type MeasureDimensionRepository interface {
+	CreateMany(c context.Context, items []MeasureDimension) error
 	Create(c context.Context, measure_dimension *MeasureDimension) error
 	Update(c context.Context, measure_dimension *MeasureDimension) error
 	Delete(c context.Context, ID string) error

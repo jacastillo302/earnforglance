@@ -21,6 +21,7 @@ type StateProvince struct {
 }
 
 type StateProvinceRepository interface {
+	CreateMany(c context.Context, items []StateProvince) error
 	Create(c context.Context, state_province *StateProvince) error
 	Update(c context.Context, state_province *StateProvince) error
 	Delete(c context.Context, ID string) error

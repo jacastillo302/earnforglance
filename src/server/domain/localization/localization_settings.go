@@ -24,6 +24,7 @@ type LocalizationSettings struct {
 }
 
 type LocalizationSettingsRepository interface {
+	CreateMany(c context.Context, items []LocalizationSettings) error
 	Create(c context.Context, localization_settings *LocalizationSettings) error
 	Update(c context.Context, localization_settings *LocalizationSettings) error
 	Delete(c context.Context, ID string) error

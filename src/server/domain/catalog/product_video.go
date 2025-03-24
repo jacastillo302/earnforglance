@@ -19,6 +19,7 @@ type ProductVideo struct {
 }
 
 type ProductVideoRepository interface {
+	CreateMany(c context.Context, items []ProductVideo) error
 	Create(c context.Context, product_video *ProductVideo) error
 	Update(c context.Context, product_video *ProductVideo) error
 	Delete(c context.Context, ID string) error

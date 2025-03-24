@@ -19,6 +19,13 @@ func NewVideoUsecase(videoRepository domain.VideoRepository, timeout time.Durati
 	}
 }
 
+func (tu *videoUsecase) CreateMany(c context.Context, items []domain.Video) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.videoRepository.CreateMany(ctx, items)
+}
+
 func (vu *videoUsecase) Create(c context.Context, video *domain.Video) error {
 	ctx, cancel := context.WithTimeout(c, vu.contextTimeout)
 	defer cancel()

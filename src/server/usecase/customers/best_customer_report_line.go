@@ -19,6 +19,13 @@ func NewBestCustomerReportLineUsecase(bestcustomerreportlineRepository domain.Be
 	}
 }
 
+func (tu *bestcustomerreportlineUsecase) CreateMany(c context.Context, items []domain.BestCustomerReportLine) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.bestcustomerreportlineRepository.CreateMany(ctx, items)
+}
+
 func (tu *bestcustomerreportlineUsecase) Create(c context.Context, bestcustomerreportline *domain.BestCustomerReportLine) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

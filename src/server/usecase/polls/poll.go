@@ -19,6 +19,12 @@ func NewPollUsecase(pollRepository domain.PollRepository, timeout time.Duration)
 	}
 }
 
+func (tu *pollUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.Poll) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.pollRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *pollUsecase) Create(c context.Context, poll *domain.Poll) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

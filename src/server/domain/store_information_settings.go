@@ -27,6 +27,7 @@ type StoreInformationSettings struct {
 
 // StoreInformationSettingsRepository defines the repository interface for StoreInformationSettings
 type StoreInformationSettingsRepository interface {
+	CreateMany(c context.Context, items []StoreInformationSettings) error
 	Create(c context.Context, store_information_settings *StoreInformationSettings) error
 	Update(c context.Context, store_information_settings *StoreInformationSettings) error
 	Delete(c context.Context, ID string) error

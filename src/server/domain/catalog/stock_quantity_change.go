@@ -24,6 +24,7 @@ type StockQuantityChange struct {
 }
 
 type StockQuantityChangeRepository interface {
+	CreateMany(c context.Context, items []StockQuantityChange) error
 	Create(c context.Context, stock_quantity_change *StockQuantityChange) error
 	Update(c context.Context, stock_quantity_change *StockQuantityChange) error
 	Delete(c context.Context, ID string) error

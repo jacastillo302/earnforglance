@@ -18,6 +18,7 @@ type CustomerCustomerRoleMapping struct {
 }
 
 type CustomerCustomerRoleMappingRepository interface {
+	CreateMany(c context.Context, items []CustomerCustomerRoleMapping) error
 	Create(c context.Context, customer_customer_role_mapping *CustomerCustomerRoleMapping) error
 	Update(c context.Context, customer_customer_role_mapping *CustomerCustomerRoleMapping) error
 	Delete(c context.Context, ID string) error

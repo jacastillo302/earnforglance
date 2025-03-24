@@ -19,6 +19,13 @@ func NewPdfSettingsUsecase(pdfsettingsRepository domain.PdfSettingsRepository, t
 	}
 }
 
+func (tu *pdfsettingsUsecase) CreateMany(c context.Context, items []domain.PdfSettings) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.pdfsettingsRepository.CreateMany(ctx, items)
+}
+
 func (tu *pdfsettingsUsecase) Create(c context.Context, pdfsettings *domain.PdfSettings) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

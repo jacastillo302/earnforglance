@@ -19,6 +19,12 @@ func NewAclRecordUsecase(aclrecordRepository domain.AclRecordRepository, timeout
 	}
 }
 
+func (tu *aclrecordUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.AclRecord) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.aclrecordRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *aclrecordUsecase) Create(c context.Context, aclrecord *domain.AclRecord) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

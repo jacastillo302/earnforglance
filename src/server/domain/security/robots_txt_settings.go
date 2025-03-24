@@ -33,6 +33,7 @@ func NewRobotsTxtSettings() *RobotsTxtSettings {
 
 // RobotsTxtSettingsRepository defines the repository interface for RobotsTxtSettings
 type RobotsTxtSettingsRepository interface {
+	CreateMany(c context.Context, items []RobotsTxtSettings) error
 	Create(c context.Context, robotsTxtSettings *RobotsTxtSettings) error
 	Update(c context.Context, robotsTxtSettings *RobotsTxtSettings) error
 	Delete(c context.Context, ID string) error

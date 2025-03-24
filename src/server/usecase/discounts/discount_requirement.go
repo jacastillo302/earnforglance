@@ -19,6 +19,13 @@ func NewDiscountRequirementUsecase(discountrequirementRepository domain.Discount
 	}
 }
 
+func (tu *discountrequirementUsecase) CreateMany(c context.Context, items []domain.DiscountRequirement) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.discountrequirementRepository.CreateMany(ctx, items)
+}
+
 func (tu *discountrequirementUsecase) Create(c context.Context, discountrequirement *domain.DiscountRequirement) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

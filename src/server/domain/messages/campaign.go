@@ -25,6 +25,7 @@ type Campaign struct {
 
 // CampaignRepository represents the repository interface for Campaign
 type CampaignRepository interface {
+	CreateMany(c context.Context, items []Campaign) error
 	Create(c context.Context, campaign *Campaign) error
 	Update(c context.Context, campaign *Campaign) error
 	Delete(c context.Context, ID string) error

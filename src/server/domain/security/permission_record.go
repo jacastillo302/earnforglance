@@ -20,6 +20,7 @@ type PermissionRecord struct {
 
 // PermissionRecordRepository defines the repository interface for PermissionRecord
 type PermissionRecordRepository interface {
+	CreateMany(c context.Context, items []PermissionRecord) error
 	Create(c context.Context, permission_record *PermissionRecord) error
 	Update(c context.Context, permission_record *PermissionRecord) error
 	Delete(c context.Context, ID string) error

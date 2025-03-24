@@ -38,6 +38,7 @@ type QueuedEmail struct {
 
 // QueuedEmailRepository interface
 type QueuedEmailRepository interface {
+	CreateMany(c context.Context, items []QueuedEmail) error
 	Create(c context.Context, queued_email *QueuedEmail) error
 	Update(c context.Context, queued_email *QueuedEmail) error
 	Delete(c context.Context, ID string) error

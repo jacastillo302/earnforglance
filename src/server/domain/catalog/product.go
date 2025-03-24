@@ -128,6 +128,7 @@ type Product struct {
 }
 
 type ProductRepository interface {
+	CreateMany(c context.Context, items []Product) error
 	Create(c context.Context, product *Product) error
 	Update(c context.Context, product *Product) error
 	Delete(c context.Context, ID string) error

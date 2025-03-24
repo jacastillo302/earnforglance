@@ -21,6 +21,7 @@ type VendorNote struct {
 
 // VendorNoteRepository defines the repository interface for VendorNote
 type VendorNoteRepository interface {
+	CreateMany(c context.Context, items []VendorNote) error
 	Create(c context.Context, vendor_note *VendorNote) error
 	Update(c context.Context, vendor_note *VendorNote) error
 	Delete(c context.Context, ID string) error

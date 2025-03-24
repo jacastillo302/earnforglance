@@ -19,6 +19,12 @@ func NewRobotsTxtSettingsUsecase(robotsTxtSettingsRepository domain.RobotsTxtSet
 	}
 }
 
+func (tu *robotsTxtSettingsUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.RobotsTxtSettings) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.robotsTxtSettingsRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *robotsTxtSettingsUsecase) Create(c context.Context, robotsTxtSettings *domain.RobotsTxtSettings) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

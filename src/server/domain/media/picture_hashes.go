@@ -18,6 +18,7 @@ type PictureHashes struct {
 
 // PictureHashesRepository defines the repository interface for PictureHashes
 type PictureHashesRepository interface {
+	CreateMany(c context.Context, items []PictureHashes) error
 	Create(c context.Context, picture_hashes *PictureHashes) error
 	Update(c context.Context, picture_hashes *PictureHashes) error
 	Delete(c context.Context, ID string) error

@@ -19,6 +19,13 @@ func NewGdprConsentUsecase(gdprconsentRepository domain.GdprConsentRepository, t
 	}
 }
 
+func (tu *gdprconsentUsecase) CreateMany(c context.Context, items []domain.GdprConsent) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.gdprconsentRepository.CreateMany(ctx, items)
+}
+
 func (tu *gdprconsentUsecase) Create(c context.Context, gdprconsent *domain.GdprConsent) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

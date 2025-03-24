@@ -19,6 +19,12 @@ func NewProductProductTagMappingUsecase(ProductProductTagMappingRepository domai
 	}
 }
 
+func (tu *ProductProductTagMappingUsecase) CreateMany(c context.Context, items []domain.ProductProductTagMapping) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.ProductProductTagMappingRepository.CreateMany(ctx, items)
+}
+
 func (tu *ProductProductTagMappingUsecase) Create(c context.Context, ProductProductTagMapping *domain.ProductProductTagMapping) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

@@ -19,6 +19,12 @@ func NewUrlRecordUsecase(urlrecordRepository domain.UrlRecordRepository, timeout
 	}
 }
 
+func (tu *urlrecordUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.UrlRecord) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.urlrecordRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+}
+
 func (tu *urlrecordUsecase) Create(c context.Context, urlrecord *domain.UrlRecord) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

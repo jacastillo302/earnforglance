@@ -21,6 +21,7 @@ type CurrencySettings struct {
 }
 
 type CurrencySettingsRepository interface {
+	CreateMany(c context.Context, items []CurrencySettings) error
 	Create(c context.Context, currency_settings *CurrencySettings) error
 	Update(c context.Context, currency_settings *CurrencySettings) error
 	Delete(c context.Context, ID string) error

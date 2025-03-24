@@ -19,6 +19,13 @@ func NewLocalizationSettingsUsecase(localizationsettingsRepository domain.Locali
 	}
 }
 
+func (tu *localizationsettingsUsecase) CreateMany(c context.Context, items []domain.LocalizationSettings) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.localizationsettingsRepository.CreateMany(ctx, items)
+}
+
 func (tu *localizationsettingsUsecase) Create(c context.Context, localizationsettings *domain.LocalizationSettings) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

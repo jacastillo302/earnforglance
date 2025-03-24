@@ -23,6 +23,7 @@ type ProxySettings struct {
 }
 
 type ProxySettingsRepository interface {
+	CreateMany(c context.Context, items []ProxySettings) error
 	Create(c context.Context, proxy_settings *ProxySettings) error
 	Update(c context.Context, proxy_settings *ProxySettings) error
 	Delete(c context.Context, ID string) error

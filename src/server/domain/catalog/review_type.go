@@ -21,6 +21,7 @@ type ReviewType struct {
 }
 
 type ReviewTypeRepository interface {
+	CreateMany(c context.Context, items []ReviewType) error
 	Create(c context.Context, review_type *ReviewType) error
 	Update(c context.Context, review_type *ReviewType) error
 	Delete(c context.Context, ID string) error

@@ -42,6 +42,7 @@ type MediaSettings struct {
 }
 
 type MediaSettingsRepository interface {
+	CreateMany(c context.Context, items []MediaSettings) error
 	Create(c context.Context, media_settings *MediaSettings) error
 	Update(c context.Context, media_settings *MediaSettings) error
 	Delete(c context.Context, ID string) error

@@ -19,6 +19,12 @@ func NewProductVideoUsecase(productvideoRepository domain.ProductVideoRepository
 	}
 }
 
+func (tu *productvideoUsecase) CreateMany(c context.Context, items []domain.ProductVideo) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.productvideoRepository.CreateMany(ctx, items)
+}
+
 func (tu *productvideoUsecase) Create(c context.Context, productvideo *domain.ProductVideo) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()

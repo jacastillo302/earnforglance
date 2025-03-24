@@ -19,6 +19,13 @@ func NewCustomerAttributeUsecase(customerattributeRepository domain.CustomerAttr
 	}
 }
 
+func (tu *customerattributeUsecase) CreateMany(c context.Context, items []domain.CustomerAttribute) error {
+	ctx,
+		cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.customerattributeRepository.CreateMany(ctx, items)
+}
+
 func (tu *customerattributeUsecase) Create(c context.Context, customerattribute *domain.CustomerAttribute) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
