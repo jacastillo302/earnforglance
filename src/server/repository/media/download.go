@@ -23,6 +23,19 @@ func NewDownloadRepository(db mongo.Database, collection string) domain.Download
 	}
 }
 
+func (ur *downloadRepository) CreateMany(c context.Context, items []domain.Download) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *downloadRepository) Create(c context.Context, download *domain.Download) error {
 	collection := ur.database.Collection(ur.collection)
 

@@ -23,6 +23,19 @@ func NewGdprLogRepository(db mongo.Database, collection string) domain.GdprLogRe
 	}
 }
 
+func (ur *gdprlogRepository) CreateMany(c context.Context, items []domain.GdprLog) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *gdprlogRepository) Create(c context.Context, gdprlog *domain.GdprLog) error {
 	collection := ur.database.Collection(ur.collection)
 

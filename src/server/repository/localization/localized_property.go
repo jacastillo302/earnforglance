@@ -23,6 +23,19 @@ func NewLocalizedPropertyRepository(db mongo.Database, collection string) domain
 	}
 }
 
+func (ur *localizedpropertyRepository) CreateMany(c context.Context, items []domain.LocalizedProperty) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *localizedpropertyRepository) Create(c context.Context, localizedproperty *domain.LocalizedProperty) error {
 	collection := ur.database.Collection(ur.collection)
 

@@ -23,6 +23,19 @@ func NewSpecificationAttributeGroupRepository(db mongo.Database, collection stri
 	}
 }
 
+func (ur *specificationattributegroupRepository) CreateMany(c context.Context, items []domain.SpecificationAttributeGroup) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *specificationattributegroupRepository) Create(c context.Context, specificationattributegroup *domain.SpecificationAttributeGroup) error {
 	collection := ur.database.Collection(ur.collection)
 

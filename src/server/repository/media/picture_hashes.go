@@ -23,6 +23,19 @@ func NewPictureHashesRepository(db mongo.Database, collection string) domain.Pic
 	}
 }
 
+func (ur *picturehashesRepository) CreateMany(c context.Context, items []domain.PictureHashes) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *picturehashesRepository) Create(c context.Context, picturehashes *domain.PictureHashes) error {
 	collection := ur.database.Collection(ur.collection)
 

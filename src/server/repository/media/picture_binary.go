@@ -23,6 +23,19 @@ func NewPictureBinaryRepository(db mongo.Database, collection string) domain.Pic
 	}
 }
 
+func (ur *picturebinaryRepository) CreateMany(c context.Context, items []domain.PictureBinary) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *picturebinaryRepository) Create(c context.Context, picturebinary *domain.PictureBinary) error {
 	collection := ur.database.Collection(ur.collection)
 

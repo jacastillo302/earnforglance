@@ -23,6 +23,19 @@ func NewLanguageRepository(db mongo.Database, collection string) domain.Language
 	}
 }
 
+func (ur *languageRepository) CreateMany(c context.Context, items []domain.Language) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *languageRepository) Create(c context.Context, language *domain.Language) error {
 	collection := ur.database.Collection(ur.collection)
 

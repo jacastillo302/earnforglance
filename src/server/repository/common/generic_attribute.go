@@ -23,6 +23,19 @@ func NewGenericAttributeRepository(db mongo.Database, collection string) domain.
 	}
 }
 
+func (ur *genericattributeRepository) CreateMany(c context.Context, items []domain.GenericAttribute) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *genericattributeRepository) Create(c context.Context, genericattribute *domain.GenericAttribute) error {
 	collection := ur.database.Collection(ur.collection)
 

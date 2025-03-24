@@ -23,6 +23,19 @@ func NewPdfSettingsRepository(db mongo.Database, collection string) domain.PdfSe
 	}
 }
 
+func (ur *pdfsettingsRepository) CreateMany(c context.Context, items []domain.PdfSettings) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *pdfsettingsRepository) Create(c context.Context, pdfsettings *domain.PdfSettings) error {
 	collection := ur.database.Collection(ur.collection)
 

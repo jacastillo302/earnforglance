@@ -23,6 +23,19 @@ func NewPollAnswerRepository(db mongo.Database, collection string) domain.PollAn
 	}
 }
 
+func (ur *pollanswerRepository) CreateMany(c context.Context, items []domain.PollAnswer) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *pollanswerRepository) Create(c context.Context, pollanswer *domain.PollAnswer) error {
 	collection := ur.database.Collection(ur.collection)
 

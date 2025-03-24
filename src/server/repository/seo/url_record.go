@@ -23,6 +23,19 @@ func NewUrlRecordRepository(db mongo.Database, collection string) domain.UrlReco
 	}
 }
 
+func (ur *urlrecordRepository) CreateMany(c context.Context, items []domain.UrlRecord) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *urlrecordRepository) Create(c context.Context, urlrecord *domain.UrlRecord) error {
 	collection := ur.database.Collection(ur.collection)
 

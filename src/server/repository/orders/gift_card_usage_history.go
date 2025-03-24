@@ -23,6 +23,19 @@ func NewGiftCardUsageHistoryRepository(db mongo.Database, collection string) dom
 	}
 }
 
+func (ur *giftcardusagehistoryRepository) CreateMany(c context.Context, items []domain.GiftCardUsageHistory) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *giftcardusagehistoryRepository) Create(c context.Context, giftcardusagehistory *domain.GiftCardUsageHistory) error {
 	collection := ur.database.Collection(ur.collection)
 

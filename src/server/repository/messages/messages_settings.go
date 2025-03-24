@@ -11,19 +11,32 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-type MessagesSettingsRepository struct {
+type messagesSettingsRepository struct {
 	database   mongo.Database
 	collection string
 }
 
 func NewMessagesSettingsRepository(db mongo.Database, collection string) domain.MessagesSettingsRepository {
-	return &MessagesSettingsRepository{
+	return &messagesSettingsRepository{
 		database:   db,
 		collection: collection,
 	}
 }
 
-func (ur *MessagesSettingsRepository) Create(c context.Context, MessagesSettings *domain.MessagesSettings) error {
+func (ur *messagesSettingsRepository) CreateMany(c context.Context, items []domain.MessagesSettings) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (ur *messagesSettingsRepository) Create(c context.Context, MessagesSettings *domain.MessagesSettings) error {
 	collection := ur.database.Collection(ur.collection)
 
 	_, err := collection.InsertOne(c, MessagesSettings)
@@ -31,7 +44,7 @@ func (ur *MessagesSettingsRepository) Create(c context.Context, MessagesSettings
 	return err
 }
 
-func (ur *MessagesSettingsRepository) Update(c context.Context, MessagesSettings *domain.MessagesSettings) error {
+func (ur *messagesSettingsRepository) Update(c context.Context, MessagesSettings *domain.MessagesSettings) error {
 	collection := ur.database.Collection(ur.collection)
 
 	filter := bson.M{"_id": MessagesSettings.ID}
@@ -42,7 +55,7 @@ func (ur *MessagesSettingsRepository) Update(c context.Context, MessagesSettings
 	return err
 }
 
-func (ur *MessagesSettingsRepository) Delete(c context.Context, ID string) error {
+func (ur *messagesSettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
 	idHex, err := primitive.ObjectIDFromHex(ID)
@@ -55,7 +68,7 @@ func (ur *MessagesSettingsRepository) Delete(c context.Context, ID string) error
 
 }
 
-func (ur *MessagesSettingsRepository) Fetch(c context.Context) ([]domain.MessagesSettings, error) {
+func (ur *messagesSettingsRepository) Fetch(c context.Context) ([]domain.MessagesSettings, error) {
 	collection := ur.database.Collection(ur.collection)
 
 	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
@@ -75,7 +88,7 @@ func (ur *MessagesSettingsRepository) Fetch(c context.Context) ([]domain.Message
 	return MessagesSettingss, err
 }
 
-func (tr *MessagesSettingsRepository) FetchByID(c context.Context, MessagesSettingsID string) (domain.MessagesSettings, error) {
+func (tr *messagesSettingsRepository) FetchByID(c context.Context, MessagesSettingsID string) (domain.MessagesSettings, error) {
 	collection := tr.database.Collection(tr.collection)
 
 	var MessagesSettings domain.MessagesSettings

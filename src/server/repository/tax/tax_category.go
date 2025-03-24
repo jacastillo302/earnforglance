@@ -23,6 +23,19 @@ func NewTaxCategoryRepository(db mongo.Database, collection string) domain.TaxCa
 	}
 }
 
+func (ur *taxcategoryRepository) CreateMany(c context.Context, items []domain.TaxCategory) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *taxcategoryRepository) Create(c context.Context, taxcategory *domain.TaxCategory) error {
 	collection := ur.database.Collection(ur.collection)
 

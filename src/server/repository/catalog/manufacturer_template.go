@@ -23,6 +23,19 @@ func NewManufacturerTemplateRepository(db mongo.Database, collection string) dom
 	}
 }
 
+func (ur *manufacturertemplateRepository) CreateMany(c context.Context, items []domain.ManufacturerTemplate) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *manufacturertemplateRepository) Create(c context.Context, manufacturertemplate *domain.ManufacturerTemplate) error {
 	collection := ur.database.Collection(ur.collection)
 

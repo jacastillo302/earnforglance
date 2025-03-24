@@ -23,6 +23,19 @@ func NewPermissionRecordRepository(db mongo.Database, collection string) domain.
 	}
 }
 
+func (ur *permissionrecordRepository) CreateMany(c context.Context, items []domain.PermissionRecord) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *permissionrecordRepository) Create(c context.Context, permissionrecord *domain.PermissionRecord) error {
 	collection := ur.database.Collection(ur.collection)
 

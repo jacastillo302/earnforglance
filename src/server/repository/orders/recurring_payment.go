@@ -23,6 +23,19 @@ func NewRecurringPaymentRepository(db mongo.Database, collection string) domain.
 	}
 }
 
+func (ur *recurringpaymentRepository) CreateMany(c context.Context, items []domain.RecurringPayment) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *recurringpaymentRepository) Create(c context.Context, recurringpayment *domain.RecurringPayment) error {
 	collection := ur.database.Collection(ur.collection)
 

@@ -23,6 +23,19 @@ func NewTierPriceRepository(db mongo.Database, collection string) domain.TierPri
 	}
 }
 
+func (ur *tierpriceRepository) CreateMany(c context.Context, items []domain.TierPrice) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *tierpriceRepository) Create(c context.Context, tierprice *domain.TierPrice) error {
 	collection := ur.database.Collection(ur.collection)
 

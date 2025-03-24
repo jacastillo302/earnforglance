@@ -23,6 +23,19 @@ func NewShoppingCartSettingsRepository(db mongo.Database, collection string) dom
 	}
 }
 
+func (ur *shoppingcartsettingsRepository) CreateMany(c context.Context, items []domain.ShoppingCartSettings) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *shoppingcartsettingsRepository) Create(c context.Context, shoppingcartsettings *domain.ShoppingCartSettings) error {
 	collection := ur.database.Collection(ur.collection)
 

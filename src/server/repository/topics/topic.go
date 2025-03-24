@@ -23,6 +23,19 @@ func NewTopicRepository(db mongo.Database, collection string) domain.TopicReposi
 	}
 }
 
+func (ur *topicRepository) CreateMany(c context.Context, items []domain.Topic) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *topicRepository) Create(c context.Context, topic *domain.Topic) error {
 	collection := ur.database.Collection(ur.collection)
 

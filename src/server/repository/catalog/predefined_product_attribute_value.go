@@ -23,6 +23,19 @@ func NewPredefinedProductAttributeValueRepository(db mongo.Database, collection 
 	}
 }
 
+func (ur *predefinedproductattributevalueRepository) CreateMany(c context.Context, items []domain.PredefinedProductAttributeValue) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *predefinedproductattributevalueRepository) Create(c context.Context, predefinedproductattributevalue *domain.PredefinedProductAttributeValue) error {
 	collection := ur.database.Collection(ur.collection)
 

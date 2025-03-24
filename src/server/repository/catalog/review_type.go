@@ -23,6 +23,19 @@ func NewReviewTypeRepository(db mongo.Database, collection string) domain.Review
 	}
 }
 
+func (ur *reviewtypeRepository) CreateMany(c context.Context, items []domain.ReviewType) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *reviewtypeRepository) Create(c context.Context, reviewtype *domain.ReviewType) error {
 	collection := ur.database.Collection(ur.collection)
 

@@ -23,6 +23,19 @@ func NewProductAttributeCombinationPictureRepository(db mongo.Database, collecti
 	}
 }
 
+func (ur *ProductAttributeCombinationPictureRepository) CreateMany(c context.Context, items []domain.ProductAttributeCombinationPicture) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *ProductAttributeCombinationPictureRepository) Create(c context.Context, ProductAttributeCombinationPicture *domain.ProductAttributeCombinationPicture) error {
 	collection := ur.database.Collection(ur.collection)
 

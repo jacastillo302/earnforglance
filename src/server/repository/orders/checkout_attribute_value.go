@@ -23,6 +23,19 @@ func NewCheckoutAttributeValueRepository(db mongo.Database, collection string) d
 	}
 }
 
+func (ur *checkoutattributevalueRepository) CreateMany(c context.Context, items []domain.CheckoutAttributeValue) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *checkoutattributevalueRepository) Create(c context.Context, checkoutattributevalue *domain.CheckoutAttributeValue) error {
 	collection := ur.database.Collection(ur.collection)
 

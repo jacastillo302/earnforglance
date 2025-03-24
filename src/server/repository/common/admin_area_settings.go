@@ -23,6 +23,19 @@ func NewAdminAreaSettingsRepository(db mongo.Database, collection string) domain
 	}
 }
 
+func (ur *adminareasettingsRepository) CreateMany(c context.Context, items []domain.AdminAreaSettings) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *adminareasettingsRepository) Create(c context.Context, adminareasettings *domain.AdminAreaSettings) error {
 	collection := ur.database.Collection(ur.collection)
 

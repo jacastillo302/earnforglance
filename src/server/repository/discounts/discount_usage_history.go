@@ -23,6 +23,19 @@ func NewDiscountUsageHistoryRepository(db mongo.Database, collection string) dom
 	}
 }
 
+func (ur *discountusagehistoryRepository) CreateMany(c context.Context, items []domain.DiscountUsageHistory) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *discountusagehistoryRepository) Create(c context.Context, discountusagehistory *domain.DiscountUsageHistory) error {
 	collection := ur.database.Collection(ur.collection)
 

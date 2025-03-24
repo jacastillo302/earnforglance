@@ -23,6 +23,19 @@ func NewSearchTermRepository(db mongo.Database, collection string) domain.Search
 	}
 }
 
+func (ur *searchtermRepository) CreateMany(c context.Context, items []domain.SearchTerm) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *searchtermRepository) Create(c context.Context, searchterm *domain.SearchTerm) error {
 	collection := ur.database.Collection(ur.collection)
 

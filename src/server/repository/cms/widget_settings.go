@@ -23,6 +23,19 @@ func NewWidgetSettingsRepository(db mongo.Database, collection string) domain.Wi
 	}
 }
 
+func (ur *widgetsettingsRepository) CreateMany(c context.Context, items []domain.WidgetSettings) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *widgetsettingsRepository) Create(c context.Context, widgetsettings *domain.WidgetSettings) error {
 	collection := ur.database.Collection(ur.collection)
 

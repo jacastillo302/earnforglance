@@ -23,6 +23,19 @@ func NewLocaleStringResourceRepository(db mongo.Database, collection string) dom
 	}
 }
 
+func (ur *localestringresourceRepository) CreateMany(c context.Context, items []domain.LocaleStringResource) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *localestringresourceRepository) Create(c context.Context, localestringresource *domain.LocaleStringResource) error {
 	collection := ur.database.Collection(ur.collection)
 

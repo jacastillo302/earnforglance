@@ -23,6 +23,19 @@ func NewSeoSettingsRepository(db mongo.Database, collection string) domain.SeoSe
 	}
 }
 
+func (ur *seosettingsRepository) CreateMany(c context.Context, items []domain.SeoSettings) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *seosettingsRepository) Create(c context.Context, seosettings *domain.SeoSettings) error {
 	collection := ur.database.Collection(ur.collection)
 

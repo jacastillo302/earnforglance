@@ -23,6 +23,19 @@ func NewAclRecordRepository(db mongo.Database, collection string) domain.AclReco
 	}
 }
 
+func (ur *aclrecordRepository) CreateMany(c context.Context, items []domain.AclRecord) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *aclrecordRepository) Create(c context.Context, aclrecord *domain.AclRecord) error {
 	collection := ur.database.Collection(ur.collection)
 

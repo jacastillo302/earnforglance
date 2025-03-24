@@ -23,6 +23,19 @@ func NewReturnRequestActionRepository(db mongo.Database, collection string) doma
 	}
 }
 
+func (ur *returnrequestactionRepository) CreateMany(c context.Context, items []domain.ReturnRequestAction) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *returnrequestactionRepository) Create(c context.Context, returnrequestaction *domain.ReturnRequestAction) error {
 	collection := ur.database.Collection(ur.collection)
 

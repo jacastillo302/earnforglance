@@ -23,6 +23,19 @@ func NewCurrencySettingsRepository(db mongo.Database, collection string) domain.
 	}
 }
 
+func (ur *currencysettingsRepository) CreateMany(c context.Context, items []domain.CurrencySettings) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *currencysettingsRepository) Create(c context.Context, currencysettings *domain.CurrencySettings) error {
 	collection := ur.database.Collection(ur.collection)
 

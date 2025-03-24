@@ -23,6 +23,19 @@ func NewCrossSellProductRepository(db mongo.Database, collection string) domain.
 	}
 }
 
+func (ur *crosssellproductRepository) CreateMany(c context.Context, items []domain.CrossSellProduct) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *crosssellproductRepository) Create(c context.Context, crosssellproduct *domain.CrossSellProduct) error {
 	collection := ur.database.Collection(ur.collection)
 

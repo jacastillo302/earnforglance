@@ -23,6 +23,19 @@ func NewSettingRepository(db mongo.Database, collection string) domain.SettingRe
 	}
 }
 
+func (ur *settingRepository) CreateMany(c context.Context, items []domain.Setting) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *settingRepository) Create(c context.Context, setting *domain.Setting) error {
 	collection := ur.database.Collection(ur.collection)
 

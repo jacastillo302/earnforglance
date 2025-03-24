@@ -23,6 +23,19 @@ func NewCustomerPermanentlyDeletedRepository(db mongo.Database, collection strin
 	}
 }
 
+func (ur *customerpermanentlydeletedRepository) CreateMany(c context.Context, items []domain.CustomerPermanentlyDeleted) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *customerpermanentlydeletedRepository) Create(c context.Context, customerpermanentlydeleted *domain.CustomerPermanentlyDeleted) error {
 	collection := ur.database.Collection(ur.collection)
 

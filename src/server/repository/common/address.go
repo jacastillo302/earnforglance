@@ -23,6 +23,19 @@ func NewAddressRepository(db mongo.Database, collection string) domain.AddressRe
 	}
 }
 
+func (ur *addressRepository) CreateMany(c context.Context, items []domain.Address) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *addressRepository) Create(c context.Context, address *domain.Address) error {
 	collection := ur.database.Collection(ur.collection)
 

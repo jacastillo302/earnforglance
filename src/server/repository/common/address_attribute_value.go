@@ -23,6 +23,19 @@ func NewAddressAttributeValueRepository(db mongo.Database, collection string) do
 	}
 }
 
+func (ur *addressattributevalueRepository) CreateMany(c context.Context, items []domain.AddressAttributeValue) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *addressattributevalueRepository) Create(c context.Context, addressattributevalue *domain.AddressAttributeValue) error {
 	collection := ur.database.Collection(ur.collection)
 

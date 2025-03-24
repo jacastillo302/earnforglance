@@ -23,6 +23,19 @@ func NewLocalizationSettingsRepository(db mongo.Database, collection string) dom
 	}
 }
 
+func (ur *localizationsettingsRepository) CreateMany(c context.Context, items []domain.LocalizationSettings) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *localizationsettingsRepository) Create(c context.Context, localizationsettings *domain.LocalizationSettings) error {
 	collection := ur.database.Collection(ur.collection)
 

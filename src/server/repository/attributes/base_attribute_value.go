@@ -23,6 +23,19 @@ func NewBaseAttributeValueRepository(db mongo.Database, collection string) domai
 	}
 }
 
+func (ur *baseattributevalueRepository) CreateMany(c context.Context, items []domain.BaseAttributeValue) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *baseattributevalueRepository) Create(c context.Context, baseattributevalue *domain.BaseAttributeValue) error {
 	collection := ur.database.Collection(ur.collection)
 

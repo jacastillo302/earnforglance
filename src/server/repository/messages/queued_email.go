@@ -23,6 +23,19 @@ func NewQueuedEmailRepository(db mongo.Database, collection string) domain.Queue
 	}
 }
 
+func (ur *queuedemailRepository) CreateMany(c context.Context, items []domain.QueuedEmail) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *queuedemailRepository) Create(c context.Context, queuedemail *domain.QueuedEmail) error {
 	collection := ur.database.Collection(ur.collection)
 

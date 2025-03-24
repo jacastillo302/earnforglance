@@ -23,6 +23,19 @@ func NewBackInStockSubscriptionRepository(db mongo.Database, collection string) 
 	}
 }
 
+func (ur *backinstocksubscriptionRepository) CreateMany(c context.Context, items []domain.BackInStockSubscription) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *backinstocksubscriptionRepository) Create(c context.Context, backinstocksubscription *domain.BackInStockSubscription) error {
 	collection := ur.database.Collection(ur.collection)
 

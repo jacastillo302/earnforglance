@@ -23,6 +23,19 @@ func NewRewardPointsHistoryRepository(db mongo.Database, collection string) doma
 	}
 }
 
+func (ur *rewardpointshistoryRepository) CreateMany(c context.Context, items []domain.RewardPointsHistory) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *rewardpointshistoryRepository) Create(c context.Context, rewardpointshistory *domain.RewardPointsHistory) error {
 	collection := ur.database.Collection(ur.collection)
 

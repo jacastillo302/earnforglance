@@ -23,6 +23,19 @@ func NewPrivateMessageRepository(db mongo.Database, collection string) domain.Pr
 	}
 }
 
+func (ur *privatemessageRepository) CreateMany(c context.Context, items []domain.PrivateMessage) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *privatemessageRepository) Create(c context.Context, privatemessage *domain.PrivateMessage) error {
 	collection := ur.database.Collection(ur.collection)
 

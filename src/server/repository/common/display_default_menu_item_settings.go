@@ -23,6 +23,19 @@ func NewDisplayDefaultMenuItemSettingsRepository(db mongo.Database, collection s
 	}
 }
 
+func (ur *displaydefaultmenuitemsettingsRepository) CreateMany(c context.Context, items []domain.DisplayDefaultMenuItemSettings) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *displaydefaultmenuitemsettingsRepository) Create(c context.Context, displaydefaultmenuitemsettings *domain.DisplayDefaultMenuItemSettings) error {
 	collection := ur.database.Collection(ur.collection)
 

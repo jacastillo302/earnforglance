@@ -23,6 +23,19 @@ func NewReturnRequestReasonRepository(db mongo.Database, collection string) doma
 	}
 }
 
+func (ur *returnrequestreasonRepository) CreateMany(c context.Context, items []domain.ReturnRequestReason) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *returnrequestreasonRepository) Create(c context.Context, returnrequestreason *domain.ReturnRequestReason) error {
 	collection := ur.database.Collection(ur.collection)
 

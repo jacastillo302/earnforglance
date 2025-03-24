@@ -31,6 +31,19 @@ func (ur *affiliateRepository) Create(c context.Context, affiliate *domain.Affil
 	return err
 }
 
+func (ur *affiliateRepository) CreateMany(c context.Context, items []domain.Affiliate) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *affiliateRepository) Update(c context.Context, affiliate *domain.Affiliate) error {
 	collection := ur.database.Collection(ur.collection)
 

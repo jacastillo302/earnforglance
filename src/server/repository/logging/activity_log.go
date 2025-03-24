@@ -23,6 +23,19 @@ func NewActivityLogRepository(db mongo.Database, collection string) domain.Activ
 	}
 }
 
+func (ur *activitylogRepository) CreateMany(c context.Context, items []domain.ActivityLog) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *activitylogRepository) Create(c context.Context, activitylog *domain.ActivityLog) error {
 	collection := ur.database.Collection(ur.collection)
 

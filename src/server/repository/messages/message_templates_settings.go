@@ -11,19 +11,32 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-type MessageTemplatesSettingsRepository struct {
+type messageTemplatesSettingsRepository struct {
 	database   mongo.Database
 	collection string
 }
 
 func NewMessageTemplatesSettingsRepository(db mongo.Database, collection string) domain.MessageTemplatesSettingsRepository {
-	return &MessageTemplatesSettingsRepository{
+	return &messageTemplatesSettingsRepository{
 		database:   db,
 		collection: collection,
 	}
 }
 
-func (ur *MessageTemplatesSettingsRepository) Create(c context.Context, MessageTemplatesSettings *domain.MessageTemplatesSettings) error {
+func (ur *messageTemplatesSettingsRepository) CreateMany(c context.Context, items []domain.MessageTemplatesSettings) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (ur *messageTemplatesSettingsRepository) Create(c context.Context, MessageTemplatesSettings *domain.MessageTemplatesSettings) error {
 	collection := ur.database.Collection(ur.collection)
 
 	_, err := collection.InsertOne(c, MessageTemplatesSettings)
@@ -31,7 +44,7 @@ func (ur *MessageTemplatesSettingsRepository) Create(c context.Context, MessageT
 	return err
 }
 
-func (ur *MessageTemplatesSettingsRepository) Update(c context.Context, MessageTemplatesSettings *domain.MessageTemplatesSettings) error {
+func (ur *messageTemplatesSettingsRepository) Update(c context.Context, MessageTemplatesSettings *domain.MessageTemplatesSettings) error {
 	collection := ur.database.Collection(ur.collection)
 
 	filter := bson.M{"_id": MessageTemplatesSettings.ID}
@@ -42,7 +55,7 @@ func (ur *MessageTemplatesSettingsRepository) Update(c context.Context, MessageT
 	return err
 }
 
-func (ur *MessageTemplatesSettingsRepository) Delete(c context.Context, ID string) error {
+func (ur *messageTemplatesSettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
 	idHex, err := primitive.ObjectIDFromHex(ID)
@@ -55,7 +68,7 @@ func (ur *MessageTemplatesSettingsRepository) Delete(c context.Context, ID strin
 
 }
 
-func (ur *MessageTemplatesSettingsRepository) Fetch(c context.Context) ([]domain.MessageTemplatesSettings, error) {
+func (ur *messageTemplatesSettingsRepository) Fetch(c context.Context) ([]domain.MessageTemplatesSettings, error) {
 	collection := ur.database.Collection(ur.collection)
 
 	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
@@ -75,7 +88,7 @@ func (ur *MessageTemplatesSettingsRepository) Fetch(c context.Context) ([]domain
 	return MessageTemplatesSettingss, err
 }
 
-func (tr *MessageTemplatesSettingsRepository) FetchByID(c context.Context, MessageTemplatesSettingsID string) (domain.MessageTemplatesSettings, error) {
+func (tr *messageTemplatesSettingsRepository) FetchByID(c context.Context, MessageTemplatesSettingsID string) (domain.MessageTemplatesSettings, error) {
 	collection := tr.database.Collection(tr.collection)
 
 	var MessageTemplatesSettings domain.MessageTemplatesSettings

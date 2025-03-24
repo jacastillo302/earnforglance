@@ -23,6 +23,19 @@ func NewProductAvailabilityRangeRepository(db mongo.Database, collection string)
 	}
 }
 
+func (ur *productavailabilityrangeRepository) CreateMany(c context.Context, items []domain.ProductAvailabilityRange) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *productavailabilityrangeRepository) Create(c context.Context, productavailabilityrange *domain.ProductAvailabilityRange) error {
 	collection := ur.database.Collection(ur.collection)
 

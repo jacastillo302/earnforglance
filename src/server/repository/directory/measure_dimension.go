@@ -31,6 +31,19 @@ func (ur *measuredimensionRepository) Create(c context.Context, measuredimension
 	return err
 }
 
+func (ur *measuredimensionRepository) CreateMany(c context.Context, items []domain.MeasureDimension) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *measuredimensionRepository) Update(c context.Context, measuredimension *domain.MeasureDimension) error {
 	collection := ur.database.Collection(ur.collection)
 

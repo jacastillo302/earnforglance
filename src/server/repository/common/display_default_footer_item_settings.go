@@ -23,6 +23,19 @@ func NewDisplayDefaultFooterItemSettingsRepository(db mongo.Database, collection
 	}
 }
 
+func (ur *displaydefaultfooteritemsettingsRepository) CreateMany(c context.Context, items []domain.DisplayDefaultFooterItemSettings) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *displaydefaultfooteritemsettingsRepository) Create(c context.Context, displaydefaultfooteritemsettings *domain.DisplayDefaultFooterItemSettings) error {
 	collection := ur.database.Collection(ur.collection)
 

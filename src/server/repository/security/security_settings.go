@@ -23,6 +23,19 @@ func NewSecuritySettingsRepository(db mongo.Database, collection string) domain.
 	}
 }
 
+func (ur *securitysettingRepository) CreateMany(c context.Context, items []domain.SecuritySettings) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *securitysettingRepository) Create(c context.Context, securitysetting *domain.SecuritySettings) error {
 	collection := ur.database.Collection(ur.collection)
 

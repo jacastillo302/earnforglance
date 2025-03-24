@@ -23,6 +23,19 @@ func NewScheduleTaskRepository(db mongo.Database, collection string) domain.Sche
 	}
 }
 
+func (ur *scheduletaskRepository) CreateMany(c context.Context, items []domain.ScheduleTask) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *scheduletaskRepository) Create(c context.Context, scheduletask *domain.ScheduleTask) error {
 	collection := ur.database.Collection(ur.collection)
 

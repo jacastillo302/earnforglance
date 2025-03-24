@@ -23,6 +23,19 @@ func NewProductReviewReviewTypeMappingRepository(db mongo.Database, collection s
 	}
 }
 
+func (ur *productreviewreviewtypemappingRepository) CreateMany(c context.Context, items []domain.ProductReviewReviewTypeMapping) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *productreviewreviewtypemappingRepository) Create(c context.Context, productreviewreviewtypemapping *domain.ProductReviewReviewTypeMapping) error {
 	collection := ur.database.Collection(ur.collection)
 

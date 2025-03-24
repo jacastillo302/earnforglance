@@ -23,6 +23,19 @@ func NewProductEditorSettingsRepository(db mongo.Database, collection string) do
 	}
 }
 
+func (ur *producteditorsettingsRepository) CreateMany(c context.Context, items []domain.ProductEditorSettings) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *producteditorsettingsRepository) Create(c context.Context, producteditorsettings *domain.ProductEditorSettings) error {
 	collection := ur.database.Collection(ur.collection)
 

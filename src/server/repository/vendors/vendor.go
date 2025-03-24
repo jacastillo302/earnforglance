@@ -23,6 +23,19 @@ func NewVendorRepository(db mongo.Database, collection string) domain.VendorRepo
 	}
 }
 
+func (ur *vendorRepository) CreateMany(c context.Context, items []domain.Vendor) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *vendorRepository) Create(c context.Context, vendor *domain.Vendor) error {
 	collection := ur.database.Collection(ur.collection)
 

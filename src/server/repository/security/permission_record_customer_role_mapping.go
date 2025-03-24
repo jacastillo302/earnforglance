@@ -23,6 +23,19 @@ func NewPermissionRecordCustomerRoleMappingRepository(db mongo.Database, collect
 	}
 }
 
+func (ur *permissionrecordcustomerrolemappingRepository) CreateMany(c context.Context, items []domain.PermissionRecordCustomerRoleMapping) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *permissionrecordcustomerrolemappingRepository) Create(c context.Context, permissionrecordcustomerrolemapping *domain.PermissionRecordCustomerRoleMapping) error {
 	collection := ur.database.Collection(ur.collection)
 

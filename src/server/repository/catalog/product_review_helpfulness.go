@@ -23,6 +23,19 @@ func NewProductReviewHelpfulnessRepository(db mongo.Database, collection string)
 	}
 }
 
+func (ur *productreviewhelpfulnessRepository) CreateMany(c context.Context, items []domain.ProductReviewHelpfulness) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *productreviewhelpfulnessRepository) Create(c context.Context, productreviewhelpfulness *domain.ProductReviewHelpfulness) error {
 	collection := ur.database.Collection(ur.collection)
 

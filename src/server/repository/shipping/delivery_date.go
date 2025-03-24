@@ -23,6 +23,19 @@ func NewDeliveryDateRepository(db mongo.Database, collection string) domain.Deli
 	}
 }
 
+func (ur *deliverydateRepository) CreateMany(c context.Context, items []domain.DeliveryDate) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *deliverydateRepository) Create(c context.Context, deliverydate *domain.DeliveryDate) error {
 	collection := ur.database.Collection(ur.collection)
 

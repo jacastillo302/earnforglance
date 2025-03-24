@@ -23,6 +23,19 @@ func NewSpecificationAttributeRepository(db mongo.Database, collection string) d
 	}
 }
 
+func (ur *specificationattributeRepository) CreateMany(c context.Context, items []domain.SpecificationAttribute) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *specificationattributeRepository) Create(c context.Context, specificationattribute *domain.SpecificationAttribute) error {
 	collection := ur.database.Collection(ur.collection)
 

@@ -23,6 +23,19 @@ func NewProductProductTagMappingRepository(db mongo.Database, collection string)
 	}
 }
 
+func (ur *productproducttagmappingRepository) CreateMany(c context.Context, items []domain.ProductProductTagMapping) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *productproducttagmappingRepository) Create(c context.Context, productproducttagmapping *domain.ProductProductTagMapping) error {
 	collection := ur.database.Collection(ur.collection)
 

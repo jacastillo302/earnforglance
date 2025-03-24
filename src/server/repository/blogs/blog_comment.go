@@ -23,6 +23,19 @@ func NewBlogCommentRepository(db mongo.Database, collection string) domain.BlogC
 	}
 }
 
+func (ur *blogcommentRepository) CreateMany(c context.Context, items []domain.BlogComment) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *blogcommentRepository) Create(c context.Context, blogcomment *domain.BlogComment) error {
 	collection := ur.database.Collection(ur.collection)
 

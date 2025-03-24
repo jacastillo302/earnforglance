@@ -23,6 +23,19 @@ func NewStoreMappingRepository(db mongo.Database, collection string) domain.Stor
 	}
 }
 
+func (ur *storemappingRepository) CreateMany(c context.Context, items []domain.StoreMapping) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *storemappingRepository) Create(c context.Context, storemapping *domain.StoreMapping) error {
 	collection := ur.database.Collection(ur.collection)
 

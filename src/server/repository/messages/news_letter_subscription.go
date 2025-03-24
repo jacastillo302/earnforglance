@@ -23,6 +23,19 @@ func NewNewsLetterSubscriptionRepository(db mongo.Database, collection string) d
 	}
 }
 
+func (ur *newslettersubscriptionRepository) CreateMany(c context.Context, items []domain.NewsLetterSubscription) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *newslettersubscriptionRepository) Create(c context.Context, newslettersubscription *domain.NewsLetterSubscription) error {
 	collection := ur.database.Collection(ur.collection)
 

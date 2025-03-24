@@ -23,6 +23,19 @@ func NewRobotsTxtSettingsRepository(db mongo.Database, collection string) domain
 	}
 }
 
+func (ur *robotstxtsettingsRepository) CreateMany(c context.Context, items []domain.RobotsTxtSettings) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *robotstxtsettingsRepository) Create(c context.Context, robotstxtsettings *domain.RobotsTxtSettings) error {
 	collection := ur.database.Collection(ur.collection)
 

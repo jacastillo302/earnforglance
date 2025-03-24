@@ -23,6 +23,19 @@ func NewProxySettingsRepository(db mongo.Database, collection string) domain.Pro
 	}
 }
 
+func (ur *proxysettingsRepository) CreateMany(c context.Context, items []domain.ProxySettings) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *proxysettingsRepository) Create(c context.Context, proxysettings *domain.ProxySettings) error {
 	collection := ur.database.Collection(ur.collection)
 

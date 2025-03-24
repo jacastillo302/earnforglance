@@ -23,6 +23,19 @@ func NewMeasureWeightRepository(db mongo.Database, collection string) domain.Mea
 	}
 }
 
+func (ur *measureweightRepository) CreateMany(c context.Context, items []domain.MeasureWeight) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *measureweightRepository) Create(c context.Context, measureweight *domain.MeasureWeight) error {
 	collection := ur.database.Collection(ur.collection)
 

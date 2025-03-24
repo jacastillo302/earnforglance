@@ -23,6 +23,19 @@ func NewCustomerCustomerRoleMappingRepository(db mongo.Database, collection stri
 	}
 }
 
+func (ur *customercustomerrolemappingRepository) CreateMany(c context.Context, items []domain.CustomerCustomerRoleMapping) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *customercustomerrolemappingRepository) Create(c context.Context, customercustomerrolemapping *domain.CustomerCustomerRoleMapping) error {
 	collection := ur.database.Collection(ur.collection)
 

@@ -23,6 +23,19 @@ func NewForumPostRepository(db mongo.Database, collection string) domain.ForumPo
 	}
 }
 
+func (ur *forumpostRepository) CreateMany(c context.Context, items []domain.ForumPost) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *forumpostRepository) Create(c context.Context, forumpost *domain.ForumPost) error {
 	collection := ur.database.Collection(ur.collection)
 

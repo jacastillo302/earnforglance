@@ -23,6 +23,19 @@ func NewMeasureSettingsRepository(db mongo.Database, collection string) domain.M
 	}
 }
 
+func (ur *measuresettingsRepository) CreateMany(c context.Context, items []domain.MeasureSettings) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *measuresettingsRepository) Create(c context.Context, measuresettings *domain.MeasureSettings) error {
 	collection := ur.database.Collection(ur.collection)
 

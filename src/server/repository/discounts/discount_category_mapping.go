@@ -23,6 +23,19 @@ func NewDiscountCategoryMappingRepository(db mongo.Database, collection string) 
 	}
 }
 
+func (ur *discountcategorymappingRepository) CreateMany(c context.Context, items []domain.DiscountCategoryMapping) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *discountcategorymappingRepository) Create(c context.Context, discountcategorymapping *domain.DiscountCategoryMapping) error {
 	collection := ur.database.Collection(ur.collection)
 

@@ -23,6 +23,19 @@ func NewBestCustomerReportLineRepository(db mongo.Database, collection string) d
 	}
 }
 
+func (ur *bestcustomerreportlineRepository) CreateMany(c context.Context, items []domain.BestCustomerReportLine) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *bestcustomerreportlineRepository) Create(c context.Context, bestcustomerreportline *domain.BestCustomerReportLine) error {
 	collection := ur.database.Collection(ur.collection)
 

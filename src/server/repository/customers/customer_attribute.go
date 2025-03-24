@@ -23,6 +23,19 @@ func NewCustomerAttributeRepository(db mongo.Database, collection string) domain
 	}
 }
 
+func (ur *customerattributeRepository) CreateMany(c context.Context, items []domain.CustomerAttribute) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *customerattributeRepository) Create(c context.Context, customerattribute *domain.CustomerAttribute) error {
 	collection := ur.database.Collection(ur.collection)
 

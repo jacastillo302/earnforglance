@@ -23,6 +23,19 @@ func NewDiscountManufacturerMappingRepository(db mongo.Database, collection stri
 	}
 }
 
+func (ur *discountmanufacturermappingRepository) CreateMany(c context.Context, items []domain.DiscountManufacturerMapping) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *discountmanufacturermappingRepository) Create(c context.Context, discountmanufacturermapping *domain.DiscountManufacturerMapping) error {
 	collection := ur.database.Collection(ur.collection)
 

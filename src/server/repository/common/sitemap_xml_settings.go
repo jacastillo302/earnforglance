@@ -23,6 +23,19 @@ func NewSitemapXmlSettingsRepository(db mongo.Database, collection string) domai
 	}
 }
 
+func (ur *sitemapxmlsettingsRepository) CreateMany(c context.Context, items []domain.SitemapXmlSettings) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *sitemapxmlsettingsRepository) Create(c context.Context, sitemapxmlsettings *domain.SitemapXmlSettings) error {
 	collection := ur.database.Collection(ur.collection)
 

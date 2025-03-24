@@ -23,6 +23,19 @@ func NewDiscountRepository(db mongo.Database, collection string) domain.Discount
 	}
 }
 
+func (ur *discountRepository) CreateMany(c context.Context, items []domain.Discount) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *discountRepository) Create(c context.Context, discount *domain.Discount) error {
 	collection := ur.database.Collection(ur.collection)
 

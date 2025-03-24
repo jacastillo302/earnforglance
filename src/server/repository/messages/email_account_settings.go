@@ -23,6 +23,19 @@ func NewEmailAccountSettingsRepository(db mongo.Database, collection string) dom
 	}
 }
 
+func (ur *emailaccountsettingsRepository) CreateMany(c context.Context, items []domain.EmailAccountSettings) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *emailaccountsettingsRepository) Create(c context.Context, emailaccountsettings *domain.EmailAccountSettings) error {
 	collection := ur.database.Collection(ur.collection)
 

@@ -23,6 +23,19 @@ func NewOrderRepository(db mongo.Database, collection string) domain.OrderReposi
 	}
 }
 
+func (ur *orderRepository) CreateMany(c context.Context, items []domain.Order) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *orderRepository) Create(c context.Context, order *domain.Order) error {
 	collection := ur.database.Collection(ur.collection)
 

@@ -23,6 +23,19 @@ func NewGdprSettingsRepository(db mongo.Database, collection string) domain.Gdpr
 	}
 }
 
+func (ur *gdprsettingsRepository) CreateMany(c context.Context, items []domain.GdprSettings) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *gdprsettingsRepository) Create(c context.Context, gdprsettings *domain.GdprSettings) error {
 	collection := ur.database.Collection(ur.collection)
 

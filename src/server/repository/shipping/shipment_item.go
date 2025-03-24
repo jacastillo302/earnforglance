@@ -23,6 +23,19 @@ func NewShipmentItemRepository(db mongo.Database, collection string) domain.Ship
 	}
 }
 
+func (ur *shipmentitemRepository) CreateMany(c context.Context, items []domain.ShipmentItem) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *shipmentitemRepository) Create(c context.Context, shipmentitem *domain.ShipmentItem) error {
 	collection := ur.database.Collection(ur.collection)
 

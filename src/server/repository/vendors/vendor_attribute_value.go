@@ -23,6 +23,19 @@ func NewVendorAttributeValueRepository(db mongo.Database, collection string) dom
 	}
 }
 
+func (ur *vendorattributevalueRepository) CreateMany(c context.Context, items []domain.VendorAttributeValue) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *vendorattributevalueRepository) Create(c context.Context, vendorattributevalue *domain.VendorAttributeValue) error {
 	collection := ur.database.Collection(ur.collection)
 

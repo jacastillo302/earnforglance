@@ -23,6 +23,19 @@ func NewCustomerAddressMappingRepository(db mongo.Database, collection string) d
 	}
 }
 
+func (ur *customeraddressmappingRepository) CreateMany(c context.Context, items []domain.CustomerAddressMapping) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *customeraddressmappingRepository) Create(c context.Context, customeraddressmapping *domain.CustomerAddressMapping) error {
 	collection := ur.database.Collection(ur.collection)
 

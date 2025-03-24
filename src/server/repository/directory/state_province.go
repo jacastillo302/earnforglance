@@ -23,6 +23,19 @@ func NewStateProvinceRepository(db mongo.Database, collection string) domain.Sta
 	}
 }
 
+func (ur *stateprovinceRepository) CreateMany(c context.Context, items []domain.StateProvince) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *stateprovinceRepository) Create(c context.Context, stateprovince *domain.StateProvince) error {
 	collection := ur.database.Collection(ur.collection)
 

@@ -23,6 +23,19 @@ func NewSalesSummaryReportLineRepository(db mongo.Database, collection string) d
 	}
 }
 
+func (ur *salesummaryreportlineRepository) CreateMany(c context.Context, items []domain.SalesSummaryReportLine) error {
+	collection := ur.database.Collection(ur.collection)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (ur *salesummaryreportlineRepository) Create(c context.Context, salesummaryreportline *domain.SalesSummaryReportLine) error {
 	collection := ur.database.Collection(ur.collection)
 
