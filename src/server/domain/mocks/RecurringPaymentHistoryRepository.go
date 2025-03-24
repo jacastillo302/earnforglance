@@ -14,6 +14,21 @@ type RecurringPaymentHistoryRepository struct {
 	mock.Mock
 }
 
+// Create provides a mock function with given fields
+func (_m *RecurringPaymentHistoryRepository) CreateMany(c context.Context, acl_record []domain.RecurringPaymentHistory) error {
+	ret := _m.Called(c, acl_record)
+	if len(ret) == 0 {
+		panic("no return value specified for Create")
+	}
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.RecurringPaymentHistory) error); ok {
+		r0 = rf(c, acl_record)
+	} else {
+		r0 = ret.Error(0)
+	}
+	return r0
+}
+
 // Create provides a mock function with given fields: c, recurring_payment_history
 func (_m *RecurringPaymentHistoryRepository) Create(c context.Context, recurring_payment_history *domain.RecurringPaymentHistory) error {
 	ret := _m.Called(c, recurring_payment_history)

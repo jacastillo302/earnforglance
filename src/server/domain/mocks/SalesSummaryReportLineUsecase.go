@@ -14,6 +14,21 @@ type SalesSummaryReportLineUsecase struct {
 	mock.Mock
 }
 
+// Create provides a mock function with given fields
+func (_m *SalesSummaryReportLineUsecase) CreateMany(c context.Context, acl_record []domain.SalesSummaryReportLine) error {
+	ret := _m.Called(c, acl_record)
+	if len(ret) == 0 {
+		panic("no return value specified for Create")
+	}
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.SalesSummaryReportLine) error); ok {
+		r0 = rf(c, acl_record)
+	} else {
+		r0 = ret.Error(0)
+	}
+	return r0
+}
+
 // Create provides a mock function with given fields: c, sales_summary_report_line
 func (_m *SalesSummaryReportLineUsecase) Create(c context.Context, sales_summary_report_line *domain.SalesSummaryReportLine) error {
 	ret := _m.Called(c, sales_summary_report_line)

@@ -14,6 +14,21 @@ type OrderItemUsecase struct {
 	mock.Mock
 }
 
+// Create provides a mock function with given fields
+func (_m *OrderItemUsecase) CreateMany(c context.Context, acl_record []domain.OrderItem) error {
+	ret := _m.Called(c, acl_record)
+	if len(ret) == 0 {
+		panic("no return value specified for Create")
+	}
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.OrderItem) error); ok {
+		r0 = rf(c, acl_record)
+	} else {
+		r0 = ret.Error(0)
+	}
+	return r0
+}
+
 // Create provides a mock function with given fields: c, order_item
 func (_m *OrderItemUsecase) Create(c context.Context, order_item *domain.OrderItem) error {
 	ret := _m.Called(c, order_item)

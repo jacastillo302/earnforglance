@@ -14,6 +14,21 @@ type MessagesSettingsUsecase struct {
 	mock.Mock
 }
 
+// Create provides a mock function with given fields
+func (_m *MessagesSettingsUsecase) CreateMany(c context.Context, acl_record []domain.MessagesSettings) error {
+	ret := _m.Called(c, acl_record)
+	if len(ret) == 0 {
+		panic("no return value specified for Create")
+	}
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.MessagesSettings) error); ok {
+		r0 = rf(c, acl_record)
+	} else {
+		r0 = ret.Error(0)
+	}
+	return r0
+}
+
 // Create provides a mock function with given fields: c, messages_settings
 func (_m *MessagesSettingsUsecase) Create(c context.Context, messages_settings *domain.MessagesSettings) error {
 	ret := _m.Called(c, messages_settings)

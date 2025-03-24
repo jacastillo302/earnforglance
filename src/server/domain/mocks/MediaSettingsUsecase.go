@@ -14,6 +14,21 @@ type MediaSettingsUsecase struct {
 	mock.Mock
 }
 
+// Create provides a mock function with given fields
+func (_m *MediaSettingsUsecase) CreateMany(c context.Context, acl_record []domain.MediaSettings) error {
+	ret := _m.Called(c, acl_record)
+	if len(ret) == 0 {
+		panic("no return value specified for Create")
+	}
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.MediaSettings) error); ok {
+		r0 = rf(c, acl_record)
+	} else {
+		r0 = ret.Error(0)
+	}
+	return r0
+}
+
 // Create provides a mock function with given fields: c, media_settings
 func (_m *MediaSettingsUsecase) Create(c context.Context, media_settings *domain.MediaSettings) error {
 	ret := _m.Called(c, media_settings)

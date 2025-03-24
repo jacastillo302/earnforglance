@@ -14,6 +14,20 @@ type SpecificationAttributeOptionUsecase struct {
 	mock.Mock
 }
 
+func (_m *SpecificationAttributeOptionUsecase) CreateMany(c context.Context, acl_record []domain.SpecificationAttributeOption) error {
+	ret := _m.Called(c, acl_record)
+	if len(ret) == 0 {
+		panic("no return value specified for Create")
+	}
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.SpecificationAttributeOption) error); ok {
+		r0 = rf(c, acl_record)
+	} else {
+		r0 = ret.Error(0)
+	}
+	return r0
+}
+
 // Create provides a mock function with given fields: c, specification_attribute_option
 func (_m *SpecificationAttributeOptionUsecase) Create(c context.Context, specification_attribute_option *domain.SpecificationAttributeOption) error {
 	ret := _m.Called(c, specification_attribute_option)

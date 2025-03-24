@@ -14,6 +14,21 @@ type ShippingMethodCountryMappingUsecase struct {
 	mock.Mock
 }
 
+func (_m *ShippingMethodCountryMappingUsecase) CreateMany(c context.Context, acl_record []domain.ShippingMethodCountryMapping) error {
+	ret := _m.Called(c, acl_record)
+	if len(ret) == 0 {
+		panic("no return value specified for Create")
+	}
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.ShippingMethodCountryMapping) error); ok {
+		r0 = rf(c, acl_record)
+	} else {
+		r0 = ret.Error(0)
+	}
+	return r0
+}
+
+
 // Create provides a mock function with given fields: c, shipping_method_country
 func (_m *ShippingMethodCountryMappingUsecase) Create(c context.Context, shipping_method_country *domain.ShippingMethodCountryMapping) error {
 	ret := _m.Called(c, shipping_method_country)

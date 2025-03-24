@@ -14,6 +14,21 @@ type EmailAccountSettingsUsecase struct {
 	mock.Mock
 }
 
+// Create provides a mock function with given fields
+func (_m *EmailAccountSettingsUsecase) CreateMany(c context.Context, acl_record []domain.EmailAccountSettings) error {
+	ret := _m.Called(c, acl_record)
+	if len(ret) == 0 {
+		panic("no return value specified for Create")
+	}
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.EmailAccountSettings) error); ok {
+		r0 = rf(c, acl_record)
+	} else {
+		r0 = ret.Error(0)
+	}
+	return r0
+}
+
 // Create provides a mock function with given fields: c, email_account_settings
 func (_m *EmailAccountSettingsUsecase) Create(c context.Context, email_account_settings *domain.EmailAccountSettings) error {
 	ret := _m.Called(c, email_account_settings)

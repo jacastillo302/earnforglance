@@ -14,6 +14,21 @@ type OrderRepository struct {
 	mock.Mock
 }
 
+// Create provides a mock function with given fields
+func (_m *OrderRepository) CreateMany(c context.Context, acl_record []domain.Order) error {
+	ret := _m.Called(c, acl_record)
+	if len(ret) == 0 {
+		panic("no return value specified for Create")
+	}
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.Order) error); ok {
+		r0 = rf(c, acl_record)
+	} else {
+		r0 = ret.Error(0)
+	}
+	return r0
+}
+
 // Create provides a mock function with given fields: c, order
 func (_m *OrderRepository) Create(c context.Context, order *domain.Order) error {
 	ret := _m.Called(c, order)

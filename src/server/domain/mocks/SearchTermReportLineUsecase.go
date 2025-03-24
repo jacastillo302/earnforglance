@@ -14,6 +14,21 @@ type SearchTermReportLineUsecase struct {
 	mock.Mock
 }
 
+// Create provides a mock function with given fields
+func (_m *SearchTermReportLineUsecase) CreateMany(c context.Context, acl_record []domain.SearchTermReportLine) error {
+	ret := _m.Called(c, acl_record)
+	if len(ret) == 0 {
+		panic("no return value specified for Create")
+	}
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.SearchTermReportLine) error); ok {
+		r0 = rf(c, acl_record)
+	} else {
+		r0 = ret.Error(0)
+	}
+	return r0
+}
+
 // Create provides a mock function with given fields: c, search_term_record_line
 func (_m *SearchTermReportLineUsecase) Create(c context.Context, search_term_record_line *domain.SearchTermReportLine) error {
 	ret := _m.Called(c, search_term_record_line)

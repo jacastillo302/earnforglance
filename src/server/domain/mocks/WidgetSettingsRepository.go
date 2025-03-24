@@ -14,6 +14,21 @@ type WidgetSettingsRepository struct {
 	mock.Mock
 }
 
+func (_m *WidgetSettingsRepository) CreateMany(c context.Context, acl_record []domain.WidgetSettings) error {
+	ret := _m.Called(c, acl_record)
+	if len(ret) == 0 {
+		panic("no return value specified for Create")
+	}
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.WidgetSettings) error); ok {
+		r0 = rf(c, acl_record)
+	} else {
+		r0 = ret.Error(0)
+	}
+	return r0
+}
+
+
 // Create provides a mock function with given fields: c, widget_settings
 func (_m *WidgetSettingsRepository) Create(c context.Context, widget_settings *domain.WidgetSettings) error {
 	ret := _m.Called(c, widget_settings)

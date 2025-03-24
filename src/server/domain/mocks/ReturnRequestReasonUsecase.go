@@ -14,6 +14,21 @@ type ReturnRequestReasonUsecase struct {
 	mock.Mock
 }
 
+// Create provides a mock function with given fields
+func (_m *ReturnRequestReasonUsecase) CreateMany(c context.Context, acl_record []domain.ReturnRequestReason) error {
+	ret := _m.Called(c, acl_record)
+	if len(ret) == 0 {
+		panic("no return value specified for Create")
+	}
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.ReturnRequestReason) error); ok {
+		r0 = rf(c, acl_record)
+	} else {
+		r0 = ret.Error(0)
+	}
+	return r0
+}
+
 // Create provides a mock function with given fields: c, return_request_reason
 func (_m *ReturnRequestReasonUsecase) Create(c context.Context, return_request_reason *domain.ReturnRequestReason) error {
 	ret := _m.Called(c, return_request_reason)

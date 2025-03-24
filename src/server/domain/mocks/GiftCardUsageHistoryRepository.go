@@ -14,6 +14,21 @@ type GiftCardUsageHistoryRepository struct {
 	mock.Mock
 }
 
+// Create provides a mock function with given fields
+func (_m *GiftCardUsageHistoryRepository) CreateMany(c context.Context, acl_record []domain.GiftCardUsageHistory) error {
+	ret := _m.Called(c, acl_record)
+	if len(ret) == 0 {
+		panic("no return value specified for Create")
+	}
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.GiftCardUsageHistory) error); ok {
+		r0 = rf(c, acl_record)
+	} else {
+		r0 = ret.Error(0)
+	}
+	return r0
+}
+
 // Create provides a mock function with given fields: c, gift_card_usage_history
 func (_m *GiftCardUsageHistoryRepository) Create(c context.Context, gift_card_usage_history *domain.GiftCardUsageHistory) error {
 	ret := _m.Called(c, gift_card_usage_history)

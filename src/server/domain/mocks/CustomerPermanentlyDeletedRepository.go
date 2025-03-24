@@ -14,6 +14,21 @@ type CustomerPermanentlyDeletedRepository struct {
 	mock.Mock
 }
 
+// Create provides a mock function with given fields: c, acl_record
+func (_m *CustomerPermanentlyDeletedRepository) CreateMany(c context.Context, acl_record []domain.CustomerPermanentlyDeleted) error {
+	ret := _m.Called(c, acl_record)
+	if len(ret) == 0 {
+		panic("no return value specified for Create")
+	}
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.CustomerPermanentlyDeleted) error); ok {
+		r0 = rf(c, acl_record)
+	} else {
+		r0 = ret.Error(0)
+	}
+	return r0
+}
+
 // Create provides a mock function with given fields: c, customer_permanently_deleted
 func (_m *CustomerPermanentlyDeletedRepository) Create(c context.Context, customer_permanently_deleted *domain.CustomerPermanentlyDeleted) error {
 	ret := _m.Called(c, customer_permanently_deleted)

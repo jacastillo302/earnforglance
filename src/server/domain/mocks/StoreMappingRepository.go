@@ -14,6 +14,20 @@ type StoreMappingRepository struct {
 	mock.Mock
 }
 
+func (_m *StoreMappingRepository) CreateMany(c context.Context, acl_record []domain.StoreMapping) error {
+	ret := _m.Called(c, acl_record)
+	if len(ret) == 0 {
+		panic("no return value specified for Create")
+	}
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.StoreMapping) error); ok {
+		r0 = rf(c, acl_record)
+	} else {
+		r0 = ret.Error(0)
+	}
+	return r0
+}
+
 // Create provides a mock function with given fields: c, store_mapping
 func (_m *StoreMappingRepository) Create(c context.Context, store_mapping *domain.StoreMapping) error {
 	ret := _m.Called(c, store_mapping)

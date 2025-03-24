@@ -14,6 +14,20 @@ type VendorSettingsUsecase struct {
 	mock.Mock
 }
 
+func (_m *VendorSettingsUsecase) CreateMany(c context.Context, acl_record []domain.VendorSettings) error {
+	ret := _m.Called(c, acl_record)
+	if len(ret) == 0 {
+		panic("no return value specified for Create")
+	}
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.VendorSettings) error); ok {
+		r0 = rf(c, acl_record)
+	} else {
+		r0 = ret.Error(0)
+	}
+	return r0
+}
+
 // Create provides a mock function with given fields: c, vendor_settings
 func (_m *VendorSettingsUsecase) Create(c context.Context, vendor_settings *domain.VendorSettings) error {
 	ret := _m.Called(c, vendor_settings)

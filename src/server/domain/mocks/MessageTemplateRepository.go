@@ -14,6 +14,21 @@ type MessageTemplateRepository struct {
 	mock.Mock
 }
 
+// Create provides a mock function with given fields
+func (_m *MessageTemplateRepository) CreateMany(c context.Context, acl_record []domain.MessageTemplate) error {
+	ret := _m.Called(c, acl_record)
+	if len(ret) == 0 {
+		panic("no return value specified for Create")
+	}
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.MessageTemplate) error); ok {
+		r0 = rf(c, acl_record)
+	} else {
+		r0 = ret.Error(0)
+	}
+	return r0
+}
+
 // Create provides a mock function with given fields: c, message_template
 func (_m *MessageTemplateRepository) Create(c context.Context, message_template *domain.MessageTemplate) error {
 	ret := _m.Called(c, message_template)

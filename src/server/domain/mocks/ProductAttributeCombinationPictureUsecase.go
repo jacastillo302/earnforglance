@@ -14,6 +14,21 @@ type ProductAttributeCombinationPictureUsecase struct {
 	mock.Mock
 }
 
+// Create provides a mock function with given fields
+func (_m *ProductAttributeCombinationPictureUsecase) CreateMany(c context.Context, acl_record []domain.ProductAttributeCombinationPicture) error {
+	ret := _m.Called(c, acl_record)
+	if len(ret) == 0 {
+		panic("no return value specified for Create")
+	}
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.ProductAttributeCombinationPicture) error); ok {
+		r0 = rf(c, acl_record)
+	} else {
+		r0 = ret.Error(0)
+	}
+	return r0
+}
+
 // Create provides a mock function with given fields: c, product_attribute_combination_picture
 func (_m *ProductAttributeCombinationPictureUsecase) Create(c context.Context, product_attribute_combination_picture *domain.ProductAttributeCombinationPicture) error {
 	ret := _m.Called(c, product_attribute_combination_picture)

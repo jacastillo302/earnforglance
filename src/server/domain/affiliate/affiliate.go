@@ -20,6 +20,7 @@ type Affiliate struct {
 }
 
 type AffiliateRepository interface {
+	CreateMany(c context.Context, items []Affiliate) error
 	Create(c context.Context, affiliate *Affiliate) error
 	Update(c context.Context, affiliate *Affiliate) error
 	Delete(c context.Context, ID string) error

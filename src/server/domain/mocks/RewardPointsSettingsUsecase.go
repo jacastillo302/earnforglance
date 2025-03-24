@@ -14,6 +14,22 @@ type RewardPointsSettingsUsecase struct {
 	mock.Mock
 }
 
+
+// Create provides a mock function with given fields
+func (_m *RewardPointsSettingsUsecase) CreateMany(c context.Context, acl_record []domain.RewardPointsSettings) error {
+	ret := _m.Called(c, acl_record)
+	if len(ret) == 0 {
+		panic("no return value specified for Create")
+	}
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.RewardPointsSettings) error); ok {
+		r0 = rf(c, acl_record)
+	} else {
+		r0 = ret.Error(0)
+	}
+	return r0
+}
+
 // Create provides a mock function with given fields: c, reward_points_settings
 func (_m *RewardPointsSettingsUsecase) Create(c context.Context, reward_points_settings *domain.RewardPointsSettings) error {
 	ret := _m.Called(c, reward_points_settings)

@@ -14,6 +14,7 @@ type TaskRepository struct {
 	mock.Mock
 }
 
+
 // Create provides a mock function with given fields: c, task
 func (_m *TaskRepository) Create(c context.Context, task *domain.Task) error {
 	ret := _m.Called(c, task)

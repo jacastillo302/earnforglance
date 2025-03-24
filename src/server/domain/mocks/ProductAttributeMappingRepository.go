@@ -14,6 +14,21 @@ type ProductAttributeMappingRepository struct {
 	mock.Mock
 }
 
+// Create provides a mock function with given fields
+func (_m *ProductAttributeMappingRepository) CreateMany(c context.Context, acl_record []domain.ProductAttributeMapping) error {
+	ret := _m.Called(c, acl_record)
+	if len(ret) == 0 {
+		panic("no return value specified for Create")
+	}
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.ProductAttributeMapping) error); ok {
+		r0 = rf(c, acl_record)
+	} else {
+		r0 = ret.Error(0)
+	}
+	return r0
+}
+
 // Create provides a mock function with given fields: c, product_attribute_mapping
 func (_m *ProductAttributeMappingRepository) Create(c context.Context, product_attribute_mapping *domain.ProductAttributeMapping) error {
 	ret := _m.Called(c, product_attribute_mapping)
