@@ -20,11 +20,11 @@ func LocalizationSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mo
 		LocalizationSettingsUsecase: usecase.NewLocalizationSettingsUsecase(ur, timeout),
 		Env:                         env,
 	}
-
-	group.GET("/localization_settings", lc.Fetch)
-	group.GET("/localization_setting", lc.FetchByID)
-	group.POST("/localization_setting", lc.Create)
-	group.POST("/localization_settings", lc.CreateMany)
-	group.PUT("/localization_setting", lc.Update)
-	group.DELETE("/localization_setting", lc.Delete)
+	itemGroup := group.Group("/api/v1/localization")
+	itemGroup.GET("/localization_settings", lc.Fetch)
+	itemGroup.GET("/localization_setting", lc.FetchByID)
+	itemGroup.POST("/localization_setting", lc.Create)
+	itemGroup.POST("/localization_settings", lc.CreateMany)
+	itemGroup.PUT("/localization_setting", lc.Update)
+	itemGroup.DELETE("/localization_setting", lc.Delete)
 }

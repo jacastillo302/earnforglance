@@ -21,10 +21,11 @@ func AdminAreaSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo
 		Env:                      env,
 	}
 
-	group.GET("/admin_area_settings", lc.Fetch)
-	group.GET("/admin_area_setting", lc.FetchByID)
-	group.POST("/admin_area_setting", lc.Create)
-	group.POST("/admin_area_settings", lc.CreateMany)
-	group.PUT("/admin_area_setting", lc.Update)
-	group.DELETE("/admin_area_setting", lc.Delete)
+	itemGroup := group.Group("/api/v1/common")
+	itemGroup.GET("/admin_area_settings", lc.Fetch)
+	itemGroup.GET("/admin_area_setting", lc.FetchByID)
+	itemGroup.POST("/admin_area_setting", lc.Create)
+	itemGroup.POST("/admin_area_settings", lc.CreateMany)
+	itemGroup.PUT("/admin_area_setting", lc.Update)
+	itemGroup.DELETE("/admin_area_setting", lc.Delete)
 }

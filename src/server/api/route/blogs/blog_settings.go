@@ -21,10 +21,12 @@ func BlogSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Data
 		Env:                 env,
 	}
 
-	group.GET("/blog_settings", lc.Fetch)
-	group.GET("/blog_setting", lc.FetchByID)
-	group.POST("/blog_setting", lc.Create)
-	group.POST("/blog_settings", lc.CreateMany)
-	group.PUT("/blog_setting", lc.Update)
-	group.DELETE("blog_setting", lc.Delete)
+	itemGroup := group.Group("/api/v1/blogs")
+
+	itemGroup.GET("/blog_settings", lc.Fetch)
+	itemGroup.GET("/blog_setting", lc.FetchByID)
+	itemGroup.POST("/blog_setting", lc.Create)
+	itemGroup.POST("/blog_settings", lc.CreateMany)
+	itemGroup.PUT("/blog_setting", lc.Update)
+	itemGroup.DELETE("blog_setting", lc.Delete)
 }

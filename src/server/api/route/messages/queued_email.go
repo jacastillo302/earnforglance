@@ -21,10 +21,12 @@ func QueuedEmailRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Datab
 		Env:                env,
 	}
 
-	group.GET("/queued_emails", lc.Fetch)
-	group.GET("/queued_email", lc.FetchByID)
-	group.POST("/queued_email", lc.Create)
-	group.POST("/queued_emails", lc.CreateMany)
-	group.PUT("/queued_email", lc.Update)
-	group.DELETE("/queued_email", lc.Delete)
+	itemGroup := group.Group("/api/v1/messages")
+
+	itemGroup.GET("/queued_emails", lc.Fetch)
+	itemGroup.GET("/queued_email", lc.FetchByID)
+	itemGroup.POST("/queued_email", lc.Create)
+	itemGroup.POST("/queued_emails", lc.CreateMany)
+	itemGroup.PUT("/queued_email", lc.Update)
+	itemGroup.DELETE("/queued_email", lc.Delete)
 }

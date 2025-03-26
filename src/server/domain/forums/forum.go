@@ -22,7 +22,7 @@ type Forum struct {
 	LastTopicID        primitive.ObjectID `bson:"last_topic_id"`
 	LastPostID         primitive.ObjectID `bson:"last_post_id"`
 	LastPostCustomerID primitive.ObjectID `bson:"last_post_customer_id"`
-	LastPostTime       *time.Time         `bson:"last_post_time,omitempty"`
+	LastPostTime       *time.Time         `bson:"last_post_time"`
 	DisplayOrder       int                `bson:"display_order"`
 	CreatedOnUtc       time.Time          `bson:"created_on_utc"`
 	UpdatedOnUtc       time.Time          `bson:"updated_on_utc"`

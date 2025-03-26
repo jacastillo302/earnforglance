@@ -20,11 +20,11 @@ func GdprLogRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database,
 		GdprLogUsecase: usecase.NewGdprLogUsecase(ur, timeout),
 		Env:            env,
 	}
-
-	group.GET("/gdpr_logs", lc.Fetch)
-	group.GET("/gdpr_log", lc.FetchByID)
-	group.POST("/gdpr_log", lc.Create)
-	group.POST("/gdpr_logs", lc.CreateMany)
-	group.PUT("/gdpr_log", lc.Update)
-	group.DELETE("/gdpr_log", lc.Delete)
+	itemGroup := group.Group("/api/v1/gdpr")
+	itemGroup.GET("/gdpr_logs", lc.Fetch)
+	itemGroup.GET("/gdpr_log", lc.FetchByID)
+	itemGroup.POST("/gdpr_log", lc.Create)
+	itemGroup.POST("/gdpr_logs", lc.CreateMany)
+	itemGroup.PUT("/gdpr_log", lc.Update)
+	itemGroup.DELETE("/gdpr_log", lc.Delete)
 }

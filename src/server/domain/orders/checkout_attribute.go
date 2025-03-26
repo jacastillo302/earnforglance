@@ -18,10 +18,10 @@ type CheckoutAttribute struct {
 	IsTaxExempt                     bool               `bson:"is_tax_exempt"`
 	TaxCategoryID                   primitive.ObjectID `bson:"tax_category_id"`
 	LimitedToStores                 bool               `bson:"limited_to_stores"`
-	ValidationMinLength             *int               `bson:"validation_min_length,omitempty"`
-	ValidationMaxLength             *int               `bson:"validation_max_length,omitempty"`
+	ValidationMinLength             *int               `bson:"validation_min_length"`
+	ValidationMaxLength             *int               `bson:"validation_max_length"`
 	ValidationFileAllowedExtensions string             `bson:"validation_file_allowed_extensions"`
-	ValidationFileMaximumSize       *int               `bson:"validation_file_maximum_size,omitempty"`
+	ValidationFileMaximumSize       *int               `bson:"validation_file_maximum_size"`
 	DefaultValue                    string             `bson:"default_value"`
 	ConditionAttributeXml           string             `bson:"condition_attribute_xml"`
 }

@@ -40,7 +40,6 @@ var mockItemMessageTemplate = &domain.MessageTemplate{
 	AllowDirectReply:   false,
 	EmailAccountID:     primitive.NewObjectID(),
 	LimitedToStores:    true,
-	DelayPeriod:        1,
 }
 
 func TestMessageTemplateRepository_FetchByID(t *testing.T) {

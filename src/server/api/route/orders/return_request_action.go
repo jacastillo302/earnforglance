@@ -20,11 +20,11 @@ func ReturnRequestActionRouter(env *bootstrap.Env, timeout time.Duration, db mon
 		ReturnRequestActionUsecase: usecase.NewReturnRequestActionUsecase(ur, timeout),
 		Env:                        env,
 	}
-
-	group.GET("/return_request_actions", lc.Fetch)
-	group.GET("/return_request_action", lc.FetchByID)
-	group.POST("/return_request_action", lc.Create)
-	group.POST("/return_request_actions", lc.CreateMany)
-	group.PUT("/return_request_action", lc.Update)
-	group.DELETE("/return_request_action", lc.Delete)
+	itemGroup := group.Group("/api/v1/orders")
+	itemGroup.GET("/return_request_actions", lc.Fetch)
+	itemGroup.GET("/return_request_action", lc.FetchByID)
+	itemGroup.POST("/return_request_action", lc.Create)
+	itemGroup.POST("/return_request_actions", lc.CreateMany)
+	itemGroup.PUT("/return_request_action", lc.Update)
+	itemGroup.DELETE("/return_request_action", lc.Delete)
 }

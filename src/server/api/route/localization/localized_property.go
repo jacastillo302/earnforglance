@@ -20,11 +20,11 @@ func LocalizedPropertyRouter(env *bootstrap.Env, timeout time.Duration, db mongo
 		LocalizedPropertyUsecase: usecase.NewLocalizedPropertyUsecase(ur, timeout),
 		Env:                      env,
 	}
-
-	group.GET("/localized_properties", lc.Fetch)
-	group.GET("/localized_property", lc.FetchByID)
-	group.POST("/localized_property", lc.Create)
-	group.POST("/localized_properties", lc.CreateMany)
-	group.PUT("/localized_property", lc.Update)
-	group.DELETE("/localized_property", lc.Delete)
+	itemGroup := group.Group("/api/v1/localization")
+	itemGroup.GET("/localized_properties", lc.Fetch)
+	itemGroup.GET("/localized_property", lc.FetchByID)
+	itemGroup.POST("/localized_property", lc.Create)
+	itemGroup.POST("/localized_properties", lc.CreateMany)
+	itemGroup.PUT("/localized_property", lc.Update)
+	itemGroup.DELETE("/localized_property", lc.Delete)
 }

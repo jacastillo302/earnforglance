@@ -23,7 +23,7 @@ func TestShoppingCartItemUsecase_FetchByID(t *testing.T) {
 	updatedShoppingCartItem := domain.ShoppingCartItem{
 		ID:                   primitive.NewObjectID(), // Existing ID of the record to update
 		StoreID:              primitive.NewObjectID(),
-		ShoppingCartTypeID:   primitive.NewObjectID(),
+		ShoppingCartTypeID:   1,
 		CustomerID:           primitive.NewObjectID(),
 		ProductID:            primitive.NewObjectID(),
 		AttributesXml:        "<Attributes><Color>Blue</Color><Size>L</Size></Attributes>",
@@ -33,7 +33,6 @@ func TestShoppingCartItemUsecase_FetchByID(t *testing.T) {
 		RentalEndDateUtc:     new(time.Time),
 		CreatedOnUtc:         time.Now().AddDate(0, 0, -7), // Created 7 days ago
 		UpdatedOnUtc:         time.Now(),
-		ShoppingCartType:     2,
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, shoppingCartItemID).Return(updatedShoppingCartItem, nil)
@@ -52,7 +51,7 @@ func TestShoppingCartItemUsecase_Create(t *testing.T) {
 
 	newShoppingCartItem := &domain.ShoppingCartItem{
 		StoreID:              primitive.NewObjectID(),
-		ShoppingCartTypeID:   primitive.NewObjectID(),
+		ShoppingCartTypeID:   2,
 		CustomerID:           primitive.NewObjectID(),
 		ProductID:            primitive.NewObjectID(),
 		AttributesXml:        "<Attributes><Color>Red</Color><Size>M</Size></Attributes>",
@@ -62,7 +61,6 @@ func TestShoppingCartItemUsecase_Create(t *testing.T) {
 		RentalEndDateUtc:     nil,
 		CreatedOnUtc:         time.Now(),
 		UpdatedOnUtc:         time.Now(),
-		ShoppingCartType:     1,
 	}
 
 	mockRepo.On("Create", mock.Anything, newShoppingCartItem).Return(nil)
@@ -81,7 +79,7 @@ func TestShoppingCartItemUsecase_Update(t *testing.T) {
 	updatedShoppingCartItem := &domain.ShoppingCartItem{
 		ID:                   primitive.NewObjectID(), // Existing ID of the record to update
 		StoreID:              primitive.NewObjectID(),
-		ShoppingCartTypeID:   primitive.NewObjectID(),
+		ShoppingCartTypeID:   1,
 		CustomerID:           primitive.NewObjectID(),
 		ProductID:            primitive.NewObjectID(),
 		AttributesXml:        "<Attributes><Color>Blue</Color><Size>L</Size></Attributes>",
@@ -91,7 +89,6 @@ func TestShoppingCartItemUsecase_Update(t *testing.T) {
 		RentalEndDateUtc:     new(time.Time),
 		CreatedOnUtc:         time.Now().AddDate(0, 0, -7), // Created 7 days ago
 		UpdatedOnUtc:         time.Now(),
-		ShoppingCartType:     2,
 	}
 	*updatedShoppingCartItem.RentalStartDateUtc = time.Now().AddDate(0, 0, -1) // Rental started 1 day ago
 	*updatedShoppingCartItem.RentalEndDateUtc = time.Now().AddDate(0, 0, 5)    // Rental ends in 5 days
@@ -128,7 +125,7 @@ func TestShoppingCartItemUsecase_Fetch(t *testing.T) {
 		{
 			ID:                   primitive.NewObjectID(),
 			StoreID:              primitive.NewObjectID(),
-			ShoppingCartTypeID:   primitive.NewObjectID(),
+			ShoppingCartTypeID:   2,
 			CustomerID:           primitive.NewObjectID(),
 			ProductID:            primitive.NewObjectID(),
 			AttributesXml:        "<Attributes><Color>Red</Color><Size>M</Size></Attributes>",
@@ -137,13 +134,12 @@ func TestShoppingCartItemUsecase_Fetch(t *testing.T) {
 			RentalStartDateUtc:   nil,
 			RentalEndDateUtc:     nil,
 			CreatedOnUtc:         time.Now().AddDate(0, 0, -10), // Created 10 days ago
-			UpdatedOnUtc:         time.Now().AddDate(0, 0, -5),  // Updated 5 days ago
-			ShoppingCartType:     1,
+			UpdatedOnUtc:         time.Now().AddDate(0, 0, -5),
 		},
 		{
 			ID:                   primitive.NewObjectID(),
 			StoreID:              primitive.NewObjectID(),
-			ShoppingCartTypeID:   primitive.NewObjectID(),
+			ShoppingCartTypeID:   1,
 			CustomerID:           primitive.NewObjectID(),
 			ProductID:            primitive.NewObjectID(),
 			AttributesXml:        "<Attributes><Color>Blue</Color><Size>L</Size></Attributes>",
@@ -153,7 +149,6 @@ func TestShoppingCartItemUsecase_Fetch(t *testing.T) {
 			RentalEndDateUtc:     new(time.Time),
 			CreatedOnUtc:         time.Now().AddDate(0, 0, -7), // Created 7 days ago
 			UpdatedOnUtc:         time.Now(),
-			ShoppingCartType:     2,
 		},
 	}
 	*fetchedShoppingCartItems[1].RentalStartDateUtc = time.Now().AddDate(0, 0, -1) // Rental started 1 day ago

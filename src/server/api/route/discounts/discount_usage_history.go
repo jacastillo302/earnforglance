@@ -21,10 +21,11 @@ func DiscountUsageHistoryRouter(env *bootstrap.Env, timeout time.Duration, db mo
 		Env:                         env,
 	}
 
-	group.GET("/discount_usage_histories", lc.Fetch)
-	group.GET("/discount_usage_history", lc.FetchByID)
-	group.POST("/discount_usage_history", lc.Create)
-	group.POST("/discount_usage_histories", lc.CreateMany)
-	group.PUT("/discount_usage_history", lc.Update)
-	group.DELETE("/discount_usage_history", lc.Delete)
+	itemGroup := group.Group("/api/v1/discounts")
+	itemGroup.GET("/discount_usage_histories", lc.Fetch)
+	itemGroup.GET("/discount_usage_history", lc.FetchByID)
+	itemGroup.POST("/discount_usage_history", lc.Create)
+	itemGroup.POST("/discount_usage_histories", lc.CreateMany)
+	itemGroup.PUT("/discount_usage_history", lc.Update)
+	itemGroup.DELETE("/discount_usage_history", lc.Delete)
 }

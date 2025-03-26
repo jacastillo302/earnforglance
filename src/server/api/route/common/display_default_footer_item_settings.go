@@ -21,10 +21,11 @@ func DisplayDefaultFooterItemSettingsRouter(env *bootstrap.Env, timeout time.Dur
 		Env:                                     env,
 	}
 
-	group.GET("/display_default_footer_item_settings", lc.Fetch)
-	group.GET("/display_default_footer_item_setting", lc.FetchByID)
-	group.POST("/display_default_footer_item_setting", lc.Create)
-	group.POST("/display_default_footer_item_settings", lc.CreateMany)
-	group.PUT("/display_default_footer_item_setting", lc.Update)
-	group.DELETE("/display_default_footer_item_setting", lc.Delete)
+	itemGroup := group.Group("/api/v1/common")
+	itemGroup.GET("/display_default_footer_item_settings", lc.Fetch)
+	itemGroup.GET("/display_default_footer_item_setting", lc.FetchByID)
+	itemGroup.POST("/display_default_footer_item_setting", lc.Create)
+	itemGroup.POST("/display_default_footer_item_settings", lc.CreateMany)
+	itemGroup.PUT("/display_default_footer_item_setting", lc.Update)
+	itemGroup.DELETE("/display_default_footer_item_setting", lc.Delete)
 }

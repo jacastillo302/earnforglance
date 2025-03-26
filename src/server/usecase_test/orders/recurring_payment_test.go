@@ -29,7 +29,7 @@ func TestRecurringPaymentUsecase_FetchByID(t *testing.T) {
 		IsActive:          false,
 		LastPaymentFailed: true,
 		Deleted:           true,
-		InitialOrderID:    1002,
+		OrderID:           1002,
 		CreatedOnUtc:      time.Now().AddDate(0, 0, -60), // Created 60 days ago
 		CyclePeriod:       1,
 	}
@@ -56,7 +56,7 @@ func TestRecurringPaymentUsecase_Create(t *testing.T) {
 		IsActive:          true,
 		LastPaymentFailed: false,
 		Deleted:           false,
-		InitialOrderID:    1001,
+		OrderID:           1001,
 		CreatedOnUtc:      time.Now(),
 		CyclePeriod:       2,
 	}
@@ -83,7 +83,7 @@ func TestRecurringPaymentUsecase_Update(t *testing.T) {
 		IsActive:          false,
 		LastPaymentFailed: true,
 		Deleted:           true,
-		InitialOrderID:    1002,
+		OrderID:           1002,
 		CreatedOnUtc:      time.Now().AddDate(0, 0, -60), // Created 60 days ago
 		CyclePeriod:       1,
 	}
@@ -126,7 +126,7 @@ func TestRecurringPaymentUsecase_Fetch(t *testing.T) {
 			IsActive:          true,
 			LastPaymentFailed: false,
 			Deleted:           false,
-			InitialOrderID:    1001,
+			OrderID:           1001,
 			CreatedOnUtc:      time.Now().AddDate(0, 0, -120), // Created 120 days ago
 			CyclePeriod:       2,
 		},
@@ -139,7 +139,7 @@ func TestRecurringPaymentUsecase_Fetch(t *testing.T) {
 			IsActive:          false,
 			LastPaymentFailed: true,
 			Deleted:           true,
-			InitialOrderID:    1002,
+			OrderID:           1002,
 			CreatedOnUtc:      time.Now().AddDate(0, 0, -60), // Created 60 days ago
 			CyclePeriod:       1,
 		},

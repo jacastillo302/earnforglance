@@ -21,10 +21,11 @@ func ProductProductTagMappingRouter(env *bootstrap.Env, timeout time.Duration, d
 		Env:                             env,
 	}
 
-	group.GET("/product_product_tag_mappings", lc.Fetch)
-	group.GET("/product_product_tag_mapping", lc.FetchByID)
-	group.POST("/product_product_tag_mapping", lc.Create)
-	group.POST("/product_product_tag_mappings", lc.CreateMany)
-	group.PUT("/product_product_tag_mapping", lc.Update)
-	group.DELETE("/product_product_tag_mapping", lc.Delete)
+	itemGroup := group.Group("/api/v1/catalog")
+	itemGroup.GET("/product_product_tag_mappings", lc.Fetch)
+	itemGroup.GET("/product_product_tag_mapping", lc.FetchByID)
+	itemGroup.POST("/product_product_tag_mapping", lc.Create)
+	itemGroup.POST("/product_product_tag_mappings", lc.CreateMany)
+	itemGroup.PUT("/product_product_tag_mapping", lc.Update)
+	itemGroup.DELETE("/product_product_tag_mapping", lc.Delete)
 }

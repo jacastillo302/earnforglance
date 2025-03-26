@@ -21,10 +21,11 @@ func AddressSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.D
 		Env:                    env,
 	}
 
-	group.GET("/address_settings", lc.Fetch)
-	group.GET("/address_setting", lc.FetchByID)
-	group.POST("/address_setting", lc.Create)
-	group.POST("/address_settings", lc.CreateMany)
-	group.PUT("/address_setting", lc.Update)
-	group.DELETE("/address_setting", lc.Delete)
+	itemGroup := group.Group("/api/v1/common")
+	itemGroup.GET("/address_settings", lc.Fetch)
+	itemGroup.GET("/address_setting", lc.FetchByID)
+	itemGroup.POST("/address_setting", lc.Create)
+	itemGroup.POST("/address_settings", lc.CreateMany)
+	itemGroup.PUT("/address_setting", lc.Update)
+	itemGroup.DELETE("/address_setting", lc.Delete)
 }

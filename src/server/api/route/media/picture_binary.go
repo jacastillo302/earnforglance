@@ -20,11 +20,11 @@ func PictureBinaryRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Dat
 		PictureBinaryUsecase: usecase.NewPictureBinaryUsecase(ur, timeout),
 		Env:                  env,
 	}
-
-	group.GET("/picture_binaries", lc.Fetch)
-	group.GET("/picture_binary", lc.FetchByID)
-	group.POST("/picture_binary", lc.Create)
-	group.POST("/picture_binaries", lc.CreateMany)
-	group.PUT("/picture_binary", lc.Update)
-	group.DELETE("/picture_binary", lc.Delete)
+	itemGroup := group.Group("/api/v1/media")
+	itemGroup.GET("/picture_binaries", lc.Fetch)
+	itemGroup.GET("/picture_binary", lc.FetchByID)
+	itemGroup.POST("/picture_binary", lc.Create)
+	itemGroup.POST("/picture_binaries", lc.CreateMany)
+	itemGroup.PUT("/picture_binary", lc.Update)
+	itemGroup.DELETE("/picture_binary", lc.Delete)
 }

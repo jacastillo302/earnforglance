@@ -21,10 +21,11 @@ func CustomerAddressMappingRouter(env *bootstrap.Env, timeout time.Duration, db 
 		Env:                           env,
 	}
 
-	group.GET("/customer_address_mappings", lc.Fetch)
-	group.GET("/customer_address_mapping", lc.FetchByID)
-	group.POST("/customer_address_mapping", lc.Create)
-	group.POST("/customer_address_mappings", lc.CreateMany)
-	group.PUT("/customer_address_mapping", lc.Update)
-	group.DELETE("/customer_address_mapping", lc.Delete)
+	itemGroup := group.Group("/api/v1/customers")
+	itemGroup.GET("/customer_address_mappings", lc.Fetch)
+	itemGroup.GET("/customer_address_mapping", lc.FetchByID)
+	itemGroup.POST("/customer_address_mapping", lc.Create)
+	itemGroup.POST("/customer_address_mappings", lc.CreateMany)
+	itemGroup.PUT("/customer_address_mapping", lc.Update)
+	itemGroup.DELETE("/customer_address_mapping", lc.Delete)
 }

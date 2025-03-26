@@ -30,7 +30,7 @@ func (m *MockSingleResultProductProductTagMapping) Decode(v interface{}) error {
 var mockItemProductProductTagMapping = &domain.ProductProductTagMapping{
 	ID:           primitive.NewObjectID(), // Existing ID of the record to update
 	ProductID:    primitive.NewObjectID(),
-	ProductTagID: 102,
+	ProductTagID: primitive.NewObjectID(),
 }
 
 func TestProductProductTagMappingRepository_FetchByID(t *testing.T) {

@@ -38,7 +38,7 @@ func TestProductAttributeCombinationRepository_FetchByID(t *testing.T) {
 
 	mockItem := domain.ProductAttributeCombination{
 		ID:                          primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID:                   101,
+		ProductID:                   primitive.NewObjectID(),
 		AttributesXml:               "<attributes><color>blue</color><size>large</size></attributes>",
 		StockQuantity:               30,
 		AllowOutOfStockOrders:       true,
@@ -94,7 +94,7 @@ func TestProductAttributeCombinationRepository_Create(t *testing.T) {
 
 	mockProductAttributeCombination := &domain.ProductAttributeCombination{
 		ID:                          primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID:                   101,
+		ProductID:                   primitive.NewObjectID(),
 		AttributesXml:               "<attributes><color>blue</color><size>large</size></attributes>",
 		StockQuantity:               30,
 		AllowOutOfStockOrders:       true,
@@ -126,7 +126,7 @@ func TestProductAttributeCombinationRepository_Update(t *testing.T) {
 
 	mockProductAttributeCombination := &domain.ProductAttributeCombination{
 		ID:                          primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID:                   101,
+		ProductID:                   primitive.NewObjectID(),
 		AttributesXml:               "<attributes><color>blue</color><size>large</size></attributes>",
 		StockQuantity:               30,
 		AllowOutOfStockOrders:       true,

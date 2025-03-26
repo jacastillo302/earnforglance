@@ -21,10 +21,11 @@ func CurrencyRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database
 		Env:             env,
 	}
 
-	group.GET("/currencies", lc.Fetch)
-	group.GET("/currency", lc.FetchByID)
-	group.POST("/currency", lc.Create)
-	group.POST("/currencies", lc.CreateMany)
-	group.PUT("/currency", lc.Update)
-	group.DELETE("/currency", lc.Delete)
+	itemGroup := group.Group("/api/v1/directory")
+	itemGroup.GET("/currencies", lc.Fetch)
+	itemGroup.GET("/currency", lc.FetchByID)
+	itemGroup.POST("/currency", lc.Create)
+	itemGroup.POST("/currencies", lc.CreateMany)
+	itemGroup.PUT("/currency", lc.Update)
+	itemGroup.DELETE("/currency", lc.Delete)
 }

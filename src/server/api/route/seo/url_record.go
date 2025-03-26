@@ -20,11 +20,11 @@ func UrlRecordRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Databas
 		UrlRecordUsecase: usecase.NewUrlRecordUsecase(ur, timeout),
 		Env:              env,
 	}
-
-	group.GET("/url_records", lc.Fetch)
-	group.GET("/url_record", lc.FetchByID)
-	group.POST("/url_record", lc.Create)
-	group.POST("/url_records", lc.CreateMany)
-	group.PUT("/url_record", lc.Update)
-	group.DELETE("/url_record", lc.Delete)
+	itemGroup := group.Group("/api/v1/seo")
+	itemGroup.GET("/url_records", lc.Fetch)
+	itemGroup.GET("/url_record", lc.FetchByID)
+	itemGroup.POST("/url_record", lc.Create)
+	itemGroup.POST("/url_records", lc.CreateMany)
+	itemGroup.PUT("/url_record", lc.Update)
+	itemGroup.DELETE("/url_record", lc.Delete)
 }

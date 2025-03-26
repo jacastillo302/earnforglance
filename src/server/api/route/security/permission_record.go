@@ -20,11 +20,11 @@ func PermissionRecordRouter(env *bootstrap.Env, timeout time.Duration, db mongo.
 		PermissionRecordUsecase: usecase.NewPermissionRecordUsecase(ur, timeout),
 		Env:                     env,
 	}
-
-	group.GET("/permission_records", lc.Fetch)
-	group.GET("/permission_record", lc.FetchByID)
-	group.POST("/permission_record", lc.Create)
-	group.POST("/permission_records", lc.CreateMany)
-	group.PUT("/permission_record", lc.Update)
-	group.DELETE("/permission_record", lc.Delete)
+	itemGroup := group.Group("/api/v1/security")
+	itemGroup.GET("/permission_records", lc.Fetch)
+	itemGroup.GET("/permission_record", lc.FetchByID)
+	itemGroup.POST("/permission_record", lc.Create)
+	itemGroup.POST("/permission_records", lc.CreateMany)
+	itemGroup.PUT("/permission_record", lc.Update)
+	itemGroup.DELETE("/permission_record", lc.Delete)
 }

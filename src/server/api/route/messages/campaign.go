@@ -20,11 +20,11 @@ func CampaignRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database
 		CampaignUsecase: usecase.NewCampaignUsecase(ur, timeout),
 		Env:             env,
 	}
-
-	group.GET("/campaigns", lc.Fetch)
-	group.GET("/campaign", lc.FetchByID)
-	group.POST("/campaign", lc.Create)
-	group.POST("/campaigns", lc.CreateMany)
-	group.PUT("/campaign", lc.Update)
-	group.DELETE("/campaign", lc.Delete)
+	itemGroup := group.Group("/api/v1/messages")
+	itemGroup.GET("/campaigns", lc.Fetch)
+	itemGroup.GET("/campaign", lc.FetchByID)
+	itemGroup.POST("/campaign", lc.Create)
+	itemGroup.POST("/campaigns", lc.CreateMany)
+	itemGroup.PUT("/campaign", lc.Update)
+	itemGroup.DELETE("/campaign", lc.Delete)
 }

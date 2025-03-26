@@ -29,7 +29,7 @@ func TestLogUsecase_FetchByID(t *testing.T) {
 		PageUrl:      "/error",
 		ReferrerUrl:  "/home",
 		CreatedOnUtc: time.Now().AddDate(0, 0, -7), // Created 7 days ago
-		LogLevel:     1,
+
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, logID).Return(updatedLog, nil)
@@ -55,7 +55,6 @@ func TestLogUsecase_Create(t *testing.T) {
 		PageUrl:      "/home",
 		ReferrerUrl:  "",
 		CreatedOnUtc: time.Now(),
-		LogLevel:     2,
 	}
 
 	mockRepo.On("Create", mock.Anything, newLog).Return(nil)
@@ -81,7 +80,7 @@ func TestLogUsecase_Update(t *testing.T) {
 		PageUrl:      "/error",
 		ReferrerUrl:  "/home",
 		CreatedOnUtc: time.Now().AddDate(0, 0, -7), // Created 7 days ago
-		LogLevel:     1,
+
 	}
 	*updatedLog.CustomerID = primitive.NewObjectID()
 
@@ -124,7 +123,7 @@ func TestLogUsecase_Fetch(t *testing.T) {
 			PageUrl:      "/home",
 			ReferrerUrl:  "",
 			CreatedOnUtc: time.Now().AddDate(0, 0, -10), // Created 10 days ago
-			LogLevel:     2,
+
 		},
 		{
 			ID:           primitive.NewObjectID(),
@@ -136,7 +135,7 @@ func TestLogUsecase_Fetch(t *testing.T) {
 			PageUrl:      "/error",
 			ReferrerUrl:  "/home",
 			CreatedOnUtc: time.Now().AddDate(0, 0, -5), // Created 5 days ago
-			LogLevel:     3,
+
 		},
 	}
 	*fetchedLogs[1].CustomerID = primitive.NewObjectID()

@@ -20,11 +20,11 @@ func CheckoutAttributeValueRouter(env *bootstrap.Env, timeout time.Duration, db 
 		CheckoutAttributeValueUsecase: usecase.NewCheckoutAttributeValueUsecase(ur, timeout),
 		Env:                           env,
 	}
-
-	group.GET("/checkout_attribute_values", lc.Fetch)
-	group.GET("/checkout_attribute_value", lc.FetchByID)
-	group.POST("/checkout_attribute_value", lc.Create)
-	group.POST("/checkout_attribute_values", lc.CreateMany)
-	group.PUT("/checkout_attribute_value", lc.Update)
-	group.DELETE("/checkout_attribute_value", lc.Delete)
+	itemGroup := group.Group("/api/v1/orders")
+	itemGroup.GET("/checkout_attribute_values", lc.Fetch)
+	itemGroup.GET("/checkout_attribute_value", lc.FetchByID)
+	itemGroup.POST("/checkout_attribute_value", lc.Create)
+	itemGroup.POST("/checkout_attribute_values", lc.CreateMany)
+	itemGroup.PUT("/checkout_attribute_value", lc.Update)
+	itemGroup.DELETE("/checkout_attribute_value", lc.Delete)
 }

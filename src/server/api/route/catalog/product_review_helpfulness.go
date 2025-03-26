@@ -21,10 +21,11 @@ func ProductReviewHelpfulnessRouter(env *bootstrap.Env, timeout time.Duration, d
 		Env:                             env,
 	}
 
-	group.GET("/product_review_helpfulnesses", lc.Fetch)
-	group.GET("/product_review_helpfulness", lc.FetchByID)
-	group.POST("/product_review_helpfulness", lc.Create)
-	group.POST("/product_review_helpfulnesses", lc.CreateMany)
-	group.PUT("/product_review_helpfulness", lc.Update)
-	group.DELETE("/product_review_helpfulness", lc.Delete)
+	itemGroup := group.Group("/api/v1/catalog")
+	itemGroup.GET("/product_review_helpfulnesses", lc.Fetch)
+	itemGroup.GET("/product_review_helpfulness", lc.FetchByID)
+	itemGroup.POST("/product_review_helpfulness", lc.Create)
+	itemGroup.POST("/product_review_helpfulnesses", lc.CreateMany)
+	itemGroup.PUT("/product_review_helpfulness", lc.Update)
+	itemGroup.DELETE("/product_review_helpfulness", lc.Delete)
 }

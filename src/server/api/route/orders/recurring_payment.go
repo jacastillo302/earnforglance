@@ -20,11 +20,11 @@ func RecurringPaymentRouter(env *bootstrap.Env, timeout time.Duration, db mongo.
 		RecurringPaymentUsecase: usecase.NewRecurringPaymentUsecase(ur, timeout),
 		Env:                     env,
 	}
-
-	group.GET("/recurring_payments", lc.Fetch)
-	group.GET("/recurring_payment", lc.FetchByID)
-	group.POST("/recurring_payment", lc.Create)
-	group.POST("/recurring_payments", lc.CreateMany)
-	group.PUT("/recurring_payment", lc.Update)
-	group.DELETE("/recurring_payment", lc.Delete)
+	itemGroup := group.Group("/api/v1/orders")
+	itemGroup.GET("/recurring_payments", lc.Fetch)
+	itemGroup.GET("/recurring_payment", lc.FetchByID)
+	itemGroup.POST("/recurring_payment", lc.Create)
+	itemGroup.POST("/recurring_payments", lc.CreateMany)
+	itemGroup.PUT("/recurring_payment", lc.Update)
+	itemGroup.DELETE("/recurring_payment", lc.Delete)
 }

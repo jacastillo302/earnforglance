@@ -20,11 +20,11 @@ func EmailAccountRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Data
 		EmailAccountUsecase: usecase.NewEmailAccountUsecase(ur, timeout),
 		Env:                 env,
 	}
-
-	group.GET("/email_accounts", lc.Fetch)
-	group.GET("/email_account", lc.FetchByID)
-	group.POST("/email_account", lc.Create)
-	group.POST("/email_accounts", lc.CreateMany)
-	group.PUT("/email_account", lc.Update)
-	group.DELETE("/email_account", lc.Delete)
+	itemGroup := group.Group("/api/v1/messages")
+	itemGroup.GET("/email_accounts", lc.Fetch)
+	itemGroup.GET("/email_account", lc.FetchByID)
+	itemGroup.POST("/email_account", lc.Create)
+	itemGroup.POST("/email_accounts", lc.CreateMany)
+	itemGroup.PUT("/email_account", lc.Update)
+	itemGroup.DELETE("/email_account", lc.Delete)
 }

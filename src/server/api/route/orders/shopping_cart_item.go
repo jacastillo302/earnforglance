@@ -20,11 +20,11 @@ func ShoppingCartItemRouter(env *bootstrap.Env, timeout time.Duration, db mongo.
 		ShoppingCartItemUsecase: usecase.NewShoppingCartItemUsecase(ur, timeout),
 		Env:                     env,
 	}
-
-	group.GET("/shoppingcartitems", lc.Fetch)
-	group.GET("/shoppingcartitem", lc.FetchByID)
-	group.POST("/shoppingcartitem", lc.Create)
-	group.POST("/shoppingcartitems", lc.CreateMany)
-	group.PUT("/shoppingcartitem", lc.Update)
-	group.DELETE("/shoppingcartitem", lc.Delete)
+	itemGroup := group.Group("/api/v1/orders")
+	itemGroup.GET("/shoppingcartitems", lc.Fetch)
+	itemGroup.GET("/shoppingcartitem", lc.FetchByID)
+	itemGroup.POST("/shoppingcartitem", lc.Create)
+	itemGroup.POST("/shoppingcartitems", lc.CreateMany)
+	itemGroup.PUT("/shoppingcartitem", lc.Update)
+	itemGroup.DELETE("/shoppingcartitem", lc.Delete)
 }

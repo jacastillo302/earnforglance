@@ -34,14 +34,12 @@ func TestDiscountUsecase_FetchByID(t *testing.T) {
 		RequiresCouponCode:        false,
 		CouponCode:                "",
 		IsCumulative:              true,
-		DiscountLimitationID:      primitive.NewObjectID(),
+		DiscountLimitationID:      1,
 		LimitationTimes:           3,
 		MaximumDiscountedQuantity: nil,
 		AppliedToSubCategories:    false,
 		IsActive:                  false,
-		VendorID:                  new(int),
-		DiscountType:              3,
-		DiscountLimitation:        0,
+		VendorID:                  nil,
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, discountID).Return(updatedDiscount, nil)
@@ -71,14 +69,12 @@ func TestDiscountUsecase_Create(t *testing.T) {
 		RequiresCouponCode:        true,
 		CouponCode:                "BLACKFRIDAY",
 		IsCumulative:              false,
-		DiscountLimitationID:      primitive.NewObjectID(),
+		DiscountLimitationID:      2,
 		LimitationTimes:           1,
 		MaximumDiscountedQuantity: new(int),
 		AppliedToSubCategories:    true,
 		IsActive:                  true,
 		VendorID:                  nil,
-		DiscountType:              5,
-		DiscountLimitation:        2,
 	}
 	*newDiscount.MaximumDiscountAmount = 50.0
 	*newDiscount.StartDateUtc = time.Now()
@@ -112,18 +108,15 @@ func TestDiscountUsecase_Update(t *testing.T) {
 		RequiresCouponCode:        false,
 		CouponCode:                "",
 		IsCumulative:              true,
-		DiscountLimitationID:      primitive.NewObjectID(),
+		DiscountLimitationID:      3,
 		LimitationTimes:           3,
 		MaximumDiscountedQuantity: nil,
 		AppliedToSubCategories:    false,
 		IsActive:                  false,
-		VendorID:                  new(int),
-		DiscountType:              3,
-		DiscountLimitation:        0,
+		VendorID:                  nil,
 	}
 	*updatedDiscount.StartDateUtc = time.Now().AddDate(0, 0, -7) // Started 7 days ago
 	*updatedDiscount.EndDateUtc = time.Now().AddDate(0, 0, 1)    // Ends in 1 day
-	*updatedDiscount.VendorID = 101
 
 	mockRepo.On("Update", mock.Anything, updatedDiscount).Return(nil)
 
@@ -168,14 +161,12 @@ func TestDiscountUsecase_Fetch(t *testing.T) {
 			RequiresCouponCode:        true,
 			CouponCode:                "BLACKFRIDAY",
 			IsCumulative:              false,
-			DiscountLimitationID:      primitive.NewObjectID(),
+			DiscountLimitationID:      2,
 			LimitationTimes:           1,
 			MaximumDiscountedQuantity: new(int),
 			AppliedToSubCategories:    true,
 			IsActive:                  true,
 			VendorID:                  nil,
-			DiscountType:              5,
-			DiscountLimitation:        1,
 		},
 		{
 			ID:                        primitive.NewObjectID(),
@@ -191,14 +182,12 @@ func TestDiscountUsecase_Fetch(t *testing.T) {
 			RequiresCouponCode:        false,
 			CouponCode:                "",
 			IsCumulative:              true,
-			DiscountLimitationID:      primitive.NewObjectID(),
+			DiscountLimitationID:      1,
 			LimitationTimes:           3,
 			MaximumDiscountedQuantity: nil,
 			AppliedToSubCategories:    false,
 			IsActive:                  false,
-			VendorID:                  new(int),
-			DiscountType:              4,
-			DiscountLimitation:        0,
+			VendorID:                  nil,
 		},
 	}
 	*fetchedDiscounts[0].MaximumDiscountAmount = 50.0
@@ -207,7 +196,6 @@ func TestDiscountUsecase_Fetch(t *testing.T) {
 	*fetchedDiscounts[0].MaximumDiscountedQuantity = 5
 	*fetchedDiscounts[1].StartDateUtc = time.Now().AddDate(0, 0, -7) // Started 7 days ago
 	*fetchedDiscounts[1].EndDateUtc = time.Now().AddDate(0, 0, 1)    // Ends in 1 day
-	*fetchedDiscounts[1].VendorID = 101
 
 	mockRepo.On("Fetch", mock.Anything).Return(fetchedDiscounts, nil)
 

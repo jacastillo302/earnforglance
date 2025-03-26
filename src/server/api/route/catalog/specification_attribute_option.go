@@ -21,10 +21,11 @@ func SpecificationAttributeOptionRouter(env *bootstrap.Env, timeout time.Duratio
 		Env:                                 env,
 	}
 
-	group.GET("/specification_attribute_options", lc.Fetch)
-	group.GET("/specification_attribute_option", lc.FetchByID)
-	group.POST("/specification_attribute_option", lc.Create)
-	group.POST("/specification_attribute_options", lc.CreateMany)
-	group.PUT("/specification_attribute_option", lc.Update)
-	group.DELETE("/specification_attribute_option", lc.Delete)
+	itemGroup := group.Group("/api/v1/catalog")
+	itemGroup.GET("/specification_attribute_options", lc.Fetch)
+	itemGroup.GET("/specification_attribute_option", lc.FetchByID)
+	itemGroup.POST("/specification_attribute_option", lc.Create)
+	itemGroup.POST("/specification_attribute_options", lc.CreateMany)
+	itemGroup.PUT("/specification_attribute_option", lc.Update)
+	itemGroup.DELETE("/specification_attribute_option", lc.Delete)
 }

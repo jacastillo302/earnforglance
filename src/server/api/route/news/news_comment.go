@@ -20,11 +20,11 @@ func NewsCommentRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Datab
 		NewsCommentUsecase: usecase.NewNewsCommentUsecase(ur, timeout),
 		Env:                env,
 	}
-
-	group.GET("/news_comments", lc.Fetch)
-	group.GET("/news_comment", lc.FetchByID)
-	group.POST("/news_comment", lc.Create)
-	group.POST("/news_comments", lc.CreateMany)
-	group.PUT("/news_comment", lc.Update)
-	group.DELETE("/news_comment", lc.Delete)
+	itemGroup := group.Group("/api/v1/news")
+	itemGroup.GET("/news_comments", lc.Fetch)
+	itemGroup.GET("/news_comment", lc.FetchByID)
+	itemGroup.POST("/news_comment", lc.Create)
+	itemGroup.POST("/news_comments", lc.CreateMany)
+	itemGroup.PUT("/news_comment", lc.Update)
+	itemGroup.DELETE("/news_comment", lc.Delete)
 }

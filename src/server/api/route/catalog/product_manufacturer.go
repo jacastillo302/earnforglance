@@ -21,10 +21,11 @@ func ProductManufacturerRouter(env *bootstrap.Env, timeout time.Duration, db mon
 		Env:                        env,
 	}
 
-	group.GET("/product_manufacturers", lc.Fetch)
-	group.GET("/product_manufacturer", lc.FetchByID)
-	group.POST("/product_manufacturer", lc.Create)
-	group.POST("/product_manufacturers", lc.CreateMany)
-	group.PUT("/product_manufacturer", lc.Update)
-	group.DELETE("/product_manufacturer", lc.Delete)
+	itemGroup := group.Group("/api/v1/catalog")
+	itemGroup.GET("/product_manufacturers", lc.Fetch)
+	itemGroup.GET("/product_manufacturer", lc.FetchByID)
+	itemGroup.POST("/product_manufacturer", lc.Create)
+	itemGroup.POST("/product_manufacturers", lc.CreateMany)
+	itemGroup.PUT("/product_manufacturer", lc.Update)
+	itemGroup.DELETE("/product_manufacturer", lc.Delete)
 }

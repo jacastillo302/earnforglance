@@ -21,6 +21,8 @@ func BaseAttributeRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Dat
 		Env:                  env,
 	}
 
+	group.Group("/attributes")
+
 	group.GET("/base_attributes", lc.Fetch)
 	group.GET("/base_attribute", lc.FetchByID)
 	group.POST("/base_attribute", lc.Create)

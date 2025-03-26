@@ -20,11 +20,11 @@ func VendorNoteRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Databa
 		VendorNoteUsecase: usecase.NewVendorNoteUsecase(ur, timeout),
 		Env:               env,
 	}
-
-	group.GET("/vendor_notes", lc.Fetch)
-	group.GET("/vendor_note", lc.FetchByID)
-	group.POST("/vendor_note", lc.Create)
-	group.POST("/vendor_notes", lc.CreateMany)
-	group.PUT("/vendor_note", lc.Update)
-	group.DELETE("/vendor_note", lc.Delete)
+	itemGroup := group.Group("/api/v1/vendors")
+	itemGroup.GET("/vendor_notes", lc.Fetch)
+	itemGroup.GET("/vendor_note", lc.FetchByID)
+	itemGroup.POST("/vendor_note", lc.Create)
+	itemGroup.POST("/vendor_notes", lc.CreateMany)
+	itemGroup.PUT("/vendor_note", lc.Update)
+	itemGroup.DELETE("/vendor_note", lc.Delete)
 }

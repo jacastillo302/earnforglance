@@ -21,10 +21,13 @@ func CrossSellProductRouter(env *bootstrap.Env, timeout time.Duration, db mongo.
 		Env:                     env,
 	}
 
-	group.GET("/cross_sell_products", lc.Fetch)
-	group.GET("/cross_sell_product", lc.FetchByID)
-	group.POST("/cross_sell_product", lc.Create)
-	group.POST("/cross_sell_products", lc.CreateMany)
-	group.PUT("/cross_sell_product", lc.Update)
-	group.DELETE("/cross_sell_product", lc.Delete)
+	itemGroup := group.Group("/api/v1/catalog")
+
+	itemGroup.Group("/" + domain.CollectionCrossSellProduct)
+	itemGroup.GET("/cross_sell_products", lc.Fetch)
+	itemGroup.GET("/cross_sell_product", lc.FetchByID)
+	itemGroup.POST("/cross_sell_product", lc.Create)
+	itemGroup.POST("/cross_sell_products", lc.CreateMany)
+	itemGroup.PUT("/cross_sell_product", lc.Update)
+	itemGroup.DELETE("/cross_sell_product", lc.Delete)
 }

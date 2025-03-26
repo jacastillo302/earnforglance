@@ -22,7 +22,7 @@ func TestProductAttributeCombinationUsecase_FetchByID(t *testing.T) {
 
 	expectedProductAttributeCombination := domain.ProductAttributeCombination{
 		ID:                          primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID:                   101,
+		ProductID:                   primitive.NewObjectID(),
 		AttributesXml:               "<attributes><color>blue</color><size>large</size></attributes>",
 		StockQuantity:               30,
 		AllowOutOfStockOrders:       true,
@@ -50,7 +50,7 @@ func TestProductAttributeCombinationUsecase_Create(t *testing.T) {
 	usecase := test.NewProductAttributeCombinationUsecase(mockRepo, timeout)
 
 	newProductAttributeCombination := &domain.ProductAttributeCombination{
-		ProductID:                   101,
+		ProductID:                   primitive.NewObjectID(),
 		AttributesXml:               "<attributes><color>red</color><size>medium</size></attributes>",
 		StockQuantity:               50,
 		AllowOutOfStockOrders:       false,
@@ -78,7 +78,7 @@ func TestProductAttributeCombinationUsecase_Update(t *testing.T) {
 
 	updatedProductAttributeCombination := &domain.ProductAttributeCombination{
 		ID:                          primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID:                   101,
+		ProductID:                   primitive.NewObjectID(),
 		AttributesXml:               "<attributes><color>blue</color><size>large</size></attributes>",
 		StockQuantity:               30,
 		AllowOutOfStockOrders:       true,
@@ -122,7 +122,7 @@ func TestProductAttributeCombinationUsecase_Fetch(t *testing.T) {
 	fetchedProductAttributeCombinations := []domain.ProductAttributeCombination{
 		{
 			ID:                          primitive.NewObjectID(),
-			ProductID:                   101,
+			ProductID:                   primitive.NewObjectID(),
 			AttributesXml:               "<attributes><color>blue</color><size>large</size></attributes>",
 			StockQuantity:               20,
 			AllowOutOfStockOrders:       false,
@@ -136,7 +136,7 @@ func TestProductAttributeCombinationUsecase_Fetch(t *testing.T) {
 		},
 		{
 			ID:                          primitive.NewObjectID(),
-			ProductID:                   102,
+			ProductID:                   primitive.NewObjectID(),
 			AttributesXml:               "<attributes><color>green</color><size>small</size></attributes>",
 			StockQuantity:               15,
 			AllowOutOfStockOrders:       true,

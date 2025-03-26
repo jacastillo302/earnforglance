@@ -21,10 +21,11 @@ func StateProvinceRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Dat
 		Env:                  env,
 	}
 
-	group.GET("/state_provinces", lc.Fetch)
-	group.GET("/state_province", lc.FetchByID)
-	group.POST("/state_province", lc.Create)
-	group.POST("/state_provinces", lc.CreateMany)
-	group.PUT("/state_province", lc.Update)
-	group.DELETE("/state_province", lc.Delete)
+	itemGroup := group.Group("/api/v1/directory")
+	itemGroup.GET("/state_provinces", lc.Fetch)
+	itemGroup.GET("/state_province", lc.FetchByID)
+	itemGroup.POST("/state_province", lc.Create)
+	itemGroup.POST("/state_provinces", lc.CreateMany)
+	itemGroup.PUT("/state_province", lc.Update)
+	itemGroup.DELETE("/state_province", lc.Delete)
 }

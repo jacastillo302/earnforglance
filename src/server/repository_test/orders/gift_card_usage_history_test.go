@@ -29,11 +29,11 @@ func (m *MockSingleResultGiftCardUsageHistory) Decode(v interface{}) error {
 }
 
 var mockItemGiftCardUsageHistory = &domain.GiftCardUsageHistory{
-	ID:              primitive.NewObjectID(), // Existing ID of the record to update
-	GiftCardID:      primitive.NewObjectID(),
-	UsedWithOrderID: primitive.NewObjectID(),
-	UsedValue:       75.00,
-	CreatedOnUtc:    time.Now().AddDate(0, 0, -7), // Created 7 days ago
+	ID:           primitive.NewObjectID(), // Existing ID of the record to update
+	GiftCardID:   primitive.NewObjectID(),
+	OrderID:      primitive.NewObjectID(),
+	UsedValue:    75.00,
+	CreatedOnUtc: time.Now().AddDate(0, 0, -7), // Created 7 days ago
 }
 
 func TestGiftCardUsageHistoryRepository_FetchByID(t *testing.T) {

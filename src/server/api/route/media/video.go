@@ -20,11 +20,11 @@ func VideoRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database, g
 		VideoUsecase: usecase.NewVideoUsecase(ur, timeout),
 		Env:          env,
 	}
-
-	group.GET("/videos", lc.Fetch)
-	group.GET("/video", lc.FetchByID)
-	group.POST("/video", lc.Create)
-	group.POST("/videos", lc.CreateMany)
-	group.PUT("/video", lc.Update)
-	group.DELETE("/video", lc.Delete)
+	itemGroup := group.Group("/api/v1/media")
+	itemGroup.GET("/videos", lc.Fetch)
+	itemGroup.GET("/video", lc.FetchByID)
+	itemGroup.POST("/video", lc.Create)
+	itemGroup.POST("/videos", lc.CreateMany)
+	itemGroup.PUT("/video", lc.Update)
+	itemGroup.DELETE("/video", lc.Delete)
 }

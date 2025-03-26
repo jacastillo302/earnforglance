@@ -37,7 +37,7 @@ var mockItemRecurringPayment = &domain.RecurringPayment{
 	IsActive:          false,
 	LastPaymentFailed: true,
 	Deleted:           true,
-	InitialOrderID:    1002,
+	OrderID:           1002,
 	CreatedOnUtc:      time.Now().AddDate(0, 0, -60), // Created 60 days ago
 	CyclePeriod:       1,
 }

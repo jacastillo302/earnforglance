@@ -21,10 +21,11 @@ func PdfSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Datab
 		Env:                env,
 	}
 
-	group.GET("/pdf_settings", lc.Fetch)
-	group.GET("/pdf_setting", lc.FetchByID)
-	group.POST("/pdf_setting", lc.Create)
-	group.POST("/pdf_settings", lc.CreateMany)
-	group.PUT("/pdf_setting", lc.Update)
-	group.DELETE("/pdf_setting", lc.Delete)
+	itemGroup := group.Group("/api/v1/common")
+	itemGroup.GET("/pdf_settings", lc.Fetch)
+	itemGroup.GET("/pdf_setting", lc.FetchByID)
+	itemGroup.POST("/pdf_setting", lc.Create)
+	itemGroup.POST("/pdf_settings", lc.CreateMany)
+	itemGroup.PUT("/pdf_setting", lc.Update)
+	itemGroup.DELETE("/pdf_setting", lc.Delete)
 }

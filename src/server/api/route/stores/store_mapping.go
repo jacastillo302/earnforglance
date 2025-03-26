@@ -20,11 +20,11 @@ func StoreMappingRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Data
 		StoreMappingUsecase: usecase.NewStoreMappingUsecase(ur, timeout),
 		Env:                 env,
 	}
-
-	group.GET("/store_mappings", lc.Fetch)
-	group.GET("/store_mapping", lc.FetchByID)
-	group.POST("/store_mapping", lc.Create)
-	group.POST("/store_mappings", lc.CreateMany)
-	group.PUT("/store_mapping", lc.Update)
-	group.DELETE("/store_mapping", lc.Delete)
+	itemGroup := group.Group("/api/v1/stores")
+	itemGroup.GET("/store_mappings", lc.Fetch)
+	itemGroup.GET("/store_mapping", lc.FetchByID)
+	itemGroup.POST("/store_mapping", lc.Create)
+	itemGroup.POST("/store_mappings", lc.CreateMany)
+	itemGroup.PUT("/store_mapping", lc.Update)
+	itemGroup.DELETE("/store_mapping", lc.Delete)
 }

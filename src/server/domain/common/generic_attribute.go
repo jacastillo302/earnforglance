@@ -19,7 +19,7 @@ type GenericAttribute struct {
 	Key                     string             `bson:"key"`
 	Value                   string             `bson:"value"`
 	StoreID                 primitive.ObjectID `bson:"store_id"`
-	CreatedOrUpdatedDateUTC *time.Time         `bson:"created_or_updated_date_utc,omitempty"`
+	CreatedOrUpdatedDateUTC *time.Time         `bson:"created_or_updated_date_utc"`
 }
 
 type GenericAttributeRepository interface {

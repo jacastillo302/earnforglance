@@ -21,7 +21,7 @@ type RecurringPayment struct {
 	IsActive          bool               `bson:"is_active"`
 	LastPaymentFailed bool               `bson:"last_payment_failed"`
 	Deleted           bool               `bson:"deleted"`
-	InitialOrderID    int                `bson:"initial_order_id"`
+	OrderID           int                `bson:"initial_order_id"`
 	CreatedOnUtc      time.Time          `bson:"created_on_utc"`
 	CyclePeriod       int                `bson:"cycle_period"`
 }

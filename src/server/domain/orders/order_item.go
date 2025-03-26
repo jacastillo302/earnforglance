@@ -30,10 +30,10 @@ type OrderItem struct {
 	AttributesXml         string              `bson:"attributes_xml"`
 	DownloadCount         int                 `bson:"download_count"`
 	IsDownloadActivated   bool                `bson:"is_download_activated"`
-	LicenseDownloadID     *primitive.ObjectID `bson:"license_download_id,omitempty"`
-	ItemWeight            *float64            `bson:"item_weight,omitempty"`
-	RentalStartDateUtc    *time.Time          `bson:"rental_start_date_utc,omitempty"`
-	RentalEndDateUtc      *time.Time          `bson:"rental_end_date_utc,omitempty"`
+	LicenseDownloadID     *primitive.ObjectID `bson:"license_download_id"`
+	ItemWeight            *float64            `bson:"item_weight"`
+	RentalStartDateUtc    *time.Time          `bson:"rental_start_date_utc"`
+	RentalEndDateUtc      *time.Time          `bson:"rental_end_date_utc"`
 }
 
 // OrderItemRepository represents the repository interface for OrderItem

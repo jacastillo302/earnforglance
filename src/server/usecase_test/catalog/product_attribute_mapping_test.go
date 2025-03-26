@@ -34,7 +34,6 @@ func TestProductAttributeMappingUsecase_FetchByID(t *testing.T) {
 		ValidationFileMaximumSize:       new(int),
 		DefaultValue:                    "Medium",
 		ConditionAttributeXml:           "<attributes><size>medium</size></attributes>",
-		AttributeControlType:            6,
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, productAttributeMappingID).Return(expectedProductAttributeMapping, nil)
@@ -64,7 +63,6 @@ func TestProductAttributeMappingUsecase_Create(t *testing.T) {
 		ValidationFileMaximumSize:       nil,
 		DefaultValue:                    "Red",
 		ConditionAttributeXml:           "<attributes><color>red</color></attributes>",
-		AttributeControlType:            5,
 	}
 
 	mockRepo.On("Create", mock.Anything, newProductAttributeMapping).Return(nil)
@@ -94,7 +92,6 @@ func TestProductAttributeMappingUsecase_Update(t *testing.T) {
 		ValidationFileMaximumSize:       new(int),
 		DefaultValue:                    "Medium",
 		ConditionAttributeXml:           "<attributes><size>medium</size></attributes>",
-		AttributeControlType:            5,
 	}
 	*updatedProductAttributeMapping.ValidationMinLength = 5
 	*updatedProductAttributeMapping.ValidationMaxLength = 50
@@ -143,7 +140,6 @@ func TestProductAttributeMappingUsecase_Fetch(t *testing.T) {
 			ValidationFileMaximumSize:       nil,
 			DefaultValue:                    "Red",
 			ConditionAttributeXml:           "<attributes><color>red</color></attributes>",
-			AttributeControlType:            5,
 		},
 		{
 			ID:                              primitive.NewObjectID(),
@@ -159,7 +155,6 @@ func TestProductAttributeMappingUsecase_Fetch(t *testing.T) {
 			ValidationFileMaximumSize:       new(int),
 			DefaultValue:                    "Medium",
 			ConditionAttributeXml:           "<attributes><size>medium</size></attributes>",
-			AttributeControlType:            1,
 		},
 	}
 	*fetchedProductAttributeMappings[1].ValidationMinLength = 5

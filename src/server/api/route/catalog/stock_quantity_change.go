@@ -21,10 +21,11 @@ func StockQuantityChangeRouter(env *bootstrap.Env, timeout time.Duration, db mon
 		Env:                        env,
 	}
 
-	group.GET("/stock_quantity_changes", lc.Fetch)
-	group.GET("/stock_quantity_change", lc.FetchByID)
-	group.POST("/stock_quantity_change", lc.Create)
-	group.POST("/stock_quantity_changes", lc.CreateMany)
-	group.PUT("/stock_quantity_change", lc.Update)
-	group.DELETE("/stock_quantity_change", lc.Delete)
+	itemGroup := group.Group("/api/v1/catalog")
+	itemGroup.GET("/stock_quantity_changes", lc.Fetch)
+	itemGroup.GET("/stock_quantity_change", lc.FetchByID)
+	itemGroup.POST("/stock_quantity_change", lc.Create)
+	itemGroup.POST("/stock_quantity_changes", lc.CreateMany)
+	itemGroup.PUT("/stock_quantity_change", lc.Update)
+	itemGroup.DELETE("/stock_quantity_change", lc.Delete)
 }

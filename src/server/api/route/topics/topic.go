@@ -20,11 +20,11 @@ func TopicRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database, g
 		TopicUsecase: usecase.NewTopicUsecase(ur, timeout),
 		Env:          env,
 	}
-
-	group.GET("/topics", lc.Fetch)
-	group.GET("/topic", lc.FetchByID)
-	group.POST("/topic", lc.Create)
-	group.POST("/topics", lc.CreateMany)
-	group.PUT("/topic", lc.Update)
-	group.DELETE("/topic", lc.Delete)
+	itemGroup := group.Group("/api/v1/topics")
+	itemGroup.GET("/topics", lc.Fetch)
+	itemGroup.GET("/topic", lc.FetchByID)
+	itemGroup.POST("/topic", lc.Create)
+	itemGroup.POST("/topics", lc.CreateMany)
+	itemGroup.PUT("/topic", lc.Update)
+	itemGroup.DELETE("/topic", lc.Delete)
 }

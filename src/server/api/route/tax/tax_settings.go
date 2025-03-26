@@ -20,11 +20,11 @@ func TaxSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Datab
 		TaxSettingsUsecase: usecase.NewTaxSettingsUsecase(ur, timeout),
 		Env:                env,
 	}
-
-	group.GET("/tax_settings", lc.Fetch)
-	group.GET("/tax_setting", lc.FetchByID)
-	group.POST("/tax_setting", lc.Create)
-	group.POST("/tax_settings", lc.CreateMany)
-	group.PUT("/tax_setting", lc.Update)
-	group.DELETE("/tax_setting", lc.Delete)
+	itemGroup := group.Group("/api/v1/tax")
+	itemGroup.GET("/tax_settings", lc.Fetch)
+	itemGroup.GET("/tax_setting", lc.FetchByID)
+	itemGroup.POST("/tax_setting", lc.Create)
+	itemGroup.POST("/tax_settings", lc.CreateMany)
+	itemGroup.PUT("/tax_setting", lc.Update)
+	itemGroup.DELETE("/tax_setting", lc.Delete)
 }

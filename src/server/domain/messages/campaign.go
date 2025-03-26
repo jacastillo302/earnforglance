@@ -20,7 +20,7 @@ type Campaign struct {
 	StoreID               primitive.ObjectID `bson:"store_id"`
 	CustomerRoleID        primitive.ObjectID `bson:"customer_role_id"`
 	CreatedOnUtc          time.Time          `bson:"created_on_utc"`
-	DontSendBeforeDateUtc *time.Time         `bson:"dont_send_before_date_utc,omitempty"`
+	DontSendBeforeDateUtc *time.Time         `bson:"dont_send_before_date_utc"`
 }
 
 // CampaignRepository represents the repository interface for Campaign

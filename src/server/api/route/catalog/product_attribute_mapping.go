@@ -21,10 +21,11 @@ func ProductAttributeMappingRouter(env *bootstrap.Env, timeout time.Duration, db
 		Env:                            env,
 	}
 
-	group.GET("/product_attribute_mappings", lc.Fetch)
-	group.GET("/product_attribute_mapping", lc.FetchByID)
-	group.POST("/product_attribute_mapping", lc.Create)
-	group.POST("/product_attribute_mappings", lc.CreateMany)
-	group.PUT("/product_attribute_mapping", lc.Update)
-	group.DELETE("/product_attribute_mapping", lc.Delete)
+	itemGroup := group.Group("/api/v1/catalog")
+	itemGroup.GET("/product_attribute_mappings", lc.Fetch)
+	itemGroup.GET("/product_attribute_mapping", lc.FetchByID)
+	itemGroup.POST("/product_attribute_mapping", lc.Create)
+	itemGroup.POST("/product_attribute_mappings", lc.CreateMany)
+	itemGroup.PUT("/product_attribute_mapping", lc.Update)
+	itemGroup.DELETE("/product_attribute_mapping", lc.Delete)
 }

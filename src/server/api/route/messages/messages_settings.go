@@ -20,11 +20,11 @@ func MessagesSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.
 		MessagesSettingsUsecase: usecase.NewMessagesSettingsUsecase(ur, timeout),
 		Env:                     env,
 	}
-
-	group.GET("/messages_settings", lc.Fetch)
-	group.GET("/messages_setting", lc.FetchByID)
-	group.POST("/messages_setting", lc.Create)
-	group.POST("/messages_settings", lc.CreateMany)
-	group.PUT("/messages_setting", lc.Update)
-	group.DELETE("/messages_setting", lc.Delete)
+	itemGroup := group.Group("/api/v1/messages")
+	itemGroup.GET("/messages_settings", lc.Fetch)
+	itemGroup.GET("/messages_setting", lc.FetchByID)
+	itemGroup.POST("/messages_setting", lc.Create)
+	itemGroup.POST("/messages_settings", lc.CreateMany)
+	itemGroup.PUT("/messages_setting", lc.Update)
+	itemGroup.DELETE("/messages_setting", lc.Delete)
 }

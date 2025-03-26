@@ -21,10 +21,11 @@ func BestCustomerReportLineRouter(env *bootstrap.Env, timeout time.Duration, db 
 		Env:                           env,
 	}
 
-	group.GET("/best_customer_report_lines", lc.Fetch)
-	group.GET("/best_customer_report_line", lc.FetchByID)
-	group.POST("/best_customer_report_line", lc.Create)
-	group.POST("/best_customer_report_lines", lc.CreateMany)
-	group.PUT("/best_customer_report_line", lc.Update)
-	group.DELETE("/best_customer_report_line", lc.Delete)
+	itemGroup := group.Group("/api/v1/customers")
+	itemGroup.GET("/best_customer_report_lines", lc.Fetch)
+	itemGroup.GET("/best_customer_report_line", lc.FetchByID)
+	itemGroup.POST("/best_customer_report_line", lc.Create)
+	itemGroup.POST("/best_customer_report_lines", lc.CreateMany)
+	itemGroup.PUT("/best_customer_report_line", lc.Update)
+	itemGroup.DELETE("/best_customer_report_line", lc.Delete)
 }

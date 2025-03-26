@@ -29,20 +29,20 @@ func (m *MockSingleResultGiftCard) Decode(v interface{}) error {
 }
 
 var mockItemGiftCard = &domain.GiftCard{
-	ID:                       primitive.NewObjectID(), // Existing ID of the record to update
-	PurchasedWithOrderItemID: new(primitive.ObjectID),
-	GiftCardTypeID:           2,
-	Amount:                   150.00,
-	IsGiftCardActivated:      false,
-	GiftCardCouponCode:       "GIFT150",
-	RecipientName:            "Alice Johnson",
-	RecipientEmail:           "alice.johnson@example.com",
-	SenderName:               "Bob Brown",
-	SenderEmail:              "bob.brown@example.com",
-	Message:                  "Congratulations!",
-	IsRecipientNotified:      true,
-	CreatedOnUtc:             time.Now().AddDate(0, 0, -7), // Created 7 days ago
-	GiftCardType:             2,
+	ID:                  primitive.NewObjectID(), // Existing ID of the record to update
+	OrderItemID:         new(primitive.ObjectID),
+	GiftCardTypeID:      2,
+	Amount:              150.00,
+	IsGiftCardActivated: false,
+	GiftCardCouponCode:  "GIFT150",
+	RecipientName:       "Alice Johnson",
+	RecipientEmail:      "alice.johnson@example.com",
+	SenderName:          "Bob Brown",
+	SenderEmail:         "bob.brown@example.com",
+	Message:             "Congratulations!",
+	IsRecipientNotified: true,
+	CreatedOnUtc:        time.Now().AddDate(0, 0, -7), // Created 7 days ago
+	GiftCardType:        2,
 }
 
 func TestGiftCardRepository_FetchByID(t *testing.T) {

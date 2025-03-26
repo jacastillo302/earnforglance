@@ -20,11 +20,11 @@ func WarehouseRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Databas
 		WarehouseUsecase: usecase.NewWarehouseUsecase(ur, timeout),
 		Env:              env,
 	}
-
-	group.GET("/warehouses", lc.Fetch)
-	group.GET("/warehouse", lc.FetchByID)
-	group.POST("/warehouse", lc.Create)
-	group.POST("/warehouses", lc.CreateMany)
-	group.PUT("/warehouse", lc.Update)
-	group.DELETE("/warehouse", lc.Delete)
+	itemGroup := group.Group("/api/v1/shipping")
+	itemGroup.GET("/warehouses", lc.Fetch)
+	itemGroup.GET("/warehouse", lc.FetchByID)
+	itemGroup.POST("/warehouse", lc.Create)
+	itemGroup.POST("/warehouses", lc.CreateMany)
+	itemGroup.PUT("/warehouse", lc.Update)
+	itemGroup.DELETE("/warehouse", lc.Delete)
 }

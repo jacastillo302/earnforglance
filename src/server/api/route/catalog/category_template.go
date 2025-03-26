@@ -21,10 +21,12 @@ func CategoryTemplateRouter(env *bootstrap.Env, timeout time.Duration, db mongo.
 		Env:                     env,
 	}
 
-	group.GET("/category_templates", lc.Fetch)
-	group.GET("/category_template", lc.FetchByID)
-	group.POST("/category_template", lc.Create)
-	group.POST("/category_templates", lc.CreateMany)
-	group.PUT("/category_template", lc.Update)
-	group.DELETE("/category_template", lc.Delete)
+	itemGroup := group.Group("/api/v1/catalog")
+
+	itemGroup.GET("/category_templates", lc.Fetch)
+	itemGroup.GET("/category_template", lc.FetchByID)
+	itemGroup.POST("/category_template", lc.Create)
+	itemGroup.POST("/category_templates", lc.CreateMany)
+	itemGroup.PUT("/category_template", lc.Update)
+	itemGroup.DELETE("/category_template", lc.Delete)
 }

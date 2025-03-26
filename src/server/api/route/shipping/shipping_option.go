@@ -20,11 +20,11 @@ func ShippingOptionRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Da
 		ShippingOptionUsecase: usecase.NewShippingOptionUsecase(ur, timeout),
 		Env:                   env,
 	}
-
-	group.GET("/shipping_options", lc.Fetch)
-	group.GET("/shipping_option", lc.FetchByID)
-	group.POST("/shipping_option", lc.Create)
-	group.POST("/shipping_options", lc.CreateMany)
-	group.PUT("/shipping_option", lc.Update)
-	group.DELETE("/shipping_option", lc.Delete)
+	itemGroup := group.Group("/api/v1/shipping")
+	itemGroup.GET("/shipping_options", lc.Fetch)
+	itemGroup.GET("/shipping_option", lc.FetchByID)
+	itemGroup.POST("/shipping_option", lc.Create)
+	itemGroup.POST("/shipping_options", lc.CreateMany)
+	itemGroup.PUT("/shipping_option", lc.Update)
+	itemGroup.DELETE("/shipping_option", lc.Delete)
 }

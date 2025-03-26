@@ -21,10 +21,11 @@ func CountryRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database,
 		Env:            env,
 	}
 
-	group.GET("/countries", lc.Fetch)
-	group.GET("/country", lc.FetchByID)
-	group.POST("/country", lc.Create)
-	group.POST("/countries", lc.CreateMany)
-	group.PUT("/country", lc.Update)
-	group.DELETE("/country", lc.Delete)
+	itemGroup := group.Group("/api/v1/directory")
+	itemGroup.GET("/countries", lc.Fetch)
+	itemGroup.GET("/country", lc.FetchByID)
+	itemGroup.POST("/country", lc.Create)
+	itemGroup.POST("/countries", lc.CreateMany)
+	itemGroup.PUT("/country", lc.Update)
+	itemGroup.DELETE("/country", lc.Delete)
 }

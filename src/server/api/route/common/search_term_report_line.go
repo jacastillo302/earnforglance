@@ -21,10 +21,11 @@ func SearchTermReportLineRouter(env *bootstrap.Env, timeout time.Duration, db mo
 		Env:                         env,
 	}
 
-	group.GET("/search_term_report_lines", lc.Fetch)
-	group.GET("/search_term_report_line", lc.FetchByID)
-	group.POST("/search_term_report_line", lc.Create)
-	group.POST("/search_term_report_lines", lc.CreateMany)
-	group.PUT("/search_term_report_line", lc.Update)
-	group.DELETE("/search_term_report_line", lc.Delete)
+	itemGroup := group.Group("/api/v1/common")
+	itemGroup.GET("/search_term_report_lines", lc.Fetch)
+	itemGroup.GET("/search_term_report_line", lc.FetchByID)
+	itemGroup.POST("/search_term_report_line", lc.Create)
+	itemGroup.POST("/search_term_report_lines", lc.CreateMany)
+	itemGroup.PUT("/search_term_report_line", lc.Update)
+	itemGroup.DELETE("/search_term_report_line", lc.Delete)
 }

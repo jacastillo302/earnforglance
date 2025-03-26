@@ -21,10 +21,11 @@ func AddressAttributeValueRouter(env *bootstrap.Env, timeout time.Duration, db m
 		Env:                          env,
 	}
 
-	group.GET("/address_attribute_values", lc.Fetch)
-	group.GET("/address_attribute_value", lc.FetchByID)
-	group.POST("/address_attribute_value", lc.Create)
-	group.POST("/address_attribute_values", lc.CreateMany)
-	group.PUT("/address_attribute_value", lc.Update)
-	group.DELETE("/address_attribute_value", lc.Delete)
+	itemGroup := group.Group("/api/v1/common")
+	itemGroup.GET("/address_attribute_values", lc.Fetch)
+	itemGroup.GET("/address_attribute_value", lc.FetchByID)
+	itemGroup.POST("/address_attribute_value", lc.Create)
+	itemGroup.POST("/address_attribute_values", lc.CreateMany)
+	itemGroup.PUT("/address_attribute_value", lc.Update)
+	itemGroup.DELETE("/address_attribute_value", lc.Delete)
 }

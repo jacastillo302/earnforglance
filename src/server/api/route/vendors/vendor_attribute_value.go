@@ -20,11 +20,11 @@ func VendorAttributeValueRouter(env *bootstrap.Env, timeout time.Duration, db mo
 		VendorAttributeValueUsecase: usecase.NewVendorAttributeValueUsecase(ur, timeout),
 		Env:                         env,
 	}
-
-	group.GET("/vendor_attribute_values", lc.Fetch)
-	group.GET("/vendor_attribute_value", lc.FetchByID)
-	group.POST("/vendor_attribute_value", lc.Create)
-	group.POST("/vendor_attribute_values", lc.CreateMany)
-	group.PUT("/vendor_attribute_value", lc.Update)
-	group.DELETE("/vendor_attribute_value", lc.Delete)
+	itemGroup := group.Group("/api/v1/vendors")
+	itemGroup.GET("/vendor_attribute_values", lc.Fetch)
+	itemGroup.GET("/vendor_attribute_value", lc.FetchByID)
+	itemGroup.POST("/vendor_attribute_value", lc.Create)
+	itemGroup.POST("/vendor_attribute_values", lc.CreateMany)
+	itemGroup.PUT("/vendor_attribute_value", lc.Update)
+	itemGroup.DELETE("/vendor_attribute_value", lc.Delete)
 }

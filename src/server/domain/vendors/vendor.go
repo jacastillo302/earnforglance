@@ -32,7 +32,7 @@ type Vendor struct {
 	PriceFrom                      float64             `bson:"price_from"`
 	PriceTo                        float64             `bson:"price_to"`
 	ManuallyPriceRange             bool                `bson:"manually_price_range"`
-	PmCustomerID                   *primitive.ObjectID `bson:"pm_customer_id,omitempty"`
+	PmCustomerID                   *primitive.ObjectID `bson:"pm_customer_id"`
 }
 
 // VendorRepository defines the repository interface for Vendor

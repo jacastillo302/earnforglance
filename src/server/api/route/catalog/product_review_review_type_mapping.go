@@ -21,10 +21,11 @@ func ProductReviewReviewTypeMappingRouter(env *bootstrap.Env, timeout time.Durat
 		Env:                                   env,
 	}
 
-	group.GET("/product_review_review_type_mappings", lc.Fetch)
-	group.GET("/product_review_review_type_mapping", lc.FetchByID)
-	group.POST("/product_review_review_type_mapping", lc.Create)
-	group.POST("/product_review_review_type_mappings", lc.CreateMany)
-	group.PUT("/product_review_review_type_mapping", lc.Update)
-	group.DELETE("/product_review_review_type_mapping", lc.Delete)
+	itemGroup := group.Group("/api/v1/catalog")
+	itemGroup.GET("/product_review_review_type_mappings", lc.Fetch)
+	itemGroup.GET("/product_review_review_type_mapping", lc.FetchByID)
+	itemGroup.POST("/product_review_review_type_mapping", lc.Create)
+	itemGroup.POST("/product_review_review_type_mappings", lc.CreateMany)
+	itemGroup.PUT("/product_review_review_type_mapping", lc.Update)
+	itemGroup.DELETE("/product_review_review_type_mapping", lc.Delete)
 }

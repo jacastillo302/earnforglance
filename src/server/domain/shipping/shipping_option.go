@@ -17,9 +17,9 @@ type ShippingOption struct {
 	Rate                                    float64            `bson:"rate"`
 	Name                                    string             `bson:"name"`
 	Description                             string             `bson:"description"`
-	TransitDays                             *int               `bson:"transit_days,omitempty"`
+	TransitDays                             *int               `bson:"transit_days"`
 	IsPickupInStore                         bool               `bson:"is_pickup_in_store"`
-	DisplayOrder                            *int               `bson:"display_order,omitempty"`
+	DisplayOrder                            *int               `bson:"display_order"`
 }
 
 // ShippingOptionRepository defines the repository interface for ShippingOption

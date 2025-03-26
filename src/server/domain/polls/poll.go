@@ -22,8 +22,8 @@ type Poll struct {
 	AllowGuestsToVote bool               `bson:"allow_guests_to_vote"`
 	DisplayOrder      int                `bson:"display_order"`
 	LimitedToStores   bool               `bson:"limited_to_stores"`
-	StartDateUtc      *time.Time         `bson:"start_date_utc,omitempty"`
-	EndDateUtc        *time.Time         `bson:"end_date_utc,omitempty"`
+	StartDateUtc      *time.Time         `bson:"start_date_utc"`
+	EndDateUtc        *time.Time         `bson:"end_date_utc"`
 }
 
 // PollRepository defines the repository interface for Poll

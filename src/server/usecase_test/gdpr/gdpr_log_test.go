@@ -28,7 +28,6 @@ func TestGdprLogUsecase_FetchByID(t *testing.T) {
 		RequestTypeID:  2,
 		RequestDetails: "Request to export personal data.",
 		CreatedOnUtc:   time.Now().AddDate(0, 0, -7), // Created 7 days ago
-		RequestType:    3,
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, gdprID).Return(updatedGdprLog, nil)
@@ -52,7 +51,6 @@ func TestGdprLogUsecase_Create(t *testing.T) {
 		RequestTypeID:  1,
 		RequestDetails: "Request to delete personal data.",
 		CreatedOnUtc:   time.Now(),
-		RequestType:    2,
 	}
 
 	mockRepo.On("Create", mock.Anything, newGdprLog).Return(nil)
@@ -76,7 +74,7 @@ func TestGdprLogUsecase_Update(t *testing.T) {
 		RequestTypeID:  2,
 		RequestDetails: "Request to export personal data.",
 		CreatedOnUtc:   time.Now().AddDate(0, 0, -7), // Created 7 days ago
-		RequestType:    2,
+
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedGdprLog).Return(nil)
@@ -116,7 +114,7 @@ func TestGdprLogUsecase_Fetch(t *testing.T) {
 			RequestTypeID:  1,
 			RequestDetails: "Request to delete personal data.",
 			CreatedOnUtc:   time.Now().AddDate(0, 0, -10), // Created 10 days ago
-			RequestType:    1,
+
 		},
 		{
 			ID:             primitive.NewObjectID(),
@@ -126,7 +124,6 @@ func TestGdprLogUsecase_Fetch(t *testing.T) {
 			RequestTypeID:  2,
 			RequestDetails: "Request to export personal data.",
 			CreatedOnUtc:   time.Now().AddDate(0, 0, -5), // Created 5 days ago
-			RequestType:    2,
 		},
 	}
 

@@ -21,10 +21,11 @@ func ManufacturerRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Data
 		Env:                 env,
 	}
 
-	group.GET("/manufacturers", lc.Fetch)
-	group.GET("/manufacturer", lc.FetchByID)
-	group.POST("/manufacturer", lc.Create)
-	group.POST("/manufacturers", lc.CreateMany)
-	group.PUT("/manufacturer", lc.Update)
-	group.DELETE("/manufacturer", lc.Delete)
+	itemGroup := group.Group("/api/v1/catalog")
+	itemGroup.GET("/manufacturers", lc.Fetch)
+	itemGroup.GET("/manufacturer", lc.FetchByID)
+	itemGroup.POST("/manufacturer", lc.Create)
+	itemGroup.POST("/manufacturers", lc.CreateMany)
+	itemGroup.PUT("/manufacturer", lc.Update)
+	itemGroup.DELETE("/manufacturer", lc.Delete)
 }

@@ -37,8 +37,7 @@ var mockItemLog = &domain.Log{
 	CustomerID:   new(primitive.ObjectID),
 	PageUrl:      "/error",
 	ReferrerUrl:  "/home",
-	CreatedOnUtc: time.Now().AddDate(0, 0, -7), // Created 7 days ago
-	LogLevel:     1,
+	CreatedOnUtc: time.Now().AddDate(0, 0, -7),
 }
 
 func TestLogRepository_FetchByID(t *testing.T) {

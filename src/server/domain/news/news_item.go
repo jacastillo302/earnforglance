@@ -19,8 +19,8 @@ type NewsItem struct {
 	Short           string             `bson:"short"`
 	Full            string             `bson:"full"`
 	Published       bool               `bson:"published"`
-	StartDateUtc    *time.Time         `bson:"start_date_utc,omitempty"`
-	EndDateUtc      *time.Time         `bson:"end_date_utc,omitempty"`
+	StartDateUtc    *time.Time         `bson:"start_date_utc"`
+	EndDateUtc      *time.Time         `bson:"end_date_utc"`
 	AllowComments   bool               `bson:"allow_comments"`
 	LimitedToStores bool               `bson:"limited_to_stores"`
 	MetaKeywords    string             `bson:"meta_keywords"`

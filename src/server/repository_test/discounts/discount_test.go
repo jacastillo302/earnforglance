@@ -42,14 +42,12 @@ var mockItemDiscount = &domain.Discount{
 	RequiresCouponCode:        false,
 	CouponCode:                "",
 	IsCumulative:              true,
-	DiscountLimitationID:      primitive.NewObjectID(),
+	DiscountLimitationID:      1,
 	LimitationTimes:           3,
 	MaximumDiscountedQuantity: nil,
 	AppliedToSubCategories:    false,
 	IsActive:                  false,
-	VendorID:                  new(int),
-	DiscountType:              3,
-	DiscountLimitation:        0,
+	VendorID:                  nil,
 }
 
 func TestDiscountRepository_FetchByID(t *testing.T) {

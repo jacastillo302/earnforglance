@@ -21,10 +21,11 @@ func CustomerCustomerRoleMappingRouter(env *bootstrap.Env, timeout time.Duration
 		Env:                                env,
 	}
 
-	group.GET("/customer_customer_role_mappings", lc.Fetch)
-	group.GET("/customer_customer_role_mapping", lc.FetchByID)
-	group.POST("/customer_customer_role_mapping", lc.Create)
-	group.POST("/customer_customer_role_mappings", lc.CreateMany)
-	group.PUT("/customer_customer_role_mapping", lc.Update)
-	group.DELETE("/customer_customer_role_mapping", lc.Delete)
+	itemGroup := group.Group("/api/v1/customers")
+	itemGroup.GET("/customer_customer_role_mappings", lc.Fetch)
+	itemGroup.GET("/customer_customer_role_mapping", lc.FetchByID)
+	itemGroup.POST("/customer_customer_role_mapping", lc.Create)
+	itemGroup.POST("/customer_customer_role_mappings", lc.CreateMany)
+	itemGroup.PUT("/customer_customer_role_mapping", lc.Update)
+	itemGroup.DELETE("/customer_customer_role_mapping", lc.Delete)
 }

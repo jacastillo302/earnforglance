@@ -13,11 +13,11 @@ const (
 
 // GiftCardUsageHistory represents a gift card usage history entry
 type GiftCardUsageHistory struct {
-	ID              primitive.ObjectID `bson:"_id,omitempty"`
-	GiftCardID      primitive.ObjectID `bson:"gift_card_id"`
-	UsedWithOrderID primitive.ObjectID `bson:"used_with_order_id"`
-	UsedValue       float64            `bson:"used_value"`
-	CreatedOnUtc    time.Time          `bson:"created_on_utc"`
+	ID           primitive.ObjectID `bson:"_id,omitempty"`
+	GiftCardID   primitive.ObjectID `bson:"gift_card_id"`
+	OrderID      primitive.ObjectID `bson:"used_with_order_id"`
+	UsedValue    float64            `bson:"used_value"`
+	CreatedOnUtc time.Time          `bson:"created_on_utc"`
 }
 
 // GiftCardUsageHistoryRepository defines the repository interface for GiftCardUsageHistory

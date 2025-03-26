@@ -23,7 +23,7 @@ func TestProductPictureUsecase_FetchByID(t *testing.T) {
 	updatedProductPicture := domain.ProductPicture{
 		ID:           primitive.NewObjectID(), // Existing ID of the record to update
 		ProductID:    primitive.NewObjectID(),
-		PictureID:    102,
+		PictureID:    primitive.NewObjectID(),
 		DisplayOrder: 2,
 	}
 
@@ -43,7 +43,7 @@ func TestProductPictureUsecase_Create(t *testing.T) {
 
 	newProductPicture := &domain.ProductPicture{
 		ProductID:    primitive.NewObjectID(),
-		PictureID:    101,
+		PictureID:    primitive.NewObjectID(),
 		DisplayOrder: 1,
 	}
 
@@ -63,7 +63,7 @@ func TestProductPictureUsecase_Update(t *testing.T) {
 	updatedProductPicture := &domain.ProductPicture{
 		ID:           primitive.NewObjectID(), // Existing ID of the record to update
 		ProductID:    primitive.NewObjectID(),
-		PictureID:    102,
+		PictureID:    primitive.NewObjectID(),
 		DisplayOrder: 2,
 	}
 	mockRepo.On("Update", mock.Anything, updatedProductPicture).Return(nil)
@@ -98,13 +98,13 @@ func TestProductPictureUsecase_Fetch(t *testing.T) {
 		{
 			ID:           primitive.NewObjectID(),
 			ProductID:    primitive.NewObjectID(),
-			PictureID:    101,
+			PictureID:    primitive.NewObjectID(),
 			DisplayOrder: 1,
 		},
 		{
 			ID:           primitive.NewObjectID(),
 			ProductID:    primitive.NewObjectID(),
-			PictureID:    102,
+			PictureID:    primitive.NewObjectID(),
 			DisplayOrder: 2,
 		},
 	}

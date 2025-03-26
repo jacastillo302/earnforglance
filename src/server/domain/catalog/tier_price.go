@@ -16,11 +16,11 @@ type TierPrice struct {
 	ID               primitive.ObjectID  `bson:"_id,omitempty"`
 	ProductID        primitive.ObjectID  `bson:"product_id"`
 	StoreID          primitive.ObjectID  `bson:"store_id"`
-	CustomerRoleID   *primitive.ObjectID `bson:"customer_role_id,omitempty"`
+	CustomerRoleID   *primitive.ObjectID `bson:"customer_role_id"`
 	Quantity         int                 `bson:"quantity"`
 	Price            float64             `bson:"price"`
-	StartDateTimeUtc *time.Time          `bson:"start_date_time_utc,omitempty"`
-	EndDateTimeUtc   *time.Time          `bson:"end_date_time_utc,omitempty"`
+	StartDateTimeUtc *time.Time          `bson:"start_date_time_utc"`
+	EndDateTimeUtc   *time.Time          `bson:"end_date_time_utc"`
 }
 
 type TierPriceRepository interface {

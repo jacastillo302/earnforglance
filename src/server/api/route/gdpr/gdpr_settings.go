@@ -20,11 +20,11 @@ func GdprSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Data
 		GdprSettingsUsecase: usecase.NewGdprSettingsUsecase(ur, timeout),
 		Env:                 env,
 	}
-
-	group.GET("/gdpr_settings", lc.Fetch)
-	group.GET("/gdpr_setting", lc.FetchByID)
-	group.POST("/gdpr_setting", lc.Create)
-	group.POST("/gdpr_settings", lc.CreateMany)
-	group.PUT("/gdpr_setting", lc.Update)
-	group.DELETE("/gdpr_setting", lc.Delete)
+	itemGroup := group.Group("/api/v1/gdpr")
+	itemGroup.GET("/gdpr_settings", lc.Fetch)
+	itemGroup.GET("/gdpr_setting", lc.FetchByID)
+	itemGroup.POST("/gdpr_setting", lc.Create)
+	itemGroup.POST("/gdpr_settings", lc.CreateMany)
+	itemGroup.PUT("/gdpr_setting", lc.Update)
+	itemGroup.DELETE("/gdpr_setting", lc.Delete)
 }

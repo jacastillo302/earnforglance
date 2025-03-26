@@ -12,13 +12,12 @@ const (
 
 // DiscountRequirement represents a discount requirement
 type DiscountRequirement struct {
-	ID                                primitive.ObjectID               `bson:"_id,omitempty"`
-	DiscountID                        primitive.ObjectID               `bson:"discount_id"`
-	DiscountRequirementRuleSystemName string                           `bson:"discount_requirement_rule_system_name"`
-	ParentID                          *primitive.ObjectID              `bson:"parent_id,omitempty"`
-	InteractionTypeID                 *int                             `bson:"interaction_type_id,omitempty"`
-	IsGroup                           bool                             `bson:"is_group"`
-	InteractionType                   *RequirementGroupInteractionType `bson:"interaction_type,omitempty"`
+	ID                                primitive.ObjectID  `bson:"_id,omitempty"`
+	DiscountID                        primitive.ObjectID  `bson:"discount_id"`
+	DiscountRequirementRuleSystemName string              `bson:"discount_requirement_rule_system_name"`
+	ParentID                          *primitive.ObjectID `bson:"parent_id"`
+	InteractionTypeID                 *int                `bson:"interaction_type_id"`
+	IsGroup                           bool                `bson:"is_group"`
 }
 
 type DiscountRequirementRepository interface {

@@ -20,11 +20,11 @@ func ScheduleTaskRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Data
 		ScheduleTaskUsecase: usecase.NewScheduleTaskUsecase(ur, timeout),
 		Env:                 env,
 	}
-
-	group.GET("/schedule_tasks", lc.Fetch)
-	group.GET("/schedule_task", lc.FetchByID)
-	group.POST("/schedule_task", lc.Create)
-	group.POST("/schedule_tasks", lc.CreateMany)
-	group.PUT("/schedule_task", lc.Update)
-	group.DELETE("/schedule_task", lc.Delete)
+	itemGroup := group.Group("/api/v1/schedule_tasks")
+	itemGroup.GET("/schedule_tasks", lc.Fetch)
+	itemGroup.GET("/schedule_task", lc.FetchByID)
+	itemGroup.POST("/schedule_task", lc.Create)
+	itemGroup.POST("/schedule_tasks", lc.CreateMany)
+	itemGroup.PUT("/schedule_task", lc.Update)
+	itemGroup.DELETE("/schedule_task", lc.Delete)
 }

@@ -33,7 +33,6 @@ func TestMessageTemplateUsecase_FetchByID(t *testing.T) {
 		AllowDirectReply:   false,
 		EmailAccountID:     primitive.NewObjectID(),
 		LimitedToStores:    true,
-		DelayPeriod:        1,
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, messageTemplateID).Return(updatedMessageTemplate, nil)
@@ -62,7 +61,6 @@ func TestMessageTemplateUsecase_Create(t *testing.T) {
 		AllowDirectReply:   true,
 		EmailAccountID:     primitive.NewObjectID(),
 		LimitedToStores:    false,
-		DelayPeriod:        2,
 	}
 	*newMessageTemplate.DelayBeforeSend = 2
 
@@ -92,7 +90,6 @@ func TestMessageTemplateUsecase_Update(t *testing.T) {
 		AllowDirectReply:   false,
 		EmailAccountID:     primitive.NewObjectID(),
 		LimitedToStores:    true,
-		DelayPeriod:        1,
 	}
 	*updatedMessageTemplate.DelayBeforeSend = 1
 
@@ -138,7 +135,6 @@ func TestMessageTemplateUsecase_Fetch(t *testing.T) {
 			AllowDirectReply:   true,
 			EmailAccountID:     primitive.NewObjectID(),
 			LimitedToStores:    false,
-			DelayPeriod:        2,
 		},
 		{
 			ID:                 primitive.NewObjectID(),
@@ -153,7 +149,6 @@ func TestMessageTemplateUsecase_Fetch(t *testing.T) {
 			AllowDirectReply:   false,
 			EmailAccountID:     primitive.NewObjectID(),
 			LimitedToStores:    true,
-			DelayPeriod:        1,
 		},
 	}
 	*fetchedMessageTemplates[0].DelayBeforeSend = 2

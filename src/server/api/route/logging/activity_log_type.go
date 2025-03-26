@@ -20,11 +20,11 @@ func ActivityLogTypeRouter(env *bootstrap.Env, timeout time.Duration, db mongo.D
 		ActivityLogTypeUsecase: usecase.NewActivityLogTypeUsecase(ur, timeout),
 		Env:                    env,
 	}
-
-	group.GET("/activity_log_types", lc.Fetch)
-	group.GET("/activity_log_type", lc.FetchByID)
-	group.POST("/activity_log_type", lc.Create)
-	group.POST("/activity_log_types", lc.CreateMany)
-	group.PUT("/activity_log_type", lc.Update)
-	group.DELETE("/activity_log_type", lc.Delete)
+	itemGroup := group.Group("/api/v1/logging")
+	itemGroup.GET("/activity_log_types", lc.Fetch)
+	itemGroup.GET("/activity_log_type", lc.FetchByID)
+	itemGroup.POST("/activity_log_type", lc.Create)
+	itemGroup.POST("/activity_log_types", lc.CreateMany)
+	itemGroup.PUT("/activity_log_type", lc.Update)
+	itemGroup.DELETE("/activity_log_type", lc.Delete)
 }

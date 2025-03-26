@@ -38,9 +38,9 @@ func TestBackInStockSubscriptionRepository_FetchByID(t *testing.T) {
 
 	mockItem := domain.BackInStockSubscription{
 		ID:           primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, // Existing ID of the record to update
-		StoreID:      0,
-		ProductID:    0,
-		CustomerID:   0,
+		StoreID:      primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+		ProductID:    primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+		CustomerID:   primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
 		CreatedOnUtc: time.Date(1, time.January, 1, 0, 0, 0, 0, time.UTC),
 	}
 
@@ -89,9 +89,9 @@ func TestBackInStockSubscriptionRepository_Create(t *testing.T) {
 
 	mockBackInStockSubscription := &domain.BackInStockSubscription{
 		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		StoreID:      2,
-		ProductID:    102,
-		CustomerID:   1002,
+		StoreID:      primitive.NewObjectID(),
+		ProductID:    primitive.NewObjectID(),
+		CustomerID:   primitive.NewObjectID(),
 		CreatedOnUtc: time.Now(),
 	}
 
@@ -114,9 +114,9 @@ func TestBackInStockSubscriptionRepository_Update(t *testing.T) {
 
 	mockBackInStockSubscription := &domain.BackInStockSubscription{
 		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		StoreID:      2,
-		ProductID:    102,
-		CustomerID:   1002,
+		StoreID:      primitive.NewObjectID(),
+		ProductID:    primitive.NewObjectID(),
+		CustomerID:   primitive.NewObjectID(),
 		CreatedOnUtc: time.Now(),
 	}
 

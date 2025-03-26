@@ -21,10 +21,11 @@ func DiscountRequirementRouter(env *bootstrap.Env, timeout time.Duration, db mon
 		Env:                        env,
 	}
 
-	group.GET("/discount_requirements", lc.Fetch)
-	group.GET("/discount_requirement", lc.FetchByID)
-	group.POST("/discount_requirement", lc.Create)
-	group.POST("/discount_requirements", lc.CreateMany)
-	group.PUT("/discount_requirement", lc.Update)
-	group.DELETE("/discount_requirement", lc.Delete)
+	itemGroup := group.Group("/api/v1/discounts")
+	itemGroup.GET("/discount_requirements", lc.Fetch)
+	itemGroup.GET("/discount_requirement", lc.FetchByID)
+	itemGroup.POST("/discount_requirement", lc.Create)
+	itemGroup.POST("/discount_requirements", lc.CreateMany)
+	itemGroup.PUT("/discount_requirement", lc.Update)
+	itemGroup.DELETE("/discount_requirement", lc.Delete)
 }

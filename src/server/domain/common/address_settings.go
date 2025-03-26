@@ -26,7 +26,7 @@ type AddressSettings struct {
 	CountyEnabled             bool                `bson:"county_enabled"`
 	CountyRequired            bool                `bson:"county_required"`
 	CountryEnabled            bool                `bson:"country_enabled"`
-	DefaultCountryID          *primitive.ObjectID `bson:"default_country_id,omitempty"`
+	DefaultCountryID          *primitive.ObjectID `bson:"default_country_id"`
 	StateProvinceEnabled      bool                `bson:"state_province_enabled"`
 	PhoneEnabled              bool                `bson:"phone_enabled"`
 	PhoneRequired             bool                `bson:"phone_required"`

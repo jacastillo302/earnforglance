@@ -20,11 +20,11 @@ func ActivityLogRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Datab
 		ActivityLogUsecase: usecase.NewActivityLogUsecase(ur, timeout),
 		Env:                env,
 	}
-
-	group.GET("/activity_logs", lc.Fetch)
-	group.GET("/activity_log", lc.FetchByID)
-	group.POST("/activity_log", lc.Create)
-	group.POST("/activity_logs", lc.CreateMany)
-	group.PUT("/activity_log", lc.Update)
-	group.DELETE("/activity_log", lc.Delete)
+	itemGroup := group.Group("/api/v1/logging")
+	itemGroup.GET("/activity_logs", lc.Fetch)
+	itemGroup.GET("/activity_log", lc.FetchByID)
+	itemGroup.POST("/activity_log", lc.Create)
+	itemGroup.POST("/activity_logs", lc.CreateMany)
+	itemGroup.PUT("/activity_log", lc.Update)
+	itemGroup.DELETE("/activity_log", lc.Delete)
 }

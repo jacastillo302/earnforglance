@@ -33,8 +33,8 @@ type Topic struct {
 	MetaTitle                 string             `bson:"meta_title"`
 	SubjectToAcl              bool               `bson:"subject_to_acl"`
 	LimitedToStores           bool               `bson:"limited_to_stores"`
-	AvailableStartDateTimeUtc *time.Time         `bson:"available_start_date_time_utc,omitempty"`
-	AvailableEndDateTimeUtc   *time.Time         `bson:"available_end_date_time_utc,omitempty"`
+	AvailableStartDateTimeUtc *time.Time         `bson:"available_start_date_time_utc"`
+	AvailableEndDateTimeUtc   *time.Time         `bson:"available_end_date_time_utc"`
 }
 
 // TopicRepository defines the repository interface for Topic

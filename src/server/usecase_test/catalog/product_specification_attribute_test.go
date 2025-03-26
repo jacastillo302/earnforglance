@@ -30,7 +30,7 @@ func TestProductSpecificationAttributeUsecase_FetchByID(t *testing.T) {
 		AllowFiltering:                 false,
 		ShowOnProductPage:              false,
 		DisplayOrder:                   2,
-		AttributeType:                  3,
+		AttributeType:                  0,
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, productSpecificationAttributeID).Return(updatedProductSpecificationAttribute, nil)
@@ -55,7 +55,7 @@ func TestProductSpecificationAttributeUsecase_Create(t *testing.T) {
 		AllowFiltering:                 true,
 		ShowOnProductPage:              true,
 		DisplayOrder:                   1,
-		AttributeType:                  2,
+		AttributeType:                  20,
 	}
 
 	mockRepo.On("Create", mock.Anything, newProductSpecificationAttribute).Return(nil)
@@ -80,7 +80,7 @@ func TestProductSpecificationAttributeUsecase_Update(t *testing.T) {
 		AllowFiltering:                 false,
 		ShowOnProductPage:              false,
 		DisplayOrder:                   2,
-		AttributeType:                  3,
+		AttributeType:                  30,
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedProductSpecificationAttribute).Return(nil)
@@ -121,7 +121,7 @@ func TestProductSpecificationAttributeUsecase_Fetch(t *testing.T) {
 			AllowFiltering:                 true,
 			ShowOnProductPage:              true,
 			DisplayOrder:                   1,
-			AttributeType:                  2,
+			AttributeType:                  10,
 		},
 		{
 			ID:                             primitive.NewObjectID(),
@@ -132,7 +132,7 @@ func TestProductSpecificationAttributeUsecase_Fetch(t *testing.T) {
 			AllowFiltering:                 false,
 			ShowOnProductPage:              false,
 			DisplayOrder:                   2,
-			AttributeType:                  3,
+			AttributeType:                  0,
 		},
 	}
 

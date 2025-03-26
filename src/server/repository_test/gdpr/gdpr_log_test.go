@@ -36,7 +36,7 @@ var mockItemGdprLog = &domain.GdprLog{
 	RequestTypeID:  2,
 	RequestDetails: "Request to export personal data.",
 	CreatedOnUtc:   time.Now().AddDate(0, 0, -7), // Created 7 days ago
-	RequestType:    3,
+
 }
 
 func TestGdprLogRepository_FetchByID(t *testing.T) {

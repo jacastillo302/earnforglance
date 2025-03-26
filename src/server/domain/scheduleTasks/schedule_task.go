@@ -17,12 +17,12 @@ type ScheduleTask struct {
 	Name           string             `bson:"name"`
 	Seconds        int                `bson:"seconds"`
 	Type           string             `bson:"type"`
-	LastEnabledUtc *time.Time         `bson:"last_enabled_utc,omitempty"`
+	LastEnabledUtc *time.Time         `bson:"last_enabled_utc"`
 	Enabled        bool               `bson:"enabled"`
 	StopOnError    bool               `bson:"stop_on_error"`
-	LastStartUtc   *time.Time         `bson:"last_start_utc,omitempty"`
-	LastEndUtc     *time.Time         `bson:"last_end_utc,omitempty"`
-	LastSuccessUtc *time.Time         `bson:"last_success_utc,omitempty"`
+	LastStartUtc   *time.Time         `bson:"last_start_utc"`
+	LastEndUtc     *time.Time         `bson:"last_end_utc"`
+	LastSuccessUtc *time.Time         `bson:"last_success_utc"`
 }
 
 // ScheduleTaskRepository defines the repository interface for ScheduleTask

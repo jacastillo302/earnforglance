@@ -21,10 +21,11 @@ func ForumGroupRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Databa
 		Env:               env,
 	}
 
-	group.GET("/forum_groups", lc.Fetch)
-	group.GET("/forum_group", lc.FetchByID)
-	group.POST("/forum_group", lc.Create)
-	group.POST("/forum_groups", lc.CreateMany)
-	group.PUT("/forum_group", lc.Update)
-	group.DELETE("/forum_group", lc.Delete)
+	itemGroup := group.Group("/api/v1/forums")
+	itemGroup.GET("/forum_groups", lc.Fetch)
+	itemGroup.GET("/forum_group", lc.FetchByID)
+	itemGroup.POST("/forum_group", lc.Create)
+	itemGroup.POST("/forum_groups", lc.CreateMany)
+	itemGroup.PUT("/forum_group", lc.Update)
+	itemGroup.DELETE("/forum_group", lc.Delete)
 }

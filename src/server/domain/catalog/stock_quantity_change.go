@@ -13,14 +13,14 @@ const (
 
 // StockQuantityChange represents a stock quantity change entry
 type StockQuantityChange struct {
-	ID                 primitive.ObjectID `bson:"_id,omitempty"`
-	QuantityAdjustment int                `bson:"quantity_adjustment"`
-	StockQuantity      int                `bson:"stock_quantity"`
-	Message            string             `bson:"message"`
-	CreatedOnUtc       time.Time          `bson:"created_on_utc"`
-	ProductID          primitive.ObjectID `bson:"product_id"`
-	CombinationID      *int               `bson:"combination_id,omitempty"`
-	WarehouseID        *int               `bson:"warehouse_id,omitempty"`
+	ID                 primitive.ObjectID  `bson:"_id,omitempty"`
+	QuantityAdjustment int                 `bson:"quantity_adjustment"`
+	StockQuantity      int                 `bson:"stock_quantity"`
+	Message            string              `bson:"message"`
+	CreatedOnUtc       time.Time           `bson:"created_on_utc"`
+	ProductID          primitive.ObjectID  `bson:"product_id"`
+	CombinationID      *primitive.ObjectID `bson:"combination_id"`
+	WarehouseID        primitive.ObjectID  `bson:"warehouse_id"`
 }
 
 type StockQuantityChangeRepository interface {

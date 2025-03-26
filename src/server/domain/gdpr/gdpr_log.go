@@ -20,7 +20,6 @@ type GdprLog struct {
 	RequestTypeID  int                `bson:"request_type_id"`
 	RequestDetails string             `bson:"request_details"`
 	CreatedOnUtc   time.Time          `bson:"created_on_utc"`
-	RequestType    GdprRequestType    `bson:"request_type"`
 }
 
 // GdprLogRepository interface

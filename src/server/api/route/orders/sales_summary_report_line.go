@@ -20,11 +20,11 @@ func SalesSummaryReportLineRouter(env *bootstrap.Env, timeout time.Duration, db 
 		SalesSummaryReportLineUsecase: usecase.NewSalesSummaryReportLineUsecase(ur, timeout),
 		Env:                           env,
 	}
-
-	group.GET("/sales_summary_report_lines", lc.Fetch)
-	group.GET("/sales_summary_report_line", lc.FetchByID)
-	group.POST("/sales_summary_report_line", lc.Create)
-	group.POST("/sales_summary_report_lines", lc.CreateMany)
-	group.PUT("/sales_summary_report_line", lc.Update)
-	group.DELETE("/sales_summary_report_line", lc.Delete)
+	itemGroup := group.Group("/api/v1/orders")
+	itemGroup.GET("/sales_summary_report_lines", lc.Fetch)
+	itemGroup.GET("/sales_summary_report_line", lc.FetchByID)
+	itemGroup.POST("/sales_summary_report_line", lc.Create)
+	itemGroup.POST("/sales_summary_report_lines", lc.CreateMany)
+	itemGroup.PUT("/sales_summary_report_line", lc.Update)
+	itemGroup.DELETE("/sales_summary_report_line", lc.Delete)
 }

@@ -41,7 +41,6 @@ var mockItem = &domain.ProductAttributeMapping{
 	ValidationFileMaximumSize:       new(int),
 	DefaultValue:                    "Medium",
 	ConditionAttributeXml:           "<attributes><size>medium</size></attributes>",
-	AttributeControlType:            6,
 }
 
 func TestProductAttributeMappingRepository_FetchByID(t *testing.T) {

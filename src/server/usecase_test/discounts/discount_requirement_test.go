@@ -27,11 +27,9 @@ func TestDiscountRequirementUsecase_FetchByID(t *testing.T) {
 		ParentID:                          new(primitive.ObjectID),
 		InteractionTypeID:                 new(int),
 		IsGroup:                           true,
-		InteractionType:                   new(domain.RequirementGroupInteractionType),
 	}
 	*updatedDiscountRequirement.ParentID = primitive.NewObjectID()
 	*updatedDiscountRequirement.InteractionTypeID = 1
-	*updatedDiscountRequirement.InteractionType = 3
 
 	mockRepo.On("FetchByID", mock.Anything, discountRequirementID).Return(updatedDiscountRequirement, nil)
 
@@ -53,7 +51,6 @@ func TestDiscountRequirementUsecase_Create(t *testing.T) {
 		ParentID:                          nil,
 		InteractionTypeID:                 nil,
 		IsGroup:                           false,
-		InteractionType:                   nil,
 	}
 
 	mockRepo.On("Create", mock.Anything, newDiscount).Return(nil)
@@ -76,11 +73,9 @@ func TestDiscountRequirementUsecase_Update(t *testing.T) {
 		ParentID:                          new(primitive.ObjectID),
 		InteractionTypeID:                 new(int),
 		IsGroup:                           true,
-		InteractionType:                   new(domain.RequirementGroupInteractionType),
 	}
 	*updatedDiscountRequirement.ParentID = primitive.NewObjectID()
 	*updatedDiscountRequirement.InteractionTypeID = 1
-	*updatedDiscountRequirement.InteractionType = 3
 
 	mockRepo.On("Update", mock.Anything, updatedDiscountRequirement).Return(nil)
 
@@ -118,7 +113,6 @@ func TestDiscountRequirementUsecase_Fetch(t *testing.T) {
 			ParentID:                          nil,
 			InteractionTypeID:                 nil,
 			IsGroup:                           false,
-			InteractionType:                   nil,
 		},
 		{
 			ID:                                primitive.NewObjectID(),
@@ -127,12 +121,10 @@ func TestDiscountRequirementUsecase_Fetch(t *testing.T) {
 			ParentID:                          new(primitive.ObjectID),
 			InteractionTypeID:                 new(int),
 			IsGroup:                           true,
-			InteractionType:                   new(domain.RequirementGroupInteractionType),
 		},
 	}
 	*fetchedDiscountRequirements[1].ParentID = primitive.NewObjectID()
 	*fetchedDiscountRequirements[1].InteractionTypeID = 1
-	*fetchedDiscountRequirements[1].InteractionType = 2
 
 	mockRepo.On("Fetch", mock.Anything).Return(fetchedDiscountRequirements, nil)
 

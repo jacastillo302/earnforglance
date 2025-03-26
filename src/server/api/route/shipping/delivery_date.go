@@ -20,11 +20,11 @@ func DeliveryDateRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Data
 		DeliveryDateUsecase: usecase.NewDeliveryDateUsecase(ur, timeout),
 		Env:                 env,
 	}
-
-	group.GET("/delivery_dates", lc.Fetch)
-	group.GET("/delivery_date", lc.FetchByID)
-	group.POST("/delivery_date", lc.Create)
-	group.POST("/delivery_dates", lc.CreateMany)
-	group.PUT("/delivery_date", lc.Update)
-	group.DELETE("/delivery_date", lc.Delete)
+	itemGroup := group.Group("/api/v1/shipping")
+	itemGroup.GET("/delivery_dates", lc.Fetch)
+	itemGroup.GET("/delivery_date", lc.FetchByID)
+	itemGroup.POST("/delivery_date", lc.Create)
+	itemGroup.POST("/delivery_dates", lc.CreateMany)
+	itemGroup.PUT("/delivery_date", lc.Update)
+	itemGroup.DELETE("/delivery_date", lc.Delete)
 }

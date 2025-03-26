@@ -20,10 +20,12 @@ func CatalogSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.D
 		Env:                    env,
 	}
 
-	group.GET("/catalog_settings", lc.Fetch)
-	group.GET("/catalog_setting", lc.FetchByID)
-	group.POST("/catalog_setting", lc.Create)
-	group.POST("/catalog_settings", lc.CreateMany)
-	group.PUT("/catalog_setting", lc.Update)
-	group.DELETE("/catalog_setting", lc.Delete)
+	itemGroup := group.Group("/api/v1/catalog")
+
+	itemGroup.GET("/catalog_settings", lc.Fetch)
+	itemGroup.GET("/catalog_setting", lc.FetchByID)
+	itemGroup.POST("/catalog_setting", lc.Create)
+	itemGroup.POST("/catalog_settings", lc.CreateMany)
+	itemGroup.PUT("/catalog_setting", lc.Update)
+	itemGroup.DELETE("/catalog_setting", lc.Delete)
 }

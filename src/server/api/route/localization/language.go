@@ -20,11 +20,11 @@ func LanguageRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database
 		LanguageUsecase: usecase.NewLanguageUsecase(ur, timeout),
 		Env:             env,
 	}
-
-	group.GET("/languages", lc.Fetch)
-	group.GET("/language", lc.FetchByID)
-	group.POST("/language", lc.Create)
-	group.POST("/languages", lc.CreateMany)
-	group.PUT("/language", lc.Update)
-	group.DELETE("/language", lc.Delete)
+	itemGroup := group.Group("/api/v1/localization")
+	itemGroup.GET("/languages", lc.Fetch)
+	itemGroup.GET("/language", lc.FetchByID)
+	itemGroup.POST("/language", lc.Create)
+	itemGroup.POST("/languages", lc.CreateMany)
+	itemGroup.PUT("/language", lc.Update)
+	itemGroup.DELETE("/language", lc.Delete)
 }

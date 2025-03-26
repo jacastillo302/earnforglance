@@ -21,7 +21,7 @@ type Customer struct {
 	FirstName                   string              `bson:"first_name"`
 	LastName                    string              `bson:"last_name"`
 	Gender                      string              `bson:"gender"`
-	DateOfBirth                 *time.Time          `bson:"date_of_birth,omitempty"`
+	DateOfBirth                 *time.Time          `bson:"date_of_birth"`
 	Company                     string              `bson:"company"`
 	StreetAddress               string              `bson:"street_address"`
 	StreetAddress2              string              `bson:"street_address2"`
@@ -36,9 +36,9 @@ type Customer struct {
 	VatNumberStatusID           primitive.ObjectID  `bson:"vat_number_status_id"`
 	TimeZoneID                  string              `bson:"time_zone_id"`
 	CustomCustomerAttributesXML string              `bson:"custom_customer_attributes_xml"`
-	CurrencyID                  *primitive.ObjectID `bson:"currency_id,omitempty"`
-	LanguageID                  *primitive.ObjectID `bson:"language_id,omitempty"`
-	TaxDisplayTypeID            *primitive.ObjectID `bson:"tax_display_type_id,omitempty"`
+	CurrencyID                  *primitive.ObjectID `bson:"currency_id"`
+	LanguageID                  *primitive.ObjectID `bson:"language_id"`
+	TaxDisplayTypeID            *int                `bson:"tax_display_type_id"`
 	EmailToRevalidate           string              `bson:"email_to_revalidate"`
 	AdminComment                string              `bson:"admin_comment"`
 	IsTaxExempt                 bool                `bson:"is_tax_exempt"`
@@ -47,21 +47,21 @@ type Customer struct {
 	HasShoppingCartItems        bool                `bson:"has_shopping_cart_items"`
 	RequireReLogin              bool                `bson:"require_re_login"`
 	FailedLoginAttempts         int                 `bson:"failed_login_attempts"`
-	CannotLoginUntilDateUtc     *time.Time          `bson:"cannot_login_until_date_utc,omitempty"`
+	CannotLoginUntilDateUtc     *time.Time          `bson:"cannot_login_until_date_utc"`
 	Active                      bool                `bson:"active"`
 	Deleted                     bool                `bson:"deleted"`
 	IsSystemAccount             bool                `bson:"is_system_account"`
 	SystemName                  string              `bson:"system_name"`
 	LastIpAddress               string              `bson:"last_ip_address"`
 	CreatedOnUtc                time.Time           `bson:"created_on_utc"`
-	LastLoginDateUtc            *time.Time          `bson:"last_login_date_utc,omitempty"`
+	LastLoginDateUtc            *time.Time          `bson:"last_login_date_utc"`
 	LastActivityDateUtc         time.Time           `bson:"last_activity_date_utc"`
 	RegisteredInStoreID         int                 `bson:"registered_in_store_id"`
-	BillingAddressID            *primitive.ObjectID `bson:"billing_address_id,omitempty"`
+	BillingAddressID            *primitive.ObjectID `bson:"billing_address_id"`
 	MustChangePassword          bool                `bson:"must_change_password"`
-	ShippingAddressID           *primitive.ObjectID `bson:"shipping_address_id,omitempty"`
+	ShippingAddressID           *primitive.ObjectID `bson:"shipping_address_id"`
 	VatNumberStatus             int                 `bson:"vat_number_status"`
-	TaxDisplayType              *int                `bson:"tax_display_type,omitempty"`
+	TaxDisplayType              *int                `bson:"tax_display_type"`
 }
 
 type CustomerRepository interface {

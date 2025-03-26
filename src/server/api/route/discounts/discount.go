@@ -21,10 +21,11 @@ func DiscountRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database
 		Env:             env,
 	}
 
-	group.GET("/discounts", lc.Fetch)
-	group.GET("/discount", lc.FetchByID)
-	group.POST("/discount", lc.Create)
-	group.POST("/discounts", lc.CreateMany)
-	group.PUT("/discount", lc.Update)
-	group.DELETE("/discount", lc.Delete)
+	itemGroup := group.Group("/api/v1/discounts")
+	itemGroup.GET("/discounts", lc.Fetch)
+	itemGroup.GET("/discount", lc.FetchByID)
+	itemGroup.POST("/discount", lc.Create)
+	itemGroup.POST("/discounts", lc.CreateMany)
+	itemGroup.PUT("/discount", lc.Update)
+	itemGroup.DELETE("/discount", lc.Delete)
 }

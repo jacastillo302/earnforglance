@@ -21,10 +21,11 @@ func ProductAttributeRouter(env *bootstrap.Env, timeout time.Duration, db mongo.
 		Env:                     env,
 	}
 
-	group.GET("/product_attributes", lc.Fetch)
-	group.GET("/product_attribute", lc.FetchByID)
-	group.POST("/product_attribute", lc.Create)
-	group.POST("/product_attributes", lc.CreateMany)
-	group.PUT("/product_attribute", lc.Update)
-	group.DELETE("/product_attribute", lc.Delete)
+	itemGroup := group.Group("/api/v1/catalog")
+	itemGroup.GET("/product_attributes", lc.Fetch)
+	itemGroup.GET("/product_attribute", lc.FetchByID)
+	itemGroup.POST("/product_attribute", lc.Create)
+	itemGroup.POST("/product_attributes", lc.CreateMany)
+	itemGroup.PUT("/product_attribute", lc.Update)
+	itemGroup.DELETE("/product_attribute", lc.Delete)
 }

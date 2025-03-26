@@ -22,7 +22,6 @@ func TestPickupPointUsecase_FetchByID(t *testing.T) {
 
 	updatedPickupPoint := domain.PickupPoint{
 		ID:                 primitive.NewObjectID(), // Existing ID of the record to update
-		PickupPointID:      "PP002",
 		Name:               "Downtown Pickup",
 		Description:        "Pickup point located downtown.",
 		ProviderSystemName: "UPS",
@@ -57,7 +56,6 @@ func TestPickupPointUsecase_Create(t *testing.T) {
 	usecase := test.NewPickupPointUsecase(mockRepo, timeout)
 
 	newPickupPoint := &domain.PickupPoint{
-		PickupPointID:      "PP001",
 		Name:               "Main Street Pickup",
 		Description:        "Pickup point located on Main Street.",
 		ProviderSystemName: "FedEx",
@@ -93,7 +91,6 @@ func TestPickupPointUsecase_Update(t *testing.T) {
 
 	updatedPickupPoint := &domain.PickupPoint{
 		ID:                 primitive.NewObjectID(), // Existing ID of the record to update
-		PickupPointID:      "PP002",
 		Name:               "Downtown Pickup",
 		Description:        "Pickup point located downtown.",
 		ProviderSystemName: "UPS",
@@ -145,7 +142,6 @@ func TestPickupPointUsecase_Fetch(t *testing.T) {
 	fetchedPickupPoints := []domain.PickupPoint{
 		{
 			ID:                 primitive.NewObjectID(),
-			PickupPointID:      "PP001",
 			Name:               "Main Street Pickup",
 			Description:        "Pickup point located on Main Street.",
 			ProviderSystemName: "FedEx",
@@ -164,7 +160,6 @@ func TestPickupPointUsecase_Fetch(t *testing.T) {
 		},
 		{
 			ID:                 primitive.NewObjectID(),
-			PickupPointID:      "PP002",
 			Name:               "Downtown Pickup",
 			Description:        "Pickup point located downtown.",
 			ProviderSystemName: "UPS",

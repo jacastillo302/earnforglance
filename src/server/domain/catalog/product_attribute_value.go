@@ -27,8 +27,7 @@ type ProductAttributeValue struct {
 	Quantity                     int                 `bson:"quantity"`
 	IsPreSelected                bool                `bson:"is_pre_selected"`
 	DisplayOrder                 int                 `bson:"display_order"`
-	AttributeValueType           AttributeValueType  `bson:"attribute_value_type"`
-	PictureID                    *primitive.ObjectID `bson:"picture_id,omitempty"` // Deprecated field
+	PictureID                    *primitive.ObjectID `bson:"picture_id"` // Deprecated field
 }
 
 type ProductAttributeValueRepository interface {

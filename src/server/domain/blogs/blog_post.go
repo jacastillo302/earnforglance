@@ -21,8 +21,8 @@ type BlogPost struct {
 	BodyOverview     string             `bson:"body_overview"`
 	AllowComments    bool               `bson:"allow_comments"`
 	Tags             string             `bson:"tags"`
-	StartDateUtc     *time.Time         `bson:"start_date_utc,omitempty"`
-	EndDateUtc       *time.Time         `bson:"end_date_utc,omitempty"`
+	StartDateUtc     *time.Time         `bson:"start_date_utc"`
+	EndDateUtc       *time.Time         `bson:"end_date_utc"`
 	MetaKeywords     string             `bson:"meta_keywords"`
 	MetaDescription  string             `bson:"meta_description"`
 	MetaTitle        string             `bson:"meta_title"`

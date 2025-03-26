@@ -20,11 +20,12 @@ func ForumSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Dat
 		ForumSettingsUsecase: usecase.NewForumSettingsUsecase(ur, timeout),
 		Env:                  env,
 	}
+	itemGroup := group.Group("/api/v1/forums")
 
-	group.GET("/forum_settings", lc.Fetch)
-	group.GET("/forum_setting", lc.FetchByID)
-	group.POST("/forum_setting", lc.Create)
-	group.POST("/forum_settings", lc.CreateMany)
-	group.PUT("/forum_setting", lc.Update)
-	group.DELETE("forum_setting", lc.Delete)
+	itemGroup.GET("/forum_settings", lc.Fetch)
+	itemGroup.GET("/forum_setting", lc.FetchByID)
+	itemGroup.POST("/forum_setting", lc.Create)
+	itemGroup.POST("/forum_settings", lc.CreateMany)
+	itemGroup.PUT("/forum_setting", lc.Update)
+	itemGroup.DELETE("forum_setting", lc.Delete)
 }

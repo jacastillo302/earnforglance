@@ -21,10 +21,11 @@ func SpecificationAttributeRouter(env *bootstrap.Env, timeout time.Duration, db 
 		Env:                           env,
 	}
 
-	group.GET("/specification_attributes", lc.Fetch)
-	group.GET("/specification_attribute", lc.FetchByID)
-	group.POST("/specification_attribute", lc.Create)
-	group.POST("/specification_attributes", lc.CreateMany)
-	group.PUT("/specification_attribute", lc.Update)
-	group.DELETE("/specification_attribute", lc.Delete)
+	itemGroup := group.Group("/api/v1/catalog")
+	itemGroup.GET("/specification_attributes", lc.Fetch)
+	itemGroup.GET("/specification_attribute", lc.FetchByID)
+	itemGroup.POST("/specification_attribute", lc.Create)
+	itemGroup.POST("/specification_attributes", lc.CreateMany)
+	itemGroup.PUT("/specification_attribute", lc.Update)
+	itemGroup.DELETE("/specification_attribute", lc.Delete)
 }

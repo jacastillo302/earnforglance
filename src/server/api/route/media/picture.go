@@ -20,11 +20,11 @@ func PictureRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database,
 		PictureUsecase: usecase.NewPictureUsecase(ur, timeout),
 		Env:            env,
 	}
-
-	group.GET("/pictures", lc.Fetch)
-	group.GET("/picture", lc.FetchByID)
-	group.POST("/picture", lc.Create)
-	group.POST("/pictures", lc.CreateMany)
-	group.PUT("/picture", lc.Update)
-	group.DELETE("/picture", lc.Delete)
+	itemGroup := group.Group("/api/v1/media")
+	itemGroup.GET("/pictures", lc.Fetch)
+	itemGroup.GET("/picture", lc.FetchByID)
+	itemGroup.POST("/picture", lc.Create)
+	itemGroup.POST("/pictures", lc.CreateMany)
+	itemGroup.PUT("/picture", lc.Update)
+	itemGroup.DELETE("/picture", lc.Delete)
 }

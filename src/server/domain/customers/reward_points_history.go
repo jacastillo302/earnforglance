@@ -18,13 +18,13 @@ type RewardPointsHistory struct {
 	CustomerID    primitive.ObjectID `bson:"customer_id"`
 	StoreID       primitive.ObjectID `bson:"store_id"`
 	Points        int                `bson:"points"`
-	PointsBalance *int               `bson:"points_balance,omitempty"`
+	PointsBalance *int               `bson:"points_balance"`
 	UsedAmount    float64            `bson:"used_amount"`
 	Message       string             `bson:"message"`
 	CreatedOnUtc  time.Time          `bson:"created_on_utc"`
-	EndDateUtc    *time.Time         `bson:"end_date_utc,omitempty"`
-	ValidPoints   *int               `bson:"valid_points,omitempty"`
-	UsedWithOrder *uuid.UUID         `bson:"used_with_order,omitempty"`
+	EndDateUtc    *time.Time         `bson:"end_date_utc"`
+	ValidPoints   *int               `bson:"valid_points"`
+	UsedWithOrder *uuid.UUID         `bson:"used_with_order"`
 }
 
 type RewardPointsHistoryRepository interface {

@@ -21,10 +21,11 @@ func MeasureWeightRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Dat
 		Env:                  env,
 	}
 
-	group.GET("/measure_weights", lc.Fetch)
-	group.GET("/measure_weight", lc.FetchByID)
-	group.POST("/measure_weight", lc.Create)
-	group.POST("/measure_weights", lc.CreateMany)
-	group.PUT("/measure_weight", lc.Update)
-	group.DELETE("/measure_weight", lc.Delete)
+	itemGroup := group.Group("/api/v1/directory")
+	itemGroup.GET("/measure_weights", lc.Fetch)
+	itemGroup.GET("/measure_weight", lc.FetchByID)
+	itemGroup.POST("/measure_weight", lc.Create)
+	itemGroup.POST("/measure_weights", lc.CreateMany)
+	itemGroup.PUT("/measure_weight", lc.Update)
+	itemGroup.DELETE("/measure_weight", lc.Delete)
 }

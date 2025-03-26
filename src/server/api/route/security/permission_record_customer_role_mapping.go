@@ -20,11 +20,11 @@ func PermissionRecordCustomerRoleMappingRouter(env *bootstrap.Env, timeout time.
 		PermissionRecordCustomerRoleMappingUsecase: usecase.NewPermissionRecordCustomerRoleMappingUsecase(ur, timeout),
 		Env: env,
 	}
-
-	group.GET("/permission_record_customer_role_mappings", lc.Fetch)
-	group.GET("/permission_record_customer_role_mapping", lc.FetchByID)
-	group.POST("/permission_record_customer_role_mapping", lc.Create)
-	group.POST("/permission_record_customer_role_mappings", lc.CreateMany)
-	group.PUT("/permission_record_customer_role_mapping", lc.Update)
-	group.DELETE("/permission_record_customer_role_mapping", lc.Delete)
+	itemGroup := group.Group("/api/v1/security")
+	itemGroup.GET("/permission_record_customer_role_mappings", lc.Fetch)
+	itemGroup.GET("/permission_record_customer_role_mapping", lc.FetchByID)
+	itemGroup.POST("/permission_record_customer_role_mapping", lc.Create)
+	itemGroup.POST("/permission_record_customer_role_mappings", lc.CreateMany)
+	itemGroup.PUT("/permission_record_customer_role_mapping", lc.Update)
+	itemGroup.DELETE("/permission_record_customer_role_mapping", lc.Delete)
 }

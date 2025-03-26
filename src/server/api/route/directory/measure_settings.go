@@ -21,10 +21,11 @@ func MeasureSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.D
 		Env:                    env,
 	}
 
-	group.GET("/measure_settings", lc.Fetch)
-	group.GET("/measure_setting", lc.FetchByID)
-	group.POST("/measure_setting", lc.Create)
-	group.POST("/measure_settings", lc.CreateMany)
-	group.PUT("/measure_setting", lc.Update)
-	group.DELETE("/measure_setting", lc.Delete)
+	itemGroup := group.Group("/api/v1/directory")
+	itemGroup.GET("/measure_settings", lc.Fetch)
+	itemGroup.GET("/measure_setting", lc.FetchByID)
+	itemGroup.POST("/measure_setting", lc.Create)
+	itemGroup.POST("/measure_settings", lc.CreateMany)
+	itemGroup.PUT("/measure_setting", lc.Update)
+	itemGroup.DELETE("/measure_setting", lc.Delete)
 }

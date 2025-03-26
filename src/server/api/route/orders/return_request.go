@@ -20,11 +20,11 @@ func ReturnRequestRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Dat
 		ReturnRequestUsecase: usecase.NewReturnRequestUsecase(ur, timeout),
 		Env:                  env,
 	}
-
-	group.GET("/return_requests", lc.Fetch)
-	group.GET("/return_request", lc.FetchByID)
-	group.POST("/return_request", lc.Create)
-	group.POST("/return_requests", lc.CreateMany)
-	group.PUT("/return_request", lc.Update)
-	group.DELETE("/return_request", lc.Delete)
+	itemGroup := group.Group("/api/v1/orders")
+	itemGroup.GET("/return_requests", lc.Fetch)
+	itemGroup.GET("/return_request", lc.FetchByID)
+	itemGroup.POST("/return_request", lc.Create)
+	itemGroup.POST("/return_requests", lc.CreateMany)
+	itemGroup.PUT("/return_request", lc.Update)
+	itemGroup.DELETE("/return_request", lc.Delete)
 }

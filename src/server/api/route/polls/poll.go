@@ -20,11 +20,11 @@ func PollRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database, gr
 		PollUsecase: usecase.NewPollUsecase(ur, timeout),
 		Env:         env,
 	}
-
-	group.GET("/polls", lc.Fetch)
-	group.GET("/poll", lc.FetchByID)
-	group.POST("/poll", lc.Create)
-	group.POST("/polls", lc.CreateMany)
-	group.PUT("/poll", lc.Update)
-	group.DELETE("/poll", lc.Delete)
+	itemGroup := group.Group("/api/v1/polls")
+	itemGroup.GET("/polls", lc.Fetch)
+	itemGroup.GET("/poll", lc.FetchByID)
+	itemGroup.POST("/poll", lc.Create)
+	itemGroup.POST("/polls", lc.CreateMany)
+	itemGroup.PUT("/poll", lc.Update)
+	itemGroup.DELETE("/poll", lc.Delete)
 }

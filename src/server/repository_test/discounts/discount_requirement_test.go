@@ -34,7 +34,6 @@ var mockItemDiscountRequirement = &domain.DiscountRequirement{
 	ParentID:                          new(primitive.ObjectID),
 	InteractionTypeID:                 new(int),
 	IsGroup:                           true,
-	InteractionType:                   new(domain.RequirementGroupInteractionType),
 }
 
 func TestDiscountRequirementRepository_FetchByID(t *testing.T) {

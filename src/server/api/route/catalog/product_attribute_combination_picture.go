@@ -21,10 +21,11 @@ func ProductAttributeCombinationPictureRouter(env *bootstrap.Env, timeout time.D
 		Env: env,
 	}
 
-	group.GET("/product_attribute_combination_pictures", lc.Fetch)
-	group.GET("/product_attribute_combination_picture", lc.FetchByID)
-	group.POST("/product_attribute_combination_picture", lc.Create)
-	group.POST("/product_attribute_combination_pictures", lc.CreateMany)
-	group.PUT("/product_attribute_combination_picture", lc.Update)
-	group.DELETE("/product_attribute_combination_picture", lc.Delete)
+	itemGroup := group.Group("/api/v1/catalog")
+	itemGroup.GET("/product_attribute_combination_pictures", lc.Fetch)
+	itemGroup.GET("/product_attribute_combination_picture", lc.FetchByID)
+	itemGroup.POST("/product_attribute_combination_picture", lc.Create)
+	itemGroup.POST("/product_attribute_combination_pictures", lc.CreateMany)
+	itemGroup.PUT("/product_attribute_combination_picture", lc.Update)
+	itemGroup.DELETE("/product_attribute_combination_picture", lc.Delete)
 }

@@ -36,7 +36,7 @@ var mockItemProductSpecificationAttribute = &domain.ProductSpecificationAttribut
 	AllowFiltering:                 false,
 	ShowOnProductPage:              false,
 	DisplayOrder:                   2,
-	AttributeType:                  3,
+	AttributeType:                  10,
 }
 
 func TestProductSpecificationAttributeRepository_FetchByID(t *testing.T) {

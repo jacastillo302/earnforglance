@@ -20,11 +20,11 @@ func StoreRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database, g
 		StoreUsecase: usecase.NewStoreUsecase(ur, timeout),
 		Env:          env,
 	}
-
-	group.GET("/stores", lc.Fetch)
-	group.GET("/store", lc.FetchByID)
-	group.POST("/store", lc.Create)
-	group.POST("/stores", lc.CreateMany)
-	group.PUT("/store", lc.Update)
-	group.DELETE("/store", lc.Delete)
+	itemGroup := group.Group("/api/v1/stores")
+	itemGroup.GET("/stores", lc.Fetch)
+	itemGroup.GET("/store", lc.FetchByID)
+	itemGroup.POST("/store", lc.Create)
+	itemGroup.POST("/stores", lc.CreateMany)
+	itemGroup.PUT("/store", lc.Update)
+	itemGroup.DELETE("/store", lc.Delete)
 }

@@ -21,10 +21,11 @@ func ProductTagRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Databa
 		Env:               env,
 	}
 
-	group.GET("/product_tags", lc.Fetch)
-	group.GET("/product_tag", lc.FetchByID)
-	group.POST("/product_tag", lc.Create)
-	group.POST("/product_tags", lc.CreateMany)
-	group.PUT("/product_tag", lc.Update)
-	group.DELETE("/product_tag", lc.Delete)
+	itemGroup := group.Group("/api/v1/catalog")
+	itemGroup.GET("/product_tags", lc.Fetch)
+	itemGroup.GET("/product_tag", lc.FetchByID)
+	itemGroup.POST("/product_tag", lc.Create)
+	itemGroup.POST("/product_tags", lc.CreateMany)
+	itemGroup.PUT("/product_tag", lc.Update)
+	itemGroup.DELETE("/product_tag", lc.Delete)
 }

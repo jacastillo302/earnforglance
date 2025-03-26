@@ -36,7 +36,6 @@ func TestProductAttributeValueUsecase_FetchByID(t *testing.T) {
 		Quantity:                     50,
 		IsPreSelected:                false,
 		DisplayOrder:                 2,
-		AttributeValueType:           5,
 		PictureID:                    nil, // Deprecated field
 	}
 
@@ -69,7 +68,6 @@ func TestProductAttributeValueUsecase_Create(t *testing.T) {
 		Quantity:                     100,
 		IsPreSelected:                true,
 		DisplayOrder:                 1,
-		AttributeValueType:           7,
 		PictureID:                    nil, // Deprecated field
 	}
 
@@ -102,7 +100,6 @@ func TestProductAttributeValueUsecase_Update(t *testing.T) {
 		Quantity:                     50,
 		IsPreSelected:                false,
 		DisplayOrder:                 2,
-		AttributeValueType:           5,
 		PictureID:                    nil, // Deprecated field
 	}
 
@@ -151,7 +148,6 @@ func TestProductAttributeValueUsecase_Fetch(t *testing.T) {
 			Quantity:                     200,
 			IsPreSelected:                true,
 			DisplayOrder:                 1,
-			AttributeValueType:           3,
 			PictureID:                    nil, // Deprecated field
 		},
 		{
@@ -170,7 +166,6 @@ func TestProductAttributeValueUsecase_Fetch(t *testing.T) {
 			Quantity:                     30,
 			IsPreSelected:                false,
 			DisplayOrder:                 2,
-			AttributeValueType:           2,
 			PictureID:                    nil, // Deprecated field
 		},
 	}

@@ -15,7 +15,7 @@ type SpecificationAttribute struct {
 	ID                            primitive.ObjectID `bson:"_id,omitempty"`
 	Name                          string             `bson:"name"`
 	DisplayOrder                  int                `bson:"display_order"`
-	SpecificationAttributeGroupID *int               `bson:"specification_attribute_group_id,omitempty"`
+	SpecificationAttributeGroupID *int               `bson:"specification_attribute_group_id"`
 }
 
 type SpecificationAttributeRepository interface {

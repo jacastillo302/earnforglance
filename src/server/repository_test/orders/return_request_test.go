@@ -41,10 +41,9 @@ var mockItemReturnRequest = &domain.ReturnRequest{
 	CustomerComments:      "Received the wrong item.",
 	UploadedFileID:        primitive.NewObjectID(),
 	StaffNotes:            "Process refund immediately.",
-	ReturnRequestStatusID: primitive.NewObjectID(),
+	ReturnRequestStatusID: 0,
 	CreatedOnUtc:          time.Now().AddDate(0, 0, -7), // Created 7 days ago
 	UpdatedOnUtc:          time.Now(),
-	ReturnRequestStatus:   3,
 }
 
 func TestReturnRequestRepository_FetchByID(t *testing.T) {

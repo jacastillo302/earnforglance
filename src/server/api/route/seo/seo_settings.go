@@ -20,11 +20,11 @@ func SeoSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Datab
 		SeoSettingsUsecase: usecase.NewSeoSettingsUsecase(ur, timeout),
 		Env:                env,
 	}
-
-	group.GET("/seo_settings", lc.Fetch)
-	group.GET("/seo_setting", lc.FetchByID)
-	group.POST("/seo_setting", lc.Create)
-	group.POST("/seo_settings", lc.CreateMany)
-	group.PUT("/seo_setting", lc.Update)
-	group.DELETE("/seo_setting", lc.Delete)
+	itemGroup := group.Group("/api/v1/seo")
+	itemGroup.GET("/seo_settings", lc.Fetch)
+	itemGroup.GET("/seo_setting", lc.FetchByID)
+	itemGroup.POST("/seo_setting", lc.Create)
+	itemGroup.POST("/seo_settings", lc.CreateMany)
+	itemGroup.PUT("/seo_setting", lc.Update)
+	itemGroup.DELETE("/seo_setting", lc.Delete)
 }

@@ -21,11 +21,11 @@ func TestGiftCardUsageHistoryUsecase_FetchByID(t *testing.T) {
 	giftCardUsageHistoryID := primitive.NewObjectID().Hex()
 
 	updatedGiftCardUsageHistory := domain.GiftCardUsageHistory{
-		ID:              primitive.NewObjectID(), // Existing ID of the record to update
-		GiftCardID:      primitive.NewObjectID(),
-		UsedWithOrderID: primitive.NewObjectID(),
-		UsedValue:       75.00,
-		CreatedOnUtc:    time.Now().AddDate(0, 0, -7), // Created 7 days ago
+		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		GiftCardID:   primitive.NewObjectID(),
+		OrderID:      primitive.NewObjectID(),
+		UsedValue:    75.00,
+		CreatedOnUtc: time.Now().AddDate(0, 0, -7), // Created 7 days ago
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, giftCardUsageHistoryID).Return(updatedGiftCardUsageHistory, nil)
@@ -43,10 +43,10 @@ func TestGiftCardUsageHistoryUsecase_Create(t *testing.T) {
 	usecase := test.NewGiftCardUsageHistoryUsecase(mockRepo, timeout)
 
 	newGiftCardUsageHistory := &domain.GiftCardUsageHistory{
-		GiftCardID:      primitive.NewObjectID(),
-		UsedWithOrderID: primitive.NewObjectID(),
-		UsedValue:       50.00,
-		CreatedOnUtc:    time.Now(),
+		GiftCardID:   primitive.NewObjectID(),
+		OrderID:      primitive.NewObjectID(),
+		UsedValue:    50.00,
+		CreatedOnUtc: time.Now(),
 	}
 
 	mockRepo.On("Create", mock.Anything, newGiftCardUsageHistory).Return(nil)
@@ -63,11 +63,11 @@ func TestGiftCardUsageHistoryUsecase_Update(t *testing.T) {
 	usecase := test.NewGiftCardUsageHistoryUsecase(mockRepo, timeout)
 
 	updatedGiftCardUsageHistory := &domain.GiftCardUsageHistory{
-		ID:              primitive.NewObjectID(), // Existing ID of the record to update
-		GiftCardID:      primitive.NewObjectID(),
-		UsedWithOrderID: primitive.NewObjectID(),
-		UsedValue:       75.00,
-		CreatedOnUtc:    time.Now().AddDate(0, 0, -7), // Created 7 days ago
+		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		GiftCardID:   primitive.NewObjectID(),
+		OrderID:      primitive.NewObjectID(),
+		UsedValue:    75.00,
+		CreatedOnUtc: time.Now().AddDate(0, 0, -7), // Created 7 days ago
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedGiftCardUsageHistory).Return(nil)
@@ -100,18 +100,18 @@ func TestGiftCardUsageHistoryUsecase_Fetch(t *testing.T) {
 
 	fetchedGiftCardUsageHistories := []domain.GiftCardUsageHistory{
 		{
-			ID:              primitive.NewObjectID(),
-			GiftCardID:      primitive.NewObjectID(),
-			UsedWithOrderID: primitive.NewObjectID(),
-			UsedValue:       50.00,
-			CreatedOnUtc:    time.Now().AddDate(0, 0, -10), // Created 10 days ago
+			ID:           primitive.NewObjectID(),
+			GiftCardID:   primitive.NewObjectID(),
+			OrderID:      primitive.NewObjectID(),
+			UsedValue:    50.00,
+			CreatedOnUtc: time.Now().AddDate(0, 0, -10), // Created 10 days ago
 		},
 		{
-			ID:              primitive.NewObjectID(),
-			GiftCardID:      primitive.NewObjectID(),
-			UsedWithOrderID: primitive.NewObjectID(),
-			UsedValue:       100.00,
-			CreatedOnUtc:    time.Now().AddDate(0, 0, -5), // Created 5 days ago
+			ID:           primitive.NewObjectID(),
+			GiftCardID:   primitive.NewObjectID(),
+			OrderID:      primitive.NewObjectID(),
+			UsedValue:    100.00,
+			CreatedOnUtc: time.Now().AddDate(0, 0, -5), // Created 5 days ago
 		},
 	}
 

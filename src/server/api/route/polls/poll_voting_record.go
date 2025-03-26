@@ -21,10 +21,12 @@ func PollVotingRecordRouter(env *bootstrap.Env, timeout time.Duration, db mongo.
 		Env:                     env,
 	}
 
-	group.GET("/poll_voting_records", lc.Fetch)
-	group.GET("/poll_voting_record", lc.FetchByID)
-	group.POST("/poll_voting_record", lc.Create)
-	group.POST("/poll_voting_records", lc.CreateMany)
-	group.PUT("/poll_voting_record", lc.Update)
-	group.DELETE("/poll_voting_record", lc.Delete)
+	itemGroup := group.Group("/api/v1/polls")
+
+	itemGroup.GET("/poll_voting_records", lc.Fetch)
+	itemGroup.GET("/poll_voting_record", lc.FetchByID)
+	itemGroup.POST("/poll_voting_record", lc.Create)
+	itemGroup.POST("/poll_voting_records", lc.CreateMany)
+	itemGroup.PUT("/poll_voting_record", lc.Update)
+	itemGroup.DELETE("/poll_voting_record", lc.Delete)
 }

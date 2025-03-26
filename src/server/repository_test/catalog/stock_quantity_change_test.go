@@ -35,8 +35,8 @@ var mockItemStockQuantityChange = &domain.StockQuantityChange{
 	Message:            "Stock reduced due to sale.",
 	CreatedOnUtc:       time.Now(),
 	ProductID:          primitive.NewObjectID(),
-	CombinationID:      new(int),
-	WarehouseID:        new(int),
+	CombinationID:      nil,
+	WarehouseID:        primitive.NewObjectID(),
 }
 
 func TestStockQuantityChangeRepository_FetchByID(t *testing.T) {

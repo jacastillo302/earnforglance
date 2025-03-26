@@ -21,10 +21,11 @@ func RewardPointsHistoryRouter(env *bootstrap.Env, timeout time.Duration, db mon
 		Env:                        env,
 	}
 
-	group.GET("/reward_points_histories", lc.Fetch)
-	group.GET("/reward_points_history", lc.FetchByID)
-	group.POST("/reward_points_history", lc.Create)
-	group.POST("/reward_points_histories", lc.CreateMany)
-	group.PUT("/reward_points_history", lc.Update)
-	group.DELETE("/reward_points_history", lc.Delete)
+	itemGroup := group.Group("/api/v1/customers")
+	itemGroup.GET("/reward_points_histories", lc.Fetch)
+	itemGroup.GET("/reward_points_history", lc.FetchByID)
+	itemGroup.POST("/reward_points_history", lc.Create)
+	itemGroup.POST("/reward_points_histories", lc.CreateMany)
+	itemGroup.PUT("/reward_points_history", lc.Update)
+	itemGroup.DELETE("/reward_points_history", lc.Delete)
 }

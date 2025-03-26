@@ -20,11 +20,11 @@ func EmailAccountSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mo
 		EmailAccountSettingsUsecase: usecase.NewEmailAccountSettingsUsecase(ur, timeout),
 		Env:                         env,
 	}
-
-	group.GET("/email_account_settings", lc.Fetch)
-	group.GET("/email_account_setting", lc.FetchByID)
-	group.POST("/email_account_setting", lc.Create)
-	group.POST("/email_account_settings", lc.CreateMany)
-	group.PUT("/email_account_setting", lc.Update)
-	group.DELETE("/email_account_setting", lc.Delete)
+	itemGroup := group.Group("/api/v1/messages")
+	itemGroup.GET("/email_account_settings", lc.Fetch)
+	itemGroup.GET("/email_account_setting", lc.FetchByID)
+	itemGroup.POST("/email_account_setting", lc.Create)
+	itemGroup.POST("/email_account_settings", lc.CreateMany)
+	itemGroup.PUT("/email_account_setting", lc.Update)
+	itemGroup.DELETE("/email_account_setting", lc.Delete)
 }

@@ -20,11 +20,11 @@ func PictureHashesRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Dat
 		PictureHashesUsecase: usecase.NewPictureHashesUsecase(ur, timeout),
 		Env:                  env,
 	}
-
-	group.GET("/picture_hashes", lc.Fetch)
-	group.GET("/picture_hash", lc.FetchByID)
-	group.POST("/picture_hash", lc.Create)
-	group.POST("/picture_hashes", lc.CreateMany)
-	group.PUT("/picture_hash", lc.Update)
-	group.DELETE("/picture_hash", lc.Delete)
+	itemGroup := group.Group("/api/v1/media")
+	itemGroup.GET("/picture_hashes", lc.Fetch)
+	itemGroup.GET("/picture_hash", lc.FetchByID)
+	itemGroup.POST("/picture_hash", lc.Create)
+	itemGroup.POST("/picture_hashes", lc.CreateMany)
+	itemGroup.PUT("/picture_hash", lc.Update)
+	itemGroup.DELETE("/picture_hash", lc.Delete)
 }

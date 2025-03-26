@@ -18,8 +18,8 @@ type Address struct {
 	LastName         string              `bson:"last_name"`
 	Email            string              `bson:"email"`
 	Company          string              `bson:"company"`
-	CountryID        *primitive.ObjectID `bson:"country_id,omitempty"`
-	StateProvinceID  *primitive.ObjectID `bson:"state_province_id,omitempty"`
+	CountryID        *primitive.ObjectID `bson:"country_id"`
+	StateProvinceID  *primitive.ObjectID `bson:"state_province_id"`
 	County           string              `bson:"county"`
 	City             string              `bson:"city"`
 	Address1         string              `bson:"address1"`

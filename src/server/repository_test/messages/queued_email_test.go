@@ -49,7 +49,6 @@ var mockItemQueuedEmail = &domain.QueuedEmail{
 	SentTries:             1,
 	SentOnUtc:             new(time.Time),
 	EmailAccountID:        primitive.NewObjectID(),
-	Priority:              3,
 }
 
 func TestQueuedEmailRepository_FetchByID(t *testing.T) {

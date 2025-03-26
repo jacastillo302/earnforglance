@@ -20,11 +20,11 @@ func PrivateMessageRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Da
 		PrivateMessageUsecase: usecase.NewPrivateMessageUsecase(ur, timeout),
 		Env:                   env,
 	}
-
-	group.GET("/private_messages", lc.Fetch)
-	group.GET("/private_message", lc.FetchByID)
-	group.POST("/private_message", lc.Create)
-	group.POST("/private_messages", lc.CreateMany)
-	group.PUT("/private_message", lc.Update)
-	group.DELETE("/private_message", lc.Delete)
+	itemGroup := group.Group("/api/v1/forums")
+	itemGroup.GET("/private_messages", lc.Fetch)
+	itemGroup.GET("/private_message", lc.FetchByID)
+	itemGroup.POST("/private_message", lc.Create)
+	itemGroup.POST("/private_messages", lc.CreateMany)
+	itemGroup.PUT("/private_message", lc.Update)
+	itemGroup.DELETE("/private_message", lc.Delete)
 }

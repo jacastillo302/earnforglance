@@ -33,10 +33,9 @@ func TestReturnRequestUsecase_FetchByID(t *testing.T) {
 		CustomerComments:      "Received the wrong item.",
 		UploadedFileID:        primitive.NewObjectID(),
 		StaffNotes:            "Process refund immediately.",
-		ReturnRequestStatusID: primitive.NewObjectID(),
+		ReturnRequestStatusID: 10,
 		CreatedOnUtc:          time.Now().AddDate(0, 0, -7), // Created 7 days ago
 		UpdatedOnUtc:          time.Now(),
-		ReturnRequestStatus:   3,
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, returnRequestID).Return(updatedReturnRequest, nil)
@@ -65,10 +64,9 @@ func TestReturnRequestUsecase_Create(t *testing.T) {
 		CustomerComments:      "The item is not working as expected.",
 		UploadedFileID:        primitive.NewObjectID(),
 		StaffNotes:            "Inspect the item upon return.",
-		ReturnRequestStatusID: primitive.NewObjectID(),
+		ReturnRequestStatusID: 40,
 		CreatedOnUtc:          time.Now(),
 		UpdatedOnUtc:          time.Now(),
-		ReturnRequestStatus:   2,
 	}
 
 	mockRepo.On("Create", mock.Anything, newReturnRequest).Return(nil)
@@ -97,10 +95,9 @@ func TestReturnRequestUsecase_Update(t *testing.T) {
 		CustomerComments:      "Received the wrong item.",
 		UploadedFileID:        primitive.NewObjectID(),
 		StaffNotes:            "Process refund immediately.",
-		ReturnRequestStatusID: primitive.NewObjectID(),
+		ReturnRequestStatusID: 30,
 		CreatedOnUtc:          time.Now().AddDate(0, 0, -7), // Created 7 days ago
 		UpdatedOnUtc:          time.Now(),
-		ReturnRequestStatus:   3,
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedReturnRequest).Return(nil)
@@ -145,10 +142,9 @@ func TestReturnRequestUsecase_Fetch(t *testing.T) {
 			CustomerComments:      "The item is not working as expected.",
 			UploadedFileID:        primitive.NewObjectID(),
 			StaffNotes:            "Inspect the item upon return.",
-			ReturnRequestStatusID: primitive.NewObjectID(),
+			ReturnRequestStatusID: 20,
 			CreatedOnUtc:          time.Now().AddDate(0, 0, -10), // Created 10 days ago
 			UpdatedOnUtc:          time.Now().AddDate(0, 0, -5),  // Updated 5 days ago
-			ReturnRequestStatus:   2,
 		},
 		{
 			ID:                    primitive.NewObjectID(),
@@ -163,10 +159,9 @@ func TestReturnRequestUsecase_Fetch(t *testing.T) {
 			CustomerComments:      "Received the wrong item.",
 			UploadedFileID:        primitive.NewObjectID(),
 			StaffNotes:            "Process refund immediately.",
-			ReturnRequestStatusID: primitive.NewObjectID(),
+			ReturnRequestStatusID: 10,
 			CreatedOnUtc:          time.Now().AddDate(0, 0, -7), // Created 7 days ago
 			UpdatedOnUtc:          time.Now(),
-			ReturnRequestStatus:   1,
 		},
 	}
 

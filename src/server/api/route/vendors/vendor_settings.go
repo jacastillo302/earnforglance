@@ -20,11 +20,11 @@ func VendorSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Da
 		VendorSettingsUsecase: usecase.NewVendorSettingsUsecase(ur, timeout),
 		Env:                   env,
 	}
-
-	group.GET("/vendor_settings", lc.Fetch)
-	group.GET("/vendor_setting", lc.FetchByID)
-	group.POST("/vendor_setting", lc.Create)
-	group.POST("/vendor_settings", lc.CreateMany)
-	group.PUT("/vendor_setting", lc.Update)
-	group.DELETE("vendor_setting", lc.Delete)
+	itemGroup := group.Group("/api/v1/vendors")
+	itemGroup.GET("/vendor_settings", lc.Fetch)
+	itemGroup.GET("/vendor_setting", lc.FetchByID)
+	itemGroup.POST("/vendor_setting", lc.Create)
+	itemGroup.POST("/vendor_settings", lc.CreateMany)
+	itemGroup.PUT("/vendor_setting", lc.Update)
+	itemGroup.DELETE("vendor_setting", lc.Delete)
 }

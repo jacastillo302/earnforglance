@@ -20,11 +20,11 @@ func CaptchaSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.D
 		CaptchaSettingsUsecase: usecase.NewCaptchaSettingsUsecase(ur, timeout),
 		Env:                    env,
 	}
-
-	group.GET("/captcha_settings", lc.Fetch)
-	group.GET("/captcha_setting", lc.FetchByID)
-	group.POST("/captcha_setting", lc.Create)
-	group.POST("/captcha_settings", lc.CreateMany)
-	group.PUT("/captcha_setting", lc.Update)
-	group.DELETE("/captcha_setting", lc.Delete)
+	itemGroup := group.Group("/api/v1/security")
+	itemGroup.GET("/captcha_settings", lc.Fetch)
+	itemGroup.GET("/captcha_setting", lc.FetchByID)
+	itemGroup.POST("/captcha_setting", lc.Create)
+	itemGroup.POST("/captcha_settings", lc.CreateMany)
+	itemGroup.PUT("/captcha_setting", lc.Update)
+	itemGroup.DELETE("/captcha_setting", lc.Delete)
 }

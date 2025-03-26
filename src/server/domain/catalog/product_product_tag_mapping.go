@@ -14,7 +14,7 @@ const (
 type ProductProductTagMapping struct {
 	ID           primitive.ObjectID `bson:"_id,omitempty"`
 	ProductID    primitive.ObjectID `bson:"product_id"`
-	ProductTagID int                `bson:"product_tag_id"`
+	ProductTagID primitive.ObjectID `bson:"product_tag_id"`
 }
 
 type ProductProductTagMappingRepository interface {

@@ -20,11 +20,11 @@ func RecurringPaymentHistoryRouter(env *bootstrap.Env, timeout time.Duration, db
 		RecurringPaymentHistoryUsecase: usecase.NewRecurringPaymentHistoryUsecase(ur, timeout),
 		Env:                            env,
 	}
-
-	group.GET("/recurring_payment_histories", lc.Fetch)
-	group.GET("/recurring_payment_history", lc.FetchByID)
-	group.POST("/recurring_payment_history", lc.Create)
-	group.POST("/recurring_payment_histories", lc.CreateMany)
-	group.PUT("/recurring_payment_history", lc.Update)
-	group.DELETE("/recurring_payment_history", lc.Delete)
+	itemGroup := group.Group("/api/v1/orders")
+	itemGroup.GET("/recurring_payment_histories", lc.Fetch)
+	itemGroup.GET("/recurring_payment_history", lc.FetchByID)
+	itemGroup.POST("/recurring_payment_history", lc.Create)
+	itemGroup.POST("/recurring_payment_histories", lc.CreateMany)
+	itemGroup.PUT("/recurring_payment_history", lc.Update)
+	itemGroup.DELETE("/recurring_payment_history", lc.Delete)
 }

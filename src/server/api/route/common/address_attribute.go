@@ -21,10 +21,11 @@ func AddressAttributeRouter(env *bootstrap.Env, timeout time.Duration, db mongo.
 		Env:                     env,
 	}
 
-	group.GET("/address_attributes", lc.Fetch)
-	group.GET("/address_attribute", lc.FetchByID)
-	group.POST("/address_attribute", lc.Create)
-	group.POST("/address_attributes", lc.CreateMany)
-	group.PUT("/address_attribute", lc.Update)
-	group.DELETE("/address_attribute", lc.Delete)
+	itemGroup := group.Group("/api/v1/common")
+	itemGroup.GET("/address_attributes", lc.Fetch)
+	itemGroup.GET("/address_attribute", lc.FetchByID)
+	itemGroup.POST("/address_attribute", lc.Create)
+	itemGroup.POST("/address_attributes", lc.CreateMany)
+	itemGroup.PUT("/address_attribute", lc.Update)
+	itemGroup.DELETE("/address_attribute", lc.Delete)
 }

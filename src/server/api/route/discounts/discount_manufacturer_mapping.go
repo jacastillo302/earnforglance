@@ -21,10 +21,11 @@ func DiscountManufacturerMappingRouter(env *bootstrap.Env, timeout time.Duration
 		Env:                                env,
 	}
 
-	group.GET("/discount_manufacturer_mappings", lc.Fetch)
-	group.GET("/discount_manufacturer_mapping", lc.FetchByID)
-	group.POST("/discount_manufacturer_mapping", lc.Create)
-	group.POST("/discount_manufacturer_mappings", lc.CreateMany)
-	group.PUT("/discount_manufacturer_mapping", lc.Update)
-	group.DELETE("/discount_manufacturer_mapping", lc.Delete)
+	itemGroup := group.Group("/api/v1/discounts")
+	itemGroup.GET("/discount_manufacturer_mappings", lc.Fetch)
+	itemGroup.GET("/discount_manufacturer_mapping", lc.FetchByID)
+	itemGroup.POST("/discount_manufacturer_mapping", lc.Create)
+	itemGroup.POST("/discount_manufacturer_mappings", lc.CreateMany)
+	itemGroup.PUT("/discount_manufacturer_mapping", lc.Update)
+	itemGroup.DELETE("/discount_manufacturer_mapping", lc.Delete)
 }

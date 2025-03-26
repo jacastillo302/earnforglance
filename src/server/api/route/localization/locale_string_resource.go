@@ -20,11 +20,11 @@ func LocaleStringResourceRouter(env *bootstrap.Env, timeout time.Duration, db mo
 		LocaleStringResourceUsecase: usecase.NewLocaleStringResourceUsecase(ur, timeout),
 		Env:                         env,
 	}
-
-	group.GET("/locale_string_resources", lc.Fetch)
-	group.GET("/locale_string_resource", lc.FetchByID)
-	group.POST("/locale_string_resource", lc.Create)
-	group.POST("/locale_string_resources", lc.CreateMany)
-	group.PUT("/locale_string_resource", lc.Update)
-	group.DELETE("/locale_string_resource", lc.Delete)
+	itemGroup := group.Group("/api/v1/localization")
+	itemGroup.GET("/locale_string_resources", lc.Fetch)
+	itemGroup.GET("/locale_string_resource", lc.FetchByID)
+	itemGroup.POST("/locale_string_resource", lc.Create)
+	itemGroup.POST("/locale_string_resources", lc.CreateMany)
+	itemGroup.PUT("/locale_string_resource", lc.Update)
+	itemGroup.DELETE("/locale_string_resource", lc.Delete)
 }

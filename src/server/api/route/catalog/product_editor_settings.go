@@ -21,10 +21,11 @@ func ProductEditorSettingsRouter(env *bootstrap.Env, timeout time.Duration, db m
 		Env:                          env,
 	}
 
-	group.GET("/product_editor_settings", lc.Fetch)
-	group.GET("/product_editor_setting", lc.FetchByID)
-	group.POST("/product_editor_setting", lc.Create)
-	group.POST("/product_editor_settings", lc.CreateMany)
-	group.PUT("/product_editor_setting", lc.Update)
-	group.DELETE("/product_editor_setting", lc.Delete)
+	itemGroup := group.Group("/api/v1/catalog")
+	itemGroup.GET("/product_editor_settings", lc.Fetch)
+	itemGroup.GET("/product_editor_setting", lc.FetchByID)
+	itemGroup.POST("/product_editor_setting", lc.Create)
+	itemGroup.POST("/product_editor_settings", lc.CreateMany)
+	itemGroup.PUT("/product_editor_setting", lc.Update)
+	itemGroup.DELETE("/product_editor_setting", lc.Delete)
 }

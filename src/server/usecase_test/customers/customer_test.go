@@ -46,7 +46,7 @@ func TestCustomerUsecase_FetchByID(t *testing.T) {
 		CustomCustomerAttributesXML: "<attributes><attribute>updated</attribute></attributes>",
 		CurrencyID:                  new(primitive.ObjectID),
 		LanguageID:                  new(primitive.ObjectID),
-		TaxDisplayTypeID:            new(primitive.ObjectID),
+		TaxDisplayTypeID:            new(int),
 		EmailToRevalidate:           "janedoe@newdomain.com",
 		AdminComment:                "Updated customer",
 		IsTaxExempt:                 true,
@@ -174,7 +174,7 @@ func TestCustomerUsecase_Update(t *testing.T) {
 		CustomCustomerAttributesXML: "<attributes><attribute>updated</attribute></attributes>",
 		CurrencyID:                  new(primitive.ObjectID),
 		LanguageID:                  new(primitive.ObjectID),
-		TaxDisplayTypeID:            new(primitive.ObjectID),
+		TaxDisplayTypeID:            new(int),
 		EmailToRevalidate:           "janedoe@newdomain.com",
 		AdminComment:                "Updated customer",
 		IsTaxExempt:                 true,
@@ -204,7 +204,7 @@ func TestCustomerUsecase_Update(t *testing.T) {
 	*updatedCustomer.LastLoginDateUtc = time.Now().AddDate(0, 0, -1)       // 1 day ago
 	*updatedCustomer.CurrencyID = primitive.NewObjectID()
 	*updatedCustomer.LanguageID = primitive.NewObjectID()
-	*updatedCustomer.TaxDisplayTypeID = primitive.NewObjectID()
+	*updatedCustomer.TaxDisplayTypeID = 10
 	*updatedCustomer.BillingAddressID = primitive.NewObjectID()
 	*updatedCustomer.ShippingAddressID = primitive.NewObjectID()
 	*updatedCustomer.TaxDisplayType = 1
@@ -313,7 +313,7 @@ func TestCustomerUsecase_Fetch(t *testing.T) {
 			CustomCustomerAttributesXML: "<attributes><attribute>updated</attribute></attributes>",
 			CurrencyID:                  new(primitive.ObjectID),
 			LanguageID:                  new(primitive.ObjectID),
-			TaxDisplayTypeID:            new(primitive.ObjectID),
+			TaxDisplayTypeID:            new(int),
 			EmailToRevalidate:           "janedoe@newdomain.com",
 			AdminComment:                "Updated customer",
 			IsTaxExempt:                 true,
@@ -344,7 +344,6 @@ func TestCustomerUsecase_Fetch(t *testing.T) {
 	*fetchedCustomers[1].LastLoginDateUtc = time.Now().AddDate(0, 0, -1)       // 1 day ago
 	*fetchedCustomers[1].CurrencyID = primitive.NewObjectID()
 	*fetchedCustomers[1].LanguageID = primitive.NewObjectID()
-	*fetchedCustomers[1].TaxDisplayTypeID = primitive.NewObjectID()
 	*fetchedCustomers[1].BillingAddressID = primitive.NewObjectID()
 	*fetchedCustomers[1].ShippingAddressID = primitive.NewObjectID()
 	*fetchedCustomers[1].TaxDisplayType = 1

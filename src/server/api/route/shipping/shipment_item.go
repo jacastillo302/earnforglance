@@ -20,11 +20,11 @@ func ShipmentItemRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Data
 		ShipmentItemUsecase: usecase.NewShipmentItemUsecase(ur, timeout),
 		Env:                 env,
 	}
-
-	group.GET("/shipment_items", lc.Fetch)
-	group.GET("/shipment_item", lc.FetchByID)
-	group.POST("/shipment_item", lc.Create)
-	group.POST("/shipment_items", lc.CreateMany)
-	group.PUT("/shipment_item", lc.Update)
-	group.DELETE("/shipment_item", lc.Delete)
+	itemGroup := group.Group("/api/v1/shipping")
+	itemGroup.GET("/shipment_items", lc.Fetch)
+	itemGroup.GET("/shipment_item", lc.FetchByID)
+	itemGroup.POST("/shipment_item", lc.Create)
+	itemGroup.POST("/shipment_items", lc.CreateMany)
+	itemGroup.PUT("/shipment_item", lc.Update)
+	itemGroup.DELETE("/shipment_item", lc.Delete)
 }

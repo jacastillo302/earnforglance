@@ -20,11 +20,11 @@ func MessageTemplatesSettingsRouter(env *bootstrap.Env, timeout time.Duration, d
 		MessageTemplatesSettingsUsecase: usecase.NewMessageTemplatesSettingsUsecase(ur, timeout),
 		Env:                             env,
 	}
-
-	group.GET("/message_templates_settings", lc.Fetch)
-	group.GET("/message_templates_setting", lc.FetchByID)
-	group.POST("/message_templates_setting", lc.Create)
-	group.POST("/message_templates_settings", lc.CreateMany)
-	group.PUT("/message_templates_setting", lc.Update)
-	group.DELETE("message_templates_setting", lc.Delete)
+	itemGroup := group.Group("/api/v1/messages")
+	itemGroup.GET("/message_templates_settings", lc.Fetch)
+	itemGroup.GET("/message_templates_setting", lc.FetchByID)
+	itemGroup.POST("/message_templates_setting", lc.Create)
+	itemGroup.POST("/message_templates_settings", lc.CreateMany)
+	itemGroup.PUT("/message_templates_setting", lc.Update)
+	itemGroup.DELETE("message_templates_setting", lc.Delete)
 }

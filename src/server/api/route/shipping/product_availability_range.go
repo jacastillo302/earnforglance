@@ -20,11 +20,11 @@ func ProductAvailabilityRangeRouter(env *bootstrap.Env, timeout time.Duration, d
 		ProductAvailabilityRangeUsecase: usecase.NewProductAvailabilityRangeUsecase(ur, timeout),
 		Env:                             env,
 	}
-
-	group.GET("/product_availability_ranges", lc.Fetch)
-	group.GET("/product_availability_range", lc.FetchByID)
-	group.POST("/product_availability_range", lc.Create)
-	group.POST("/product_availability_ranges", lc.CreateMany)
-	group.PUT("/product_availability_range", lc.Update)
-	group.DELETE("/product_availability_range", lc.Delete)
+	itemGroup := group.Group("/api/v1/shipping")
+	itemGroup.GET("/product_availability_ranges", lc.Fetch)
+	itemGroup.GET("/product_availability_range", lc.FetchByID)
+	itemGroup.POST("/product_availability_range", lc.Create)
+	itemGroup.POST("/product_availability_ranges", lc.CreateMany)
+	itemGroup.PUT("/product_availability_range", lc.Update)
+	itemGroup.DELETE("/product_availability_range", lc.Delete)
 }

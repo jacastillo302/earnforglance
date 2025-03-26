@@ -21,10 +21,12 @@ func BackInStockSubscriptionRouter(env *bootstrap.Env, timeout time.Duration, db
 		Env:                            env,
 	}
 
-	group.GET("/back_in_stock_subscriptions", lc.Fetch)
-	group.GET("/back_in_stock_subscription", lc.FetchByID)
-	group.POST("/back_in_stock_subscription", lc.Create)
-	group.POST("/back_in_stock_subscriptions", lc.CreateMany)
-	group.PUT("/back_in_stock_subscription", lc.Update)
-	group.DELETE("/back_in_stock_subscription", lc.Delete)
+	itemGroup := group.Group("/api/v1/catalog")
+
+	itemGroup.GET("/back_in_stock_subscriptions", lc.Fetch)
+	itemGroup.GET("/back_in_stock_subscription", lc.FetchByID)
+	itemGroup.POST("/back_in_stock_subscription", lc.Create)
+	itemGroup.POST("/back_in_stock_subscriptions", lc.CreateMany)
+	itemGroup.PUT("/back_in_stock_subscription", lc.Update)
+	itemGroup.DELETE("/back_in_stock_subscription", lc.Delete)
 }

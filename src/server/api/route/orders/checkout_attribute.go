@@ -20,11 +20,11 @@ func CheckoutAttributeRouter(env *bootstrap.Env, timeout time.Duration, db mongo
 		CheckoutAttributeUsecase: usecase.NewCheckoutAttributeUsecase(ur, timeout),
 		Env:                      env,
 	}
-
-	group.GET("/checkout_attributes", lc.Fetch)
-	group.GET("/checkout_attribute", lc.FetchByID)
-	group.POST("/checkout_attribute", lc.Create)
-	group.POST("/checkout_attributes", lc.CreateMany)
-	group.PUT("/checkout_attribute", lc.Update)
-	group.DELETE("/checkout_attribute", lc.Delete)
+	itemGroup := group.Group("/api/v1/orders")
+	itemGroup.GET("/checkout_attributes", lc.Fetch)
+	itemGroup.GET("/checkout_attribute", lc.FetchByID)
+	itemGroup.POST("/checkout_attribute", lc.Create)
+	itemGroup.POST("/checkout_attributes", lc.CreateMany)
+	itemGroup.PUT("/checkout_attribute", lc.Update)
+	itemGroup.DELETE("/checkout_attribute", lc.Delete)
 }

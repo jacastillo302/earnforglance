@@ -20,11 +20,11 @@ func GiftCardUsageHistoryRouter(env *bootstrap.Env, timeout time.Duration, db mo
 		GiftCardUsageHistoryUsecase: usecase.NewGiftCardUsageHistoryUsecase(ur, timeout),
 		Env:                         env,
 	}
-
-	group.GET("/gift_card_usage_histories", lc.Fetch)
-	group.GET("/gift_card_usage_history", lc.FetchByID)
-	group.POST("/gift_card_usage_history", lc.Create)
-	group.POST("/gift_card_usage_histories", lc.CreateMany)
-	group.PUT("/gift_card_usage_history", lc.Update)
-	group.DELETE("/gift_card_usage_history", lc.Delete)
+	itemGroup := group.Group("/api/v1/orders")
+	itemGroup.GET("/gift_card_usage_histories", lc.Fetch)
+	itemGroup.GET("/gift_card_usage_history", lc.FetchByID)
+	itemGroup.POST("/gift_card_usage_history", lc.Create)
+	itemGroup.POST("/gift_card_usage_histories", lc.CreateMany)
+	itemGroup.PUT("/gift_card_usage_history", lc.Update)
+	itemGroup.DELETE("/gift_card_usage_history", lc.Delete)
 }

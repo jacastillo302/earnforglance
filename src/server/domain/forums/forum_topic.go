@@ -22,7 +22,7 @@ type ForumTopic struct {
 	Views              int                `bson:"views"`
 	LastPostID         primitive.ObjectID `bson:"last_post_id"`
 	LastPostCustomerID primitive.ObjectID `bson:"last_post_customer_id"`
-	LastPostTime       *time.Time         `bson:"last_post_time,omitempty"`
+	LastPostTime       *time.Time         `bson:"last_post_time"`
 	CreatedOnUtc       time.Time          `bson:"created_on_utc"`
 	UpdatedOnUtc       time.Time          `bson:"updated_on_utc"`
 	ForumTopicType     ForumTopicType     `bson:"forum_topic_type"`

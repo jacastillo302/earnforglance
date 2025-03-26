@@ -20,11 +20,11 @@ func BestSellersReportLineRouter(env *bootstrap.Env, timeout time.Duration, db m
 		BestSellersReportLineUsecase: usecase.NewBestSellersReportLineUsecase(ur, timeout),
 		Env:                          env,
 	}
-
-	group.GET("/best_sellers_report_lines", lc.Fetch)
-	group.GET("/best_sellers_report_line", lc.FetchByID)
-	group.POST("/best_sellers_report_line", lc.Create)
-	group.POST("/best_sellers_report_lines", lc.CreateMany)
-	group.PUT("/best_sellers_report_line", lc.Update)
-	group.DELETE("/best_sellers_report_line", lc.Delete)
+	itemGroup := group.Group("/api/v1/orders")
+	itemGroup.GET("/best_sellers_report_lines", lc.Fetch)
+	itemGroup.GET("/best_sellers_report_line", lc.FetchByID)
+	itemGroup.POST("/best_sellers_report_line", lc.Create)
+	itemGroup.POST("/best_sellers_report_lines", lc.CreateMany)
+	itemGroup.PUT("/best_sellers_report_line", lc.Update)
+	itemGroup.DELETE("/best_sellers_report_line", lc.Delete)
 }

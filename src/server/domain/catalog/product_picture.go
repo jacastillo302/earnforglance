@@ -14,7 +14,7 @@ const (
 type ProductPicture struct {
 	ID           primitive.ObjectID `bson:"_id,omitempty"`
 	ProductID    primitive.ObjectID `bson:"product_id"`
-	PictureID    int                `bson:"picture_id"`
+	PictureID    primitive.ObjectID `bson:"picture_id"`
 	DisplayOrder int                `bson:"display_order"`
 }
 

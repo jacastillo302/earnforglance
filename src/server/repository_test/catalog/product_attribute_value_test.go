@@ -43,7 +43,6 @@ var mockItemProductAttributeValue = &domain.ProductAttributeValue{
 	Quantity:                     50,
 	IsPreSelected:                false,
 	DisplayOrder:                 2,
-	AttributeValueType:           5,
 	PictureID:                    nil, // Deprecated field
 }
 

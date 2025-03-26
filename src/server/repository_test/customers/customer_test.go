@@ -54,7 +54,7 @@ var mockItemCustomer = &domain.Customer{
 	CustomCustomerAttributesXML: "<attributes><attribute>updated</attribute></attributes>",
 	CurrencyID:                  new(primitive.ObjectID),
 	LanguageID:                  new(primitive.ObjectID),
-	TaxDisplayTypeID:            new(primitive.ObjectID),
+	TaxDisplayTypeID:            new(int),
 	EmailToRevalidate:           "janedoe@newdomain.com",
 	AdminComment:                "Updated customer",
 	IsTaxExempt:                 true,

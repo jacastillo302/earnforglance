@@ -21,10 +21,11 @@ func WidgetSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Da
 		Env:                   env,
 	}
 
-	group.GET("/widget_settings", lc.Fetch)
-	group.GET("/widget_setting", lc.FetchByID)
-	group.POST("/widget_setting", lc.Create)
-	group.POST("/widget_settings", lc.CreateMany)
-	group.PUT("/widget_setting", lc.Update)
-	group.DELETE("/widget_setting", lc.Delete)
+	itemGroup := group.Group("/api/v1/cms")
+	itemGroup.GET("/widget_settings", lc.Fetch)
+	itemGroup.GET("/widget_setting", lc.FetchByID)
+	itemGroup.POST("/widget_setting", lc.Create)
+	itemGroup.POST("/widget_settings", lc.CreateMany)
+	itemGroup.PUT("/widget_setting", lc.Update)
+	itemGroup.DELETE("/widget_setting", lc.Delete)
 }

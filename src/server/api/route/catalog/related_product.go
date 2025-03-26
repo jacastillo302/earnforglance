@@ -21,10 +21,11 @@ func RelatedProductRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Da
 		Env:                   env,
 	}
 
-	group.GET("/related_products", lc.Fetch)
-	group.GET("/related_product", lc.FetchByID)
-	group.POST("/related_product", lc.Create)
-	group.POST("/related_products", lc.CreateMany)
-	group.PUT("/related_product", lc.Update)
-	group.DELETE("/related_product", lc.Delete)
+	itemGroup := group.Group("/api/v1/catalog")
+	itemGroup.GET("/related_products", lc.Fetch)
+	itemGroup.GET("/related_product", lc.FetchByID)
+	itemGroup.POST("/related_product", lc.Create)
+	itemGroup.POST("/related_products", lc.CreateMany)
+	itemGroup.PUT("/related_product", lc.Update)
+	itemGroup.DELETE("/related_product", lc.Delete)
 }

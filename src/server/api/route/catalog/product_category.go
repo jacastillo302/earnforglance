@@ -21,9 +21,11 @@ func ProductCategoryRouter(env *bootstrap.Env, timeout time.Duration, db mongo.D
 		Env:                    env,
 	}
 
-	group.GET("/product_categories", lc.Fetch)
-	group.GET("/product_category", lc.FetchByID)
-	group.POST("/product_category", lc.Create)
-	group.POST("/product_categories", lc.CreateMany)
-	group.DELETE("/product_category", lc.Delete)
+	itemGroup := group.Group("/api/v1/catalog")
+	itemGroup.GET("/product_categories", lc.Fetch)
+	itemGroup.GET("/product_category", lc.FetchByID)
+	itemGroup.POST("/product_category", lc.Create)
+	itemGroup.POST("/product_categories", lc.CreateMany)
+	itemGroup.PUT("/product_category", lc.Update)
+	itemGroup.DELETE("/product_category", lc.Delete)
 }

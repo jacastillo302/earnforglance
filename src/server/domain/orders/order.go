@@ -19,8 +19,8 @@ type Order struct {
 	StoreID                                 primitive.ObjectID  `bson:"store_id"`
 	CustomerID                              primitive.ObjectID  `bson:"customer_id"`
 	BillingAddressID                        primitive.ObjectID  `bson:"billing_address_id"`
-	ShippingAddressID                       *primitive.ObjectID `bson:"shipping_address_id,omitempty"`
-	PickupAddressID                         *primitive.ObjectID `bson:"pickup_address_id,omitempty"`
+	ShippingAddressID                       *primitive.ObjectID `bson:"shipping_address_id"`
+	PickupAddressID                         *primitive.ObjectID `bson:"pickup_address_id"`
 	PickupInStore                           bool                `bson:"pickup_in_store"`
 	OrderStatusID                           int                 `bson:"order_status_id"`
 	ShippingStatusID                        int                 `bson:"shipping_status_id"`
@@ -43,7 +43,7 @@ type Order struct {
 	OrderDiscount                           float64             `bson:"order_discount"`
 	OrderTotal                              float64             `bson:"order_total"`
 	RefundedAmount                          float64             `bson:"refunded_amount"`
-	RewardPointsHistoryEntryID              *primitive.ObjectID `bson:"reward_points_history_entry_id,omitempty"`
+	RewardPointsHistoryEntryID              *primitive.ObjectID `bson:"reward_points_history_entry_id"`
 	CheckoutAttributeDescription            string              `bson:"checkout_attribute_description"`
 	CheckoutAttributesXml                   string              `bson:"checkout_attributes_xml"`
 	CustomerLanguageID                      primitive.ObjectID  `bson:"customer_language_id"`
@@ -63,14 +63,14 @@ type Order struct {
 	CaptureTransactionID                    string              `bson:"capture_transaction_id"`
 	CaptureTransactionResult                string              `bson:"capture_transaction_result"`
 	SubscriptionTransactionID               string              `bson:"subscription_transaction_id"`
-	PaidDateUtc                             *time.Time          `bson:"paid_date_utc,omitempty"`
+	PaidDateUtc                             *time.Time          `bson:"paid_date_utc"`
 	ShippingMethod                          string              `bson:"shipping_method"`
 	ShippingRateComputationMethodSystemName string              `bson:"shipping_rate_computation_method_system_name"`
 	CustomValuesXml                         string              `bson:"custom_values_xml"`
 	Deleted                                 bool                `bson:"deleted"`
 	CreatedOnUtc                            time.Time           `bson:"created_on_utc"`
 	CustomOrderNumber                       string              `bson:"custom_order_number"`
-	RedeemedRewardPointsEntryID             *primitive.ObjectID `bson:"redeemed_reward_points_entry_id,omitempty"`
+	RedeemedRewardPointsEntryID             *primitive.ObjectID `bson:"redeemed_reward_points_entry_id"`
 	OrderStatus                             OrderStatus         `bson:"order_status"`
 	PaymentStatus                           int                 `bson:"payment_status"`
 	ShippingStatus                          int                 `bson:"shipping_status"`

@@ -21,10 +21,11 @@ func PredefinedProductAttributeValueRouter(env *bootstrap.Env, timeout time.Dura
 		Env:                                    env,
 	}
 
-	group.GET("/predefined_product_attribute_values", lc.Fetch)
-	group.GET("/predefined_product_attribute_value", lc.FetchByID)
-	group.POST("/predefined_product_attribute_value", lc.Create)
-	group.POST("/predefined_product_attribute_values", lc.CreateMany)
-	group.PUT("/predefined_product_attribute_value", lc.Update)
-	group.DELETE("/predefined_product_attribute_value", lc.Delete)
+	itemGroup := group.Group("/api/v1/catalog")
+	itemGroup.GET("/predefined_product_attribute_values", lc.Fetch)
+	itemGroup.GET("/predefined_product_attribute_value", lc.FetchByID)
+	itemGroup.POST("/predefined_product_attribute_value", lc.Create)
+	itemGroup.POST("/predefined_product_attribute_values", lc.CreateMany)
+	itemGroup.PUT("/predefined_product_attribute_value", lc.Update)
+	itemGroup.DELETE("/predefined_product_attribute_value", lc.Delete)
 }

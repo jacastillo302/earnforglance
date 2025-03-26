@@ -42,7 +42,6 @@ func TestQueuedEmailUsecase_FetchByID(t *testing.T) {
 		SentTries:             1,
 		SentOnUtc:             new(time.Time),
 		EmailAccountID:        primitive.NewObjectID(),
-		Priority:              3,
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, queuedEmailID).Return(updatedQueuedEmail, nil)
@@ -79,7 +78,6 @@ func TestQueuedEmailUsecase_Create(t *testing.T) {
 		SentTries:             0,
 		SentOnUtc:             nil,
 		EmailAccountID:        primitive.NewObjectID(),
-		Priority:              1,
 	}
 
 	mockRepo.On("Create", mock.Anything, newQueuedEmail).Return(nil)
@@ -116,7 +114,6 @@ func TestQueuedEmailUsecase_Update(t *testing.T) {
 		SentTries:             1,
 		SentOnUtc:             new(time.Time),
 		EmailAccountID:        primitive.NewObjectID(),
-		Priority:              3,
 	}
 	*updatedQueuedEmail.DontSendBeforeDateUtc = time.Now().AddDate(0, 0, 1) // Don't send before tomorrow
 	*updatedQueuedEmail.SentOnUtc = time.Now()
@@ -170,7 +167,6 @@ func TestQueuedEmailUsecase_Fetch(t *testing.T) {
 			SentTries:             0,
 			SentOnUtc:             nil,
 			EmailAccountID:        primitive.NewObjectID(),
-			Priority:              2,
 		},
 		{
 			ID:                    primitive.NewObjectID(),
@@ -193,7 +189,6 @@ func TestQueuedEmailUsecase_Fetch(t *testing.T) {
 			SentTries:             1,
 			SentOnUtc:             new(time.Time),
 			EmailAccountID:        primitive.NewObjectID(),
-			Priority:              1,
 		},
 	}
 	*fetchedQueuedEmails[1].DontSendBeforeDateUtc = time.Now().AddDate(0, 0, 2) // Don't send before 2 days from now

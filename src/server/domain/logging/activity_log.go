@@ -15,7 +15,7 @@ const (
 type ActivityLog struct {
 	ID                primitive.ObjectID  `bson:"_id,omitempty"`
 	ActivityLogTypeID int                 `bson:"activity_log_type_id"`
-	EntityID          *primitive.ObjectID `bson:"entity_id,omitempty"`
+	EntityID          *primitive.ObjectID `bson:"entity_id"`
 	EntityName        string              `bson:"entity_name"`
 	CustomerID        primitive.ObjectID  `bson:"customer_id"`
 	Comment           string              `bson:"comment"`

@@ -20,11 +20,11 @@ func ProxySettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Dat
 		ProxySettingsUsecase: usecase.NewProxySettingsUsecase(ur, timeout),
 		Env:                  env,
 	}
-
-	group.GET("/proxy_settings", lc.Fetch)
-	group.GET("/proxy_setting", lc.FetchByID)
-	group.POST("/proxy_setting", lc.Create)
-	group.POST("/proxy_settings", lc.CreateMany)
-	group.PUT("/proxy_setting", lc.Update)
-	group.DELETE("/proxy_setting", lc.Delete)
+	itemGroup := group.Group("/api/v1/security")
+	itemGroup.GET("/proxy_settings", lc.Fetch)
+	itemGroup.GET("/proxy_setting", lc.FetchByID)
+	itemGroup.POST("/proxy_setting", lc.Create)
+	itemGroup.POST("/proxy_settings", lc.CreateMany)
+	itemGroup.PUT("/proxy_setting", lc.Update)
+	itemGroup.DELETE("/proxy_setting", lc.Delete)
 }

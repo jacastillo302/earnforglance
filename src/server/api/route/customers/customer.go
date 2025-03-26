@@ -21,10 +21,11 @@ func CustomerRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database
 		Env:             env,
 	}
 
-	group.GET("/customers", lc.Fetch)
-	group.GET("/customer", lc.FetchByID)
-	group.POST("/customer", lc.Create)
-	group.POST("/customers", lc.CreateMany)
-	group.PUT("/customer", lc.Update)
-	group.DELETE("/customer", lc.Delete)
+	itemGroup := group.Group("/api/v1/customers")
+	itemGroup.GET("/customers", lc.Fetch)
+	itemGroup.GET("/customer", lc.FetchByID)
+	itemGroup.POST("/customer", lc.Create)
+	itemGroup.POST("/customers", lc.CreateMany)
+	itemGroup.PUT("/customer", lc.Update)
+	itemGroup.DELETE("/customer", lc.Delete)
 }

@@ -23,7 +23,7 @@ func TestProductProductTagMappingUsecase_FetchByID(t *testing.T) {
 	updatedProductProductTagMapping := domain.ProductProductTagMapping{
 		ID:           primitive.NewObjectID(), // Existing ID of the record to update
 		ProductID:    primitive.NewObjectID(),
-		ProductTagID: 102,
+		ProductTagID: primitive.NewObjectID(),
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, productProductTagMappingID).Return(updatedProductProductTagMapping, nil)
@@ -42,7 +42,7 @@ func TestProductProductTagMappingUsecase_Create(t *testing.T) {
 
 	newProductProductTagMapping := &domain.ProductProductTagMapping{
 		ProductID:    primitive.NewObjectID(),
-		ProductTagID: 101,
+		ProductTagID: primitive.NewObjectID(),
 	}
 
 	mockRepo.On("Create", mock.Anything, newProductProductTagMapping).Return(nil)
@@ -61,7 +61,7 @@ func TestProductProductTagMappingUsecase_Update(t *testing.T) {
 	updatedProductProductTagMapping := &domain.ProductProductTagMapping{
 		ID:           primitive.NewObjectID(), // Existing ID of the record to update
 		ProductID:    primitive.NewObjectID(),
-		ProductTagID: 102,
+		ProductTagID: primitive.NewObjectID(),
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedProductProductTagMapping).Return(nil)
@@ -96,12 +96,12 @@ func TestProductProductTagMappingUsecase_Fetch(t *testing.T) {
 		{
 			ID:           primitive.NewObjectID(),
 			ProductID:    primitive.NewObjectID(),
-			ProductTagID: 101,
+			ProductTagID: primitive.NewObjectID(),
 		},
 		{
 			ID:           primitive.NewObjectID(),
 			ProductID:    primitive.NewObjectID(),
-			ProductTagID: 102,
+			ProductTagID: primitive.NewObjectID(),
 		},
 	}
 

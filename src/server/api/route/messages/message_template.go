@@ -20,11 +20,11 @@ func MessageTemplateRouter(env *bootstrap.Env, timeout time.Duration, db mongo.D
 		MessageTemplateUsecase: usecase.NewMessageTemplateUsecase(ur, timeout),
 		Env:                    env,
 	}
-
-	group.GET("/message_templates", lc.Fetch)
-	group.GET("/message_template", lc.FetchByID)
-	group.POST("/message_template", lc.Create)
-	group.POST("/message_templates", lc.CreateMany)
-	group.PUT("/message_template", lc.Update)
-	group.DELETE("/message_template", lc.Delete)
+	itemGroup := group.Group("/api/v1/messages")
+	itemGroup.GET("/message_templates", lc.Fetch)
+	itemGroup.GET("/message_template", lc.FetchByID)
+	itemGroup.POST("/message_template", lc.Create)
+	itemGroup.POST("/message_templates", lc.CreateMany)
+	itemGroup.PUT("/message_template", lc.Update)
+	itemGroup.DELETE("/message_template", lc.Delete)
 }

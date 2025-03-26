@@ -21,10 +21,11 @@ func CustomerAttributeValueRouter(env *bootstrap.Env, timeout time.Duration, db 
 		Env:                           env,
 	}
 
-	group.GET("/customer_attribute_values", lc.Fetch)
-	group.GET("/customer_attribute_value", lc.FetchByID)
-	group.POST("/customer_attribute_value", lc.Create)
-	group.POST("/customer_attribute_values", lc.CreateMany)
-	group.PUT("/customer_attribute_value", lc.Update)
-	group.DELETE("/customer_attribute_value", lc.Delete)
+	itemGroup := group.Group("/api/v1/customers")
+	itemGroup.GET("/customer_attribute_values", lc.Fetch)
+	itemGroup.GET("/customer_attribute_value", lc.FetchByID)
+	itemGroup.POST("/customer_attribute_value", lc.Create)
+	itemGroup.POST("/customer_attribute_values", lc.CreateMany)
+	itemGroup.PUT("/customer_attribute_value", lc.Update)
+	itemGroup.DELETE("/customer_attribute_value", lc.Delete)
 }

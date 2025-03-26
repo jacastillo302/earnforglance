@@ -21,10 +21,11 @@ func TierPriceRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Databas
 		Env:              env,
 	}
 
-	group.GET("/tier_prices", lc.Fetch)
-	group.GET("/tier_price", lc.FetchByID)
-	group.POST("/tier_price", lc.Create)
-	group.POST("/tier_prices", lc.CreateMany)
-	group.PUT("/tier_price", lc.Update)
-	group.DELETE("/tier_price", lc.Delete)
+	itemGroup := group.Group("/api/v1/catalog")
+	itemGroup.GET("/tier_prices", lc.Fetch)
+	itemGroup.GET("/tier_price", lc.FetchByID)
+	itemGroup.POST("/tier_price", lc.Create)
+	itemGroup.POST("/tier_prices", lc.CreateMany)
+	itemGroup.PUT("/tier_price", lc.Update)
+	itemGroup.DELETE("/tier_price", lc.Delete)
 }

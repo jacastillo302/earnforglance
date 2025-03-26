@@ -20,11 +20,11 @@ func PickupPointRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Datab
 		PickupPointUsecase: usecase.NewPickupPointUsecase(ur, timeout),
 		Env:                env,
 	}
-
-	group.GET("/pickup_points", lc.Fetch)
-	group.GET("/pickup_point", lc.FetchByID)
-	group.POST("/pickup_point", lc.Create)
-	group.POST("/pickup_points", lc.CreateMany)
-	group.PUT("/pickup_point", lc.Update)
-	group.DELETE("/pickup_point", lc.Delete)
+	itemGroup := group.Group("/api/v1/shipping")
+	itemGroup.GET("/pickup_points", lc.Fetch)
+	itemGroup.GET("/pickup_point", lc.FetchByID)
+	itemGroup.POST("/pickup_point", lc.Create)
+	itemGroup.POST("/pickup_points", lc.CreateMany)
+	itemGroup.PUT("/pickup_point", lc.Update)
+	itemGroup.DELETE("/pickup_point", lc.Delete)
 }

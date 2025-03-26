@@ -26,7 +26,7 @@ type CommonSettings struct {
 	UseResponseCompression           bool               `bson:"use_response_compression"`
 	FaviconAndAppIconsHeadCode       string             `bson:"favicon_and_app_icons_head_code"`
 	EnableHtmlMinification           bool               `bson:"enable_html_minification"`
-	RestartTimeout                   *int               `bson:"restart_timeout,omitempty"`
+	RestartTimeout                   *int               `bson:"restart_timeout"`
 	HeaderCustomHtml                 string             `bson:"header_custom_html"`
 	FooterCustomHtml                 string             `bson:"footer_custom_html"`
 }

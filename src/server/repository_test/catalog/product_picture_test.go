@@ -30,7 +30,7 @@ func (m *MockSingleResultProductPicture) Decode(v interface{}) error {
 var mockItemProductPicture = &domain.ProductPicture{
 	ID:           primitive.NewObjectID(), // Existing ID of the record to update
 	ProductID:    primitive.NewObjectID(),
-	PictureID:    102,
+	PictureID:    primitive.NewObjectID(),
 	DisplayOrder: 2,
 }
 

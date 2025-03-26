@@ -27,8 +27,8 @@ func TestStockQuantityChangeUsecase_FetchByID(t *testing.T) {
 		Message:            "Stock reduced due to sale.",
 		CreatedOnUtc:       time.Now(),
 		ProductID:          primitive.NewObjectID(),
-		CombinationID:      new(int),
-		WarehouseID:        new(int),
+		CombinationID:      nil,
+		WarehouseID:        primitive.NewObjectID(),
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, stockQuantityChangeID).Return(updatedStockQuantityChange, nil)
@@ -52,7 +52,7 @@ func TestStockQuantityChangeUsecase_Create(t *testing.T) {
 		CreatedOnUtc:       time.Now(),
 		ProductID:          primitive.NewObjectID(),
 		CombinationID:      nil,
-		WarehouseID:        nil,
+		WarehouseID:        primitive.NewObjectID(),
 	}
 
 	mockRepo.On("Create", mock.Anything, newStockQuantityChange).Return(nil)
@@ -75,11 +75,9 @@ func TestStockQuantityChangeUsecase_Update(t *testing.T) {
 		Message:            "Stock reduced due to sale.",
 		CreatedOnUtc:       time.Now(),
 		ProductID:          primitive.NewObjectID(),
-		CombinationID:      new(int),
-		WarehouseID:        new(int),
+		CombinationID:      nil,
+		WarehouseID:        primitive.NewObjectID(),
 	}
-	*updatedStockQuantityChange.CombinationID = 1
-	*updatedStockQuantityChange.WarehouseID = 2
 
 	mockRepo.On("Update", mock.Anything, updatedStockQuantityChange).Return(nil)
 
@@ -118,7 +116,7 @@ func TestStockQuantityChangeUsecase_Fetch(t *testing.T) {
 			CreatedOnUtc:       time.Now().AddDate(0, 0, -10), // 10 days ago
 			ProductID:          primitive.NewObjectID(),
 			CombinationID:      nil,
-			WarehouseID:        nil,
+			WarehouseID:        primitive.NewObjectID(),
 		},
 		{
 			ID:                 primitive.NewObjectID(),
@@ -127,12 +125,12 @@ func TestStockQuantityChangeUsecase_Fetch(t *testing.T) {
 			Message:            "Stock reduced due to sale.",
 			CreatedOnUtc:       time.Now().AddDate(0, 0, -5), // 5 days ago
 			ProductID:          primitive.NewObjectID(),
-			CombinationID:      new(int),
-			WarehouseID:        new(int),
+			CombinationID:      nil,
+			WarehouseID:        primitive.NewObjectID(),
 		},
 	}
-	*fetchedStockQuantityChanges[1].CombinationID = 1
-	*fetchedStockQuantityChanges[1].WarehouseID = 2
+	fetchedStockQuantityChanges[1].StockQuantity = 100
+	fetchedStockQuantityChanges[1].Message = "Stock reduced due to sale. update"
 
 	mockRepo.On("Fetch", mock.Anything).Return(fetchedStockQuantityChanges, nil)
 

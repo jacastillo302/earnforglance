@@ -21,10 +21,11 @@ func ExchangeRateRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Data
 		Env:                 env,
 	}
 
-	group.GET("/exchange_rates", lc.Fetch)
-	group.GET("/exchange_rate", lc.FetchByID)
-	group.POST("/exchange_rate", lc.Create)
-	group.POST("/exchange_rates", lc.CreateMany)
-	group.PUT("/exchange_rate", lc.Update)
-	group.DELETE("/exchange_rate", lc.Delete)
+	itemGroup := group.Group("/api/v1/directory")
+	itemGroup.GET("/exchange_rates", lc.Fetch)
+	itemGroup.GET("/exchange_rate", lc.FetchByID)
+	itemGroup.POST("/exchange_rate", lc.Create)
+	itemGroup.POST("/exchange_rates", lc.CreateMany)
+	itemGroup.PUT("/exchange_rate", lc.Update)
+	itemGroup.DELETE("/exchange_rate", lc.Delete)
 }

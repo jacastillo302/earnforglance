@@ -20,11 +20,11 @@ func GiftCardRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database
 		GiftCardUsecase: usecase.NewGiftCardUsecase(ur, timeout),
 		Env:             env,
 	}
-
-	group.GET("/gift_cards", lc.Fetch)
-	group.GET("/gift_card", lc.FetchByID)
-	group.POST("/gift_card", lc.Create)
-	group.POST("/gift_cards", lc.CreateMany)
-	group.PUT("/gift_card", lc.Update)
-	group.DELETE("/gift_card", lc.Delete)
+	itemGroup := group.Group("/api/v1/orders")
+	itemGroup.GET("/gift_cards", lc.Fetch)
+	itemGroup.GET("/gift_card", lc.FetchByID)
+	itemGroup.POST("/gift_card", lc.Create)
+	itemGroup.POST("/gift_cards", lc.CreateMany)
+	itemGroup.PUT("/gift_card", lc.Update)
+	itemGroup.DELETE("/gift_card", lc.Delete)
 }

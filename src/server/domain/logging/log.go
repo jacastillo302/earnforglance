@@ -18,11 +18,10 @@ type Log struct {
 	ShortMessage string              `bson:"short_message"`
 	FullMessage  string              `bson:"full_message"`
 	IpAddress    string              `bson:"ip_address"`
-	CustomerID   *primitive.ObjectID `bson:"customer_id,omitempty"`
+	CustomerID   *primitive.ObjectID `bson:"customer_id"`
 	PageUrl      string              `bson:"page_url"`
 	ReferrerUrl  string              `bson:"referrer_url"`
 	CreatedOnUtc time.Time           `bson:"created_on_utc"`
-	LogLevel     LogLevel            `bson:"log_level"`
 }
 
 type LogRepository interface {

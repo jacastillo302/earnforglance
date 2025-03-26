@@ -20,11 +20,11 @@ func GdprConsentRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Datab
 		GdprConsentUsecase: usecase.NewGdprConsentUsecase(ur, timeout),
 		Env:                env,
 	}
-
-	group.GET("/gdpr_consents", lc.Fetch)
-	group.GET("/gdpr_consent", lc.FetchByID)
-	group.POST("/gdpr_consent", lc.Create)
-	group.POST("/gdpr_consents", lc.CreateMany)
-	group.PUT("/gdpr_consent", lc.Update)
-	group.DELETE("/gdpr_consent", lc.Delete)
+	itemGroup := group.Group("/api/v1/gdpr")
+	itemGroup.GET("/gdpr_consents", lc.Fetch)
+	itemGroup.GET("/gdpr_consent", lc.FetchByID)
+	itemGroup.POST("/gdpr_consent", lc.Create)
+	itemGroup.POST("/gdpr_consents", lc.CreateMany)
+	itemGroup.PUT("/gdpr_consent", lc.Update)
+	itemGroup.DELETE("/gdpr_consent", lc.Delete)
 }

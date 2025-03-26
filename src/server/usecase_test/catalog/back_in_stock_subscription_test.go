@@ -22,9 +22,9 @@ func TestBackInStockSubscriptionUsecase_FetchByID(t *testing.T) {
 
 	expectedSubscription := domain.BackInStockSubscription{
 		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		StoreID:      2,
-		ProductID:    102,
-		CustomerID:   1002,
+		StoreID:      primitive.NewObjectID(),
+		ProductID:    primitive.NewObjectID(),
+		CustomerID:   primitive.NewObjectID(),
 		CreatedOnUtc: time.Now(),
 	}
 
@@ -44,9 +44,9 @@ func TestBackInStockSubscriptionUsecase_Create(t *testing.T) {
 
 	newSubscription := &domain.BackInStockSubscription{
 		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		StoreID:      2,
-		ProductID:    102,
-		CustomerID:   1002,
+		StoreID:      primitive.NewObjectID(),
+		ProductID:    primitive.NewObjectID(),
+		CustomerID:   primitive.NewObjectID(),
 		CreatedOnUtc: time.Now(),
 	}
 
@@ -65,9 +65,9 @@ func TestBackInStockSubscriptionUsecase_Update(t *testing.T) {
 
 	updatedSubscription := &domain.BackInStockSubscription{
 		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		StoreID:      2,
-		ProductID:    102,
-		CustomerID:   1002,
+		StoreID:      primitive.NewObjectID(),
+		ProductID:    primitive.NewObjectID(),
+		CustomerID:   primitive.NewObjectID(),
 		CreatedOnUtc: time.Now(),
 	}
 
@@ -102,16 +102,16 @@ func TestBackInStockSubscriptionUsecase_Fetch(t *testing.T) {
 	expectedSubscriptions := []domain.BackInStockSubscription{
 		{
 			ID:           primitive.NewObjectID(),
-			StoreID:      1,
-			ProductID:    101,
-			CustomerID:   1001,
+			StoreID:      primitive.NewObjectID(),
+			ProductID:    primitive.NewObjectID(),
+			CustomerID:   primitive.NewObjectID(),
 			CreatedOnUtc: time.Now().AddDate(0, 0, -10), // 10 days ago
 		},
 		{
 			ID:           primitive.NewObjectID(),
-			StoreID:      2,
-			ProductID:    102,
-			CustomerID:   1002,
+			StoreID:      primitive.NewObjectID(),
+			ProductID:    primitive.NewObjectID(),
+			CustomerID:   primitive.NewObjectID(),
 			CreatedOnUtc: time.Now().AddDate(0, 0, -5), // 5 days ago
 		},
 	}

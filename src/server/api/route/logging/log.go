@@ -20,11 +20,11 @@ func LogRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database, gro
 		LogUsecase: usecase.NewLogUsecase(ur, timeout),
 		Env:        env,
 	}
-
-	group.GET("/logs", lc.Fetch)
-	group.GET("/log", lc.FetchByID)
-	group.POST("/log", lc.Create)
-	group.POST("/logs", lc.CreateMany)
-	group.PUT("/log", lc.Update)
-	group.DELETE("/log", lc.Delete)
+	itemGroup := group.Group("/api/v1/logging")
+	itemGroup.GET("/logs", lc.Fetch)
+	itemGroup.GET("/log", lc.FetchByID)
+	itemGroup.POST("/log", lc.Create)
+	itemGroup.POST("/logs", lc.CreateMany)
+	itemGroup.PUT("/log", lc.Update)
+	itemGroup.DELETE("/log", lc.Delete)
 }

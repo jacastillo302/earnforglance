@@ -20,11 +20,11 @@ func DownloadRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database
 		DownloadUsecase: usecase.NewDownloadUsecase(ur, timeout),
 		Env:             env,
 	}
-
-	group.GET("/downloads", lc.Fetch)
-	group.GET("/download", lc.FetchByID)
-	group.POST("/download", lc.Create)
-	group.POST("/downloads", lc.CreateMany)
-	group.PUT("/download", lc.Update)
-	group.DELETE("/download", lc.Delete)
+	itemGroup := group.Group("/api/v1/media")
+	itemGroup.GET("/downloads", lc.Fetch)
+	itemGroup.GET("/download", lc.FetchByID)
+	itemGroup.POST("/download", lc.Create)
+	itemGroup.POST("/downloads", lc.CreateMany)
+	itemGroup.PUT("/download", lc.Update)
+	itemGroup.DELETE("/download", lc.Delete)
 }

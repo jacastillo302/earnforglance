@@ -20,11 +20,11 @@ func ReturnRequestReasonRouter(env *bootstrap.Env, timeout time.Duration, db mon
 		ReturnRequestReasonUsecase: usecase.NewReturnRequestReasonUsecase(ur, timeout),
 		Env:                        env,
 	}
-
-	group.GET("/return_request_reasons", lc.Fetch)
-	group.GET("/return_request_reason", lc.FetchByID)
-	group.POST("/return_request_reason", lc.Create)
-	group.POST("/return_request_reasons", lc.CreateMany)
-	group.PUT("/return_request_reason", lc.Update)
-	group.DELETE("/return_request_reason", lc.Delete)
+	itemGroup := group.Group("/api/v1/orders")
+	itemGroup.GET("/return_request_reasons", lc.Fetch)
+	itemGroup.GET("/return_request_reason", lc.FetchByID)
+	itemGroup.POST("/return_request_reason", lc.Create)
+	itemGroup.POST("/return_request_reasons", lc.CreateMany)
+	itemGroup.PUT("/return_request_reason", lc.Update)
+	itemGroup.DELETE("/return_request_reason", lc.Delete)
 }

@@ -21,10 +21,11 @@ func ProductReviewRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Dat
 		Env:                  env,
 	}
 
-	group.GET("/product_reviews", lc.Fetch)
-	group.GET("/product_review", lc.FetchByID)
-	group.POST("/product_review", lc.Create)
-	group.POST("/product_reviews", lc.CreateMany)
-	group.PUT("/product_review", lc.Update)
-	group.DELETE("/product_review", lc.Delete)
+	itemGroup := group.Group("/api/v1/catalog")
+	itemGroup.GET("/product_reviews", lc.Fetch)
+	itemGroup.GET("/product_review", lc.FetchByID)
+	itemGroup.POST("/product_review", lc.Create)
+	itemGroup.POST("/product_reviews", lc.CreateMany)
+	itemGroup.PUT("/product_review", lc.Update)
+	itemGroup.DELETE("/product_review", lc.Delete)
 }

@@ -31,7 +31,7 @@ func (m *MockSingleResultShoppingCartItem) Decode(v interface{}) error {
 var mockItemShoppingCartItem = &domain.ShoppingCartItem{
 	ID:                   primitive.NewObjectID(), // Existing ID of the record to update
 	StoreID:              primitive.NewObjectID(),
-	ShoppingCartTypeID:   primitive.NewObjectID(),
+	ShoppingCartTypeID:   1,
 	CustomerID:           primitive.NewObjectID(),
 	ProductID:            primitive.NewObjectID(),
 	AttributesXml:        "<Attributes><Color>Blue</Color><Size>L</Size></Attributes>",
@@ -41,7 +41,6 @@ var mockItemShoppingCartItem = &domain.ShoppingCartItem{
 	RentalEndDateUtc:     new(time.Time),
 	CreatedOnUtc:         time.Now().AddDate(0, 0, -7), // Created 7 days ago
 	UpdatedOnUtc:         time.Now(),
-	ShoppingCartType:     2,
 }
 
 func TestShoppingCartItemRepository_FetchByID(t *testing.T) {
