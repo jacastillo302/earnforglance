@@ -1,5 +1,7 @@
 package domain
 
+import "encoding/json"
+
 // AttributeControlType represents an attribute control type
 type AttributeControlType int
 
@@ -34,3 +36,34 @@ const (
 	// ReadonlyCheckboxes represents read-only checkboxes
 	ReadonlyCheckboxes AttributeControlType = 50
 )
+
+func (a AttributeControlType) String() string {
+	switch a {
+	case DropdownList:
+		return "DropdownList"
+	case RadioList:
+		return "RadioList"
+	case Checkboxes:
+		return "Checkboxes"
+	case TextBox:
+		return "TextBox"
+	case MultilineTextbox:
+		return "MultilineTextbox"
+	case Datepicker:
+		return "Datepicker"
+	case FileUpload:
+		return "FileUpload"
+	case ColorSquares:
+		return "ColorSquares"
+	case ImageSquares:
+		return "ImageSquares"
+	case ReadonlyCheckboxes:
+		return "ReadonlyCheckboxes"
+	default:
+		return "Unknown"
+	}
+}
+
+func (a AttributeControlType) MarshalJSON() ([]byte, error) {
+	return json.Marshal(a.String())
+}

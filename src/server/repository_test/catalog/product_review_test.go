@@ -3,8 +3,8 @@ package repository_test
 import (
 	"context"
 	domain "earnforglance/server/domain/catalog"
-	"earnforglance/server/mongo/mocks"
 	repository "earnforglance/server/repository/catalog"
+	"earnforglance/server/service/data/mongo/mocks"
 	"errors"
 	"testing"
 	"time"

@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	"earnforglance/server/mongo"
+	"earnforglance/server/service/data/mongo"
 )
 
 func NewMongoDatabase(env *Env) mongo.Client {

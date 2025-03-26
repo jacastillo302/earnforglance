@@ -6,8 +6,8 @@ import (
 	"earnforglance/server/api/controller"
 	"earnforglance/server/bootstrap"
 	"earnforglance/server/domain"
-	"earnforglance/server/mongo"
 	"earnforglance/server/repository"
+	"earnforglance/server/service/data/mongo"
 	"earnforglance/server/usecase"
 
 	"github.com/gin-gonic/gin"

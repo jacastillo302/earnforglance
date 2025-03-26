@@ -1,6 +1,6 @@
 package bootstrap
 
-import "earnforglance/server/mongo"
+import "earnforglance/server/service/data/mongo"
 
 type Application struct {
 	Env   *Env

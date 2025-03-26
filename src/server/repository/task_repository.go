@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"earnforglance/server/domain"
-	"earnforglance/server/mongo"
+	"earnforglance/server/service/data/mongo"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"

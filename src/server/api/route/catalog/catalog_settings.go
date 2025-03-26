@@ -6,8 +6,8 @@ import (
 	domain "earnforglance/server/domain/catalog"
 	"time"
 
-	"earnforglance/server/mongo"
 	repository "earnforglance/server/repository/catalog"
+	"earnforglance/server/service/data/mongo"
 	usecase "earnforglance/server/usecase/catalog"
 
 	"github.com/gin-gonic/gin"

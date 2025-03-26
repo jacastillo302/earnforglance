@@ -3,7 +3,7 @@
 package mocks
 
 import (
-	mongo "earnforglance/server/mongo"
+	mongo "earnforglance/server/service/data/mongo"
 	mock "github.com/stretchr/testify/mock"
 )
 

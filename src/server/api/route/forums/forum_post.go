@@ -7,8 +7,8 @@ import (
 	"earnforglance/server/bootstrap"
 	domain "earnforglance/server/domain/forums"
 
-	"earnforglance/server/mongo"
 	repository "earnforglance/server/repository/forums"
+	"earnforglance/server/service/data/mongo"
 	usecase "earnforglance/server/usecase/forums"
 
 	"github.com/gin-gonic/gin"

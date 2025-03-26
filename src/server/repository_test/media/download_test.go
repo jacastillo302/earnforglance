@@ -6,8 +6,8 @@ import (
 	"testing"
 
 	domain "earnforglance/server/domain/media"
-	"earnforglance/server/mongo/mocks"
 	repository "earnforglance/server/repository/media"
+	"earnforglance/server/service/data/mongo/mocks"
 
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"

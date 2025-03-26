@@ -5,7 +5,7 @@ package mocks
 import (
 	context "context"
 
-	mongo "earnforglance/server/mongo"
+	mongo "earnforglance/server/service/data/mongo"
 	mock "github.com/stretchr/testify/mock"
 
 	mongo_drivermongo "go.mongodb.org/mongo-driver/mongo"

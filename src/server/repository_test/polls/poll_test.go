@@ -7,8 +7,8 @@ import (
 	"time"
 
 	domain "earnforglance/server/domain/polls"
-	"earnforglance/server/mongo/mocks"
 	repository "earnforglance/server/repository/polls"
+	"earnforglance/server/service/data/mongo/mocks"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"

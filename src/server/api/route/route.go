@@ -34,7 +34,7 @@ import (
 	vendors "earnforglance/server/api/route/vendors"
 
 	"earnforglance/server/bootstrap"
-	"earnforglance/server/mongo"
+	"earnforglance/server/service/data/mongo"
 
 	"github.com/gin-gonic/gin"
 
