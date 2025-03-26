@@ -22,7 +22,7 @@ func TestLocalizationSettingsUsecase_FetchByID(t *testing.T) {
 
 	updatedLocalizationSettings := domain.LocalizationSettings{
 		ID:                                  primitive.NewObjectID(), // Existing ID of the record to update
-		DefaultAdminLanguageID:              2,
+		DefaultAdminLanguageID:              primitive.NewObjectID(),
 		UseImagesForLanguageSelection:       false,
 		SeoFriendlyUrlsForLanguagesEnabled:  false,
 		AutomaticallyDetectLanguage:         true,
@@ -47,7 +47,7 @@ func TestLocalizationSettingsUsecase_Create(t *testing.T) {
 	usecase := test.NewLocalizationSettingsUsecase(mockRepo, timeout)
 
 	newLocalizationSettings := &domain.LocalizationSettings{
-		DefaultAdminLanguageID:              1,
+		DefaultAdminLanguageID:              primitive.NewObjectID(),
 		UseImagesForLanguageSelection:       true,
 		SeoFriendlyUrlsForLanguagesEnabled:  true,
 		AutomaticallyDetectLanguage:         false,
@@ -70,7 +70,7 @@ func TestLocalizationSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewLocalizationSettingsUsecase(mockRepo, timeout)
 	updatedLocalizationSettings := &domain.LocalizationSettings{
 		ID:                                  primitive.NewObjectID(), // Existing ID of the record to update
-		DefaultAdminLanguageID:              2,
+		DefaultAdminLanguageID:              primitive.NewObjectID(),
 		UseImagesForLanguageSelection:       false,
 		SeoFriendlyUrlsForLanguagesEnabled:  false,
 		AutomaticallyDetectLanguage:         true,
@@ -111,7 +111,7 @@ func TestLocalizationSettingsUsecase_Fetch(t *testing.T) {
 	fetchedLocalizationSettings := []domain.LocalizationSettings{
 		{
 			ID:                                  primitive.NewObjectID(),
-			DefaultAdminLanguageID:              1,
+			DefaultAdminLanguageID:              primitive.NewObjectID(),
 			UseImagesForLanguageSelection:       true,
 			SeoFriendlyUrlsForLanguagesEnabled:  true,
 			AutomaticallyDetectLanguage:         false,
@@ -122,7 +122,7 @@ func TestLocalizationSettingsUsecase_Fetch(t *testing.T) {
 		},
 		{
 			ID:                                  primitive.NewObjectID(),
-			DefaultAdminLanguageID:              2,
+			DefaultAdminLanguageID:              primitive.NewObjectID(),
 			UseImagesForLanguageSelection:       false,
 			SeoFriendlyUrlsForLanguagesEnabled:  false,
 			AutomaticallyDetectLanguage:         true,

@@ -26,7 +26,6 @@ type GiftCard struct {
 	Message             string              `bson:"message"`
 	IsRecipientNotified bool                `bson:"is_recipient_notified"`
 	CreatedOnUtc        time.Time           `bson:"created_on_utc"`
-	GiftCardType        int                 `bson:"gift_card_type"`
 }
 
 // GiftCardRepository interface

@@ -24,13 +24,12 @@ func TestProductSpecificationAttributeUsecase_FetchByID(t *testing.T) {
 	updatedProductSpecificationAttribute := domain.ProductSpecificationAttribute{
 		ID:                             primitive.NewObjectID(), // Existing ID of the record to update
 		ProductID:                      primitive.NewObjectID(),
-		AttributeTypeID:                primitive.NewObjectID(),
+		SpecificationAttributeTypeID:   10,
 		SpecificationAttributeOptionID: primitive.NewObjectID(),
 		CustomValue:                    "Updated Custom Value",
 		AllowFiltering:                 false,
 		ShowOnProductPage:              false,
 		DisplayOrder:                   2,
-		AttributeType:                  0,
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, productSpecificationAttributeID).Return(updatedProductSpecificationAttribute, nil)
@@ -49,13 +48,12 @@ func TestProductSpecificationAttributeUsecase_Create(t *testing.T) {
 
 	newProductSpecificationAttribute := &domain.ProductSpecificationAttribute{
 		ProductID:                      primitive.NewObjectID(),
-		AttributeTypeID:                primitive.NewObjectID(),
+		SpecificationAttributeTypeID:   20,
 		SpecificationAttributeOptionID: primitive.NewObjectID(),
 		CustomValue:                    "Custom Value Example",
 		AllowFiltering:                 true,
 		ShowOnProductPage:              true,
 		DisplayOrder:                   1,
-		AttributeType:                  20,
 	}
 
 	mockRepo.On("Create", mock.Anything, newProductSpecificationAttribute).Return(nil)
@@ -74,13 +72,12 @@ func TestProductSpecificationAttributeUsecase_Update(t *testing.T) {
 	updatedProductSpecificationAttribute := &domain.ProductSpecificationAttribute{
 		ID:                             primitive.NewObjectID(), // Existing ID of the record to update
 		ProductID:                      primitive.NewObjectID(),
-		AttributeTypeID:                primitive.NewObjectID(),
+		SpecificationAttributeTypeID:   30,
 		SpecificationAttributeOptionID: primitive.NewObjectID(),
 		CustomValue:                    "Updated Custom Value",
 		AllowFiltering:                 false,
 		ShowOnProductPage:              false,
 		DisplayOrder:                   2,
-		AttributeType:                  30,
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedProductSpecificationAttribute).Return(nil)
@@ -115,24 +112,22 @@ func TestProductSpecificationAttributeUsecase_Fetch(t *testing.T) {
 		{
 			ID:                             primitive.NewObjectID(),
 			ProductID:                      primitive.NewObjectID(),
-			AttributeTypeID:                primitive.NewObjectID(),
+			SpecificationAttributeTypeID:   0,
 			SpecificationAttributeOptionID: primitive.NewObjectID(),
 			CustomValue:                    "Custom Value 1",
 			AllowFiltering:                 true,
 			ShowOnProductPage:              true,
 			DisplayOrder:                   1,
-			AttributeType:                  10,
 		},
 		{
 			ID:                             primitive.NewObjectID(),
 			ProductID:                      primitive.NewObjectID(),
-			AttributeTypeID:                primitive.NewObjectID(),
+			SpecificationAttributeTypeID:   20,
 			SpecificationAttributeOptionID: primitive.NewObjectID(),
 			CustomValue:                    "Custom Value 2",
 			AllowFiltering:                 false,
 			ShowOnProductPage:              false,
 			DisplayOrder:                   2,
-			AttributeType:                  0,
 		},
 	}
 

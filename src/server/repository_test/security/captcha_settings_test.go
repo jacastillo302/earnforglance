@@ -30,7 +30,7 @@ func (m *MockSingleResultCaptchaSettings) Decode(v interface{}) error {
 var mockItemCaptchaSettings = &domain.CaptchaSettings{
 	ID:                              primitive.NewObjectID(), // Existing ID of the record to update
 	Enabled:                         false,
-	CaptchaType:                     2,
+	CaptchaTypeID:                   2,
 	ShowOnLoginPage:                 false,
 	ShowOnRegistrationPage:          false,
 	ShowOnContactUsPage:             true,

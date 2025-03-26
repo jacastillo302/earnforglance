@@ -87,10 +87,6 @@ var mockItemOrder = &domain.Order{
 	CreatedOnUtc:                            time.Now().AddDate(0, 0, -7), // Created 7 days ago
 	CustomOrderNumber:                       "ORD67890",
 	RedeemedRewardPointsEntryID:             new(primitive.ObjectID),
-	OrderStatus:                             3,
-	PaymentStatus:                           2,
-	ShippingStatus:                          3,
-	CustomerTaxDisplayType:                  2,
 }
 
 func TestOrderRepository_FetchByID(t *testing.T) {

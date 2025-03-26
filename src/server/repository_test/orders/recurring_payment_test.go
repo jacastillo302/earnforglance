@@ -29,17 +29,17 @@ func (m *MockSingleResultRecurringPayment) Decode(v interface{}) error {
 }
 
 var mockItemRecurringPayment = &domain.RecurringPayment{
-	ID:                primitive.NewObjectID(), // Existing ID of the record to update
-	CycleLength:       15,
-	CyclePeriodID:     2,
-	TotalCycles:       6,
-	StartDateUtc:      time.Now().AddDate(0, 0, -30), // Started 30 days ago
-	IsActive:          false,
-	LastPaymentFailed: true,
-	Deleted:           true,
-	OrderID:           1002,
-	CreatedOnUtc:      time.Now().AddDate(0, 0, -60), // Created 60 days ago
-	CyclePeriod:       1,
+	ID:                            primitive.NewObjectID(), // Existing ID of the record to update
+	CycleLength:                   15,
+	RecurringProductCyclePeriodID: 2,
+	TotalCycles:                   6,
+	StartDateUtc:                  time.Now().AddDate(0, 0, -30), // Started 30 days ago
+	IsActive:                      false,
+	LastPaymentFailed:             true,
+	Deleted:                       true,
+	OrderID:                       1002,
+	CreatedOnUtc:                  time.Now().AddDate(0, 0, -60), // Created 60 days ago
+	CyclePeriod:                   1,
 }
 
 func TestRecurringPaymentRepository_FetchByID(t *testing.T) {

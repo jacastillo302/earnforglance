@@ -42,7 +42,7 @@ var mockItemGiftCard = &domain.GiftCard{
 	Message:             "Congratulations!",
 	IsRecipientNotified: true,
 	CreatedOnUtc:        time.Now().AddDate(0, 0, -7), // Created 7 days ago
-	GiftCardType:        2,
+
 }
 
 func TestGiftCardRepository_FetchByID(t *testing.T) {

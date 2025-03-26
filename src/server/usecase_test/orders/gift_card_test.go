@@ -34,7 +34,6 @@ func TestGiftCardUsecase_FetchByID(t *testing.T) {
 		Message:             "Congratulations!",
 		IsRecipientNotified: true,
 		CreatedOnUtc:        time.Now().AddDate(0, 0, -7), // Created 7 days ago
-		GiftCardType:        2,
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, giftCardID).Return(updatedGiftCard, nil)
@@ -64,7 +63,6 @@ func TestGiftCardUsecase_Create(t *testing.T) {
 		Message:             "Happy Birthday!",
 		IsRecipientNotified: false,
 		CreatedOnUtc:        time.Now(),
-		GiftCardType:        1,
 	}
 
 	mockRepo.On("Create", mock.Anything, newGiftCard).Return(nil)
@@ -94,7 +92,6 @@ func TestGiftCardUsecase_Update(t *testing.T) {
 		Message:             "Congratulations!",
 		IsRecipientNotified: true,
 		CreatedOnUtc:        time.Now().AddDate(0, 0, -7), // Created 7 days ago
-		GiftCardType:        2,
 	}
 	*updatedGiftCard.OrderItemID = primitive.NewObjectID()
 
@@ -141,7 +138,6 @@ func TestGiftCardUsecase_Fetch(t *testing.T) {
 			Message:             "Happy Birthday!",
 			IsRecipientNotified: false,
 			CreatedOnUtc:        time.Now().AddDate(0, 0, -10), // Created 10 days ago
-			GiftCardType:        1,
 		},
 		{
 			ID:                  primitive.NewObjectID(),
@@ -157,7 +153,6 @@ func TestGiftCardUsecase_Fetch(t *testing.T) {
 			Message:             "Congratulations!",
 			IsRecipientNotified: true,
 			CreatedOnUtc:        time.Now().AddDate(0, 0, -5), // Created 5 days ago
-			GiftCardType:        2,
 		},
 	}
 	*fetchedGiftCards[1].OrderItemID = primitive.NewObjectID()

@@ -5,7 +5,7 @@ type RoundingType int
 
 const (
 	// Rounding001 represents default rounding (Match.Round(num, 2))
-	Rounding001 RoundingType = iota
+	Rounding001 RoundingType = 0
 
 	// Rounding005Up represents prices rounded up to the nearest multiple of 5 cents
 	Rounding005Up RoundingType = 10

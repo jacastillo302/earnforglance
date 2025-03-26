@@ -1,6 +1,6 @@
 package domain
 
-// PageTitleSeoAdjustment represents a page title SEO adjustment
+// PageTitleSeoAdjustmentID represents a page title SEO adjustment
 type PageTitleSeoAdjustment int
 
 const (

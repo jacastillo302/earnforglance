@@ -71,10 +71,6 @@ type Order struct {
 	CreatedOnUtc                            time.Time           `bson:"created_on_utc"`
 	CustomOrderNumber                       string              `bson:"custom_order_number"`
 	RedeemedRewardPointsEntryID             *primitive.ObjectID `bson:"redeemed_reward_points_entry_id"`
-	OrderStatus                             OrderStatus         `bson:"order_status"`
-	PaymentStatus                           int                 `bson:"payment_status"`
-	ShippingStatus                          int                 `bson:"shipping_status"`
-	CustomerTaxDisplayType                  int                 `bson:"customer_tax_display_type"`
 }
 
 // OrderRepository represents the order repository interface

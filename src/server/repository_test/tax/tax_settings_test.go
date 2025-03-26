@@ -29,9 +29,9 @@ func (m *MockSingleResultTaxSettings) Decode(v interface{}) error {
 
 var mockItemTaxSettings = &domain.TaxSettings{
 	ID:                                    primitive.NewObjectID(), // Existing ID of the record to update
-	TaxBasedOn:                            1,
+	TaxBasedOnID:                          1,
 	TaxBasedOnPickupPointAddress:          false,
-	TaxDisplayType:                        2,
+	TaxDisplayTypeID:                      2,
 	ActiveTaxProviderSystemName:           "UpdatedTaxProvider",
 	DefaultTaxAddressID:                   primitive.NewObjectID(),
 	DisplayTaxSuffix:                      false,

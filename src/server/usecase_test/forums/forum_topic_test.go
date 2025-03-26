@@ -33,7 +33,6 @@ func TestForumTopicUsecase_FetchByID(t *testing.T) {
 		LastPostTime:       new(time.Time),
 		CreatedOnUtc:       time.Now().AddDate(0, 0, -7), // Created 7 days ago
 		UpdatedOnUtc:       time.Now(),
-		ForumTopicType:     1,
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, forumTopicID).Return(updatedForumTopic, nil)
@@ -62,7 +61,6 @@ func TestForumTopicUsecase_Create(t *testing.T) {
 		LastPostTime:       nil,
 		CreatedOnUtc:       time.Now(),
 		UpdatedOnUtc:       time.Now(),
-		ForumTopicType:     2,
 	}
 	mockRepo.On("Create", mock.Anything, newForumTopic).Return(nil)
 
@@ -90,7 +88,6 @@ func TestForumTopicUsecase_Update(t *testing.T) {
 		LastPostTime:       new(time.Time),
 		CreatedOnUtc:       time.Now().AddDate(0, 0, -7), // Created 7 days ago
 		UpdatedOnUtc:       time.Now(),
-		ForumTopicType:     1,
 	}
 	*updatedForumTopic.LastPostTime = time.Now().AddDate(0, 0, -1) // Last post 1 day ago
 
@@ -136,7 +133,7 @@ func TestForumTopicUsecase_Fetch(t *testing.T) {
 			LastPostTime:       new(time.Time),
 			CreatedOnUtc:       time.Now().AddDate(0, 0, -10), // Created 10 days ago
 			UpdatedOnUtc:       time.Now().AddDate(0, 0, -5),  // Updated 5 days ago
-			ForumTopicType:     2,
+
 		},
 		{
 			ID:                 primitive.NewObjectID(),
@@ -151,7 +148,6 @@ func TestForumTopicUsecase_Fetch(t *testing.T) {
 			LastPostTime:       new(time.Time),
 			CreatedOnUtc:       time.Now().AddDate(0, 0, -30), // Created 30 days ago
 			UpdatedOnUtc:       time.Now(),
-			ForumTopicType:     4,
 		},
 	}
 	*fetchedForumTopics[0].LastPostTime = time.Now().AddDate(0, 0, -3) // Last post 3 days ago

@@ -25,7 +25,6 @@ type ForumTopic struct {
 	LastPostTime       *time.Time         `bson:"last_post_time"`
 	CreatedOnUtc       time.Time          `bson:"created_on_utc"`
 	UpdatedOnUtc       time.Time          `bson:"updated_on_utc"`
-	ForumTopicType     ForumTopicType     `bson:"forum_topic_type"`
 }
 
 // ForumTopicRepository represents the forum topic repository interface

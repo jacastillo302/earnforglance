@@ -47,7 +47,7 @@ func TestShippingSettingsUsecase_FetchByID(t *testing.T) {
 		ConsiderAssociatedProductsDimensions:             false,
 		ShipSeparatelyOneItemEach:                        true,
 		RequestDelay:                                     1000,
-		ShippingSorting:                                  1,
+		ShippingSortingID:                                1,
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, shippingID).Return(updatedShippingSettings, nil)
@@ -90,7 +90,7 @@ func TestShippingSettingsUsecase_Create(t *testing.T) {
 		ConsiderAssociatedProductsDimensions:             true,
 		ShipSeparatelyOneItemEach:                        false,
 		RequestDelay:                                     500,
-		ShippingSorting:                                  2,
+		ShippingSortingID:                                2,
 	}
 
 	mockRepo.On("Create", mock.Anything, newShippingSettings).Return(nil)
@@ -133,7 +133,7 @@ func TestShippingSettingsUsecase_Update(t *testing.T) {
 		ConsiderAssociatedProductsDimensions:             false,
 		ShipSeparatelyOneItemEach:                        true,
 		RequestDelay:                                     1000,
-		ShippingSorting:                                  1,
+		ShippingSortingID:                                1,
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedShippingSettings).Return(nil)
@@ -192,7 +192,7 @@ func TestShippingSettingsUsecase_Fetch(t *testing.T) {
 			ConsiderAssociatedProductsDimensions:             true,
 			ShipSeparatelyOneItemEach:                        false,
 			RequestDelay:                                     500,
-			ShippingSorting:                                  2,
+			ShippingSortingID:                                2,
 		},
 		{
 			ID: primitive.NewObjectID(),
@@ -221,7 +221,7 @@ func TestShippingSettingsUsecase_Fetch(t *testing.T) {
 			ConsiderAssociatedProductsDimensions:             false,
 			ShipSeparatelyOneItemEach:                        true,
 			RequestDelay:                                     1000,
-			ShippingSorting:                                  1,
+			ShippingSortingID:                                1,
 		},
 	}
 

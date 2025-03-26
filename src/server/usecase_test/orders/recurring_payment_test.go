@@ -21,17 +21,17 @@ func TestRecurringPaymentUsecase_FetchByID(t *testing.T) {
 	recurringPaymentID := primitive.NewObjectID().Hex()
 
 	updatedRecurringPayment := domain.RecurringPayment{
-		ID:                primitive.NewObjectID(), // Existing ID of the record to update
-		CycleLength:       15,
-		CyclePeriodID:     2,
-		TotalCycles:       6,
-		StartDateUtc:      time.Now().AddDate(0, 0, -30), // Started 30 days ago
-		IsActive:          false,
-		LastPaymentFailed: true,
-		Deleted:           true,
-		OrderID:           1002,
-		CreatedOnUtc:      time.Now().AddDate(0, 0, -60), // Created 60 days ago
-		CyclePeriod:       1,
+		ID:                            primitive.NewObjectID(), // Existing ID of the record to update
+		CycleLength:                   15,
+		RecurringProductCyclePeriodID: 2,
+		TotalCycles:                   6,
+		StartDateUtc:                  time.Now().AddDate(0, 0, -30), // Started 30 days ago
+		IsActive:                      false,
+		LastPaymentFailed:             true,
+		Deleted:                       true,
+		OrderID:                       1002,
+		CreatedOnUtc:                  time.Now().AddDate(0, 0, -60), // Created 60 days ago
+		CyclePeriod:                   1,
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, recurringPaymentID).Return(updatedRecurringPayment, nil)
@@ -49,16 +49,16 @@ func TestRecurringPaymentUsecase_Create(t *testing.T) {
 	usecase := test.NewRecurringPaymentUsecase(mockRepo, timeout)
 
 	newRecurringPayment := &domain.RecurringPayment{
-		CycleLength:       30,
-		CyclePeriodID:     1,
-		TotalCycles:       12,
-		StartDateUtc:      time.Now(),
-		IsActive:          true,
-		LastPaymentFailed: false,
-		Deleted:           false,
-		OrderID:           1001,
-		CreatedOnUtc:      time.Now(),
-		CyclePeriod:       2,
+		CycleLength:                   30,
+		RecurringProductCyclePeriodID: 1,
+		TotalCycles:                   12,
+		StartDateUtc:                  time.Now(),
+		IsActive:                      true,
+		LastPaymentFailed:             false,
+		Deleted:                       false,
+		OrderID:                       1001,
+		CreatedOnUtc:                  time.Now(),
+		CyclePeriod:                   2,
 	}
 
 	mockRepo.On("Create", mock.Anything, newRecurringPayment).Return(nil)
@@ -75,17 +75,17 @@ func TestRecurringPaymentUsecase_Update(t *testing.T) {
 	usecase := test.NewRecurringPaymentUsecase(mockRepo, timeout)
 
 	updatedRecurringPayment := &domain.RecurringPayment{
-		ID:                primitive.NewObjectID(), // Existing ID of the record to update
-		CycleLength:       15,
-		CyclePeriodID:     2,
-		TotalCycles:       6,
-		StartDateUtc:      time.Now().AddDate(0, 0, -30), // Started 30 days ago
-		IsActive:          false,
-		LastPaymentFailed: true,
-		Deleted:           true,
-		OrderID:           1002,
-		CreatedOnUtc:      time.Now().AddDate(0, 0, -60), // Created 60 days ago
-		CyclePeriod:       1,
+		ID:                            primitive.NewObjectID(), // Existing ID of the record to update
+		CycleLength:                   15,
+		RecurringProductCyclePeriodID: 2,
+		TotalCycles:                   6,
+		StartDateUtc:                  time.Now().AddDate(0, 0, -30), // Started 30 days ago
+		IsActive:                      false,
+		LastPaymentFailed:             true,
+		Deleted:                       true,
+		OrderID:                       1002,
+		CreatedOnUtc:                  time.Now().AddDate(0, 0, -60), // Created 60 days ago
+		CyclePeriod:                   1,
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedRecurringPayment).Return(nil)
@@ -118,30 +118,30 @@ func TestRecurringPaymentUsecase_Fetch(t *testing.T) {
 
 	fetchedRecurringPayments := []domain.RecurringPayment{
 		{
-			ID:                primitive.NewObjectID(),
-			CycleLength:       30,
-			CyclePeriodID:     1,
-			TotalCycles:       12,
-			StartDateUtc:      time.Now().AddDate(0, 0, -90), // Started 90 days ago
-			IsActive:          true,
-			LastPaymentFailed: false,
-			Deleted:           false,
-			OrderID:           1001,
-			CreatedOnUtc:      time.Now().AddDate(0, 0, -120), // Created 120 days ago
-			CyclePeriod:       2,
+			ID:                            primitive.NewObjectID(),
+			CycleLength:                   30,
+			RecurringProductCyclePeriodID: 1,
+			TotalCycles:                   12,
+			StartDateUtc:                  time.Now().AddDate(0, 0, -90), // Started 90 days ago
+			IsActive:                      true,
+			LastPaymentFailed:             false,
+			Deleted:                       false,
+			OrderID:                       1001,
+			CreatedOnUtc:                  time.Now().AddDate(0, 0, -120), // Created 120 days ago
+			CyclePeriod:                   2,
 		},
 		{
-			ID:                primitive.NewObjectID(),
-			CycleLength:       15,
-			CyclePeriodID:     2,
-			TotalCycles:       6,
-			StartDateUtc:      time.Now().AddDate(0, 0, -30), // Started 30 days ago
-			IsActive:          false,
-			LastPaymentFailed: true,
-			Deleted:           true,
-			OrderID:           1002,
-			CreatedOnUtc:      time.Now().AddDate(0, 0, -60), // Created 60 days ago
-			CyclePeriod:       1,
+			ID:                            primitive.NewObjectID(),
+			CycleLength:                   15,
+			RecurringProductCyclePeriodID: 2,
+			TotalCycles:                   6,
+			StartDateUtc:                  time.Now().AddDate(0, 0, -30), // Started 30 days ago
+			IsActive:                      false,
+			LastPaymentFailed:             true,
+			Deleted:                       true,
+			OrderID:                       1002,
+			CreatedOnUtc:                  time.Now().AddDate(0, 0, -60), // Created 60 days ago
+			CyclePeriod:                   1,
 		},
 	}
 

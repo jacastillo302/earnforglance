@@ -30,13 +30,12 @@ func (m *MockSingleResultProductSpecificationAttribute) Decode(v interface{}) er
 var mockItemProductSpecificationAttribute = &domain.ProductSpecificationAttribute{
 	ID:                             primitive.NewObjectID(), // Existing ID of the record to update
 	ProductID:                      primitive.NewObjectID(),
-	AttributeTypeID:                primitive.NewObjectID(),
+	SpecificationAttributeTypeID:   0,
 	SpecificationAttributeOptionID: primitive.NewObjectID(),
 	CustomValue:                    "Updated Custom Value",
 	AllowFiltering:                 false,
 	ShowOnProductPage:              false,
 	DisplayOrder:                   2,
-	AttributeType:                  10,
 }
 
 func TestProductSpecificationAttributeRepository_FetchByID(t *testing.T) {

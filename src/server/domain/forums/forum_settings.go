@@ -31,7 +31,7 @@ type ForumSettings struct {
 	ActiveDiscussionsPageSize           int                `bson:"active_discussions_page_size"`
 	LatestCustomerPostsPageSize         int                `bson:"latest_customer_posts_page_size"`
 	ShowCustomersPostCount              bool               `bson:"show_customers_post_count"`
-	ForumEditor                         EditorType         `bson:"forum_editor"`
+	EditorTypeID                        int                `bson:"forum_editor"`
 	SignaturesEnabled                   bool               `bson:"signatures_enabled"`
 	AllowPrivateMessages                bool               `bson:"allow_private_messages"`
 	ShowAlertForPM                      bool               `bson:"show_alert_for_pm"`

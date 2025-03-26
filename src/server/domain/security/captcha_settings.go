@@ -14,7 +14,7 @@ const (
 type CaptchaSettings struct {
 	ID                              primitive.ObjectID `bson:"_id,omitempty"`
 	Enabled                         bool               `bson:"enabled"`
-	CaptchaType                     CaptchaType        `bson:"captcha_type"`
+	CaptchaTypeID                   int                `bson:"captcha_type"`
 	ShowOnLoginPage                 bool               `bson:"show_on_login_page"`
 	ShowOnRegistrationPage          bool               `bson:"show_on_registration_page"`
 	ShowOnContactUsPage             bool               `bson:"show_on_contact_us_page"`

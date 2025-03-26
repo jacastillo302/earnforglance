@@ -55,7 +55,7 @@ type Product struct {
 	UserAgreementText                            string             `bson:"user_agreement_text"`
 	IsRecurring                                  bool               `bson:"is_recurring"`
 	RecurringCycleLength                         int                `bson:"recurring_cycle_length"`
-	RecurringCyclePeriodID                       int                `bson:"recurring_cycle_period_id"`
+	RecurringProductCyclePeriodID                int                `bson:"recurring_cycle_period_id"`
 	RecurringTotalCycles                         int                `bson:"recurring_total_cycles"`
 	IsRental                                     bool               `bson:"is_rental"`
 	RentalPriceLength                            int                `bson:"rental_price_length"`

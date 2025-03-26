@@ -29,7 +29,7 @@ func (m *MockSingleResultLocalizationSettings) Decode(v interface{}) error {
 
 var mockItemLocalizationSettings = &domain.LocalizationSettings{
 	ID:                                  primitive.NewObjectID(), // Existing ID of the record to update
-	DefaultAdminLanguageID:              2,
+	DefaultAdminLanguageID:              primitive.NewObjectID(),
 	UseImagesForLanguageSelection:       false,
 	SeoFriendlyUrlsForLanguagesEnabled:  false,
 	AutomaticallyDetectLanguage:         true,

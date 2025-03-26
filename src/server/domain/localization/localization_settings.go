@@ -13,7 +13,7 @@ const (
 // LocalizationSettings represents localization settings all
 type LocalizationSettings struct {
 	ID                                  primitive.ObjectID `bson:"_id,omitempty"`
-	DefaultAdminLanguageID              int                `bson:"default_admin_language_id"`
+	DefaultAdminLanguageID              primitive.ObjectID `bson:"default_admin_language_id"`
 	UseImagesForLanguageSelection       bool               `bson:"use_images_for_language_selection"`
 	SeoFriendlyUrlsForLanguagesEnabled  bool               `bson:"seo_friendly_urls_for_languages_enabled"`
 	AutomaticallyDetectLanguage         bool               `bson:"automatically_detect_language"`

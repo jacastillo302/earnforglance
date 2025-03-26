@@ -30,13 +30,13 @@ func (m *MockSingleResultSeoSettings) Decode(v interface{}) error {
 var mockItemSeoSettings = &domain.SeoSettings{
 	ID:                                primitive.NewObjectID(), // Existing ID of the record to update
 	PageTitleSeparator:                "|",
-	PageTitleSeoAdjustment:            2,
+	PageTitleSeoAdjustmentID:          2,
 	GenerateProductMetaDescription:    false,
 	ConvertNonWesternChars:            true,
 	AllowUnicodeCharsInUrls:           false,
 	CanonicalUrlsEnabled:              false,
 	QueryStringInCanonicalUrlsEnabled: true,
-	WwwRequirement:                    2,
+	WwwRequirementID:                  2,
 	TwitterMetaTags:                   false,
 	OpenGraphMetaTags:                 false,
 	ReservedUrlRecordSlugs:            []string{"home", "checkout", "cart"},

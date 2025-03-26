@@ -60,8 +60,6 @@ type Customer struct {
 	BillingAddressID            *primitive.ObjectID `bson:"billing_address_id"`
 	MustChangePassword          bool                `bson:"must_change_password"`
 	ShippingAddressID           *primitive.ObjectID `bson:"shipping_address_id"`
-	VatNumberStatus             int                 `bson:"vat_number_status"`
-	TaxDisplayType              *int                `bson:"tax_display_type"`
 }
 
 type CustomerRepository interface {

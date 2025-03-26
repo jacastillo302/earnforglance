@@ -13,9 +13,9 @@ const (
 // TaxSettings represents tax settings
 type TaxSettings struct {
 	ID                                    primitive.ObjectID `bson:"_id,omitempty"`
-	TaxBasedOn                            TaxBasedOn         `bson:"tax_based_on"`
+	TaxBasedOnID                          int                `bson:"tax_based_on"`
 	TaxBasedOnPickupPointAddress          bool               `bson:"tax_based_on_pickup_point_address"`
-	TaxDisplayType                        TaxDisplayType     `bson:"tax_display_type"`
+	TaxDisplayTypeID                      int                `bson:"tax_display_type"`
 	ActiveTaxProviderSystemName           string             `bson:"active_tax_provider_system_name"`
 	DefaultTaxAddressID                   primitive.ObjectID `bson:"default_tax_address_id"`
 	DisplayTaxSuffix                      bool               `bson:"display_tax_suffix"`

@@ -25,7 +25,6 @@ type Currency struct {
 	CreatedOnUtc     time.Time          `bson:"created_on_utc"`
 	UpdatedOnUtc     time.Time          `bson:"updated_on_utc"`
 	RoundingTypeID   int                `bson:"rounding_type_id"`
-	RoundingType     RoundingType       `bson:"rounding_type"`
 }
 
 type CurrencyRepository interface {

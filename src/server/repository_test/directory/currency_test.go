@@ -41,7 +41,6 @@ var mockItemCurrency = &domain.Currency{
 	CreatedOnUtc:     time.Now().AddDate(0, 0, -30), // Created 30 days ago
 	UpdatedOnUtc:     time.Now(),
 	RoundingTypeID:   2,
-	RoundingType:     5,
 }
 
 func TestCurrencyRepository_FetchByID(t *testing.T) {

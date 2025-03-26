@@ -76,8 +76,6 @@ var mockItemCustomer = &domain.Customer{
 	BillingAddressID:            new(primitive.ObjectID),
 	MustChangePassword:          true,
 	ShippingAddressID:           new(primitive.ObjectID),
-	VatNumberStatus:             2,
-	TaxDisplayType:              new(int),
 }
 
 func TestCustomerRepository_FetchByID(t *testing.T) {

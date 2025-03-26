@@ -33,7 +33,6 @@ func TestCurrencyUsecase_FetchByID(t *testing.T) {
 		CreatedOnUtc:     time.Now().AddDate(0, 0, -30), // Created 30 days ago
 		UpdatedOnUtc:     time.Now(),
 		RoundingTypeID:   2,
-		RoundingType:     5,
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, currencyID).Return(updatedCurrency, nil)
@@ -62,7 +61,6 @@ func TestCurrencyUsecase_Create(t *testing.T) {
 		CreatedOnUtc:     time.Now(),
 		UpdatedOnUtc:     time.Now(),
 		RoundingTypeID:   1,
-		RoundingType:     4,
 	}
 
 	mockRepo.On("Create", mock.Anything, newCurrency).Return(nil)
@@ -91,7 +89,6 @@ func TestCurrencyUsecase_Update(t *testing.T) {
 		CreatedOnUtc:     time.Now().AddDate(0, 0, -30), // Created 30 days ago
 		UpdatedOnUtc:     time.Now(),
 		RoundingTypeID:   2,
-		RoundingType:     4,
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedCurrency).Return(nil)
@@ -136,7 +133,6 @@ func TestCurrencyUsecase_Fetch(t *testing.T) {
 			CreatedOnUtc:     time.Now().AddDate(0, 0, -10), // Created 10 days ago
 			UpdatedOnUtc:     time.Now(),
 			RoundingTypeID:   1,
-			RoundingType:     6,
 		},
 		{
 			ID:               primitive.NewObjectID(),
@@ -151,7 +147,6 @@ func TestCurrencyUsecase_Fetch(t *testing.T) {
 			CreatedOnUtc:     time.Now().AddDate(0, 0, -30), // Created 30 days ago
 			UpdatedOnUtc:     time.Now(),
 			RoundingTypeID:   2,
-			RoundingType:     7,
 		},
 	}
 

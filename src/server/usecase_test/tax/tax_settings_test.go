@@ -22,9 +22,9 @@ func TestTaxSettingsUsecase_FetchByID(t *testing.T) {
 
 	updatedTaxSettings := domain.TaxSettings{
 		ID:                                    primitive.NewObjectID(), // Existing ID of the record to update
-		TaxBasedOn:                            1,
+		TaxBasedOnID:                          1,
 		TaxBasedOnPickupPointAddress:          false,
-		TaxDisplayType:                        2,
+		TaxDisplayTypeID:                      2,
 		ActiveTaxProviderSystemName:           "UpdatedTaxProvider",
 		DefaultTaxAddressID:                   primitive.NewObjectID(),
 		DisplayTaxSuffix:                      false,
@@ -68,9 +68,9 @@ func TestTaxSettingsUsecase_Create(t *testing.T) {
 	usecase := test.NewTaxSettingsUsecase(mockRepo, timeout)
 
 	newTaxSettings := &domain.TaxSettings{
-		TaxBasedOn:                            2,
+		TaxBasedOnID:                          2,
 		TaxBasedOnPickupPointAddress:          true,
-		TaxDisplayType:                        1,
+		TaxDisplayTypeID:                      1,
 		ActiveTaxProviderSystemName:           "DefaultTaxProvider",
 		DefaultTaxAddressID:                   primitive.NewObjectID(),
 		DisplayTaxSuffix:                      true,
@@ -114,9 +114,9 @@ func TestTaxSettingsUsecase_Update(t *testing.T) {
 
 	updatedTaxSettings := &domain.TaxSettings{
 		ID:                                    primitive.NewObjectID(), // Existing ID of the record to update
-		TaxBasedOn:                            1,
+		TaxBasedOnID:                          1,
 		TaxBasedOnPickupPointAddress:          false,
-		TaxDisplayType:                        2,
+		TaxDisplayTypeID:                      2,
 		ActiveTaxProviderSystemName:           "UpdatedTaxProvider",
 		DefaultTaxAddressID:                   primitive.NewObjectID(),
 		DisplayTaxSuffix:                      false,
@@ -176,9 +176,9 @@ func TestTaxSettingsUsecase_Fetch(t *testing.T) {
 	fetchedTaxSettings := []domain.TaxSettings{
 		{
 			ID:                                    primitive.NewObjectID(),
-			TaxBasedOn:                            2,
+			TaxBasedOnID:                          2,
 			TaxBasedOnPickupPointAddress:          true,
-			TaxDisplayType:                        1,
+			TaxDisplayTypeID:                      1,
 			ActiveTaxProviderSystemName:           "DefaultTaxProvider",
 			DefaultTaxAddressID:                   primitive.NewObjectID(),
 			DisplayTaxSuffix:                      true,
@@ -208,9 +208,9 @@ func TestTaxSettingsUsecase_Fetch(t *testing.T) {
 		},
 		{
 			ID:                                    primitive.NewObjectID(),
-			TaxBasedOn:                            1,
+			TaxBasedOnID:                          1,
 			TaxBasedOnPickupPointAddress:          false,
-			TaxDisplayType:                        2,
+			TaxDisplayTypeID:                      2,
 			ActiveTaxProviderSystemName:           "UpdatedTaxProvider",
 			DefaultTaxAddressID:                   primitive.NewObjectID(),
 			DisplayTaxSuffix:                      false,

@@ -23,7 +23,7 @@ func TestCaptchaSettingsUsecase_FetchByID(t *testing.T) {
 	updatedCaptchaSettings := domain.CaptchaSettings{
 		ID:                              primitive.NewObjectID(), // Existing ID of the record to update
 		Enabled:                         false,
-		CaptchaType:                     2,
+		CaptchaTypeID:                   2,
 		ShowOnLoginPage:                 false,
 		ShowOnRegistrationPage:          false,
 		ShowOnContactUsPage:             true,
@@ -65,7 +65,7 @@ func TestCaptchaSettingsUsecase_Create(t *testing.T) {
 
 	newCaptchaSettings := &domain.CaptchaSettings{
 		Enabled:                         true,
-		CaptchaType:                     3,
+		CaptchaTypeID:                   3,
 		ShowOnLoginPage:                 true,
 		ShowOnRegistrationPage:          true,
 		ShowOnContactUsPage:             false,
@@ -107,7 +107,7 @@ func TestCaptchaSettingsUsecase_Update(t *testing.T) {
 	updatedCaptchaSettings := &domain.CaptchaSettings{
 		ID:                              primitive.NewObjectID(), // Existing ID of the record to update
 		Enabled:                         false,
-		CaptchaType:                     1,
+		CaptchaTypeID:                   1,
 		ShowOnLoginPage:                 false,
 		ShowOnRegistrationPage:          false,
 		ShowOnContactUsPage:             true,
@@ -165,7 +165,7 @@ func TestCaptchaSettingsUsecase_Fetch(t *testing.T) {
 		{
 			ID:                              primitive.NewObjectID(),
 			Enabled:                         true,
-			CaptchaType:                     3,
+			CaptchaTypeID:                   3,
 			ShowOnLoginPage:                 true,
 			ShowOnRegistrationPage:          true,
 			ShowOnContactUsPage:             false,
@@ -192,7 +192,7 @@ func TestCaptchaSettingsUsecase_Fetch(t *testing.T) {
 		{
 			ID:                              primitive.NewObjectID(),
 			Enabled:                         false,
-			CaptchaType:                     2,
+			CaptchaTypeID:                   2,
 			ShowOnLoginPage:                 false,
 			ShowOnRegistrationPage:          false,
 			ShowOnContactUsPage:             true,

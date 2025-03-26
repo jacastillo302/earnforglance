@@ -68,8 +68,6 @@ func TestCustomerUsecase_FetchByID(t *testing.T) {
 		BillingAddressID:            new(primitive.ObjectID),
 		MustChangePassword:          true,
 		ShippingAddressID:           new(primitive.ObjectID),
-		VatNumberStatus:             2,
-		TaxDisplayType:              new(int),
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, customerID).Return(updatedCustomer, nil)
@@ -132,8 +130,6 @@ func TestCustomerUsecase_Create(t *testing.T) {
 		BillingAddressID:            nil,
 		MustChangePassword:          false,
 		ShippingAddressID:           nil,
-		VatNumberStatus:             1,
-		TaxDisplayType:              nil,
 	}
 
 	mockRepo.On("Create", mock.Anything, newCustomer).Return(nil)
@@ -196,8 +192,6 @@ func TestCustomerUsecase_Update(t *testing.T) {
 		BillingAddressID:            new(primitive.ObjectID),
 		MustChangePassword:          true,
 		ShippingAddressID:           new(primitive.ObjectID),
-		VatNumberStatus:             2,
-		TaxDisplayType:              new(int),
 	}
 	*updatedCustomer.DateOfBirth = time.Now().AddDate(-30, 0, 0)           // 30 years ago
 	*updatedCustomer.CannotLoginUntilDateUtc = time.Now().AddDate(0, 0, 7) // 7 days from now
@@ -207,7 +201,6 @@ func TestCustomerUsecase_Update(t *testing.T) {
 	*updatedCustomer.TaxDisplayTypeID = 10
 	*updatedCustomer.BillingAddressID = primitive.NewObjectID()
 	*updatedCustomer.ShippingAddressID = primitive.NewObjectID()
-	*updatedCustomer.TaxDisplayType = 1
 
 	mockRepo.On("Update", mock.Anything, updatedCustomer).Return(nil)
 
@@ -285,8 +278,6 @@ func TestCustomerUsecase_Fetch(t *testing.T) {
 			BillingAddressID:            nil,
 			MustChangePassword:          false,
 			ShippingAddressID:           nil,
-			VatNumberStatus:             1,
-			TaxDisplayType:              nil,
 		},
 		{
 			ID:                          primitive.NewObjectID(),
@@ -335,8 +326,6 @@ func TestCustomerUsecase_Fetch(t *testing.T) {
 			BillingAddressID:            new(primitive.ObjectID),
 			MustChangePassword:          true,
 			ShippingAddressID:           new(primitive.ObjectID),
-			VatNumberStatus:             2,
-			TaxDisplayType:              new(int),
 		},
 	}
 	*fetchedCustomers[1].DateOfBirth = time.Now().AddDate(-30, 0, 0)           // 30 years ago
@@ -346,7 +335,6 @@ func TestCustomerUsecase_Fetch(t *testing.T) {
 	*fetchedCustomers[1].LanguageID = primitive.NewObjectID()
 	*fetchedCustomers[1].BillingAddressID = primitive.NewObjectID()
 	*fetchedCustomers[1].ShippingAddressID = primitive.NewObjectID()
-	*fetchedCustomers[1].TaxDisplayType = 1
 
 	mockRepo.On("Fetch", mock.Anything).Return(fetchedCustomers, nil)
 

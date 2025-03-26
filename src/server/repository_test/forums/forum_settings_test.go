@@ -47,7 +47,7 @@ var mockItemForumSettings = &domain.ForumSettings{
 	ActiveDiscussionsPageSize:           3,
 	LatestCustomerPostsPageSize:         5,
 	ShowCustomersPostCount:              false,
-	ForumEditor:                         1,
+	EditorTypeID:                        1,
 	SignaturesEnabled:                   false,
 	AllowPrivateMessages:                false,
 	ShowAlertForPM:                      false,

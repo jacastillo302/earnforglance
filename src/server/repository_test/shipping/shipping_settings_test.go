@@ -54,7 +54,7 @@ var mockItemShippingSettings = &domain.ShippingSettings{
 	ConsiderAssociatedProductsDimensions:             false,
 	ShipSeparatelyOneItemEach:                        true,
 	RequestDelay:                                     1000,
-	ShippingSorting:                                  1,
+	ShippingSortingID:                                1,
 }
 
 func TestShippingSettingsRepository_FetchByID(t *testing.T) {

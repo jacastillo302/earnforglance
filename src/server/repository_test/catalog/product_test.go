@@ -70,7 +70,7 @@ var mockItemProduct = &domain.Product{
 	UserAgreementText:                "Updated user agreement text.",
 	IsRecurring:                      true,
 	RecurringCycleLength:             30,
-	RecurringCyclePeriodID:           2,
+	RecurringProductCyclePeriodID:    2,
 	RecurringTotalCycles:             12,
 	IsRental:                         true,
 	RentalPriceLength:                7,

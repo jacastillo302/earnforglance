@@ -80,10 +80,6 @@ func TestOrderUsecase_FetchByID(t *testing.T) {
 		CreatedOnUtc:                            time.Now().AddDate(0, 0, -7), // Created 7 days ago
 		CustomOrderNumber:                       "ORD67890",
 		RedeemedRewardPointsEntryID:             new(primitive.ObjectID),
-		OrderStatus:                             3,
-		PaymentStatus:                           2,
-		ShippingStatus:                          3,
-		CustomerTaxDisplayType:                  2,
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, orderID).Return(updatedOrder, nil)
@@ -157,10 +153,6 @@ func TestOrderUsecase_Create(t *testing.T) {
 		CreatedOnUtc:                            time.Now(),
 		CustomOrderNumber:                       "ORD12345",
 		RedeemedRewardPointsEntryID:             nil,
-		OrderStatus:                             3,
-		PaymentStatus:                           1,
-		ShippingStatus:                          2,
-		CustomerTaxDisplayType:                  1,
 	}
 
 	mockRepo.On("Create", mock.Anything, newOrder).Return(nil)
@@ -234,10 +226,6 @@ func TestOrderUsecase_Update(t *testing.T) {
 		CreatedOnUtc:                            time.Now().AddDate(0, 0, -7), // Created 7 days ago
 		CustomOrderNumber:                       "ORD67890",
 		RedeemedRewardPointsEntryID:             new(primitive.ObjectID),
-		OrderStatus:                             3,
-		PaymentStatus:                           2,
-		ShippingStatus:                          3,
-		CustomerTaxDisplayType:                  2,
 	}
 	*updatedOrder.ShippingAddressID = primitive.NewObjectID()
 	*updatedOrder.RewardPointsHistoryEntryID = primitive.NewObjectID()
@@ -330,10 +318,6 @@ func TestOrderUsecase_Fetch(t *testing.T) {
 			CreatedOnUtc:                            time.Now().AddDate(0, 0, -10), // Created 10 days ago
 			CustomOrderNumber:                       "ORD12345",
 			RedeemedRewardPointsEntryID:             nil,
-			OrderStatus:                             2,
-			PaymentStatus:                           1,
-			ShippingStatus:                          2,
-			CustomerTaxDisplayType:                  1,
 		},
 		{
 			ID:                                      primitive.NewObjectID(),
@@ -393,10 +377,6 @@ func TestOrderUsecase_Fetch(t *testing.T) {
 			CreatedOnUtc:                            time.Now().AddDate(0, 0, -5), // Created 5 days ago
 			CustomOrderNumber:                       "ORD67890",
 			RedeemedRewardPointsEntryID:             new(primitive.ObjectID),
-			OrderStatus:                             3,
-			PaymentStatus:                           2,
-			ShippingStatus:                          3,
-			CustomerTaxDisplayType:                  2,
 		},
 	}
 	*fetchedOrders[1].ShippingAddressID = primitive.NewObjectID()

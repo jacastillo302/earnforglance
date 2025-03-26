@@ -41,7 +41,6 @@ var mockItemForumTopic = &domain.ForumTopic{
 	LastPostTime:       new(time.Time),
 	CreatedOnUtc:       time.Now().AddDate(0, 0, -7), // Created 7 days ago
 	UpdatedOnUtc:       time.Now(),
-	ForumTopicType:     1,
 }
 
 func TestForumTopicRepository_FetchByID(t *testing.T) {
