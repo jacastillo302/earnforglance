@@ -1,0 +1,39 @@
+{
+    "AddressFields": [
+      {
+        "Name": "Country",
+        "Value": 0,
+        "Description": "Represents the country field"
+      },
+      {
+        "Name": "StateProvince",
+        "Value": 1,
+        "Description": "Represents the state/province field"
+      },
+      {
+        "Name": "City",
+        "Value": 2,
+        "Description": "Represents the city field"
+      },
+      {
+        "Name": "County",
+        "Value": 3,
+        "Description": "Represents the county field"
+      },
+      {
+        "Name": "Address1",
+        "Value": 4,
+        "Description": "Represents the address line 1 field"
+      },
+      {
+        "Name": "Address2",
+        "Value": 5,
+        "Description": "Represents the address line 2 field"
+      },
+      {
+        "Name": "ZipPostalCode",
+        "Value": 6,
+        "Description": "Represents the zip/postal code field"
+      }
+    ]
+  }

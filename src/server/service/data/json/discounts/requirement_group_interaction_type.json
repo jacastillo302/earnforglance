@@ -1,0 +1,14 @@
+{
+    "RequirementGroupInteractionTypes": [
+      {
+        "Name": "And",
+        "Value": 0,
+        "Description": "Represents that all requirements within the group must be met"
+      },
+      {
+        "Name": "Or",
+        "Value": 2,
+        "Description": "Represents that at least one of the requirements within the group must be met"
+      }
+    ]
+  }

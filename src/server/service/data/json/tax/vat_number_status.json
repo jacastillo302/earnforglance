@@ -1,0 +1,24 @@
+{
+    "VatNumberStatuses": [
+      {
+        "Name": "Unknown",
+        "Value": 0,
+        "Description": "Represents an unknown VAT number status"
+      },
+      {
+        "Name": "Empty",
+        "Value": 10,
+        "Description": "Represents an empty VAT number status"
+      },
+      {
+        "Name": "Valid",
+        "Value": 20,
+        "Description": "Represents a valid VAT number status"
+      },
+      {
+        "Name": "Invalid",
+        "Value": 30,
+        "Description": "Represents an invalid VAT number status"
+      }
+    ]
+  }

@@ -1,0 +1,14 @@
+{
+    "AttributeValueTypes": [
+      {
+        "Name": "Simple",
+        "Value": 0,
+        "Description": "Represents a simple attribute value"
+      },
+      {
+        "Name": "AssociatedToProduct",
+        "Value": 10,
+        "Description": "Represents an attribute value associated to a product (used when configuring bundled products)"
+      }
+    ]
+  }

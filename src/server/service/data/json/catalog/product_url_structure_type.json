@@ -1,0 +1,19 @@
+{
+    "ProductUrlStructureTypes": [
+      {
+        "Name": "ProductSeo",
+        "Value": 0,
+        "Description": "Represents the URL structure for product only (e.g. '/product-seo-name')"
+      },
+      {
+        "Name": "CategoryProduct",
+        "Value": 10,
+        "Description": "Represents the URL structure for category (the most nested), then product (e.g. '/category-seo-name/product-seo-name')"
+      },
+      {
+        "Name": "ManufacturerProduct",
+        "Value": 20,
+        "Description": "Represents the URL structure for manufacturer, then product (e.g. '/manufacturer-seo-name/product-seo-name')"
+      }
+    ]
+  }

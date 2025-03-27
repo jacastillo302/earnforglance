@@ -1,0 +1,29 @@
+{
+    "ShippingStatuses": [
+      {
+        "Name": "ShippingNotRequired",
+        "Value": 10,
+        "Description": "Represents a shipping not required status"
+      },
+      {
+        "Name": "NotYetShipped",
+        "Value": 20,
+        "Description": "Represents a not yet shipped status"
+      },
+      {
+        "Name": "PartiallyShipped",
+        "Value": 25,
+        "Description": "Represents a partially shipped status"
+      },
+      {
+        "Name": "Shipped",
+        "Value": 30,
+        "Description": "Represents a shipped status"
+      },
+      {
+        "Name": "Delivered",
+        "Value": 40,
+        "Description": "Represents a delivered status"
+      }
+    ]
+  }

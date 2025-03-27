@@ -1,0 +1,39 @@
+{
+    "ReturnRequestStatuses": [
+      {
+        "Name": "ReturnPending",
+        "Value": 0,
+        "Description": "Represents a pending return status"
+      },
+      {
+        "Name": "Received",
+        "Value": 10,
+        "Description": "Represents a received return status"
+      },
+      {
+        "Name": "ReturnAuthorized",
+        "Value": 20,
+        "Description": "Represents a return authorized status"
+      },
+      {
+        "Name": "ItemsRepaired",
+        "Value": 30,
+        "Description": "Represents an items repaired status"
+      },
+      {
+        "Name": "ItemsRefunded",
+        "Value": 40,
+        "Description": "Represents an items refunded status"
+      },
+      {
+        "Name": "RequestRejected",
+        "Value": 50,
+        "Description": "Represents a request rejected status"
+      },
+      {
+        "Name": "ReturnCancelled",
+        "Value": 60,
+        "Description": "Represents a cancelled return status"
+      }
+    ]
+  }

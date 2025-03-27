@@ -1,0 +1,14 @@
+{
+    "ShoppingCartTypes": [
+      {
+        "Name": "ShoppingCart",
+        "Value": 1,
+        "Description": "Represents a shopping cart"
+      },
+      {
+        "Name": "Wishlist",
+        "Value": 2,
+        "Description": "Represents a wishlist"
+      }
+    ]
+  }

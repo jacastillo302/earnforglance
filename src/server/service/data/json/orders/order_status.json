@@ -1,0 +1,24 @@
+{
+    "OrderStatuses": [
+      {
+        "Name": "Pending",
+        "Value": 10,
+        "Description": "Represents a pending order status"
+      },
+      {
+        "Name": "Processing",
+        "Value": 20,
+        "Description": "Represents a processing order status"
+      },
+      {
+        "Name": "Complete",
+        "Value": 30,
+        "Description": "Represents a complete order status"
+      },
+      {
+        "Name": "Cancelled",
+        "Value": 40,
+        "Description": "Represents a cancelled order status"
+      }
+    ]
+  }

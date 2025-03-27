@@ -1,0 +1,19 @@
+{
+    "DiscountLimitationTypes": [
+      {
+        "Name": "Unlimited",
+        "Value": 0,
+        "Description": "Represents no limitation"
+      },
+      {
+        "Name": "NTimesOnly",
+        "Value": 15,
+        "Description": "Represents a limitation of N times only"
+      },
+      {
+        "Name": "NTimesPerCustomer",
+        "Value": 25,
+        "Description": "Represents a limitation of N times per customer"
+      }
+    ]
+  }

@@ -1,0 +1,14 @@
+{
+    "CaptchaTypes": [
+      {
+        "Name": "CheckBoxReCaptchaV2",
+        "Value": 10,
+        "Description": "Represents reCAPTCHA v2 check box"
+      },
+      {
+        "Name": "ReCaptchaV3",
+        "Value": 20,
+        "Description": "Represents reCAPTCHA v3"
+      }
+    ]
+  }

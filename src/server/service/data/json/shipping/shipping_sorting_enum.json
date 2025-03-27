@@ -1,0 +1,14 @@
+{
+    "ShippingSortingEnums": [
+      {
+        "Name": "Position",
+        "Value": 1,
+        "Description": "Represents sorting by position (display order)"
+      },
+      {
+        "Name": "ShippingCost",
+        "Value": 2,
+        "Description": "Represents sorting by shipping cost"
+      }
+    ]
+  }

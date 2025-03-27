@@ -1,0 +1,34 @@
+{
+    "PaymentStatuses": [
+      {
+        "Name": "Pending",
+        "Value": 10,
+        "Description": "Represents a pending payment status"
+      },
+      {
+        "Name": "Authorized",
+        "Value": 20,
+        "Description": "Represents an authorized payment status"
+      },
+      {
+        "Name": "Paid",
+        "Value": 30,
+        "Description": "Represents a paid payment status"
+      },
+      {
+        "Name": "PartiallyRefunded",
+        "Value": 35,
+        "Description": "Represents a partially refunded payment status"
+      },
+      {
+        "Name": "Refunded",
+        "Value": 40,
+        "Description": "Represents a refunded payment status"
+      },
+      {
+        "Name": "Voided",
+        "Value": 50,
+        "Description": "Represents a voided payment status"
+      }
+    ]
+  }

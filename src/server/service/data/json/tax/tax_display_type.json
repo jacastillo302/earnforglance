@@ -1,0 +1,14 @@
+{
+    "TaxDisplayTypes": [
+      {
+        "Name": "IncludingTax",
+        "Value": 0,
+        "Description": "Represents including tax"
+      },
+      {
+        "Name": "ExcludingTax",
+        "Value": 10,
+        "Description": "Represents excluding tax"
+      }
+    ]
+  }

@@ -1,0 +1,19 @@
+{
+    "WwwRequirements": [
+      {
+        "Name": "NoMatter",
+        "Value": 0,
+        "Description": "Means it doesn't matter (do nothing)"
+      },
+      {
+        "Name": "WithWww",
+        "Value": 10,
+        "Description": "Means pages should have WWW prefix"
+      },
+      {
+        "Name": "WithoutWww",
+        "Value": 20,
+        "Description": "Means pages should not have WWW prefix"
+      }
+    ]
+  }

@@ -1,0 +1,14 @@
+{
+    "GiftCardTypes": [
+      {
+        "Name": "Virtual",
+        "Value": 0,
+        "Description": "Represents a virtual gift card"
+      },
+      {
+        "Name": "Physical",
+        "Value": 1,
+        "Description": "Represents a physical gift card"
+      }
+    ]
+  }

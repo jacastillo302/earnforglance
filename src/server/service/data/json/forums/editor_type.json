@@ -1,0 +1,14 @@
+{
+    "EditorTypes": [
+      {
+        "Name": "SimpleTextBox",
+        "Value": 10,
+        "Description": "Represents a simple text box editor"
+      },
+      {
+        "Name": "BBCodeEditor",
+        "Value": 20,
+        "Description": "Represents a BB code editor"
+      }
+    ]
+  }

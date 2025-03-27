@@ -1,0 +1,19 @@
+{
+    "TaxBasedOnOptions": [
+      {
+        "Name": "BillingAddress",
+        "Value": 1,
+        "Description": "Represents tax based on billing address"
+      },
+      {
+        "Name": "ShippingAddress",
+        "Value": 2,
+        "Description": "Represents tax based on shipping address"
+      },
+      {
+        "Name": "DefaultAddress",
+        "Value": 3,
+        "Description": "Represents tax based on default address"
+      }
+    ]
+  }

@@ -1,0 +1,29 @@
+{
+    "LogLevels": [
+      {
+        "Name": "Debug",
+        "Value": 10,
+        "Description": "Represents debug level"
+      },
+      {
+        "Name": "Information",
+        "Value": 20,
+        "Description": "Represents information level"
+      },
+      {
+        "Name": "Warning",
+        "Value": 30,
+        "Description": "Represents warning level"
+      },
+      {
+        "Name": "Error",
+        "Value": 40,
+        "Description": "Represents error level"
+      },
+      {
+        "Name": "Fatal",
+        "Value": 50,
+        "Description": "Represents fatal level"
+      }
+    ]
+  }

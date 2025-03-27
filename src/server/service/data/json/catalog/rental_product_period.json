@@ -1,0 +1,24 @@
+{
+    "RentalPricePeriods": [
+      {
+        "Name": "Days",
+        "Value": 0,
+        "Description": "Represents a rental period in days"
+      },
+      {
+        "Name": "Weeks",
+        "Value": 10,
+        "Description": "Represents a rental period in weeks"
+      },
+      {
+        "Name": "Months",
+        "Value": 20,
+        "Description": "Represents a rental period in months"
+      },
+      {
+        "Name": "Years",
+        "Value": 30,
+        "Description": "Represents a rental period in years"
+      }
+    ]
+  }

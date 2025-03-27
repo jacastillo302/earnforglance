@@ -1,0 +1,14 @@
+{
+    "ProductTypes": [
+      {
+        "Name": "SimpleProduct",
+        "Value": 5,
+        "Description": "Represents a simple product"
+      },
+      {
+        "Name": "GroupedProduct",
+        "Value": 10,
+        "Description": "Represents a grouped product (product with variants)"
+      }
+    ]
+  }

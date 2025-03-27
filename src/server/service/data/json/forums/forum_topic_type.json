@@ -1,0 +1,19 @@
+{
+    "ForumTopicTypes": [
+      {
+        "Name": "Normal",
+        "Value": 10,
+        "Description": "Represents a normal forum topic"
+      },
+      {
+        "Name": "Sticky",
+        "Value": 15,
+        "Description": "Represents a sticky forum topic"
+      },
+      {
+        "Name": "Announcement",
+        "Value": 20,
+        "Description": "Represents an announcement forum topic"
+      }
+    ]
+  }

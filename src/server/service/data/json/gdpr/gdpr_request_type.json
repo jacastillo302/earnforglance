@@ -1,0 +1,29 @@
+{
+    "GdprRequestTypes": [
+      {
+        "Name": "ConsentAgree",
+        "Value": 1,
+        "Description": "Represents consent (agree)"
+      },
+      {
+        "Name": "ConsentDisagree",
+        "Value": 5,
+        "Description": "Represents consent (disagree)"
+      },
+      {
+        "Name": "ExportData",
+        "Value": 10,
+        "Description": "Represents export data"
+      },
+      {
+        "Name": "DeleteCustomer",
+        "Value": 15,
+        "Description": "Represents delete customer"
+      },
+      {
+        "Name": "ProfileChanged",
+        "Value": 20,
+        "Description": "Represents user changed profile"
+      }
+    ]
+  }

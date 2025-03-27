@@ -1,0 +1,34 @@
+{
+    "ProductSortingEnums": [
+      {
+        "Name": "Position",
+        "Value": 0,
+        "Description": "Represents sorting by position (display order)"
+      },
+      {
+        "Name": "NameAsc",
+        "Value": 5,
+        "Description": "Represents sorting by name: A to Z"
+      },
+      {
+        "Name": "NameDesc",
+        "Value": 6,
+        "Description": "Represents sorting by name: Z to A"
+      },
+      {
+        "Name": "PriceAsc",
+        "Value": 10,
+        "Description": "Represents sorting by price: Low to High"
+      },
+      {
+        "Name": "PriceDesc",
+        "Value": 11,
+        "Description": "Represents sorting by price: High to Low"
+      },
+      {
+        "Name": "CreatedOn",
+        "Value": 15,
+        "Description": "Represents sorting by product creation date"
+      }
+    ]
+  }

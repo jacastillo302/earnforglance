@@ -1,0 +1,14 @@
+{
+    "PictureTypes": [
+      {
+        "Name": "Entity",
+        "Value": 1,
+        "Description": "Represents entities (products, categories, manufacturers)"
+      },
+      {
+        "Name": "Avatar",
+        "Value": 10,
+        "Description": "Represents avatar"
+      }
+    ]
+  }

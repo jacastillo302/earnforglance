@@ -1,0 +1,19 @@
+{
+    "ForumSearchTypes": [
+      {
+        "Name": "All",
+        "Value": 0,
+        "Description": "Represents searching in topic titles and post text"
+      },
+      {
+        "Name": "TopicTitlesOnly",
+        "Value": 10,
+        "Description": "Represents searching in topic titles only"
+      },
+      {
+        "Name": "PostTextOnly",
+        "Value": 20,
+        "Description": "Represents searching in post text only"
+      }
+    ]
+  }

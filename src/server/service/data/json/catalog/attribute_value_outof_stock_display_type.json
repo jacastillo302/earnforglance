@@ -1,0 +1,14 @@
+{
+    "AttributeValueOutOfStockDisplayTypes": [
+      {
+        "Name": "Disable",
+        "Value": true,
+        "Description": "An attribute value that is visible but cannot be interacted with"
+      },
+      {
+        "Name": "AlwaysDisplay",
+        "Value": false,
+        "Description": "An attribute value that is always displayed"
+      }
+    ]
+  }

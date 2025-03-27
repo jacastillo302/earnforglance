@@ -1,0 +1,14 @@
+{
+    "MessageDelayPeriods": [
+      {
+        "Name": "Hours",
+        "Value": 0,
+        "Description": "Represents hours"
+      },
+      {
+        "Name": "Days",
+        "Value": 1,
+        "Description": "Represents days"
+      }
+    ]
+  }

@@ -1,0 +1,24 @@
+{
+    "SpecificationAttributeTypes": [
+      {
+        "Name": "Option",
+        "Value": 0,
+        "Description": "Represents an option type"
+      },
+      {
+        "Name": "CustomText",
+        "Value": 10,
+        "Description": "Represents a custom text type"
+      },
+      {
+        "Name": "CustomHtmlText",
+        "Value": 20,
+        "Description": "Represents a custom HTML text type"
+      },
+      {
+        "Name": "Hyperlink",
+        "Value": 30,
+        "Description": "Represents a hyperlink type"
+      }
+    ]
+  }

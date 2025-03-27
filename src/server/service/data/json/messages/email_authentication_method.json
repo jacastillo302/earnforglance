@@ -1,0 +1,29 @@
+{
+    "EmailAuthenticationMethods": [
+      {
+        "Name": "None",
+        "Value": 0,
+        "Description": "Represents email account does not require authentication"
+      },
+      {
+        "Name": "Ntlm",
+        "Value": 5,
+        "Description": "Represents authentication through the default network credentials"
+      },
+      {
+        "Name": "Login",
+        "Value": 10,
+        "Description": "Represents authentication through username and password"
+      },
+      {
+        "Name": "GmailOAuth2",
+        "Value": 15,
+        "Description": "Represents authentication through Google APIs Client with OAuth2"
+      },
+      {
+        "Name": "MicrosoftOAuth2",
+        "Value": 20,
+        "Description": "Represents authentication through Microsoft Authentication Client with OAuth2"
+      }
+    ]
+  }

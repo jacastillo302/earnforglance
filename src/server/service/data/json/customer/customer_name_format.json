@@ -1,0 +1,24 @@
+{
+    "CustomerNameFormats": [
+      {
+        "Name": "ShowEmails",
+        "Value": 1,
+        "Description": "Represents showing emails"
+      },
+      {
+        "Name": "ShowUsernames",
+        "Value": 2,
+        "Description": "Represents showing usernames"
+      },
+      {
+        "Name": "ShowFullNames",
+        "Value": 3,
+        "Description": "Represents showing full names"
+      },
+      {
+        "Name": "ShowFirstName",
+        "Value": 10,
+        "Description": "Represents showing the first name"
+      }
+    ]
+  }
