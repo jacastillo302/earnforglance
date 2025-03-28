@@ -28,10 +28,13 @@ func (m *MockSingleResultAclRecord) Decode(v interface{}) error {
 }
 
 var mockItemAclRecord = &domain.AclRecord{
-	ID:             primitive.NewObjectID(), // Existing ID of the record to update
 	EntityID:       primitive.NewObjectID(),
 	EntityName:     "Category",
 	CustomerRoleID: primitive.NewObjectID(),
+	IsRead:         true,
+	IsDelete:       true,
+	IsUpdate:       true,
+	IsCreate:       true,
 }
 
 func TestAclRecordRepository_FetchByID(t *testing.T) {
@@ -52,7 +55,7 @@ func TestAclRecordRepository_FetchByID(t *testing.T) {
 
 		ur := repository.NewAclRecordRepository(databaseHelper, collectionName)
 
-		_, err := ur.FetchByID(context.Background(), mockItemAclRecord.ID.Hex())
+		_, err := ur.FetchByID(context.Background(), mockItemAclRecord.EntityID.Hex())
 
 		assert.NoError(t, err)
 		collectionHelper.AssertExpectations(t)
@@ -68,7 +71,7 @@ func TestAclRecordRepository_FetchByID(t *testing.T) {
 
 		ur := repository.NewAclRecordRepository(databaseHelper, collectionName)
 
-		_, err := ur.FetchByID(context.Background(), mockItemAclRecord.ID.Hex())
+		_, err := ur.FetchByID(context.Background(), mockItemAclRecord.EntityID.Hex())
 
 		assert.Error(t, err)
 
@@ -99,7 +102,7 @@ func TestAclRecordRepository_Update(t *testing.T) {
 	collectionName := domain.CollectionAclRecord
 
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
-	filter := bson.M{"_id": mockItemAclRecord.ID}
+	filter := bson.M{"_id": mockItemAclRecord.EntityID}
 	update := bson.M{"$set": mockItemAclRecord}
 
 	collectionHelper.On("UpdateOne", mock.Anything, filter, update).Return(nil, nil).Once()

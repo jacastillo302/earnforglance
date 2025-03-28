@@ -20,10 +20,13 @@ func TestAclRecordUsecase_FetchByID(t *testing.T) {
 
 	aclRecordID := primitive.NewObjectID().Hex()
 	updatedAclRecord := domain.AclRecord{
-		ID:             primitive.NewObjectID(), // Existing ID of the record to update
 		EntityID:       primitive.NewObjectID(),
 		EntityName:     "Category",
 		CustomerRoleID: primitive.NewObjectID(),
+		IsRead:         true,
+		IsDelete:       true,
+		IsUpdate:       true,
+		IsCreate:       true,
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, aclRecordID).Return(updatedAclRecord, nil)
@@ -60,10 +63,13 @@ func TestAclRecordUsecase_Update(t *testing.T) {
 	usecase := test.NewAclRecordUsecase(mockRepo, timeout)
 
 	updatedAclRecord := &domain.AclRecord{
-		ID:             primitive.NewObjectID(), // Existing ID of the record to update
 		EntityID:       primitive.NewObjectID(),
 		EntityName:     "Category",
 		CustomerRoleID: primitive.NewObjectID(),
+		IsRead:         true,
+		IsDelete:       true,
+		IsUpdate:       true,
+		IsCreate:       true,
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedAclRecord).Return(nil)
@@ -96,16 +102,22 @@ func TestAclRecordUsecase_Fetch(t *testing.T) {
 
 	fetchedAclRecords := []domain.AclRecord{
 		{
-			ID:             primitive.NewObjectID(),
 			EntityID:       primitive.NewObjectID(),
 			EntityName:     "Product",
 			CustomerRoleID: primitive.NewObjectID(),
+			IsRead:         true,
+			IsDelete:       true,
+			IsUpdate:       true,
+			IsCreate:       true,
 		},
 		{
-			ID:             primitive.NewObjectID(),
 			EntityID:       primitive.NewObjectID(),
 			EntityName:     "Category",
 			CustomerRoleID: primitive.NewObjectID(),
+			IsRead:         true,
+			IsDelete:       false,
+			IsUpdate:       true,
+			IsCreate:       false,
 		},
 	}
 

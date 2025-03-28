@@ -47,7 +47,7 @@ func (ur *aclrecordRepository) Create(c context.Context, aclrecord *domain.AclRe
 func (ur *aclrecordRepository) Update(c context.Context, aclrecord *domain.AclRecord) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": aclrecord.ID}
+	filter := bson.M{"_id": aclrecord.EntityID}
 	update := bson.M{
 		"$set": aclrecord,
 	}
