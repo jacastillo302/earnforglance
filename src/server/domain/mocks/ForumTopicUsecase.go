@@ -14,21 +14,6 @@ type ForumTopicUsecase struct {
 	mock.Mock
 }
 
-// Create provides a mock function with given fields
-func (_m *ForumTopicUsecase) CreateMany(c context.Context, acl_record []domain.ForumTopic) error {
-	ret := _m.Called(c, acl_record)
-	if len(ret) == 0 {
-		panic("no return value specified for Create")
-	}
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, []domain.ForumTopic) error); ok {
-		r0 = rf(c, acl_record)
-	} else {
-		r0 = ret.Error(0)
-	}
-	return r0
-}
-
 // Create provides a mock function with given fields: c, forum_topic
 func (_m *ForumTopicUsecase) Create(c context.Context, forum_topic *domain.ForumTopic) error {
 	ret := _m.Called(c, forum_topic)
@@ -40,6 +25,24 @@ func (_m *ForumTopicUsecase) Create(c context.Context, forum_topic *domain.Forum
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *domain.ForumTopic) error); ok {
 		r0 = rf(c, forum_topic)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// CreateMany provides a mock function with given fields: c, items
+func (_m *ForumTopicUsecase) CreateMany(c context.Context, items []domain.ForumTopic) error {
+	ret := _m.Called(c, items)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CreateMany")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.ForumTopic) error); ok {
+		r0 = rf(c, items)
 	} else {
 		r0 = ret.Error(0)
 	}

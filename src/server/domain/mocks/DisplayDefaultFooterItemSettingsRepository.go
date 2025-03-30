@@ -14,21 +14,6 @@ type DisplayDefaultFooterItemSettingsRepository struct {
 	mock.Mock
 }
 
-// Create provides a mock function with given fields
-func (_m *DisplayDefaultFooterItemSettingsRepository) CreateMany(c context.Context, acl_record []domain.DisplayDefaultFooterItemSettings) error {
-	ret := _m.Called(c, acl_record)
-	if len(ret) == 0 {
-		panic("no return value specified for Create")
-	}
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, []domain.DisplayDefaultFooterItemSettings) error); ok {
-		r0 = rf(c, acl_record)
-	} else {
-		r0 = ret.Error(0)
-	}
-	return r0
-}
-
 // Create provides a mock function with given fields: c, display_default_footer_item_settings
 func (_m *DisplayDefaultFooterItemSettingsRepository) Create(c context.Context, display_default_footer_item_settings *domain.DisplayDefaultFooterItemSettings) error {
 	ret := _m.Called(c, display_default_footer_item_settings)
@@ -40,6 +25,24 @@ func (_m *DisplayDefaultFooterItemSettingsRepository) Create(c context.Context, 
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *domain.DisplayDefaultFooterItemSettings) error); ok {
 		r0 = rf(c, display_default_footer_item_settings)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// CreateMany provides a mock function with given fields: c, items
+func (_m *DisplayDefaultFooterItemSettingsRepository) CreateMany(c context.Context, items []domain.DisplayDefaultFooterItemSettings) error {
+	ret := _m.Called(c, items)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CreateMany")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.DisplayDefaultFooterItemSettings) error); ok {
+		r0 = rf(c, items)
 	} else {
 		r0 = ret.Error(0)
 	}

@@ -1,5 +1,9 @@
 package domain
 
+import (
+	"context"
+)
+
 const (
 	CollectionExternalAuthenticationSettings = "external_authentication_settings"
 )
@@ -24,4 +28,22 @@ func NewExternalAuthenticationSettings() *ExternalAuthenticationSettings {
 	return &ExternalAuthenticationSettings{
 		ActiveAuthenticationMethodSystemNames: []string{},
 	}
+}
+
+type ExternalAuthenticationSettingsRepository interface {
+	CreateMany(c context.Context, items []ExternalAuthenticationSettings) error
+	Create(c context.Context, permission_record_customer_role_mapping *ExternalAuthenticationSettings) error
+	Update(c context.Context, permission_record_customer_role_mapping *ExternalAuthenticationSettings) error
+	Delete(c context.Context, ID string) error
+	Fetch(c context.Context) ([]ExternalAuthenticationSettings, error)
+	FetchByID(c context.Context, ID string) (ExternalAuthenticationSettings, error)
+}
+
+type ExternalAuthenticationSettingsUsecase interface {
+	CreateMany(c context.Context, items []ExternalAuthenticationSettings) error
+	FetchByID(c context.Context, ID string) (ExternalAuthenticationSettings, error)
+	Create(c context.Context, permission_record_customer_role_mapping *ExternalAuthenticationSettings) error
+	Update(c context.Context, permission_record_customer_role_mapping *ExternalAuthenticationSettings) error
+	Delete(c context.Context, ID string) error
+	Fetch(c context.Context) ([]ExternalAuthenticationSettings, error)
 }

@@ -5,6 +5,7 @@ import (
 
 	"earnforglance/server/api/middleware"
 	affiliate "earnforglance/server/api/route/affiliate"
+	auth "earnforglance/server/api/route/api"
 	attributes "earnforglance/server/api/route/attributes"
 	blogs "earnforglance/server/api/route/blogs"
 	catalog "earnforglance/server/api/route/catalog"
@@ -63,6 +64,7 @@ func Setup(env *bootstrap.Env, timeout time.Duration, db mongo.Database, gin *gi
 	SignupRouter(env, timeout, db, publicRouter)
 	LoginRouter(env, timeout, db, publicRouter)
 	RefreshTokenRouter(env, timeout, db, publicRouter)
+	auth.ApiClientRouter(env, timeout, db, publicRouter)
 
 	protectedRouter := gin.Group("")
 	// Middleware to verify AccessToken
@@ -79,6 +81,7 @@ func Setup(env *bootstrap.Env, timeout time.Duration, db mongo.Database, gin *gi
 func registerModuleRouters(env *bootstrap.Env, timeout time.Duration, db mongo.Database, router *gin.RouterGroup) {
 	// Define routers grouped by module for better organization and maintenance
 	moduleRouters := ModuleRouters{
+
 		"affiliate": {
 			affiliate.AffiliateRouter,
 		},
@@ -153,6 +156,12 @@ func registerModuleRouters(env *bootstrap.Env, timeout time.Duration, db mongo.D
 		},
 		"customers": {
 			customers.BestCustomerReportLineRouter,
+			customers.CustomerPasswordRouter,
+			customers.CustomerRoleRouter,
+			customers.CustomerSettingsRouter,
+			customers.ExternalAuthenticationRecordRouter,
+			customers.ExternalAuthenticationSettingsRouter,
+			customers.MultiFactorAuthenticationSettingsRouter,
 			customers.CustomerRouter,
 			customers.CustomerAddressMappingRouter,
 			customers.CustomerAttributeRouter,

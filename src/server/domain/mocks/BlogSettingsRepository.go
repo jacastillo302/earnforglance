@@ -14,21 +14,6 @@ type BlogSettingsRepository struct {
 	mock.Mock
 }
 
-// Create provides a mock function with given fields: c, acl_record
-func (_m *BlogSettingsRepository) CreateMany(c context.Context, acl_record []domain.BlogSettings) error {
-	ret := _m.Called(c, acl_record)
-	if len(ret) == 0 {
-		panic("no return value specified for Create")
-	}
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, []domain.BlogSettings) error); ok {
-		r0 = rf(c, acl_record)
-	} else {
-		r0 = ret.Error(0)
-	}
-	return r0
-}
-
 // Create provides a mock function with given fields: c, blog_settings
 func (_m *BlogSettingsRepository) Create(c context.Context, blog_settings *domain.BlogSettings) error {
 	ret := _m.Called(c, blog_settings)
@@ -40,6 +25,24 @@ func (_m *BlogSettingsRepository) Create(c context.Context, blog_settings *domai
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *domain.BlogSettings) error); ok {
 		r0 = rf(c, blog_settings)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// CreateMany provides a mock function with given fields: c, items
+func (_m *BlogSettingsRepository) CreateMany(c context.Context, items []domain.BlogSettings) error {
+	ret := _m.Called(c, items)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CreateMany")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.BlogSettings) error); ok {
+		r0 = rf(c, items)
 	} else {
 		r0 = ret.Error(0)
 	}

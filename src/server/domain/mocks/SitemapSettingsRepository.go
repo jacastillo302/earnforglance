@@ -14,20 +14,6 @@ type SitemapSettingsRepository struct {
 	mock.Mock
 }
 
-func (_m *SitemapSettingsRepository) CreateMany(c context.Context, acl_record []domain.SitemapSettings) error {
-	ret := _m.Called(c, acl_record)
-	if len(ret) == 0 {
-		panic("no return value specified for Create")
-	}
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, []domain.SitemapSettings) error); ok {
-		r0 = rf(c, acl_record)
-	} else {
-		r0 = ret.Error(0)
-	}
-	return r0
-}
-
 // Create provides a mock function with given fields: c, sitemap_settings
 func (_m *SitemapSettingsRepository) Create(c context.Context, sitemap_settings *domain.SitemapSettings) error {
 	ret := _m.Called(c, sitemap_settings)
@@ -39,6 +25,24 @@ func (_m *SitemapSettingsRepository) Create(c context.Context, sitemap_settings 
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *domain.SitemapSettings) error); ok {
 		r0 = rf(c, sitemap_settings)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// CreateMany provides a mock function with given fields: c, items
+func (_m *SitemapSettingsRepository) CreateMany(c context.Context, items []domain.SitemapSettings) error {
+	ret := _m.Called(c, items)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CreateMany")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.SitemapSettings) error); ok {
+		r0 = rf(c, items)
 	} else {
 		r0 = ret.Error(0)
 	}

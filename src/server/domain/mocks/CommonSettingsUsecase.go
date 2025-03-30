@@ -14,21 +14,6 @@ type CommonSettingsUsecase struct {
 	mock.Mock
 }
 
-// Create provides a mock function with given fields: c, acl_record
-func (_m *CommonSettingsUsecase) CreateMany(c context.Context, acl_record []domain.CommonSettings) error {
-	ret := _m.Called(c, acl_record)
-	if len(ret) == 0 {
-		panic("no return value specified for Create")
-	}
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, []domain.CommonSettings) error); ok {
-		r0 = rf(c, acl_record)
-	} else {
-		r0 = ret.Error(0)
-	}
-	return r0
-}
-
 // Create provides a mock function with given fields: c, common_settings
 func (_m *CommonSettingsUsecase) Create(c context.Context, common_settings *domain.CommonSettings) error {
 	ret := _m.Called(c, common_settings)
@@ -40,6 +25,24 @@ func (_m *CommonSettingsUsecase) Create(c context.Context, common_settings *doma
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *domain.CommonSettings) error); ok {
 		r0 = rf(c, common_settings)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// CreateMany provides a mock function with given fields: c, items
+func (_m *CommonSettingsUsecase) CreateMany(c context.Context, items []domain.CommonSettings) error {
+	ret := _m.Called(c, items)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CreateMany")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.CommonSettings) error); ok {
+		r0 = rf(c, items)
 	} else {
 		r0 = ret.Error(0)
 	}

@@ -14,20 +14,6 @@ type SearchTermUsecase struct {
 	mock.Mock
 }
 
-func (_m *SearchTermUsecase) CreateMany(c context.Context, acl_record []domain.SearchTerm) error {
-	ret := _m.Called(c, acl_record)
-	if len(ret) == 0 {
-		panic("no return value specified for Create")
-	}
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, []domain.SearchTerm) error); ok {
-		r0 = rf(c, acl_record)
-	} else {
-		r0 = ret.Error(0)
-	}
-	return r0
-}
-
 // Create provides a mock function with given fields: c, search_term
 func (_m *SearchTermUsecase) Create(c context.Context, search_term *domain.SearchTerm) error {
 	ret := _m.Called(c, search_term)
@@ -39,6 +25,24 @@ func (_m *SearchTermUsecase) Create(c context.Context, search_term *domain.Searc
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *domain.SearchTerm) error); ok {
 		r0 = rf(c, search_term)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// CreateMany provides a mock function with given fields: c, items
+func (_m *SearchTermUsecase) CreateMany(c context.Context, items []domain.SearchTerm) error {
+	ret := _m.Called(c, items)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CreateMany")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.SearchTerm) error); ok {
+		r0 = rf(c, items)
 	} else {
 		r0 = ret.Error(0)
 	}

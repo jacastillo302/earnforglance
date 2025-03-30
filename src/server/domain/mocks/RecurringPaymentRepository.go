@@ -14,21 +14,6 @@ type RecurringPaymentRepository struct {
 	mock.Mock
 }
 
-// Create provides a mock function with given fields
-func (_m *RecurringPaymentRepository) CreateMany(c context.Context, acl_record []domain.RecurringPayment) error {
-	ret := _m.Called(c, acl_record)
-	if len(ret) == 0 {
-		panic("no return value specified for Create")
-	}
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, []domain.RecurringPayment) error); ok {
-		r0 = rf(c, acl_record)
-	} else {
-		r0 = ret.Error(0)
-	}
-	return r0
-}
-
 // Create provides a mock function with given fields: c, recurring_payment
 func (_m *RecurringPaymentRepository) Create(c context.Context, recurring_payment *domain.RecurringPayment) error {
 	ret := _m.Called(c, recurring_payment)
@@ -40,6 +25,24 @@ func (_m *RecurringPaymentRepository) Create(c context.Context, recurring_paymen
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *domain.RecurringPayment) error); ok {
 		r0 = rf(c, recurring_payment)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// CreateMany provides a mock function with given fields: c, items
+func (_m *RecurringPaymentRepository) CreateMany(c context.Context, items []domain.RecurringPayment) error {
+	ret := _m.Called(c, items)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CreateMany")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.RecurringPayment) error); ok {
+		r0 = rf(c, items)
 	} else {
 		r0 = ret.Error(0)
 	}

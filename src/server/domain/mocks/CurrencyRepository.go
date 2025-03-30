@@ -14,21 +14,6 @@ type CurrencyRepository struct {
 	mock.Mock
 }
 
-// Create provides a mock function with given fields: c, acl_record
-func (_m *CurrencyRepository) CreateMany(c context.Context, acl_record []domain.Currency) error {
-	ret := _m.Called(c, acl_record)
-	if len(ret) == 0 {
-		panic("no return value specified for Create")
-	}
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, []domain.Currency) error); ok {
-		r0 = rf(c, acl_record)
-	} else {
-		r0 = ret.Error(0)
-	}
-	return r0
-}
-
 // Create provides a mock function with given fields: c, currency
 func (_m *CurrencyRepository) Create(c context.Context, currency *domain.Currency) error {
 	ret := _m.Called(c, currency)
@@ -40,6 +25,24 @@ func (_m *CurrencyRepository) Create(c context.Context, currency *domain.Currenc
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *domain.Currency) error); ok {
 		r0 = rf(c, currency)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// CreateMany provides a mock function with given fields: c, items
+func (_m *CurrencyRepository) CreateMany(c context.Context, items []domain.Currency) error {
+	ret := _m.Called(c, items)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CreateMany")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.Currency) error); ok {
+		r0 = rf(c, items)
 	} else {
 		r0 = ret.Error(0)
 	}

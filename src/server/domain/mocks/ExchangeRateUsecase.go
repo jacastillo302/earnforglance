@@ -14,21 +14,6 @@ type ExchangeRateUsecase struct {
 	mock.Mock
 }
 
-// Create provides a mock function with given fields
-func (_m *ExchangeRateUsecase) CreateMany(c context.Context, acl_record []domain.ExchangeRate) error {
-	ret := _m.Called(c, acl_record)
-	if len(ret) == 0 {
-		panic("no return value specified for Create")
-	}
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, []domain.ExchangeRate) error); ok {
-		r0 = rf(c, acl_record)
-	} else {
-		r0 = ret.Error(0)
-	}
-	return r0
-}
-
 // Create provides a mock function with given fields: c, exchange_rate
 func (_m *ExchangeRateUsecase) Create(c context.Context, exchange_rate *domain.ExchangeRate) error {
 	ret := _m.Called(c, exchange_rate)
@@ -40,6 +25,24 @@ func (_m *ExchangeRateUsecase) Create(c context.Context, exchange_rate *domain.E
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *domain.ExchangeRate) error); ok {
 		r0 = rf(c, exchange_rate)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// CreateMany provides a mock function with given fields: c, items
+func (_m *ExchangeRateUsecase) CreateMany(c context.Context, items []domain.ExchangeRate) error {
+	ret := _m.Called(c, items)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CreateMany")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.ExchangeRate) error); ok {
+		r0 = rf(c, items)
 	} else {
 		r0 = ret.Error(0)
 	}

@@ -14,21 +14,6 @@ type GenericAttributeUsecase struct {
 	mock.Mock
 }
 
-// Create provides a mock function with given fields
-func (_m *GenericAttributeUsecase) CreateMany(c context.Context, acl_record []domain.GenericAttribute) error {
-	ret := _m.Called(c, acl_record)
-	if len(ret) == 0 {
-		panic("no return value specified for Create")
-	}
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, []domain.GenericAttribute) error); ok {
-		r0 = rf(c, acl_record)
-	} else {
-		r0 = ret.Error(0)
-	}
-	return r0
-}
-
 // Create provides a mock function with given fields: c, generic_attribute
 func (_m *GenericAttributeUsecase) Create(c context.Context, generic_attribute *domain.GenericAttribute) error {
 	ret := _m.Called(c, generic_attribute)
@@ -40,6 +25,24 @@ func (_m *GenericAttributeUsecase) Create(c context.Context, generic_attribute *
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *domain.GenericAttribute) error); ok {
 		r0 = rf(c, generic_attribute)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// CreateMany provides a mock function with given fields: c, items
+func (_m *GenericAttributeUsecase) CreateMany(c context.Context, items []domain.GenericAttribute) error {
+	ret := _m.Called(c, items)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CreateMany")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.GenericAttribute) error); ok {
+		r0 = rf(c, items)
 	} else {
 		r0 = ret.Error(0)
 	}

@@ -14,21 +14,6 @@ type RewardPointsHistoryRepository struct {
 	mock.Mock
 }
 
-// Create provides a mock function with given fields
-func (_m *RewardPointsHistoryRepository) CreateMany(c context.Context, acl_record []domain.RewardPointsHistory) error {
-	ret := _m.Called(c, acl_record)
-	if len(ret) == 0 {
-		panic("no return value specified for Create")
-	}
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, []domain.RewardPointsHistory) error); ok {
-		r0 = rf(c, acl_record)
-	} else {
-		r0 = ret.Error(0)
-	}
-	return r0
-}
-
 // Create provides a mock function with given fields: c, reward_point_history
 func (_m *RewardPointsHistoryRepository) Create(c context.Context, reward_point_history *domain.RewardPointsHistory) error {
 	ret := _m.Called(c, reward_point_history)
@@ -40,6 +25,24 @@ func (_m *RewardPointsHistoryRepository) Create(c context.Context, reward_point_
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *domain.RewardPointsHistory) error); ok {
 		r0 = rf(c, reward_point_history)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// CreateMany provides a mock function with given fields: c, items
+func (_m *RewardPointsHistoryRepository) CreateMany(c context.Context, items []domain.RewardPointsHistory) error {
+	ret := _m.Called(c, items)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CreateMany")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.RewardPointsHistory) error); ok {
+		r0 = rf(c, items)
 	} else {
 		r0 = ret.Error(0)
 	}

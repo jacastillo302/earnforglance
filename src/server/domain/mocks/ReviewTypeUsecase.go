@@ -14,23 +14,6 @@ type ReviewTypeUsecase struct {
 	mock.Mock
 }
 
-
-// Create provides a mock function with given fields
-func (_m *ReviewTypeUsecase) CreateMany(c context.Context, acl_record []domain.ReviewType) error {
-	ret := _m.Called(c, acl_record)
-	if len(ret) == 0 {
-		panic("no return value specified for Create")
-	}
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, []domain.ReviewType) error); ok {
-		r0 = rf(c, acl_record)
-	} else {
-		r0 = ret.Error(0)
-	}
-	return r0
-}
-
-
 // Create provides a mock function with given fields: c, review_type
 func (_m *ReviewTypeUsecase) Create(c context.Context, review_type *domain.ReviewType) error {
 	ret := _m.Called(c, review_type)
@@ -42,6 +25,24 @@ func (_m *ReviewTypeUsecase) Create(c context.Context, review_type *domain.Revie
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *domain.ReviewType) error); ok {
 		r0 = rf(c, review_type)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// CreateMany provides a mock function with given fields: c, items
+func (_m *ReviewTypeUsecase) CreateMany(c context.Context, items []domain.ReviewType) error {
+	ret := _m.Called(c, items)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CreateMany")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.ReviewType) error); ok {
+		r0 = rf(c, items)
 	} else {
 		r0 = ret.Error(0)
 	}

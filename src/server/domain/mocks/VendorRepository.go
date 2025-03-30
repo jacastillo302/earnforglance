@@ -14,20 +14,6 @@ type VendorRepository struct {
 	mock.Mock
 }
 
-func (_m *VendorRepository) CreateMany(c context.Context, acl_record []domain.Vendor) error {
-	ret := _m.Called(c, acl_record)
-	if len(ret) == 0 {
-		panic("no return value specified for Create")
-	}
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, []domain.Vendor) error); ok {
-		r0 = rf(c, acl_record)
-	} else {
-		r0 = ret.Error(0)
-	}
-	return r0
-}
-
 // Create provides a mock function with given fields: c, vendor
 func (_m *VendorRepository) Create(c context.Context, vendor *domain.Vendor) error {
 	ret := _m.Called(c, vendor)
@@ -39,6 +25,24 @@ func (_m *VendorRepository) Create(c context.Context, vendor *domain.Vendor) err
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *domain.Vendor) error); ok {
 		r0 = rf(c, vendor)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// CreateMany provides a mock function with given fields: c, items
+func (_m *VendorRepository) CreateMany(c context.Context, items []domain.Vendor) error {
+	ret := _m.Called(c, items)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CreateMany")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.Vendor) error); ok {
+		r0 = rf(c, items)
 	} else {
 		r0 = ret.Error(0)
 	}

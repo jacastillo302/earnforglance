@@ -1,9 +1,13 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
-	CollectionCustomerRole = "customer_rols"
+	CollectionCustomerRole = "customer_roles" // MongoDB collection name for customer roles
 )
 
 // CustomerRole represents a customer role
@@ -19,4 +23,22 @@ type CustomerRole struct {
 	OverrideTaxDisplayType  bool               `bson:"override_tax_display_type"`   // Indicates if the role has a custom tax display type
 	DefaultTaxDisplayTypeID int                `bson:"default_tax_display_type_id"` // Identifier of the default tax display type
 	PurchasedWithProductId  int                `bson:"purchased_with_product_id"`   // Product ID required for this role
+}
+
+type CustomerRoleRepository interface {
+	CreateMany(c context.Context, items []CustomerRole) error
+	Create(c context.Context, permission_record_customer_role_mapping *CustomerRole) error
+	Update(c context.Context, permission_record_customer_role_mapping *CustomerRole) error
+	Delete(c context.Context, ID string) error
+	Fetch(c context.Context) ([]CustomerRole, error)
+	FetchByID(c context.Context, ID string) (CustomerRole, error)
+}
+
+type CustomerRoleUsecase interface {
+	CreateMany(c context.Context, items []CustomerRole) error
+	FetchByID(c context.Context, ID string) (CustomerRole, error)
+	Create(c context.Context, permission_record_customer_role_mapping *CustomerRole) error
+	Update(c context.Context, permission_record_customer_role_mapping *CustomerRole) error
+	Delete(c context.Context, ID string) error
+	Fetch(c context.Context) ([]CustomerRole, error)
 }

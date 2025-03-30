@@ -14,21 +14,6 @@ type VendorAttributeValueUsecase struct {
 	mock.Mock
 }
 
-func (_m *VendorAttributeValueUsecase) CreateMany(c context.Context, acl_record []domain.VendorAttributeValue) error {
-	ret := _m.Called(c, acl_record)
-	if len(ret) == 0 {
-		panic("no return value specified for Create")
-	}
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, []domain.VendorAttributeValue) error); ok {
-		r0 = rf(c, acl_record)
-	} else {
-		r0 = ret.Error(0)
-	}
-	return r0
-}
-
-
 // Create provides a mock function with given fields: c, vendor_attribute_value
 func (_m *VendorAttributeValueUsecase) Create(c context.Context, vendor_attribute_value *domain.VendorAttributeValue) error {
 	ret := _m.Called(c, vendor_attribute_value)
@@ -40,6 +25,24 @@ func (_m *VendorAttributeValueUsecase) Create(c context.Context, vendor_attribut
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *domain.VendorAttributeValue) error); ok {
 		r0 = rf(c, vendor_attribute_value)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// CreateMany provides a mock function with given fields: c, items
+func (_m *VendorAttributeValueUsecase) CreateMany(c context.Context, items []domain.VendorAttributeValue) error {
+	ret := _m.Called(c, items)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CreateMany")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.VendorAttributeValue) error); ok {
+		r0 = rf(c, items)
 	} else {
 		r0 = ret.Error(0)
 	}

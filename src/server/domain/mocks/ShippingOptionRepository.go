@@ -14,20 +14,6 @@ type ShippingOptionRepository struct {
 	mock.Mock
 }
 
-func (_m *ShippingOptionRepository) CreateMany(c context.Context, acl_record []domain.ShippingOption) error {
-	ret := _m.Called(c, acl_record)
-	if len(ret) == 0 {
-		panic("no return value specified for Create")
-	}
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, []domain.ShippingOption) error); ok {
-		r0 = rf(c, acl_record)
-	} else {
-		r0 = ret.Error(0)
-	}
-	return r0
-}
-
 // Create provides a mock function with given fields: c, shipping_option
 func (_m *ShippingOptionRepository) Create(c context.Context, shipping_option *domain.ShippingOption) error {
 	ret := _m.Called(c, shipping_option)
@@ -39,6 +25,24 @@ func (_m *ShippingOptionRepository) Create(c context.Context, shipping_option *d
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *domain.ShippingOption) error); ok {
 		r0 = rf(c, shipping_option)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// CreateMany provides a mock function with given fields: c, items
+func (_m *ShippingOptionRepository) CreateMany(c context.Context, items []domain.ShippingOption) error {
+	ret := _m.Called(c, items)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CreateMany")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.ShippingOption) error); ok {
+		r0 = rf(c, items)
 	} else {
 		r0 = ret.Error(0)
 	}

@@ -14,21 +14,6 @@ type CheckoutAttributeValueUsecase struct {
 	mock.Mock
 }
 
-// Create provides a mock function with given fields: c, acl_record
-func (_m *CheckoutAttributeValueUsecase) CreateMany(c context.Context, acl_record []domain.CheckoutAttributeValue) error {
-	ret := _m.Called(c, acl_record)
-	if len(ret) == 0 {
-		panic("no return value specified for Create")
-	}
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, []domain.CheckoutAttributeValue) error); ok {
-		r0 = rf(c, acl_record)
-	} else {
-		r0 = ret.Error(0)
-	}
-	return r0
-}
-
 // Create provides a mock function with given fields: c, checkout_attribute_value
 func (_m *CheckoutAttributeValueUsecase) Create(c context.Context, checkout_attribute_value *domain.CheckoutAttributeValue) error {
 	ret := _m.Called(c, checkout_attribute_value)
@@ -40,6 +25,24 @@ func (_m *CheckoutAttributeValueUsecase) Create(c context.Context, checkout_attr
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *domain.CheckoutAttributeValue) error); ok {
 		r0 = rf(c, checkout_attribute_value)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// CreateMany provides a mock function with given fields: c, items
+func (_m *CheckoutAttributeValueUsecase) CreateMany(c context.Context, items []domain.CheckoutAttributeValue) error {
+	ret := _m.Called(c, items)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CreateMany")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.CheckoutAttributeValue) error); ok {
+		r0 = rf(c, items)
 	} else {
 		r0 = ret.Error(0)
 	}

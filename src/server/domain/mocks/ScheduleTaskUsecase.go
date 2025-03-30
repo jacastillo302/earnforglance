@@ -14,21 +14,6 @@ type ScheduleTaskUsecase struct {
 	mock.Mock
 }
 
-// Create provides a mock function with given fields
-func (_m *ScheduleTaskUsecase) CreateMany(c context.Context, acl_record []domain.ScheduleTask) error {
-	ret := _m.Called(c, acl_record)
-	if len(ret) == 0 {
-		panic("no return value specified for Create")
-	}
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, []domain.ScheduleTask) error); ok {
-		r0 = rf(c, acl_record)
-	} else {
-		r0 = ret.Error(0)
-	}
-	return r0
-}
-
 // Create provides a mock function with given fields: c, schedule_task
 func (_m *ScheduleTaskUsecase) Create(c context.Context, schedule_task *domain.ScheduleTask) error {
 	ret := _m.Called(c, schedule_task)
@@ -40,6 +25,24 @@ func (_m *ScheduleTaskUsecase) Create(c context.Context, schedule_task *domain.S
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *domain.ScheduleTask) error); ok {
 		r0 = rf(c, schedule_task)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// CreateMany provides a mock function with given fields: c, items
+func (_m *ScheduleTaskUsecase) CreateMany(c context.Context, items []domain.ScheduleTask) error {
+	ret := _m.Called(c, items)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CreateMany")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.ScheduleTask) error); ok {
+		r0 = rf(c, items)
 	} else {
 		r0 = ret.Error(0)
 	}

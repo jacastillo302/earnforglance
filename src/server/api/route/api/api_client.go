@@ -21,12 +21,10 @@ func ApiClientRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Databas
 		Env:              env,
 	}
 
-	Group := group.Group("/api/v1/auth")
-
 	group.GET("/apiclients", lc.Fetch)
 	group.GET("/apiclient", lc.FetchByID)
 	group.POST("/apiclient", lc.Create)
-	Group.POST("/apiclients", lc.CreateMany)
+	group.POST("/apiclients", lc.CreateMany)
 	group.PUT("/apiclient", lc.Update)
 	group.DELETE("/apiclient", lc.Delete)
 }

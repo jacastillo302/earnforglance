@@ -14,21 +14,6 @@ type NewsLetterSubscriptionUsecase struct {
 	mock.Mock
 }
 
-// Create provides a mock function with given fields
-func (_m *NewsLetterSubscriptionUsecase) CreateMany(c context.Context, acl_record []domain.NewsLetterSubscription) error {
-	ret := _m.Called(c, acl_record)
-	if len(ret) == 0 {
-		panic("no return value specified for Create")
-	}
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, []domain.NewsLetterSubscription) error); ok {
-		r0 = rf(c, acl_record)
-	} else {
-		r0 = ret.Error(0)
-	}
-	return r0
-}
-
 // Create provides a mock function with given fields: c, newsletter_subscription
 func (_m *NewsLetterSubscriptionUsecase) Create(c context.Context, newsletter_subscription *domain.NewsLetterSubscription) error {
 	ret := _m.Called(c, newsletter_subscription)
@@ -40,6 +25,24 @@ func (_m *NewsLetterSubscriptionUsecase) Create(c context.Context, newsletter_su
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *domain.NewsLetterSubscription) error); ok {
 		r0 = rf(c, newsletter_subscription)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// CreateMany provides a mock function with given fields: c, items
+func (_m *NewsLetterSubscriptionUsecase) CreateMany(c context.Context, items []domain.NewsLetterSubscription) error {
+	ret := _m.Called(c, items)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CreateMany")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.NewsLetterSubscription) error); ok {
+		r0 = rf(c, items)
 	} else {
 		r0 = ret.Error(0)
 	}

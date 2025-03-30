@@ -14,7 +14,6 @@ type UserRepository struct {
 	mock.Mock
 }
 
-
 // Create provides a mock function with given fields: c, user
 func (_m *UserRepository) Create(c context.Context, user *domain.User) error {
 	ret := _m.Called(c, user)

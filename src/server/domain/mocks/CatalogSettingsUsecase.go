@@ -14,22 +14,6 @@ type CatalogSettingsUsecase struct {
 	mock.Mock
 }
 
-
-// Create provides a mock function with given fields: c, acl_record
-func (_m *CatalogSettingsUsecase) CreateMany(c context.Context, acl_record []domain.CatalogSettings) error {
-	ret := _m.Called(c, acl_record)
-	if len(ret) == 0 {
-		panic("no return value specified for Create")
-	}
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, []domain.CatalogSettings) error); ok {
-		r0 = rf(c, acl_record)
-	} else {
-		r0 = ret.Error(0)
-	}
-	return r0
-}
-
 // Create provides a mock function with given fields: c, catalog_settings
 func (_m *CatalogSettingsUsecase) Create(c context.Context, catalog_settings *domain.CatalogSettings) error {
 	ret := _m.Called(c, catalog_settings)
@@ -41,6 +25,24 @@ func (_m *CatalogSettingsUsecase) Create(c context.Context, catalog_settings *do
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *domain.CatalogSettings) error); ok {
 		r0 = rf(c, catalog_settings)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// CreateMany provides a mock function with given fields: c, items
+func (_m *CatalogSettingsUsecase) CreateMany(c context.Context, items []domain.CatalogSettings) error {
+	ret := _m.Called(c, items)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CreateMany")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.CatalogSettings) error); ok {
+		r0 = rf(c, items)
 	} else {
 		r0 = ret.Error(0)
 	}

@@ -14,21 +14,6 @@ type PermissionRecordCustomerRoleMappingRepository struct {
 	mock.Mock
 }
 
-// Create provides a mock function with given fields
-func (_m *PermissionRecordCustomerRoleMappingRepository) CreateMany(c context.Context, acl_record []domain.PermissionRecordCustomerRoleMapping) error {
-	ret := _m.Called(c, acl_record)
-	if len(ret) == 0 {
-		panic("no return value specified for Create")
-	}
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, []domain.PermissionRecordCustomerRoleMapping) error); ok {
-		r0 = rf(c, acl_record)
-	} else {
-		r0 = ret.Error(0)
-	}
-	return r0
-}
-
 // Create provides a mock function with given fields: c, permission_record_customer_role_mapping
 func (_m *PermissionRecordCustomerRoleMappingRepository) Create(c context.Context, permission_record_customer_role_mapping *domain.PermissionRecordCustomerRoleMapping) error {
 	ret := _m.Called(c, permission_record_customer_role_mapping)
@@ -40,6 +25,24 @@ func (_m *PermissionRecordCustomerRoleMappingRepository) Create(c context.Contex
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *domain.PermissionRecordCustomerRoleMapping) error); ok {
 		r0 = rf(c, permission_record_customer_role_mapping)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// CreateMany provides a mock function with given fields: c, items
+func (_m *PermissionRecordCustomerRoleMappingRepository) CreateMany(c context.Context, items []domain.PermissionRecordCustomerRoleMapping) error {
+	ret := _m.Called(c, items)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CreateMany")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, []domain.PermissionRecordCustomerRoleMapping) error); ok {
+		r0 = rf(c, items)
 	} else {
 		r0 = ret.Error(0)
 	}

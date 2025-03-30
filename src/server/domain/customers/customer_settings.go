@@ -1,6 +1,10 @@
 package domain
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"context"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 const (
 	CollectionCustomerSettings = "customer_settings"
@@ -90,4 +94,22 @@ type CustomerSettings struct {
 	FaxEnabled                 bool `bson:"fax_enabled"`
 	FaxRequired                bool `bson:"fax_required"`
 	AcceptPrivacyPolicyEnabled bool `bson:"accept_privacy_policy_enabled"`
+}
+
+type CustomerSettingsRepository interface {
+	CreateMany(c context.Context, items []CustomerSettings) error
+	Create(c context.Context, permission_record_customer_role_mapping *CustomerSettings) error
+	Update(c context.Context, permission_record_customer_role_mapping *CustomerSettings) error
+	Delete(c context.Context, ID string) error
+	Fetch(c context.Context) ([]CustomerSettings, error)
+	FetchByID(c context.Context, ID string) (CustomerSettings, error)
+}
+
+type CustomerSettingsUsecase interface {
+	CreateMany(c context.Context, items []CustomerSettings) error
+	FetchByID(c context.Context, ID string) (CustomerSettings, error)
+	Create(c context.Context, permission_record_customer_role_mapping *CustomerSettings) error
+	Update(c context.Context, permission_record_customer_role_mapping *CustomerSettings) error
+	Delete(c context.Context, ID string) error
+	Fetch(c context.Context) ([]CustomerSettings, error)
 }
