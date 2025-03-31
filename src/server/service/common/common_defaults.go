@@ -67,26 +67,26 @@ const (
 	// {4} : language code
 	NewsRssPath = "news-rss?version=%s&localhost=%t&hideAdvertisements=%t&storeUrl=%s&language=%s"
 
-	// NopInstallationCompletedPath is the path to notify the  official site about successful installation
+	// InstallationCompletedPath is the path to notify the  official site about successful installation
 	// {0} :  version
 	// {1} : whether the store is based on localhost
 	// {2} : admin email
 	// {3} : store URL
 	// {4} : language code
 	// {5} : culture name
-	NopInstallationCompletedPath = "installation-completed?version=%s&local=%t&email=%s&url=%s&language=%s&culture=%s"
+	InstallationCompletedPath = "installation-completed?version=%s&local=%t&email=%s&url=%s&language=%s&culture=%s"
 
-	// NopSubscribeNewslettersPath is the path to subscribe to the  newsletters
+	// SubscribeNewslettersPath is the path to subscribe to the  newsletters
 	// {0} : subscriber email
-	NopSubscribeNewslettersPath = "subscribe-newsletters?&email=%s"
+	SubscribeNewslettersPath = "subscribe-newsletters?&email=%s"
 
-	// NopExtensionsCategoriesPath is the path to request available categories of marketplace extensions
+	// ExtensionsCategoriesPath is the path to request available categories of marketplace extensions
 	// {0} : language code
-	NopExtensionsCategoriesPath = "extensions-feed?getCategories=1&language=%s"
+	ExtensionsCategoriesPath = "extensions-feed?getCategories=1&language=%s"
 
-	// NopExtensionsVersionsPath is the path to request available versions of marketplace extensions
+	// ExtensionsVersionsPath is the path to request available versions of marketplace extensions
 	// {0} : language code
-	NopExtensionsVersionsPath = "extensions-feed?getVersions=1&language=%s"
+	ExtensionsVersionsPath = "extensions-feed?getVersions=1&language=%s"
 
 	// ExtensionsPath is the path to request marketplace extensions
 	// {0} : extension category identifier

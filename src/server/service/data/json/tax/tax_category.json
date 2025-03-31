@@ -1,0 +1,22 @@
+[
+    {
+      "Name": "Books",
+      "DisplayOrder": 1
+    },
+    {
+      "Name": "Electronics & Software",
+      "DisplayOrder": 5
+    },
+    {
+      "Name": "Downloadable Products",
+      "DisplayOrder": 10
+    },
+    {
+      "Name": "Jewelry",
+      "DisplayOrder": 15
+    },
+    {
+      "Name": "Apparel",
+      "DisplayOrder": 20
+    }
+  ]

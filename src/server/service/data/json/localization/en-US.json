@@ -1,0 +1,197 @@
+{
+    "Language": {
+      "Name": "English",
+      "IsDefault": true,
+      "IsRightToLeft": false,
+      "LocaleResources": [
+        {
+          "Name": "AdminEmail",
+          "Value": "Admin user email"
+        },
+        {
+          "Name": "AdminEmailRequired",
+          "Value": "Enter admin email"
+        },
+        {
+          "Name": "AdminPassword",
+          "Value": "Admin user password"
+        },
+        {
+          "Name": "AdminPasswordRequired",
+          "Value": "Enter admin password"
+        },
+        {
+          "Name": "ConfigureDirectoryPermissions",
+          "Value": "The '{0}' account is not granted with Modify permission on folder '{1}'. Please configure these permissions."
+        },
+        {
+          "Name": "ConfigureFilePermissions",
+          "Value": "The '{0}' account is not granted with Modify permission on file '{1}'. Please configure these permissions."
+        },
+        {
+          "Name": "ConfirmPassword",
+          "Value": "Confirm the password"
+        },
+        {
+          "Name": "ConfirmPasswordRequired",
+          "Value": "Enter confirm password"
+        },
+        {
+          "Name": "ConnectionString",
+          "Value": "Connection string"
+        },
+        {
+          "Name": "ConnectionStringRequired",
+          "Value": "A SQL connection string is required"
+        },
+        {
+          "Name": "ConnectionStringWrongFormat",
+          "Value": "Wrong SQL connection string format"
+        },
+        {
+          "Name": "Country",
+          "Value": "Country"
+        },
+        {
+          "Name": "CountrySelect",
+          "Value": "Select your country..."
+        },
+        {
+          "Name": "CreateDatabaseIfDoesNotExist",
+          "Value": "Create database if it doesn't exist"
+        },
+        {
+          "Name": "CreateSampleData",
+          "Value": "Create sample data"
+        },
+        {
+          "Name": "CustomCollation",
+          "Value": "Specify custom collation"
+        },
+        {
+          "Name": "Database",
+          "Value": "Database"
+        },
+        {
+          "Name": "DatabaseCreationError",
+          "Value": "An error occurred while creating the database: {0}"
+        },
+        {
+          "Name": "DatabaseInformation",
+          "Value": "Database information"
+        },
+        {
+          "Name": "DatabaseName",
+          "Value": "Database name"
+        },
+        {
+          "Name": "DatabaseNotExists",
+          "Value": "Database does not exist or you don't have permissions to connect to it"
+        },
+        {
+          "Name": "DataProviderRequired",
+          "Value": "Select data provider"
+        },
+        {
+          "Name": "Documentation1",
+          "Value": "If you need information on how to use nopCommerce, visit"
+        },
+        {
+          "Name": "Documentation2",
+          "Value": "the documentation section on nopCommerce.com"
+        },
+        {
+          "Name": "Example",
+          "Value": "Example"
+        },
+        {
+          "Name": "Install",
+          "Value": "Install"
+        },
+        {
+          "Name": "Installing",
+          "Value": "Installing nopCommerce..."
+        },
+        {
+          "Name": "IntegratedAuthentication",
+          "Value": "Use integrated Windows authentication"
+        },
+        {
+          "Name": "MySql",
+          "Value": "MySQL"
+        },
+        {
+          "Name": "PasswordsDoNotMatch",
+          "Value": "The passwords do not match"
+        },
+        {
+          "Name": "PostgreSQL",
+          "Value": "PostgreSQL"
+        },
+        {
+          "Name": "RawConnectionString",
+          "Value": "Enter raw connection string (advanced)"
+        },
+        {
+          "Name": "RestartInstallation",
+          "Value": "Restart installation"
+        },
+        {
+          "Name": "RestartInstallationTooltip",
+          "Value": "Click to restart the installation process (clear all cached values)"
+        },
+        {
+          "Name": "RestartProgress",
+          "Value": "Restarting..."
+        },
+        {
+          "Name": "ServerName",
+          "Value": "Server name"
+        },
+        {
+          "Name": "ServerNameRequired",
+          "Value": "Server name is required"
+        },
+        {
+          "Name": "SetupFailed",
+          "Value": "Setup failed: {0}"
+        },
+        {
+          "Name": "SqlPassword",
+          "Value": "SQL Password"
+        },
+        {
+          "Name": "SqlPasswordRequired",
+          "Value": "SQL Password is required"
+        },
+        {
+          "Name": "SqlServer",
+          "Value": "Microsoft SQL Server"
+        },
+        {
+          "Name": "SqlUsername",
+          "Value": "SQL Username"
+        },
+        {
+          "Name": "SqlUsernameRequired",
+          "Value": "SQL Username is required"
+        },
+        {
+          "Name": "StoreInformation",
+          "Value": "Store information"
+        },
+        {
+          "Name": "SubscribeNewsletters",
+          "Value": "Subscribe to nopCommerce newsletter"
+        },
+        {
+          "Name": "Title",
+          "Value": "nopCommerce installation"
+        },
+        {
+          "Name": "Tooltip2",
+          "Value": "To complete this wizard, you must know some information regarding your database server (\"connection string\"). Please contact your ISP if necessary. If you're installing on a local machine or server, you might need information from your System Admin."
+        }
+      ]
+    }
+  }

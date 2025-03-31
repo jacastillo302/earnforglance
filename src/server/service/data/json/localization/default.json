@@ -1,0 +1,191 @@
+{
+    "Language": {
+      "Name": "English",
+      "LocaleResources": [
+        {
+          "Name": "Account.AccountActivation",
+          "Value": "Account activation"
+        },
+        {
+          "Name": "Account.AccountActivation.Activated",
+          "Value": "Your account has been activated"
+        },
+        {
+          "Name": "Account.AccountActivation.AlreadyActivated",
+          "Value": "Your account already has been activated"
+        },
+        {
+          "Name": "Account.Administration",
+          "Value": "Administration"
+        },
+        {
+          "Name": "Account.AssociatedExternalAuth",
+          "Value": "External authentication"
+        },
+        {
+          "Name": "Account.AssociatedExternalAuth.AccountAlreadyAssigned",
+          "Value": "Account is already assigned"
+        },
+        {
+          "Name": "Account.AssociatedExternalAuth.AddMoreRecords",
+          "Value": "You can associate your account with some external authentication systems on the following page (login once using them):"
+        },
+        {
+          "Name": "Account.AssociatedExternalAuth.AuthMethodName",
+          "Value": "Authentication method"
+        },
+        {
+          "Name": "Account.AssociatedExternalAuth.Email",
+          "Value": "Email"
+        },
+        {
+          "Name": "Account.AssociatedExternalAuth.EmailAlreadyExists",
+          "Value": "A user with the specified email has been already registered. If this is your account, and you want to associate it with '{0}' external record, please login firstly."
+        },
+        {
+          "Name": "Account.AssociatedExternalAuth.ExternalIdentifier",
+          "Value": "External identifier"
+        },
+        {
+          "Name": "Account.AssociatedExternalAuth.Or",
+          "Value": "- or -"
+        },
+        {
+          "Name": "Account.AssociatedExternalAuth.Remove",
+          "Value": "Remove"
+        },
+        {
+          "Name": "Account.Avatar",
+          "Value": "Avatar"
+        },
+        {
+          "Name": "Account.Avatar.MaximumUploadedFileSize",
+          "Value": "Maximum avatar size is {0} bytes"
+        },
+        {
+          "Name": "Account.Avatar.RemoveAvatar",
+          "Value": "Remove avatar"
+        },
+        {
+          "Name": "Account.Avatar.UploadRules",
+          "Value": "Avatar must be in GIF or JPEG format with the maximum size of 20 KB"
+        },
+        {
+          "Name": "Account.BackInStockSubscriptions",
+          "Value": "Back in stock subscriptions"
+        },
+        {
+          "Name": "Account.BackInStockSubscriptions.DeleteSelected",
+          "Value": "Delete selected"
+        },
+        {
+          "Name": "Account.BackInStockSubscriptions.Description",
+          "Value": "You will receive an e-mail when a particular product is back in stock."
+        },
+        {
+          "Name": "Account.BackInStockSubscriptions.NoSubscriptions",
+          "Value": "You are not currently subscribed to any Back In Stock notification lists"
+        },
+        {
+          "Name": "Account.BackInStockSubscriptions.ProductColumn",
+          "Value": "Product"
+        },
+        {
+          "Name": "Account.ChangePassword",
+          "Value": "Change password"
+        },
+        {
+          "Name": "Account.ChangePassword.Button",
+          "Value": "Change password"
+        },
+        {
+          "Name": "Account.ChangePassword.Errors.EmailIsNotProvided",
+          "Value": "Email is not entered"
+        },
+        {
+          "Name": "Account.ChangePassword.Errors.EmailNotFound",
+          "Value": "The specified email could not be found"
+        },
+        {
+          "Name": "Account.ChangePassword.Errors.OldPasswordDoesntMatch",
+          "Value": "Old password doesn't match"
+        },
+        {
+          "Name": "Account.ChangePassword.Errors.PasswordIsNotProvided",
+          "Value": "Password is not entered"
+        },
+        {
+          "Name": "Account.ChangePassword.Errors.PasswordMatchesWithPrevious",
+          "Value": "You entered the password that is the same as one of the last passwords you used. Please create a new password."
+        },
+        {
+          "Name": "Account.ChangePassword.Fields.ConfirmNewPassword",
+          "Value": "Confirm password"
+        },
+        {
+          "Name": "Account.ChangePassword.Fields.ConfirmNewPassword.Required",
+          "Value": "Password is required."
+        },
+        {
+          "Name": "Account.ChangePassword.Fields.NewPassword",
+          "Value": "New password"
+        },
+        {
+          "Name": "Account.ChangePassword.Fields.NewPassword.EnteredPasswordsDoNotMatch",
+          "Value": "The new password and confirmation password do not match."
+        },
+        {
+          "Name": "Account.ChangePassword.Fields.OldPassword",
+          "Value": "Old password"
+        },
+        {
+          "Name": "Account.ChangePassword.Fields.OldPassword.Required",
+          "Value": "Old password is required."
+        },
+        {
+          "Name": "Account.ChangePassword.MustBeChanged",
+          "Value": "Your password must be changed for security purposes."
+        },
+        {
+          "Name": "Account.ChangePassword.PasswordIsExpired",
+          "Value": "Your password has expired, please create a new one"
+        },
+        {
+          "Name": "Account.ChangePassword.Success",
+          "Value": "Password was changed"
+        },
+        {
+          "Name": "Account.CheckUsernameAvailability.Available",
+          "Value": "Username available"
+        },
+        {
+          "Name": "Account.CheckUsernameAvailability.Button",
+          "Value": "Check Availability"
+        },
+        {
+          "Name": "Account.CheckUsernameAvailability.CurrentUsername",
+          "Value": "Current username"
+        },
+        {
+          "Name": "Account.CheckUsernameAvailability.EnterUsername",
+          "Value": "Please enter username"
+        },
+        {
+          "Name": "Account.CheckUsernameAvailability.NotAvailable",
+          "Value": "Username not available"
+        },
+        {
+          "Name": "Account.CompanyDetails",
+          "Value": "Company Details"
+        },
+        {
+          "Name": "Account.CustomerAddresses",
+          "Value": "Addresses"
+        },
+        {
+          "Name": "Account.CustomerAddresses.AddNew",
+          "Value": "Add new address"
+        }
+      ]
+    }
+  }

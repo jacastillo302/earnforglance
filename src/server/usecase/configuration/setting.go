@@ -55,3 +55,15 @@ func (lu *settingUsecase) Fetch(c context.Context) ([]domain.Setting, error) {
 	defer cancel()
 	return lu.settingRepository.Fetch(ctx)
 }
+
+func (lu *settingUsecase) FetchByName(c context.Context, name string) (domain.Setting, error) {
+	ctx, cancel := context.WithTimeout(c, lu.contextTimeout)
+	defer cancel()
+	return lu.settingRepository.FetchByName(ctx, name)
+}
+
+func (lu *settingUsecase) FetchByNames(c context.Context, names []string) ([]domain.Setting, error) {
+	ctx, cancel := context.WithTimeout(c, lu.contextTimeout)
+	defer cancel()
+	return lu.settingRepository.FetchByNames(ctx, names)
+}

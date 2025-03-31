@@ -21,8 +21,8 @@ type ApiSettings struct {
 
 type ApiSettingsRepository interface {
 	CreateMany(c context.Context, items []ApiSettings) error
-	Create(c context.Context, affiliate *ApiSettings) error
-	Update(c context.Context, affiliate *ApiSettings) error
+	Create(c context.Context, item *ApiSettings) error
+	Update(c context.Context, item *ApiSettings) error
 	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ApiSettings, error)
 	FetchByID(c context.Context, ID string) (ApiSettings, error)
@@ -30,8 +30,8 @@ type ApiSettingsRepository interface {
 
 type ApiSettingsUsecase interface {
 	CreateMany(c context.Context, items []ApiSettings) error
-	Create(c context.Context, affiliate *ApiSettings) error
-	Update(c context.Context, affiliate *ApiSettings) error
+	Create(c context.Context, item *ApiSettings) error
+	Update(c context.Context, item *ApiSettings) error
 	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ApiSettings, error)
 	FetchByID(c context.Context, ID string) (ApiSettings, error)

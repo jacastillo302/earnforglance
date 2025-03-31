@@ -17,6 +17,14 @@ type SettingController struct {
 	Env            *bootstrap.Env
 }
 
+// NewSettingController creates a new instance of SettingController
+func NewSettingController(settingUsecase domain.SettingUsecase, env *bootstrap.Env) *SettingController {
+	return &SettingController{
+		SettingUsecase: settingUsecase,
+		Env:            env,
+	}
+}
+
 func (tc *SettingController) CreateMany(c *gin.Context) {
 	var task []domain.Setting
 	body, err := io.ReadAll(c.Request.Body)
@@ -129,6 +137,22 @@ func (lc *SettingController) FetchByID(c *gin.Context) {
 	c.JSON(http.StatusOK, Setting)
 }
 
+func (lc *SettingController) FetchByName(c *gin.Context) {
+	SettingName := c.Query("name")
+	if SettingName == "" {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "name is requiered"})
+		return
+	}
+
+	Setting, err := lc.SettingUsecase.FetchByID(c, SettingName)
+	if err != nil {
+		c.JSON(http.StatusNotFound, common.ErrorResponse{Message: SettingName})
+		return
+	}
+
+	c.JSON(http.StatusOK, Setting)
+}
+
 func (lc *SettingController) Fetch(c *gin.Context) {
 
 	Setting, err := lc.SettingUsecase.Fetch(c)
@@ -138,4 +162,21 @@ func (lc *SettingController) Fetch(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, Setting)
+}
+
+func (lc *SettingController) FetchByNames(c *gin.Context) {
+	names := c.QueryArray("names") // Retrieve the "names" query parameter as an array
+	if len(names) == 0 {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "names are required"})
+		return
+	}
+
+	// Call the FetchByNames method from SettingUsecase
+	settings, err := lc.SettingUsecase.FetchByNames(c, names)
+	if err != nil {
+		c.JSON(http.StatusNotFound, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, settings)
 }

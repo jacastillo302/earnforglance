@@ -126,6 +126,64 @@ func (_m *SettingRepository) FetchByID(c context.Context, ID string) (domain.Set
 	return r0, r1
 }
 
+// FetchByName provides a mock function with given fields: c, name
+func (_m *SettingRepository) FetchByName(c context.Context, name string) (domain.Setting, error) {
+	ret := _m.Called(c, name)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FetchByName")
+	}
+
+	var r0 domain.Setting
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, string) (domain.Setting, error)); ok {
+		return rf(c, name)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, string) domain.Setting); ok {
+		r0 = rf(c, name)
+	} else {
+		r0 = ret.Get(0).(domain.Setting)
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, string) error); ok {
+		r1 = rf(c, name)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// FetchByNames provides a mock function with given fields: c, names
+func (_m *SettingRepository) FetchByNames(c context.Context, names []string) ([]domain.Setting, error) {
+	ret := _m.Called(c, names)
+
+	if len(ret) == 0 {
+		panic("no return value specified for FetchByNames")
+	}
+
+	var r0 []domain.Setting
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, []string) ([]domain.Setting, error)); ok {
+		return rf(c, names)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, []string) []domain.Setting); ok {
+		r0 = rf(c, names)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).([]domain.Setting)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, []string) error); ok {
+		r1 = rf(c, names)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
 // Update provides a mock function with given fields: c, setting
 func (_m *SettingRepository) Update(c context.Context, setting *domain.Setting) error {
 	ret := _m.Called(c, setting)

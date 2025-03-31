@@ -24,6 +24,8 @@ func SettingRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database,
 	itemGroup := group.Group("/api/v1/configuration")
 	itemGroup.GET("/settings", lc.Fetch)
 	itemGroup.GET("/setting", lc.FetchByID)
+	itemGroup.GET("/setting-by-name", lc.FetchByName)
+	itemGroup.GET("/setting-by-names", lc.FetchByNames)
 	itemGroup.POST("/setting", lc.Create)
 	itemGroup.POST("/settings", lc.CreateMany)
 	itemGroup.PUT("/setting", lc.Update)

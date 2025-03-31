@@ -101,3 +101,30 @@ func (tr *settingRepository) FetchByID(c context.Context, settingID string) (dom
 	err = collection.FindOne(c, bson.M{"_id": idHex}).Decode(&setting)
 	return setting, err
 }
+
+func (tr *settingRepository) FetchByName(c context.Context, name string) (domain.Setting, error) {
+	collection := tr.database.Collection(tr.collection)
+
+	var setting domain.Setting
+
+	err := collection.FindOne(c, bson.M{"name": name}).Decode(&setting)
+	return setting, err
+}
+
+func (tr settingRepository) FetchByNames(c context.Context, names []string) ([]domain.Setting, error) {
+	collection := tr.database.Collection(tr.collection)
+
+	filter := bson.M{"name": bson.M{"$in": names}}
+	cursor, err := collection.Find(c, filter)
+	if err != nil {
+		return nil, err
+	}
+
+	var settings []domain.Setting
+	err = cursor.All(c, &settings)
+	if settings == nil {
+		return []domain.Setting{}, err
+	}
+
+	return settings, err
+}

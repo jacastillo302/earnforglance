@@ -13,12 +13,12 @@ import (
 )
 
 type MultifactorAuthenticationSettingsController struct {
-	MultifactorAuthenticationSettingsUsecase domain.MultifactorAuthenticationSettingsUsecase
+	MultifactorAuthenticationSettingsUsecase domain.MultiFactorAuthenticationSettingsUsecase
 	Env                                      *bootstrap.Env
 }
 
 func (tc *MultifactorAuthenticationSettingsController) CreateMany(c *gin.Context) {
-	var task []domain.MultifactorAuthenticationSettings
+	var task []domain.MultiFactorAuthenticationSettings
 	body, err := io.ReadAll(c.Request.Body)
 
 	if err != nil {
@@ -44,7 +44,7 @@ func (tc *MultifactorAuthenticationSettingsController) CreateMany(c *gin.Context
 }
 
 func (tc *MultifactorAuthenticationSettingsController) Create(c *gin.Context) {
-	var task domain.MultifactorAuthenticationSettings
+	var task domain.MultiFactorAuthenticationSettings
 	body, err := io.ReadAll(c.Request.Body)
 
 	if err != nil {
@@ -70,7 +70,7 @@ func (tc *MultifactorAuthenticationSettingsController) Create(c *gin.Context) {
 }
 
 func (tc *MultifactorAuthenticationSettingsController) Update(c *gin.Context) {
-	var task domain.MultifactorAuthenticationSettings
+	var task domain.MultiFactorAuthenticationSettings
 	body, err := io.ReadAll(c.Request.Body)
 
 	if err != nil {

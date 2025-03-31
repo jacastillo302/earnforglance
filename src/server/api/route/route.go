@@ -17,6 +17,7 @@ import (
 	discounts "earnforglance/server/api/route/discounts"
 	forums "earnforglance/server/api/route/forums"
 	gdpr "earnforglance/server/api/route/gdpr"
+	install "earnforglance/server/api/route/install"
 	localization "earnforglance/server/api/route/localization"
 	logging "earnforglance/server/api/route/logging"
 	media "earnforglance/server/api/route/media"
@@ -65,6 +66,7 @@ func Setup(env *bootstrap.Env, timeout time.Duration, db mongo.Database, gin *gi
 	LoginRouter(env, timeout, db, publicRouter)
 	RefreshTokenRouter(env, timeout, db, publicRouter)
 	auth.ApiClientRouter(env, timeout, db, publicRouter)
+	install.InstallRouter(env, timeout, db, publicRouter)
 
 	protectedRouter := gin.Group("")
 	// Middleware to verify AccessToken

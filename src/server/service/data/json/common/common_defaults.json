@@ -22,5 +22,10 @@
     "ExtensionsVersionsPath": "extensions-feed?getVersions=1&language=%s",
     "ExtensionsPath": "extensions-feed?category=%d&version=%d&price=%d&searchTerm=%s&pageIndex=%d&pageSize=%d&language=%s",
     "PdfLtrFontName": "OpenSans",
-    "PdfRtlFontName": "Vazirmatn"
+    "PdfRtlFontName": "Vazirmatn",
+    "InstallPath": "install",
+    "LocalizationResourcesPath": "./service/data/localization/",
+    "LocalizationResourcesFileExtension": "nopres.xml",
+    "SampleImagesPath": "images\\samples\\",
+    "SampleDataPath": "./service/installation/SampleData.json"
   }

@@ -14,9 +14,9 @@ type ApiSettingsUsecase struct {
 	mock.Mock
 }
 
-// Create provides a mock function with given fields: c, affiliate
-func (_m *ApiSettingsUsecase) Create(c context.Context, affiliate *domain.ApiSettings) error {
-	ret := _m.Called(c, affiliate)
+// Create provides a mock function with given fields: c, item
+func (_m *ApiSettingsUsecase) Create(c context.Context, item *domain.ApiSettings) error {
+	ret := _m.Called(c, item)
 
 	if len(ret) == 0 {
 		panic("no return value specified for Create")
@@ -24,7 +24,7 @@ func (_m *ApiSettingsUsecase) Create(c context.Context, affiliate *domain.ApiSet
 
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *domain.ApiSettings) error); ok {
-		r0 = rf(c, affiliate)
+		r0 = rf(c, item)
 	} else {
 		r0 = ret.Error(0)
 	}
@@ -126,9 +126,9 @@ func (_m *ApiSettingsUsecase) FetchByID(c context.Context, ID string) (domain.Ap
 	return r0, r1
 }
 
-// Update provides a mock function with given fields: c, affiliate
-func (_m *ApiSettingsUsecase) Update(c context.Context, affiliate *domain.ApiSettings) error {
-	ret := _m.Called(c, affiliate)
+// Update provides a mock function with given fields: c, item
+func (_m *ApiSettingsUsecase) Update(c context.Context, item *domain.ApiSettings) error {
+	ret := _m.Called(c, item)
 
 	if len(ret) == 0 {
 		panic("no return value specified for Update")
@@ -136,7 +136,7 @@ func (_m *ApiSettingsUsecase) Update(c context.Context, affiliate *domain.ApiSet
 
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *domain.ApiSettings) error); ok {
-		r0 = rf(c, affiliate)
+		r0 = rf(c, item)
 	} else {
 		r0 = ret.Error(0)
 	}

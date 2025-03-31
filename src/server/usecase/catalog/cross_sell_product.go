@@ -25,28 +25,28 @@ func (tu *crosssellproductUsecase) CreateMany(c context.Context, items []domain.
 	return tu.crosssellproductRepository.CreateMany(ctx, items)
 }
 
-func (tu *crosssellproductUsecase) Create(c context.Context, affiliate *domain.CrossSellProduct) error {
+func (tu *crosssellproductUsecase) Create(c context.Context, item *domain.CrossSellProduct) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
-	return tu.crosssellproductRepository.Create(ctx, affiliate)
+	return tu.crosssellproductRepository.Create(ctx, item)
 }
 
-func (tu *crosssellproductUsecase) Update(c context.Context, affiliate *domain.CrossSellProduct) error {
+func (tu *crosssellproductUsecase) Update(c context.Context, item *domain.CrossSellProduct) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
-	return tu.crosssellproductRepository.Update(ctx, affiliate)
+	return tu.crosssellproductRepository.Update(ctx, item)
 }
 
-func (tu *crosssellproductUsecase) Delete(c context.Context, affiliate string) error {
+func (tu *crosssellproductUsecase) Delete(c context.Context, item string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
-	return tu.crosssellproductRepository.Delete(ctx, affiliate)
+	return tu.crosssellproductRepository.Delete(ctx, item)
 }
 
-func (lu *crosssellproductUsecase) FetchByID(c context.Context, affiliateID string) (domain.CrossSellProduct, error) {
+func (lu *crosssellproductUsecase) FetchByID(c context.Context, itemID string) (domain.CrossSellProduct, error) {
 	ctx, cancel := context.WithTimeout(c, lu.contextTimeout)
 	defer cancel()
-	return lu.crosssellproductRepository.FetchByID(ctx, affiliateID)
+	return lu.crosssellproductRepository.FetchByID(ctx, itemID)
 }
 
 func (lu *crosssellproductUsecase) Fetch(c context.Context) ([]domain.CrossSellProduct, error) {

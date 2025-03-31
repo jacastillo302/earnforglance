@@ -19,10 +19,10 @@ func NewStoreMappingUsecase(storemappingRepository domain.StoreMappingRepository
 	}
 }
 
-func (tu *storemappingUsecase) CreateMany(c context.Context, MessageTemplatesSettingsList []domain.StoreMapping) error {
+func (tu *storemappingUsecase) CreateMany(c context.Context, items []domain.StoreMapping) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
-	return tu.storemappingRepository.CreateMany(ctx, MessageTemplatesSettingsList)
+	return tu.storemappingRepository.CreateMany(ctx, items)
 }
 
 func (tu *storemappingUsecase) Create(c context.Context, storemapping *domain.StoreMapping) error {

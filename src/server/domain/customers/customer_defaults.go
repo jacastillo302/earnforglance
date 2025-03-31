@@ -1,6 +1,6 @@
 package domain
 
-// NopCustomerDefaults represents default values related to customers data
+// CustomerDefaults represents default values related to customers data
 var CustomerDefaults = struct {
 	// System customer roles
 	AdministratorsRoleName  string

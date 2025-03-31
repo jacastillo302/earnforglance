@@ -77,6 +77,49 @@ func TestSettingRepository_FetchByID(t *testing.T) {
 	})
 }
 
+func TestSettingRepository_FetchByName(t *testing.T) {
+	var databaseHelper *mocks.Database
+	var collectionHelper *mocks.Collection
+
+	databaseHelper = &mocks.Database{}
+	collectionHelper = &mocks.Collection{}
+
+	collectionName := domain.CollectionSetting
+
+	t.Run("success", func(t *testing.T) {
+		mockSingleResult := &MockSingleResultSetting{}
+		mockSingleResult.On("Decode", mock.Anything).Return(mockItemSetting, nil)
+
+		collectionHelper.On("FindOne", mock.Anything, mock.Anything).Return(mockSingleResult).Once()
+		databaseHelper.On("Collection", collectionName).Return(collectionHelper)
+
+		ur := repository.NewSettingRepository(databaseHelper, collectionName)
+
+		_, err := ur.FetchByName(context.Background(), mockItemSetting.Name)
+
+		assert.NoError(t, err)
+		collectionHelper.AssertExpectations(t)
+		mockSingleResult.AssertExpectations(t)
+	})
+
+	t.Run("error", func(t *testing.T) {
+		mockSingleResult := &MockSingleResultSetting{}
+		mockSingleResult.On("Decode", mock.Anything).Return(nil, errors.New("Unexpected"))
+
+		collectionHelper.On("FindOne", mock.Anything, mock.Anything).Return(mockSingleResult).Once()
+		databaseHelper.On("Collection", collectionName).Return(collectionHelper)
+
+		ur := repository.NewSettingRepository(databaseHelper, collectionName)
+
+		_, err := ur.FetchByName(context.Background(), mockItemSetting.Name)
+
+		assert.Error(t, err)
+
+		collectionHelper.AssertExpectations(t)
+		mockSingleResult.AssertExpectations(t)
+	})
+}
+
 func TestSettingRepository_Create(t *testing.T) {
 	databaseHelper := &mocks.Database{}
 	collectionHelper := &mocks.Collection{}
@@ -110,4 +153,31 @@ func TestSettingRepository_Update(t *testing.T) {
 
 	assert.NoError(t, err)
 	collectionHelper.AssertExpectations(t)
+}
+
+func TestFetchByNames(t *testing.T) {
+	// Setup in-memory MongoDB
+	db := &mocks.Database{}
+	collection := domain.CollectionSetting
+	repo := repository.NewSettingRepository(db, collection)
+
+	// Insert test data
+	testSettings := []domain.Setting{
+		{Name: "Setting1"},
+		{Name: "Setting2"},
+		{Name: "Setting3"},
+	}
+	for _, setting := range testSettings {
+		_, _ = db.Collection(collection).InsertOne(context.Background(), setting)
+	}
+
+	// Test FetchByNames
+	names := []string{"Setting1", "Setting3"}
+	result, err := repo.FetchByNames(context.Background(), names)
+
+	// Assertions
+	assert.NoError(t, err)
+	assert.Len(t, result, 2)
+	assert.Equal(t, "Setting1", result[0].Name)
+	assert.Equal(t, "Setting3", result[1].Name)
 }

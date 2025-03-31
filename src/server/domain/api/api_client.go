@@ -27,8 +27,8 @@ type ApiClient struct {
 
 type ApiClientRepository interface {
 	CreateMany(c context.Context, items []ApiClient) error
-	Create(c context.Context, affiliate *ApiClient) error
-	Update(c context.Context, affiliate *ApiClient) error
+	Create(c context.Context, item *ApiClient) error
+	Update(c context.Context, item *ApiClient) error
 	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ApiClient, error)
 	FetchByID(c context.Context, ID string) (ApiClient, error)
@@ -36,8 +36,8 @@ type ApiClientRepository interface {
 
 type ApiClientUsecase interface {
 	CreateMany(c context.Context, items []ApiClient) error
-	Create(c context.Context, affiliate *ApiClient) error
-	Update(c context.Context, affiliate *ApiClient) error
+	Create(c context.Context, item *ApiClient) error
+	Update(c context.Context, item *ApiClient) error
 	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]ApiClient, error)
 	FetchByID(c context.Context, ID string) (ApiClient, error)

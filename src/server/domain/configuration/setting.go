@@ -25,6 +25,8 @@ type SettingRepository interface {
 	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Setting, error)
 	FetchByID(c context.Context, ID string) (Setting, error)
+	FetchByName(c context.Context, name string) (Setting, error)
+	FetchByNames(c context.Context, names []string) ([]Setting, error)
 }
 
 type SettingUsecase interface {
@@ -34,6 +36,8 @@ type SettingUsecase interface {
 	Update(c context.Context, setting *Setting) error
 	Delete(c context.Context, ID string) error
 	Fetch(c context.Context) ([]Setting, error)
+	FetchByName(c context.Context, name string) (Setting, error)
+	FetchByNames(c context.Context, names []string) ([]Setting, error)
 }
 
 // NewSetting creates a new Setting instance
@@ -43,9 +47,4 @@ func NewSetting(name string, value string, storeID primitive.ObjectID) *Setting 
 		Value:   value,
 		StoreID: storeID,
 	}
-}
-
-// ToString returns the name of the setting
-func (s *Setting) ToString() string {
-	return s.Name
 }

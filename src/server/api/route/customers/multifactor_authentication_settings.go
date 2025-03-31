@@ -16,8 +16,8 @@ import (
 
 func MultiFactorAuthenticationSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database, group *gin.RouterGroup) {
 	ur := repository.NewMultiFactorAuthenticationSettingsRepository(db, domain.CollectionMultiFactorAuthenticationSettings)
-	lc := &controller.MultiFactorAuthenticationSettingsController{
-		MultiFactorAuthenticationSettingsUsecase: usecase.NewMultiFactorAuthenticationSettingsUsecase(ur, timeout),
+	lc := &controller.MultifactorAuthenticationSettingsController{
+		MultifactorAuthenticationSettingsUsecase: usecase.NewMultiFactorAuthenticationSettingsUsecase(ur, timeout),
 		Env:                                      env,
 	}
 

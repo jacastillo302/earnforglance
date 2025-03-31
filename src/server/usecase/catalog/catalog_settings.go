@@ -25,28 +25,28 @@ func (tu *catalogsettingsUsecase) CreateMany(c context.Context, items []domain.C
 	return tu.catalogsettingsRepository.CreateMany(ctx, items)
 }
 
-func (tu *catalogsettingsUsecase) Create(c context.Context, affiliate *domain.CatalogSettings) error {
+func (tu *catalogsettingsUsecase) Create(c context.Context, item *domain.CatalogSettings) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
-	return tu.catalogsettingsRepository.Create(ctx, affiliate)
+	return tu.catalogsettingsRepository.Create(ctx, item)
 }
 
-func (tu *catalogsettingsUsecase) Update(c context.Context, affiliate *domain.CatalogSettings) error {
+func (tu *catalogsettingsUsecase) Update(c context.Context, item *domain.CatalogSettings) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
-	return tu.catalogsettingsRepository.Update(ctx, affiliate)
+	return tu.catalogsettingsRepository.Update(ctx, item)
 }
 
-func (tu *catalogsettingsUsecase) Delete(c context.Context, affiliate string) error {
+func (tu *catalogsettingsUsecase) Delete(c context.Context, item string) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
-	return tu.catalogsettingsRepository.Delete(ctx, affiliate)
+	return tu.catalogsettingsRepository.Delete(ctx, item)
 }
 
-func (lu *catalogsettingsUsecase) FetchByID(c context.Context, affiliateID string) (domain.CatalogSettings, error) {
+func (lu *catalogsettingsUsecase) FetchByID(c context.Context, itemID string) (domain.CatalogSettings, error) {
 	ctx, cancel := context.WithTimeout(c, lu.contextTimeout)
 	defer cancel()
-	return lu.catalogsettingsRepository.FetchByID(ctx, affiliateID)
+	return lu.catalogsettingsRepository.FetchByID(ctx, itemID)
 }
 
 func (lu *catalogsettingsUsecase) Fetch(c context.Context) ([]domain.CatalogSettings, error) {

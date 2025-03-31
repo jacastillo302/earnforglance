@@ -1,0 +1,26 @@
+[
+    {
+      "Name": "ounce(s)",
+      "SystemKeyword": "ounce",
+      "Ratio": 35.274,
+      "DisplayOrder": 1
+    },
+    {
+      "Name": "lb(s)",
+      "SystemKeyword": "lb",
+      "Ratio": 2.20462,
+      "DisplayOrder": 2
+    },
+    {
+      "Name": "kg(s)",
+      "SystemKeyword": "kg",
+      "Ratio": 1,
+      "DisplayOrder": 3
+    },
+    {
+      "Name": "gram(s)",
+      "SystemKeyword": "grams",
+      "Ratio": 1000,
+      "DisplayOrder": 4
+    }
+  ]

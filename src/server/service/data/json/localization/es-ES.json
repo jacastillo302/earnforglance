@@ -1,0 +1,197 @@
+{
+    "Language": {
+      "Name": "Español",
+      "IsDefault": false,
+      "IsRightToLeft": false,
+      "LocaleResources": [
+        {
+          "Name": "AdminEmail",
+          "Value": "Correo electrónico del usuario admin"
+        },
+        {
+          "Name": "AdminEmailRequired",
+          "Value": "Introduce el email de administrador"
+        },
+        {
+          "Name": "AdminPassword",
+          "Value": "Contraseña del usuario admin"
+        },
+        {
+          "Name": "AdminPasswordRequired",
+          "Value": "Introduzca la contraseña de administrador"
+        },
+        {
+          "Name": "ConfigureDirectoryPermissions",
+          "Value": "El '{0}' cuenta no se concede permiso para modificar la carpeta '{1}'. Por favor, configurar estos permisos"
+        },
+        {
+          "Name": "ConfigureFilePermissions",
+          "Value": "El '{0}' cuenta no se concede permiso para modificar el archivo '{1}'. Por favor, configurar estos permisos"
+        },
+        {
+          "Name": "ConfirmPassword",
+          "Value": "Confirme la contraseña"
+        },
+        {
+          "Name": "ConfirmPasswordRequired",
+          "Value": "Introduzca confirmar la contraseña"
+        },
+        {
+          "Name": "ConnectionString",
+          "Value": "cadena de conexión"
+        },
+        {
+          "Name": "ConnectionStringRequired",
+          "Value": "Una cadena de conexión SQL se requiere"
+        },
+        {
+          "Name": "ConnectionStringWrongFormat",
+          "Value": "Mala conexión de SQL cadena de formato"
+        },
+        {
+          "Name": "Country",
+          "Value": "País"
+        },
+        {
+          "Name": "CountrySelect",
+          "Value": "Seleccione su país..."
+        },
+        {
+          "Name": "CreateDatabaseIfDoesNotExist",
+          "Value": "Crear base de datos si no existe"
+        },
+        {
+          "Name": "CreateSampleData",
+          "Value": "Crear datos de la muestra"
+        },
+        {
+          "Name": "CustomCollation",
+          "Value": "Especificar colación personalizada"
+        },
+        {
+          "Name": "Database",
+          "Value": "Base de datos"
+        },
+        {
+          "Name": "DatabaseCreationError",
+          "Value": "Se produjo un error al crear la base de datos: {0}"
+        },
+        {
+          "Name": "DatabaseInformation",
+          "Value": "Base de datos de información"
+        },
+        {
+          "Name": "DatabaseName",
+          "Value": "Base de datos el nombre de"
+        },
+        {
+          "Name": "DatabaseNotExists",
+          "Value": "Base de datos no existe o no tiene permisos para conectarse a ella"
+        },
+        {
+          "Name": "DataProviderRequired",
+          "Value": "Seleccione el proveedor de datos"
+        },
+        {
+          "Name": "Documentation1",
+          "Value": "Si necesita información sobre cómo utilizar nopCommerce, visite"
+        },
+        {
+          "Name": "Documentation2",
+          "Value": "la sección de documentación de nopCommerce.com"
+        },
+        {
+          "Name": "Example",
+          "Value": "ejemplo"
+        },
+        {
+          "Name": "Install",
+          "Value": "instalar"
+        },
+        {
+          "Name": "Installing",
+          "Value": "Instalación nopCommerce ..."
+        },
+        {
+          "Name": "IntegratedAuthentication",
+          "Value": "Utilice la autenticación integrada de Windows"
+        },
+        {
+          "Name": "MySql",
+          "Value": "MySQL"
+        },
+        {
+          "Name": "PasswordsDoNotMatch",
+          "Value": "Las contraseñas no coinciden"
+        },
+        {
+          "Name": "PostgreSQL",
+          "Value": "PostgreSQL"
+        },
+        {
+          "Name": "RawConnectionString",
+          "Value": "Ingrese la cadena de conexión en bruto (avanzado)"
+        },
+        {
+          "Name": "RestartInstallation",
+          "Value": "reinicie la instalación"
+        },
+        {
+          "Name": "RestartInstallationTooltip",
+          "Value": "Haga clic para reiniciar el proceso de instalación (borrar todos los valores almacenados en caché)"
+        },
+        {
+          "Name": "RestartProgress",
+          "Value": "Reiniciando..."
+        },
+        {
+          "Name": "ServerName",
+          "Value": "Nombre del servidor"
+        },
+        {
+          "Name": "ServerNameRequired",
+          "Value": "Se requiere el nombre del servidor"
+        },
+        {
+          "Name": "SetupFailed",
+          "Value": "Error de instalación: {0}"
+        },
+        {
+          "Name": "SqlPassword",
+          "Value": "SQL Contraseña del"
+        },
+        {
+          "Name": "SqlPasswordRequired",
+          "Value": "SQL Contraseña del es necesario"
+        },
+        {
+          "Name": "SqlServer",
+          "Value": "Microsoft SQL Server"
+        },
+        {
+          "Name": "SqlUsername",
+          "Value": "Nombre de usuario SQL"
+        },
+        {
+          "Name": "SqlUsernameRequired",
+          "Value": "Nombre de usuario SQL es necesario"
+        },
+        {
+          "Name": "StoreInformation",
+          "Value": "Almacenar la información"
+        },
+        {
+          "Name": "SubscribeNewsletters",
+          "Value": "Suscribirse al boletín de nopCommerce"
+        },
+        {
+          "Name": "Title",
+          "Value": "nopCommerce de instalación"
+        },
+        {
+          "Name": "Tooltip2",
+          "Value": "Para completar este asistente debe saber alguna información acerca de su servidor de base de datos (\"cadena de conexión\"). Por favor, póngase en contacto con su ISP si es necesario. Si va a instalar en un equipo local o en el servidor es posible que tenga información de su administrador del sistema"
+        }
+      ]
+    }
+  }
