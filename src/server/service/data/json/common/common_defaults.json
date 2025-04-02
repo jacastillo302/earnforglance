@@ -12,6 +12,7 @@
     "LocalePatternArchiveName": "main.zip",
     "DefaultLocalePattern": "en",
     "DefaultLanguageCulture": "en-US",
+    "DefaultLanguageName": "English",
     "LanguagePackMinTranslationProgressToInstall": 80,
     "LanguagePackProgressAttribute": "LanguagePackProgress",
     "LicenseCheckPath": "license-check?url=%s&version=%s&email=%s&language=%s",

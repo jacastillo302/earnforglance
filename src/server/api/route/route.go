@@ -65,7 +65,11 @@ func Setup(env *bootstrap.Env, timeout time.Duration, db mongo.Database, gin *gi
 	SignupRouter(env, timeout, db, publicRouter)
 	LoginRouter(env, timeout, db, publicRouter)
 	RefreshTokenRouter(env, timeout, db, publicRouter)
+
+	publicRouter = gin.Group("/api/v1/client/")
 	auth.ApiClientRouter(env, timeout, db, publicRouter)
+
+	publicRouter = gin.Group("/api/v1/install/")
 	install.InstallRouter(env, timeout, db, publicRouter)
 
 	protectedRouter := gin.Group("")

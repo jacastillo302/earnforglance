@@ -46,6 +46,8 @@ const (
 	// DefaultLanguageCulture is the default CultureInfo
 	DefaultLanguageCulture = "en-US"
 
+	DefaultLanguageName = "English"
+
 	// LanguagePackMinTranslationProgressToInstall is the minimal progress of language pack translation to download and install
 	LanguagePackMinTranslationProgressToInstall = 80
 

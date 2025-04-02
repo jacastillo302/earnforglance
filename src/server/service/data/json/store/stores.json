@@ -1,0 +1,21 @@
+[
+  {
+    "ID": "64f1b3d4e5f6789012345678",
+    "Name": "Future Tech Store",
+    "DefaultMetaKeywords": "future, tech, gadgets",
+    "DefaultMetaDescription": "Your gateway to futuristic technology and gadgets.",
+    "DefaultTitle": "Future Tech Store - Innovate Your World",
+    "HomepageTitle": "Welcome to Future Tech Store",
+    "HomepageDescription": "Experience the future of technology today.",
+    "Url": "https://www.futuretechstore.fake",
+    "SslEnabled": true,
+    "Hosts": "www.futuretechstore.fake",
+    "DefaultLanguageID": "64f1a2c3d4e5f67890123456",
+    "DisplayOrder": 2,
+    "CompanyName": "Future Tech LLC",
+    "CompanyAddress": "789 Visionary Blvd, Tomorrow City",
+    "CompanyPhoneNumber": "+1-800-555-1234",
+    "CompanyVat": "VAT555123",
+    "Deleted": false
+  }
+]

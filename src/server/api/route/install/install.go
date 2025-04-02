@@ -21,6 +21,11 @@ func InstallRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database,
 	}
 
 	group.GET("/ping_database", lc.PingDatabase)
-	group.GET("/install_stores", lc.InstallStores)
+	group.GET("/store", lc.InstallStores)
+	group.GET("/currency", lc.InstallCurrencies)
+	group.GET("/measure_dimension", lc.InstallMeasureDimension)
+	group.GET("/measure_weight", lc.InstallMeasureWeight)
+	group.GET("/tax_category", lc.InstallTaxCategories)
+	group.GET("/language", lc.InstallLanguages)
 
 }

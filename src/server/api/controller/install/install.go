@@ -6,19 +6,15 @@ import (
 
 	"earnforglance/server/bootstrap"
 	common "earnforglance/server/domain/common"
-	settings "earnforglance/server/domain/configuration"
 	response "earnforglance/server/domain/install"
-	stores "earnforglance/server/domain/stores"
+
 	service "earnforglance/server/service/install"
-	usecase "earnforglance/server/usecase/stores"
 
 	"github.com/gin-gonic/gin"
 )
 
 type InstallController struct {
 	InstallUsecase response.InstallLogUsecase
-	SettingUsecase settings.SettingUsecase
-	StoresUsecase  stores.StoreRepository
 	Env            *bootstrap.Env
 }
 
@@ -39,43 +35,159 @@ func (lc *InstallController) PingDatabase(c *gin.Context) {
 
 func (lc *InstallController) FullInstall(c *gin.Context, sample bool) {
 
-	result := service.InstallStores(lc.StoresUsecase)
+	result, stores := service.InstallStores()
 	if !result.Status {
 		c.JSON(http.StatusNotFound, common.ErrorResponse{Message: result.Details})
 		return
 	}
 
-	c.JSON(http.StatusOK, result)
-}
-
-func (lc *InstallController) InstallStores(c *gin.Context) {
-	usecasevar := usecase.NewStoreUsecase(lc.StoresUsecase, time.Duration(0))
-	result := service.InstallStores(usecasevar)
-	if !result.Status {
+	if len(stores) == 0 {
 		c.JSON(http.StatusNotFound, common.ErrorResponse{Message: result.Details})
 		return
 	}
 
-	c.JSON(http.StatusOK, result)
-}
+	err := lc.InstallUsecase.InstallStores(c, stores)
+	if err != nil {
+		c.JSON(http.StatusNotFound, common.ErrorResponse{Message: err.Error()})
+		return
+	}
 
-func (lc *InstallController) InstallMeasures(c *gin.Context) {
-	var result response.Install
-	c.JSON(http.StatusOK, result)
-}
-
-func (lc *InstallController) InstallTaxCategories(c *gin.Context) {
-	var result response.Install
-	c.JSON(http.StatusOK, result)
-}
-
-func (lc *InstallController) InstallLanguages(c *gin.Context) {
-	var result response.Install
 	c.JSON(http.StatusOK, result)
 }
 
 func (lc *InstallController) InstallCurrencies(c *gin.Context) {
-	var result response.Install
+	result, items := service.InstallCurrency()
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	if len(items) == 0 || items == nil {
+		c.JSON(http.StatusNoContent, common.ErrorResponse{Message: "No items to install"})
+		return
+	}
+
+	err := lc.InstallUsecase.InstallCurrencies(c, items)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, result)
+}
+
+func (lc *InstallController) InstallMeasureDimension(c *gin.Context) {
+	result, items := service.InstallMeasureDimension()
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	if len(items) == 0 || items == nil {
+		c.JSON(http.StatusNoContent, common.ErrorResponse{Message: "No items to install"})
+		return
+	}
+
+	err := lc.InstallUsecase.InstallMeasureDimension(c, items)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, result)
+}
+
+func (lc *InstallController) InstallMeasureWeight(c *gin.Context) {
+	result, items := service.InstallMeasureWeight()
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	if len(items) == 0 || items == nil {
+		c.JSON(http.StatusNoContent, common.ErrorResponse{Message: "No items to install"})
+		return
+	}
+
+	err := lc.InstallUsecase.InstallMeasureWeight(c, items)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, result)
+}
+
+func (lc *InstallController) InstallTaxCategories(c *gin.Context) {
+	result, items := service.InstallTaxCategory()
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	if len(items) == 0 || items == nil {
+		c.JSON(http.StatusNoContent, common.ErrorResponse{Message: "No items to install"})
+		return
+	}
+
+	err := lc.InstallUsecase.InstallTaxCategory(c, items)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, result)
+
+}
+
+func (lc *InstallController) InstallLanguages(c *gin.Context) {
+	result, items := service.InstallLanguages()
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	if len(items) == 0 || items == nil {
+		c.JSON(http.StatusNoContent, common.ErrorResponse{Message: "No items to install"})
+		return
+	}
+
+	err := lc.InstallUsecase.InstallLanguages(c, items)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	/*
+		defaultLanguage := service.GetDefaultLanguage()
+		err := lc.InstallUsecase.InstallLanguages(c, defaultLanguage)
+		if err != nil {
+			c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+			return
+		}
+	*/
+	c.JSON(http.StatusOK, result)
+}
+
+func (lc *InstallController) InstallStores(c *gin.Context) {
+
+	result, stores := service.InstallStores()
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	if len(stores) == 0 || stores == nil {
+		c.JSON(http.StatusNoContent, common.ErrorResponse{Message: "No stores to install"})
+		return
+	}
+
+	err := lc.InstallUsecase.InstallStores(c, stores)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
 	c.JSON(http.StatusOK, result)
 }
 
