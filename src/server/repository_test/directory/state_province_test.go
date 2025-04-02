@@ -29,7 +29,7 @@ func (m *MockSingleResultStateProvince) Decode(v interface{}) error {
 
 var mockItemStateProvince = &domain.StateProvince{
 	ID:           primitive.NewObjectID(), // Existing ID of the record to update
-	CountryID:    2,
+	CountryID:    primitive.NewObjectID(),
 	Name:         "Ontario",
 	Abbreviation: "ON",
 	Published:    false,

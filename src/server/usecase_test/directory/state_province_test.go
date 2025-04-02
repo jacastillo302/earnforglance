@@ -22,7 +22,7 @@ func TestStateProvinceUsecase_FetchByID(t *testing.T) {
 
 	updatedStateProvince := domain.StateProvince{
 		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		CountryID:    2,
+		CountryID:    primitive.NewObjectID(),
 		Name:         "Ontario",
 		Abbreviation: "ON",
 		Published:    false,
@@ -44,7 +44,7 @@ func TestStateProvinceUsecase_Create(t *testing.T) {
 	usecase := test.NewStateProvinceUsecase(mockRepo, timeout)
 
 	newStateProvince := &domain.StateProvince{
-		CountryID:    1,
+		CountryID:    primitive.NewObjectID(),
 		Name:         "California",
 		Abbreviation: "CA",
 		Published:    true,
@@ -66,7 +66,7 @@ func TestStateProvinceUsecase_Update(t *testing.T) {
 
 	updatedStateProvince := &domain.StateProvince{
 		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		CountryID:    2,
+		CountryID:    primitive.NewObjectID(),
 		Name:         "Ontario",
 		Abbreviation: "ON",
 		Published:    false,
@@ -104,7 +104,7 @@ func TestStateProvinceUsecase_Fetch(t *testing.T) {
 	fetchedStateProvinces := []domain.StateProvince{
 		{
 			ID:           primitive.NewObjectID(),
-			CountryID:    1,
+			CountryID:    primitive.NewObjectID(),
 			Name:         "California",
 			Abbreviation: "CA",
 			Published:    true,
@@ -112,7 +112,7 @@ func TestStateProvinceUsecase_Fetch(t *testing.T) {
 		},
 		{
 			ID:           primitive.NewObjectID(),
-			CountryID:    2,
+			CountryID:    primitive.NewObjectID(),
 			Name:         "Ontario",
 			Abbreviation: "ON",
 			Published:    false,

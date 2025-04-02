@@ -1,0 +1,1094 @@
+[
+    {
+        "ID": "67ed65976b3a64a8c73f793c",
+        "Name": "Api Client",
+        "SystemName": "api_clients",
+        "Category": "domain"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f793d",
+        "Name": "Api Settings",
+        "SystemName": "api_settings",
+        "Category": "domain"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f793e",
+        "Name": "Affiliate",
+        "SystemName": "affiliates",
+        "Category": "affiliate"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f793f",
+        "Name": "Base Attribute",
+        "SystemName": "base_attributes",
+        "Category": "attributes"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7940",
+        "Name": "Base Attribute Value",
+        "SystemName": "base_attribute_values",
+        "Category": "attributes"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7941",
+        "Name": "Blog Comment",
+        "SystemName": "blog_comments",
+        "Category": "blogs"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7942",
+        "Name": "Blog Post",
+        "SystemName": "blog_posts",
+        "Category": "blogs"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7943",
+        "Name": "Blog Post Tag",
+        "SystemName": "blog_post_tags",
+        "Category": "blogs"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7944",
+        "Name": "Blog Settings",
+        "SystemName": "blog_settings",
+        "Category": "blogs"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7945",
+        "Name": "Back In Stock Subscription",
+        "SystemName": "back_in_stock_subscriptions",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7946",
+        "Name": "Catalog Settings",
+        "SystemName": "catalog_settings",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7947",
+        "Name": "Category",
+        "SystemName": "categories",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7948",
+        "Name": "Category Template",
+        "SystemName": "category_templates",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7949",
+        "Name": "Cross Sell Product",
+        "SystemName": "cross_sell_products",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f794a",
+        "Name": "Manufacturer",
+        "SystemName": "manufacturers",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f794b",
+        "Name": "Manufacturer Template",
+        "SystemName": "manufacturer_templates",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f794c",
+        "Name": "Predefined Product Attribute Value",
+        "SystemName": "predefined_product_attribute_values",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f794d",
+        "Name": "Product",
+        "SystemName": "products",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f794e",
+        "Name": "Product Attribute",
+        "SystemName": "product_attributes",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f794f",
+        "Name": "Product Attribute Combination",
+        "SystemName": "product_attribute_combinations",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7950",
+        "Name": "Product Attribute Combination Picture",
+        "SystemName": "product_attribute_combination_pictures",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7951",
+        "Name": "Product Attribute Mapping",
+        "SystemName": "product_attribute_mappings",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7952",
+        "Name": "Product Attribute Value",
+        "SystemName": "product_attribute_values",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7953",
+        "Name": "Product Attribute Value Picture",
+        "SystemName": "product_attribute_value_pictures",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7954",
+        "Name": "Product Category",
+        "SystemName": "product_categories",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7955",
+        "Name": "Product Editor Settings",
+        "SystemName": "product_editor_settings",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7956",
+        "Name": "Product Manufacturer",
+        "SystemName": "product_manufacturers",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7957",
+        "Name": "Product Picture",
+        "SystemName": "product_pictures",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7958",
+        "Name": "Product Product Tag Mapping",
+        "SystemName": "product_product_tag_mappings",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7959",
+        "Name": "Product Review",
+        "SystemName": "product_reviews",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f795a",
+        "Name": "Product Review Helpfulness",
+        "SystemName": "product_review_helpfulness",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f795b",
+        "Name": "Product Review Review Type Mapping",
+        "SystemName": "product_review_review_type_mappings",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f795c",
+        "Name": "Product Specification Attribute",
+        "SystemName": "product_specification_attributes",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f795d",
+        "Name": "Product Tag",
+        "SystemName": "product_tags",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f795e",
+        "Name": "Product Template",
+        "SystemName": "product_templates",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f795f",
+        "Name": "Product Video",
+        "SystemName": "product_videos",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7960",
+        "Name": "Product Warehouse Inventory",
+        "SystemName": "product_warehouse_inventories",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7961",
+        "Name": "Related Product",
+        "SystemName": "related_products",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7962",
+        "Name": "Review Type",
+        "SystemName": "review_types",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7963",
+        "Name": "Specification Attribute",
+        "SystemName": "specification_attributes",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7964",
+        "Name": "Specification Attribute Group",
+        "SystemName": "specification_attribute_groups",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7965",
+        "Name": "Specification Attribute Option",
+        "SystemName": "specification_attribute_options",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7966",
+        "Name": "Stock Quantity Change",
+        "SystemName": "stock_quantity_changes",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7967",
+        "Name": "Tier Price",
+        "SystemName": "tier_prices",
+        "Category": "catalog"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7968",
+        "Name": "Widget Settings",
+        "SystemName": "widget_settings",
+        "Category": "cms"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7969",
+        "Name": "Address",
+        "SystemName": "addresses",
+        "Category": "common"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f796a",
+        "Name": "Address Attribute",
+        "SystemName": "address_attributes",
+        "Category": "common"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f796b",
+        "Name": "Address Attribute Value",
+        "SystemName": "address_attribute_values",
+        "Category": "common"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f796c",
+        "Name": "Address Settings",
+        "SystemName": "address_settings",
+        "Category": "common"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f796d",
+        "Name": "Admin Area Settings",
+        "SystemName": "admin_area_settings",
+        "Category": "common"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f796e",
+        "Name": "Common Settings",
+        "SystemName": "common_settings",
+        "Category": "common"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f796f",
+        "Name": "Display Default Footer Item Settings",
+        "SystemName": "display_default_footer_item_settings",
+        "Category": "common"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7970",
+        "Name": "Display Default Menu Item Settings",
+        "SystemName": "display_default_menu_item_settings",
+        "Category": "common"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7971",
+        "Name": "Generic Attribute",
+        "SystemName": "generic_attributes",
+        "Category": "common"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7972",
+        "Name": "Pdf Settings",
+        "SystemName": "pdf_settings",
+        "Category": "common"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7973",
+        "Name": "Search Term",
+        "SystemName": "search_terms",
+        "Category": "common"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7974",
+        "Name": "Search Term Report Line",
+        "SystemName": "search_term_report_lines",
+        "Category": "common"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7975",
+        "Name": "Sitemap Settings",
+        "SystemName": "sitemap_settings",
+        "Category": "common"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7976",
+        "Name": "Sitemap Xml Settings",
+        "SystemName": "sitemap_xml_settings",
+        "Category": "common"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7977",
+        "Name": "Setting",
+        "SystemName": "settings",
+        "Category": "configuration"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7978",
+        "Name": "Best Customer Report Line",
+        "SystemName": "best_customer_report_lines",
+        "Category": "customers"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7979",
+        "Name": "Customer Password",
+        "SystemName": "customer_passwords",
+        "Category": "customers"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f797a",
+        "Name": "Customer Role",
+        "SystemName": "customer_roles",
+        "Category": "customers"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f797b",
+        "Name": "Customer Settings",
+        "SystemName": "customer_settings",
+        "Category": "customers"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f797c",
+        "Name": "Customer",
+        "SystemName": "customers",
+        "Category": "customers"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f797d",
+        "Name": "External Authentication Record",
+        "SystemName": "external_authentication_records",
+        "Category": "customers"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f797e",
+        "Name": "External Authentication Settings",
+        "SystemName": "external_authentication_settings",
+        "Category": "customers"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f797f",
+        "Name": "Multifactor Authentication Settings",
+        "SystemName": "multiFactor_authentication_settings",
+        "Category": "customers"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7980",
+        "Name": "Customer Address Mapping",
+        "SystemName": "customer_address_mappings",
+        "Category": "customers"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7981",
+        "Name": "Customer Attribute",
+        "SystemName": "customer_attributes",
+        "Category": "customers"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7982",
+        "Name": "Customer Attribute Value",
+        "SystemName": "customer_attribute_values",
+        "Category": "customers"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7983",
+        "Name": "Customer Customer Role Mapping",
+        "SystemName": "customer_customer_role_mappings",
+        "Category": "customers"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7984",
+        "Name": "Reward Points History",
+        "SystemName": "reward_points_history",
+        "Category": "customers"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7985",
+        "Name": "Reward Points Settings",
+        "SystemName": "reward_points_settings",
+        "Category": "customers"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7986",
+        "Name": "Country",
+        "SystemName": "countries",
+        "Category": "directory"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7987",
+        "Name": "Currency",
+        "SystemName": "currencies",
+        "Category": "directory"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7988",
+        "Name": "Currency Settings",
+        "SystemName": "currency_settings",
+        "Category": "directory"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7989",
+        "Name": "Exchange Rate",
+        "SystemName": "exchange_rates",
+        "Category": "directory"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f798a",
+        "Name": "Measure Dimension",
+        "SystemName": "measure_dimensions",
+        "Category": "directory"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f798b",
+        "Name": "Measure Settings",
+        "SystemName": "measure_settings",
+        "Category": "directory"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f798c",
+        "Name": "Measure Weight",
+        "SystemName": "measure_weights",
+        "Category": "directory"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f798d",
+        "Name": "State Province",
+        "SystemName": "state_provinces",
+        "Category": "directory"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f798e",
+        "Name": "Discount",
+        "SystemName": "discounts",
+        "Category": "discounts"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f798f",
+        "Name": "Discount Category Mapping",
+        "SystemName": "discount_category_mappings",
+        "Category": "discounts"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7990",
+        "Name": "Discount Manufacturer Mapping",
+        "SystemName": "discount_manufacturer_mappings",
+        "Category": "discounts"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7991",
+        "Name": "Discount Mapping",
+        "SystemName": "discount_mappings",
+        "Category": "discounts"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7992",
+        "Name": "Discount Product Mapping",
+        "SystemName": "discount_product_mappings",
+        "Category": "discounts"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7993",
+        "Name": "Discount Requirement",
+        "SystemName": "discount_requirements",
+        "Category": "discounts"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7994",
+        "Name": "Discount Usage History",
+        "SystemName": "discount_usage_histories",
+        "Category": "discounts"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7995",
+        "Name": "Forum",
+        "SystemName": "forums",
+        "Category": "forums"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7996",
+        "Name": "Forum Group",
+        "SystemName": "forum_groups",
+        "Category": "forums"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7997",
+        "Name": "Forum Post",
+        "SystemName": "forum_posts",
+        "Category": "forums"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7998",
+        "Name": "Forum Post Vote",
+        "SystemName": "forum_post_votes",
+        "Category": "forums"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7999",
+        "Name": "Forum Settings",
+        "SystemName": "forum_settings",
+        "Category": "forums"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f799a",
+        "Name": "Forum Subscription",
+        "SystemName": "forum_subscriptions",
+        "Category": "forums"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f799b",
+        "Name": "Forum Topic",
+        "SystemName": "forum_topics",
+        "Category": "forums"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f799c",
+        "Name": "Private Message",
+        "SystemName": "private_messages",
+        "Category": "forums"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f799d",
+        "Name": "Customer Permanently Deleted",
+        "SystemName": "customer_permanently_deleteds",
+        "Category": "gdpr"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f799e",
+        "Name": "Gdpr Consent",
+        "SystemName": "gdpr_consents",
+        "Category": "gdpr"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f799f",
+        "Name": "Gdpr Log",
+        "SystemName": "gdpr_logs",
+        "Category": "gdpr"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79a0",
+        "Name": "Gdpr Settings",
+        "SystemName": "gdpr_settings",
+        "Category": "gdpr"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79a1",
+        "Name": "Language",
+        "SystemName": "languages",
+        "Category": "localization"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79a2",
+        "Name": "Locale String Resource",
+        "SystemName": "locale_string_resources",
+        "Category": "localization"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79a3",
+        "Name": "Localization Settings",
+        "SystemName": "localization_settings",
+        "Category": "localization"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79a4",
+        "Name": "Localized Property",
+        "SystemName": "localized_properties",
+        "Category": "localization"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79a5",
+        "Name": "Activity Log",
+        "SystemName": "activity_logs",
+        "Category": "logging"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79a6",
+        "Name": "Activity Log Type",
+        "SystemName": "activity_log_types",
+        "Category": "logging"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79a7",
+        "Name": "Log",
+        "SystemName": "logs",
+        "Category": "logging"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79a8",
+        "Name": "Download",
+        "SystemName": "downloads",
+        "Category": "media"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79a9",
+        "Name": "Media Settings",
+        "SystemName": "media_settings",
+        "Category": "media"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79aa",
+        "Name": "Picture",
+        "SystemName": "pictures",
+        "Category": "media"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79ab",
+        "Name": "Picture Binary",
+        "SystemName": "picture_binaries",
+        "Category": "media"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79ac",
+        "Name": "Picture Hashes",
+        "SystemName": "picture_hashes",
+        "Category": "media"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79ad",
+        "Name": "Video",
+        "SystemName": "videos",
+        "Category": "media"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79ae",
+        "Name": "Campaign",
+        "SystemName": "campaigns",
+        "Category": "messages"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79af",
+        "Name": "Email Account",
+        "SystemName": "email_accounts",
+        "Category": "messages"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79b0",
+        "Name": "Email Account Settings",
+        "SystemName": "email_account_settings",
+        "Category": "messages"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79b1",
+        "Name": "Messages Settings",
+        "SystemName": "messages_settings",
+        "Category": "messages"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79b2",
+        "Name": "Message Template",
+        "SystemName": "message_template",
+        "Category": "messages"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79b3",
+        "Name": "Message Templates Settings",
+        "SystemName": "message_templates_settings",
+        "Category": "messages"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79b4",
+        "Name": "News Letter Subscription",
+        "SystemName": "news_letter_subscriptions",
+        "Category": "messages"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79b5",
+        "Name": "Queued Email",
+        "SystemName": "queued_emails",
+        "Category": "messages"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79b6",
+        "Name": "News Comment",
+        "SystemName": "news_comments",
+        "Category": "news"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79b7",
+        "Name": "News Item",
+        "SystemName": "news_items",
+        "Category": "news"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79b8",
+        "Name": "News Settings",
+        "SystemName": "news_settings",
+        "Category": "news"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79b9",
+        "Name": "Best Sellers Report Line",
+        "SystemName": "best_sellers_report_lines",
+        "Category": "orders"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79ba",
+        "Name": "Checkout Attribute",
+        "SystemName": "checkout_attributes",
+        "Category": "orders"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79bb",
+        "Name": "Checkout Attribute Value",
+        "SystemName": "checkout_attribute_values",
+        "Category": "orders"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79bc",
+        "Name": "Gift Card",
+        "SystemName": "gift_cards",
+        "Category": "orders"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79bd",
+        "Name": "Gift Card Usage History",
+        "SystemName": "gift_card_usage_histories",
+        "Category": "orders"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79be",
+        "Name": "Order",
+        "SystemName": "orders",
+        "Category": "orders"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79bf",
+        "Name": "Order Average Report Line",
+        "SystemName": "order_average_report_lines",
+        "Category": "orders"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79c0",
+        "Name": "Order Average Report Line Summary",
+        "SystemName": "order_average_report_line_summaries",
+        "Category": "orders"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79c1",
+        "Name": "Order By Country Report Line",
+        "SystemName": "order_by_country_report_lines",
+        "Category": "orders"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79c2",
+        "Name": "Order Item",
+        "SystemName": "order_items",
+        "Category": "orders"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79c3",
+        "Name": "Order Note",
+        "SystemName": "order_notes",
+        "Category": "orders"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79c4",
+        "Name": "Order Settings",
+        "SystemName": "order_settings",
+        "Category": "orders"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79c5",
+        "Name": "Recurring Payment",
+        "SystemName": "recurring_payments",
+        "Category": "orders"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79c6",
+        "Name": "Recurring Payment History",
+        "SystemName": "recurring_payment_histories",
+        "Category": "orders"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79c7",
+        "Name": "Return Request",
+        "SystemName": "return_requests",
+        "Category": "orders"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79c8",
+        "Name": "Return Request Action",
+        "SystemName": "return_request_actions",
+        "Category": "orders"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79c9",
+        "Name": "Return Request Reason",
+        "SystemName": "return_request_reasons",
+        "Category": "orders"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79ca",
+        "Name": "Sales Summary Report Line",
+        "SystemName": "sales_summary_report_lines",
+        "Category": "orders"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79cb",
+        "Name": "Shopping Cart Item",
+        "SystemName": "shopping_cart_items",
+        "Category": "orders"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79cc",
+        "Name": "Shopping Cart Settings",
+        "SystemName": "shopping_cart_settings",
+        "Category": "orders"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79cd",
+        "Name": "Payment Settings",
+        "SystemName": "payment_settings",
+        "Category": "payments"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79ce",
+        "Name": "Poll",
+        "SystemName": "polls",
+        "Category": "polls"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79cf",
+        "Name": "Poll Answer",
+        "SystemName": "poll_answers",
+        "Category": "polls"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79d0",
+        "Name": "Poll Voting Record",
+        "SystemName": "poll_voting_records",
+        "Category": "polls"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79d1",
+        "Name": "Schedule Task",
+        "SystemName": "schedule_tasks",
+        "Category": "scheduleTasks"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79d2",
+        "Name": "Acl Record",
+        "SystemName": "acl_records",
+        "Category": "security"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79d3",
+        "Name": "Acl Record Permission",
+        "SystemName": "acl_record_permissions",
+        "Category": "security"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79d4",
+        "Name": "Captcha Settings",
+        "SystemName": "captcha_settings",
+        "Category": "security"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79d5",
+        "Name": "Permission Record",
+        "SystemName": "permission_records",
+        "Category": "security"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79d6",
+        "Name": "Permission Record Customer Role Mapping",
+        "SystemName": "permission_record_customer_role_mappings",
+        "Category": "security"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79d7",
+        "Name": "Proxy Settings",
+        "SystemName": "proxy_settings",
+        "Category": "security"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79d8",
+        "Name": "Robots Txt Settings",
+        "SystemName": "robots_txt_settings",
+        "Category": "security"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79d9",
+        "Name": "Security Settings",
+        "SystemName": "security_settings",
+        "Category": "security"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79da",
+        "Name": "Seo Settings",
+        "SystemName": "seo_settings",
+        "Category": "seo"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79db",
+        "Name": "Url Record",
+        "SystemName": "url_records",
+        "Category": "seo"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79dc",
+        "Name": "Delivery Date",
+        "SystemName": "delivery_dates",
+        "Category": "shipping"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79dd",
+        "Name": "Pickup Point",
+        "SystemName": "pickup_points",
+        "Category": "shipping"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79de",
+        "Name": "Product Availability Range",
+        "SystemName": "product_availability_ranges",
+        "Category": "shipping"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79df",
+        "Name": "Shipment",
+        "SystemName": "shipment",
+        "Category": "shipping"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79e0",
+        "Name": "Shipment Item",
+        "SystemName": "shipment_items",
+        "Category": "shipping"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79e1",
+        "Name": "Shipping Method",
+        "SystemName": "shipping_methods",
+        "Category": "shipping"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79e2",
+        "Name": "Shipping Method Country Mapping",
+        "SystemName": "shipping_method_country_mappings",
+        "Category": "shipping"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79e3",
+        "Name": "Shipping Option",
+        "SystemName": "shipping_options",
+        "Category": "shipping"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79e4",
+        "Name": "Shipping Settings",
+        "SystemName": "shipping_settings",
+        "Category": "shipping"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79e5",
+        "Name": "Warehouse",
+        "SystemName": "warehouses",
+        "Category": "shipping"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79e6",
+        "Name": "Store",
+        "SystemName": "stores",
+        "Category": "stores"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79e7",
+        "Name": "Store Mapping",
+        "SystemName": "store_mappings",
+        "Category": "stores"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79e8",
+        "Name": "Tax Category",
+        "SystemName": "tax_categories",
+        "Category": "tax"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79e9",
+        "Name": "Tax Settings",
+        "SystemName": "tax_settings",
+        "Category": "tax"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79ea",
+        "Name": "Topic",
+        "SystemName": "topics",
+        "Category": "topics"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79eb",
+        "Name": "Topic Template",
+        "SystemName": "topic_templates",
+        "Category": "topics"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79ec",
+        "Name": "Vendor",
+        "SystemName": "vendors",
+        "Category": "vendors"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79ed",
+        "Name": "Vendor Attribute",
+        "SystemName": "vendor_attributes",
+        "Category": "vendors"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79ee",
+        "Name": "Vendor Attribute Value",
+        "SystemName": "vendor_attribute_values",
+        "Category": "vendors"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79ef",
+        "Name": "Vendor Note",
+        "SystemName": "vendor_notes",
+        "Category": "vendors"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79f0",
+        "Name": "Vendor Settings",
+        "SystemName": "vendor_settings",
+        "Category": "vendors"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f79f1",
+        "Name": "Store Information Settings",
+        "SystemName": "store_information_settings",
+        "Category": "general"
+    }
+]

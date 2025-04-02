@@ -13,7 +13,7 @@ const (
 // StateProvince represents a state/province
 type StateProvince struct {
 	ID           primitive.ObjectID `bson:"_id,omitempty"`
-	CountryID    int                `bson:"country_id"`
+	CountryID    primitive.ObjectID `bson:"country_id"`
 	Name         string             `bson:"name"`
 	Abbreviation string             `bson:"abbreviation"`
 	Published    bool               `bson:"published"`

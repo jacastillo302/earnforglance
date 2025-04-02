@@ -1,0 +1,14 @@
+[
+    {
+      "Name": "2-4 days",
+      "DisplayOrder": 1
+    },
+    {
+      "Name": "7-10 days",
+      "DisplayOrder": 2
+    },
+    {
+      "Name": "2 weeks",
+      "DisplayOrder": 3
+    }
+  ]

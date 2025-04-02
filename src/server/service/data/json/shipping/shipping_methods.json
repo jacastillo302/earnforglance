@@ -1,0 +1,20 @@
+[
+  {
+      "ID": "67edbec7c018e685b8d900b2",
+      "Name": "Ground",
+      "Description": "Shipping by land transport",
+      "DisplayOrder": 1
+  },
+  {
+      "ID": "67edbec7c018e685b8d900b3",
+      "Name": "Next Day Air",
+      "Description": "The one day air shipping",
+      "DisplayOrder": 2
+  },
+  {
+      "ID": "67edbec7c018e685b8d900b4",
+      "Name": "2nd Day Air",
+      "Description": "The two day air shipping",
+      "DisplayOrder": 3
+  }
+]

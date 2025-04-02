@@ -1,0 +1,17 @@
+[
+  {
+      "ID": "67edc106c4e07505326cad4a",
+      "Name": "1-2 days",
+      "DisplayOrder": 1
+  },
+  {
+      "ID": "67edc106c4e07505326cad4b",
+      "Name": "3-5 days",
+      "DisplayOrder": 5
+  },
+  {
+      "ID": "67edc106c4e07505326cad4c",
+      "Name": "1 week",
+      "DisplayOrder": 10
+  }
+]
