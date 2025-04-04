@@ -23,10 +23,10 @@ func ApiSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Datab
 
 	Group := group.Group("/api/v1/api")
 
-	group.GET("/apisettings", lc.Fetch)
-	group.GET("/apisetting", lc.FetchByID)
-	group.POST("/apisetting", lc.Create)
+	Group.GET("/apisettings", lc.Fetch)
+	Group.GET("/apisetting", lc.FetchByID)
+	Group.POST("/apisetting", lc.Create)
 	Group.POST("/apisettings", lc.CreateMany)
-	group.PUT("/apisetting", lc.Update)
-	group.DELETE("apisetting", lc.Delete)
+	Group.PUT("/apisetting", lc.Update)
+	Group.DELETE("apisetting", lc.Delete)
 }

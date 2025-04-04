@@ -109,7 +109,7 @@ func (tc *CustomerRoleController) Delete(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, common.SuccessResponse{
-		Message: "Record deleted successfully",
+		Message: "CustomerRole Record deleted successfully",
 	})
 }
 

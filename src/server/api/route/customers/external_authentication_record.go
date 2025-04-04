@@ -23,10 +23,10 @@ func ExternalAuthenticationRecordRouter(env *bootstrap.Env, timeout time.Duratio
 
 	Group := group.Group("/api/v1/customers")
 
-	group.GET("/external_authentication_records", lc.Fetch)
-	group.GET("/external_authentication_record", lc.FetchByID)
-	group.POST("/external_authentication_record", lc.Create)
+	Group.GET("/external_authentication_records", lc.Fetch)
+	Group.GET("/external_authentication_record", lc.FetchByID)
+	Group.POST("/external_authentication_record", lc.Create)
 	Group.POST("/external_authentication_records", lc.CreateMany)
-	group.PUT("/external_authentication_record", lc.Update)
-	group.DELETE("external_authentication_record", lc.Delete)
+	Group.PUT("/external_authentication_record", lc.Update)
+	Group.DELETE("external_authentication_record", lc.Delete)
 }

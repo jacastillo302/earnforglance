@@ -23,10 +23,10 @@ func ExternalAuthenticationSettingsRouter(env *bootstrap.Env, timeout time.Durat
 
 	Group := group.Group("/api/v1/customers")
 
-	group.GET("/external_authentication_settings", lc.Fetch)
-	group.GET("/external_authentication_setting", lc.FetchByID)
-	group.POST("/external_authentication_setting", lc.Create)
+	Group.GET("/external_authentication_settings", lc.Fetch)
+	Group.GET("/external_authentication_setting", lc.FetchByID)
+	Group.POST("/external_authentication_setting", lc.Create)
 	Group.POST("/external_authentication_settings", lc.CreateMany)
-	group.PUT("/external_authentication_setting", lc.Update)
-	group.DELETE("external_authentication_setting", lc.Delete)
+	Group.PUT("/external_authentication_setting", lc.Update)
+	Group.DELETE("external_authentication_setting", lc.Delete)
 }

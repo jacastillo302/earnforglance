@@ -1,0 +1,98 @@
+[
+  {
+      "ID": "67f00b282916d65ec486c565",
+      "Name": "Send emails",
+      "Seconds": 60,
+      "Type": "Services.Messages.QueuedMessagesSendTask, Services",
+      "LastEnabledUtc": "2025-04-02T00:00:00Z",
+      "Enabled": true,
+      "StopOnError": false,
+      "LastStartUtc": null,
+      "LastEndUtc": null,
+      "LastSuccessUtc": null
+  },
+  {
+      "ID": "67f00b282916d65ec486c566",
+      "Name": "Keep alive",
+      "Seconds": 300,
+      "Type": "Services.Common.KeepAliveTask, Services",
+      "LastEnabledUtc": "2025-04-02T00:00:00Z",
+      "Enabled": true,
+      "StopOnError": false,
+      "LastStartUtc": null,
+      "LastEndUtc": null,
+      "LastSuccessUtc": null
+  },
+  {
+      "ID": "67f00b282916d65ec486c567",
+      "Name": "ResetLicenseCheckTask",
+      "Seconds": 2073600,
+      "Type": "Services.Common.ResetLicenseCheckTask, Services",
+      "LastEnabledUtc": "2025-04-02T00:00:00Z",
+      "Enabled": true,
+      "StopOnError": false,
+      "LastStartUtc": null,
+      "LastEndUtc": null,
+      "LastSuccessUtc": null
+  },
+  {
+      "ID": "67f00b282916d65ec486c568",
+      "Name": "Delete guests",
+      "Seconds": 600,
+      "Type": "Services.Customers.DeleteGuestsTask, Services",
+      "LastEnabledUtc": "2025-04-02T00:00:00Z",
+      "Enabled": true,
+      "StopOnError": false,
+      "LastStartUtc": null,
+      "LastEndUtc": null,
+      "LastSuccessUtc": null
+  },
+  {
+      "ID": "67f00b282916d65ec486c569",
+      "Name": "Clear cache",
+      "Seconds": 600,
+      "Type": "Services.Caching.ClearCacheTask, Services",
+      "LastEnabledUtc": "2025-04-02T00:00:00Z",
+      "Enabled": false,
+      "StopOnError": false,
+      "LastStartUtc": null,
+      "LastEndUtc": null,
+      "LastSuccessUtc": null
+  },
+  {
+      "ID": "67f00b282916d65ec486c56a",
+      "Name": "Clear log",
+      "Seconds": 3600,
+      "Type": "Services.Logging.ClearLogTask, Services",
+      "LastEnabledUtc": "2025-04-02T00:00:00Z",
+      "Enabled": false,
+      "StopOnError": false,
+      "LastStartUtc": null,
+      "LastEndUtc": null,
+      "LastSuccessUtc": null
+  },
+  {
+      "ID": "67f00b282916d65ec486c56b",
+      "Name": "Update currency exchange rates",
+      "Seconds": 3600,
+      "Type": "Services.Directory.UpdateExchangeRateTask, Services",
+      "LastEnabledUtc": "2025-04-02T00:00:00Z",
+      "Enabled": true,
+      "StopOnError": false,
+      "LastStartUtc": null,
+      "LastEndUtc": null,
+      "LastSuccessUtc": null
+  },
+  {
+      "ID": "67f00b282916d65ec486c56c",
+      "Name": "Delete inactive customers (GDPR)",
+      "Seconds": 86400,
+      "Type": "Services.Gdpr.DeleteInactiveCustomersTask, Services",
+      "LastEnabledUtc": "2025-04-02T00:00:00Z",
+      "Enabled": false,
+      "StopOnError": false,
+      "LastStartUtc": null,
+      "LastEndUtc": null,
+      "LastSuccessUtc": null
+  }
+]

@@ -33,7 +33,7 @@ type Customer struct {
 	Phone                       string              `bson:"phone"`
 	Fax                         string              `bson:"fax"`
 	VatNumber                   string              `bson:"vat_number"`
-	VatNumberStatusID           primitive.ObjectID  `bson:"vat_number_status_id"`
+	VatNumberStatusID           string              `bson:"vat_number_status_id"`
 	TimeZoneID                  string              `bson:"time_zone_id"`
 	CustomCustomerAttributesXML string              `bson:"custom_customer_attributes_xml"`
 	CurrencyID                  *primitive.ObjectID `bson:"currency_id"`
@@ -42,8 +42,8 @@ type Customer struct {
 	EmailToRevalidate           string              `bson:"email_to_revalidate"`
 	AdminComment                string              `bson:"admin_comment"`
 	IsTaxExempt                 bool                `bson:"is_tax_exempt"`
-	AffiliateID                 primitive.ObjectID  `bson:"affiliate_id"`
-	VendorID                    primitive.ObjectID  `bson:"vendor_id"`
+	AffiliateID                 string              `bson:"affiliate_id"`
+	VendorID                    string              `bson:"vendor_id"`
 	HasShoppingCartItems        bool                `bson:"has_shopping_cart_items"`
 	RequireReLogin              bool                `bson:"require_re_login"`
 	FailedLoginAttempts         int                 `bson:"failed_login_attempts"`
@@ -56,7 +56,7 @@ type Customer struct {
 	CreatedOnUtc                time.Time           `bson:"created_on_utc"`
 	LastLoginDateUtc            *time.Time          `bson:"last_login_date_utc"`
 	LastActivityDateUtc         time.Time           `bson:"last_activity_date_utc"`
-	RegisteredInStoreID         int                 `bson:"registered_in_store_id"`
+	RegisteredInStoreID         string              `bson:"registered_in_store_id"`
 	BillingAddressID            *primitive.ObjectID `bson:"billing_address_id"`
 	MustChangePassword          bool                `bson:"must_change_password"`
 	ShippingAddressID           *primitive.ObjectID `bson:"shipping_address_id"`

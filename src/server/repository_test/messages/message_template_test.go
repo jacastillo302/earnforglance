@@ -36,7 +36,7 @@ var mockItemMessageTemplate = &domain.MessageTemplate{
 	IsActive:           false,
 	DelayBeforeSend:    new(int),
 	DelayPeriodID:      2,
-	AttachedDownloadID: primitive.NewObjectID(),
+	AttachedDownloadID: "",
 	AllowDirectReply:   false,
 	EmailAccountID:     primitive.NewObjectID(),
 	LimitedToStores:    true,

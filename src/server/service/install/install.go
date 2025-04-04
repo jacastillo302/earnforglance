@@ -6,16 +6,28 @@ import (
 	"os"
 	"time"
 
+	"crypto/rand"
+	"encoding/base64"
+
 	"earnforglance/server/bootstrap"
+	catalog "earnforglance/server/domain/catalog"
+	commons "earnforglance/server/domain/common"
 	configuration "earnforglance/server/domain/configuration"
+	customers "earnforglance/server/domain/customers"
 	directory "earnforglance/server/domain/directory"
 	response "earnforglance/server/domain/install"
 	lang "earnforglance/server/domain/localization"
+	loggings "earnforglance/server/domain/logging"
 	messages "earnforglance/server/domain/messages"
+	orders "earnforglance/server/domain/orders"
+	tasks "earnforglance/server/domain/scheduleTasks"
 	security "earnforglance/server/domain/security"
 	shipping "earnforglance/server/domain/shipping"
 	stores "earnforglance/server/domain/stores"
 	taxes "earnforglance/server/domain/tax"
+	topics "earnforglance/server/domain/topics"
+	tools "earnforglance/server/service/common"
+	service "earnforglance/server/service/customers"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
@@ -34,6 +46,23 @@ const (
 func resolvePath(basePath string, relativePath string) string {
 	workingDir, _ := os.Getwd()
 	return workingDir + "\\" + basePath + "\\" + relativePath
+}
+
+func ReadJsonMap(filePath string) (map[string]interface{}, error) {
+	// Open the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read JSON file: %w", err)
+	}
+
+	// Parse the JSON data into a map
+	var settings map[string]interface{}
+	err = json.Unmarshal(fileData, &settings)
+	if err != nil {
+		return nil, fmt.Errorf("failed to parse JSON file: %w", err)
+	}
+
+	return settings, nil
 }
 
 func InstallPermissionRecord() (response.Install, []security.PermissionRecord) {
@@ -577,19 +606,502 @@ func InstallEmailAccount() (response.Install, []messages.EmailAccount) {
 	return result, items
 }
 
-func ReadJsonMap(filePath string) (map[string]interface{}, error) {
-	// Open the JSON file
+func InstallMessageTemplate() (response.Install, []messages.MessageTemplate) {
+	var result response.Install
+	collection := messages.CollectionMessageTemplate
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "messages\\"+collection+".json")
+
+	// Read the JSON file
 	fileData, err := os.ReadFile(filePath)
 	if err != nil {
-		return nil, fmt.Errorf("failed to read JSON file: %w", err)
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
 	}
 
-	// Parse the JSON data into a map
-	var settings map[string]interface{}
-	err = json.Unmarshal(fileData, &settings)
+	// Unmarshal the JSON data into a slice of messages.MessageTemplate
+	items := make([]messages.MessageTemplate, 0)
+	err = json.Unmarshal(fileData, &items)
 	if err != nil {
-		return nil, fmt.Errorf("failed to parse JSON file: %w", err)
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
 	}
 
-	return settings, nil
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallTopicTemplate() (response.Install, []topics.TopicTemplate) {
+	var result response.Install
+	collection := topics.CollectionTopicTemplate
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "topics\\"+collection+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of topics.TopicTemplate
+	items := make([]topics.TopicTemplate, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallTopic() (response.Install, []topics.Topic) {
+	var result response.Install
+	collection := topics.CollectionTopic
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "topics\\"+collection+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of topics.TopicTemplate
+	items := make([]topics.Topic, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallCustomerRole() (response.Install, []customers.CustomerRole) {
+	var result response.Install
+	collection := customers.CollectionCustomerRole
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "customers\\"+collection+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of customers.CustomerRole
+	items := make([]customers.CustomerRole, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallCustomer() (response.Install, []customers.Customer) {
+	var result response.Install
+	collection := customers.CollectionCustomer
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "customers\\"+collection+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of customers.CustomerRole
+	items := make([]customers.Customer, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallCustomerPassword(customerID primitive.ObjectID, psw string) (response.Install, []customers.CustomerPassword) {
+	var result response.Install
+	collection := customers.CollectionCustomer
+
+	buff := make([]byte, 32) // Assuming NopCustomerServicesDefaults.PasswordSaltKeySize is 32
+	_, err := rand.Read(buff)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	saltKey := base64.StdEncoding.EncodeToString(buff)
+
+	hashAlgorithm := service.CustomerServicesDefaults{}
+
+	data := []byte(psw)
+
+	hash, err := tools.CreateHash(data, hashAlgorithm.DefaultHashedPasswordFormat(), hashAlgorithm.PasswordSaltKeySize())
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse  create  Hash:" + err.Error()
+		return result, nil
+	}
+
+	fmt.Println("Hash:", hash)
+
+	items := []customers.CustomerPassword{
+		{
+			ID:               primitive.NewObjectID(),
+			CustomerID:       customerID,
+			Password:         hash,
+			PasswordFormatID: int(customers.Hashed),
+			PasswordSalt:     saltKey,
+			CreatedOnUTC:     time.Now(),
+		},
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallCustomerAddress() (response.Install, []commons.Address) {
+	var result response.Install
+	collection := commons.CollectionAddress
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "common\\"+collection+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of customers.CustomerRole
+	items := make([]commons.Address, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallCustomerAddressMapping(customerID primitive.ObjectID, addressID primitive.ObjectID) (response.Install, customers.CustomerAddressMapping) {
+	var result response.Install
+	collection := customers.CollectionCustomerAddressMapping
+
+	items := customers.CustomerAddressMapping{
+		CustomerID: customerID,
+		AddressID:  addressID,
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallCustomerCustomerRoleMapping(customerID primitive.ObjectID, rolesID []customers.CustomerRole) (response.Install, []customers.CustomerCustomerRoleMapping) {
+	var result response.Install
+	collection := customers.CollectionCustomerCustomerRoleMapping
+
+	items := make([]customers.CustomerCustomerRoleMapping, 0)
+	for _, item := range rolesID {
+		items = append(items, customers.CustomerCustomerRoleMapping{
+			ID:             primitive.NewObjectID(),
+			CustomerID:     customerID,
+			CustomerRoleID: item.ID,
+		})
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallActivityLogType() (response.Install, []loggings.ActivityLogType) {
+	var result response.Install
+	collection := loggings.CollectionActivityLogType
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "logging\\"+collection+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of customers.CustomerRole
+	items := make([]loggings.ActivityLogType, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallProductTemplate() (response.Install, []catalog.ProductTemplate) {
+	var result response.Install
+	collection := catalog.CollectionProductTemplate
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "catalog\\"+collection+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of catalog.ProductTemplate
+	items := make([]catalog.ProductTemplate, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallCategoryTemplate() (response.Install, []catalog.CategoryTemplate) {
+	var result response.Install
+	collection := catalog.CollectionCategoryTemplate
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "catalog\\"+collection+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of catalog.ProductTemplate
+	items := make([]catalog.CategoryTemplate, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallManufacturerTemplate() (response.Install, []catalog.ManufacturerTemplate) {
+	var result response.Install
+	collection := catalog.CollectionManufacturerTemplate
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "catalog\\"+collection+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of catalog.ProductTemplate
+	items := make([]catalog.ManufacturerTemplate, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallScheduleTask() (response.Install, []tasks.ScheduleTask) {
+	var result response.Install
+	collection := tasks.CollectionScheduleTask
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "scheduleTasks\\"+collection+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of tasks.ScheduleTask
+	items := make([]tasks.ScheduleTask, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallReturnRequestReason() (response.Install, []orders.ReturnRequestReason) {
+	var result response.Install
+	collection := orders.CollectionReturnRequestReason
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "orders\\"+collection+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of ReturnRequestReason
+	items := make([]orders.ReturnRequestReason, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallReturnRequestAction() (response.Install, []orders.ReturnRequestAction) {
+	var result response.Install
+	collection := orders.CollectionReturnRequestAction
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "orders\\"+collection+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of ReturnRequestAction
+	items := make([]orders.ReturnRequestAction, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
 }

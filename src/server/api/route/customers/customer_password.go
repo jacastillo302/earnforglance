@@ -23,10 +23,10 @@ func CustomerPasswordRouter(env *bootstrap.Env, timeout time.Duration, db mongo.
 
 	Group := group.Group("/api/v1/customers")
 
-	group.GET("/customer_passwords", lc.Fetch)
-	group.GET("/customer_password", lc.FetchByID)
-	group.POST("/customer_password", lc.Create)
+	Group.GET("/customer_passwords", lc.Fetch)
+	Group.GET("/customer_password", lc.FetchByID)
+	Group.POST("/customer_password", lc.Create)
 	Group.POST("/customer_passwords", lc.CreateMany)
-	group.PUT("/customer_password", lc.Update)
-	group.DELETE("customer_password", lc.Delete)
+	Group.PUT("/customer_password", lc.Update)
+	Group.DELETE("customer_password", lc.Delete)
 }

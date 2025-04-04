@@ -4,14 +4,21 @@ import (
 	"context"
 	"time"
 
+	catalog "earnforglance/server/domain/catalog"
+	commons "earnforglance/server/domain/common"
 	settings "earnforglance/server/domain/configuration"
+	customers "earnforglance/server/domain/customers"
 	directory "earnforglance/server/domain/directory"
 	lang "earnforglance/server/domain/localization"
+	loggings "earnforglance/server/domain/logging"
 	messages "earnforglance/server/domain/messages"
+	orders "earnforglance/server/domain/orders"
+	tasks "earnforglance/server/domain/scheduleTasks"
 	security "earnforglance/server/domain/security"
 	shipping "earnforglance/server/domain/shipping"
 	stores "earnforglance/server/domain/stores"
 	taxes "earnforglance/server/domain/tax"
+	topics "earnforglance/server/domain/topics"
 )
 
 type Install struct {
@@ -37,6 +44,23 @@ type InstallRepository interface {
 	InstallDeliveryDate(c context.Context, items []shipping.DeliveryDate) error
 	InstallProductAvailabilityRange(c context.Context, items []shipping.ProductAvailabilityRange) error
 	InstallEmailAccount(c context.Context, items []messages.EmailAccount) error
+	InstallMessageTemplate(c context.Context, items []messages.MessageTemplate) error
+	InstallTopicTemplate(c context.Context, items []topics.TopicTemplate) error
+	InstallCustomerRole(c context.Context, items []customers.CustomerRole) error
+	InstallCustomer(c context.Context, items []customers.Customer) error
+	InstallCustomerPassword(c context.Context, items []customers.CustomerPassword) error
+	InstallCustomerAddress(c context.Context, items []commons.Address) error
+	InstallCustomerAddressMapping(c context.Context, item customers.CustomerAddressMapping) error
+	UpdateCustomer(c context.Context, items customers.Customer) error
+	InstallCustomerCustomerRoleMapping(c context.Context, items []customers.CustomerCustomerRoleMapping) error
+	InstallTopic(c context.Context, items []topics.Topic) error
+	InstallActivityLogType(c context.Context, items []loggings.ActivityLogType) error
+	InstallProductTemplate(c context.Context, items []catalog.ProductTemplate) error
+	InstallCategoryTemplate(c context.Context, items []catalog.CategoryTemplate) error
+	InstallManufacturerTemplate(c context.Context, items []catalog.ManufacturerTemplate) error
+	InstallScheduleTask(c context.Context, items []tasks.ScheduleTask) error
+	InstallReturnRequestReason(c context.Context, items []orders.ReturnRequestReason) error
+	InstallReturnRequestAction(c context.Context, items []orders.ReturnRequestAction) error
 }
 
 // GdprLogUsecase interface
@@ -57,4 +81,21 @@ type InstallLogUsecase interface {
 	InstallDeliveryDate(c context.Context, items []shipping.DeliveryDate) error
 	InstallProductAvailabilityRange(c context.Context, items []shipping.ProductAvailabilityRange) error
 	InstallEmailAccount(c context.Context, items []messages.EmailAccount) error
+	InstallMessageTemplate(c context.Context, items []messages.MessageTemplate) error
+	InstallTopicTemplate(c context.Context, items []topics.TopicTemplate) error
+	InstallCustomerRole(c context.Context, items []customers.CustomerRole) error
+	InstallCustomer(c context.Context, items []customers.Customer) error
+	InstallCustomerPassword(c context.Context, items []customers.CustomerPassword) error
+	InstallCustomerAddress(c context.Context, items []commons.Address) error
+	InstallCustomerAddressMapping(c context.Context, item customers.CustomerAddressMapping) error
+	UpdateCustomer(c context.Context, items customers.Customer) error
+	InstallCustomerCustomerRoleMapping(c context.Context, items []customers.CustomerCustomerRoleMapping) error
+	InstallTopic(c context.Context, items []topics.Topic) error
+	InstallActivityLogType(c context.Context, items []loggings.ActivityLogType) error
+	InstallProductTemplate(c context.Context, items []catalog.ProductTemplate) error
+	InstallCategoryTemplate(c context.Context, items []catalog.CategoryTemplate) error
+	InstallManufacturerTemplate(c context.Context, items []catalog.ManufacturerTemplate) error
+	InstallScheduleTask(c context.Context, items []tasks.ScheduleTask) error
+	InstallReturnRequestReason(c context.Context, items []orders.ReturnRequestReason) error
+	InstallReturnRequestAction(c context.Context, items []orders.ReturnRequestAction) error
 }

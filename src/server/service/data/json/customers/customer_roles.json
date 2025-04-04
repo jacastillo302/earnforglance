@@ -1,0 +1,67 @@
+[
+  {
+      "ID": "67ef1ef2f22a8120fde7c1ef",
+      "Name": "Administrators",
+      "FreeShipping": false,
+      "TaxExempt": false,
+      "Active": true,
+      "IsSystemRole": true,
+      "SystemName": "Administrators",
+      "EnablePasswordLifetime": false,
+      "OverrideTaxDisplayType": false,
+      "DefaultTaxDisplayTypeID": 0,
+      "PurchasedWithProductId": 0
+  },
+  {
+      "ID": "67ef1ef2f22a8120fde7c1f0",
+      "Name": "Forum Moderators",
+      "FreeShipping": false,
+      "TaxExempt": false,
+      "Active": true,
+      "IsSystemRole": true,
+      "SystemName": "ForumModerators",
+      "EnablePasswordLifetime": false,
+      "OverrideTaxDisplayType": false,
+      "DefaultTaxDisplayTypeID": 0,
+      "PurchasedWithProductId": 0
+  },
+  {
+      "ID": "67ef1ef2f22a8120fde7c1f1",
+      "Name": "Registered",
+      "FreeShipping": false,
+      "TaxExempt": false,
+      "Active": true,
+      "IsSystemRole": true,
+      "SystemName": "Registered",
+      "EnablePasswordLifetime": false,
+      "OverrideTaxDisplayType": false,
+      "DefaultTaxDisplayTypeID": 0,
+      "PurchasedWithProductId": 0
+  },
+  {
+      "ID": "67ef1ef2f22a8120fde7c1f2",
+      "Name": "Guests",
+      "FreeShipping": false,
+      "TaxExempt": false,
+      "Active": true,
+      "IsSystemRole": true,
+      "SystemName": "Guests",
+      "EnablePasswordLifetime": false,
+      "OverrideTaxDisplayType": false,
+      "DefaultTaxDisplayTypeID": 0,
+      "PurchasedWithProductId": 0
+  },
+  {
+      "ID": "67ef1ef2f22a8120fde7c1f3",
+      "Name": "Vendors",
+      "FreeShipping": false,
+      "TaxExempt": false,
+      "Active": true,
+      "IsSystemRole": true,
+      "SystemName": "Vendors",
+      "EnablePasswordLifetime": false,
+      "OverrideTaxDisplayType": false,
+      "DefaultTaxDisplayTypeID": 0,
+      "PurchasedWithProductId": 0
+  }
+]

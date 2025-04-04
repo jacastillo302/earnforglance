@@ -1,0 +1,17 @@
+[
+  {
+      "ID": "67f015924d51ca834f3d399c",
+      "Name": "Repair",
+      "DisplayOrder": 1
+  },
+  {
+      "ID": "67f015924d51ca834f3d399d",
+      "Name": "Replacement",
+      "DisplayOrder": 2
+  },
+  {
+      "ID": "67f015924d51ca834f3d399e",
+      "Name": "Store Credit",
+      "DisplayOrder": 3
+  }
+]

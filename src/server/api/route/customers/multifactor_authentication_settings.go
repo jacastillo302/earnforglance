@@ -23,10 +23,10 @@ func MultiFactorAuthenticationSettingsRouter(env *bootstrap.Env, timeout time.Du
 
 	Group := group.Group("/api/v1/customers")
 
-	group.GET("/multiFactor_authentication_settings", lc.Fetch)
-	group.GET("/multiFactor_authentication_setting", lc.FetchByID)
-	group.POST("/multiFactor_authentication_setting", lc.Create)
+	Group.GET("/multiFactor_authentication_settings", lc.Fetch)
+	Group.GET("/multiFactor_authentication_setting", lc.FetchByID)
+	Group.POST("/multiFactor_authentication_setting", lc.Create)
 	Group.POST("/multiFactor_authentication_settings", lc.CreateMany)
-	group.PUT("/multiFactor_authentication_setting", lc.Update)
-	group.DELETE("/multiFactor_authentication_setting", lc.Delete)
+	Group.PUT("/multiFactor_authentication_setting", lc.Update)
+	Group.DELETE("/multiFactor_authentication_setting", lc.Delete)
 }

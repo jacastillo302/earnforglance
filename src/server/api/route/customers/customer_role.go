@@ -23,10 +23,10 @@ func CustomerRoleRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Data
 
 	Group := group.Group("/api/v1/customers")
 
-	group.GET("/customer_roles", lc.Fetch)
-	group.GET("/customer_role", lc.FetchByID)
-	group.POST("/customer_role", lc.Create)
+	Group.GET("/customer_roles", lc.Fetch)
+	Group.GET("/customer_role", lc.FetchByID)
+	Group.POST("/customer_role", lc.Create)
 	Group.POST("/customer_roles", lc.CreateMany)
-	group.PUT("/customer_role", lc.Update)
-	group.DELETE("customer_role", lc.Delete)
+	Group.PUT("/customer_role", lc.Update)
+	Group.DELETE("customer_role", lc.Delete)
 }

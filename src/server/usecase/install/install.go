@@ -4,15 +4,22 @@ import (
 	"context"
 	"time"
 
+	catalog "earnforglance/server/domain/catalog"
+	commons "earnforglance/server/domain/common"
 	settings "earnforglance/server/domain/configuration"
+	customers "earnforglance/server/domain/customers"
 	directory "earnforglance/server/domain/directory"
 	install "earnforglance/server/domain/install"
 	lang "earnforglance/server/domain/localization"
+	loggings "earnforglance/server/domain/logging"
 	messages "earnforglance/server/domain/messages"
+	orders "earnforglance/server/domain/orders"
+	tasks "earnforglance/server/domain/scheduleTasks"
 	security "earnforglance/server/domain/security"
 	shipping "earnforglance/server/domain/shipping"
 	stores "earnforglance/server/domain/stores"
 	taxes "earnforglance/server/domain/tax"
+	topics "earnforglance/server/domain/topics"
 )
 
 type InstallUsecase struct {
@@ -123,48 +130,109 @@ func (tu *InstallUsecase) InstallEmailAccount(c context.Context, items []message
 	return tu.InstallRepository.InstallEmailAccount(ctx, items)
 }
 
-func (tu *InstallUsecase) InstallMessageTemplates(c context.Context) {
+func (tu *InstallUsecase) InstallMessageTemplate(c context.Context, items []messages.MessageTemplate) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallMessageTemplate(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallTopicTemplate(c context.Context, items []topics.TopicTemplate) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallTopicTemplate(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallCustomerRole(c context.Context, items []customers.CustomerRole) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallCustomerRole(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallCustomer(c context.Context, items []customers.Customer) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallCustomer(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallCustomerPassword(c context.Context, items []customers.CustomerPassword) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallCustomerPassword(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallCustomerAddress(c context.Context, items []commons.Address) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallCustomerAddress(ctx, items)
+}
+
+func (tu *InstallUsecase) UpdateCustomer(c context.Context, items customers.Customer) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.UpdateCustomer(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallCustomerAddressMapping(c context.Context, items customers.CustomerAddressMapping) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallCustomerAddressMapping(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallCustomerCustomerRoleMapping(c context.Context, items []customers.CustomerCustomerRoleMapping) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallCustomerCustomerRoleMapping(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallTopic(c context.Context, items []topics.Topic) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallTopic(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallActivityLogType(c context.Context, items []loggings.ActivityLogType) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallActivityLogType(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallProductTemplate(c context.Context, items []catalog.ProductTemplate) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallProductTemplate(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallCategoryTemplate(c context.Context, items []catalog.CategoryTemplate) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallCategoryTemplate(ctx, items)
 
 }
 
-func (tu *InstallUsecase) InstallTopicTemplates(c context.Context) {
+func (tu *InstallUsecase) InstallManufacturerTemplate(c context.Context, items []catalog.ManufacturerTemplate) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallManufacturerTemplate(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallScheduleTask(c context.Context, items []tasks.ScheduleTask) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallScheduleTask(ctx, items)
 
 }
 
-func (tu *InstallUsecase) InstallCustomersAndUsers(c context.Context) {
+func (tu *InstallUsecase) InstallReturnRequestReason(c context.Context, items []orders.ReturnRequestReason) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallReturnRequestReason(ctx, items)
 
 }
 
-func (tu *InstallUsecase) InstallTopics(c context.Context) {
-
-}
-
-func (tu *InstallUsecase) InstallActivityLogTypes(c context.Context) {
-
-}
-
-func (tu *InstallUsecase) InstallProductTemplates(c context.Context) {
-
-}
-
-func (tu *InstallUsecase) InstallCategoryTemplates(c context.Context) {
-
-}
-
-func (tu *InstallUsecase) InstallManufacturerTemplates(c context.Context) {
-
-}
-
-func (tu *InstallUsecase) InstallScheduleTasks(c context.Context) {
-
-}
-
-func (tu *InstallUsecase) InstallReturnRequestReasons(c context.Context) {
-
-}
-
-func (tu *InstallUsecase) InstallReturnRequestActions(c context.Context) {
-
+func (tu *InstallUsecase) InstallReturnRequestAction(c context.Context, items []orders.ReturnRequestAction) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallReturnRequestAction(ctx, items)
 }
 
 func (tu *InstallUsecase) InstallSampleData(c context.Context) {

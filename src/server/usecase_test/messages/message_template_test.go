@@ -18,7 +18,7 @@ func TestMessageTemplateUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewMessageTemplateUsecase(mockRepo, timeout)
 
-	messageTemplateID := primitive.NewObjectID().Hex()
+	messageTemplateID := ""
 
 	updatedMessageTemplate := domain.MessageTemplate{
 		ID:                 primitive.NewObjectID(), // Existing ID of the record to update
@@ -29,7 +29,7 @@ func TestMessageTemplateUsecase_FetchByID(t *testing.T) {
 		IsActive:           false,
 		DelayBeforeSend:    new(int),
 		DelayPeriodID:      2,
-		AttachedDownloadID: primitive.NewObjectID(),
+		AttachedDownloadID: "",
 		AllowDirectReply:   false,
 		EmailAccountID:     primitive.NewObjectID(),
 		LimitedToStores:    true,
@@ -57,7 +57,7 @@ func TestMessageTemplateUsecase_Create(t *testing.T) {
 		IsActive:           true,
 		DelayBeforeSend:    new(int),
 		DelayPeriodID:      1,
-		AttachedDownloadID: primitive.NewObjectID(),
+		AttachedDownloadID: "",
 		AllowDirectReply:   true,
 		EmailAccountID:     primitive.NewObjectID(),
 		LimitedToStores:    false,
@@ -86,7 +86,7 @@ func TestMessageTemplateUsecase_Update(t *testing.T) {
 		IsActive:           false,
 		DelayBeforeSend:    new(int),
 		DelayPeriodID:      2,
-		AttachedDownloadID: primitive.NewObjectID(),
+		AttachedDownloadID: "",
 		AllowDirectReply:   false,
 		EmailAccountID:     primitive.NewObjectID(),
 		LimitedToStores:    true,
@@ -106,7 +106,7 @@ func TestMessageTemplateUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewMessageTemplateUsecase(mockRepo, timeout)
 
-	messageTemplateID := primitive.NewObjectID().Hex()
+	messageTemplateID := ""
 
 	mockRepo.On("Delete", mock.Anything, messageTemplateID).Return(nil)
 
@@ -131,7 +131,7 @@ func TestMessageTemplateUsecase_Fetch(t *testing.T) {
 			IsActive:           true,
 			DelayBeforeSend:    new(int),
 			DelayPeriodID:      1,
-			AttachedDownloadID: primitive.NewObjectID(),
+			AttachedDownloadID: "",
 			AllowDirectReply:   true,
 			EmailAccountID:     primitive.NewObjectID(),
 			LimitedToStores:    false,
@@ -145,7 +145,7 @@ func TestMessageTemplateUsecase_Fetch(t *testing.T) {
 			IsActive:           true,
 			DelayBeforeSend:    new(int),
 			DelayPeriodID:      2,
-			AttachedDownloadID: primitive.NewObjectID(),
+			AttachedDownloadID: "",
 			AllowDirectReply:   false,
 			EmailAccountID:     primitive.NewObjectID(),
 			LimitedToStores:    true,

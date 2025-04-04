@@ -23,10 +23,10 @@ func CustomerSettingsRouter(env *bootstrap.Env, timeout time.Duration, db mongo.
 
 	Group := group.Group("/api/v1/customers")
 
-	group.GET("/customer_settings", lc.Fetch)
-	group.GET("/customer_setting", lc.FetchByID)
-	group.POST("/customer_setting", lc.Create)
+	Group.GET("/customer_settings", lc.Fetch)
+	Group.GET("/customer_setting", lc.FetchByID)
+	Group.POST("/customer_setting", lc.Create)
 	Group.POST("/customer_settings", lc.CreateMany)
-	group.PUT("/customer_setting", lc.Update)
-	group.DELETE("customer_setting", lc.Delete)
+	Group.PUT("/customer_setting", lc.Update)
+	Group.DELETE("customer_setting", lc.Delete)
 }

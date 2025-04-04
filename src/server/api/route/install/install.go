@@ -34,5 +34,15 @@ func InstallRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database,
 	group.GET("/delivery_date", lc.InstallDeliveryDate)
 	group.GET("/product_availability_range", lc.InstallProductAvailabilityRange)
 	group.GET("/email_account", lc.InstallEmailAccount)
+	group.GET("/message_template", lc.InstallMessageTemplate)
+	group.GET("/topic_template", lc.InstallTopicTemplate)
+	group.GET("/customer", lc.InstallCustomerRole)
+	group.GET("/activity_log_type", lc.InstallActivityLogType)
+	group.GET("/product_template", lc.InstallProductTemplate)
+	group.GET("/category_template", lc.InstallCategoryTemplate)
+	group.GET("/manufacturer_template", lc.InstallManufacturerTemplate)
+	group.GET("/schedule_task", lc.InstallScheduleTask)
+	group.GET("/return_request_reason", lc.InstallReturnRequestReason)
+	group.GET("/return_request_action", lc.InstallReturnRequestAction)
 
 }

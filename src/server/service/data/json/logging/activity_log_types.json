@@ -1,0 +1,980 @@
+[
+    {
+        "ID": "67eff47c8698777b15777269",
+        "SystemKeyword": "AddNewAddressAttribute",
+        "Name": "Add a new address attribute",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b1577726a",
+        "SystemKeyword": "AddNewAddressAttributeValue",
+        "Name": "Add a new address attribute value",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b1577726b",
+        "SystemKeyword": "AddNewAffiliate",
+        "Name": "Add a new affiliate",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b1577726c",
+        "SystemKeyword": "AddNewBlogPost",
+        "Name": "Add a new blog post",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b1577726d",
+        "SystemKeyword": "AddNewCampaign",
+        "Name": "Add a new campaign",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b1577726e",
+        "SystemKeyword": "AddNewCategory",
+        "Name": "Add a new category",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b1577726f",
+        "SystemKeyword": "AddNewCheckoutAttribute",
+        "Name": "Add a new checkout attribute",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777270",
+        "SystemKeyword": "AddNewCountry",
+        "Name": "Add a new country",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777271",
+        "SystemKeyword": "AddNewCurrency",
+        "Name": "Add a new currency",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777272",
+        "SystemKeyword": "AddNewCustomer",
+        "Name": "Add a new customer",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777273",
+        "SystemKeyword": "AddNewCustomerAttribute",
+        "Name": "Add a new customer attribute",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777274",
+        "SystemKeyword": "AddNewCustomerAttributeValue",
+        "Name": "Add a new customer attribute value",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777275",
+        "SystemKeyword": "AddNewCustomerRole",
+        "Name": "Add a new customer role",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777276",
+        "SystemKeyword": "AddNewDiscount",
+        "Name": "Add a new discount",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777277",
+        "SystemKeyword": "AddNewEmailAccount",
+        "Name": "Add a new email account",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777278",
+        "SystemKeyword": "AddNewGiftCard",
+        "Name": "Add a new gift card",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777279",
+        "SystemKeyword": "AddNewLanguage",
+        "Name": "Add a new language",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b1577727a",
+        "SystemKeyword": "AddNewManufacturer",
+        "Name": "Add a new manufacturer",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b1577727b",
+        "SystemKeyword": "AddNewMeasureDimension",
+        "Name": "Add a new measure dimension",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b1577727c",
+        "SystemKeyword": "AddNewMeasureWeight",
+        "Name": "Add a new measure weight",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b1577727d",
+        "SystemKeyword": "AddNewNews",
+        "Name": "Add a new news",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b1577727e",
+        "SystemKeyword": "AddNewProduct",
+        "Name": "Add a new product",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b1577727f",
+        "SystemKeyword": "AddNewProductAttribute",
+        "Name": "Add a new product attribute",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777280",
+        "SystemKeyword": "AddNewSetting",
+        "Name": "Add a new setting",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777281",
+        "SystemKeyword": "AddNewSpecAttribute",
+        "Name": "Add a new specification attribute",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777282",
+        "SystemKeyword": "AddNewSpecAttributeGroup",
+        "Name": "Add a new specification attribute group",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777283",
+        "SystemKeyword": "AddNewStateProvince",
+        "Name": "Add a new state or province",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777284",
+        "SystemKeyword": "AddNewStore",
+        "Name": "Add a new store",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777285",
+        "SystemKeyword": "AddNewTopic",
+        "Name": "Add a new topic",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777286",
+        "SystemKeyword": "AddNewReviewType",
+        "Name": "Add a new review type",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777287",
+        "SystemKeyword": "AddNewVendor",
+        "Name": "Add a new vendor",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777288",
+        "SystemKeyword": "AddNewVendorAttribute",
+        "Name": "Add a new vendor attribute",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777289",
+        "SystemKeyword": "AddNewVendorAttributeValue",
+        "Name": "Add a new vendor attribute value",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b1577728a",
+        "SystemKeyword": "AddNewWarehouse",
+        "Name": "Add a new warehouse",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b1577728b",
+        "SystemKeyword": "AddNewWidget",
+        "Name": "Add a new widget",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b1577728c",
+        "SystemKeyword": "DeleteActivityLog",
+        "Name": "Delete activity log",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b1577728d",
+        "SystemKeyword": "DeleteAddressAttribute",
+        "Name": "Delete an address attribute",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b1577728e",
+        "SystemKeyword": "DeleteAddressAttributeValue",
+        "Name": "Delete an address attribute value",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b1577728f",
+        "SystemKeyword": "DeleteAffiliate",
+        "Name": "Delete an affiliate",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777290",
+        "SystemKeyword": "DeleteBlogPost",
+        "Name": "Delete a blog post",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777291",
+        "SystemKeyword": "DeleteBlogPostComment",
+        "Name": "Delete a blog post comment",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777292",
+        "SystemKeyword": "DeleteCampaign",
+        "Name": "Delete a campaign",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777293",
+        "SystemKeyword": "DeleteCategory",
+        "Name": "Delete category",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777294",
+        "SystemKeyword": "DeleteCheckoutAttribute",
+        "Name": "Delete a checkout attribute",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777295",
+        "SystemKeyword": "DeleteCountry",
+        "Name": "Delete a country",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777296",
+        "SystemKeyword": "DeleteCurrency",
+        "Name": "Delete a currency",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777297",
+        "SystemKeyword": "DeleteCustomer",
+        "Name": "Delete a customer",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777298",
+        "SystemKeyword": "DeleteCustomerAttribute",
+        "Name": "Delete a customer attribute",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b15777299",
+        "SystemKeyword": "DeleteCustomerAttributeValue",
+        "Name": "Delete a customer attribute value",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b1577729a",
+        "SystemKeyword": "DeleteCustomerRole",
+        "Name": "Delete a customer role",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b1577729b",
+        "SystemKeyword": "DeleteDiscount",
+        "Name": "Delete a discount",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b1577729c",
+        "SystemKeyword": "DeleteEmailAccount",
+        "Name": "Delete an email account",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b1577729d",
+        "SystemKeyword": "DeleteGiftCard",
+        "Name": "Delete a gift card",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b1577729e",
+        "SystemKeyword": "DeleteLanguage",
+        "Name": "Delete a language",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b1577729f",
+        "SystemKeyword": "DeleteManufacturer",
+        "Name": "Delete a manufacturer",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772a0",
+        "SystemKeyword": "DeleteMeasureDimension",
+        "Name": "Delete a measure dimension",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772a1",
+        "SystemKeyword": "DeleteMeasureWeight",
+        "Name": "Delete a measure weight",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772a2",
+        "SystemKeyword": "DeleteMessageTemplate",
+        "Name": "Delete a message template",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772a3",
+        "SystemKeyword": "DeleteNews",
+        "Name": "Delete a news",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772a4",
+        "SystemKeyword": "DeleteNewsComment",
+        "Name": "Delete a news comment",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772a5",
+        "SystemKeyword": "DeleteOrder",
+        "Name": "Delete an order",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772a6",
+        "SystemKeyword": "DeletePlugin",
+        "Name": "Delete a plugin",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772a7",
+        "SystemKeyword": "DeleteProduct",
+        "Name": "Delete a product",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772a8",
+        "SystemKeyword": "DeleteProductAttribute",
+        "Name": "Delete a product attribute",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772a9",
+        "SystemKeyword": "DeleteProductReview",
+        "Name": "Delete a product review",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772aa",
+        "SystemKeyword": "DeleteReturnRequest",
+        "Name": "Delete a return request",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772ab",
+        "SystemKeyword": "DeleteReviewType",
+        "Name": "Delete a review type",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772ac",
+        "SystemKeyword": "DeleteSetting",
+        "Name": "Delete a setting",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772ad",
+        "SystemKeyword": "DeleteSpecAttribute",
+        "Name": "Delete a specification attribute",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772ae",
+        "SystemKeyword": "DeleteSpecAttributeGroup",
+        "Name": "Delete a specification attribute group",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772af",
+        "SystemKeyword": "DeleteStateProvince",
+        "Name": "Delete a state or province",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772b0",
+        "SystemKeyword": "DeleteStore",
+        "Name": "Delete a store",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772b1",
+        "SystemKeyword": "DeleteSystemLog",
+        "Name": "Delete system log",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772b2",
+        "SystemKeyword": "DeleteTopic",
+        "Name": "Delete a topic",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772b3",
+        "SystemKeyword": "DeleteVendor",
+        "Name": "Delete a vendor",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772b4",
+        "SystemKeyword": "DeleteVendorAttribute",
+        "Name": "Delete a vendor attribute",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772b5",
+        "SystemKeyword": "DeleteVendorAttributeValue",
+        "Name": "Delete a vendor attribute value",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772b6",
+        "SystemKeyword": "DeleteWarehouse",
+        "Name": "Delete a warehouse",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772b7",
+        "SystemKeyword": "DeleteWidget",
+        "Name": "Delete a widget",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772b8",
+        "SystemKeyword": "EditActivityLogTypes",
+        "Name": "Edit activity log types",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772b9",
+        "SystemKeyword": "EditAddressAttribute",
+        "Name": "Edit an address attribute",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772ba",
+        "SystemKeyword": "EditAddressAttributeValue",
+        "Name": "Edit an address attribute value",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772bb",
+        "SystemKeyword": "EditAffiliate",
+        "Name": "Edit an affiliate",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772bc",
+        "SystemKeyword": "EditBlogPost",
+        "Name": "Edit a blog post",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772bd",
+        "SystemKeyword": "EditCampaign",
+        "Name": "Edit a campaign",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772be",
+        "SystemKeyword": "EditCategory",
+        "Name": "Edit category",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772bf",
+        "SystemKeyword": "EditCheckoutAttribute",
+        "Name": "Edit a checkout attribute",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772c0",
+        "SystemKeyword": "EditCountry",
+        "Name": "Edit a country",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772c1",
+        "SystemKeyword": "EditCurrency",
+        "Name": "Edit a currency",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772c2",
+        "SystemKeyword": "EditCustomer",
+        "Name": "Edit a customer",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772c3",
+        "SystemKeyword": "EditCustomerAttribute",
+        "Name": "Edit a customer attribute",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772c4",
+        "SystemKeyword": "EditCustomerAttributeValue",
+        "Name": "Edit a customer attribute value",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772c5",
+        "SystemKeyword": "EditCustomerRole",
+        "Name": "Edit a customer role",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772c6",
+        "SystemKeyword": "EditDiscount",
+        "Name": "Edit a discount",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772c7",
+        "SystemKeyword": "EditEmailAccount",
+        "Name": "Edit an email account",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772c8",
+        "SystemKeyword": "EditGiftCard",
+        "Name": "Edit a gift card",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772c9",
+        "SystemKeyword": "EditLanguage",
+        "Name": "Edit a language",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772ca",
+        "SystemKeyword": "EditManufacturer",
+        "Name": "Edit a manufacturer",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772cb",
+        "SystemKeyword": "EditMeasureDimension",
+        "Name": "Edit a measure dimension",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772cc",
+        "SystemKeyword": "EditMeasureWeight",
+        "Name": "Edit a measure weight",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772cd",
+        "SystemKeyword": "EditMessageTemplate",
+        "Name": "Edit a message template",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772ce",
+        "SystemKeyword": "EditNews",
+        "Name": "Edit a news",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772cf",
+        "SystemKeyword": "EditOrder",
+        "Name": "Edit an order",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772d0",
+        "SystemKeyword": "EditPlugin",
+        "Name": "Edit a plugin",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772d1",
+        "SystemKeyword": "EditProduct",
+        "Name": "Edit a product",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772d2",
+        "SystemKeyword": "EditProductAttribute",
+        "Name": "Edit a product attribute",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772d3",
+        "SystemKeyword": "EditProductReview",
+        "Name": "Edit a product review",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772d4",
+        "SystemKeyword": "EditPromotionProviders",
+        "Name": "Edit promotion providers",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772d5",
+        "SystemKeyword": "EditReturnRequest",
+        "Name": "Edit a return request",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772d6",
+        "SystemKeyword": "EditReviewType",
+        "Name": "Edit a review type",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772d7",
+        "SystemKeyword": "EditSettings",
+        "Name": "Edit setting(s)",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772d8",
+        "SystemKeyword": "EditStateProvince",
+        "Name": "Edit a state or province",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772d9",
+        "SystemKeyword": "EditStore",
+        "Name": "Edit a store",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772da",
+        "SystemKeyword": "EditTask",
+        "Name": "Edit a task",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772db",
+        "SystemKeyword": "EditSpecAttribute",
+        "Name": "Edit a specification attribute",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772dc",
+        "SystemKeyword": "EditSpecAttributeGroup",
+        "Name": "Edit a specification attribute group",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772dd",
+        "SystemKeyword": "EditVendor",
+        "Name": "Edit a vendor",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772de",
+        "SystemKeyword": "EditVendorAttribute",
+        "Name": "Edit a vendor attribute",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772df",
+        "SystemKeyword": "EditVendorAttributeValue",
+        "Name": "Edit a vendor attribute value",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772e0",
+        "SystemKeyword": "EditWarehouse",
+        "Name": "Edit a warehouse",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772e1",
+        "SystemKeyword": "EditTopic",
+        "Name": "Edit a topic",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772e2",
+        "SystemKeyword": "EditWidget",
+        "Name": "Edit a widget",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772e3",
+        "SystemKeyword": "Impersonation.Started",
+        "Name": "Customer impersonation session. Started",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772e4",
+        "SystemKeyword": "Impersonation.Finished",
+        "Name": "Customer impersonation session. Finished",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772e5",
+        "SystemKeyword": "ImportCategories",
+        "Name": "Categories were imported",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772e6",
+        "SystemKeyword": "ImportManufacturers",
+        "Name": "Manufacturers were imported",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772e7",
+        "SystemKeyword": "ImportProducts",
+        "Name": "Products were imported",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772e8",
+        "SystemKeyword": "ImportCustomers",
+        "Name": "Customers were imported",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772e9",
+        "SystemKeyword": "ImportNewsLetterSubscriptions",
+        "Name": "Newsletter subscriptions were imported",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772ea",
+        "SystemKeyword": "ImportStates",
+        "Name": "States were imported",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772eb",
+        "SystemKeyword": "ExportCustomers",
+        "Name": "Customers were exported",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772ec",
+        "SystemKeyword": "ExportCategories",
+        "Name": "Categories were exported",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772ed",
+        "SystemKeyword": "ExportManufacturers",
+        "Name": "Manufacturers were exported",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772ee",
+        "SystemKeyword": "ExportProducts",
+        "Name": "Products were exported",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772ef",
+        "SystemKeyword": "ExportOrders",
+        "Name": "Orders were exported",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772f0",
+        "SystemKeyword": "ExportStates",
+        "Name": "States were exported",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772f1",
+        "SystemKeyword": "ExportNewsLetterSubscriptions",
+        "Name": "Newsletter subscriptions were exported",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772f2",
+        "SystemKeyword": "InstallNewPlugin",
+        "Name": "Install a new plugin",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772f3",
+        "SystemKeyword": "UninstallPlugin",
+        "Name": "Uninstall a plugin",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772f4",
+        "SystemKeyword": "UpdatePlugin",
+        "Name": "Update a plugin",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b157772f5",
+        "SystemKeyword": "PublicStore.ViewCategory",
+        "Name": "Public store. View a category",
+        "Enabled": false
+    },
+    {
+        "ID": "67eff47c8698777b157772f6",
+        "SystemKeyword": "PublicStore.ViewManufacturer",
+        "Name": "Public store. View a manufacturer",
+        "Enabled": false
+    },
+    {
+        "ID": "67eff47c8698777b157772f7",
+        "SystemKeyword": "PublicStore.ViewProduct",
+        "Name": "Public store. View a product",
+        "Enabled": false
+    },
+    {
+        "ID": "67eff47c8698777b157772f8",
+        "SystemKeyword": "PublicStore.PlaceOrder",
+        "Name": "Public store. Place an order",
+        "Enabled": false
+    },
+    {
+        "ID": "67eff47c8698777b157772f9",
+        "SystemKeyword": "PublicStore.SendPM",
+        "Name": "Public store. Send PM",
+        "Enabled": false
+    },
+    {
+        "ID": "67eff47c8698777b157772fa",
+        "SystemKeyword": "PublicStore.ContactUs",
+        "Name": "Public store. Use contact us form",
+        "Enabled": false
+    },
+    {
+        "ID": "67eff47c8698777b157772fb",
+        "SystemKeyword": "PublicStore.AddToCompareList",
+        "Name": "Public store. Add to compare list",
+        "Enabled": false
+    },
+    {
+        "ID": "67eff47c8698777b157772fc",
+        "SystemKeyword": "PublicStore.AddToShoppingCart",
+        "Name": "Public store. Add to shopping cart",
+        "Enabled": false
+    },
+    {
+        "ID": "67eff47c8698777b157772fd",
+        "SystemKeyword": "PublicStore.AddToWishlist",
+        "Name": "Public store. Add to wishlist",
+        "Enabled": false
+    },
+    {
+        "ID": "67eff47c8698777b157772fe",
+        "SystemKeyword": "PublicStore.Login",
+        "Name": "Public store. Login",
+        "Enabled": false
+    },
+    {
+        "ID": "67eff47c8698777b157772ff",
+        "SystemKeyword": "PublicStore.Logout",
+        "Name": "Public store. Logout",
+        "Enabled": false
+    },
+    {
+        "ID": "67eff47c8698777b15777300",
+        "SystemKeyword": "PublicStore.AddProductReview",
+        "Name": "Public store. Add product review",
+        "Enabled": false
+    },
+    {
+        "ID": "67eff47c8698777b15777301",
+        "SystemKeyword": "PublicStore.AddNewsComment",
+        "Name": "Public store. Add news comment",
+        "Enabled": false
+    },
+    {
+        "ID": "67eff47c8698777b15777302",
+        "SystemKeyword": "PublicStore.AddBlogComment",
+        "Name": "Public store. Add blog comment",
+        "Enabled": false
+    },
+    {
+        "ID": "67eff47c8698777b15777303",
+        "SystemKeyword": "PublicStore.AddForumTopic",
+        "Name": "Public store. Add forum topic",
+        "Enabled": false
+    },
+    {
+        "ID": "67eff47c8698777b15777304",
+        "SystemKeyword": "PublicStore.EditForumTopic",
+        "Name": "Public store. Edit forum topic",
+        "Enabled": false
+    },
+    {
+        "ID": "67eff47c8698777b15777305",
+        "SystemKeyword": "PublicStore.DeleteForumTopic",
+        "Name": "Public store. Delete forum topic",
+        "Enabled": false
+    },
+    {
+        "ID": "67eff47c8698777b15777306",
+        "SystemKeyword": "PublicStore.AddForumPost",
+        "Name": "Public store. Add forum post",
+        "Enabled": false
+    },
+    {
+        "ID": "67eff47c8698777b15777307",
+        "SystemKeyword": "PublicStore.EditForumPost",
+        "Name": "Public store. Edit forum post",
+        "Enabled": false
+    },
+    {
+        "ID": "67eff47c8698777b15777308",
+        "SystemKeyword": "PublicStore.DeleteForumPost",
+        "Name": "Public store. Delete forum post",
+        "Enabled": false
+    },
+    {
+        "ID": "67eff47c8698777b15777309",
+        "SystemKeyword": "UploadNewPlugin",
+        "Name": "Upload a plugin",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b1577730a",
+        "SystemKeyword": "UploadNewTheme",
+        "Name": "Upload a theme",
+        "Enabled": true
+    },
+    {
+        "ID": "67eff47c8698777b1577730b",
+        "SystemKeyword": "UploadIcons",
+        "Name": "Upload a favicon and app icons",
+        "Enabled": true
+    }
+]
