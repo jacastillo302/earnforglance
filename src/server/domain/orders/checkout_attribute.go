@@ -13,7 +13,11 @@ const (
 // CheckoutAttribute represents a checkout attribute
 type CheckoutAttribute struct {
 	ID                              primitive.ObjectID `bson:"_id,omitempty"`
+	Name                            string             `bson:"name"`
+	IsRequired                      bool               `bson:"is_required"`
+	DisplayOrder                    int                `bson:"display_order"`
 	TextPrompt                      string             `bson:"text_prompt"`
+	AttributeControlTypeID          int                `bson:"attribute_control_type_id"`
 	ShippableProductRequired        bool               `bson:"shippable_product_required"`
 	IsTaxExempt                     bool               `bson:"is_tax_exempt"`
 	TaxCategoryID                   primitive.ObjectID `bson:"tax_category_id"`

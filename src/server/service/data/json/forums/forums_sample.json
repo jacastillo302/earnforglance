@@ -1,0 +1,47 @@
+[
+  {
+      "ID": "67f409b5137edeadec1dc7c8",
+      "ForumGroupID": "4eecbccc0c35629638a973d7",
+      "Name": "New Products",
+      "Description": "Discuss new products and industry trends",
+      "NumTopics": 10,
+      "NumPosts": 50,
+      "LastTopicID": "000000000000000000000000",
+      "LastPostID": "000000000000000000000000",
+      "LastPostCustomerID": "000000000000000000000000",
+      "LastPostTime": null,
+      "DisplayOrder": 1,
+      "CreatedOnUtc": "2025-03-08T12:00:00Z",
+      "UpdatedOnUtc": "2025-04-07T12:00:00Z"
+  },
+  {
+      "ID": "67f409b5137edeadec1dc7c9",
+      "ForumGroupID": "4eecbccc0c35629638a973d7",
+      "Name": "Mobile Devices Forum",
+      "Description": "Discuss the mobile phone market",
+      "NumTopics": 10,
+      "NumPosts": 50,
+      "LastTopicID": "000000000000000000000000",
+      "LastPostID": "000000000000000000000000",
+      "LastPostCustomerID": "000000000000000000000000",
+      "LastPostTime": null,
+      "DisplayOrder": 10,
+      "CreatedOnUtc": "2025-03-08T12:00:00Z",
+      "UpdatedOnUtc": "2025-04-07T12:00:00Z"
+  },
+  {
+      "ID": "67f409b5137edeadec1dc7ca",
+      "ForumGroupID": "4eecbccc0c35629638a973d7",
+      "Name": "Packaging & Shipping",
+      "Description": "Discuss packaging & shipping",
+      "NumTopics": 10,
+      "NumPosts": 50,
+      "LastTopicID": "000000000000000000000000",
+      "LastPostID": "000000000000000000000000",
+      "LastPostCustomerID": "000000000000000000000000",
+      "LastPostTime": null,
+      "DisplayOrder": 20,
+      "CreatedOnUtc": "2025-03-08T12:00:00Z",
+      "UpdatedOnUtc": "2025-04-07T12:00:00Z"
+  }
+]

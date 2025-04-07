@@ -1,0 +1,36 @@
+[
+    {
+        "ID": "644f1b2e8f1b2c3d4e5f6a7b",
+        "LanguageID": "64f1a2c3d4e5f67890123456",
+        "IncludeInSitemap": true,
+        "Title": "How to Use EarnForGlance Effectively",
+        "Body": "This is the full content of the blog post, providing detailed information.",
+        "BodyOverview": "A brief overview of the blog post content.",
+        "AllowComments": true,
+        "Tags": "earnforglance, guide, tips",
+        "StartDateUtc": "2025-04-01T00:00:00Z",
+        "EndDateUtc": "2025-04-30T23:59:59Z",
+        "MetaKeywords": "earnforglance, guide, tips",
+        "MetaDescription": "A guide on how to use EarnForGlance effectively.",
+        "MetaTitle": "EarnForGlance Guide",
+        "LimitedToStores": false,
+        "CreatedOnUtc": "2025-03-31T12:00:00Z"
+      },
+      {
+        "ID": "644f1b2e8f1b2c3d4e5f6a7d",
+        "LanguageID": "64f1a2c3d4e5f67890123456",
+        "IncludeInSitemap": false,
+        "Title": "Top 10 Tips for Successful Online Marketing",
+        "Body": "<p>Online marketing is essential for any business in the digital age. In this blog post, we will explore the top 10 tips to help you succeed in online marketing...</p>",
+        "BodyOverview": "A quick guide to the top 10 tips for successful online marketing.",
+        "AllowComments": true,
+        "Tags": "marketing, online business, tips",
+        "StartDateUtc": "2025-05-01T00:00:00Z",
+        "EndDateUtc": "2025-05-31T23:59:59Z",
+        "MetaKeywords": "marketing, online business, tips",
+        "MetaDescription": "Discover the top 10 tips for successful online marketing.",
+        "MetaTitle": "Online Marketing Tips",
+        "LimitedToStores": true,
+        "CreatedOnUtc": "2025-04-15T10:00:00Z"
+      }
+  ]

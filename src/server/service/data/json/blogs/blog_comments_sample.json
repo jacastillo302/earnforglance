@@ -1,0 +1,20 @@
+[
+  {
+      "ID": "644f1b2e8f1b2c3d4e5f6a7b",
+      "CustomerID": "1e8e5c628f87479ff5922759",
+      "CommentText": "This is a great blog post! Thanks for sharing.",
+      "IsApproved": true,
+      "StoreID": "64f1b3d4e5f6789012345678",
+      "BlogPostID": "644f1b2e8f1b2c3d4e5f6a7b",
+      "CreatedOnUtc": "2025-04-07T10:00:00Z"
+  },
+  {
+      "ID": "644f1b2e8f1b2c3d4e5f6a8f",
+      "CustomerID": "64f1a2c3d4e5f67890123457",
+      "CommentText": "I found this article very helpful. Looking forward to more content like this!",
+      "IsApproved": true,
+      "StoreID": "64f1b3d4e5f6789012345678",
+      "BlogPostID": "644f1b2e8f1b2c3d4e5f6a7d",
+      "CreatedOnUtc": "2025-04-06T15:30:00Z"
+  }
+]

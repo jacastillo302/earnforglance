@@ -436,7 +436,7 @@ func (lc *InstallController) InstallCustomerRole(c *gin.Context) {
 		return
 	}
 
-	result, customer := service.InstallCustomer()
+	result, customer := service.InstallCustomer(false)
 	if !result.Status {
 		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
 		return
@@ -489,7 +489,7 @@ func (lc *InstallController) InstallCustomerRole(c *gin.Context) {
 	}
 
 	///Adresses
-	result, adress := service.InstallCustomerAddress()
+	result, adress := service.InstallAddress(false)
 	if !result.Status {
 		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
 		return
@@ -505,7 +505,7 @@ func (lc *InstallController) InstallCustomerRole(c *gin.Context) {
 	adress[0].CountryID = &customer[0].CountryID
 	adress[0].StateProvinceID = &customer[0].StateProvinceID
 
-	err = lc.InstallUsecase.InstallCustomerAddress(c, adress)
+	err = lc.InstallUsecase.InstallAddress(c, adress)
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
 		return
@@ -560,6 +560,23 @@ func (lc *InstallController) InstallActivityLogType(c *gin.Context) {
 	}
 
 	err := lc.InstallUsecase.InstallActivityLogType(c, items)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	result, acty := service.InstallActivityLog()
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	if len(acty) == 0 || acty == nil {
+		c.JSON(http.StatusNoContent, common.ErrorResponse{Message: "No MessageTemplate to install"})
+		return
+	}
+
+	err = lc.InstallUsecase.InstallActivityLog(c, acty)
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
 		return
@@ -691,7 +708,476 @@ func (lc *InstallController) InstallReturnRequestAction(c *gin.Context) {
 	c.JSON(http.StatusOK, result)
 }
 
-func (lc *InstallController) InstallSampleData(c *gin.Context) {
-	var result response.Install
+func (lc *InstallController) InstallCustomerSampleData(c *gin.Context) {
+
+	result, customer := service.InstallCustomer(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	if len(customer) == 0 || customer == nil {
+		c.JSON(http.StatusNoContent, common.ErrorResponse{Message: "No Customer to install"})
+		return
+	}
+
+	err := lc.InstallUsecase.InstallCustomer(c, customer)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	result, custroles := service.InstallCustomerCustomerRoleMapping_Sample()
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err = lc.InstallUsecase.InstallCustomerCustomerRoleMapping(c, custroles)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	///Adresses
+	result, adress := service.InstallAddress(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	if len(adress) == 0 || adress == nil {
+		c.JSON(http.StatusNoContent, common.ErrorResponse{Message: "No CustomerAddress to install"})
+		return
+	}
+
+	for i := 0; i < len(adress); i++ {
+		adress[i].CreatedOnUtc = time.Now()
+		adress[i].Email = customer[i].Email
+		adress[i].CountryID = &customer[i].CountryID
+		adress[i].StateProvinceID = &customer[i].StateProvinceID
+	}
+
+	err = lc.InstallUsecase.InstallAddress(c, adress)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	for i := 0; i < len(customer); i++ {
+
+		customer[i].CreatedOnUtc = time.Now()
+		customer[i].LastActivityDateUtc = time.Now()
+		customer[i].LastIpAddress = c.ClientIP()
+		customer[i].LastLoginDateUtc = nil
+		customer[i].CannotLoginUntilDateUtc = nil
+
+		billingAddressID, err := primitive.ObjectIDFromHex(adress[i].ID.Hex())
+		if err != nil {
+			c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid address ID: " + err.Error()})
+			return
+		}
+		customer[i].BillingAddressID = &billingAddressID
+
+		shippingAddressID, err := primitive.ObjectIDFromHex(adress[i].ID.Hex())
+		if err != nil {
+			c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid address ID: " + err.Error()})
+			return
+		}
+		customer[0].ShippingAddressID = &shippingAddressID
+
+		err = lc.InstallUsecase.UpdateCustomer(c, customer[i])
+		if err != nil {
+			c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+			return
+		}
+
+		result, cusp := service.InstallCustomerPassword(customer[i].ID, customer[i].Email)
+		if !result.Status {
+			c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+			return
+		}
+
+		if len(cusp) == 0 || cusp == nil {
+			c.JSON(http.StatusNoContent, common.ErrorResponse{Message: "No CustomerPassword to install"})
+			return
+		}
+
+		err = lc.InstallUsecase.InstallCustomerPassword(c, cusp)
+		if err != nil {
+			c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+			return
+		}
+
+		result, adressmap := service.InstallCustomerAddressMapping(customer[i].ID, adress[i].ID)
+		if !result.Status {
+			c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+			return
+		}
+
+		err = lc.InstallUsecase.InstallCustomerAddressMapping(c, adressmap)
+		if err != nil {
+			c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+			return
+		}
+	}
+
+	c.JSON(http.StatusOK, result)
+}
+
+func (lc *InstallController) InstallCheckoutAttribute(c *gin.Context) {
+
+	result, items := service.InstallCheckoutAttribute(true)
+
+	if len(items) == 0 || items == nil {
+		c.JSON(http.StatusNoContent, common.ErrorResponse{Message: "No Customer to install"})
+		return
+	}
+
+	err := lc.InstallUsecase.InstallCheckoutAttribute(c, items)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	result, values := service.InstallCheckoutAttributeValue(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err = lc.InstallUsecase.InstallCheckoutAttributeValue(c, values)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, result)
+}
+
+func (lc *InstallController) InstallSpecificationAttribute(c *gin.Context) {
+
+	result, groups := service.InstallSpecificationAttributeGroup(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err := lc.InstallUsecase.InstallSpecificationAttributeGroup(c, groups)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	result, items := service.InstallSpecificationAttribute(true)
+	if len(items) == 0 || items == nil {
+		c.JSON(http.StatusNoContent, common.ErrorResponse{Message: "No SpecificationAttribute to install"})
+		return
+	}
+
+	err = lc.InstallUsecase.InstallSpecificationAttribute(c, items)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	result, options := service.InstallSpecificationAttributeOption(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err = lc.InstallUsecase.InstallSpecificationAttributeOption(c, options)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, result)
+}
+
+func (lc *InstallController) InstallProductAttribute(c *gin.Context) {
+
+	result, items := service.InstallProductAttribute(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err := lc.InstallUsecase.InstallProductAttribute(c, items)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, result)
+}
+
+func (lc *InstallController) InstallCategory(c *gin.Context) {
+
+	result, items := service.InstallCategory(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err := lc.InstallUsecase.InstallCategory(c, items)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, result)
+}
+
+func (lc *InstallController) InstallPicture(c *gin.Context) {
+
+	result, items := service.InstallPicture(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err := lc.InstallUsecase.InstallPicture(c, items)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, result)
+}
+
+func (lc *InstallController) InstallManufacturer(c *gin.Context) {
+
+	result, items := service.InstallManufacturer(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err := lc.InstallUsecase.InstallManufacturer(c, items)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, result)
+}
+
+func (lc *InstallController) InstallProduct(c *gin.Context) {
+
+	result, items := service.InstallProduct(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err := lc.InstallUsecase.InstallProduct(c, items)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, result)
+}
+
+func (lc *InstallController) InstallWarehouse(c *gin.Context) {
+
+	result, items := service.InstallWarehouse(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err := lc.InstallUsecase.InstallWarehouse(c, items)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, result)
+}
+
+func (lc *InstallController) InstallVendor(c *gin.Context) {
+
+	result, items := service.InstallVendor(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err := lc.InstallUsecase.InstallVendor(c, items)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, result)
+}
+
+func (lc *InstallController) InstallAffiliate(c *gin.Context) {
+
+	result, items := service.InstallAffiliate(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err := lc.InstallUsecase.InstallAffiliate(c, items)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, result)
+}
+
+func (lc *InstallController) InstallForum(c *gin.Context) {
+
+	result, groups := service.InstallForumGroup(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err := lc.InstallUsecase.InstallForumGroup(c, groups)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	result, items := service.InstallForum(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err = lc.InstallUsecase.InstallForum(c, items)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, result)
+}
+
+func (lc *InstallController) InstallDiscount(c *gin.Context) {
+
+	result, items := service.InstallDiscount(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err := lc.InstallUsecase.InstallDiscount(c, items)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, result)
+}
+
+func (lc *InstallController) InstallBlogPost(c *gin.Context) {
+
+	result, items := service.InstallBlogPost(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err := lc.InstallUsecase.InstallBlogPost(c, items)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	result, comments := service.InstallBlogComment(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err = lc.InstallUsecase.InstallBlogComment(c, comments)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, result)
+}
+
+func (lc *InstallController) InstallPoll(c *gin.Context) {
+
+	result, items := service.InstallPoll(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err := lc.InstallUsecase.InstallPoll(c, items)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	result, comments := service.InstallPollAnswer(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err = lc.InstallUsecase.InstallPollAnswer(c, comments)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, result)
+}
+
+func (lc *InstallController) InstallNewsItem(c *gin.Context) {
+
+	result, items := service.InstallNewsItem(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err := lc.InstallUsecase.InstallNewsItem(c, items)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	result, comments := service.InstallNewsComment(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err = lc.InstallUsecase.InstallNewsComment(c, comments)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, result)
+}
+
+func (lc *InstallController) InstallSearchTerm(c *gin.Context) {
+
+	result, items := service.InstallSearchTerm(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err := lc.InstallUsecase.InstallSearchTerm(c, items)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
 	c.JSON(http.StatusOK, result)
 }

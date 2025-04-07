@@ -1,0 +1,12 @@
+[
+    {
+      "Name": "Warehouse 1 (New York)",
+      "AdminComment": "Main warehouse for East Coast operations.",
+      "AddressID": "6509de21ca5d36d53f455c4e"
+    },
+    {
+      "Name": "Warehouse 2 (Los Angeles)",
+      "AdminComment": "Back warehouse for Central West Coast operations.",
+      "AddressID": "5432a0a5c766017d89b79417"
+    }
+  ]

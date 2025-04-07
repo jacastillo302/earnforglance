@@ -1,0 +1,42 @@
+[
+    {
+        "ID": "67f2fdcb1821c0c1205bbb17",
+        "Name": "Color",
+        "Description": ""
+    },
+    {
+        "ID": "67f2fdcb1821c0c1205bbb18",
+        "Name": "Print",
+        "Description": ""
+    },
+    {
+        "ID": "67f2fdcb1821c0c1205bbb19",
+        "Name": "Custom Text",
+        "Description": ""
+    },
+    {
+        "ID": "67f2fdcb1821c0c1205bbb1a",
+        "Name": "HDD",
+        "Description": ""
+    },
+    {
+        "ID": "67f2fdcb1821c0c1205bbb1b",
+        "Name": "Processor",
+        "Description": ""
+    },
+    {
+        "ID": "67f2fdcb1821c0c1205bbb1c",
+        "Name": "RAM",
+        "Description": ""
+    },
+    {
+        "ID": "67f2fdcb1821c0c1205bbb1d",
+        "Name": "Size",
+        "Description": ""
+    },
+    {
+        "ID": "67f2fdcb1821c0c1205bbb1e",
+        "Name": "Software",
+        "Description": ""
+    }
+]

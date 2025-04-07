@@ -21,10 +21,10 @@ func NewsItemRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database
 		Env:             env,
 	}
 	itemGroup := group.Group("/api/v1/news")
-	itemGroup.GET("/newsitems", lc.Fetch)
-	itemGroup.GET("/newsitem", lc.FetchByID)
-	itemGroup.POST("/newsitem", lc.Create)
-	itemGroup.POST("/newsitems", lc.CreateMany)
-	itemGroup.PUT("/newsitem", lc.Update)
-	itemGroup.DELETE("/newsitem", lc.Delete)
+	itemGroup.GET("/news_items", lc.Fetch)
+	itemGroup.GET("/news_item", lc.FetchByID)
+	itemGroup.POST("/news_item", lc.Create)
+	itemGroup.POST("/news_items", lc.CreateMany)
+	itemGroup.PUT("/news_item", lc.Update)
+	itemGroup.DELETE("/news_item", lc.Delete)
 }

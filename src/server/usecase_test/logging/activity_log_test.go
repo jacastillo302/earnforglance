@@ -22,7 +22,7 @@ func TestActivityLogUsecase_FetchByID(t *testing.T) {
 
 	updatedActivityLog := domain.ActivityLog{
 		ID:                primitive.NewObjectID(), // Existing ID of the record to update
-		ActivityLogTypeID: 2,
+		ActivityLogTypeID: primitive.NewObjectID(),
 		EntityID:          new(primitive.ObjectID),
 		EntityName:        "Product",
 		CustomerID:        primitive.NewObjectID(),
@@ -47,7 +47,7 @@ func TestActivityLogUsecase_Create(t *testing.T) {
 	usecase := test.NewActivityLogUsecase(mockRepo, timeout)
 
 	newActivityLog := &domain.ActivityLog{
-		ActivityLogTypeID: 1,
+		ActivityLogTypeID: primitive.NewObjectID(),
 		EntityID:          nil,
 		EntityName:        "Order",
 		CustomerID:        primitive.NewObjectID(),
@@ -71,7 +71,7 @@ func TestActivityLogUsecase_Update(t *testing.T) {
 
 	updatedActivityLog := &domain.ActivityLog{
 		ID:                primitive.NewObjectID(), // Existing ID of the record to update
-		ActivityLogTypeID: 2,
+		ActivityLogTypeID: primitive.NewObjectID(),
 		EntityID:          new(primitive.ObjectID),
 		EntityName:        "Product",
 		CustomerID:        primitive.NewObjectID(),
@@ -112,7 +112,7 @@ func TestActivityLogUsecase_Fetch(t *testing.T) {
 	fetchedActivityLogs := []domain.ActivityLog{
 		{
 			ID:                primitive.NewObjectID(),
-			ActivityLogTypeID: 1,
+			ActivityLogTypeID: primitive.NewObjectID(),
 			EntityID:          nil,
 			EntityName:        "Order",
 			CustomerID:        primitive.NewObjectID(),
@@ -122,7 +122,7 @@ func TestActivityLogUsecase_Fetch(t *testing.T) {
 		},
 		{
 			ID:                primitive.NewObjectID(),
-			ActivityLogTypeID: 2,
+			ActivityLogTypeID: primitive.NewObjectID(),
 			EntityID:          new(primitive.ObjectID),
 			EntityName:        "Product",
 			CustomerID:        primitive.NewObjectID(),

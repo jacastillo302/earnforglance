@@ -1,0 +1,32 @@
+[
+    {
+        "ID": "f8fdfd39aa1b4e2c41310427",
+        "Name": "CPU Type",
+        "DisplayOrder": 2,
+        "SpecificationAttributeGroupID": "7de3383ecc59708e2eefb562"
+    },
+    {
+        "ID": "e79a7d3da60b41d8ee801303",
+        "Name": "Memory",
+        "DisplayOrder": 3,
+        "SpecificationAttributeGroupID": "3ead65aa3e86c82cee2b6583"
+    },
+    {
+        "ID": "7d3dbe3030e4bec7f8e0d994",
+        "Name": "Hard drive",
+        "DisplayOrder": 4,
+        "SpecificationAttributeGroupID": "3ead65aa3e86c82cee2b6583"
+    },
+    {
+        "ID": "fa7114eea8becc90405db404",
+        "Name": "Screensize",
+        "DisplayOrder": 5,
+        "SpecificationAttributeGroupID": null
+    },
+    {
+        "ID": "7aeb3d9be675821352cdb75f",
+        "Name": "Color",
+        "DisplayOrder": 6,
+        "SpecificationAttributeGroupID": null
+    }    
+]

@@ -31,7 +31,7 @@ var mockItemSpecificationAttribute = &domain.SpecificationAttribute{
 	ID:                            primitive.NewObjectID(), // Existing ID of the record to update
 	Name:                          "Color",
 	DisplayOrder:                  2,
-	SpecificationAttributeGroupID: new(int),
+	SpecificationAttributeGroupID: nil,
 }
 
 func TestSpecificationAttributeRepository_FetchByID(t *testing.T) {

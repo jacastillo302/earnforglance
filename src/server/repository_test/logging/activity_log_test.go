@@ -30,7 +30,7 @@ func (m *MockSingleResultActivityLog) Decode(v interface{}) error {
 
 var mockItemActivityLog = &domain.ActivityLog{
 	ID:                primitive.NewObjectID(), // Existing ID of the record to update
-	ActivityLogTypeID: 2,
+	ActivityLogTypeID: primitive.NewObjectID(),
 	EntityID:          new(primitive.ObjectID),
 	EntityName:        "Product",
 	CustomerID:        primitive.NewObjectID(),

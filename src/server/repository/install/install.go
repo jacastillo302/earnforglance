@@ -2,23 +2,30 @@ package repository
 
 import (
 	"context"
-
+	affiliates "earnforglance/server/domain/affiliate"
+	blogs "earnforglance/server/domain/blogs"
 	catalog "earnforglance/server/domain/catalog"
 	commons "earnforglance/server/domain/common"
 	settings "earnforglance/server/domain/configuration"
 	customers "earnforglance/server/domain/customers"
 	directory "earnforglance/server/domain/directory"
+	discounts "earnforglance/server/domain/discounts"
+	forums "earnforglance/server/domain/forums"
 	install "earnforglance/server/domain/install"
 	lang "earnforglance/server/domain/localization"
 	loggings "earnforglance/server/domain/logging"
+	media "earnforglance/server/domain/media"
 	messages "earnforglance/server/domain/messages"
+	news "earnforglance/server/domain/news"
 	orders "earnforglance/server/domain/orders"
+	polls "earnforglance/server/domain/polls"
 	tasks "earnforglance/server/domain/scheduleTasks"
 	security "earnforglance/server/domain/security"
-	shipping "earnforglance/server/domain/shipping"
+	shippings "earnforglance/server/domain/shipping"
 	stores "earnforglance/server/domain/stores"
 	taxes "earnforglance/server/domain/tax"
 	topics "earnforglance/server/domain/topics"
+	vendors "earnforglance/server/domain/vendors"
 	"earnforglance/server/service/data/mongo"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -195,23 +202,9 @@ func (tu *intallRepository) InstallStateProvince(c context.Context, items []dire
 	return err
 }
 
-func (tu *intallRepository) InstallShippingMethod(c context.Context, items []shipping.ShippingMethod) error {
+func (tu *intallRepository) InstallShippingMethod(c context.Context, items []shippings.ShippingMethod) error {
 
-	collection := tu.database.Collection(shipping.CollectionShippingMethod)
-
-	interfaces := make([]interface{}, len(items))
-	for i, item := range items {
-		interfaces[i] = item
-	}
-
-	_, err := collection.InsertMany(c, interfaces)
-
-	return err
-}
-
-func (tu *intallRepository) InstallDeliveryDate(c context.Context, items []shipping.DeliveryDate) error {
-
-	collection := tu.database.Collection(shipping.CollectionDeliveryDate)
+	collection := tu.database.Collection(shippings.CollectionShippingMethod)
 
 	interfaces := make([]interface{}, len(items))
 	for i, item := range items {
@@ -223,9 +216,23 @@ func (tu *intallRepository) InstallDeliveryDate(c context.Context, items []shipp
 	return err
 }
 
-func (tu *intallRepository) InstallProductAvailabilityRange(c context.Context, items []shipping.ProductAvailabilityRange) error {
+func (tu *intallRepository) InstallDeliveryDate(c context.Context, items []shippings.DeliveryDate) error {
 
-	collection := tu.database.Collection(shipping.CollectionProductAvailabilityRange)
+	collection := tu.database.Collection(shippings.CollectionDeliveryDate)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallProductAvailabilityRange(c context.Context, items []shippings.ProductAvailabilityRange) error {
+
+	collection := tu.database.Collection(shippings.CollectionProductAvailabilityRange)
 
 	interfaces := make([]interface{}, len(items))
 	for i, item := range items {
@@ -333,7 +340,7 @@ func (tu *intallRepository) InstallCustomerPassword(c context.Context, items []c
 	return err
 }
 
-func (tu *intallRepository) InstallCustomerAddress(c context.Context, items []commons.Address) error {
+func (tu *intallRepository) InstallAddress(c context.Context, items []commons.Address) error {
 
 	collection := tu.database.Collection(commons.CollectionAddress)
 
@@ -471,6 +478,412 @@ func (tu *intallRepository) InstallReturnRequestReason(c context.Context, items 
 func (tu *intallRepository) InstallReturnRequestAction(c context.Context, items []orders.ReturnRequestAction) error {
 
 	collection := tu.database.Collection(orders.CollectionReturnRequestAction)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallCheckoutAttribute(c context.Context, items []orders.CheckoutAttribute) error {
+
+	collection := tu.database.Collection(orders.CollectionCheckoutAttribute)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallCheckoutAttributeValue(c context.Context, items []orders.CheckoutAttributeValue) error {
+
+	collection := tu.database.Collection(orders.CollectionCheckoutAttributeValue)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallSpecificationAttribute(c context.Context, items []catalog.SpecificationAttribute) error {
+
+	collection := tu.database.Collection(catalog.CollectionSpecificationAttribute)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallSpecificationAttributeOption(c context.Context, items []catalog.SpecificationAttributeOption) error {
+
+	collection := tu.database.Collection(catalog.CollectionSpecificationAttributeOption)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallSpecificationAttributeGroup(c context.Context, items []catalog.SpecificationAttributeGroup) error {
+
+	collection := tu.database.Collection(catalog.CollectionSpecificationAttributeGroup)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallProductAttribute(c context.Context, items []catalog.ProductAttribute) error {
+
+	collection := tu.database.Collection(catalog.CollectionProductAttribute)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallCategory(c context.Context, items []catalog.Category) error {
+
+	collection := tu.database.Collection(catalog.CollectionCategory)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallPicture(c context.Context, items []media.Picture) error {
+
+	collection := tu.database.Collection(media.CollectionPicture)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallManufacturer(c context.Context, items []catalog.Manufacturer) error {
+
+	collection := tu.database.Collection(catalog.CollectionManufacturer)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallProduct(c context.Context, items []catalog.Product) error {
+
+	collection := tu.database.Collection(catalog.CollectionProduct)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallProductSpecificationAttribute(c context.Context, items []catalog.ProductSpecificationAttribute) error {
+
+	collection := tu.database.Collection(catalog.CollectionProductSpecificationAttribute)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallProductTag(c context.Context, items []catalog.ProductTag) error {
+
+	collection := tu.database.Collection(catalog.CollectionProductTag)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallProductAttributeMapping(c context.Context, items []catalog.ProductAttributeMapping) error {
+
+	collection := tu.database.Collection(catalog.CollectionProductAttributeMapping)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallProductPicture(c context.Context, items []catalog.ProductPicture) error {
+
+	collection := tu.database.Collection(catalog.CollectionProductPicture)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallProductCategory(c context.Context, items []catalog.ProductCategory) error {
+
+	collection := tu.database.Collection(catalog.CollectionProductCategory)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallWarehouse(c context.Context, items []shippings.Warehouse) error {
+
+	collection := tu.database.Collection(shippings.CollectionWarehouse)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallVendor(c context.Context, items []vendors.Vendor) error {
+
+	collection := tu.database.Collection(vendors.CollectionVendor)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallAffiliate(c context.Context, items []affiliates.Affiliate) error {
+
+	collection := tu.database.Collection(affiliates.CollectionAffiliate)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallForum(c context.Context, items []forums.Forum) error {
+
+	collection := tu.database.Collection(forums.CollectionForum)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallForumGroup(c context.Context, items []forums.ForumGroup) error {
+
+	collection := tu.database.Collection(forums.CollectionForumGroup)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallDiscount(c context.Context, items []discounts.Discount) error {
+
+	collection := tu.database.Collection(discounts.CollectionDiscount)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallBlogPost(c context.Context, items []blogs.BlogPost) error {
+
+	collection := tu.database.Collection(blogs.CollectionBlogPost)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallBlogComment(c context.Context, items []blogs.BlogComment) error {
+
+	collection := tu.database.Collection(blogs.CollectionBlogComment)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallPoll(c context.Context, items []polls.Poll) error {
+
+	collection := tu.database.Collection(polls.CollectionPoll)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallPollAnswer(c context.Context, items []polls.PollAnswer) error {
+
+	collection := tu.database.Collection(polls.CollectionPollAnswer)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallNewsItem(c context.Context, items []news.NewsItem) error {
+
+	collection := tu.database.Collection(news.CollectionNewsItem)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallNewsComment(c context.Context, items []news.NewsComment) error {
+
+	collection := tu.database.Collection(news.CollectionNewsComment)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallActivityLog(c context.Context, items []loggings.ActivityLog) error {
+
+	collection := tu.database.Collection(loggings.CollectionActivityLog)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallSearchTerm(c context.Context, items []commons.SearchTerm) error {
+
+	collection := tu.database.Collection(commons.CollectionSearchTerm)
 
 	interfaces := make([]interface{}, len(items))
 	for i, item := range items {

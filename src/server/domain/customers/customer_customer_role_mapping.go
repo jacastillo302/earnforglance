@@ -13,8 +13,8 @@ const (
 // CustomerCustomerRoleMapping represents a customer-customer role mapping class
 type CustomerCustomerRoleMapping struct {
 	ID             primitive.ObjectID `bson:"_id,omitempty"`
-	CustomerID     primitive.ObjectID `bson:"customer_id"`
-	CustomerRoleID primitive.ObjectID `bson:"customer_role_id"`
+	CustomerID     primitive.ObjectID `bson:"customer_id,omitempty"`
+	CustomerRoleID primitive.ObjectID `bson:"customer_role_id,omitempty"`
 }
 
 type CustomerCustomerRoleMappingRepository interface {

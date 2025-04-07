@@ -2,12 +2,12 @@
     "ProductTypes": [
       {
         "Name": "SimpleProduct",
-        "Value": 5,
+        "Value": 1,
         "Description": "Represents a simple product"
       },
       {
         "Name": "GroupedProduct",
-        "Value": 10,
+        "Value": 2,
         "Description": "Represents a grouped product (product with variants)"
       }
     ]

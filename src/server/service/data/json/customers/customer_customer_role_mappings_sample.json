@@ -1,0 +1,47 @@
+[
+    {
+        "ID": "67efd716db297933388cffda",
+        "CustomerID": "64f1a2c3d4e5f67890123456",
+        "CustomerRoleID": "67ef1ef2f22a8120fde7c1ef"
+    },
+    {
+        "ID": "644f1b2e5f1b2c3d4e5f6a7b",
+        "CustomerID": "1e8e5c628f87479ff5922759",
+        "CustomerRoleID": "67ef1ef2f22a8120fde7c1f1"
+    },
+    {
+        "ID": "644f1b2e5f1b2c3d4e5f6a7e",
+        "CustomerID": "64f1a2c3d4e5f67890123457",
+        "CustomerRoleID": "67ef1ef2f22a8120fde7c1f1"
+    },
+    {
+        "ID": "644f1b2e5f1b2c3d4e5f6a81",
+        "CustomerID": "64f1a2c3d4e5f67890123458",
+        "CustomerRoleID": "67ef1ef2f22a8120fde7c1f1"
+    },
+    {
+        "ID": "644f1b2e5f1b2c3d4e5f6a84",
+        "CustomerID": "64f1a2c3d4e5f67890123458",
+        "CustomerRoleID": "67ef1ef2f22a8120fde7c1f2"
+    },
+    {
+        "ID": "644f1b2e5f1b2c3d4e5f6a87",
+        "CustomerID": "64f1a2c3d4e5f67890123459",
+        "CustomerRoleID": "67ef1ef2f22a8120fde7c1f1"
+    },
+    {
+        "ID": "655f1b2e5f1b2c3d4e5f6b55",
+        "CustomerID": "64f1a2c3d4e5f67890123459",
+        "CustomerRoleID": "67ef1ef2f22a8120fde7c1f3"
+    },
+    {
+        "ID": "655f1b2e5f1b2c3d4e5f7c44",
+        "CustomerID": "64f1a2c3d4e5f67890123460",
+        "CustomerRoleID": "67ef1ef2f22a8120fde7c1f1"
+    },
+    {
+        "ID": "655f1b2e5f1b2c3d4e5ff433",
+        "CustomerID": "64f1a2c3d4e5f67890123460",
+        "CustomerRoleID": "67ef1ef2f22a8120fde7c1f0"
+    }
+]

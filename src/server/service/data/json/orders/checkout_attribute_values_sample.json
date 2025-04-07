@@ -1,0 +1,22 @@
+[
+    {
+        "ID": "644f1b2e5f1b2c3d4e5f6b3c",
+        "AttributeID": "644f1b2e5f1b2c3d4e5f6a7b",
+        "Name": "No",
+        "IsPreSelected": true,
+        "DisplayOrder": 1,
+        "ColorSquaresRgb": "#FF5733",
+        "PriceAdjustment": 0,
+        "WeightAdjustment": 0
+      },
+      {
+        "ID": "644f1b2e5f1b2c3d4e5f6f1a",
+        "AttributeID": "644f1b2e5f1b2c3d4e5f6a7b",
+        "Name": "Yes",
+        "IsPreSelected": false,
+        "DisplayOrder": 2,
+        "ColorSquaresRgb": "#RF5721",
+        "PriceAdjustment": 10,
+        "WeightAdjustment": 0
+      }
+]

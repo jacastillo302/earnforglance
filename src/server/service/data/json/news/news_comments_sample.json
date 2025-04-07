@@ -1,0 +1,52 @@
+[
+  {
+      "ID": "b8848fcc84aef2627174c170",
+      "CommentTitle": "Great Update!",
+      "CommentText": "I really appreciate the new features introduced in EarnForGlance.",
+      "NewsItemID": "2b011280953d8aa9b7962a23",
+      "CustomerID": "64f1a2c3d4e5f67890123457",
+      "IsApproved": true,
+      "StoreID": "64f1b3d4e5f6789012345678",
+      "CreatedOnUtc": "2025-04-01T10:00:00Z"
+  },
+  {
+      "ID": "c2d3e354b1a1b116e18a89c6",
+      "CommentTitle": "Needs Improvement",
+      "CommentText": "The new features are good, but I think the performance could be better.",
+      "NewsItemID": "2b011280953d8aa9b7962a23",
+      "CustomerID": "64f1a2c3d4e5f67890123458",
+      "IsApproved": false,
+      "StoreID": "64f1b3d4e5f6789012345678",
+      "CreatedOnUtc": "2025-04-02T15:30:00Z"
+  },
+  {
+      "ID": "2b011280953d8aa9b7962a23",
+      "CommentTitle": "Excited for the Future",
+      "CommentText": "This milestone is a great achievement. Looking forward to more updates!",
+      "NewsItemID": "f15335e2cfcbbc2e73b9e3bf",
+      "CustomerID": "64f1a2c3d4e5f67890123459",
+      "IsApproved": true,
+      "StoreID": "64f1b3d4e5f6789012345678",
+      "CreatedOnUtc": "2025-05-01T08:00:00Z"
+  },
+  {
+      "ID": "2c700986219a0d153e231b0c",
+      "CommentTitle": "Not Impressed",
+      "CommentText": "I was expecting more from this update. The features are underwhelming.",
+      "NewsItemID": "f15335e2cfcbbc2e73b9e3bf",
+      "CustomerID": "64f1a2c3d4e5f67890123460",
+      "IsApproved": false,
+      "StoreID": "64f1b3d4e5f6789012345678",
+      "CreatedOnUtc": "2025-04-03T12:45:00Z"
+  },
+  {
+      "ID": "3460172aa65c9062fd8af10b",
+      "CommentTitle": "Fantastic Work!",
+      "CommentText": "The new features are exactly what I needed. Great job, team!",
+      "NewsItemID": "f15335e2cfcbbc2e73b9e3bf",
+      "CustomerID": "64f1a2c3d4e5f67890123460",
+      "IsApproved": true,
+      "StoreID": "64f1b3d4e5f6789012345678",
+      "CreatedOnUtc": "2025-05-02T09:15:00Z"
+  }
+]

@@ -1,0 +1,13 @@
+[
+
+    {
+        "ID": "7de3383ecc59708e2eefb562",
+        "Name": "System unit",
+        "DisplayOrder": 1
+    },
+    {
+        "ID": "3ead65aa3e86c82cee2b6583",
+        "Name": "Memory",
+        "DisplayOrder": 2
+    }
+]

@@ -1,0 +1,15 @@
+[
+    {
+        "ID": "fd654f4a59e8775ad06202ad",
+        "LanguageID": "64f1a2c3d4e5f67890123456",
+        "Name": "Favorite Programming Language",
+        "SystemKeyword": "favorite_programming_language",
+        "Published": true,
+        "ShowOnHomepage": true,
+        "AllowGuestsToVote": false,
+        "DisplayOrder": 1,
+        "LimitedToStores": false,
+        "StartDateUtc": "2025-04-01T00:00:00Z",
+        "EndDateUtc": "2025-04-30T23:59:59Z"
+      }
+]

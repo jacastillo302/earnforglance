@@ -89,13 +89,6 @@ func (ur *affiliateRepository) Fetch(c context.Context) ([]domain.Affiliate, err
 	return affiliates, err
 }
 
-func (ur *affiliateRepository) GetActive(c context.Context, active bool) (domain.Affiliate, error) {
-	collection := ur.database.Collection(ur.collection)
-	var affiliate domain.Affiliate
-	err := collection.FindOne(c, bson.M{"active": active}).Decode(&affiliate)
-	return affiliate, err
-}
-
 func (tr *affiliateRepository) FetchByID(c context.Context, affiliateID string) (domain.Affiliate, error) {
 	collection := tr.database.Collection(tr.collection)
 

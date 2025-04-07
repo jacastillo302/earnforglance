@@ -1,0 +1,20 @@
+[
+  {
+    "ID": "644f1b2e5f1b2c3d4e5f6a7b",
+    "Name": "Gift Wrapping",
+    "TextPrompt": "Gift wrapping",
+    "IsRequired": true,
+    "AttributeControlTypeID": 1,
+    "ShippableProductRequired": true,
+    "IsTaxExempt": false,
+    "TaxCategoryID": "67ed08c2a6d8f4e0feb6341a",
+    "LimitedToStores": false,
+    "ValidationMinLength": 5,
+    "ValidationMaxLength": 100,
+    "ValidationFileAllowedExtensions": ".jpg,.png,.pdf",
+    "ValidationFileMaximumSize": 10,
+    "DisplayOrder": 1,
+    "DefaultValue": "No",
+    "ConditionAttributeXml": "<conditions><condition>Download</condition></conditions>"
+  }
+]

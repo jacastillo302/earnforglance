@@ -1,0 +1,38 @@
+[
+    {
+        "ID": "67f440688d2cf8a01308ae52",
+        "Keyword": "computer",
+        "StoreID": "64f1b3d4e5f6789012345678",
+        "Count": 34
+    },
+    {
+        "ID": "67f440688d2cf8a01308ae53",
+        "Keyword": "camera",
+        "StoreID": "64f1b3d4e5f6789012345678",
+        "Count": 30
+    },
+    {
+        "ID": "67f440688d2cf8a01308ae54",
+        "Keyword": "jewelry",
+        "StoreID": "64f1b3d4e5f6789012345678",
+        "Count": 27
+    },
+    {
+        "ID": "67f440688d2cf8a01308ae55",
+        "Keyword": "shoes",
+        "StoreID": "64f1b3d4e5f6789012345678",
+        "Count": 26
+    },
+    {
+        "ID": "67f440688d2cf8a01308ae56",
+        "Keyword": "jeans",
+        "StoreID": "64f1b3d4e5f6789012345678",
+        "Count": 19
+    },
+    {
+        "ID": "67f440688d2cf8a01308ae57",
+        "Keyword": "gift",
+        "StoreID": "64f1b3d4e5f6789012345678",
+        "Count": 10
+    }
+]

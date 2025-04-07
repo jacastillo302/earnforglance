@@ -1,6 +1,7 @@
 package route
 
 import (
+	"net/http"
 	"time"
 
 	"earnforglance/server/api/middleware"
@@ -60,8 +61,12 @@ func Setup(env *bootstrap.Env, timeout time.Duration, db mongo.Database, gin *gi
 
 	gin.Use(corsConfig)
 
-	publicRouter := gin.Group("/api")
+	//public media files
+	publicRouter := gin.Group("")
+	publicRouter.StaticFS("/media", http.Dir("./media"))
+
 	// All Public APIs
+	publicRouter = gin.Group("/api")
 	SignupRouter(env, timeout, db, publicRouter)
 	LoginRouter(env, timeout, db, publicRouter)
 	RefreshTokenRouter(env, timeout, db, publicRouter)
@@ -72,8 +77,8 @@ func Setup(env *bootstrap.Env, timeout time.Duration, db mongo.Database, gin *gi
 	publicRouter = gin.Group("/api/v1/install/")
 	install.InstallRouter(env, timeout, db, publicRouter)
 
-	protectedRouter := gin.Group("")
 	// Middleware to verify AccessToken
+	protectedRouter := gin.Group("")
 	protectedRouter.Use(middleware.JwtAuthMiddleware(env.AccessTokenSecret))
 
 	// Core APIs

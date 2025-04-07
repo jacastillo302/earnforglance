@@ -14,7 +14,7 @@ const (
 // ActivityLog represents an activity log records
 type ActivityLog struct {
 	ID                primitive.ObjectID  `bson:"_id,omitempty"`
-	ActivityLogTypeID int                 `bson:"activity_log_type_id"`
+	ActivityLogTypeID primitive.ObjectID  `bson:"activity_log_type_id"`
 	EntityID          *primitive.ObjectID `bson:"entity_id"`
 	EntityName        string              `bson:"entity_name"`
 	CustomerID        primitive.ObjectID  `bson:"customer_id"`

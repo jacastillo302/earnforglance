@@ -19,12 +19,14 @@ func TestSpecificationAttributeUsecase_FetchByID(t *testing.T) {
 	usecase := test.NewSpecificationAttributeUsecase(mockRepo, timeout)
 
 	specificationAttributeID := primitive.NewObjectID().Hex()
+	specificationAttributeGroupID := primitive.NewObjectID() // Create the ObjectID
+	specificationAttributeGroupIDPointer := &specificationAttributeGroupID
 
 	updatedSpecificationAttribute := domain.SpecificationAttribute{
 		ID:                            primitive.NewObjectID(), // Existing ID of the record to update
 		Name:                          "Color",
 		DisplayOrder:                  2,
-		SpecificationAttributeGroupID: new(int),
+		SpecificationAttributeGroupID: specificationAttributeGroupIDPointer,
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, specificationAttributeID).Return(updatedSpecificationAttribute, nil)
@@ -64,9 +66,8 @@ func TestSpecificationAttributeUsecase_Update(t *testing.T) {
 		ID:                            primitive.NewObjectID(), // Existing ID of the record to update
 		Name:                          "Color",
 		DisplayOrder:                  2,
-		SpecificationAttributeGroupID: new(int),
+		SpecificationAttributeGroupID: nil,
 	}
-	*updatedSpecificationAttribute.SpecificationAttributeGroupID = 1
 
 	mockRepo.On("Update", mock.Anything, updatedSpecificationAttribute).Return(nil)
 
@@ -107,10 +108,9 @@ func TestSpecificationAttributeUsecase_Fetch(t *testing.T) {
 			ID:                            primitive.NewObjectID(),
 			Name:                          "Color",
 			DisplayOrder:                  2,
-			SpecificationAttributeGroupID: new(int),
+			SpecificationAttributeGroupID: nil,
 		},
 	}
-	*fetchedSpecificationAttributes[1].SpecificationAttributeGroupID = 1
 
 	mockRepo.On("Fetch", mock.Anything).Return(fetchedSpecificationAttributes, nil)
 
