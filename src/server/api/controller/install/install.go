@@ -964,23 +964,6 @@ func (lc *InstallController) InstallManufacturer(c *gin.Context) {
 	c.JSON(http.StatusOK, result)
 }
 
-func (lc *InstallController) InstallProduct(c *gin.Context) {
-
-	result, items := service.InstallProduct(true)
-	if !result.Status {
-		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
-		return
-	}
-
-	err := lc.InstallUsecase.InstallProduct(c, items)
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
-		return
-	}
-
-	c.JSON(http.StatusOK, result)
-}
-
 func (lc *InstallController) InstallWarehouse(c *gin.Context) {
 
 	result, items := service.InstallWarehouse(true)
@@ -1174,6 +1157,23 @@ func (lc *InstallController) InstallSearchTerm(c *gin.Context) {
 	}
 
 	err := lc.InstallUsecase.InstallSearchTerm(c, items)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, result)
+}
+
+func (lc *InstallController) InstallProduct(c *gin.Context) {
+
+	result, items := service.InstallProduct(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err := lc.InstallUsecase.InstallProduct(c, items)
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
 		return

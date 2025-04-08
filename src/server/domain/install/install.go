@@ -82,12 +82,6 @@ type InstallRepository interface {
 	InstallWarehouse(c context.Context, items []shippings.Warehouse) error
 	InstallVendor(c context.Context, items []vendors.Vendor) error
 	InstallAffiliate(c context.Context, items []affiliates.Affiliate) error
-	InstallProduct(c context.Context, items []catalog.Product) error
-	InstallProductSpecificationAttribute(c context.Context, items []catalog.ProductSpecificationAttribute) error
-	InstallProductTag(c context.Context, items []catalog.ProductTag) error
-	InstallProductAttributeMapping(c context.Context, items []catalog.ProductAttributeMapping) error
-	InstallProductPicture(c context.Context, items []catalog.ProductPicture) error
-	InstallProductCategory(c context.Context, items []catalog.ProductCategory) error
 	InstallForumGroup(c context.Context, items []forums.ForumGroup) error
 	InstallForum(c context.Context, items []forums.Forum) error
 	InstallDiscount(c context.Context, items []discounts.Discount) error
@@ -98,6 +92,12 @@ type InstallRepository interface {
 	InstallNewsItem(c context.Context, items []news.NewsItem) error
 	InstallNewsComment(c context.Context, items []news.NewsComment) error
 	InstallSearchTerm(c context.Context, items []commons.SearchTerm) error
+	InstallProduct(c context.Context, items []catalog.Product) error
+	InstallProductSpecificationAttribute(c context.Context, items []catalog.ProductSpecificationAttribute) error
+	InstallProductTag(c context.Context, items []catalog.ProductTag) error
+	InstallProductAttributeMapping(c context.Context, items []catalog.ProductAttributeMapping) error
+	InstallProductPicture(c context.Context, items []catalog.ProductPicture) error
+	InstallProductCategory(c context.Context, items []catalog.ProductCategory) error
 }
 
 // GdprLogUsecase interface
@@ -148,12 +148,6 @@ type InstallLogUsecase interface {
 	InstallWarehouse(c context.Context, items []shippings.Warehouse) error
 	InstallVendor(c context.Context, items []vendors.Vendor) error
 	InstallAffiliate(c context.Context, items []affiliates.Affiliate) error
-	InstallProduct(c context.Context, items []catalog.Product) error
-	InstallProductSpecificationAttribute(c context.Context, items []catalog.ProductSpecificationAttribute) error
-	InstallProductTag(c context.Context, items []catalog.ProductTag) error
-	InstallProductAttributeMapping(c context.Context, items []catalog.ProductAttributeMapping) error
-	InstallProductPicture(c context.Context, items []catalog.ProductPicture) error
-	InstallProductCategory(c context.Context, items []catalog.ProductCategory) error
 	InstallForumGroup(c context.Context, items []forums.ForumGroup) error
 	InstallForum(c context.Context, items []forums.Forum) error
 	InstallDiscount(c context.Context, items []discounts.Discount) error
@@ -164,4 +158,10 @@ type InstallLogUsecase interface {
 	InstallNewsItem(c context.Context, items []news.NewsItem) error
 	InstallNewsComment(c context.Context, items []news.NewsComment) error
 	InstallSearchTerm(c context.Context, items []commons.SearchTerm) error
+	InstallProduct(c context.Context, items []catalog.Product) error
+	InstallProductSpecificationAttribute(c context.Context, items []catalog.ProductSpecificationAttribute) error
+	InstallProductTag(c context.Context, items []catalog.ProductTag) error
+	InstallProductAttributeMapping(c context.Context, items []catalog.ProductAttributeMapping) error
+	InstallProductPicture(c context.Context, items []catalog.ProductPicture) error
+	InstallProductCategory(c context.Context, items []catalog.ProductCategory) error
 }
