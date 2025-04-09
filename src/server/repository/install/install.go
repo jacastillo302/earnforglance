@@ -657,6 +657,34 @@ func (tu *intallRepository) InstallProductTag(c context.Context, items []catalog
 	return err
 }
 
+func (tu *intallRepository) InstallProductProductTagMapping(c context.Context, items []catalog.ProductProductTagMapping) error {
+
+	collection := tu.database.Collection(catalog.CollectionProductProductTagMapping)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallProductAttributeValue(c context.Context, items []catalog.ProductAttributeValue) error {
+
+	collection := tu.database.Collection(catalog.CollectionProductAttributeValue)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
 func (tu *intallRepository) InstallProductAttributeMapping(c context.Context, items []catalog.ProductAttributeMapping) error {
 
 	collection := tu.database.Collection(catalog.CollectionProductAttributeMapping)
@@ -688,6 +716,48 @@ func (tu *intallRepository) InstallProductPicture(c context.Context, items []cat
 func (tu *intallRepository) InstallProductCategory(c context.Context, items []catalog.ProductCategory) error {
 
 	collection := tu.database.Collection(catalog.CollectionProductCategory)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallTierPrice(c context.Context, items []catalog.TierPrice) error {
+
+	collection := tu.database.Collection(commons.CollectionSearchTerm)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallProductManufacturer(c context.Context, items []catalog.ProductManufacturer) error {
+
+	collection := tu.database.Collection(catalog.CollectionProductManufacturer)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallProductAttributeValuePicture(c context.Context, items []catalog.ProductAttributeValuePicture) error {
+
+	collection := tu.database.Collection(catalog.CollectionProductAttributeValuePicture)
 
 	interfaces := make([]interface{}, len(items))
 	for i, item := range items {
@@ -884,6 +954,20 @@ func (tu *intallRepository) InstallActivityLog(c context.Context, items []loggin
 func (tu *intallRepository) InstallSearchTerm(c context.Context, items []commons.SearchTerm) error {
 
 	collection := tu.database.Collection(commons.CollectionSearchTerm)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallDownload(c context.Context, items []media.Download) error {
+
+	collection := tu.database.Collection(media.CollectionDownload)
 
 	interfaces := make([]interface{}, len(items))
 	for i, item := range items {

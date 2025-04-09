@@ -1,0 +1,383 @@
+[
+    {
+        "ProductID": "67f62f48166c9fc55b44aaad",
+        "ProductTagID": "67f669e979f92466e527d4f3"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aaad",
+        "ProductTagID": "67f669e979f92466e527d4f4"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aaac",
+        "ProductTagID": "67f669e979f92466e527d4f6"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aaac",
+        "ProductTagID": "67f669e979f92466e527d4f5"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aaab",
+        "ProductTagID": "67f669e979f92466e527d4f3"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aaab",
+        "ProductTagID": "67f669e979f92466e527d4f4"
+    },
+    {
+        "ProductID": "67f470470633d9727c451001",
+        "ProductTagID": "67f669e979f92466e527d4f3"
+    },
+    {
+        "ProductID": "67f470470633d9727c451001",
+        "ProductTagID": "67f669e979f92466e527d4f4"
+    },
+    {
+        "ProductID": "67f470470633d9727c451001",
+        "ProductTagID": "67f669e979f92466e527d4f6"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aaa9",
+        "ProductTagID": "67f669e979f92466e527d4f3"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aaa9",
+        "ProductTagID": "67f669e979f92466e527d4f4"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aaa9",
+        "ProductTagID": "67f669e979f92466e527d4f6"
+    },
+    {
+        "ProductID": "67f62ed9166c9fc55b44aa93",
+        "ProductTagID": "67f669e979f92466e527d4f7"
+    },
+    {
+        "ProductID": "67f62ed9166c9fc55b44aa93",
+        "ProductTagID": "67f669e979f92466e527d4f4"
+    },
+    {
+        "ProductID": "67f62ed9166c9fc55b44aa93",
+        "ProductTagID": "67f669e979f92466e527d4f6"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aaa6",
+        "ProductTagID": "67f669e979f92466e527d4f7"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aaa6",
+        "ProductTagID": "67f669e979f92466e527d4f4"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aaa5",
+        "ProductTagID": "67f669e979f92466e527d4f4"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aaa5",
+        "ProductTagID": "67f669e979f92466e527d4f5"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aaa5",
+        "ProductTagID": "67f669e979f92466e527d4f6"
+    },
+    {
+        "ProductID": "67f62ed9166c9fc55b44aa8f",
+        "ProductTagID": "67f669e979f92466e527d4f3"
+    },
+    {
+        "ProductID": "67f62ed9166c9fc55b44aa8f",
+        "ProductTagID": "67f669e979f92466e527d4f4"
+    },
+    {
+        "ProductID": "67f62ed9166c9fc55b44aa8f",
+        "ProductTagID": "67f669e979f92466e527d4f6"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aaa3",
+        "ProductTagID": "67f669e979f92466e527d4f3"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aaa3",
+        "ProductTagID": "67f669e979f92466e527d4f4"
+    },
+    {
+        "ProductID": "67f62ed9166c9fc55b44aa8d",
+        "ProductTagID": "67f669e979f92466e527d4f3"
+    },
+    {
+        "ProductID": "67f62ed9166c9fc55b44aa8d",
+        "ProductTagID": "67f669e979f92466e527d4f4"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aaa1",
+        "ProductTagID": "67f669e979f92466e527d4f4"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aaa1",
+        "ProductTagID": "67f669e979f92466e527d4f5"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aaa1",
+        "ProductTagID": "67f669e979f92466e527d4f8"
+    },
+    {
+        "ProductID": "67f62ed9166c9fc55b44aa8b",
+        "ProductTagID": "67f669e979f92466e527d4f5"
+    },
+    {
+        "ProductID": "67f62ed9166c9fc55b44aa8b",
+        "ProductTagID": "67f669e979f92466e527d4f9"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aa9f",
+        "ProductTagID": "67f669e979f92466e527d4f5"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aa9f",
+        "ProductTagID": "67f669e979f92466e527d4f9"
+    },
+    {
+        "ProductID": "67f62ed9166c9fc55b44aa87",
+        "ProductTagID": "67f669e979f92466e527d4f3"
+    },
+    {
+        "ProductID": "67f62ed9166c9fc55b44aa87",
+        "ProductTagID": "67f669e979f92466e527d4f6"
+    },
+    {
+        "ProductID": "67f62ed9166c9fc55b44aa87",
+        "ProductTagID": "67f669e979f92466e527d4fa"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aa9c",
+        "ProductTagID": "67f669e979f92466e527d4f3"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aa9c",
+        "ProductTagID": "67f669e979f92466e527d4f6"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aa9c",
+        "ProductTagID": "67f669e979f92466e527d4fa"
+    },
+    {
+        "ProductID": "67f62ed9166c9fc55b44aa86",
+        "ProductTagID": "67f669e979f92466e527d4f3"
+    },
+    {
+        "ProductID": "67f62ed9166c9fc55b44aa86",
+        "ProductTagID": "67f669e979f92466e527d4f5"
+    },
+    {
+        "ProductID": "67f62ed9166c9fc55b44aa86",
+        "ProductTagID": "67f669e979f92466e527d4f9"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aa9a",
+        "ProductTagID": "67f669e979f92466e527d4f5"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aa9a",
+        "ProductTagID": "67f669e979f92466e527d4fa"
+    },
+    {
+        "ProductID": "67f62ed9166c9fc55b44aa84",
+        "ProductTagID": "67f669e979f92466e527d4f3"
+    },
+    {
+        "ProductID": "67f62ed9166c9fc55b44aa84",
+        "ProductTagID": "67f669e979f92466e527d4fa"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aa98",
+        "ProductTagID": "67f669e979f92466e527d4f4"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aa98",
+        "ProductTagID": "67f669e979f92466e527d4f5"
+    },
+    {
+        "ProductID": "67f62ed9166c9fc55b44aa82",
+        "ProductTagID": "67f669e979f92466e527d4f4"
+    },
+    {
+        "ProductID": "67f62ed9166c9fc55b44aa82",
+        "ProductTagID": "67f669e979f92466e527d4f5"
+    },
+    {
+        "ProductID": "67f62ed9166c9fc55b44aa80",
+        "ProductTagID": "67f669e979f92466e527d4f5"
+    },
+    {
+        "ProductID": "67f62ed9166c9fc55b44aa80",
+        "ProductTagID": "67f669e979f92466e527d4fb"
+    },
+    {
+        "ProductID": "67f62ed9166c9fc55b44aa80",
+        "ProductTagID": "67f669e979f92466e527d4fc"
+    },
+    {
+        "ProductID": "67f62ed9166c9fc55b44bb90",
+        "ProductTagID": "67f669e979f92466e527d4f5"
+    },
+    {
+        "ProductID": "67f62ed9166c9fc55b44bb90",
+        "ProductTagID": "67f669e979f92466e527d4fb"
+    },
+    {
+        "ProductID": "67f62ed9166c9fc55b44bb90",
+        "ProductTagID": "67f669e979f92466e527d4fc"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aaae",
+        "ProductTagID": "67f669e979f92466e527d4f5"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aaae",
+        "ProductTagID": "67f669e979f92466e527d4fd"
+    },
+    {
+        "ProductID": "67f62f48166c9fc55b44aaae",
+        "ProductTagID": "67f669e979f92466e527d4fc"
+    },
+    {
+        "ProductID": "67f470470633d9727c459092",
+        "ProductTagID": "67f669e979f92466e527d4f5"
+    },
+    {
+        "ProductID": "67f470470633d9727c459092",
+        "ProductTagID": "67f669e979f92466e527d4fc"
+    },
+    {
+        "ProductID": "67f470470633d9727c459092",
+        "ProductTagID": "67f669e979f92466e527d4fd"
+    },
+    {
+        "ProductID": "67f470470633d9727c459093",
+        "ProductTagID": "67f669e979f92466e527d4f5"
+    },
+    {
+        "ProductID": "67f470470633d9727c459093",
+        "ProductTagID": "67f669e979f92466e527d4fc"
+    },
+    {
+        "ProductID": "67f470470633d9727c459093",
+        "ProductTagID": "67f669e979f92466e527d4fe"
+    },
+    {
+        "ProductID": "67f470470633d9727c459094",
+        "ProductTagID": "67f669e979f92466e527d4f5"
+    },
+    {
+        "ProductID": "67f470470633d9727c459094",
+        "ProductTagID": "67f669e979f92466e527d4fe"
+    },
+    {
+        "ProductID": "67f470470633d9727c459094",
+        "ProductTagID": "67f669e979f92466e527d4fc"
+    },
+    {
+        "ProductID": "67f470470633d9727c459095",
+        "ProductTagID": "67f669e979f92466e527d4f5"
+    },
+    {
+        "ProductID": "67f470470633d9727c459095",
+        "ProductTagID": "67f669e979f92466e527d4fd"
+    },
+    {
+        "ProductID": "67f470470633d9727c459095",
+        "ProductTagID": "67f669e979f92466e527d4fc"
+    },
+    {
+        "ProductID": "67f470470633d9727c459096",
+        "ProductTagID": "67f669e979f92466e527d4fc"
+    },
+    {
+        "ProductID": "67f470470633d9727c459096",
+        "ProductTagID": "67f669e979f92466e527d4f5"
+    },
+    {
+        "ProductID": "67f470470633d9727c459098",
+        "ProductTagID": "67f669e979f92466e527d4fc"
+    },
+    {
+        "ProductID": "67f470470633d9727c459098",
+        "ProductTagID": "67f669e979f92466e527d4f5"
+    },
+    {
+        "ProductID": "67f470470633d9727c459099",
+        "ProductTagID": "67f669e979f92466e527d4f3"
+    },
+    {
+        "ProductID": "67f470470633d9727c459099",
+        "ProductTagID": "67f669e979f92466e527d4ff"
+    },
+    {
+        "ProductID": "67f470470633d9727c459099",
+        "ProductTagID": "67f669e979f92466e527d4f7"
+    },
+    {
+        "ProductID": "67f470470633d9727c45909a",
+        "ProductTagID": "67f669e979f92466e527d4ff"
+    },
+    {
+        "ProductID": "67f470470633d9727c45909b",
+        "ProductTagID": "67f669e979f92466e527d4ff"
+    },
+    {
+        "ProductID": "67f470470633d9727c45909c",
+        "ProductTagID": "67f669e979f92466e527d500"
+    },
+    {
+        "ProductID": "67f470470633d9727c45909c",
+        "ProductTagID": "67f669e979f92466e527d4f3"
+    },
+    {
+        "ProductID": "67f470470633d9727c45909d",
+        "ProductTagID": "67f669e979f92466e527d500"
+    },
+    {
+        "ProductID": "67f470470633d9727c45909d",
+        "ProductTagID": "67f669e979f92466e527d4f3"
+    },
+    {
+        "ProductID": "67f470470633d9727c45909e",
+        "ProductTagID": "67f669e979f92466e527d500"
+    },
+    {
+        "ProductID": "67f470470633d9727c45909e",
+        "ProductTagID": "67f669e979f92466e527d4f3"
+    },
+    {
+        "ProductID": "67f470470633d9727c45909f",
+        "ProductTagID": "67f669e979f92466e527d4f7"
+    },
+    {
+        "ProductID": "67f470470633d9727c45909f",
+        "ProductTagID": "67f669e979f92466e527d501"
+    },
+    {
+        "ProductID": "67f470470633d9727c4590a2",
+        "ProductTagID": "67f669e979f92466e527d4f3"
+    },
+    {
+        "ProductID": "67f470470633d9727c4590a2",
+        "ProductTagID": "67f669e979f92466e527d502"
+    },
+    {
+        "ProductID": "67f470470633d9727c4590a3",
+        "ProductTagID": "67f669e979f92466e527d4f3"
+    },
+    {
+        "ProductID": "67f470470633d9727c4590a3",
+        "ProductTagID": "67f669e979f92466e527d502"
+    },
+    {
+        "ProductID": "67f470470633d9727c4590a4",
+        "ProductTagID": "67f669e979f92466e527d4f3"
+    },
+    {
+        "ProductID": "67f470470633d9727c4590a4",
+        "ProductTagID": "67f669e979f92466e527d502"
+    }
+
+]

@@ -314,6 +314,18 @@ func (tu *InstallUsecase) InstallProductTag(c context.Context, items []catalog.P
 	return tu.InstallRepository.InstallProductTag(ctx, items)
 }
 
+func (tu *InstallUsecase) InstallProductProductTagMapping(c context.Context, items []catalog.ProductProductTagMapping) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallProductProductTagMapping(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallProductAttributeValue(c context.Context, items []catalog.ProductAttributeValue) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallProductAttributeValue(ctx, items)
+}
+
 func (tu *InstallUsecase) InstallProductAttributeMapping(c context.Context, items []catalog.ProductAttributeMapping) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
@@ -330,6 +342,24 @@ func (tu *InstallUsecase) InstallProductCategory(c context.Context, items []cata
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.InstallRepository.InstallProductCategory(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallTierPrice(c context.Context, items []catalog.TierPrice) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallTierPrice(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallProductManufacturer(c context.Context, items []catalog.ProductManufacturer) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallProductManufacturer(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallProductAttributeValuePicture(c context.Context, items []catalog.ProductAttributeValuePicture) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallProductAttributeValuePicture(ctx, items)
 }
 
 func (tu *InstallUsecase) InstallWarehouse(c context.Context, items []shippings.Warehouse) error {
@@ -414,4 +444,10 @@ func (tu *InstallUsecase) InstallSearchTerm(c context.Context, items []commons.S
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.InstallRepository.InstallSearchTerm(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallDownload(c context.Context, items []media.Download) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallDownload(ctx, items)
 }

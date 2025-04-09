@@ -1,0 +1,92 @@
+[
+    {
+        "ID": "67f6cb12434f22dea2dd8c98",
+        "ProductID": "67f62f48166c9fc55b44aa98",
+        "StoreID": "64f1b3d4e5f6789012345678",
+        "CustomerRoleID": null,
+        "Quantity": 2,
+        "Price": 19,
+        "StartDateTimeUtc": null,
+        "EndDateTimeUtc": null
+    },
+    {
+        "ID": "67f6cb12434f22dea2dd8c99",
+        "ProductID": "67f62f48166c9fc55b44aa98",
+        "StoreID": "64f1b3d4e5f6789012345678",
+        "CustomerRoleID": null,
+        "Quantity": 5,
+        "Price": 17,
+        "StartDateTimeUtc": null,
+        "EndDateTimeUtc": null
+    },
+    {
+        "ID": "67f6cb12434f22dea2dd8c9a",
+        "ProductID": "67f62f48166c9fc55b44aa98",
+        "StoreID": "64f1b3d4e5f6789012345678",
+        "CustomerRoleID": null,
+        "Quantity": 10,
+        "Price": 15,
+        "StartDateTimeUtc": null,
+        "EndDateTimeUtc": null
+    },
+    {
+        "ID": "67f6cb12434f22dea2dd8c9b",
+        "ProductID": "67f470470633d9727c459093",
+        "StoreID": "64f1b3d4e5f6789012345678",
+        "CustomerRoleID": null,
+        "Quantity": 3,
+        "Price": 21,
+        "StartDateTimeUtc": null,
+        "EndDateTimeUtc": null
+    },
+    {
+        "ID": "67f6cb12434f22dea2dd8c9c",
+        "ProductID": "67f470470633d9727c459093",
+        "StoreID": "64f1b3d4e5f6789012345678",
+        "CustomerRoleID": null,
+        "Quantity": 7,
+        "Price": 19,
+        "StartDateTimeUtc": null,
+        "EndDateTimeUtc": null
+    },
+    {
+        "ID": "67f6cb12434f22dea2dd8c9d",
+        "ProductID": "67f470470633d9727c459093",
+        "StoreID": "64f1b3d4e5f6789012345678",
+        "CustomerRoleID": null,
+        "Quantity": 10,
+        "Price": 16,
+        "StartDateTimeUtc": null,
+        "EndDateTimeUtc": null
+    },
+    {
+        "ID": "67f6cb12434f22dea2dd8c9e",
+        "ProductID": "67f470470633d9727c459095",
+        "StoreID": "64f1b3d4e5f6789012345678",
+        "CustomerRoleID": null,
+        "Quantity": 3,
+        "Price": 40,
+        "StartDateTimeUtc": null,
+        "EndDateTimeUtc": null
+    },
+    {
+        "ID": "67f6cb12434f22dea2dd8c9f",
+        "ProductID": "67f470470633d9727c459095",
+        "StoreID": "64f1b3d4e5f6789012345678",
+        "CustomerRoleID": null,
+        "Quantity": 6,
+        "Price": 38,
+        "StartDateTimeUtc": null,
+        "EndDateTimeUtc": null
+    },
+    {
+        "ID": "67f6cb12434f22dea2dd8ca0",
+        "ProductID": "67f470470633d9727c459095",
+        "StoreID": "64f1b3d4e5f6789012345678",
+        "CustomerRoleID": null,
+        "Quantity": 10,
+        "Price": 35,
+        "StartDateTimeUtc": null,
+        "EndDateTimeUtc": null
+    }
+]

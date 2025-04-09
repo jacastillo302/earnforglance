@@ -1,0 +1,57 @@
+[
+    {
+        "ID": "67f704e76e303ea91138fdd7",
+        "DownloadGuid": "f6296c0b-842a-42a5-a7ec-0eed6fc900d1",
+        "UseDownloadUrl": true,
+        "DownloadUrl": "./media/downloads/samples/",
+        "DownloadBinary": "",
+        "ContentType": "application/x-zip-co",
+        "Filename": "product_NightVision_1",
+        "Extension": ".zip",
+        "IsNew": true
+    },
+    {
+        "ID": "67f704e76e303ea91138fdd8",
+        "DownloadGuid": "011f7ff4-a3bc-4c6c-aa77-8b7778182e3b",
+        "UseDownloadUrl": true,
+        "DownloadUrl": "./media/downloads/samples/",
+        "DownloadBinary": "",
+        "ContentType": "text/plain",
+        "Filename": "product_NightVision_2",
+        "Extension": ".txt",
+        "IsNew": true
+    },
+    {
+        "ID": "67f704e76e303ea91138fdd9",
+        "DownloadGuid": "867fde46-f8ed-4433-81cb-2868d648ea2f",
+        "UseDownloadUrl": true,
+        "DownloadUrl": "./media/downloads/samples/",
+        "DownloadBinary": "",
+        "ContentType": "application/x-zip-co",
+        "Filename": "product_IfYouWait_1",
+        "Extension": ".zip",
+        "IsNew": true
+    },
+    {
+        "ID": "67f704e76e303ea91138fdda",
+        "DownloadGuid": "9fd4ec0b-ab53-4b6c-b7cd-4019d7b9d29a",
+        "UseDownloadUrl": true,
+        "DownloadUrl": "./media/downloads/samples/",
+        "DownloadBinary": "",
+        "ContentType": "text/plain",
+        "Filename": "product_IfYouWait_2",
+        "Extension": ".txt",
+        "IsNew": true
+    },
+    {
+        "ID": "67f704e76e303ea91138fddb",
+        "DownloadGuid": "125c2cfa-4d0a-417a-af2e-8b45527d386c",
+        "UseDownloadUrl": true,
+        "DownloadUrl": "./media/downloads/samples/",
+        "DownloadBinary": "",
+        "ContentType": "application/x-zip-co",
+        "Filename": "product_ScienceAndFaith_1",
+        "Extension": ".zip",
+        "IsNew": true
+    }
+]

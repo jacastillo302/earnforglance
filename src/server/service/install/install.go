@@ -1683,6 +1683,44 @@ func InstallProductTag(isSample bool) (response.Install, []catalog.ProductTag) {
 	return result, items
 }
 
+func InstallProductAttributeValue(isSample bool) (response.Install, []catalog.ProductAttributeValue) {
+	var result response.Install
+	collection := catalog.CollectionProductAttributeValue
+
+	sample := "_sample"
+
+	if !isSample {
+		sample = ""
+	}
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "catalog\\"+collection+sample+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of ProductAttributeValue
+	items := make([]catalog.ProductAttributeValue, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
 func InstallProductAttributeMapping(isSample bool) (response.Install, []catalog.ProductAttributeMapping) {
 	var result response.Install
 	collection := catalog.CollectionProductAttributeMapping
@@ -1706,6 +1744,44 @@ func InstallProductAttributeMapping(isSample bool) (response.Install, []catalog.
 
 	// Unmarshal the JSON data into a slice of ProductAttributeMapping
 	items := make([]catalog.ProductAttributeMapping, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallProductProductTagMapping(isSample bool) (response.Install, []catalog.ProductProductTagMapping) {
+	var result response.Install
+	collection := catalog.CollectionProductProductTagMapping
+
+	sample := "_sample"
+
+	if !isSample {
+		sample = ""
+	}
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "catalog\\"+collection+sample+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of ProductProductTagMapping
+	items := make([]catalog.ProductProductTagMapping, 0)
 	err = json.Unmarshal(fileData, &items)
 	if err != nil {
 		result.Status = false
@@ -1782,6 +1858,120 @@ func InstallProductCategory(isSample bool) (response.Install, []catalog.ProductC
 
 	// Unmarshal the JSON data into a slice of ProductCategory
 	items := make([]catalog.ProductCategory, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallTierPrice(isSample bool) (response.Install, []catalog.TierPrice) {
+	var result response.Install
+	collection := catalog.CollectionTierPrice
+
+	sample := "_sample"
+
+	if !isSample {
+		sample = ""
+	}
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "catalog\\"+collection+sample+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of TierPrice
+	items := make([]catalog.TierPrice, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallProductManufacturer(isSample bool) (response.Install, []catalog.ProductManufacturer) {
+	var result response.Install
+	collection := catalog.CollectionProductManufacturer
+
+	sample := "_sample"
+
+	if !isSample {
+		sample = ""
+	}
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "catalog\\"+collection+sample+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of ProductManufacturer
+	items := make([]catalog.ProductManufacturer, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallProductAttributeValuePicture(isSample bool) (response.Install, []catalog.ProductAttributeValuePicture) {
+	var result response.Install
+	collection := catalog.CollectionProductAttributeValuePicture
+
+	sample := "_sample"
+
+	if !isSample {
+		sample = ""
+	}
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "catalog\\"+collection+sample+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of ProductAttributeValuePicture
+	items := make([]catalog.ProductAttributeValuePicture, 0)
 	err = json.Unmarshal(fileData, &items)
 	if err != nil {
 		result.Status = false
@@ -2238,6 +2428,44 @@ func InstallSearchTerm(isSample bool) (response.Install, []commons.SearchTerm) {
 
 	// Unmarshal the JSON data into a slice of commons.SearchTerm
 	items := make([]commons.SearchTerm, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallDownload(isSample bool) (response.Install, []media.Download) {
+	var result response.Install
+	collection := media.CollectionDownload
+
+	sample := "_sample"
+
+	if !isSample {
+		sample = ""
+	}
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "media\\"+collection+sample+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of Download
+	items := make([]media.Download, 0)
 	err = json.Unmarshal(fileData, &items)
 	if err != nil {
 		result.Status = false

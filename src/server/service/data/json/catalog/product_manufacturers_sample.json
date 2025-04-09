@@ -1,0 +1,51 @@
+[
+    {
+        "ID": "67f6eb9e81bdb92b915edae1",
+        "ProductID": "67f470470633d9727c451001",
+        "ManufacturerID": "67f32d25c689547e8bb3eb45",
+        "IsFeaturedProduct": true,
+        "DisplayOrder": 1
+    },
+    {
+        "ID": "67f6eb9e81bdb92b915edae2",
+        "ProductID": "67f62f48166c9fc55b44aaa6",
+        "ManufacturerID": "67f32d25c689547e8bb3eb46",
+        "IsFeaturedProduct": false,
+        "DisplayOrder": 2
+    },
+    {
+        "ID": "67f6eb9e81bdb92b915edae3",
+        "ProductID": "67f62f48166c9fc55b44aaa5",
+        "ManufacturerID": "67f32d25c689547e8bb3eb46",
+        "IsFeaturedProduct": true,
+        "DisplayOrder": 3
+    },
+    {
+        "ID": "67f6eb9e81bdb92b915edae4",
+        "ProductID": "67f62ed9166c9fc55b44aa89",
+        "ManufacturerID": "67f32d25c689547e8bb3eb45",
+        "IsFeaturedProduct": false,
+        "DisplayOrder": 4
+    },
+    {
+        "ID": "67f6eb9e81bdb92b915edae5",
+        "ProductID": "67f62ed9166c9fc55b44aa80",
+        "ManufacturerID": "67f32d25c689547e8bb3eb47",
+        "IsFeaturedProduct": true,
+        "DisplayOrder": 5
+    },
+    {
+        "ID": "67f6eb9e81bdb92b915edae6",
+        "ProductID": "67f62f48166c9fc55b44aaae",
+        "ManufacturerID": "67f32d25c689547e8bb3eb47",
+        "IsFeaturedProduct": false,
+        "DisplayOrder": 6
+    },
+    {
+        "ID": "67f6eb9e81bdb92b915edae7",
+        "ProductID": "67f470470633d9727c459092",
+        "ManufacturerID": "67f32d25c689547e8bb3eb47",
+        "IsFeaturedProduct": true,
+        "DisplayOrder": 7
+    }
+]

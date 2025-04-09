@@ -95,9 +95,15 @@ type InstallRepository interface {
 	InstallProduct(c context.Context, items []catalog.Product) error
 	InstallProductSpecificationAttribute(c context.Context, items []catalog.ProductSpecificationAttribute) error
 	InstallProductTag(c context.Context, items []catalog.ProductTag) error
+	InstallProductProductTagMapping(c context.Context, items []catalog.ProductProductTagMapping) error
+	InstallProductAttributeValue(c context.Context, items []catalog.ProductAttributeValue) error
 	InstallProductAttributeMapping(c context.Context, items []catalog.ProductAttributeMapping) error
 	InstallProductPicture(c context.Context, items []catalog.ProductPicture) error
 	InstallProductCategory(c context.Context, items []catalog.ProductCategory) error
+	InstallTierPrice(c context.Context, items []catalog.TierPrice) error
+	InstallProductManufacturer(c context.Context, items []catalog.ProductManufacturer) error
+	InstallProductAttributeValuePicture(c context.Context, items []catalog.ProductAttributeValuePicture) error
+	InstallDownload(c context.Context, items []media.Download) error
 }
 
 // GdprLogUsecase interface
@@ -161,7 +167,13 @@ type InstallLogUsecase interface {
 	InstallProduct(c context.Context, items []catalog.Product) error
 	InstallProductSpecificationAttribute(c context.Context, items []catalog.ProductSpecificationAttribute) error
 	InstallProductTag(c context.Context, items []catalog.ProductTag) error
+	InstallProductProductTagMapping(c context.Context, items []catalog.ProductProductTagMapping) error
+	InstallProductAttributeValue(c context.Context, items []catalog.ProductAttributeValue) error
 	InstallProductAttributeMapping(c context.Context, items []catalog.ProductAttributeMapping) error
 	InstallProductPicture(c context.Context, items []catalog.ProductPicture) error
 	InstallProductCategory(c context.Context, items []catalog.ProductCategory) error
+	InstallTierPrice(c context.Context, items []catalog.TierPrice) error
+	InstallProductManufacturer(c context.Context, items []catalog.ProductManufacturer) error
+	InstallProductAttributeValuePicture(c context.Context, items []catalog.ProductAttributeValuePicture) error
+	InstallDownload(c context.Context, items []media.Download) error
 }

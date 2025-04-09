@@ -44,13 +44,13 @@ type Product struct {
 	RequiredIDs                                  string             `bson:"required_product_ids"`
 	AutomaticallyAddRequiredProducts             bool               `bson:"automatically_add_required_products"`
 	IsDownload                                   bool               `bson:"is_download"`
-	DownloadID                                   int                `bson:"download_id"`
+	DownloadID                                   primitive.ObjectID `bson:"download_id"`
 	UnlimitedDownloads                           bool               `bson:"unlimited_downloads"`
 	MaxNumberOfDownloads                         int                `bson:"max_number_of_downloads"`
 	DownloadExpirationDays                       *int               `bson:"download_expiration_days"`
 	DownloadActivationTypeID                     int                `bson:"download_activation_type_id"`
 	HasSampleDownload                            bool               `bson:"has_sample_download"`
-	SampleDownloadID                             int                `bson:"sample_download_id"`
+	SampleDownloadID                             primitive.ObjectID `bson:"sample_download_id"`
 	HasUserAgreement                             bool               `bson:"has_user_agreement"`
 	UserAgreementText                            string             `bson:"user_agreement_text"`
 	IsRecurring                                  bool               `bson:"is_recurring"`

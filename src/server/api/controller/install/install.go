@@ -1173,7 +1173,158 @@ func (lc *InstallController) InstallProduct(c *gin.Context) {
 		return
 	}
 
+	for i := range items {
+
+		timein := time.Now()
+		timeout := time.Now().Add(time.Hour * 24 * 30)
+
+		items[i].CreatedOnUtc = timein
+		items[i].UpdatedOnUtc = timein
+
+		if items[i].MarkAsNew {
+			items[i].MarkAsNewStartDateTimeUtc = &timein
+			items[i].MarkAsNewEndDateTimeUtc = &timeout
+		}
+	}
+
 	err := lc.InstallUsecase.InstallProduct(c, items)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	result, caetegories := service.InstallProductCategory(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err = lc.InstallUsecase.InstallProductCategory(c, caetegories)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	result, pictures := service.InstallProductPicture(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err = lc.InstallUsecase.InstallProductPicture(c, pictures)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	result, picturesatr := service.InstallProductAttributeValuePicture(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err = lc.InstallUsecase.InstallProductAttributeValuePicture(c, picturesatr)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	result, tags := service.InstallProductTag(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err = lc.InstallUsecase.InstallProductTag(c, tags)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	result, tagsmap := service.InstallProductProductTagMapping(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err = lc.InstallUsecase.InstallProductProductTagMapping(c, tagsmap)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	result, atrmap := service.InstallProductAttributeMapping(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err = lc.InstallUsecase.InstallProductAttributeMapping(c, atrmap)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	result, atrvalue := service.InstallProductAttributeValue(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err = lc.InstallUsecase.InstallProductAttributeValue(c, atrvalue)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	result, atrsp := service.InstallProductSpecificationAttribute(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err = lc.InstallUsecase.InstallProductSpecificationAttribute(c, atrsp)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	result, manufa := service.InstallProductManufacturer(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err = lc.InstallUsecase.InstallProductManufacturer(c, manufa)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	result, tierprice := service.InstallTierPrice(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err = lc.InstallUsecase.InstallTierPrice(c, tierprice)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, result)
+}
+
+func (lc *InstallController) InstallDownload(c *gin.Context) {
+
+	result, items := service.InstallDownload(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err := lc.InstallUsecase.InstallDownload(c, items)
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
 		return

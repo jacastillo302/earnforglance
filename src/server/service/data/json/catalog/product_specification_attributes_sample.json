@@ -1,0 +1,252 @@
+[
+    {
+        "ID": "67f6b6b05913582bf7962213",
+        "ProductID": "67f470470633d9727c451001",
+        "SpecificationAttributeTypeID": 0,
+        "SpecificationAttributeOptionID": "790cac62da965455d6d55384",
+        "CustomValue": "",
+        "AllowFiltering": true,
+        "ShowOnProductPage": true,
+        "DisplayOrder": 1
+    },
+    {
+        "ID": "67f6b6b05913582bf7962214",
+        "ProductID": "67f470470633d9727c451001",
+        "SpecificationAttributeTypeID": 0,
+        "SpecificationAttributeOptionID": "5f1c48fec2483927468010f3",
+        "CustomValue": "",
+        "AllowFiltering": true,
+        "ShowOnProductPage": true,
+        "DisplayOrder": 2
+    },
+    {
+        "ID": "67f6b6b05913582bf7962215",
+        "ProductID": "67f470470633d9727c451001",
+        "SpecificationAttributeTypeID": 0,
+        "SpecificationAttributeOptionID": "39e68718005e60ec28b46c3a",
+        "CustomValue": "",
+        "AllowFiltering": true,
+        "ShowOnProductPage": true,
+        "DisplayOrder": 3
+    },
+    {
+        "ID": "67f6b6b05913582bf7962216",
+        "ProductID": "67f62f48166c9fc55b44aaa9",
+        "SpecificationAttributeTypeID": 0,
+        "SpecificationAttributeOptionID": "97b8bab2b1c4d8bbf3a774d6",
+        "CustomValue": "",
+        "AllowFiltering": true,
+        "ShowOnProductPage": true,
+        "DisplayOrder": 1
+    },
+    {
+        "ID": "67f6b6b05913582bf7962217",
+        "ProductID": "67f62f48166c9fc55b44aaa9",
+        "SpecificationAttributeTypeID": 0,
+        "SpecificationAttributeOptionID": "c7c7df892a3d2dd3798eb7d1",
+        "CustomValue": "",
+        "AllowFiltering": true,
+        "ShowOnProductPage": true,
+        "DisplayOrder": 2
+    },
+    {
+        "ID": "67f6b6b05913582bf7962218",
+        "ProductID": "67f62f48166c9fc55b44aaa9",
+        "SpecificationAttributeTypeID": 0,
+        "SpecificationAttributeOptionID": "1d2239ad46050d27a5b3d812",
+        "CustomValue": "",
+        "AllowFiltering": true,
+        "ShowOnProductPage": true,
+        "DisplayOrder": 3
+    },
+    {
+        "ID": "67f6b6b05913582bf7962219",
+        "ProductID": "67f62f48166c9fc55b44aaa9",
+        "SpecificationAttributeTypeID": 0,
+        "SpecificationAttributeOptionID": "f3665715ba526ff3190fb78d",
+        "CustomValue": "",
+        "AllowFiltering": true,
+        "ShowOnProductPage": true,
+        "DisplayOrder": 4
+    },
+    {
+        "ID": "67f6b6b05913582bf796221a",
+        "ProductID": "67f62ed9166c9fc55b44aa93",
+        "SpecificationAttributeTypeID": 0,
+        "SpecificationAttributeOptionID": "a10c3e2bf936eaa07e112af7",
+        "CustomValue": "",
+        "AllowFiltering": false,
+        "ShowOnProductPage": true,
+        "DisplayOrder": 1
+    },
+    {
+        "ID": "67f6b6b05913582bf796221b",
+        "ProductID": "67f62ed9166c9fc55b44aa93",
+        "SpecificationAttributeTypeID": 0,
+        "SpecificationAttributeOptionID": "5f1c48fec2483927468010f3",
+        "CustomValue": "",
+        "AllowFiltering": true,
+        "ShowOnProductPage": true,
+        "DisplayOrder": 2
+    },
+    {
+        "ID": "67f6b6b05913582bf796221c",
+        "ProductID": "67f62ed9166c9fc55b44aa93",
+        "SpecificationAttributeTypeID": 0,
+        "SpecificationAttributeOptionID": "aa83f31ad94679a5f8b6694a",
+        "CustomValue": "",
+        "AllowFiltering": true,
+        "ShowOnProductPage": true,
+        "DisplayOrder": 3
+    },
+    {
+        "ID": "67f6b6b05913582bf796221d",
+        "ProductID": "67f62f48166c9fc55b44aaa6",
+        "SpecificationAttributeTypeID": 0,
+        "SpecificationAttributeOptionID": "790cac62da965455d6d55384",
+        "CustomValue": "",
+        "AllowFiltering": false,
+        "ShowOnProductPage": true,
+        "DisplayOrder": 1
+    },
+    {
+        "ID": "67f6b6b05913582bf796221e",
+        "ProductID": "67f62f48166c9fc55b44aaa6",
+        "SpecificationAttributeTypeID": 0,
+        "SpecificationAttributeOptionID": "5f1c48fec2483927468010f3",
+        "CustomValue": "",
+        "AllowFiltering": true,
+        "ShowOnProductPage": true,
+        "DisplayOrder": 2
+    },
+    {
+        "ID": "67f6b6b05913582bf796221f",
+        "ProductID": "67f62f48166c9fc55b44aaa6",
+        "SpecificationAttributeTypeID": 0,
+        "SpecificationAttributeOptionID": "1d2239ad46050d27a5b3d812",
+        "CustomValue": "",
+        "AllowFiltering": true,
+        "ShowOnProductPage": true,
+        "DisplayOrder": 3
+    },
+    {
+        "ID": "67f6b6b05913582bf7962220",
+        "ProductID": "67f62f48166c9fc55b44aaa6",
+        "SpecificationAttributeTypeID": 0,
+        "SpecificationAttributeOptionID": "aa83f31ad94679a5f8b6694a",
+        "CustomValue": "",
+        "AllowFiltering": true,
+        "ShowOnProductPage": true,
+        "DisplayOrder": 4
+    },
+    {
+        "ID": "67f6b6b05913582bf7962221",
+        "ProductID": "67f62f48166c9fc55b44aaa5",
+        "SpecificationAttributeTypeID": 0,
+        "SpecificationAttributeOptionID": "97b8bab2b1c4d8bbf3a774d6",
+        "CustomValue": "",
+        "AllowFiltering": true,
+        "ShowOnProductPage": true,
+        "DisplayOrder": 1
+    },
+    {
+        "ID": "67f6b6b05913582bf7962222",
+        "ProductID": "67f62f48166c9fc55b44aaa5",
+        "SpecificationAttributeTypeID": 0,
+        "SpecificationAttributeOptionID": "c7c7df892a3d2dd3798eb7d1",
+        "CustomValue": "",
+        "AllowFiltering": true,
+        "ShowOnProductPage": true,
+        "DisplayOrder": 2
+    },
+    {
+        "ID": "67f6b6b05913582bf7962223",
+        "ProductID": "67f62f48166c9fc55b44aaa5",
+        "SpecificationAttributeTypeID": 0,
+        "SpecificationAttributeOptionID": "39e68718005e60ec28b46c3a",
+        "CustomValue": "",
+        "AllowFiltering": true,
+        "ShowOnProductPage": true,
+        "DisplayOrder": 3
+    },
+    {
+        "ID": "67f6b6b05913582bf7962224",
+        "ProductID": "67f62f48166c9fc55b44aaa5",
+        "SpecificationAttributeTypeID": 0,
+        "SpecificationAttributeOptionID": "df998072e1eb89d60a8e3738",
+        "CustomValue": "",
+        "AllowFiltering": true,
+        "ShowOnProductPage": true,
+        "DisplayOrder": 4
+    },
+    {
+        "ID": "67f6b6b05913582bf7962225",
+        "ProductID": "67f62ed9166c9fc55b44aa8f",
+        "SpecificationAttributeTypeID": 0,
+        "SpecificationAttributeOptionID": "0acd8a5e11106984463f90e0",
+        "CustomValue": "",
+        "AllowFiltering": true,
+        "ShowOnProductPage": true,
+        "DisplayOrder": 1
+    },
+    {
+        "ID": "67f6b6b05913582bf7962226",
+        "ProductID": "67f62ed9166c9fc55b44aa8f",
+        "SpecificationAttributeTypeID": 0,
+        "SpecificationAttributeOptionID": "c7c7df892a3d2dd3798eb7d1",
+        "CustomValue": "",
+        "AllowFiltering": true,
+        "ShowOnProductPage": true,
+        "DisplayOrder": 2
+    },
+    {
+        "ID": "67f6b6b05913582bf7962227",
+        "ProductID": "67f62ed9166c9fc55b44aa80",
+        "SpecificationAttributeTypeID": 0,
+        "SpecificationAttributeOptionID": "4b5fb5d4059f56fa857a0d90",
+        "CustomValue": "",
+        "AllowFiltering": true,
+        "ShowOnProductPage": true,
+        "DisplayOrder": 1
+    },
+    {
+        "ID": "67f6b6b05913582bf7962228",
+        "ProductID": "67f62ed9166c9fc55b44bb90",
+        "SpecificationAttributeTypeID": 0,
+        "SpecificationAttributeOptionID": "4b5fb5d4059f56fa857a0d90",
+        "CustomValue": "",
+        "AllowFiltering": true,
+        "ShowOnProductPage": true,
+        "DisplayOrder": 1
+    },
+    {
+        "ID": "67f6b6b05913582bf7962229",
+        "ProductID": "67f62ed9166c9fc55b44bb90",
+        "SpecificationAttributeTypeID": 0,
+        "SpecificationAttributeOptionID": "72451acc1bd1c30194870854",
+        "CustomValue": "",
+        "AllowFiltering": true,
+        "ShowOnProductPage": true,
+        "DisplayOrder": 2
+    },
+    {
+        "ID": "67f6b6b05913582bf796222a",
+        "ProductID": "67f62ed9166c9fc55b44bb90",
+        "SpecificationAttributeTypeID": 0,
+        "SpecificationAttributeOptionID": "84d03453ad94b1e73c879396",
+        "CustomValue": "",
+        "AllowFiltering": true,
+        "ShowOnProductPage": true,
+        "DisplayOrder": 3
+    },
+    {
+        "ID": "67f6b6b05913582bf796222b",
+        "ProductID": "67f62f48166c9fc55b44aaae",
+        "SpecificationAttributeTypeID": 0,
+        "SpecificationAttributeOptionID": "4b5fb5d4059f56fa857a0d90",
+        "CustomValue": "",
+        "AllowFiltering": true,
+        "ShowOnProductPage": true,
+        "DisplayOrder": 1
+    }
+]
