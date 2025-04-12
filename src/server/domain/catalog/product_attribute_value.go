@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	CollectionProductAttributeValue = "product_attribute_value"
+	CollectionProductAttributeValue = "product_attribute_values"
 )
 
 // ProductAttributeValue represents a product attribute value

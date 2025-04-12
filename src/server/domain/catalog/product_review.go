@@ -28,6 +28,23 @@ type ProductReview struct {
 	CreatedOnUtc            time.Time          `bson:"created_on_utc"`
 }
 
+// JSON example for ProductReview
+// {
+//   "_id": "60c72b2f9af1c2b9d8e8b456",
+//   "customer_id": "60c72b2f9af1c2b9d8e8b123",
+//   "product_id": "60c72b2f9af1c2b9d8e8b789",
+//   "store_id": "60c72b2f9af1c2b9d8e8b321",
+//   "is_approved": true,
+//   "title": "Great Product!",
+//   "review_text": "I really enjoyed using this product. Highly recommend!",
+//   "reply_text": "Thank you for your feedback!",
+//   "customer_notified_of_reply": true,
+//   "rating": 5,
+//   "helpful_yes_total": 10,
+//   "helpful_no_total": 2,
+//   "created_on_utc": "2023-10-01T12:34:56Z"
+// }
+
 type ProductReviewRepository interface {
 	CreateMany(c context.Context, items []ProductReview) error
 	Create(c context.Context, product_review *ProductReview) error

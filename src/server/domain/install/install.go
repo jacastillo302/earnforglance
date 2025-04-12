@@ -13,6 +13,7 @@ import (
 	directory "earnforglance/server/domain/directory"
 	discounts "earnforglance/server/domain/discounts"
 	forums "earnforglance/server/domain/forums"
+	gdprs "earnforglance/server/domain/gdpr"
 	lang "earnforglance/server/domain/localization"
 	loggings "earnforglance/server/domain/logging"
 	media "earnforglance/server/domain/media"
@@ -104,6 +105,15 @@ type InstallRepository interface {
 	InstallProductManufacturer(c context.Context, items []catalog.ProductManufacturer) error
 	InstallProductAttributeValuePicture(c context.Context, items []catalog.ProductAttributeValuePicture) error
 	InstallDownload(c context.Context, items []media.Download) error
+	InstallRelatedProduct(c context.Context, items []catalog.RelatedProduct) error
+	InstallProductReview(c context.Context, items []catalog.ProductReview) error
+	InstallStockQuantityChange(c context.Context, items []catalog.StockQuantityChange) error
+	InstallGdprConsent(c context.Context, items []gdprs.GdprConsent) error
+	InstallOrder(c context.Context, items []orders.Order) error
+	InstallOrderItem(c context.Context, items []orders.OrderItem) error
+	InstallShipment(c context.Context, items []shippings.Shipment) error
+	InstallShipmentItem(c context.Context, items []shippings.ShipmentItem) error
+	InstallOrderNote(c context.Context, items []orders.OrderNote) error
 }
 
 // GdprLogUsecase interface
@@ -176,4 +186,13 @@ type InstallLogUsecase interface {
 	InstallProductManufacturer(c context.Context, items []catalog.ProductManufacturer) error
 	InstallProductAttributeValuePicture(c context.Context, items []catalog.ProductAttributeValuePicture) error
 	InstallDownload(c context.Context, items []media.Download) error
+	InstallRelatedProduct(c context.Context, items []catalog.RelatedProduct) error
+	InstallProductReview(c context.Context, items []catalog.ProductReview) error
+	InstallStockQuantityChange(c context.Context, items []catalog.StockQuantityChange) error
+	InstallGdprConsent(c context.Context, items []gdprs.GdprConsent) error
+	InstallOrder(c context.Context, items []orders.Order) error
+	InstallOrderItem(c context.Context, items []orders.OrderItem) error
+	InstallShipment(c context.Context, items []shippings.Shipment) error
+	InstallShipmentItem(c context.Context, items []shippings.ShipmentItem) error
+	InstallOrderNote(c context.Context, items []orders.OrderNote) error
 }

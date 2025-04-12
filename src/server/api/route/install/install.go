@@ -61,5 +61,8 @@ func InstallRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database,
 	group.GET("/activity_log", lc.InstallActivityLogType)
 	group.GET("/search_term", lc.InstallSearchTerm)
 	group.GET("/download", lc.InstallDownload)
+	group.GET("/gdpr", lc.InstallGdprConsent)
 	group.GET("/product", lc.InstallProduct)
+	group.GET("/order", lc.InstallProduct)
+
 }

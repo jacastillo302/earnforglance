@@ -1,0 +1,16 @@
+[
+    {
+        "CustomerID": "64f1a2c3d4e5f67890123456",
+        "ProductID": "60c72b2f9af1c2b9d8e8b789",
+        "StoreID": "64f1b3d4e5f6789012345678",
+        "IsApproved": true,
+        "Title": "This a sample of Review of product!",
+        "ReviewText": "I really enjoyed using this product. Highly recommend!",
+        "ReplyText": "Thank you for your feedback!",
+        "CustomerNotifiedOfReply": true,
+        "Rating": 5,
+        "HelpfulYesTotal": 10,
+        "HelpfulNoTotal": 2,
+        "CreatedOnUtc": "2023-10-01T12:34:56Z"
+    }
+]

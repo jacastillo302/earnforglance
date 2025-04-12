@@ -1,668 +1,3536 @@
-{
-    "PdfSettings": {
-      "LogoPictureId": "0",
-      "LetterPageSizeEnabled": "false",
-      "RenderOrderNotes": "true",
-      "LtrFontName": "NopCommonDefaults.PdfLtrFontName",
-      "RtlFontName": "NopCommonDefaults.PdfRtlFontName",
-      "InvoiceFooterTextColumn1": "",
-      "InvoiceFooterTextColumn2": "",
-      "BaseFontSize": "10",
-      "ImageTargetSize": "200"
-    },
-    "SitemapSettings": {
-      "SitemapEnabled": "true",
-      "SitemapPageSize": "200",
-      "SitemapIncludeCategories": "true",
-      "SitemapIncludeManufacturers": "true",
-      "SitemapIncludeProducts": "false",
-      "SitemapIncludeProductTags": "false",
-      "SitemapIncludeBlogPosts": "true",
-      "SitemapIncludeNews": "false",
-      "SitemapIncludeTopics": "true"
-    },
-    "SitemapXmlSettings": {
-      "SitemapXmlEnabled": "true",
-      "SitemapXmlIncludeBlogPosts": "true",
-      "SitemapXmlIncludeCategories": "true",
-      "SitemapXmlIncludeManufacturers": "true",
-      "SitemapXmlIncludeNews": "true",
-      "SitemapXmlIncludeProducts": "true",
-      "SitemapXmlIncludeProductTags": "true",
-      "SitemapXmlIncludeCustomUrls": "true",
-      "SitemapXmlIncludeTopics": "true",
-      "RebuildSitemapXmlAfterHours": "48",
-      "SitemapBuildOperationDelay": "60"
-    },
-    "CommonSettings": {
-      "UseSystemEmailForContactUsForm": "true",
-      "DisplayJavaScriptDisabledWarning": "false",
-      "Log404Errors": "true",
-      "BreadcrumbDelimiter": "/",
-      "BbcodeEditorOpenLinksInNewWindow": "false",
-      "PopupForTermsOfServiceLinks": "true",
-      "JqueryMigrateScriptLoggingActive": "false",
-      "UseResponseCompression": "true",
-      "FaviconAndAppIconsHeadCode": "<link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/icons/icons_0/apple-touch-icon.png\"><link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"/icons/icons_0/favicon-32x32.png\"><link rel=\"icon\" type=\"image/png\" sizes=\"192x192\" href=\"/icons/icons_0/android-chrome-192x192.png\"><link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"/icons/icons_0/favicon-16x16.png\"><link rel=\"manifest\" href=\"/icons/icons_0/site.webmanifest\"><link rel=\"mask-icon\" href=\"/icons/icons_0/safari-pinned-tab.svg\" color=\"#5bbad5\"><link rel=\"shortcut icon\" href=\"/icons/icons_0/favicon.ico\"><meta name=\"msapplication-TileColor\" content=\"#2d89ef\"><meta name=\"msapplication-TileImage\" content=\"/icons/icons_0/mstile-144x144.png\"><meta name=\"msapplication-config\" content=\"/icons/icons_0/browserconfig.xml\"><meta name=\"theme-color\" content=\"#ffffff\">",
-      "EnableHtmlMinification": "false",
-      "RestartTimeout": "NopCommonDefaults.RestartTimeout",
-      "HeaderCustomHtml": "",
-      "FooterCustomHtml": ""
-    },
-    "SeoSettings": {
-      "PageTitleSeparator": ". ",
-      "PageTitleSeoAdjustment": "PageTitleSeoAdjustment.PagenameAfterStorename",
-      "GenerateProductMetaDescription": "true",
-      "ConvertNonWesternChars": "false",
-      "AllowUnicodeCharsInUrls": "true",
-      "CanonicalUrlsEnabled": "false",
-      "QueryStringInCanonicalUrlsEnabled": "false",
-      "WwwRequirement": "WwwRequirement.NoMatter",
-      "TwitterMetaTags": "true",
-      "OpenGraphMetaTags": "true",
-      "MicrodataEnabled": "true",
-      "ReservedUrlRecordSlugs": "NopSeoDefaults.ReservedUrlRecordSlugs",
-      "CustomHeadTags": ""
-    },
-    "AdminAreaSettings": {
-      "DefaultGridPageSize": "15",
-      "ProductsBulkEditGridPageSize": "100",
-      "PopupGridPageSize": "7",
-      "GridPageSizes": "7, 15, 20, 50, 100",
-      "RichEditorAdditionalSettings": "",
-      "RichEditorAllowJavaScript": "false",
-      "RichEditorAllowStyleTag": "false",
-      "UseRichEditorForCustomerEmails": "false",
-      "UseRichEditorInMessageTemplates": "false",
-      "CheckLicense": "true",
-      "UseIsoDateFormatInJsonResult": "true",
-      "ShowDocumentationReferenceLinks": "true",
-      "UseStickyHeaderLayout": "false",
-      "MinimumDropdownItemsForSearch": "50"
-    },
-    "ProductEditorSettings": {
-      "Weight": "true",
-      "Dimensions": "true",
-      "ProductAttributes": "true",
-      "SpecificationAttributes": "true",
-      "PAngV": "isGermany"
-    },
-    "GdprSettings": {
-      "DeleteInactiveCustomersAfterMonths": "36",
-      "GdprEnabled": "false",
-      "LogPrivacyPolicyConsent": "true",
-      "LogNewsletterConsent": "true",
-      "LogUserProfileChanges": "true"
-    },
-    "CatalogSettings": {
-      "AllowViewUnpublishedProductPage": "true",
-      "DisplayDiscontinuedMessageForUnpublishedProducts": "true",
-      "PublishBackProductWhenCancellingOrders": "false",
-      "ShowSkuOnProductDetailsPage": "true",
-      "ShowSkuOnCatalogPages": "false",
-      "ShowManufacturerPartNumber": "false",
-      "ShowGtin": "false",
-      "ShowFreeShippingNotification": "true",
-      "ShowShortDescriptionOnCatalogPages": "false",
-      "AllowProductSorting": "true",
-      "AllowProductViewModeChanging": "true",
-      "DefaultViewMode": "grid",
-      "ShowProductsFromSubcategories": "false",
-      "ShowCategoryProductNumber": "false",
-      "ShowCategoryProductNumberIncludingSubcategories": "false",
-      "CategoryBreadcrumbEnabled": "true",
-      "ShowShareButton": "true",
-      "PageShareCode": "<!-- ShareThis Button BEGIN --><div class=\"sharethis-inline-share-buttons\"></div><script type=\"text/javascript\" src=\"https://platform-api.sharethis.com/js/sharethis.js#property=64428a0865e28d00193ae8a9&product=inline-share-buttons&source=nopcommerce\" async=\"async\"></script><!-- ShareThis Button END -->",
-      "ProductReviewsMustBeApproved": "false",
-      "OneReviewPerProductFromCustomer": "false",
-      "DefaultProductRatingValue": "5",
-      "AllowAnonymousUsersToReviewProduct": "false",
-      "ProductReviewPossibleOnlyAfterPurchasing": "false",
-      "NotifyStoreOwnerAboutNewProductReviews": "false",
-      "NotifyCustomerAboutProductReviewReply": "false",
-      "EmailAFriendEnabled": "true",
-      "AllowAnonymousUsersToEmailAFriend": "false",
-      "RecentlyViewedProductsNumber": "3",
-      "RecentlyViewedProductsEnabled": "true",
-      "NewProductsEnabled": "true",
-      "NewProductsPageSize": "6",
-      "NewProductsAllowCustomersToSelectPageSize": "true",
-      "NewProductsPageSizeOptions": "6, 3, 9",
-      "CompareProductsEnabled": "true",
-      "CompareProductsNumber": "4",
-      "ProductSearchAutoCompleteEnabled": "true",
-      "ProductSearchEnabled": "true",
-      "ProductSearchAutoCompleteNumberOfProducts": "10",
-      "ShowLinkToAllResultInSearchAutoComplete": "false",
-      "ProductSearchTermMinimumLength": "3",
-      "ShowProductImagesInSearchAutoComplete": "false",
-      "ShowBestsellersOnHomepage": "false",
-      "NumberOfBestsellersOnHomepage": "4",
-      "ShowSearchBoxCategories": "false",
-      "SearchPageProductsPerPage": "6",
-      "SearchPageAllowCustomersToSelectPageSize": "true",
-      "SearchPagePageSizeOptions": "6, 3, 9, 18",
-      "SearchPagePriceRangeFiltering": "true",
-      "SearchPageManuallyPriceRange": "true",
-      "SearchPagePriceFrom": "NopCatalogDefaults.DefaultPriceRangeFrom",
-      "SearchPagePriceTo": "NopCatalogDefaults.DefaultPriceRangeTo",
-      "ProductsAlsoPurchasedEnabled": "true",
-      "ProductsAlsoPurchasedNumber": "4",
-      "AjaxProcessAttributeChange": "true",
-      "NumberOfProductTags": "15",
-      "ProductsByTagPageSize": "6",
-      "IncludeShortDescriptionInCompareProducts": "false",
-      "IncludeFullDescriptionInCompareProducts": "false",
-      "IncludeFeaturedProductsInNormalLists": "false",
-      "UseLinksInRequiredProductWarnings": "true",
-      "DisplayTierPricesWithDiscounts": "true",
-      "IgnoreDiscounts": "false",
-      "IgnoreFeaturedProducts": "false",
-      "IgnoreAcl": "true",
-      "IgnoreStoreLimitations": "true",
-      "CacheProductPrices": "false",
-      "ProductsByTagAllowCustomersToSelectPageSize": "true",
-      "ProductsByTagPageSizeOptions": "6, 3, 9, 18",
-      "ProductsByTagPriceRangeFiltering": "true",
-      "ProductsByTagManuallyPriceRange": "true",
-      "ProductsByTagPriceFrom": "NopCatalogDefaults.DefaultPriceRangeFrom",
-      "ProductsByTagPriceTo": "NopCatalogDefaults.DefaultPriceRangeTo",
-      "MaximumBackInStockSubscriptions": "200",
-      "ManufacturersBlockItemsToDisplay": "2",
-      "DisplayTaxShippingInfoFooter": "isGermany",
-      "DisplayTaxShippingInfoProductDetailsPage": "isGermany",
-      "DisplayTaxShippingInfoProductBoxes": "isGermany",
-      "DisplayTaxShippingInfoShoppingCart": "isGermany",
-      "DisplayTaxShippingInfoWishlist": "isGermany",
-      "DisplayTaxShippingInfoOrderDetailsPage": "isGermany",
-      "DefaultCategoryPageSizeOptions": "6, 3, 9",
-      "DefaultCategoryPageSize": "6",
-      "DefaultManufacturerPageSizeOptions": "6, 3, 9",
-      "DefaultManufacturerPageSize": "6",
-      "ShowProductReviewsTabOnAccountPage": "true",
-      "ProductReviewsPageSizeOnAccountPage": "10",
-      "ProductReviewsSortByCreatedDateAscending": "false",
-      "ExportImportProductAttributes": "true",
-      "ExportImportProductSpecificationAttributes": "true",
-      "ExportImportTierPrices": "true",
-      "ExportImportUseDropdownlistsForAssociatedEntities": "true",
-      "ExportImportProductsCountInOneFile": "500",
-      "ExportImportSplitProductsFile": "false",
-      "ExportImportRelatedEntitiesByName": "true",
-      "ExportImportCategoryUseLimitedToStores": "false",
-      "CountDisplayedYearsDatePicker": "1",
-      "UseAjaxLoadMenu": "false",
-      "UseAjaxCatalogProductsLoading": "true",
-      "EnableManufacturerFiltering": "true",
-      "EnablePriceRangeFiltering": "true",
-      "EnableSpecificationAttributeFiltering": "true",
-      "DisplayFromPrices": "false",
-      "AttributeValueOutOfStockDisplayType": "AttributeValueOutOfStockDisplayType.AlwaysDisplay",
-      "AllowCustomersToSearchWithCategoryName": "false",
-      "AllowCustomersToSearchWithManufacturerName": "false",
-      "DisplayAllPicturesOnCatalogPages": "false",
-      "ProductUrlStructureTypeId": "(int)ProductUrlStructureType.Product",
-      "ActiveSearchProviderSystemName": "",
-      "UseStandardSearchWhenSearchProviderThrowsException": "true"
-    },
-    "LocalizationSettings": {
-        "DefaultAdminLanguageId": "LanguageId",
-        "UseImagesForLanguageSelection": "false",
-        "SeoFriendlyUrlsForLanguagesEnabled": "false",
-        "AutomaticallyDetectLanguage": "false",
-        "LoadAllLocaleRecordsOnStartup": "true",
-        "LoadAllLocalizedPropertiesOnStartup": "true",
-        "LoadAllUrlRecordsOnStartup": "false",
-        "IgnoreRtlPropertyForAdminArea": "false"
-      },
-      "CustomerSettings": {
-        "UsernamesEnabled": "false",
-        "CheckUsernameAvailabilityEnabled": "false",
-        "AllowUsersToChangeUsernames": "false",
-        "DefaultPasswordFormat": "PasswordFormat.Hashed",
-        "HashedPasswordFormat": "NopCustomerServicesDefaults.DefaultHashedPasswordFormat",
-        "PasswordMinLength": "6",
-        "PasswordMaxLength": "64",
-        "PasswordRequireDigit": "false",
-        "PasswordRequireLowercase": "false",
-        "PasswordRequireNonAlphanumeric": "false",
-        "PasswordRequireUppercase": "false",
-        "UnduplicatedPasswordsNumber": "4",
-        "PasswordRecoveryLinkDaysValid": "7",
-        "PasswordLifetime": "90",
-        "FailedPasswordAllowedAttempts": "0",
-        "FailedPasswordLockoutMinutes": "30",
-        "RequiredReLoginAfterPasswordChange": "false",
-        "UserRegistrationType": "UserRegistrationType.Standard",
-        "AllowCustomersToUploadAvatars": "false",
-        "AvatarMaximumSizeBytes": "20000",
-        "DefaultAvatarEnabled": "true",
-        "ShowCustomersLocation": "false",
-        "ShowCustomersJoinDate": "false",
-        "AllowViewingProfiles": "false",
-        "NotifyNewCustomerRegistration": "false",
-        "HideDownloadableProductsTab": "false",
-        "HideBackInStockSubscriptionsTab": "false",
-        "DownloadableProductsValidateUser": "false",
-        "CustomerNameFormat": "CustomerNameFormat.ShowFirstName",
-        "FirstNameEnabled": "true",
-        "FirstNameRequired": "true",
-        "LastNameEnabled": "true",
-        "LastNameRequired": "true",
-        "GenderEnabled": "true",
-        "NeutralGenderEnabled": "false",
-        "DateOfBirthEnabled": "false",
-        "DateOfBirthRequired": "false",
-        "DateOfBirthMinimumAge": "",
-        "CompanyEnabled": "true",
-        "StreetAddressEnabled": "false",
-        "StreetAddress2Enabled": "false",
-        "ZipPostalCodeEnabled": "false",
-        "CityEnabled": "false",
-        "CountyEnabled": "false",
-        "CountyRequired": "false",
-        "CountryEnabled": "false",
-        "CountryRequired": "false",
-        "StateProvinceEnabled": "false",
-        "StateProvinceRequired": "false",
-        "PhoneEnabled": "false",
-        "FaxEnabled": "false",
-        "AcceptPrivacyPolicyEnabled": "false",
-        "NewsletterEnabled": "true",
-        "NewsletterTickedByDefault": "true",
-        "HideNewsletterBlock": "false",
-        "NewsletterBlockAllowToUnsubscribe": "false",
-        "OnlineCustomerMinutes": "20",
-        "StoreLastVisitedPage": "false",
-        "StoreIpAddresses": "true",
-        "LastActivityMinutes": "15",
-        "SuffixDeletedCustomers": "false",
-        "EnteringEmailTwice": "false",
-        "RequireRegistrationForDownloadableProducts": "false",
-        "AllowCustomersToCheckGiftCardBalance": "false",
-        "DeleteGuestTaskOlderThanMinutes": "1440",
-        "PhoneNumberValidationEnabled": "false",
-        "PhoneNumberValidationUseRegex": "false",
-        "PhoneNumberValidationRule": "^[0-9]{1,14}?$",
-        "DefaultCountryId": "CountryId"
-      },
-      "MultiFactorAuthenticationSettings": {
-        "ForceMultifactorAuthentication": "false"
-      },
-      "AddressSettings": {
-        "CompanyEnabled": "true",
-        "StreetAddressEnabled": "true",
-        "StreetAddressRequired": "true",
-        "StreetAddress2Enabled": "true",
-        "ZipPostalCodeEnabled": "true",
-        "ZipPostalCodeRequired": "true",
-        "CityEnabled": "true",
-        "CityRequired": "true",
-        "CountyEnabled": "false",
-        "CountyRequired": "false",
-        "CountryEnabled": "true",
-        "StateProvinceEnabled": "true",
-        "PhoneEnabled": "true",
-        "PhoneRequired": "true",
-        "FaxEnabled": "true",
-        "DefaultCountryId": "CountryId"
-      },
-      "MediaSettings": {
-        "AvatarPictureSize": "120",
-        "ProductThumbPictureSize": "415",
-        "ProductDetailsPictureSize": "550",
-        "ProductThumbPictureSizeOnProductDetailsPage": "100",
-        "AssociatedProductPictureSize": "220",
-        "CategoryThumbPictureSize": "450",
-        "ManufacturerThumbPictureSize": "420",
-        "VendorThumbPictureSize": "450",
-        "CartThumbPictureSize": "80",
-        "OrderThumbPictureSize": "80",
-        "MiniCartThumbPictureSize": "70",
-        "AutoCompleteSearchThumbPictureSize": "20",
-        "ImageSquarePictureSize": "32",
-        "MaximumImageSize": "1980",
-        "DefaultPictureZoomEnabled": "false",
-        "AllowSVGUploads": "false",
-        "DefaultImageQuality": "80",
-        "MultipleThumbDirectories": "false",
-        "ImportProductImagesUsingHash": "true",
-        "AzureCacheControlHeader": "",
-        "UseAbsoluteImagePath": "true",
-        "AutoOrientImage": "false",
-        "VideoIframeAllow": "fullscreen",
-        "VideoIframeWidth": "300",
-        "VideoIframeHeight": "150"
-      },
-      "StoreInformationSettings": {
-        "StoreClosed": "false",
-        "DefaultStoreTheme": "DefaultClean",
-        "AllowCustomerToSelectTheme": "false",
-        "DisplayEuCookieLawWarning": "isEurope",
-        "FacebookLink": "https://www.facebook.com/EarnForGlance",
-        "TwitterLink": "https://twitter.com/EarnForGlance",
-        "YoutubeLink": "https://www.youtube.com/user/EarnForGlance",
-        "InstagramLink": "https://www.instagram.com/nopcommerce_official",
-        "HidePoweredByNopCommerce": "false"
-      },
-      "ExternalAuthenticationSettings": {
-        "RequireEmailValidation": "false",
-        "LogErrors": "false",
-        "AllowCustomersToRemoveAssociations": "true"
-      },
-      "RewardPointsSettings": {
-        "Enabled": "true",
-        "ExchangeRate": "1",
-        "PointsForRegistration": "0",
-        "RegistrationPointsValidity": "30",
-        "PointsForPurchases_Amount": "10",
-        "PointsForPurchases_Points": "1",
-        "MinOrderTotalToAwardPoints": "0",
-        "MaximumRewardPointsToUsePerOrder": "0",
-        "MaximumRedeemedRate": "0",
-        "PurchasesPointsValidity": "45",
-        "ActivationDelay": "0",
-        "ActivationDelayPeriodId": "0",
-        "DisplayHowMuchWillBeEarned": "true",
-        "PointsAccumulatedForAllStores": "true",
-        "PageSize": "10"
-      },
-      "CurrencySettings": {
-        "DisplayCurrencyLabel": "false",
-        "PrimaryStoreCurrencyId": "CurrencyId",
-        "PrimaryExchangeRateCurrencyId": "CurrencyId",
-        "ActiveExchangeRateProviderSystemName": "CurrencyExchange.ECB",
-        "AutoUpdateEnabled": "false"
-      },
-      "MeasureSettings": {
-        "BaseDimensionId": "DimensionId",
-        "BaseWeightId": "WeightId"
-      },
-      "MessageTemplatesSettings": {
-        "CaseInvariantReplacement": "false",
-        "Color1": "#b9babe",
-        "Color2": "#ebecee",
-        "Color3": "#dde2e6"
-      },
-      "ShoppingCartSettings": {
-        "DisplayCartAfterAddingProduct": "false",
-        "DisplayWishlistAfterAddingProduct": "false",
-        "MaximumShoppingCartItems": "1000",
-        "MaximumWishlistItems": "1000",
-        "AllowOutOfStockItemsToBeAddedToWishlist": "false",
-        "MoveItemsFromWishlistToCart": "true",
-        "CartsSharedBetweenStores": "false",
-        "ShowProductImagesOnShoppingCart": "true",
-        "ShowProductImagesOnWishList": "true",
-        "ShowDiscountBox": "true",
-        "ShowGiftCardBox": "true",
-        "CrossSellsNumber": "4",
-        "EmailWishlistEnabled": "true",
-        "AllowAnonymousUsersToEmailWishlist": "false",
-        "MiniShoppingCartEnabled": "true",
-        "ShowProductImagesInMiniShoppingCart": "true",
-        "MiniShoppingCartProductNumber": "5",
-        "RoundPricesDuringCalculation": "true",
-        "GroupTierPricesForDistinctShoppingCartItems": "false",
-        "AllowCartItemEditing": "true",
-        "RenderAssociatedAttributeValueQuantity": "true"
-      },
-      "OrderSettings": {
-        "ReturnRequestNumberMask": "{ID}",
-        "IsReOrderAllowed": "true",
-        "MinOrderSubtotalAmount": "0",
-        "MinOrderSubtotalAmountIncludingTax": "false",
-        "MinOrderTotalAmount": "0",
-        "AutoUpdateOrderTotalsOnEditingOrder": "false",
-        "AnonymousCheckoutAllowed": "true",
-        "TermsOfServiceOnShoppingCartPage": "true",
-        "TermsOfServiceOnOrderConfirmPage": "false",
-        "OnePageCheckoutEnabled": "true",
-        "OnePageCheckoutDisplayOrderTotalsOnPaymentInfoTab": "false",
-        "DisableBillingAddressCheckoutStep": "false",
-        "DisableOrderCompletedPage": "false",
-        "DisplayPickupInStoreOnShippingMethodPage": "false",
-        "AttachPdfInvoiceToOrderPlacedEmail": "false",
-        "AttachPdfInvoiceToOrderProcessingEmail": "false",
-        "AttachPdfInvoiceToOrderCompletedEmail": "false",
-        "GeneratePdfInvoiceInCustomerLanguage": "true",
-        "AttachPdfInvoiceToOrderPaidEmail": "false",
-        "ReturnRequestsEnabled": "true",
-        "ReturnRequestsAllowFiles": "false",
-        "ReturnRequestsFileMaximumSize": "2048",
-        "NumberOfDaysReturnRequestAvailable": "365",
-        "MinimumOrderPlacementInterval": "1",
-        "ActivateGiftCardsAfterCompletingOrder": "false",
-        "DeactivateGiftCardsAfterCancellingOrder": "false",
-        "DeactivateGiftCardsAfterDeletingOrder": "false",
-        "CompleteOrderWhenDelivered": "true",
-        "CustomOrderNumberMask": "{ID}",
-        "ExportWithProducts": "true",
-        "AllowAdminsToBuyCallForPriceProducts": "true",
-        "ShowProductThumbnailInOrderDetailsPage": "true",
-        "DisplayCustomerCurrencyOnOrders": "false",
-        "DisplayOrderSummary": "true",
-        "PlaceOrderWithLock": "false"
-      },
-      "SecuritySettings": {
-        "EncryptionKey": "CommonHelper.GenerateRandomDigitCode(16)",
-        "AdminAreaAllowedIpAddresses": "",
-        "HoneypotEnabled": "false",
-        "HoneypotInputName": "hpinput",
-        "AllowNonAsciiCharactersInHeaders": "true",
-        "UseAesEncryptionAlgorithm": "true",
-        "AllowStoreOwnerExportImportCustomersWithHashedPassword": "true"
-      },
-      "ShippingSettings": {
-        "ActiveShippingRateComputationMethodSystemNames": "Shipping.FixedByWeightByTotal",
-        "ActivePickupPointProviderSystemNames": "Pickup.PickupInStore",
-        "ShipToSameAddress": "true",
-        "AllowPickupInStore": "true",
-        "DisplayPickupPointsOnMap": "false",
-        "IgnoreAdditionalShippingChargeForPickupInStore": "true",
-        "UseWarehouseLocation": "false",
-        "NotifyCustomerAboutShippingFromMultipleLocations": "false",
-        "FreeShippingOverXEnabled": "false",
-        "FreeShippingOverXValue": "0",
-        "FreeShippingOverXIncludingTax": "false",
-        "EstimateShippingProductPageEnabled": "true",
-        "EstimateShippingCartPageEnabled": "true",
-        "EstimateShippingCityNameEnabled": "false",
-        "DisplayShipmentEventsToCustomers": "false",
-        "DisplayShipmentEventsToStoreOwner": "false",
-        "HideShippingTotal": "false",
-        "ReturnValidOptionsIfThereAreAny": "true",
-        "BypassShippingMethodSelectionIfOnlyOne": "false",
-        "UseCubeRootMethod": "true",
-        "ConsiderAssociatedProductsDimensions": "true",
-        "ShipSeparatelyOneItemEach": "false",
-        "RequestDelay": "300",
-        "ShippingSorting": "ShippingSortingEnum.Position"
-      },
-      "PaymentSettings": {
-        "ActivePaymentMethodSystemNames": "Payments.CheckMoneyOrder,Payments.Manual",
-        "AllowRePostingPayments": "true",
-        "BypassPaymentMethodSelectionIfOnlyOne": "true",
-        "ShowPaymentMethodDescriptions": "true",
-        "SkipPaymentInfoStepForRedirectionPaymentMethods": "false",
-        "CancelRecurringPaymentsAfterFailedPayment": "false",
-        "RegenerateOrderGuidInterval": "180"
-      },
-      "TaxSettings": {
-        "TaxBasedOn": "TaxBasedOn.BillingAddress",
-        "TaxBasedOnPickupPointAddress": "false",
-        "TaxDisplayType": "TaxDisplayType.ExcludingTax",
-        "ActiveTaxProviderSystemName": "Tax.FixedOrByCountryStateZip",
-        "DefaultTaxAddressId": "0",
-        "DisplayTaxSuffix": "false",
-        "DisplayTaxRates": "false",
-        "PricesIncludeTax": "false",
-        "AutomaticallyDetectCountry": "true",
-        "AllowCustomersToSelectTaxDisplayType": "false",
-        "ForceTaxExclusionFromOrderSubtotal": "false",
-        "DefaultTaxCategoryId": "0",
-        "HideZeroTax": "false",
-        "HideTaxInOrderSummary": "false",
-        "ShippingIsTaxable": "false",
-        "ShippingPriceIncludesTax": "false",
-        "ShippingTaxClassId": "0",
-        "PaymentMethodAdditionalFeeIsTaxable": "false",
-        "PaymentMethodAdditionalFeeIncludesTax": "false",
-        "PaymentMethodAdditionalFeeTaxClassId": "0",
-        "EuVatEnabled": "isEurope",
-        "EuVatEnabledForGuests": "false",
-        "EuVatRequired": "false",
-        "EuVatShopCountryId": "CountryId",
-        "EuVatAllowVatExemption": "true",
-        "EuVatUseWebService": "false",
-        "EuVatAssumeValid": "false",
-        "EuVatEmailAdminWhenNewVatSubmitted": "false",
-        "LogErrors": "false"
-      },
-      "DateTimeSettings": {
-        "DefaultStoreTimeZoneId": "",
-        "AllowCustomersToSetTimeZone": "false"
-      },
-      "BlogSettings": {
-        "Enabled": "true",
-        "PostsPageSize": "10",
-        "AllowNotRegisteredUsersToLeaveComments": "true",
-        "NotifyAboutNewBlogComments": "false",
-        "NumberOfTags": "15",
-        "ShowHeaderRssUrl": "false",
-        "BlogCommentsMustBeApproved": "false",
-        "ShowBlogCommentsPerStore": "false"
-      },
-      "NewsSettings": {
-        "Enabled": "true",
-        "AllowNotRegisteredUsersToLeaveComments": "true",
-        "NotifyAboutNewNewsComments": "false",
-        "ShowNewsOnMainPage": "true",
-        "MainPageNewsCount": "3",
-        "NewsArchivePageSize": "10",
-        "ShowHeaderRssUrl": "false",
-        "NewsCommentsMustBeApproved": "false",
-        "ShowNewsCommentsPerStore": "false"
-      },
-      "ForumSettings": {
-        "ForumsEnabled": "false",
-        "RelativeDateTimeFormattingEnabled": "true",
-        "AllowCustomersToDeletePosts": "false",
-        "AllowCustomersToEditPosts": "false",
-        "AllowCustomersToManageSubscriptions": "false",
-        "AllowGuestsToCreatePosts": "false",
-        "AllowGuestsToCreateTopics": "false",
-        "AllowPostVoting": "true",
-        "MaxVotesPerDay": "30",
-        "TopicSubjectMaxLength": "450",
-        "PostMaxLength": "4000",
-        "StrippedTopicMaxLength": "45",
-        "TopicsPageSize": "10",
-        "PostsPageSize": "10",
-        "SearchResultsPageSize": "10",
-        "ActiveDiscussionsPageSize": "50",
-        "LatestCustomerPostsPageSize": "10",
-        "ShowCustomersPostCount": "true",
-        "ForumEditor": "EditorType.BBCodeEditor",
-        "SignaturesEnabled": "true",
-        "AllowPrivateMessages": "false",
-        "ShowAlertForPM": "false",
-        "PrivateMessagesPageSize": "10",
-        "ForumSubscriptionsPageSize": "10",
-        "NotifyAboutPrivateMessages": "false",
-        "PMSubjectMaxLength": "450",
-        "PMTextMaxLength": "4000",
-        "HomepageActiveDiscussionsTopicCount": "5",
-        "ActiveDiscussionsFeedEnabled": "false",
-        "ActiveDiscussionsFeedCount": "25",
-        "ForumFeedsEnabled": "false",
-        "ForumFeedCount": "10",
-        "ForumSearchTermMinimumLength": "3"
-      },
-      "VendorSettings": {
-        "DefaultVendorPageSizeOptions": "6, 3, 9",
-        "VendorsBlockItemsToDisplay": "0",
-        "ShowVendorOnProductDetailsPage": "true",
-        "AllowCustomersToContactVendors": "true",
-        "AllowCustomersToApplyForVendorAccount": "true",
-        "TermsOfServiceEnabled": "false",
-        "AllowVendorsToEditInfo": "false",
-        "NotifyStoreOwnerAboutVendorInformationChange": "true",
-        "MaximumProductNumber": "3000",
-        "AllowVendorsToImportProducts": "true",
-        "MaximumProductPicturesNumber": "5"
-      },
-      "EmailAccountSettings": {
-        "DefaultEmailAccountId": "eaGeneral.Id"
-      },
-      "DisplayDefaultMenuItemSettings": {
-        "DisplayHomepageMenuItem": "displayMenuItems",
-        "DisplayNewProductsMenuItem": "displayMenuItems",
-        "DisplayProductSearchMenuItem": "displayMenuItems",
-        "DisplayCustomerInfoMenuItem": "displayMenuItems",
-        "DisplayBlogMenuItem": "displayMenuItems",
-        "DisplayForumsMenuItem": "displayMenuItems",
-        "DisplayContactUsMenuItem": "displayMenuItems"
-      },
-      "DisplayDefaultFooterItemSettings": {
-    "DisplaySitemapFooterItem": "true",
-    "DisplayContactUsFooterItem": "true",
-    "DisplayProductSearchFooterItem": "true",
-    "DisplayNewsFooterItem": "true",
-    "DisplayBlogFooterItem": "true",
-    "DisplayForumsFooterItem": "true",
-    "DisplayRecentlyViewedProductsFooterItem": "true",
-    "DisplayCompareProductsFooterItem": "true",
-    "DisplayNewProductsFooterItem": "true",
-    "DisplayCustomerInfoFooterItem": "true",
-    "DisplayCustomerOrdersFooterItem": "true",
-    "DisplayCustomerAddressesFooterItem": "true",
-    "DisplayShoppingCartFooterItem": "true",
-    "DisplayWishlistFooterItem": "true",
-    "DisplayApplyVendorAccountFooterItem": "true"
+[
+  {
+      "ID": "67ed840939ef71573b3871bd",
+      "Name": "BaseDimensionId",
+      "Value": "DimensionId",
+      "StoreID": "64f1b3d4e5f6789012345678"
   },
-  "CaptchaSettings": {
-    "ReCaptchaApiUrl": "https://www.google.com/recaptcha/",
-    "ReCaptchaDefaultLanguage": "",
-    "ReCaptchaPrivateKey": "",
-    "ReCaptchaPublicKey": "",
-    "ReCaptchaRequestTimeout": "20",
-    "ReCaptchaTheme": "",
-    "AutomaticallyChooseLanguage": "true",
-    "Enabled": "false",
-    "CaptchaType": "CaptchaType.CheckBoxReCaptchaV2",
-    "ReCaptchaV3ScoreThreshold": "0.5",
-    "ShowOnApplyVendorPage": "false",
-    "ShowOnBlogCommentPage": "false",
-    "ShowOnContactUsPage": "false",
-    "ShowOnEmailProductToFriendPage": "false",
-    "ShowOnEmailWishlistToFriendPage": "false",
-    "ShowOnForgotPasswordPage": "false",
-    "ShowOnForum": "false",
-    "ShowOnLoginPage": "false",
-    "ShowOnNewsCommentPage": "false",
-    "ShowOnNewsletterPage": "false",
-    "ShowOnProductReviewPage": "false",
-    "ShowOnRegistrationPage": "false",
-    "ShowOnCheckoutPageForGuests": "false",
-    "ShowOnCheckGiftCardBalance": "true"
+  {
+      "ID": "67ed840939ef71573b3871be",
+      "Name": "BaseWeightId",
+      "Value": "WeightId",
+      "StoreID": "64f1b3d4e5f6789012345678"
   },
-  "MessagesSettings": {
-    "UsePopupNotifications": "false"
+  {
+      "ID": "67ed840939ef71573b3871bf",
+      "Name": "AllowCustomersToContactVendors",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
   },
-  "ProxySettings": {
-    "Enabled": "false",
-    "Address": "",
-    "Port": "",
-    "Username": "",
-    "Password": "",
-    "BypassOnLocal": "true",
-    "PreAuthenticate": "true"
+  {
+      "ID": "67ed840939ef71573b3871c0",
+      "Name": "AllowCustomersToApplyForVendorAccount",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
   },
-  "CookieSettings": {
-    "CompareProductsCookieExpires": "240",
-    "RecentlyViewedProductsCookieExpires": "240",
-    "CustomerCookieExpires": "8760"
+  {
+      "ID": "67ed840939ef71573b3871c1",
+      "Name": "NotifyStoreOwnerAboutVendorInformationChange",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871c2",
+      "Name": "DefaultVendorPageSizeOptions",
+      "Value": "6, 3, 9",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871c3",
+      "Name": "VendorsBlockItemsToDisplay",
+      "Value": "0",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871c4",
+      "Name": "ShowVendorOnProductDetailsPage",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871c5",
+      "Name": "TermsOfServiceEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871c6",
+      "Name": "AllowVendorsToEditInfo",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871c7",
+      "Name": "MaximumProductNumber",
+      "Value": "3000",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871c8",
+      "Name": "AllowVendorsToImportProducts",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871c9",
+      "Name": "MaximumProductPicturesNumber",
+      "Value": "5",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871ca",
+      "Name": "DisplayCustomerInfoMenuItem",
+      "Value": "displayMenuItems",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871cb",
+      "Name": "DisplayBlogMenuItem",
+      "Value": "displayMenuItems",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871cc",
+      "Name": "DisplayForumsMenuItem",
+      "Value": "displayMenuItems",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871cd",
+      "Name": "DisplayContactUsMenuItem",
+      "Value": "displayMenuItems",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871ce",
+      "Name": "DisplayHomepageMenuItem",
+      "Value": "displayMenuItems",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871cf",
+      "Name": "DisplayNewProductsMenuItem",
+      "Value": "displayMenuItems",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871d0",
+      "Name": "DisplayProductSearchMenuItem",
+      "Value": "displayMenuItems",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871d1",
+      "Name": "DisplaySitemapFooterItem",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871d2",
+      "Name": "DisplayContactUsFooterItem",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871d3",
+      "Name": "DisplayNewsFooterItem",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871d4",
+      "Name": "DisplayBlogFooterItem",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871d5",
+      "Name": "DisplayRecentlyViewedProductsFooterItem",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871d6",
+      "Name": "DisplayNewProductsFooterItem",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871d7",
+      "Name": "DisplayCustomerOrdersFooterItem",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871d8",
+      "Name": "DisplayWishlistFooterItem",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871d9",
+      "Name": "DisplayShoppingCartFooterItem",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871da",
+      "Name": "DisplayApplyVendorAccountFooterItem",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871db",
+      "Name": "DisplayProductSearchFooterItem",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871dc",
+      "Name": "DisplayCompareProductsFooterItem",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871dd",
+      "Name": "DisplayCustomerAddressesFooterItem",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871de",
+      "Name": "DisplayForumsFooterItem",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871df",
+      "Name": "DisplayCustomerInfoFooterItem",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871e0",
+      "Name": "FooterCustomHtml",
+      "Value": "",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871e1",
+      "Name": "UseSystemEmailForContactUsForm",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871e2",
+      "Name": "BreadcrumbDelimiter",
+      "Value": "/",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871e3",
+      "Name": "BbcodeEditorOpenLinksInNewWindow",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871e4",
+      "Name": "JqueryMigrateScriptLoggingActive",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871e5",
+      "Name": "UseResponseCompression",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871e6",
+      "Name": "EnableHtmlMinification",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871e7",
+      "Name": "HeaderCustomHtml",
+      "Value": "",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871e8",
+      "Name": "DisplayJavaScriptDisabledWarning",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871e9",
+      "Name": "Log404Errors",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871ea",
+      "Name": "PopupForTermsOfServiceLinks",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871eb",
+      "Name": "FaviconAndAppIconsHeadCode",
+      "Value": "<link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/icons/icons_0/apple-touch-icon.png\"><link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"/icons/icons_0/favicon-32x32.png\"><link rel=\"icon\" type=\"image/png\" sizes=\"192x192\" href=\"/icons/icons_0/android-chrome-192x192.png\"><link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"/icons/icons_0/favicon-16x16.png\"><link rel=\"manifest\" href=\"/icons/icons_0/site.webmanifest\"><link rel=\"mask-icon\" href=\"/icons/icons_0/safari-pinned-tab.svg\" color=\"#5bbad5\"><link rel=\"shortcut icon\" href=\"/icons/icons_0/favicon.ico\"><meta name=\"msapplication-TileColor\" content=\"#2d89ef\"><meta name=\"msapplication-TileImage\" content=\"/icons/icons_0/mstile-144x144.png\"><meta name=\"msapplication-config\" content=\"/icons/icons_0/browserconfig.xml\"><meta name=\"theme-color\" content=\"#ffffff\">",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871ec",
+      "Name": "RestartTimeout",
+      "Value": "NopCommonDefaults.RestartTimeout",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871ed",
+      "Name": "DisplayCurrencyLabel",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871ee",
+      "Name": "PrimaryStoreCurrencyId",
+      "Value": "CurrencyId",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871ef",
+      "Name": "PrimaryExchangeRateCurrencyId",
+      "Value": "CurrencyId",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871f0",
+      "Name": "ActiveExchangeRateProviderSystemName",
+      "Value": "CurrencyExchange.ECB",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871f1",
+      "Name": "AutoUpdateEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871f2",
+      "Name": "SitemapEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871f3",
+      "Name": "SitemapPageSize",
+      "Value": "200",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871f4",
+      "Name": "SitemapIncludeProducts",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871f5",
+      "Name": "SitemapIncludeProductTags",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871f6",
+      "Name": "SitemapIncludeBlogPosts",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871f7",
+      "Name": "SitemapIncludeCategories",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871f8",
+      "Name": "SitemapIncludeManufacturers",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871f9",
+      "Name": "SitemapIncludeNews",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871fa",
+      "Name": "SitemapIncludeTopics",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871fb",
+      "Name": "TwitterMetaTags",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871fc",
+      "Name": "ReservedUrlRecordSlugs",
+      "Value": "NopSeoDefaults.ReservedUrlRecordSlugs",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871fd",
+      "Name": "QueryStringInCanonicalUrlsEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871fe",
+      "Name": "WwwRequirement",
+      "Value": "WwwRequirement.NoMatter",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3871ff",
+      "Name": "OpenGraphMetaTags",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387200",
+      "Name": "MicrodataEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387201",
+      "Name": "CustomHeadTags",
+      "Value": "",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387202",
+      "Name": "PageTitleSeparator",
+      "Value": ". ",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387203",
+      "Name": "PageTitleSeoAdjustment",
+      "Value": "PageTitleSeoAdjustment.PagenameAfterStorename",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387204",
+      "Name": "GenerateProductMetaDescription",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387205",
+      "Name": "ConvertNonWesternChars",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387206",
+      "Name": "AllowUnicodeCharsInUrls",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387207",
+      "Name": "CanonicalUrlsEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387208",
+      "Name": "SpecificationAttributes",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387209",
+      "Name": "PAngV",
+      "Value": "isGermany",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38720a",
+      "Name": "Weight",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38720b",
+      "Name": "Dimensions",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38720c",
+      "Name": "ProductAttributes",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38720d",
+      "Name": "UseAjaxLoadMenu",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38720e",
+      "Name": "DisplayFromPrices",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38720f",
+      "Name": "AllowCustomersToSearchWithCategoryName",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387210",
+      "Name": "NewProductsPageSize",
+      "Value": "6",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387211",
+      "Name": "ProductSearchTermMinimumLength",
+      "Value": "3",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387212",
+      "Name": "ProductsAlsoPurchasedNumber",
+      "Value": "4",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387213",
+      "Name": "IncludeFeaturedProductsInNormalLists",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387214",
+      "Name": "IgnoreFeaturedProducts",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387215",
+      "Name": "IgnoreAcl",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387216",
+      "Name": "DefaultCategoryPageSize",
+      "Value": "6",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387217",
+      "Name": "AttributeValueOutOfStockDisplayType",
+      "Value": "AttributeValueOutOfStockDisplayType.AlwaysDisplay",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387218",
+      "Name": "ShowSkuOnProductDetailsPage",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387219",
+      "Name": "AllowAnonymousUsersToEmailAFriend",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38721a",
+      "Name": "CacheProductPrices",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38721b",
+      "Name": "DisplayTaxShippingInfoWishlist",
+      "Value": "isGermany",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38721c",
+      "Name": "ExportImportUseDropdownlistsForAssociatedEntities",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38721d",
+      "Name": "AllowProductViewModeChanging",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38721e",
+      "Name": "AllowAnonymousUsersToReviewProduct",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38721f",
+      "Name": "SearchPageAllowCustomersToSelectPageSize",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387220",
+      "Name": "IgnoreDiscounts",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387221",
+      "Name": "ProductsByTagAllowCustomersToSelectPageSize",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387222",
+      "Name": "ProductsByTagPriceFrom",
+      "Value": "NopCatalogDefaults.DefaultPriceRangeFrom",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387223",
+      "Name": "DisplayTaxShippingInfoProductDetailsPage",
+      "Value": "isGermany",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387224",
+      "Name": "DisplayTaxShippingInfoOrderDetailsPage",
+      "Value": "isGermany",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387225",
+      "Name": "ProductReviewsMustBeApproved",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387226",
+      "Name": "ProductSearchAutoCompleteNumberOfProducts",
+      "Value": "10",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387227",
+      "Name": "DisplayTaxShippingInfoProductBoxes",
+      "Value": "isGermany",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387228",
+      "Name": "DefaultCategoryPageSizeOptions",
+      "Value": "6, 3, 9",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387229",
+      "Name": "ExportImportTierPrices",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38722a",
+      "Name": "CategoryBreadcrumbEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38722b",
+      "Name": "OneReviewPerProductFromCustomer",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38722c",
+      "Name": "ShowSearchBoxCategories",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38722d",
+      "Name": "SearchPageManuallyPriceRange",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38722e",
+      "Name": "SearchPagePriceFrom",
+      "Value": "NopCatalogDefaults.DefaultPriceRangeFrom",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38722f",
+      "Name": "ProductsByTagPageSizeOptions",
+      "Value": "6, 3, 9, 18",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387230",
+      "Name": "MaximumBackInStockSubscriptions",
+      "Value": "200",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387231",
+      "Name": "ExportImportProductsCountInOneFile",
+      "Value": "500",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387232",
+      "Name": "ShowCategoryProductNumberIncludingSubcategories",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387233",
+      "Name": "UseLinksInRequiredProductWarnings",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387234",
+      "Name": "ExportImportRelatedEntitiesByName",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387235",
+      "Name": "CountDisplayedYearsDatePicker",
+      "Value": "1",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387236",
+      "Name": "EnablePriceRangeFiltering",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387237",
+      "Name": "NotifyStoreOwnerAboutNewProductReviews",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387238",
+      "Name": "NewProductsEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387239",
+      "Name": "NumberOfBestsellersOnHomepage",
+      "Value": "4",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38723a",
+      "Name": "DisplayTierPricesWithDiscounts",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38723b",
+      "Name": "ManufacturersBlockItemsToDisplay",
+      "Value": "2",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38723c",
+      "Name": "EnableManufacturerFiltering",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38723d",
+      "Name": "ProductUrlStructureTypeId",
+      "Value": "(int)ProductUrlStructureType.Product",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38723e",
+      "Name": "ActiveSearchProviderSystemName",
+      "Value": "",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38723f",
+      "Name": "AllowProductSorting",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387240",
+      "Name": "PageShareCode",
+      "Value": "<!-- ShareThis Button BEGIN --><div class=\"sharethis-inline-share-buttons\"></div><script type=\"text/javascript\" src=\"https://platform-api.sharethis.com/js/sharethis.js#property=64428a0865e28d00193ae8a9&product=inline-share-buttons&source=nopcommerce\" async=\"async\"></script><!-- ShareThis Button END -->",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387241",
+      "Name": "ProductSearchEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387242",
+      "Name": "AjaxProcessAttributeChange",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387243",
+      "Name": "ProductReviewsSortByCreatedDateAscending",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387244",
+      "Name": "CompareProductsEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387245",
+      "Name": "ProductsAlsoPurchasedEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387246",
+      "Name": "ShowProductReviewsTabOnAccountPage",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387247",
+      "Name": "UseAjaxCatalogProductsLoading",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387248",
+      "Name": "ShowSkuOnCatalogPages",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387249",
+      "Name": "ShowProductsFromSubcategories",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38724a",
+      "Name": "EmailAFriendEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38724b",
+      "Name": "SearchPagePriceTo",
+      "Value": "NopCatalogDefaults.DefaultPriceRangeTo",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38724c",
+      "Name": "ProductsByTagPageSize",
+      "Value": "6",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38724d",
+      "Name": "UseStandardSearchWhenSearchProviderThrowsException",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38724e",
+      "Name": "PublishBackProductWhenCancellingOrders",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38724f",
+      "Name": "ShowFreeShippingNotification",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387250",
+      "Name": "ShowCategoryProductNumber",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387251",
+      "Name": "NewProductsAllowCustomersToSelectPageSize",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387252",
+      "Name": "SearchPagePageSizeOptions",
+      "Value": "6, 3, 9, 18",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387253",
+      "Name": "SearchPagePriceRangeFiltering",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387254",
+      "Name": "IncludeFullDescriptionInCompareProducts",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387255",
+      "Name": "IgnoreStoreLimitations",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387256",
+      "Name": "ShowShareButton",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387257",
+      "Name": "RecentlyViewedProductsEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387258",
+      "Name": "ProductSearchAutoCompleteEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387259",
+      "Name": "IncludeShortDescriptionInCompareProducts",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38725a",
+      "Name": "DisplayTaxShippingInfoShoppingCart",
+      "Value": "isGermany",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38725b",
+      "Name": "DefaultManufacturerPageSizeOptions",
+      "Value": "6, 3, 9",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38725c",
+      "Name": "ProductReviewsPageSizeOnAccountPage",
+      "Value": "10",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38725d",
+      "Name": "ExportImportProductSpecificationAttributes",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38725e",
+      "Name": "DefaultProductRatingValue",
+      "Value": "5",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38725f",
+      "Name": "ProductReviewPossibleOnlyAfterPurchasing",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387260",
+      "Name": "RecentlyViewedProductsNumber",
+      "Value": "3",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387261",
+      "Name": "CompareProductsNumber",
+      "Value": "4",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387262",
+      "Name": "ShowLinkToAllResultInSearchAutoComplete",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387263",
+      "Name": "ShowProductImagesInSearchAutoComplete",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387264",
+      "Name": "NumberOfProductTags",
+      "Value": "15",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387265",
+      "Name": "ProductsByTagManuallyPriceRange",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387266",
+      "Name": "ShowBestsellersOnHomepage",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387267",
+      "Name": "ProductsByTagPriceRangeFiltering",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387268",
+      "Name": "DefaultManufacturerPageSize",
+      "Value": "6",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387269",
+      "Name": "ExportImportProductAttributes",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38726a",
+      "Name": "EnableSpecificationAttributeFiltering",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38726b",
+      "Name": "AllowCustomersToSearchWithManufacturerName",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38726c",
+      "Name": "DisplayAllPicturesOnCatalogPages",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38726d",
+      "Name": "NotifyCustomerAboutProductReviewReply",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38726e",
+      "Name": "DisplayDiscontinuedMessageForUnpublishedProducts",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38726f",
+      "Name": "ShowManufacturerPartNumber",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387270",
+      "Name": "ShowGtin",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387271",
+      "Name": "ShowShortDescriptionOnCatalogPages",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387272",
+      "Name": "DisplayTaxShippingInfoFooter",
+      "Value": "isGermany",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387273",
+      "Name": "ExportImportSplitProductsFile",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387274",
+      "Name": "ExportImportCategoryUseLimitedToStores",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387275",
+      "Name": "AllowViewUnpublishedProductPage",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387276",
+      "Name": "DefaultViewMode",
+      "Value": "grid",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387277",
+      "Name": "NewProductsPageSizeOptions",
+      "Value": "6, 3, 9",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387278",
+      "Name": "SearchPageProductsPerPage",
+      "Value": "6",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387279",
+      "Name": "ProductsByTagPriceTo",
+      "Value": "NopCatalogDefaults.DefaultPriceRangeTo",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38727a",
+      "Name": "GenderEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38727b",
+      "Name": "DateOfBirthEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38727c",
+      "Name": "NewsletterEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38727d",
+      "Name": "EnteringEmailTwice",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38727e",
+      "Name": "FailedPasswordAllowedAttempts",
+      "Value": "0",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38727f",
+      "Name": "FaxEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387280",
+      "Name": "HideNewsletterBlock",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387281",
+      "Name": "PhoneNumberValidationEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387282",
+      "Name": "PasswordRecoveryLinkDaysValid",
+      "Value": "7",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387283",
+      "Name": "RequiredReLoginAfterPasswordChange",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387284",
+      "Name": "CountyEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387285",
+      "Name": "NewsletterTickedByDefault",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387286",
+      "Name": "OnlineCustomerMinutes",
+      "Value": "20",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387287",
+      "Name": "DefaultPasswordFormat",
+      "Value": "PasswordFormat.Hashed",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387288",
+      "Name": "CountryEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387289",
+      "Name": "PhoneEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38728a",
+      "Name": "StoreIpAddresses",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38728b",
+      "Name": "DeleteGuestTaskOlderThanMinutes",
+      "Value": "1440",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38728c",
+      "Name": "UsernamesEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38728d",
+      "Name": "ShowCustomersJoinDate",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38728e",
+      "Name": "AllowViewingProfiles",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38728f",
+      "Name": "NeutralGenderEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387290",
+      "Name": "PasswordRequireDigit",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387291",
+      "Name": "PasswordRequireNonAlphanumeric",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387292",
+      "Name": "AvatarMaximumSizeBytes",
+      "Value": "20000",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387293",
+      "Name": "DateOfBirthRequired",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387294",
+      "Name": "ZipPostalCodeEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387295",
+      "Name": "PasswordMinLength",
+      "Value": "6",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387296",
+      "Name": "HideBackInStockSubscriptionsTab",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387297",
+      "Name": "LastNameEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387298",
+      "Name": "StreetAddress2Enabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387299",
+      "Name": "DefaultCountryId",
+      "Value": "CountryId",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38729a",
+      "Name": "HashedPasswordFormat",
+      "Value": "NopCustomerServicesDefaults.DefaultHashedPasswordFormat",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38729b",
+      "Name": "DefaultAvatarEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38729c",
+      "Name": "ShowCustomersLocation",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38729d",
+      "Name": "DownloadableProductsValidateUser",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38729e",
+      "Name": "FirstNameEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38729f",
+      "Name": "LastNameRequired",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872a0",
+      "Name": "PasswordLifetime",
+      "Value": "90",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872a1",
+      "Name": "NotifyNewCustomerRegistration",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872a2",
+      "Name": "CompanyEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872a3",
+      "Name": "StoreLastVisitedPage",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872a4",
+      "Name": "SuffixDeletedCustomers",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872a5",
+      "Name": "RequireRegistrationForDownloadableProducts",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872a6",
+      "Name": "FirstNameRequired",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872a7",
+      "Name": "CountyRequired",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872a8",
+      "Name": "CheckUsernameAvailabilityEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872a9",
+      "Name": "StreetAddressEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872aa",
+      "Name": "CityEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872ab",
+      "Name": "LastActivityMinutes",
+      "Value": "15",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872ac",
+      "Name": "AllowCustomersToCheckGiftCardBalance",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872ad",
+      "Name": "AllowCustomersToUploadAvatars",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872ae",
+      "Name": "HideDownloadableProductsTab",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872af",
+      "Name": "CountryRequired",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872b0",
+      "Name": "PhoneNumberValidationRule",
+      "Value": "^[0-9]{1,14}?$",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872b1",
+      "Name": "AcceptPrivacyPolicyEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872b2",
+      "Name": "PhoneNumberValidationUseRegex",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872b3",
+      "Name": "AllowUsersToChangeUsernames",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872b4",
+      "Name": "UserRegistrationType",
+      "Value": "UserRegistrationType.Standard",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872b5",
+      "Name": "DateOfBirthMinimumAge",
+      "Value": "",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872b6",
+      "Name": "StateProvinceRequired",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872b7",
+      "Name": "PasswordRequireLowercase",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872b8",
+      "Name": "PasswordRequireUppercase",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872b9",
+      "Name": "StateProvinceEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872ba",
+      "Name": "NewsletterBlockAllowToUnsubscribe",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872bb",
+      "Name": "PasswordMaxLength",
+      "Value": "64",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872bc",
+      "Name": "UnduplicatedPasswordsNumber",
+      "Value": "4",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872bd",
+      "Name": "FailedPasswordLockoutMinutes",
+      "Value": "30",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872be",
+      "Name": "CustomerNameFormat",
+      "Value": "CustomerNameFormat.ShowFirstName",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872bf",
+      "Name": "AllowCustomersToRemoveAssociations",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872c0",
+      "Name": "RequireEmailValidation",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872c1",
+      "Name": "LogErrors",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872c2",
+      "Name": "MinOrderTotalToAwardPoints",
+      "Value": "0",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872c3",
+      "Name": "MaximumRedeemedRate",
+      "Value": "0",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872c4",
+      "Name": "PurchasesPointsValidity",
+      "Value": "45",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872c5",
+      "Name": "DisplayHowMuchWillBeEarned",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872c6",
+      "Name": "PointsForRegistration",
+      "Value": "0",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872c7",
+      "Name": "PointsForPurchases_Amount",
+      "Value": "10",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872c8",
+      "Name": "MaximumRewardPointsToUsePerOrder",
+      "Value": "0",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872c9",
+      "Name": "PageSize",
+      "Value": "10",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872ca",
+      "Name": "ExchangeRate",
+      "Value": "1",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872cb",
+      "Name": "ActivationDelay",
+      "Value": "0",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872cc",
+      "Name": "PointsAccumulatedForAllStores",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872cd",
+      "Name": "Enabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872ce",
+      "Name": "ActivationDelayPeriodId",
+      "Value": "0",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872cf",
+      "Name": "RegistrationPointsValidity",
+      "Value": "30",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872d0",
+      "Name": "PointsForPurchases_Points",
+      "Value": "1",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872d1",
+      "Name": "CompareProductsCookieExpires",
+      "Value": "240",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872d2",
+      "Name": "RecentlyViewedProductsCookieExpires",
+      "Value": "240",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872d3",
+      "Name": "CustomerCookieExpires",
+      "Value": "8760",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872d4",
+      "Name": "Enabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872d5",
+      "Name": "AllowNotRegisteredUsersToLeaveComments",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872d6",
+      "Name": "NotifyAboutNewNewsComments",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872d7",
+      "Name": "ShowNewsOnMainPage",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872d8",
+      "Name": "NewsArchivePageSize",
+      "Value": "10",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872d9",
+      "Name": "NewsCommentsMustBeApproved",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872da",
+      "Name": "MainPageNewsCount",
+      "Value": "3",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872db",
+      "Name": "ShowHeaderRssUrl",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872dc",
+      "Name": "ShowNewsCommentsPerStore",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872dd",
+      "Name": "ImageSquarePictureSize",
+      "Value": "32",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872de",
+      "Name": "MaximumImageSize",
+      "Value": "1980",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872df",
+      "Name": "DefaultImageQuality",
+      "Value": "80",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872e0",
+      "Name": "CategoryThumbPictureSize",
+      "Value": "450",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872e1",
+      "Name": "CartThumbPictureSize",
+      "Value": "80",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872e2",
+      "Name": "OrderThumbPictureSize",
+      "Value": "80",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872e3",
+      "Name": "AllowSVGUploads",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872e4",
+      "Name": "MultipleThumbDirectories",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872e5",
+      "Name": "AzureCacheControlHeader",
+      "Value": "",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872e6",
+      "Name": "AssociatedProductPictureSize",
+      "Value": "220",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872e7",
+      "Name": "DefaultPictureZoomEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872e8",
+      "Name": "ImportProductImagesUsingHash",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872e9",
+      "Name": "UseAbsoluteImagePath",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872ea",
+      "Name": "AutoOrientImage",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872eb",
+      "Name": "VideoIframeWidth",
+      "Value": "300",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872ec",
+      "Name": "VideoIframeHeight",
+      "Value": "150",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872ed",
+      "Name": "ProductThumbPictureSize",
+      "Value": "415",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872ee",
+      "Name": "ProductDetailsPictureSize",
+      "Value": "550",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872ef",
+      "Name": "MiniCartThumbPictureSize",
+      "Value": "70",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872f0",
+      "Name": "AutoCompleteSearchThumbPictureSize",
+      "Value": "20",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872f1",
+      "Name": "VideoIframeAllow",
+      "Value": "fullscreen",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872f2",
+      "Name": "AvatarPictureSize",
+      "Value": "120",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872f3",
+      "Name": "ProductThumbPictureSizeOnProductDetailsPage",
+      "Value": "100",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872f4",
+      "Name": "ManufacturerThumbPictureSize",
+      "Value": "420",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872f5",
+      "Name": "VendorThumbPictureSize",
+      "Value": "450",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872f6",
+      "Name": "LogoPictureId",
+      "Value": "0",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872f7",
+      "Name": "LetterPageSizeEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872f8",
+      "Name": "RenderOrderNotes",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872f9",
+      "Name": "LtrFontName",
+      "Value": "NopCommonDefaults.PdfLtrFontName",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872fa",
+      "Name": "RtlFontName",
+      "Value": "NopCommonDefaults.PdfRtlFontName",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872fb",
+      "Name": "InvoiceFooterTextColumn1",
+      "Value": "",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872fc",
+      "Name": "InvoiceFooterTextColumn2",
+      "Value": "",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872fd",
+      "Name": "BaseFontSize",
+      "Value": "10",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872fe",
+      "Name": "ImageTargetSize",
+      "Value": "200",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3872ff",
+      "Name": "SitemapXmlIncludeProductTags",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387300",
+      "Name": "RebuildSitemapXmlAfterHours",
+      "Value": "48",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387301",
+      "Name": "SitemapBuildOperationDelay",
+      "Value": "60",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387302",
+      "Name": "SitemapXmlIncludeCategories",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387303",
+      "Name": "SitemapXmlIncludeCustomUrls",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387304",
+      "Name": "SitemapXmlIncludeTopics",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387305",
+      "Name": "SitemapXmlEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387306",
+      "Name": "SitemapXmlIncludeBlogPosts",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387307",
+      "Name": "SitemapXmlIncludeManufacturers",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387308",
+      "Name": "SitemapXmlIncludeNews",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387309",
+      "Name": "SitemapXmlIncludeProducts",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38730a",
+      "Name": "DefaultGridPageSize",
+      "Value": "15",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38730b",
+      "Name": "ProductsBulkEditGridPageSize",
+      "Value": "100",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38730c",
+      "Name": "PopupGridPageSize",
+      "Value": "7",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38730d",
+      "Name": "GridPageSizes",
+      "Value": "7, 15, 20, 50, 100",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38730e",
+      "Name": "RichEditorAdditionalSettings",
+      "Value": "",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38730f",
+      "Name": "RichEditorAllowJavaScript",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387310",
+      "Name": "RichEditorAllowStyleTag",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387311",
+      "Name": "CheckLicense",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387312",
+      "Name": "UseRichEditorForCustomerEmails",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387313",
+      "Name": "UseRichEditorInMessageTemplates",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387314",
+      "Name": "UseIsoDateFormatInJsonResult",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387315",
+      "Name": "ShowDocumentationReferenceLinks",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387316",
+      "Name": "UseStickyHeaderLayout",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387317",
+      "Name": "MinimumDropdownItemsForSearch",
+      "Value": "50",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387318",
+      "Name": "ShowProductImagesOnShoppingCart",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387319",
+      "Name": "CrossSellsNumber",
+      "Value": "4",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38731a",
+      "Name": "AllowAnonymousUsersToEmailWishlist",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38731b",
+      "Name": "ShowProductImagesInMiniShoppingCart",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38731c",
+      "Name": "AllowCartItemEditing",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38731d",
+      "Name": "MaximumWishlistItems",
+      "Value": "1000",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38731e",
+      "Name": "ShowGiftCardBox",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38731f",
+      "Name": "GroupTierPricesForDistinctShoppingCartItems",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387320",
+      "Name": "DisplayCartAfterAddingProduct",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387321",
+      "Name": "MaximumShoppingCartItems",
+      "Value": "1000",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387322",
+      "Name": "AllowOutOfStockItemsToBeAddedToWishlist",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387323",
+      "Name": "MoveItemsFromWishlistToCart",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387324",
+      "Name": "CartsSharedBetweenStores",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387325",
+      "Name": "EmailWishlistEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387326",
+      "Name": "MiniShoppingCartProductNumber",
+      "Value": "5",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387327",
+      "Name": "RoundPricesDuringCalculation",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387328",
+      "Name": "DisplayWishlistAfterAddingProduct",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387329",
+      "Name": "ShowProductImagesOnWishList",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38732a",
+      "Name": "ShowDiscountBox",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38732b",
+      "Name": "MiniShoppingCartEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38732c",
+      "Name": "RenderAssociatedAttributeValueQuantity",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38732d",
+      "Name": "HoneypotEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38732e",
+      "Name": "HoneypotInputName",
+      "Value": "hpinput",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38732f",
+      "Name": "AllowNonAsciiCharactersInHeaders",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387330",
+      "Name": "UseAesEncryptionAlgorithm",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387331",
+      "Name": "AllowStoreOwnerExportImportCustomersWithHashedPassword",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387332",
+      "Name": "EncryptionKey",
+      "Value": "CommonHelper.GenerateRandomDigitCode(16)",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387333",
+      "Name": "AdminAreaAllowedIpAddresses",
+      "Value": "",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387334",
+      "Name": "DefaultTaxCategoryId",
+      "Value": "0",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387335",
+      "Name": "TaxDisplayType",
+      "Value": "TaxDisplayType.ExcludingTax",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387336",
+      "Name": "DisplayTaxRates",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387337",
+      "Name": "ShippingPriceIncludesTax",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387338",
+      "Name": "EuVatShopCountryId",
+      "Value": "CountryId",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387339",
+      "Name": "EuVatEnabledForGuests",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38733a",
+      "Name": "EuVatRequired",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38733b",
+      "Name": "EuVatAllowVatExemption",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38733c",
+      "Name": "EuVatAssumeValid",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38733d",
+      "Name": "EuVatEmailAdminWhenNewVatSubmitted",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38733e",
+      "Name": "ActiveTaxProviderSystemName",
+      "Value": "Tax.FixedOrByCountryStateZip",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38733f",
+      "Name": "PaymentMethodAdditionalFeeIncludesTax",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387340",
+      "Name": "EuVatUseWebService",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387341",
+      "Name": "TaxBasedOn",
+      "Value": "TaxBasedOn.BillingAddress",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387342",
+      "Name": "DisplayTaxSuffix",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387343",
+      "Name": "PaymentMethodAdditionalFeeIsTaxable",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387344",
+      "Name": "AutomaticallyDetectCountry",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387345",
+      "Name": "HideTaxInOrderSummary",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387346",
+      "Name": "EuVatEnabled",
+      "Value": "isEurope",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387347",
+      "Name": "LogErrors",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387348",
+      "Name": "TaxBasedOnPickupPointAddress",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387349",
+      "Name": "AllowCustomersToSelectTaxDisplayType",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38734a",
+      "Name": "ForceTaxExclusionFromOrderSubtotal",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38734b",
+      "Name": "ShippingIsTaxable",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38734c",
+      "Name": "ShippingTaxClassId",
+      "Value": "0",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38734d",
+      "Name": "PaymentMethodAdditionalFeeTaxClassId",
+      "Value": "0",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38734e",
+      "Name": "DefaultTaxAddressId",
+      "Value": "0",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38734f",
+      "Name": "PricesIncludeTax",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387350",
+      "Name": "HideZeroTax",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387351",
+      "Name": "PostsPageSize",
+      "Value": "10",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387352",
+      "Name": "AllowNotRegisteredUsersToLeaveComments",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387353",
+      "Name": "NotifyAboutNewBlogComments",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387354",
+      "Name": "NumberOfTags",
+      "Value": "15",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387355",
+      "Name": "ShowHeaderRssUrl",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387356",
+      "Name": "BlogCommentsMustBeApproved",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387357",
+      "Name": "ShowBlogCommentsPerStore",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387358",
+      "Name": "Enabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387359",
+      "Name": "AutomaticallyDetectLanguage",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38735a",
+      "Name": "LoadAllLocaleRecordsOnStartup",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38735b",
+      "Name": "LoadAllLocalizedPropertiesOnStartup",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38735c",
+      "Name": "LoadAllUrlRecordsOnStartup",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38735d",
+      "Name": "IgnoreRtlPropertyForAdminArea",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38735e",
+      "Name": "DefaultAdminLanguageId",
+      "Value": "LanguageId",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38735f",
+      "Name": "UseImagesForLanguageSelection",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387360",
+      "Name": "SeoFriendlyUrlsForLanguagesEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387361",
+      "Name": "StreetAddressRequired",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387362",
+      "Name": "ZipPostalCodeEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387363",
+      "Name": "ZipPostalCodeRequired",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387364",
+      "Name": "CountryEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387365",
+      "Name": "StateProvinceEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387366",
+      "Name": "PhoneRequired",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387367",
+      "Name": "DefaultCountryId",
+      "Value": "CountryId",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387368",
+      "Name": "CountyEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387369",
+      "Name": "PhoneEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38736a",
+      "Name": "StreetAddressEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38736b",
+      "Name": "StreetAddress2Enabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38736c",
+      "Name": "CityEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38736d",
+      "Name": "CityRequired",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38736e",
+      "Name": "CompanyEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38736f",
+      "Name": "CountyRequired",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387370",
+      "Name": "FaxEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387371",
+      "Name": "RegenerateOrderGuidInterval",
+      "Value": "180",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387372",
+      "Name": "ActivePaymentMethodSystemNames",
+      "Value": "Payments.CheckMoneyOrder,Payments.Manual",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387373",
+      "Name": "AllowRePostingPayments",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387374",
+      "Name": "BypassPaymentMethodSelectionIfOnlyOne",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387375",
+      "Name": "ShowPaymentMethodDescriptions",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387376",
+      "Name": "SkipPaymentInfoStepForRedirectionPaymentMethods",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387377",
+      "Name": "CancelRecurringPaymentsAfterFailedPayment",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387378",
+      "Name": "Address",
+      "Value": "",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387379",
+      "Name": "Port",
+      "Value": "",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38737a",
+      "Name": "Username",
+      "Value": "",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38737b",
+      "Name": "Password",
+      "Value": "",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38737c",
+      "Name": "BypassOnLocal",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38737d",
+      "Name": "PreAuthenticate",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38737e",
+      "Name": "Enabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38737f",
+      "Name": "DefaultStoreTimeZoneId",
+      "Value": "",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387380",
+      "Name": "AllowCustomersToSetTimeZone",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387381",
+      "Name": "ShowOnCheckoutPageForGuests",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387382",
+      "Name": "ReCaptchaRequestTimeout",
+      "Value": "20",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387383",
+      "Name": "ShowOnApplyVendorPage",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387384",
+      "Name": "ShowOnEmailProductToFriendPage",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387385",
+      "Name": "ShowOnEmailWishlistToFriendPage",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387386",
+      "Name": "ShowOnForgotPasswordPage",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387387",
+      "Name": "ReCaptchaDefaultLanguage",
+      "Value": "",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387388",
+      "Name": "ShowOnBlogCommentPage",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387389",
+      "Name": "ShowOnForum",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38738a",
+      "Name": "ShowOnNewsletterPage",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38738b",
+      "Name": "ShowOnProductReviewPage",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38738c",
+      "Name": "ShowOnRegistrationPage",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38738d",
+      "Name": "ShowOnCheckGiftCardBalance",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38738e",
+      "Name": "ReCaptchaApiUrl",
+      "Value": "https://www.google.com/recaptcha/",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38738f",
+      "Name": "ReCaptchaPrivateKey",
+      "Value": "",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387390",
+      "Name": "ReCaptchaPublicKey",
+      "Value": "",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387391",
+      "Name": "AutomaticallyChooseLanguage",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387392",
+      "Name": "Enabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387393",
+      "Name": "ShowOnContactUsPage",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387394",
+      "Name": "ShowOnLoginPage",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387395",
+      "Name": "ShowOnNewsCommentPage",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387396",
+      "Name": "ReCaptchaTheme",
+      "Value": "",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387397",
+      "Name": "CaptchaType",
+      "Value": "CaptchaType.CheckBoxReCaptchaV2",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387398",
+      "Name": "ReCaptchaV3ScoreThreshold",
+      "Value": "0.5",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387399",
+      "Name": "UsePopupNotifications",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38739a",
+      "Name": "DeleteInactiveCustomersAfterMonths",
+      "Value": "36",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38739b",
+      "Name": "GdprEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38739c",
+      "Name": "LogPrivacyPolicyConsent",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38739d",
+      "Name": "LogNewsletterConsent",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38739e",
+      "Name": "LogUserProfileChanges",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b38739f",
+      "Name": "AllowCustomerToSelectTheme",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873a0",
+      "Name": "FacebookLink",
+      "Value": "https://www.facebook.com/EarnForGlance",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873a1",
+      "Name": "YoutubeLink",
+      "Value": "https://www.youtube.com/user/EarnForGlance",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873a2",
+      "Name": "StoreClosed",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873a3",
+      "Name": "DefaultStoreTheme",
+      "Value": "DefaultClean",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873a4",
+      "Name": "DisplayEuCookieLawWarning",
+      "Value": "isEurope",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873a5",
+      "Name": "TwitterLink",
+      "Value": "https://twitter.com/EarnForGlance",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873a6",
+      "Name": "InstagramLink",
+      "Value": "https://www.instagram.com/nopcommerce_official",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873a7",
+      "Name": "HidePoweredByNopCommerce",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873a8",
+      "Name": "CaseInvariantReplacement",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873a9",
+      "Name": "Color1",
+      "Value": "#b9babe",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873aa",
+      "Name": "Color2",
+      "Value": "#ebecee",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873ab",
+      "Name": "Color3",
+      "Value": "#dde2e6",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873ac",
+      "Name": "AutoUpdateOrderTotalsOnEditingOrder",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873ad",
+      "Name": "AnonymousCheckoutAllowed",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873ae",
+      "Name": "TermsOfServiceOnShoppingCartPage",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873af",
+      "Name": "DisableBillingAddressCheckoutStep",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873b0",
+      "Name": "NumberOfDaysReturnRequestAvailable",
+      "Value": "365",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873b1",
+      "Name": "ActivateGiftCardsAfterCompletingOrder",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873b2",
+      "Name": "DeactivateGiftCardsAfterCancellingOrder",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873b3",
+      "Name": "ShowProductThumbnailInOrderDetailsPage",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873b4",
+      "Name": "MinOrderSubtotalAmountIncludingTax",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873b5",
+      "Name": "OnePageCheckoutDisplayOrderTotalsOnPaymentInfoTab",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873b6",
+      "Name": "DisableOrderCompletedPage",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873b7",
+      "Name": "AttachPdfInvoiceToOrderPaidEmail",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873b8",
+      "Name": "CompleteOrderWhenDelivered",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873b9",
+      "Name": "DisplayCustomerCurrencyOnOrders",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873ba",
+      "Name": "DisplayOrderSummary",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873bb",
+      "Name": "GeneratePdfInvoiceInCustomerLanguage",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873bc",
+      "Name": "ReturnRequestsEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873bd",
+      "Name": "AttachPdfInvoiceToOrderCompletedEmail",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873be",
+      "Name": "IsReOrderAllowed",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873bf",
+      "Name": "OnePageCheckoutEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873c0",
+      "Name": "DisplayPickupInStoreOnShippingMethodPage",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873c1",
+      "Name": "ReturnRequestsAllowFiles",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873c2",
+      "Name": "PlaceOrderWithLock",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873c3",
+      "Name": "TermsOfServiceOnOrderConfirmPage",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873c4",
+      "Name": "DeactivateGiftCardsAfterDeletingOrder",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873c5",
+      "Name": "ExportWithProducts",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873c6",
+      "Name": "MinOrderTotalAmount",
+      "Value": "0",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873c7",
+      "Name": "AttachPdfInvoiceToOrderPlacedEmail",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873c8",
+      "Name": "AllowAdminsToBuyCallForPriceProducts",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873c9",
+      "Name": "ReturnRequestNumberMask",
+      "Value": "{ID}",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873ca",
+      "Name": "MinOrderSubtotalAmount",
+      "Value": "0",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873cb",
+      "Name": "AttachPdfInvoiceToOrderProcessingEmail",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873cc",
+      "Name": "ReturnRequestsFileMaximumSize",
+      "Value": "2048",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873cd",
+      "Name": "MinimumOrderPlacementInterval",
+      "Value": "1",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873ce",
+      "Name": "CustomOrderNumberMask",
+      "Value": "{ID}",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873cf",
+      "Name": "EstimateShippingCartPageEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873d0",
+      "Name": "DisplayPickupPointsOnMap",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873d1",
+      "Name": "IgnoreAdditionalShippingChargeForPickupInStore",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873d2",
+      "Name": "NotifyCustomerAboutShippingFromMultipleLocations",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873d3",
+      "Name": "FreeShippingOverXIncludingTax",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873d4",
+      "Name": "DisplayShipmentEventsToCustomers",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873d5",
+      "Name": "BypassShippingMethodSelectionIfOnlyOne",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873d6",
+      "Name": "ActiveShippingRateComputationMethodSystemNames",
+      "Value": "Shipping.FixedByWeightByTotal",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873d7",
+      "Name": "ShipToSameAddress",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873d8",
+      "Name": "FreeShippingOverXEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873d9",
+      "Name": "DisplayShipmentEventsToStoreOwner",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873da",
+      "Name": "ConsiderAssociatedProductsDimensions",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873db",
+      "Name": "ShipSeparatelyOneItemEach",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873dc",
+      "Name": "RequestDelay",
+      "Value": "300",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873dd",
+      "Name": "ShippingSorting",
+      "Value": "ShippingSortingEnum.Position",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873de",
+      "Name": "ActivePickupPointProviderSystemNames",
+      "Value": "Pickup.PickupInStore",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873df",
+      "Name": "AllowPickupInStore",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873e0",
+      "Name": "UseWarehouseLocation",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873e1",
+      "Name": "FreeShippingOverXValue",
+      "Value": "0",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873e2",
+      "Name": "HideShippingTotal",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873e3",
+      "Name": "ReturnValidOptionsIfThereAreAny",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873e4",
+      "Name": "EstimateShippingCityNameEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873e5",
+      "Name": "UseCubeRootMethod",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873e6",
+      "Name": "EstimateShippingProductPageEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873e7",
+      "Name": "RelativeDateTimeFormattingEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873e8",
+      "Name": "MaxVotesPerDay",
+      "Value": "30",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873e9",
+      "Name": "ForumEditor",
+      "Value": "EditorType.BBCodeEditor",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873ea",
+      "Name": "SignaturesEnabled",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873eb",
+      "Name": "ForumFeedsEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873ec",
+      "Name": "AllowCustomersToManageSubscriptions",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873ed",
+      "Name": "AllowPostVoting",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873ee",
+      "Name": "StrippedTopicMaxLength",
+      "Value": "45",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873ef",
+      "Name": "TopicsPageSize",
+      "Value": "10",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873f0",
+      "Name": "AllowPrivateMessages",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873f1",
+      "Name": "ShowAlertForPM",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873f2",
+      "Name": "ForumsEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873f3",
+      "Name": "AllowCustomersToDeletePosts",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873f4",
+      "Name": "AllowGuestsToCreateTopics",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873f5",
+      "Name": "PostsPageSize",
+      "Value": "10",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873f6",
+      "Name": "PrivateMessagesPageSize",
+      "Value": "10",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873f7",
+      "Name": "ActiveDiscussionsFeedCount",
+      "Value": "25",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873f8",
+      "Name": "LatestCustomerPostsPageSize",
+      "Value": "10",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873f9",
+      "Name": "ShowCustomersPostCount",
+      "Value": "true",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873fa",
+      "Name": "ActiveDiscussionsFeedEnabled",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873fb",
+      "Name": "ForumFeedCount",
+      "Value": "10",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873fc",
+      "Name": "AllowGuestsToCreatePosts",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873fd",
+      "Name": "TopicSubjectMaxLength",
+      "Value": "450",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873fe",
+      "Name": "PostMaxLength",
+      "Value": "4000",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b3873ff",
+      "Name": "ActiveDiscussionsPageSize",
+      "Value": "50",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387400",
+      "Name": "SearchResultsPageSize",
+      "Value": "10",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387401",
+      "Name": "HomepageActiveDiscussionsTopicCount",
+      "Value": "5",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387402",
+      "Name": "ForumSearchTermMinimumLength",
+      "Value": "3",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387403",
+      "Name": "AllowCustomersToEditPosts",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387404",
+      "Name": "ForumSubscriptionsPageSize",
+      "Value": "10",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387405",
+      "Name": "NotifyAboutPrivateMessages",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387406",
+      "Name": "PMSubjectMaxLength",
+      "Value": "450",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387407",
+      "Name": "PMTextMaxLength",
+      "Value": "4000",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387408",
+      "Name": "DefaultEmailAccountId",
+      "Value": "eaGeneral.Id",
+      "StoreID": "64f1b3d4e5f6789012345678"
+  },
+  {
+      "ID": "67ed840939ef71573b387409",
+      "Name": "ForceMultifactorAuthentication",
+      "Value": "false",
+      "StoreID": "64f1b3d4e5f6789012345678"
   }
-
-  }
+]

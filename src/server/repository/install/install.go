@@ -11,6 +11,7 @@ import (
 	directory "earnforglance/server/domain/directory"
 	discounts "earnforglance/server/domain/discounts"
 	forums "earnforglance/server/domain/forums"
+	gdprs "earnforglance/server/domain/gdpr"
 	install "earnforglance/server/domain/install"
 	lang "earnforglance/server/domain/localization"
 	loggings "earnforglance/server/domain/logging"
@@ -729,7 +730,7 @@ func (tu *intallRepository) InstallProductCategory(c context.Context, items []ca
 
 func (tu *intallRepository) InstallTierPrice(c context.Context, items []catalog.TierPrice) error {
 
-	collection := tu.database.Collection(commons.CollectionSearchTerm)
+	collection := tu.database.Collection(catalog.CollectionTierPrice)
 
 	interfaces := make([]interface{}, len(items))
 	for i, item := range items {
@@ -968,6 +969,132 @@ func (tu *intallRepository) InstallSearchTerm(c context.Context, items []commons
 func (tu *intallRepository) InstallDownload(c context.Context, items []media.Download) error {
 
 	collection := tu.database.Collection(media.CollectionDownload)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallRelatedProduct(c context.Context, items []catalog.RelatedProduct) error {
+
+	collection := tu.database.Collection(catalog.CollectionRelatedProduct)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallProductReview(c context.Context, items []catalog.ProductReview) error {
+
+	collection := tu.database.Collection(catalog.CollectionProductReview)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallStockQuantityChange(c context.Context, items []catalog.StockQuantityChange) error {
+
+	collection := tu.database.Collection(catalog.CollectionStockQuantityChange)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallGdprConsent(c context.Context, items []gdprs.GdprConsent) error {
+
+	collection := tu.database.Collection(gdprs.CollectionGdprConsent)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallOrder(c context.Context, items []orders.Order) error {
+
+	collection := tu.database.Collection(orders.CollectionOrder)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallOrderItem(c context.Context, items []orders.OrderItem) error {
+
+	collection := tu.database.Collection(orders.CollectionOrderItem)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallShipment(c context.Context, items []shippings.Shipment) error {
+
+	collection := tu.database.Collection(shippings.CollectionShipment)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallShipmentItem(c context.Context, items []shippings.ShipmentItem) error {
+
+	collection := tu.database.Collection(shippings.CollectionShipmentItem)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallOrderNote(c context.Context, items []orders.OrderNote) error {
+
+	collection := tu.database.Collection(orders.CollectionOrderNote)
 
 	interfaces := make([]interface{}, len(items))
 	for i, item := range items {

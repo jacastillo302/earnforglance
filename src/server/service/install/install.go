@@ -3,6 +3,7 @@ package controller
 import (
 	"encoding/json"
 	"fmt"
+	"math/big"
 	"os"
 	"time"
 
@@ -17,6 +18,7 @@ import (
 	directory "earnforglance/server/domain/directory"
 	discounts "earnforglance/server/domain/discounts"
 	forums "earnforglance/server/domain/forums"
+	gdprs "earnforglance/server/domain/gdpr"
 	response "earnforglance/server/domain/install"
 	lang "earnforglance/server/domain/localization"
 	loggings "earnforglance/server/domain/logging"
@@ -34,6 +36,7 @@ import (
 	vendors "earnforglance/server/domain/vendors"
 	tools "earnforglance/server/service/common"
 	service "earnforglance/server/service/customers"
+
 	"encoding/base64"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -355,62 +358,23 @@ func InstallSettings() (response.Install, []configuration.Setting) {
 	collection := configuration.CollectionSetting
 
 	// Resolve the relative path
-	filePath := resolvePath(DefaultPathJson, "store\\"+stores.CollectionStore+".json")
+	filePath := resolvePath(DefaultPathJson, "configuration\\"+collection+".json")
 
 	// Read the JSON file
 	storeData, err := os.ReadFile(filePath)
 	if err != nil {
 		result.Status = false
-		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		result.Details = " 1 Failed to read " + collection + " JSON file: " + err.Error()
 		return result, nil
 	}
 
-	// Unmarshal the JSON data into a slice of stores.Store
-	stores := make([]stores.Store, 0)
-	err = json.Unmarshal(storeData, &stores)
-	if err != nil {
-		result.Status = false
-		result.Details = "Failed to parse store JSON file: " + err.Error()
-		return result, nil
-	}
-
-	// Resolve the relative path
-	filePath = resolvePath(DefaultPathJson, "configuration\\"+collection+".json")
-
-	fileData, err := ReadJsonMap(filePath)
-	if err != nil {
-		fmt.Println("Error:", err)
-		result.Status = false
-		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
-		return result, nil
-
-	}
-
-	// Iterate over the grouped settings
+	// Unmarshal the JSON data into a slice of configuration.Setting
 	settings := make([]configuration.Setting, 0)
-	for group, values := range fileData {
-		switch v := values.(type) {
-		case map[string]interface{}:
-			for key, value := range v {
-				strValue, ok := value.(string) // Type assertion to convert value to string
-				if !ok {
-					fmt.Printf("  Skipping key %s: value is not a string\n", key)
-					continue
-				}
-				settings = append(settings, configuration.Setting{
-					ID:      primitive.NewObjectID(),
-					Name:    key,
-					Value:   strValue,
-					StoreID: stores[0].ID,
-				})
-
-			}
-		default:
-			fmt.Printf("  Unknown type for group %s\n", group)
-			result.Status = false
-			result.Details = "Invalid storeID: " + "Unknown type for group " + group
-			return result, nil
-		}
+	err = json.Unmarshal(storeData, &settings)
+	if err != nil {
+		result.Status = false
+		result.Details = "2 Failed to parse store JSON file: " + err.Error()
+		return result, nil
 	}
 
 	// Success response
@@ -2466,6 +2430,423 @@ func InstallDownload(isSample bool) (response.Install, []media.Download) {
 
 	// Unmarshal the JSON data into a slice of Download
 	items := make([]media.Download, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallRelatedProduct(isSample bool) (response.Install, []catalog.RelatedProduct) {
+	var result response.Install
+	collection := catalog.CollectionRelatedProduct
+
+	sample := "_sample"
+
+	if !isSample {
+		sample = ""
+	}
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "catalog\\"+collection+sample+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of catalog.RelatedProduct
+	items := make([]catalog.RelatedProduct, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallProductReview(isSample bool, products []catalog.Product) (response.Install, []catalog.ProductReview) {
+	var result response.Install
+	collection := catalog.CollectionProductReview
+
+	sample := "_sample"
+
+	if !isSample {
+		sample = ""
+	}
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "catalog\\"+collection+sample+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of catalog.ProductReview
+	items := make([]catalog.ProductReview, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	reviews := make([]catalog.ProductReview, 0)
+	for _, item := range products {
+
+		nBig, err := rand.Int(rand.Reader, big.NewInt(5)) // 6 is exclusive, so it generates 0 to 4
+		if err != nil {
+			return result, nil // Handle the error appropriately
+		}
+
+		n := int(nBig.Int64()) // Convert *big.Int to int
+
+		replyText := items[0].ReplyText
+		helpfulNoTotal := items[0].HelpfulNoTotal
+		helpfulYesTotal := items[0].HelpfulYesTotal
+		reviewText := ""
+
+		// Generate a random number between 0 and 4 (inclusive)
+		switch n {
+		case 0:
+			reviewText = "Terrible product. Avoid at all costs."
+			replyText = "This product is bad. I wouldn't recommend it."
+			helpfulNoTotal = 10
+			helpfulYesTotal = 0
+
+		case 1:
+			reviewText = "Not great, needs improvement."
+			replyText = "This product is below average. Needs improvement."
+			helpfulNoTotal = 8
+			helpfulYesTotal = 2
+		case 2:
+			reviewText = "It's okay, meets expectations."
+			replyText = "This product is average. It meets expectations."
+			helpfulNoTotal = 6
+			helpfulYesTotal = 4
+		case 3:
+			reviewText = "Good product, I liked it."
+			replyText = "This product is good. I liked it."
+			helpfulNoTotal = 4
+			helpfulYesTotal = 6
+		case 4:
+			reviewText = "Excellent product, highly recommend!"
+			replyText = "This product is outperforming. Highly recommend!"
+			helpfulNoTotal = 2
+			helpfulYesTotal = 8
+		}
+
+		review := catalog.ProductReview{
+			ID:                      primitive.NewObjectID(),
+			CustomerID:              items[0].CustomerID,
+			ProductID:               item.ID,
+			StoreID:                 items[0].StoreID,
+			IsApproved:              items[0].IsApproved,
+			Title:                   items[0].Title,
+			ReplyText:               replyText + item.Name,
+			ReviewText:              reviewText,
+			Rating:                  n,
+			CustomerNotifiedOfReply: items[0].CustomerNotifiedOfReply,
+			HelpfulYesTotal:         helpfulYesTotal,
+			HelpfulNoTotal:          helpfulNoTotal,
+			CreatedOnUtc:            time.Now(),
+		}
+
+		reviews = append(reviews, review)
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, reviews
+}
+
+func InstallStockQuantityChange(isSample bool, products []catalog.Product) (response.Install, []catalog.StockQuantityChange) {
+	var result response.Install
+	collection := catalog.CollectionStockQuantityChange
+	stockd := make([]catalog.StockQuantityChange, 0)
+	sample := "_sample"
+
+	if !isSample {
+		sample = ""
+	}
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "catalog\\"+collection+sample+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err == nil {
+		// Unmarshal the JSON data into a slice of catalog.StockQuantityChange
+		stockd = make([]catalog.StockQuantityChange, 0)
+		err = json.Unmarshal(fileData, &stockd)
+		if err != nil {
+			result.Status = false
+			result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+			return result, nil
+		}
+	} else {
+
+		for _, item := range products {
+
+			stock := catalog.StockQuantityChange{
+				ID:                 primitive.NewObjectID(),
+				QuantityAdjustment: item.StockQuantity,
+				StockQuantity:      item.StockQuantity,
+				Message:            "The stock quantity by the product: " + item.Name,
+				ProductID:          item.ID,
+				CreatedOnUtc:       time.Now(),
+			}
+			stockd = append(stockd, stock)
+		}
+
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, stockd
+}
+
+func InstallGdprConsent(isSample bool) (response.Install, []gdprs.GdprConsent) {
+	var result response.Install
+	collection := gdprs.CollectionGdprConsent
+
+	sample := "_sample"
+
+	if !isSample {
+		sample = ""
+	}
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "gdpr\\"+collection+sample+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of gdprs.GdprConsent
+	items := make([]gdprs.GdprConsent, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallOrder(isSample bool) (response.Install, []orders.Order) {
+	var result response.Install
+	collection := orders.CollectionOrder
+
+	sample := "_sample"
+
+	if !isSample {
+		sample = ""
+	}
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "orders\\"+collection+sample+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of orders.Order
+	items := make([]orders.Order, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallOrderItem(isSample bool) (response.Install, []orders.OrderItem) {
+	var result response.Install
+	collection := orders.CollectionOrderItem
+
+	sample := "_sample"
+
+	if !isSample {
+		sample = ""
+	}
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "orders\\"+collection+sample+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of orders.OrderItem
+	items := make([]orders.OrderItem, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallOrderNote(isSample bool) (response.Install, []orders.OrderNote) {
+	var result response.Install
+	collection := orders.CollectionOrderNote
+
+	sample := "_sample"
+
+	if !isSample {
+		sample = ""
+	}
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "orders\\"+collection+sample+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of orders.OrderNote
+	items := make([]orders.OrderNote, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallShipment(isSample bool) (response.Install, []shippings.Shipment) {
+	var result response.Install
+	collection := shippings.CollectionShipment
+
+	sample := "_sample"
+
+	if !isSample {
+		sample = ""
+	}
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "shipping\\"+collection+sample+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of shippings.Shipment
+	items := make([]shippings.Shipment, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallShipmentItem(isSample bool) (response.Install, []shippings.ShipmentItem) {
+	var result response.Install
+	collection := shippings.CollectionShipmentItem
+
+	sample := "_sample"
+
+	if !isSample {
+		sample = ""
+	}
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "shipping\\"+collection+sample+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of shippings.ShipmentItem
+	items := make([]shippings.ShipmentItem, 0)
 	err = json.Unmarshal(fileData, &items)
 	if err != nil {
 		result.Status = false

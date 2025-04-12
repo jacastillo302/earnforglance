@@ -11,6 +11,7 @@ import (
 	directory "earnforglance/server/domain/directory"
 	discounts "earnforglance/server/domain/discounts"
 	forums "earnforglance/server/domain/forums"
+	gdprs "earnforglance/server/domain/gdpr"
 	install "earnforglance/server/domain/install"
 	lang "earnforglance/server/domain/localization"
 	loggings "earnforglance/server/domain/logging"
@@ -26,6 +27,7 @@ import (
 	taxes "earnforglance/server/domain/tax"
 	topics "earnforglance/server/domain/topics"
 	vendors "earnforglance/server/domain/vendors"
+
 	"time"
 )
 
@@ -450,4 +452,58 @@ func (tu *InstallUsecase) InstallDownload(c context.Context, items []media.Downl
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.InstallRepository.InstallDownload(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallRelatedProduct(c context.Context, items []catalog.RelatedProduct) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallRelatedProduct(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallProductReview(c context.Context, items []catalog.ProductReview) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallProductReview(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallStockQuantityChange(c context.Context, items []catalog.StockQuantityChange) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallStockQuantityChange(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallGdprConsent(c context.Context, items []gdprs.GdprConsent) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallGdprConsent(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallOrder(c context.Context, items []orders.Order) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallOrder(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallOrderItem(c context.Context, items []orders.OrderItem) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallOrderItem(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallShipment(c context.Context, items []shippings.Shipment) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallShipment(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallShipmentItem(c context.Context, items []shippings.ShipmentItem) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallShipmentItem(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallOrderNote(c context.Context, items []orders.OrderNote) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallOrderNote(ctx, items)
 }
