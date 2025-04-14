@@ -30,6 +30,27 @@ import (
 	vendors "earnforglance/server/domain/vendors"
 )
 
+// InstallModel represents the installation model
+type InstallModel struct {
+	AdminEmail           string
+	AdminPassword        string
+	ConfirmPassword      string
+	SampleData           bool
+	SubscribeNewsletters bool
+	AvailableLanguages   []string
+	AvailableCountries   []string
+}
+
+// DataProviderType represents the data provider type
+type DataProviderType int
+
+const (
+	Mongo      DataProviderType = 0
+	SqlServer  DataProviderType = 1
+	MySql      DataProviderType = 2
+	PostgreSql DataProviderType = 3
+)
+
 type Install struct {
 	Status       bool
 	Details      string

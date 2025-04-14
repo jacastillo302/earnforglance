@@ -749,7 +749,7 @@ func InstallCustomerPassword(customerID primitive.ObjectID, psw string) (respons
 	var result response.Install
 	collection := customers.CollectionCustomer
 
-	buff := make([]byte, 32) // Assuming NopCustomerServicesDefaults.PasswordSaltKeySize is 32
+	buff := make([]byte, 32)
 	_, err := rand.Read(buff)
 	if err != nil {
 		result.Status = false
@@ -867,12 +867,18 @@ func InstallCustomerCustomerRoleMapping(customerID primitive.ObjectID, rolesID [
 	return result, items
 }
 
-func InstallCustomerCustomerRoleMapping_Sample() (response.Install, []customers.CustomerCustomerRoleMapping) {
+func InstallCustomerCustomerRoleMappings(isSample bool) (response.Install, []customers.CustomerCustomerRoleMapping) {
 	var result response.Install
 	collection := customers.CollectionCustomerCustomerRoleMapping
 
+	sample := "_sample"
+
+	if !isSample {
+		sample = ""
+	}
+
 	// Resolve the relative path
-	filePath := resolvePath(DefaultPathJson, "customers\\"+collection+"_sample.json")
+	filePath := resolvePath(DefaultPathJson, "customers\\"+collection+sample+".json")
 
 	// Read the JSON file
 	fileData, err := os.ReadFile(filePath)

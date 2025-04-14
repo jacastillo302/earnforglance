@@ -3,12 +3,12 @@ package route
 import (
 	"time"
 
-	"earnforglance/server/api/controller"
+	controller "earnforglance/server/api/controller/security"
 	"earnforglance/server/bootstrap"
 	domain "earnforglance/server/domain/security"
-	"earnforglance/server/repository"
+	repository "earnforglance/server/repository/security"
 	"earnforglance/server/service/data/mongo"
-	"earnforglance/server/usecase"
+	usecase "earnforglance/server/usecase/security"
 
 	"github.com/gin-gonic/gin"
 )

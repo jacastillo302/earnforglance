@@ -3,11 +3,13 @@ package domain
 import (
 	"context"
 
+	domain "earnforglance/server/domain/customers"
+
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 const (
-	CollectionUser = "users"
+	CollectionUser = "customers"
 )
 
 type User struct {
@@ -18,8 +20,7 @@ type User struct {
 }
 
 type UserRepository interface {
-	Create(c context.Context, user *User) error
-	Fetch(c context.Context) ([]User, error)
-	GetByEmail(c context.Context, email string) (User, error)
+	GetByEmail(c context.Context, email string) (domain.Customer, error)
+	GetPasw(c context.Context, email string) (domain.CustomerPassword, error)
 	GetByID(c context.Context, id string) (User, error)
 }

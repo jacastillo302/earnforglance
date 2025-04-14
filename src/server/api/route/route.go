@@ -66,10 +66,11 @@ func Setup(env *bootstrap.Env, timeout time.Duration, db mongo.Database, gin *gi
 	publicRouter.StaticFS("/media", http.Dir("./media"))
 
 	// All Public APIs
-	publicRouter = gin.Group("/api")
-	SignupRouter(env, timeout, db, publicRouter)
-	LoginRouter(env, timeout, db, publicRouter)
-	RefreshTokenRouter(env, timeout, db, publicRouter)
+	publicRouter = gin.Group("/api/v1")
+	security.LoginRouter(env, timeout, db, publicRouter)
+	//security.SignupRouter(env, timeout, db, publicRouter)
+
+	security.RefreshTokenRouter(env, timeout, db, publicRouter)
 
 	publicRouter = gin.Group("/api/v1/client/")
 	auth.ApiClientRouter(env, timeout, db, publicRouter)
@@ -80,10 +81,6 @@ func Setup(env *bootstrap.Env, timeout time.Duration, db mongo.Database, gin *gi
 	// Middleware to verify AccessToken
 	protectedRouter := gin.Group("")
 	protectedRouter.Use(middleware.JwtAuthMiddleware(env.AccessTokenSecret))
-
-	// Core APIs
-	ProfileRouter(env, timeout, db, protectedRouter)
-	TaskRouter(env, timeout, db, protectedRouter)
 
 	// Register all domain-specific routers
 	registerModuleRouters(env, timeout, db, protectedRouter)

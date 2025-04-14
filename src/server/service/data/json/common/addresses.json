@@ -1,19 +1,20 @@
 [
-    {
-        "ID": "67efd4eadb297933388cffd8", 
-        "FirstName": "Admin",
-        "LastName": "Super Admin",
-        "PhoneNumber": "555-555-5555",
-        "Email": "_installationSettings.AdminEmail",
-        "FaxNumber": "",
-        "Company": "Earn For Glance",
-        "Address1": "151 South Avellino 2 Street",
-        "Address2": "",
-        "City": "Alabama",
-        "StateProvinceId": "67eda9c8849514f994a16627",
-        "CountryId": "67eda3c8cc97802cc7260749",
-        "ZipPostalCode": "00000",
-        "CustomAttributes": "",
-        "CreatedOnUtc": "2025-04-02T00:00:00Z"
-      }
+  {
+      "ID": "67efd4eadb297933388cffd8",
+      "FirstName": "Admin",
+      "LastName": "Super Admin",
+      "Email": "admin@example.com",
+      "Company": "Earn For Glance",
+      "CountryID": "67eda3c8cc97802cc7260749",
+      "StateProvinceID": "67eda9c8849514f994a16627",
+      "County": "",
+      "City": "Alabama",
+      "Address1": "151 South Avellino 2 Street",
+      "Address2": "",
+      "ZipPostalCode": "00000",
+      "PhoneNumber": "555-555-5555",
+      "FaxNumber": "",
+      "CustomAttributes": "",
+      "CreatedOnUtc": "2025-04-05T13:17:08.545Z"
+  }
 ]

@@ -19,12 +19,10 @@ func InstallRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database,
 		InstallUsecase: usecase.NewInstallUsecase(ur, timeout),
 		Env:            env,
 	}
-
 	group.GET("/ping_database", lc.PingDatabase)
 	group.GET("/permission_record", lc.InstallPermissionRecord)
 	group.GET("/currency", lc.InstallCurrencies)
-	group.GET("/measure_dimension", lc.InstallMeasureDimension)
-	group.GET("/measure_weight", lc.InstallMeasureWeight)
+	group.GET("/measure", lc.InstallMeasureDimension)
 	group.GET("/tax_category", lc.InstallTaxCategories)
 	group.GET("/language", lc.InstallLanguages)
 	group.GET("/store", lc.InstallStores)
@@ -64,5 +62,6 @@ func InstallRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database,
 	group.GET("/gdpr", lc.InstallGdprConsent)
 	group.GET("/product", lc.InstallProduct)
 	group.GET("/order", lc.InstallOrder)
+	group.GET("/full", lc.FullInstall)
 
 }

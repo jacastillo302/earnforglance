@@ -17464,8 +17464,8 @@
 		"Name": "Admin.Menu.Search"
 	},
 	{
-		"Value": "NopCommerce News",
-		"Name": "Admin.NopCommerceNews"
+		"Value": "Commerce News",
+		"Name": "Admin.CommerceNews"
 	},
 	{
 		"Value": "Orders",
@@ -21525,11 +21525,11 @@
 	},
 	{
 		"Value": "EarnForGlance version",
-		"Name": "Admin.System.SystemInfo.NopVersion"
+		"Name": "Admin.System.SystemInfo.Version"
 	},
 	{
 		"Value": "EarnForGlance version.",
-		"Name": "Admin.System.SystemInfo.NopVersion.Hint"
+		"Name": "Admin.System.SystemInfo.Version.Hint"
 	},
 	{
 		"Value": "Operating system",
@@ -23069,675 +23069,675 @@
 	},
 	{
 		"Value": "Checkboxes",
-		"Name": "Enums.Nop.Core.Domain.Catalog.AttributeControlType.Checkboxes"
+		"Name": "Enums.Core.Domain.Catalog.AttributeControlType.Checkboxes"
 	},
 	{
 		"Value": "Color squares",
-		"Name": "Enums.Nop.Core.Domain.Catalog.AttributeControlType.ColorSquares"
+		"Name": "Enums.Core.Domain.Catalog.AttributeControlType.ColorSquares"
 	},
 	{
 		"Value": "Date picker",
-		"Name": "Enums.Nop.Core.Domain.Catalog.AttributeControlType.Datepicker"
+		"Name": "Enums.Core.Domain.Catalog.AttributeControlType.Datepicker"
 	},
 	{
 		"Value": "Drop-down list",
-		"Name": "Enums.Nop.Core.Domain.Catalog.AttributeControlType.DropdownList"
+		"Name": "Enums.Core.Domain.Catalog.AttributeControlType.DropdownList"
 	},
 	{
 		"Value": "File upload",
-		"Name": "Enums.Nop.Core.Domain.Catalog.AttributeControlType.FileUpload"
+		"Name": "Enums.Core.Domain.Catalog.AttributeControlType.FileUpload"
 	},
 	{
 		"Value": "Image squares",
-		"Name": "Enums.Nop.Core.Domain.Catalog.AttributeControlType.ImageSquares"
+		"Name": "Enums.Core.Domain.Catalog.AttributeControlType.ImageSquares"
 	},
 	{
 		"Value": "Multiline textbox",
-		"Name": "Enums.Nop.Core.Domain.Catalog.AttributeControlType.MultilineTextbox"
+		"Name": "Enums.Core.Domain.Catalog.AttributeControlType.MultilineTextbox"
 	},
 	{
 		"Value": "Radio button list",
-		"Name": "Enums.Nop.Core.Domain.Catalog.AttributeControlType.RadioList"
+		"Name": "Enums.Core.Domain.Catalog.AttributeControlType.RadioList"
 	},
 	{
 		"Value": "Read-only checkboxes",
-		"Name": "Enums.Nop.Core.Domain.Catalog.AttributeControlType.ReadonlyCheckboxes"
+		"Name": "Enums.Core.Domain.Catalog.AttributeControlType.ReadonlyCheckboxes"
 	},
 	{
 		"Value": "Textbox",
-		"Name": "Enums.Nop.Core.Domain.Catalog.AttributeControlType.TextBox"
+		"Name": "Enums.Core.Domain.Catalog.AttributeControlType.TextBox"
 	},
 	{
 		"Value": "Always display",
-		"Name": "Enums.Nop.Core.Domain.Catalog.AttributeValueOutOfStockDisplayType.AlwaysDisplay"
+		"Name": "Enums.Core.Domain.Catalog.AttributeValueOutOfStockDisplayType.AlwaysDisplay"
 	},
 	{
 		"Value": "Disable",
-		"Name": "Enums.Nop.Core.Domain.Catalog.AttributeValueOutOfStockDisplayType.Disable"
+		"Name": "Enums.Core.Domain.Catalog.AttributeValueOutOfStockDisplayType.Disable"
 	},
 	{
 		"Value": "Associated to product",
-		"Name": "Enums.Nop.Core.Domain.Catalog.AttributeValueType.AssociatedToProduct"
+		"Name": "Enums.Core.Domain.Catalog.AttributeValueType.AssociatedToProduct"
 	},
 	{
 		"Value": "Simple",
-		"Name": "Enums.Nop.Core.Domain.Catalog.AttributeValueType.Simple"
+		"Name": "Enums.Core.Domain.Catalog.AttributeValueType.Simple"
 	},
 	{
 		"Value": "Allow qty below 0",
-		"Name": "Enums.Nop.Core.Domain.Catalog.BackorderMode.AllowQtyBelow0"
+		"Name": "Enums.Core.Domain.Catalog.BackorderMode.AllowQtyBelow0"
 	},
 	{
 		"Value": "Allow qty below 0 and notify customer",
-		"Name": "Enums.Nop.Core.Domain.Catalog.BackorderMode.AllowQtyBelow0AndNotifyCustomer"
+		"Name": "Enums.Core.Domain.Catalog.BackorderMode.AllowQtyBelow0AndNotifyCustomer"
 	},
 	{
 		"Value": "No backorders",
-		"Name": "Enums.Nop.Core.Domain.Catalog.BackorderMode.NoBackorders"
+		"Name": "Enums.Core.Domain.Catalog.BackorderMode.NoBackorders"
 	},
 	{
 		"Value": "Manually",
-		"Name": "Enums.Nop.Core.Domain.Catalog.DownloadActivationType.Manually"
+		"Name": "Enums.Core.Domain.Catalog.DownloadActivationType.Manually"
 	},
 	{
 		"Value": "When order is paid",
-		"Name": "Enums.Nop.Core.Domain.Catalog.DownloadActivationType.WhenOrderIsPaid"
+		"Name": "Enums.Core.Domain.Catalog.DownloadActivationType.WhenOrderIsPaid"
 	},
 	{
 		"Value": "Physical",
-		"Name": "Enums.Nop.Core.Domain.Catalog.GiftCardType.Physical"
+		"Name": "Enums.Core.Domain.Catalog.GiftCardType.Physical"
 	},
 	{
 		"Value": "Virtual",
-		"Name": "Enums.Nop.Core.Domain.Catalog.GiftCardType.Virtual"
+		"Name": "Enums.Core.Domain.Catalog.GiftCardType.Virtual"
 	},
 	{
 		"Value": "Disable buy button",
-		"Name": "Enums.Nop.Core.Domain.Catalog.LowStockActivity.DisableBuyButton"
+		"Name": "Enums.Core.Domain.Catalog.LowStockActivity.DisableBuyButton"
 	},
 	{
 		"Value": "Nothing",
-		"Name": "Enums.Nop.Core.Domain.Catalog.LowStockActivity.Nothing"
+		"Name": "Enums.Core.Domain.Catalog.LowStockActivity.Nothing"
 	},
 	{
 		"Value": "Unpublish",
-		"Name": "Enums.Nop.Core.Domain.Catalog.LowStockActivity.Unpublish"
+		"Name": "Enums.Core.Domain.Catalog.LowStockActivity.Unpublish"
 	},
 	{
 		"Value": "Don't track inventory",
-		"Name": "Enums.Nop.Core.Domain.Catalog.ManageInventoryMethod.DontManageStock"
+		"Name": "Enums.Core.Domain.Catalog.ManageInventoryMethod.DontManageStock"
 	},
 	{
 		"Value": "Track inventory",
-		"Name": "Enums.Nop.Core.Domain.Catalog.ManageInventoryMethod.ManageStock"
+		"Name": "Enums.Core.Domain.Catalog.ManageInventoryMethod.ManageStock"
 	},
 	{
 		"Value": "Track inventory by product attributes",
-		"Name": "Enums.Nop.Core.Domain.Catalog.ManageInventoryMethod.ManageStockByAttributes"
+		"Name": "Enums.Core.Domain.Catalog.ManageInventoryMethod.ManageStockByAttributes"
 	},
 	{
 		"Value": "Created on",
-		"Name": "Enums.Nop.Core.Domain.Catalog.ProductSortingEnum.CreatedOn"
+		"Name": "Enums.Core.Domain.Catalog.ProductSortingEnum.CreatedOn"
 	},
 	{
 		"Value": "Name: A to Z",
-		"Name": "Enums.Nop.Core.Domain.Catalog.ProductSortingEnum.NameAsc"
+		"Name": "Enums.Core.Domain.Catalog.ProductSortingEnum.NameAsc"
 	},
 	{
 		"Value": "Name: Z to A",
-		"Name": "Enums.Nop.Core.Domain.Catalog.ProductSortingEnum.NameDesc"
+		"Name": "Enums.Core.Domain.Catalog.ProductSortingEnum.NameDesc"
 	},
 	{
 		"Value": "Position",
-		"Name": "Enums.Nop.Core.Domain.Catalog.ProductSortingEnum.Position"
+		"Name": "Enums.Core.Domain.Catalog.ProductSortingEnum.Position"
 	},
 	{
 		"Value": "Price: Low to High",
-		"Name": "Enums.Nop.Core.Domain.Catalog.ProductSortingEnum.PriceAsc"
+		"Name": "Enums.Core.Domain.Catalog.ProductSortingEnum.PriceAsc"
 	},
 	{
 		"Value": "Price: High to Low",
-		"Name": "Enums.Nop.Core.Domain.Catalog.ProductSortingEnum.PriceDesc"
+		"Name": "Enums.Core.Domain.Catalog.ProductSortingEnum.PriceDesc"
 	},
 	{
 		"Value": "Grouped (product with variants)",
-		"Name": "Enums.Nop.Core.Domain.Catalog.ProductType.GroupedProduct"
+		"Name": "Enums.Core.Domain.Catalog.ProductType.GroupedProduct"
 	},
 	{
 		"Value": "Simple",
-		"Name": "Enums.Nop.Core.Domain.Catalog.ProductType.SimpleProduct"
+		"Name": "Enums.Core.Domain.Catalog.ProductType.SimpleProduct"
 	},
 	{
 		"Value": "/Category/Product",
-		"Name": "Enums.Nop.Core.Domain.Catalog.ProductUrlStructureType.CategoryProduct"
+		"Name": "Enums.Core.Domain.Catalog.ProductUrlStructureType.CategoryProduct"
 	},
 	{
 		"Value": "/Manufacturer/Product",
-		"Name": "Enums.Nop.Core.Domain.Catalog.ProductUrlStructureType.ManufacturerProduct"
+		"Name": "Enums.Core.Domain.Catalog.ProductUrlStructureType.ManufacturerProduct"
 	},
 	{
 		"Value": "/Product",
-		"Name": "Enums.Nop.Core.Domain.Catalog.ProductUrlStructureType.Product"
+		"Name": "Enums.Core.Domain.Catalog.ProductUrlStructureType.Product"
 	},
 	{
 		"Value": "Days",
-		"Name": "Enums.Nop.Core.Domain.Catalog.RecurringProductCyclePeriod.Days"
+		"Name": "Enums.Core.Domain.Catalog.RecurringProductCyclePeriod.Days"
 	},
 	{
 		"Value": "Months",
-		"Name": "Enums.Nop.Core.Domain.Catalog.RecurringProductCyclePeriod.Months"
+		"Name": "Enums.Core.Domain.Catalog.RecurringProductCyclePeriod.Months"
 	},
 	{
 		"Value": "Weeks",
-		"Name": "Enums.Nop.Core.Domain.Catalog.RecurringProductCyclePeriod.Weeks"
+		"Name": "Enums.Core.Domain.Catalog.RecurringProductCyclePeriod.Weeks"
 	},
 	{
 		"Value": "Years",
-		"Name": "Enums.Nop.Core.Domain.Catalog.RecurringProductCyclePeriod.Years"
+		"Name": "Enums.Core.Domain.Catalog.RecurringProductCyclePeriod.Years"
 	},
 	{
 		"Value": "Days",
-		"Name": "Enums.Nop.Core.Domain.Catalog.RentalPricePeriod.Days"
+		"Name": "Enums.Core.Domain.Catalog.RentalPricePeriod.Days"
 	},
 	{
 		"Value": "Months",
-		"Name": "Enums.Nop.Core.Domain.Catalog.RentalPricePeriod.Months"
+		"Name": "Enums.Core.Domain.Catalog.RentalPricePeriod.Months"
 	},
 	{
 		"Value": "Weeks",
-		"Name": "Enums.Nop.Core.Domain.Catalog.RentalPricePeriod.Weeks"
+		"Name": "Enums.Core.Domain.Catalog.RentalPricePeriod.Weeks"
 	},
 	{
 		"Value": "Years",
-		"Name": "Enums.Nop.Core.Domain.Catalog.RentalPricePeriod.Years"
+		"Name": "Enums.Core.Domain.Catalog.RentalPricePeriod.Years"
 	},
 	{
 		"Value": "Custom HTML text",
-		"Name": "Enums.Nop.Core.Domain.Catalog.SpecificationAttributeType.CustomHtmlText"
+		"Name": "Enums.Core.Domain.Catalog.SpecificationAttributeType.CustomHtmlText"
 	},
 	{
 		"Value": "Custom text",
-		"Name": "Enums.Nop.Core.Domain.Catalog.SpecificationAttributeType.CustomText"
+		"Name": "Enums.Core.Domain.Catalog.SpecificationAttributeType.CustomText"
 	},
 	{
 		"Value": "Hyperlink",
-		"Name": "Enums.Nop.Core.Domain.Catalog.SpecificationAttributeType.Hyperlink"
+		"Name": "Enums.Core.Domain.Catalog.SpecificationAttributeType.Hyperlink"
 	},
 	{
 		"Value": "Option",
-		"Name": "Enums.Nop.Core.Domain.Catalog.SpecificationAttributeType.Option"
+		"Name": "Enums.Core.Domain.Catalog.SpecificationAttributeType.Option"
 	},
 	{
 		"Value": "Show emails",
-		"Name": "Enums.Nop.Core.Domain.Customers.CustomerNameFormat.ShowEmails"
+		"Name": "Enums.Core.Domain.Customers.CustomerNameFormat.ShowEmails"
 	},
 	{
 		"Value": "Show first name",
-		"Name": "Enums.Nop.Core.Domain.Customers.CustomerNameFormat.ShowFirstName"
+		"Name": "Enums.Core.Domain.Customers.CustomerNameFormat.ShowFirstName"
 	},
 	{
 		"Value": "Show full names",
-		"Name": "Enums.Nop.Core.Domain.Customers.CustomerNameFormat.ShowFullNames"
+		"Name": "Enums.Core.Domain.Customers.CustomerNameFormat.ShowFullNames"
 	},
 	{
 		"Value": "Show usernames",
-		"Name": "Enums.Nop.Core.Domain.Customers.CustomerNameFormat.ShowUsernames"
+		"Name": "Enums.Core.Domain.Customers.CustomerNameFormat.ShowUsernames"
 	},
 	{
 		"Value": "Clear",
-		"Name": "Enums.Nop.Core.Domain.Customers.PasswordFormat.Clear"
+		"Name": "Enums.Core.Domain.Customers.PasswordFormat.Clear"
 	},
 	{
 		"Value": "Encrypted",
-		"Name": "Enums.Nop.Core.Domain.Customers.PasswordFormat.Encrypted"
+		"Name": "Enums.Core.Domain.Customers.PasswordFormat.Encrypted"
 	},
 	{
 		"Value": "Hashed",
-		"Name": "Enums.Nop.Core.Domain.Customers.PasswordFormat.Hashed"
+		"Name": "Enums.Core.Domain.Customers.PasswordFormat.Hashed"
 	},
 	{
 		"Value": "Days",
-		"Name": "Enums.Nop.Core.Domain.Customers.RewardPointsActivatingDelayPeriod.Days"
+		"Name": "Enums.Core.Domain.Customers.RewardPointsActivatingDelayPeriod.Days"
 	},
 	{
 		"Value": "Hours",
-		"Name": "Enums.Nop.Core.Domain.Customers.RewardPointsActivatingDelayPeriod.Hours"
+		"Name": "Enums.Core.Domain.Customers.RewardPointsActivatingDelayPeriod.Hours"
 	},
 	{
 		"Value": "A customer should be approved by administrator",
-		"Name": "Enums.Nop.Core.Domain.Customers.UserRegistrationType.AdminApproval"
+		"Name": "Enums.Core.Domain.Customers.UserRegistrationType.AdminApproval"
 	},
 	{
 		"Value": "Registration is disabled",
-		"Name": "Enums.Nop.Core.Domain.Customers.UserRegistrationType.Disabled"
+		"Name": "Enums.Core.Domain.Customers.UserRegistrationType.Disabled"
 	},
 	{
 		"Value": "Email validation is required after registration",
-		"Name": "Enums.Nop.Core.Domain.Customers.UserRegistrationType.EmailValidation"
+		"Name": "Enums.Core.Domain.Customers.UserRegistrationType.EmailValidation"
 	},
 	{
 		"Value": "Standard account creation",
-		"Name": "Enums.Nop.Core.Domain.Customers.UserRegistrationType.Standard"
+		"Name": "Enums.Core.Domain.Customers.UserRegistrationType.Standard"
 	},
 	{
 		"Value": "Default rounding",
-		"Name": "Enums.Nop.Core.Domain.Directory.RoundingType.Rounding001"
+		"Name": "Enums.Core.Domain.Directory.RoundingType.Rounding001"
 	},
 	{
 		"Value": "Rounding down with 0.05 intervals (0.06 round to 0.05)",
-		"Name": "Enums.Nop.Core.Domain.Directory.RoundingType.Rounding005Down"
+		"Name": "Enums.Core.Domain.Directory.RoundingType.Rounding005Down"
 	},
 	{
 		"Value": "Rounding up with 0.05 intervals (0.06 round to 0.10)",
-		"Name": "Enums.Nop.Core.Domain.Directory.RoundingType.Rounding005Up"
+		"Name": "Enums.Core.Domain.Directory.RoundingType.Rounding005Up"
 	},
 	{
 		"Value": "Rounding down with 0.10 intervals (1.05 round to 1.00)",
-		"Name": "Enums.Nop.Core.Domain.Directory.RoundingType.Rounding01Down"
+		"Name": "Enums.Core.Domain.Directory.RoundingType.Rounding01Down"
 	},
 	{
 		"Value": "Rounding up with 0.10 intervals (1.05 round to 1.10)",
-		"Name": "Enums.Nop.Core.Domain.Directory.RoundingType.Rounding01Up"
+		"Name": "Enums.Core.Domain.Directory.RoundingType.Rounding01Up"
 	},
 	{
 		"Value": "Rounding with 0.50 intervals",
-		"Name": "Enums.Nop.Core.Domain.Directory.RoundingType.Rounding05"
+		"Name": "Enums.Core.Domain.Directory.RoundingType.Rounding05"
 	},
 	{
 		"Value": "Rounding with 1.00 intervals (1.01-1.49 round to 1.00, 1.50-1.99 round to 2.00)",
-		"Name": "Enums.Nop.Core.Domain.Directory.RoundingType.Rounding1"
+		"Name": "Enums.Core.Domain.Directory.RoundingType.Rounding1"
 	},
 	{
 		"Value": "Rounding up with 1.00 intervals (1.01–1.99 round to 2.00)",
-		"Name": "Enums.Nop.Core.Domain.Directory.RoundingType.Rounding1Up"
+		"Name": "Enums.Core.Domain.Directory.RoundingType.Rounding1Up"
 	},
 	{
 		"Value": "N times only",
-		"Name": "Enums.Nop.Core.Domain.Discounts.DiscountLimitationType.NTimesOnly"
+		"Name": "Enums.Core.Domain.Discounts.DiscountLimitationType.NTimesOnly"
 	},
 	{
 		"Value": "N times per customer",
-		"Name": "Enums.Nop.Core.Domain.Discounts.DiscountLimitationType.NTimesPerCustomer"
+		"Name": "Enums.Core.Domain.Discounts.DiscountLimitationType.NTimesPerCustomer"
 	},
 	{
 		"Value": "Unlimited",
-		"Name": "Enums.Nop.Core.Domain.Discounts.DiscountLimitationType.Unlimited"
+		"Name": "Enums.Core.Domain.Discounts.DiscountLimitationType.Unlimited"
 	},
 	{
 		"Value": "Assigned to categories",
-		"Name": "Enums.Nop.Core.Domain.Discounts.DiscountType.AssignedToCategories"
+		"Name": "Enums.Core.Domain.Discounts.DiscountType.AssignedToCategories"
 	},
 	{
 		"Value": "Assigned to manufacturers",
-		"Name": "Enums.Nop.Core.Domain.Discounts.DiscountType.AssignedToManufacturers"
+		"Name": "Enums.Core.Domain.Discounts.DiscountType.AssignedToManufacturers"
 	},
 	{
 		"Value": "Assigned to order subtotal",
-		"Name": "Enums.Nop.Core.Domain.Discounts.DiscountType.AssignedToOrderSubTotal"
+		"Name": "Enums.Core.Domain.Discounts.DiscountType.AssignedToOrderSubTotal"
 	},
 	{
 		"Value": "Assigned to order total",
-		"Name": "Enums.Nop.Core.Domain.Discounts.DiscountType.AssignedToOrderTotal"
+		"Name": "Enums.Core.Domain.Discounts.DiscountType.AssignedToOrderTotal"
 	},
 	{
 		"Value": "Assigned to shipping",
-		"Name": "Enums.Nop.Core.Domain.Discounts.DiscountType.AssignedToShipping"
+		"Name": "Enums.Core.Domain.Discounts.DiscountType.AssignedToShipping"
 	},
 	{
 		"Value": "Assigned to products",
-		"Name": "Enums.Nop.Core.Domain.Discounts.DiscountType.AssignedToSkus"
+		"Name": "Enums.Core.Domain.Discounts.DiscountType.AssignedToSkus"
 	},
 	{
 		"Value": "AND",
-		"Name": "Enums.Nop.Core.Domain.Discounts.RequirementGroupInteractionType.And"
+		"Name": "Enums.Core.Domain.Discounts.RequirementGroupInteractionType.And"
 	},
 	{
 		"Value": "OR",
-		"Name": "Enums.Nop.Core.Domain.Discounts.RequirementGroupInteractionType.Or"
+		"Name": "Enums.Core.Domain.Discounts.RequirementGroupInteractionType.Or"
 	},
 	{
 		"Value": "BBCode editor",
-		"Name": "Enums.Nop.Core.Domain.Forums.EditorType.BBCodeEditor"
+		"Name": "Enums.Core.Domain.Forums.EditorType.BBCodeEditor"
 	},
 	{
 		"Value": "Html editor",
-		"Name": "Enums.Nop.Core.Domain.Forums.EditorType.HtmlEditor"
+		"Name": "Enums.Core.Domain.Forums.EditorType.HtmlEditor"
 	},
 	{
 		"Value": "Simple textbox",
-		"Name": "Enums.Nop.Core.Domain.Forums.EditorType.SimpleTextBox"
+		"Name": "Enums.Core.Domain.Forums.EditorType.SimpleTextBox"
 	},
 	{
 		"Value": "Topic titles and post text",
-		"Name": "Enums.Nop.Core.Domain.Forums.ForumSearchType.All"
+		"Name": "Enums.Core.Domain.Forums.ForumSearchType.All"
 	},
 	{
 		"Value": "Post text only",
-		"Name": "Enums.Nop.Core.Domain.Forums.ForumSearchType.PostTextOnly"
+		"Name": "Enums.Core.Domain.Forums.ForumSearchType.PostTextOnly"
 	},
 	{
 		"Value": "Topic titles only",
-		"Name": "Enums.Nop.Core.Domain.Forums.ForumSearchType.TopicTitlesOnly"
+		"Name": "Enums.Core.Domain.Forums.ForumSearchType.TopicTitlesOnly"
 	},
 	{
 		"Value": "Announcement",
-		"Name": "Enums.Nop.Core.Domain.Forums.ForumTopicType.Announcement"
+		"Name": "Enums.Core.Domain.Forums.ForumTopicType.Announcement"
 	},
 	{
 		"Value": "Normal",
-		"Name": "Enums.Nop.Core.Domain.Forums.ForumTopicType.Normal"
+		"Name": "Enums.Core.Domain.Forums.ForumTopicType.Normal"
 	},
 	{
 		"Value": "Sticky",
-		"Name": "Enums.Nop.Core.Domain.Forums.ForumTopicType.Sticky"
+		"Name": "Enums.Core.Domain.Forums.ForumTopicType.Sticky"
 	},
 	{
 		"Value": "Consent (agree)",
-		"Name": "Enums.Nop.Core.Domain.Gdpr.GdprRequestType.ConsentAgree"
+		"Name": "Enums.Core.Domain.Gdpr.GdprRequestType.ConsentAgree"
 	},
 	{
 		"Value": "Consent (disagree)",
-		"Name": "Enums.Nop.Core.Domain.Gdpr.GdprRequestType.ConsentDisagree"
+		"Name": "Enums.Core.Domain.Gdpr.GdprRequestType.ConsentDisagree"
 	},
 	{
 		"Value": "Delete customer",
-		"Name": "Enums.Nop.Core.Domain.Gdpr.GdprRequestType.DeleteCustomer"
+		"Name": "Enums.Core.Domain.Gdpr.GdprRequestType.DeleteCustomer"
 	},
 	{
 		"Value": "Export data",
-		"Name": "Enums.Nop.Core.Domain.Gdpr.GdprRequestType.ExportData"
+		"Name": "Enums.Core.Domain.Gdpr.GdprRequestType.ExportData"
 	},
 	{
 		"Value": "User changed profile",
-		"Name": "Enums.Nop.Core.Domain.Gdpr.GdprRequestType.ProfileChanged"
+		"Name": "Enums.Core.Domain.Gdpr.GdprRequestType.ProfileChanged"
 	},
 	{
 		"Value": "Debug",
-		"Name": "Enums.Nop.Core.Domain.Logging.LogLevel.Debug"
+		"Name": "Enums.Core.Domain.Logging.LogLevel.Debug"
 	},
 	{
 		"Value": "Error",
-		"Name": "Enums.Nop.Core.Domain.Logging.LogLevel.Error"
+		"Name": "Enums.Core.Domain.Logging.LogLevel.Error"
 	},
 	{
 		"Value": "Fatal",
-		"Name": "Enums.Nop.Core.Domain.Logging.LogLevel.Fatal"
+		"Name": "Enums.Core.Domain.Logging.LogLevel.Fatal"
 	},
 	{
 		"Value": "Information",
-		"Name": "Enums.Nop.Core.Domain.Logging.LogLevel.Information"
+		"Name": "Enums.Core.Domain.Logging.LogLevel.Information"
 	},
 	{
 		"Value": "Warning",
-		"Name": "Enums.Nop.Core.Domain.Logging.LogLevel.Warning"
+		"Name": "Enums.Core.Domain.Logging.LogLevel.Warning"
 	},
 	{
 		"Value": "No authentication",
-		"Name": "Enums.Nop.Core.Domain.Messages.EmailAuthenticationMethod.None"
+		"Name": "Enums.Core.Domain.Messages.EmailAuthenticationMethod.None"
 	},
 	{
 		"Value": "NTLM (the default network credentials)",
-		"Name": "Enums.Nop.Core.Domain.Messages.EmailAuthenticationMethod.Ntlm"
+		"Name": "Enums.Core.Domain.Messages.EmailAuthenticationMethod.Ntlm"
 	},
 	{
 		"Value": "Login/Password",
-		"Name": "Enums.Nop.Core.Domain.Messages.EmailAuthenticationMethod.Login"
+		"Name": "Enums.Core.Domain.Messages.EmailAuthenticationMethod.Login"
 	},
 	{
 		"Value": "Google (OAuth2)",
-		"Name": "Enums.Nop.Core.Domain.Messages.EmailAuthenticationMethod.GmailOAuth2"
+		"Name": "Enums.Core.Domain.Messages.EmailAuthenticationMethod.GmailOAuth2"
 	},
 	{
 		"Value": "Microsoft (OAuth2)",
-		"Name": "Enums.Nop.Core.Domain.Messages.EmailAuthenticationMethod.MicrosoftOAuth2"
+		"Name": "Enums.Core.Domain.Messages.EmailAuthenticationMethod.MicrosoftOAuth2"
 	},
 	{
 		"Value": "Days",
-		"Name": "Enums.Nop.Core.Domain.Messages.MessageDelayPeriod.Days"
+		"Name": "Enums.Core.Domain.Messages.MessageDelayPeriod.Days"
 	},
 	{
 		"Value": "Hours",
-		"Name": "Enums.Nop.Core.Domain.Messages.MessageDelayPeriod.Hours"
+		"Name": "Enums.Core.Domain.Messages.MessageDelayPeriod.Hours"
 	},
 	{
 		"Value": "High",
-		"Name": "Enums.Nop.Core.Domain.Messages.QueuedEmailPriority.High"
+		"Name": "Enums.Core.Domain.Messages.QueuedEmailPriority.High"
 	},
 	{
 		"Value": "Low",
-		"Name": "Enums.Nop.Core.Domain.Messages.QueuedEmailPriority.Low"
+		"Name": "Enums.Core.Domain.Messages.QueuedEmailPriority.Low"
 	},
 	{
 		"Value": "Cancelled",
-		"Name": "Enums.Nop.Core.Domain.Orders.OrderStatus.Cancelled"
+		"Name": "Enums.Core.Domain.Orders.OrderStatus.Cancelled"
 	},
 	{
 		"Value": "Complete",
-		"Name": "Enums.Nop.Core.Domain.Orders.OrderStatus.Complete"
+		"Name": "Enums.Core.Domain.Orders.OrderStatus.Complete"
 	},
 	{
 		"Value": "Pending",
-		"Name": "Enums.Nop.Core.Domain.Orders.OrderStatus.Pending"
+		"Name": "Enums.Core.Domain.Orders.OrderStatus.Pending"
 	},
 	{
 		"Value": "Processing",
-		"Name": "Enums.Nop.Core.Domain.Orders.OrderStatus.Processing"
+		"Name": "Enums.Core.Domain.Orders.OrderStatus.Processing"
 	},
 	{
 		"Value": "Cancelled",
-		"Name": "Enums.Nop.Core.Domain.Orders.ReturnRequestStatus.Cancelled"
+		"Name": "Enums.Core.Domain.Orders.ReturnRequestStatus.Cancelled"
 	},
 	{
 		"Value": "Item(s) refunded",
-		"Name": "Enums.Nop.Core.Domain.Orders.ReturnRequestStatus.ItemsRefunded"
+		"Name": "Enums.Core.Domain.Orders.ReturnRequestStatus.ItemsRefunded"
 	},
 	{
 		"Value": "Item(s) repaired",
-		"Name": "Enums.Nop.Core.Domain.Orders.ReturnRequestStatus.ItemsRepaired"
+		"Name": "Enums.Core.Domain.Orders.ReturnRequestStatus.ItemsRepaired"
 	},
 	{
 		"Value": "Pending",
-		"Name": "Enums.Nop.Core.Domain.Orders.ReturnRequestStatus.Pending"
+		"Name": "Enums.Core.Domain.Orders.ReturnRequestStatus.Pending"
 	},
 	{
 		"Value": "Received",
-		"Name": "Enums.Nop.Core.Domain.Orders.ReturnRequestStatus.Received"
+		"Name": "Enums.Core.Domain.Orders.ReturnRequestStatus.Received"
 	},
 	{
 		"Value": "Request rejected",
-		"Name": "Enums.Nop.Core.Domain.Orders.ReturnRequestStatus.RequestRejected"
+		"Name": "Enums.Core.Domain.Orders.ReturnRequestStatus.RequestRejected"
 	},
 	{
 		"Value": "Return authorized",
-		"Name": "Enums.Nop.Core.Domain.Orders.ReturnRequestStatus.ReturnAuthorized"
+		"Name": "Enums.Core.Domain.Orders.ReturnRequestStatus.ReturnAuthorized"
 	},
 	{
 		"Value": "Shopping cart",
-		"Name": "Enums.Nop.Core.Domain.Orders.ShoppingCartType.ShoppingCart"
+		"Name": "Enums.Core.Domain.Orders.ShoppingCartType.ShoppingCart"
 	},
 	{
 		"Value": "Wishlist",
-		"Name": "Enums.Nop.Core.Domain.Orders.ShoppingCartType.Wishlist"
+		"Name": "Enums.Core.Domain.Orders.ShoppingCartType.Wishlist"
 	},
 	{
 		"Value": "Authorized",
-		"Name": "Enums.Nop.Core.Domain.Payments.PaymentStatus.Authorized"
+		"Name": "Enums.Core.Domain.Payments.PaymentStatus.Authorized"
 	},
 	{
 		"Value": "Paid",
-		"Name": "Enums.Nop.Core.Domain.Payments.PaymentStatus.Paid"
+		"Name": "Enums.Core.Domain.Payments.PaymentStatus.Paid"
 	},
 	{
 		"Value": "Partially refunded",
-		"Name": "Enums.Nop.Core.Domain.Payments.PaymentStatus.PartiallyRefunded"
+		"Name": "Enums.Core.Domain.Payments.PaymentStatus.PartiallyRefunded"
 	},
 	{
 		"Value": "Pending",
-		"Name": "Enums.Nop.Core.Domain.Payments.PaymentStatus.Pending"
+		"Name": "Enums.Core.Domain.Payments.PaymentStatus.Pending"
 	},
 	{
 		"Value": "Refunded",
-		"Name": "Enums.Nop.Core.Domain.Payments.PaymentStatus.Refunded"
+		"Name": "Enums.Core.Domain.Payments.PaymentStatus.Refunded"
 	},
 	{
 		"Value": "Voided",
-		"Name": "Enums.Nop.Core.Domain.Payments.PaymentStatus.Voided"
+		"Name": "Enums.Core.Domain.Payments.PaymentStatus.Voided"
 	},
 	{
 		"Value": "reCAPTCHA v2 (\"I'm not a robot\" Checkbox)",
-		"Name": "Enums.Nop.Core.Domain.Security.CaptchaType.CheckBoxReCaptchaV2"
+		"Name": "Enums.Core.Domain.Security.CaptchaType.CheckBoxReCaptchaV2"
 	},
 	{
 		"Value": "reCAPTCHA v3",
-		"Name": "Enums.Nop.Core.Domain.Security.CaptchaType.ReCaptchaV3"
+		"Name": "Enums.Core.Domain.Security.CaptchaType.ReCaptchaV3"
 	},
 	{
 		"Value": "Clear",
-		"Name": "Enums.Nop.Core.Domain.Security.PasswordFormat.Clear"
+		"Name": "Enums.Core.Domain.Security.PasswordFormat.Clear"
 	},
 	{
 		"Value": "Encrypted",
-		"Name": "Enums.Nop.Core.Domain.Security.PasswordFormat.Encrypted"
+		"Name": "Enums.Core.Domain.Security.PasswordFormat.Encrypted"
 	},
 	{
 		"Value": "Hashed",
-		"Name": "Enums.Nop.Core.Domain.Security.PasswordFormat.Hashed"
+		"Name": "Enums.Core.Domain.Security.PasswordFormat.Hashed"
 	},
 	{
 		"Value": "Page name comes after store name",
-		"Name": "Enums.Nop.Core.Domain.Seo.PageTitleSeoAdjustment.PagenameAfterStorename"
+		"Name": "Enums.Core.Domain.Seo.PageTitleSeoAdjustment.PagenameAfterStorename"
 	},
 	{
 		"Value": "Store name comes after page name",
-		"Name": "Enums.Nop.Core.Domain.Seo.PageTitleSeoAdjustment.StorenameAfterPagename"
+		"Name": "Enums.Core.Domain.Seo.PageTitleSeoAdjustment.StorenameAfterPagename"
 	},
 	{
 		"Value": "Doesn't matter",
-		"Name": "Enums.Nop.Core.Domain.Seo.WwwRequirement.NoMatter"
+		"Name": "Enums.Core.Domain.Seo.WwwRequirement.NoMatter"
 	},
 	{
 		"Value": "Pages should not have WWW prefix",
-		"Name": "Enums.Nop.Core.Domain.Seo.WwwRequirement.WithoutWww"
+		"Name": "Enums.Core.Domain.Seo.WwwRequirement.WithoutWww"
 	},
 	{
 		"Value": "Pages should have WWW prefix",
-		"Name": "Enums.Nop.Core.Domain.Seo.WwwRequirement.WithWww"
+		"Name": "Enums.Core.Domain.Seo.WwwRequirement.WithWww"
 	},
 	{
 		"Value": "Position",
-		"Name": "Enums.Nop.Core.Domain.Shipping.ShippingSortingEnum.Position"
+		"Name": "Enums.Core.Domain.Shipping.ShippingSortingEnum.Position"
 	},
 	{
 		"Value": "Shipping Cost",
-		"Name": "Enums.Nop.Core.Domain.Shipping.ShippingSortingEnum.ShippingCost"
+		"Name": "Enums.Core.Domain.Shipping.ShippingSortingEnum.ShippingCost"
 	},
 	{
 		"Value": "Delivered",
-		"Name": "Enums.Nop.Core.Domain.Shipping.ShippingStatus.Delivered"
+		"Name": "Enums.Core.Domain.Shipping.ShippingStatus.Delivered"
 	},
 	{
 		"Value": "Not yet shipped",
-		"Name": "Enums.Nop.Core.Domain.Shipping.ShippingStatus.NotYetShipped"
+		"Name": "Enums.Core.Domain.Shipping.ShippingStatus.NotYetShipped"
 	},
 	{
 		"Value": "Partially shipped",
-		"Name": "Enums.Nop.Core.Domain.Shipping.ShippingStatus.PartiallyShipped"
+		"Name": "Enums.Core.Domain.Shipping.ShippingStatus.PartiallyShipped"
 	},
 	{
 		"Value": "Shipped",
-		"Name": "Enums.Nop.Core.Domain.Shipping.ShippingStatus.Shipped"
+		"Name": "Enums.Core.Domain.Shipping.ShippingStatus.Shipped"
 	},
 	{
 		"Value": "Shipping not required",
-		"Name": "Enums.Nop.Core.Domain.Shipping.ShippingStatus.ShippingNotRequired"
+		"Name": "Enums.Core.Domain.Shipping.ShippingStatus.ShippingNotRequired"
 	},
 	{
 		"Value": "Billing address",
-		"Name": "Enums.Nop.Core.Domain.Tax.TaxBasedOn.BillingAddress"
+		"Name": "Enums.Core.Domain.Tax.TaxBasedOn.BillingAddress"
 	},
 	{
 		"Value": "Default address",
-		"Name": "Enums.Nop.Core.Domain.Tax.TaxBasedOn.DefaultAddress"
+		"Name": "Enums.Core.Domain.Tax.TaxBasedOn.DefaultAddress"
 	},
 	{
 		"Value": "Shipping address",
-		"Name": "Enums.Nop.Core.Domain.Tax.TaxBasedOn.ShippingAddress"
+		"Name": "Enums.Core.Domain.Tax.TaxBasedOn.ShippingAddress"
 	},
 	{
 		"Value": "Excluding tax",
-		"Name": "Enums.Nop.Core.Domain.Tax.TaxDisplayType.ExcludingTax"
+		"Name": "Enums.Core.Domain.Tax.TaxDisplayType.ExcludingTax"
 	},
 	{
 		"Value": "Including tax",
-		"Name": "Enums.Nop.Core.Domain.Tax.TaxDisplayType.IncludingTax"
+		"Name": "Enums.Core.Domain.Tax.TaxDisplayType.IncludingTax"
 	},
 	{
 		"Value": "Empty",
-		"Name": "Enums.Nop.Core.Domain.Tax.VatNumberStatus.Empty"
+		"Name": "Enums.Core.Domain.Tax.VatNumberStatus.Empty"
 	},
 	{
 		"Value": "Invalid",
-		"Name": "Enums.Nop.Core.Domain.Tax.VatNumberStatus.Invalid"
+		"Name": "Enums.Core.Domain.Tax.VatNumberStatus.Invalid"
 	},
 	{
 		"Value": "Unknown",
-		"Name": "Enums.Nop.Core.Domain.Tax.VatNumberStatus.Unknown"
+		"Name": "Enums.Core.Domain.Tax.VatNumberStatus.Unknown"
 	},
 	{
 		"Value": "Valid",
-		"Name": "Enums.Nop.Core.Domain.Tax.VatNumberStatus.Valid"
+		"Name": "Enums.Core.Domain.Tax.VatNumberStatus.Valid"
 	},
 	{
 		"Value": "MySQL",
-		"Name": "Enums.Nop.Data.DataProviderType.MySql"
+		"Name": "Enums.Data.DataProviderType.MySql"
 	},
 	{
 		"Value": "PostgreSQL",
-		"Name": "Enums.Nop.Data.DataProviderType.PostgreSQL"
+		"Name": "Enums.Data.DataProviderType.PostgreSQL"
 	},
 	{
 		"Value": "Microsoft SQL Server",
-		"Name": "Enums.Nop.Data.DataProviderType.SqlServer"
+		"Name": "Enums.Data.DataProviderType.SqlServer"
 	},
 	{
 		"Value": "Unknown",
-		"Name": "Enums.Nop.Data.DataProviderType.Unknown"
+		"Name": "Enums.Data.DataProviderType.Unknown"
 	},
 	{
 		"Value": "Day",
-		"Name": "Enums.Nop.Services.Orders.GroupByOptions.Day"
+		"Name": "Enums.Services.Orders.GroupByOptions.Day"
 	},
 	{
 		"Value": "Month",
-		"Name": "Enums.Nop.Services.Orders.GroupByOptions.Month"
+		"Name": "Enums.Services.Orders.GroupByOptions.Month"
 	},
 	{
 		"Value": "Week",
-		"Name": "Enums.Nop.Services.Orders.GroupByOptions.Week"
+		"Name": "Enums.Services.Orders.GroupByOptions.Week"
 	},
 	{
 		"Value": "Automatic",
-		"Name": "Enums.Nop.Services.Payments.RecurringPaymentType.Automatic"
+		"Name": "Enums.Services.Payments.RecurringPaymentType.Automatic"
 	},
 	{
 		"Value": "Manual",
-		"Name": "Enums.Nop.Services.Payments.RecurringPaymentType.Manual"
+		"Name": "Enums.Services.Payments.RecurringPaymentType.Manual"
 	},
 	{
 		"Value": "Not supported",
-		"Name": "Enums.Nop.Services.Payments.RecurringPaymentType.NotSupported"
+		"Name": "Enums.Services.Payments.RecurringPaymentType.NotSupported"
 	},
 	{
 		"Value": "All",
-		"Name": "Enums.Nop.Services.Plugins.LoadPluginsMode.All"
+		"Name": "Enums.Services.Plugins.LoadPluginsMode.All"
 	},
 	{
 		"Value": "Installed",
-		"Name": "Enums.Nop.Services.Plugins.LoadPluginsMode.InstalledOnly"
+		"Name": "Enums.Services.Plugins.LoadPluginsMode.InstalledOnly"
 	},
 	{
 		"Value": "Not installed",
-		"Name": "Enums.Nop.Services.Plugins.LoadPluginsMode.NotInstalledOnly"
+		"Name": "Enums.Services.Plugins.LoadPluginsMode.NotInstalledOnly"
 	},
 	{
 		"Value": "On 26 May 2011, the rules about cookies on websites changed. This site uses cookies. One or more of the cookies we use is essential for parts of this website to operate and has already been set. You may delete and block all cookies from this site, but parts of the site will not work. To find out more about cookies used on this website and how to delete cookies, see our privacy policy",

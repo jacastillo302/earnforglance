@@ -4,6 +4,7 @@ import (
 	"context"
 	"time"
 
+	customers "earnforglance/server/domain/customers"
 	domain "earnforglance/server/domain/security"
 	"earnforglance/server/internal/tokenutil"
 )
@@ -20,10 +21,16 @@ func NewLoginUsecase(userRepository domain.UserRepository, timeout time.Duration
 	}
 }
 
-func (lu *loginUsecase) GetUserByEmail(c context.Context, email string) (domain.User, error) {
+func (lu *loginUsecase) GetUserByEmail(c context.Context, email string) (customers.Customer, error) {
 	ctx, cancel := context.WithTimeout(c, lu.contextTimeout)
 	defer cancel()
 	return lu.userRepository.GetByEmail(ctx, email)
+}
+
+func (lu *loginUsecase) GetPasw(c context.Context, CustumerID string) (customers.CustomerPassword, error) {
+	ctx, cancel := context.WithTimeout(c, lu.contextTimeout)
+	defer cancel()
+	return lu.userRepository.GetPasw(ctx, CustumerID)
 }
 
 func (lu *loginUsecase) CreateAccessToken(user *domain.User, secret string, expiry int) (accessToken string, err error) {

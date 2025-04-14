@@ -3,6 +3,7 @@ package repository
 import (
 	"context"
 
+	customer "earnforglance/server/domain/customers"
 	domain "earnforglance/server/domain/security"
 	"earnforglance/server/service/data/mongo"
 
@@ -51,10 +52,23 @@ func (ur *userRepository) Fetch(c context.Context) ([]domain.User, error) {
 	return users, err
 }
 
-func (ur *userRepository) GetByEmail(c context.Context, email string) (domain.User, error) {
-	collection := ur.database.Collection(ur.collection)
-	var user domain.User
+func (ur *userRepository) GetByEmail(c context.Context, email string) (customer.Customer, error) {
+	collection := ur.database.Collection(customer.CollectionCustomer)
+	var user customer.Customer
 	err := collection.FindOne(c, bson.M{"email": email}).Decode(&user)
+	return user, err
+}
+
+func (ur *userRepository) GetPasw(c context.Context, CustumerID string) (customer.CustomerPassword, error) {
+	collection := ur.database.Collection(customer.CollectionCustomerPassword)
+	var user customer.CustomerPassword
+
+	idHex, err := primitive.ObjectIDFromHex(CustumerID)
+	if err != nil {
+		return user, err
+	}
+
+	err = collection.FindOne(c, bson.M{"customer_id": idHex}).Decode(&user)
 	return user, err
 }
 
