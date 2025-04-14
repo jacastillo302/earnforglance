@@ -21,10 +21,10 @@ func OrderItemRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Databas
 		Env:              env,
 	}
 	itemGroup := group.Group("/api/v1/orders")
-	itemGroup.GET("/orderitems", lc.Fetch)
-	itemGroup.GET("/orderitem", lc.FetchByID)
-	itemGroup.POST("/orderitem", lc.Create)
-	itemGroup.POST("/orderitems", lc.CreateMany)
-	itemGroup.PUT("/orderitem", lc.Update)
-	itemGroup.DELETE("/orderitem", lc.Delete)
+	itemGroup.GET("/order_items", lc.Fetch)
+	itemGroup.GET("/order_item", lc.FetchByID)
+	itemGroup.POST("/order_item", lc.Create)
+	itemGroup.POST("/order_items", lc.CreateMany)
+	itemGroup.PUT("/order_item", lc.Update)
+	itemGroup.DELETE("/order_item", lc.Delete)
 }

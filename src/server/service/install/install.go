@@ -1,12 +1,6 @@
 package controller
 
 import (
-	"encoding/json"
-	"fmt"
-	"math/big"
-	"os"
-	"time"
-
 	"crypto/rand"
 	"earnforglance/server/bootstrap"
 	affiliates "earnforglance/server/domain/affiliate"
@@ -26,6 +20,7 @@ import (
 	messages "earnforglance/server/domain/messages"
 	news "earnforglance/server/domain/news"
 	orders "earnforglance/server/domain/orders"
+	payments "earnforglance/server/domain/payments"
 	polls "earnforglance/server/domain/polls"
 	tasks "earnforglance/server/domain/scheduleTasks"
 	security "earnforglance/server/domain/security"
@@ -36,6 +31,13 @@ import (
 	vendors "earnforglance/server/domain/vendors"
 	tools "earnforglance/server/service/common"
 	service "earnforglance/server/service/customers"
+	"encoding/json"
+	"fmt"
+	"math/big"
+	"os"
+	"time"
+
+	"github.com/google/uuid"
 
 	"encoding/base64"
 
@@ -2702,6 +2704,61 @@ func InstallOrder(isSample bool) (response.Install, []orders.Order) {
 		return result, nil
 	}
 
+	result, custumers := InstallCustomer(true)
+	if !result.Status {
+		result.Status = false
+		result.Details = "Failed to find custumers "
+	}
+
+	users := len(custumers)
+	now := time.Now()
+
+	for i := range items {
+
+		nBig, err := rand.Int(rand.Reader, big.NewInt(int64(users)))
+		if err != nil {
+			return result, nil
+		}
+
+		if items[i].OrderGuid == uuid.Nil {
+			items[i].OrderGuid = uuid.New()
+		}
+
+		items[i].CustomerID = custumers[int(nBig.Int64())].ID
+		items[i].BillingAddressID = *custumers[int(nBig.Int64())].BillingAddressID
+
+		if items[i].PickupInStore {
+			items[i].ShippingAddressID = nil
+			items[i].ShippingStatusID = int(shippings.ShippingNotRequired)
+		} else {
+			items[i].ShippingAddressID = custumers[int(nBig.Int64())].ShippingAddressID
+			items[i].ShippingStatusID = int(shippings.PartiallyShipped)
+		}
+
+		if items[i].OrderStatusID == int(orders.Complete) {
+			items[i].PaymentStatusID = int(payments.Paid)
+			items[i].ShippingStatusID = int(shippings.Delivered)
+
+			items[i].PaidDateUtc = &now
+		} else {
+
+			if items[i].ShippingStatusID != int(shippings.ShippingNotRequired) {
+				if items[i].OrderStatusID == int(orders.Processing) {
+					items[i].ShippingStatusID = int(shippings.PartiallyShipped)
+				} else {
+					items[i].ShippingStatusID = int(shippings.Shipped)
+				}
+			} else {
+				items[i].ShippingRateComputationMethodSystemName = ""
+				items[i].ShippingMethod = ""
+			}
+
+			items[i].PaymentStatusID = int(payments.Pending)
+		}
+
+		items[i].CreatedOnUtc = now
+	}
+
 	// Success response
 	result.Status = true
 	result.Details = collection + " data installed successfully"
@@ -2710,7 +2767,7 @@ func InstallOrder(isSample bool) (response.Install, []orders.Order) {
 	return result, items
 }
 
-func InstallOrderItem(isSample bool) (response.Install, []orders.OrderItem) {
+func InstallOrderItem(isSample bool, orderes []orders.Order) (response.Install, []orders.OrderItem) {
 	var result response.Install
 	collection := orders.CollectionOrderItem
 
@@ -2738,6 +2795,10 @@ func InstallOrderItem(isSample bool) (response.Install, []orders.OrderItem) {
 		result.Status = false
 		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
 		return result, nil
+	}
+
+	for i := range items {
+		items[i].OrderItemGuid = uuid.New()
 	}
 
 	// Success response
@@ -2778,6 +2839,10 @@ func InstallOrderNote(isSample bool) (response.Install, []orders.OrderNote) {
 		return result, nil
 	}
 
+	for i := range items {
+		items[i].CreatedOnUtc = time.Now()
+	}
+
 	// Success response
 	result.Status = true
 	result.Details = collection + " data installed successfully"
@@ -2789,7 +2854,7 @@ func InstallOrderNote(isSample bool) (response.Install, []orders.OrderNote) {
 func InstallShipment(isSample bool) (response.Install, []shippings.Shipment) {
 	var result response.Install
 	collection := shippings.CollectionShipment
-
+	now := time.Now()
 	sample := "_sample"
 
 	if !isSample {
@@ -2814,6 +2879,14 @@ func InstallShipment(isSample bool) (response.Install, []shippings.Shipment) {
 		result.Status = false
 		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
 		return result, nil
+	}
+
+	for i := range items {
+		items[i].CreatedOnUtc = now
+		deliveryDate := now.Add(time.Hour * 24 * 2)
+		shippedDateUtc := now.Add(time.Hour * 24)
+		items[i].DeliveryDateUtc = &deliveryDate
+		items[i].ShippedDateUtc = &shippedDateUtc
 	}
 
 	// Success response

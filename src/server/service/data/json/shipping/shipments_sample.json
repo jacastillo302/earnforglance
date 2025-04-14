@@ -1,0 +1,35 @@
+[
+    {
+        "ID": "67fce111282be5513d00251e",
+        "OrderID": "67fa789dab053618935f4452",
+        "TrackingNumber": "1Z9999W888888888888",
+        "TotalWeight": 4,
+        "ShippedDateUtc": "2025-04-15T12:00:00Z",
+        "DeliveryDateUtc": "2025-04-18T15:00:00Z",
+        "ReadyForPickupDateUtc": null,
+        "AdminComment": "Shipped via UPS.",
+        "CreatedOnUtc": "2025-04-14T10:00:00Z"
+    },
+    {
+        "ID": "67fce111282be5513d00251f",
+        "OrderID": "67fa789dab053618935f4452",
+        "TrackingNumber": "1Z9999W99999999999",
+        "TotalWeight": 2,
+        "ShippedDateUtc": "2025-04-15T12:00:00Z",
+        "DeliveryDateUtc": "2025-04-18T15:00:00Z",
+        "ReadyForPickupDateUtc": null,
+        "AdminComment": "Shipped via FedEx.",
+        "CreatedOnUtc": "2025-04-14T10:00:00Z"
+    },
+    {
+        "ID": "67fce111282be5513d002520",
+        "OrderID": "67fa789dab053618935f4453",
+        "TrackingNumber": "RRRWWWWWWWWWWW22221",
+        "TotalWeight": 1,
+        "ShippedDateUtc": "2025-04-15T12:00:00Z",
+        "DeliveryDateUtc": "2025-04-18T15:00:00Z",
+        "ReadyForPickupDateUtc": null,
+        "AdminComment": "Delivered at front office.",
+        "CreatedOnUtc": "2025-04-14T10:00:00Z"
+    }
+]

@@ -21,10 +21,10 @@ func OrderNoteRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Databas
 		Env:              env,
 	}
 	itemGroup := group.Group("/api/v1/orders")
-	itemGroup.GET("/ordernotes", lc.Fetch)
-	itemGroup.GET("/ordernote", lc.FetchByID)
-	itemGroup.POST("/ordernote", lc.Create)
-	itemGroup.POST("/ordernotes", lc.CreateMany)
-	itemGroup.PUT("/ordernote", lc.Update)
-	itemGroup.DELETE("/ordernote", lc.Delete)
+	itemGroup.GET("/order_notes", lc.Fetch)
+	itemGroup.GET("/order_note", lc.FetchByID)
+	itemGroup.POST("/order_note", lc.Create)
+	itemGroup.POST("/order_notes", lc.CreateMany)
+	itemGroup.PUT("/order_note", lc.Update)
+	itemGroup.DELETE("/order_note", lc.Delete)
 }

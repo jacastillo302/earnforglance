@@ -398,7 +398,7 @@ func (lc *InstallController) InstallTopicTemplate(c *gin.Context) {
 		return
 	}
 
-	for index, _ := range topics {
+	for index := range topics {
 		topics[index].TopicTemplateID = items[0].ID
 
 	}
@@ -1403,13 +1403,25 @@ func (lc *InstallController) InstallOrder(c *gin.Context) {
 		return
 	}
 
-	result, items := service.InstallOrderItem(true)
+	result, items := service.InstallOrderItem(true, order)
 	if !result.Status {
 		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
 		return
 	}
 
 	err = lc.InstallUsecase.InstallOrderItem(c, items)
+	if err != nil {
+		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	result, ordern := service.InstallOrderNote(true)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	err = lc.InstallUsecase.InstallOrderNote(c, ordern)
 	if err != nil {
 		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
 		return
@@ -1439,17 +1451,7 @@ func (lc *InstallController) InstallOrder(c *gin.Context) {
 		return
 	}
 
-	result, ordern := service.InstallOrderNote(true)
-	if !result.Status {
-		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
-		return
-	}
-
-	err = lc.InstallUsecase.InstallOrderNote(c, ordern)
-	if err != nil {
-		c.JSON(http.StatusNotAcceptable, common.ErrorResponse{Message: err.Error()})
-		return
-	}
-
+	result.Status = true
+	result.Details = "Orders with items and shippings data installed successfully"
 	c.JSON(http.StatusOK, result)
 }
