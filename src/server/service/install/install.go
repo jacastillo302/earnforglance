@@ -29,8 +29,8 @@ import (
 	taxes "earnforglance/server/domain/tax"
 	topics "earnforglance/server/domain/topics"
 	vendors "earnforglance/server/domain/vendors"
-	tools "earnforglance/server/service/common"
 	service "earnforglance/server/service/customers"
+	encryption "earnforglance/server/service/security"
 	"encoding/json"
 	"fmt"
 	"math/big"
@@ -761,9 +761,7 @@ func InstallCustomerPassword(customerID primitive.ObjectID, psw string) (respons
 
 	hashAlgorithm := service.CustomerServicesDefaults{}
 
-	data := []byte(psw)
-
-	hash, err := tools.CreateHash(data, hashAlgorithm.DefaultHashedPasswordFormat(), hashAlgorithm.PasswordSaltKeySize())
+	hash, err := encryption.CreatePasswordHash(psw, saltKey, hashAlgorithm.DefaultHashedPasswordFormat())
 	if err != nil {
 		result.Status = false
 		result.Details = "Failed to parse  create  Hash:" + err.Error()

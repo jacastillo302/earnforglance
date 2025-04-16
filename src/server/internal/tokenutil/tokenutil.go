@@ -4,15 +4,16 @@ import (
 	"fmt"
 	"time"
 
+	customers "earnforglance/server/domain/customers"
 	domain "earnforglance/server/domain/security"
 
 	jwt "github.com/golang-jwt/jwt/v4"
 )
 
-func CreateAccessToken(user *domain.User, secret string, expiry int) (accessToken string, err error) {
+func CreateAccessToken(user *customers.Customer, secret string, expiry int) (accessToken string, err error) {
 	exp := time.Now().Add(time.Hour * time.Duration(expiry)).Unix()
 	claims := &domain.JwtCustomClaims{
-		Name: user.Name,
+		Name: user.FirstName,
 		ID:   user.ID.Hex(),
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: exp,
@@ -26,7 +27,7 @@ func CreateAccessToken(user *domain.User, secret string, expiry int) (accessToke
 	return t, err
 }
 
-func CreateRefreshToken(user *domain.User, secret string, expiry int) (refreshToken string, err error) {
+func CreateRefreshToken(user *customers.Customer, secret string, expiry int) (refreshToken string, err error) {
 	claimsRefresh := &domain.JwtCustomRefreshClaims{
 		ID: user.ID.Hex(),
 		StandardClaims: jwt.StandardClaims{

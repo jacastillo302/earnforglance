@@ -4,17 +4,19 @@ import (
 	"context"
 	"time"
 
+	settings "earnforglance/server/domain/configuration"
 	customers "earnforglance/server/domain/customers"
+	localization "earnforglance/server/domain/localization"
 	domain "earnforglance/server/domain/security"
 	"earnforglance/server/internal/tokenutil"
 )
 
 type loginUsecase struct {
-	userRepository domain.UserRepository
+	userRepository domain.LoginRepository
 	contextTimeout time.Duration
 }
 
-func NewLoginUsecase(userRepository domain.UserRepository, timeout time.Duration) domain.LoginUsecase {
+func NewLoginUsecase(userRepository domain.LoginRepository, timeout time.Duration) domain.LoginUsecase {
 	return &loginUsecase{
 		userRepository: userRepository,
 		contextTimeout: timeout,
@@ -27,16 +29,34 @@ func (lu *loginUsecase) GetUserByEmail(c context.Context, email string) (custome
 	return lu.userRepository.GetByEmail(ctx, email)
 }
 
+func (lu *loginUsecase) GetByUserName(c context.Context, usermame string) (customers.Customer, error) {
+	ctx, cancel := context.WithTimeout(c, lu.contextTimeout)
+	defer cancel()
+	return lu.userRepository.GetByUserName(ctx, usermame)
+}
+
 func (lu *loginUsecase) GetPasw(c context.Context, CustumerID string) (customers.CustomerPassword, error) {
 	ctx, cancel := context.WithTimeout(c, lu.contextTimeout)
 	defer cancel()
 	return lu.userRepository.GetPasw(ctx, CustumerID)
 }
 
-func (lu *loginUsecase) CreateAccessToken(user *domain.User, secret string, expiry int) (accessToken string, err error) {
+func (lu *loginUsecase) GetSettingByName(c context.Context, name string) (settings.Setting, error) {
+	ctx, cancel := context.WithTimeout(c, lu.contextTimeout)
+	defer cancel()
+	return lu.userRepository.GetSettingByName(ctx, name)
+}
+
+func (lu *loginUsecase) CreateAccessToken(user *customers.Customer, secret string, expiry int) (accessToken string, err error) {
 	return tokenutil.CreateAccessToken(user, secret, expiry)
 }
 
-func (lu *loginUsecase) CreateRefreshToken(user *domain.User, secret string, expiry int) (refreshToken string, err error) {
+func (lu *loginUsecase) CreateRefreshToken(user *customers.Customer, secret string, expiry int) (refreshToken string, err error) {
 	return tokenutil.CreateRefreshToken(user, secret, expiry)
+}
+
+func (lu *loginUsecase) GetLocalebyName(c context.Context, name string, languageID string) (localization.LocaleStringResource, error) {
+	ctx, cancel := context.WithTimeout(c, lu.contextTimeout)
+	defer cancel()
+	return lu.userRepository.GetLocalebyName(ctx, name, languageID)
 }

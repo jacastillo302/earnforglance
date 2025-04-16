@@ -5,31 +5,45 @@ import (
 	"crypto/aes"
 	"crypto/cipher"
 	"crypto/des"
+	"crypto/sha256"
+	"crypto/sha512"
 	"encoding/base64"
+	"encoding/hex"
 	"errors"
+	"strings"
 )
 
-// SecuritySettings holds encryption settings
-type SecuritySettings struct {
-	EncryptionKey             string
-	UseAesEncryptionAlgorithm bool
+// CreatePasswordHash creates a password hash using the specified algorithm
+func CreatePasswordHash(password, saltkey, passwordFormat string) (string, error) {
+	combined := password + saltkey
+
+	switch strings.ToUpper(passwordFormat) {
+	case "SHA256":
+		hash := sha256.Sum256([]byte(combined))
+		return hex.EncodeToString(hash[:]), nil
+	case "SHA512":
+		hash := sha512.Sum512([]byte(combined))
+		return hex.EncodeToString(hash[:]), nil
+	default:
+		return "", errors.New("unsupported hash algorithm")
+	}
 }
 
 // EncryptText encrypts plain text using the specified or default encryption key
-func EncryptText(plainText string, encryptionPrivateKey string, settings SecuritySettings) (string, error) {
+func EncryptText(plainText string, encryptionPrivateKey string, encryptionKey string, useAesEncryptionAlgorithm bool) (string, error) {
 	if plainText == "" {
 		return plainText, nil
 	}
 
 	key := encryptionPrivateKey
 	if key == "" {
-		key = settings.EncryptionKey
+		key = encryptionKey
 	}
 	if key == "" {
 		return "", errors.New("encryption key is required")
 	}
 
-	block, iv, err := getEncryptionAlgorithm(key, settings.UseAesEncryptionAlgorithm)
+	block, iv, err := getEncryptionAlgorithm(key, useAesEncryptionAlgorithm)
 	if err != nil {
 		return "", err
 	}
@@ -89,20 +103,20 @@ func encryptTextToMemory(data []byte, block cipher.Block, iv []byte) ([]byte, er
 }
 
 // DecryptText decrypts the given base64-encoded cipher text using the specified or default encryption key
-func DecryptText(cipherText string, encryptionPrivateKey string, settings SecuritySettings) (string, error) {
+func DecryptText(cipherText string, encryptionPrivateKey string, encryptionKey string, useAesEncryptionAlgorithm bool) (string, error) {
 	if cipherText == "" {
 		return cipherText, nil
 	}
 
 	key := encryptionPrivateKey
 	if key == "" {
-		key = settings.EncryptionKey
+		key = encryptionKey
 	}
 	if key == "" {
 		return "", errors.New("encryption key is required")
 	}
 
-	block, iv, err := getEncryptionAlgorithm(key, settings.UseAesEncryptionAlgorithm)
+	block, iv, err := getEncryptionAlgorithm(key, useAesEncryptionAlgorithm)
 	if err != nil {
 		return "", err
 	}

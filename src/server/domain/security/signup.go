@@ -2,6 +2,7 @@ package domain
 
 import (
 	"context"
+	customers "earnforglance/server/domain/customers"
 )
 
 type SignupRequest struct {
@@ -16,7 +17,7 @@ type SignupResponse struct {
 }
 
 type SignupUsecase interface {
-	Create(c context.Context, user *User) error
-	CreateAccessToken(user *User, secret string, expiry int) (accessToken string, err error)
-	CreateRefreshToken(user *User, secret string, expiry int) (refreshToken string, err error)
+	Create(c context.Context, user *customers.Customer) error
+	CreateAccessToken(user *customers.Customer, secret string, expiry int) (accessToken string, err error)
+	CreateRefreshToken(user *customers.Customer, secret string, expiry int) (refreshToken string, err error)
 }

@@ -2,6 +2,7 @@ package domain
 
 import (
 	"context"
+	customers "earnforglance/server/domain/customers"
 )
 
 type RefreshTokenRequest struct {
@@ -14,8 +15,8 @@ type RefreshTokenResponse struct {
 }
 
 type RefreshTokenUsecase interface {
-	GetUserByID(c context.Context, id string) (User, error)
-	CreateAccessToken(user *User, secret string, expiry int) (accessToken string, err error)
-	CreateRefreshToken(user *User, secret string, expiry int) (refreshToken string, err error)
+	GetUserByID(c context.Context, id string) (customers.Customer, error)
+	CreateAccessToken(user *customers.Customer, secret string, expiry int) (accessToken string, err error)
+	CreateRefreshToken(user *customers.Customer, secret string, expiry int) (refreshToken string, err error)
 	ExtractIDFromToken(requestToken string, secret string) (string, error)
 }

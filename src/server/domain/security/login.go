@@ -2,7 +2,9 @@ package domain
 
 import (
 	"context"
-	customers "earnforglance/server/domain/customers"
+	settings "earnforglance/server/domain/configuration"
+	domain "earnforglance/server/domain/customers"
+	localization "earnforglance/server/domain/localization"
 )
 
 type LoginRequest struct {
@@ -15,9 +17,25 @@ type LoginResponse struct {
 	RefreshToken string `json:"refreshToken"`
 }
 
+const (
+	CollectionUser = "customers"
+)
+
 type LoginUsecase interface {
-	GetUserByEmail(c context.Context, email string) (customers.Customer, error)
-	GetPasw(c context.Context, email string) (customers.CustomerPassword, error)
-	CreateAccessToken(user *User, secret string, expiry int) (accessToken string, err error)
-	CreateRefreshToken(user *User, secret string, expiry int) (refreshToken string, err error)
+	GetUserByEmail(c context.Context, email string) (domain.Customer, error)
+	GetByUserName(c context.Context, email string) (domain.Customer, error)
+	GetPasw(c context.Context, email string) (domain.CustomerPassword, error)
+	GetSettingByName(c context.Context, name string) (settings.Setting, error)
+	GetLocalebyName(c context.Context, name string, languageID string) (localization.LocaleStringResource, error)
+	CreateAccessToken(user *domain.Customer, secret string, expiry int) (accessToken string, err error)
+	CreateRefreshToken(user *domain.Customer, secret string, expiry int) (refreshToken string, err error)
+}
+
+type LoginRepository interface {
+	GetByEmail(c context.Context, email string) (domain.Customer, error)
+	GetByUserName(c context.Context, email string) (domain.Customer, error)
+	GetSettingByName(c context.Context, name string) (settings.Setting, error)
+	GetPasw(c context.Context, email string) (domain.CustomerPassword, error)
+	GetLocalebyName(c context.Context, name string, languageID string) (localization.LocaleStringResource, error)
+	GetByID(c context.Context, id string) (domain.Customer, error)
 }

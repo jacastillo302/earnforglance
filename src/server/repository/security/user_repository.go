@@ -3,7 +3,9 @@ package repository
 import (
 	"context"
 
-	customer "earnforglance/server/domain/customers"
+	setting "earnforglance/server/domain/configuration"
+	customers "earnforglance/server/domain/customers"
+	localization "earnforglance/server/domain/localization"
 	domain "earnforglance/server/domain/security"
 	"earnforglance/server/service/data/mongo"
 
@@ -17,14 +19,14 @@ type userRepository struct {
 	collection string
 }
 
-func NewUserRepository(db mongo.Database, collection string) domain.UserRepository {
+func NewLoginRepository(db mongo.Database, collection string) domain.LoginRepository {
 	return &userRepository{
 		database:   db,
 		collection: collection,
 	}
 }
 
-func (ur *userRepository) Create(c context.Context, user *domain.User) error {
+func (ur *userRepository) Create(c context.Context, user *customers.Customer) error {
 	collection := ur.database.Collection(ur.collection)
 
 	_, err := collection.InsertOne(c, user)
@@ -32,7 +34,7 @@ func (ur *userRepository) Create(c context.Context, user *domain.User) error {
 	return err
 }
 
-func (ur *userRepository) Fetch(c context.Context) ([]domain.User, error) {
+func (ur *userRepository) Fetch(c context.Context) ([]customers.Customer, error) {
 	collection := ur.database.Collection(ur.collection)
 
 	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
@@ -42,40 +44,80 @@ func (ur *userRepository) Fetch(c context.Context) ([]domain.User, error) {
 		return nil, err
 	}
 
-	var users []domain.User
+	var users []customers.Customer
 
 	err = cursor.All(c, &users)
 	if users == nil {
-		return []domain.User{}, err
+		return []customers.Customer{}, err
 	}
 
 	return users, err
 }
 
-func (ur *userRepository) GetByEmail(c context.Context, email string) (customer.Customer, error) {
-	collection := ur.database.Collection(customer.CollectionCustomer)
-	var user customer.Customer
+func (ur *userRepository) GetByEmail(c context.Context, email string) (customers.Customer, error) {
+	collection := ur.database.Collection(customers.CollectionCustomer)
+	var user customers.Customer
 	err := collection.FindOne(c, bson.M{"email": email}).Decode(&user)
 	return user, err
 }
 
-func (ur *userRepository) GetPasw(c context.Context, CustumerID string) (customer.CustomerPassword, error) {
-	collection := ur.database.Collection(customer.CollectionCustomerPassword)
-	var user customer.CustomerPassword
+func (ur *userRepository) GetByUserName(c context.Context, usermame string) (customers.Customer, error) {
+	collection := ur.database.Collection(customers.CollectionCustomer)
+	var user customers.Customer
+	err := collection.FindOne(c, bson.M{"username": usermame}).Decode(&user)
+	return user, err
+}
+
+func (ur *userRepository) GetPasw(c context.Context, CustumerID string) (customers.CustomerPassword, error) {
+	collection := ur.database.Collection(customers.CollectionCustomerPassword)
+	var user customers.CustomerPassword
 
 	idHex, err := primitive.ObjectIDFromHex(CustumerID)
 	if err != nil {
 		return user, err
 	}
 
-	err = collection.FindOne(c, bson.M{"customer_id": idHex}).Decode(&user)
+	opts := options.Find().SetSort(bson.D{{Key: "created_on_utc", Value: -1}})
+	cursor, err := collection.Find(c, bson.M{"customer_id": idHex}, opts)
+	if err != nil {
+		return user, err
+	}
+
+	var pasws []customers.CustomerPassword
+
+	err = cursor.All(c, &pasws)
+	if pasws == nil {
+		return customers.CustomerPassword{}, err
+	}
+
+	user = pasws[0]
+
 	return user, err
 }
 
-func (ur *userRepository) GetByID(c context.Context, id string) (domain.User, error) {
+func (ur *userRepository) GetSettingByName(c context.Context, name string) (setting.Setting, error) {
+	collection := ur.database.Collection(setting.CollectionSetting)
+	var item setting.Setting
+	err := collection.FindOne(c, bson.M{"name": name}).Decode(&item)
+	return item, err
+}
+
+func (ur *userRepository) GetLocalebyName(c context.Context, name string, languageID string) (localization.LocaleStringResource, error) {
+	collection := ur.database.Collection(localization.CollectionLocaleStringResource)
+	var item localization.LocaleStringResource
+	var language_id primitive.ObjectID
+	language_id, err := primitive.ObjectIDFromHex(languageID)
+	if err != nil {
+		return item, err
+	}
+	err = collection.FindOne(c, bson.M{"resource_name": name, "language_id": language_id}).Decode(&item)
+	return item, err
+}
+
+func (ur *userRepository) GetByID(c context.Context, id string) (customers.Customer, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	var user domain.User
+	var user customers.Customer
 
 	idHex, err := primitive.ObjectIDFromHex(id)
 	if err != nil {

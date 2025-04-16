@@ -1328,7 +1328,7 @@
   {
       "ID": "67ed840939ef71573b38729a",
       "Name": "HashedPasswordFormat",
-      "Value": "CustomerServicesDefaults.DefaultHashedPasswordFormat",
+      "Value": "SHA512",
       "StoreID": "64f1b3d4e5f6789012345678"
   },
   {

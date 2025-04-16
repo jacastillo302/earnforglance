@@ -4,8 +4,7 @@ package mocks
 
 import (
 	context "context"
-	domain "earnforglance/server/domain/security"
-
+	customers "earnforglance/server/domain/customers"
 	mock "github.com/stretchr/testify/mock"
 )
 
@@ -15,7 +14,7 @@ type RefreshTokenUsecase struct {
 }
 
 // CreateAccessToken provides a mock function with given fields: user, secret, expiry
-func (_m *RefreshTokenUsecase) CreateAccessToken(user *domain.User, secret string, expiry int) (string, error) {
+func (_m *RefreshTokenUsecase) CreateAccessToken(user *customers.Customer, secret string, expiry int) (string, error) {
 	ret := _m.Called(user, secret, expiry)
 
 	if len(ret) == 0 {
@@ -24,16 +23,16 @@ func (_m *RefreshTokenUsecase) CreateAccessToken(user *domain.User, secret strin
 
 	var r0 string
 	var r1 error
-	if rf, ok := ret.Get(0).(func(*domain.User, string, int) (string, error)); ok {
+	if rf, ok := ret.Get(0).(func(*customers.Customer, string, int) (string, error)); ok {
 		return rf(user, secret, expiry)
 	}
-	if rf, ok := ret.Get(0).(func(*domain.User, string, int) string); ok {
+	if rf, ok := ret.Get(0).(func(*customers.Customer, string, int) string); ok {
 		r0 = rf(user, secret, expiry)
 	} else {
 		r0 = ret.Get(0).(string)
 	}
 
-	if rf, ok := ret.Get(1).(func(*domain.User, string, int) error); ok {
+	if rf, ok := ret.Get(1).(func(*customers.Customer, string, int) error); ok {
 		r1 = rf(user, secret, expiry)
 	} else {
 		r1 = ret.Error(1)
@@ -43,7 +42,7 @@ func (_m *RefreshTokenUsecase) CreateAccessToken(user *domain.User, secret strin
 }
 
 // CreateRefreshToken provides a mock function with given fields: user, secret, expiry
-func (_m *RefreshTokenUsecase) CreateRefreshToken(user *domain.User, secret string, expiry int) (string, error) {
+func (_m *RefreshTokenUsecase) CreateRefreshToken(user *customers.Customer, secret string, expiry int) (string, error) {
 	ret := _m.Called(user, secret, expiry)
 
 	if len(ret) == 0 {
@@ -52,16 +51,16 @@ func (_m *RefreshTokenUsecase) CreateRefreshToken(user *domain.User, secret stri
 
 	var r0 string
 	var r1 error
-	if rf, ok := ret.Get(0).(func(*domain.User, string, int) (string, error)); ok {
+	if rf, ok := ret.Get(0).(func(*customers.Customer, string, int) (string, error)); ok {
 		return rf(user, secret, expiry)
 	}
-	if rf, ok := ret.Get(0).(func(*domain.User, string, int) string); ok {
+	if rf, ok := ret.Get(0).(func(*customers.Customer, string, int) string); ok {
 		r0 = rf(user, secret, expiry)
 	} else {
 		r0 = ret.Get(0).(string)
 	}
 
-	if rf, ok := ret.Get(1).(func(*domain.User, string, int) error); ok {
+	if rf, ok := ret.Get(1).(func(*customers.Customer, string, int) error); ok {
 		r1 = rf(user, secret, expiry)
 	} else {
 		r1 = ret.Error(1)
@@ -99,22 +98,22 @@ func (_m *RefreshTokenUsecase) ExtractIDFromToken(requestToken string, secret st
 }
 
 // GetUserByID provides a mock function with given fields: c, id
-func (_m *RefreshTokenUsecase) GetUserByID(c context.Context, id string) (domain.User, error) {
+func (_m *RefreshTokenUsecase) GetUserByID(c context.Context, id string) (customers.Customer, error) {
 	ret := _m.Called(c, id)
 
 	if len(ret) == 0 {
 		panic("no return value specified for GetUserByID")
 	}
 
-	var r0 domain.User
+	var r0 customers.Customer
 	var r1 error
-	if rf, ok := ret.Get(0).(func(context.Context, string) (domain.User, error)); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, string) (customers.Customer, error)); ok {
 		return rf(c, id)
 	}
-	if rf, ok := ret.Get(0).(func(context.Context, string) domain.User); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, string) customers.Customer); ok {
 		r0 = rf(c, id)
 	} else {
-		r0 = ret.Get(0).(domain.User)
+		r0 = ret.Get(0).(customers.Customer)
 	}
 
 	if rf, ok := ret.Get(1).(func(context.Context, string) error); ok {
