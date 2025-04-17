@@ -24,6 +24,7 @@ import (
 	polls "earnforglance/server/domain/polls"
 	tasks "earnforglance/server/domain/scheduleTasks"
 	security "earnforglance/server/domain/security"
+	seo "earnforglance/server/domain/seo"
 	shippings "earnforglance/server/domain/shipping"
 	stores "earnforglance/server/domain/stores"
 	taxes "earnforglance/server/domain/tax"
@@ -660,6 +661,70 @@ func InstallTopic() (response.Install, []topics.Topic) {
 
 	// Unmarshal the JSON data into a slice of topics.TopicTemplate
 	items := make([]topics.Topic, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallUrlRecord() (response.Install, []seo.UrlRecord) {
+	var result response.Install
+	collection := seo.CollectionUrlRecord
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "seo\\"+collection+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of seo.UrlRecord
+	items := make([]seo.UrlRecord, 0)
+	err = json.Unmarshal(fileData, &items)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to parse " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Success response
+	result.Status = true
+	result.Details = collection + " data installed successfully"
+	result.CreatedOnUtc = time.Now()
+
+	return result, items
+}
+
+func InstallPermissionRecordCustomerRoleMapping() (response.Install, []security.PermissionRecordCustomerRoleMapping) {
+	var result response.Install
+	collection := security.CollectionPermissionRecordCustomerRoleMapping
+
+	// Resolve the relative path
+	filePath := resolvePath(DefaultPathJson, "security\\"+collection+".json")
+
+	// Read the JSON file
+	fileData, err := os.ReadFile(filePath)
+	if err != nil {
+		result.Status = false
+		result.Details = "Failed to read " + collection + " JSON file: " + err.Error()
+		return result, nil
+	}
+
+	// Unmarshal the JSON data into a slice of customers.CustomerRole
+	items := make([]security.PermissionRecordCustomerRoleMapping, 0)
 	err = json.Unmarshal(fileData, &items)
 	if err != nil {
 		result.Status = false

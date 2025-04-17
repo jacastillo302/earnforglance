@@ -80,6 +80,7 @@ func Setup(env *bootstrap.Env, timeout time.Duration, db mongo.Database, gin *gi
 
 	// Middleware to verify AccessToken
 	protectedRouter := gin.Group("")
+
 	protectedRouter.Use(middleware.JwtAuthMiddleware(env.AccessTokenSecret))
 
 	// Register all domain-specific routers

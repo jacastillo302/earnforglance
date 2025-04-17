@@ -22,6 +22,7 @@ import (
 	polls "earnforglance/server/domain/polls"
 	tasks "earnforglance/server/domain/scheduleTasks"
 	security "earnforglance/server/domain/security"
+	seo "earnforglance/server/domain/seo"
 	shippings "earnforglance/server/domain/shipping"
 	stores "earnforglance/server/domain/stores"
 	taxes "earnforglance/server/domain/tax"
@@ -290,6 +291,34 @@ func (tu *intallRepository) InstallTopicTemplate(c context.Context, items []topi
 func (tu *intallRepository) InstallCustomerRole(c context.Context, items []customers.CustomerRole) error {
 
 	collection := tu.database.Collection(customers.CollectionCustomerRole)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallPermissionRecordCustomerRoleMapping(c context.Context, items []security.PermissionRecordCustomerRoleMapping) error {
+
+	collection := tu.database.Collection(security.CollectionPermissionRecordCustomerRoleMapping)
+
+	interfaces := make([]interface{}, len(items))
+	for i, item := range items {
+		interfaces[i] = item
+	}
+
+	_, err := collection.InsertMany(c, interfaces)
+
+	return err
+}
+
+func (tu *intallRepository) InstallUrlRecord(c context.Context, items []seo.UrlRecord) error {
+
+	collection := tu.database.Collection(seo.CollectionUrlRecord)
 
 	interfaces := make([]interface{}, len(items))
 	for i, item := range items {

@@ -27,12 +27,12 @@ func (rtu *refreshTokenUsecase) GetUserByID(c context.Context, email string) (cu
 	return rtu.userRepository.GetByID(ctx, email)
 }
 
-func (rtu *refreshTokenUsecase) CreateAccessToken(user *customers.Customer, secret string, expiry int) (accessToken string, err error) {
-	return tokenutil.CreateAccessToken(user, secret, expiry)
+func (rtu *refreshTokenUsecase) CreateAccessToken(user *customers.Customer, slugs []domain.UrlRecord, secret string, expiry int) (accessToken string, err error) {
+	return tokenutil.CreateAccessToken(user, slugs, secret, expiry)
 }
 
-func (rtu *refreshTokenUsecase) CreateRefreshToken(user *customers.Customer, secret string, expiry int) (refreshToken string, err error) {
-	return tokenutil.CreateRefreshToken(user, secret, expiry)
+func (rtu *refreshTokenUsecase) CreateRefreshToken(user *customers.Customer, slugs []domain.UrlRecord, secret string, expiry int) (refreshToken string, err error) {
+	return tokenutil.CreateRefreshToken(user, slugs, secret, expiry)
 }
 
 func (rtu *refreshTokenUsecase) ExtractIDFromToken(requestToken string, secret string) (string, error) {

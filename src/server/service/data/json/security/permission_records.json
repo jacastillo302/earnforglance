@@ -906,12 +906,6 @@
         "Category": "security"
     },
     {
-        "ID": "67ed65976b3a64a8c73f79d3",
-        "Name": "Acl Record Permission",
-        "SystemName": "acl_record_permissions",
-        "Category": "security"
-    },
-    {
         "ID": "67ed65976b3a64a8c73f79d4",
         "Name": "Captcha Settings",
         "SystemName": "captcha_settings",

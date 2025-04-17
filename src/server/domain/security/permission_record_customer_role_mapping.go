@@ -15,6 +15,10 @@ type PermissionRecordCustomerRoleMapping struct {
 	ID                 primitive.ObjectID `bson:"_id,omitempty"`
 	PermissionRecordID primitive.ObjectID `bson:"permission_record_id"`
 	CustomerRoleID     primitive.ObjectID `bson:"customer_role_id"`
+	IsRead             bool               `bson:"is_read"`
+	IsDelete           bool               `bson:"is_delete"`
+	IsUpdate           bool               `bson:"is_update"`
+	IsCreate           bool               `bson:"is_create"`
 }
 
 type PermissionRecordCustomerRoleMappingRepository interface {

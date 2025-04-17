@@ -114,6 +114,13 @@ func (ur *userRepository) GetLocalebyName(c context.Context, name string, langua
 	return item, err
 }
 
+func (ur *userRepository) GetLangugaByCode(c context.Context, lang string) (localization.Language, error) {
+	collection := ur.database.Collection(localization.CollectionLanguage)
+	var item localization.Language
+	err := collection.FindOne(c, bson.M{"unique_seo_code": lang}).Decode(&item)
+	return item, err
+}
+
 func (ur *userRepository) GetByID(c context.Context, id string) (customers.Customer, error) {
 	collection := ur.database.Collection(ur.collection)
 

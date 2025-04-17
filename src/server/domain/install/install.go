@@ -23,6 +23,7 @@ import (
 	polls "earnforglance/server/domain/polls"
 	tasks "earnforglance/server/domain/scheduleTasks"
 	security "earnforglance/server/domain/security"
+	seo "earnforglance/server/domain/seo"
 	shippings "earnforglance/server/domain/shipping"
 	stores "earnforglance/server/domain/stores"
 	taxes "earnforglance/server/domain/tax"
@@ -77,6 +78,8 @@ type InstallRepository interface {
 	InstallMessageTemplate(c context.Context, items []messages.MessageTemplate) error
 	InstallTopicTemplate(c context.Context, items []topics.TopicTemplate) error
 	InstallCustomerRole(c context.Context, items []customers.CustomerRole) error
+	InstallPermissionRecordCustomerRoleMapping(c context.Context, items []security.PermissionRecordCustomerRoleMapping) error
+	InstallUrlRecord(c context.Context, items []seo.UrlRecord) error
 	InstallCustomer(c context.Context, items []customers.Customer) error
 	InstallCustomerPassword(c context.Context, items []customers.CustomerPassword) error
 	InstallAddress(c context.Context, items []commons.Address) error
@@ -158,6 +161,8 @@ type InstallLogUsecase interface {
 	InstallMessageTemplate(c context.Context, items []messages.MessageTemplate) error
 	InstallTopicTemplate(c context.Context, items []topics.TopicTemplate) error
 	InstallCustomerRole(c context.Context, items []customers.CustomerRole) error
+	InstallPermissionRecordCustomerRoleMapping(c context.Context, items []security.PermissionRecordCustomerRoleMapping) error
+	InstallUrlRecord(c context.Context, items []seo.UrlRecord) error
 	InstallCustomer(c context.Context, items []customers.Customer) error
 	InstallCustomerPassword(c context.Context, items []customers.CustomerPassword) error
 	InstallAddress(c context.Context, items []commons.Address) error

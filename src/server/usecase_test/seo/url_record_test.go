@@ -21,12 +21,10 @@ func TestUrlRecordUsecase_FetchByID(t *testing.T) {
 	urlRecordID := primitive.NewObjectID().Hex()
 
 	updatedUrlRecord := domain.UrlRecord{
-		ID:         primitive.NewObjectID(), // Existing ID of the record to update
-		EntityID:   primitive.NewObjectID(),
-		EntityName: "Category",
-		Slug:       "example-category",
-		IsActive:   false,
-		LanguageID: primitive.NewObjectID(),
+		ID:                 primitive.NewObjectID(), // Existing ID of the record to update
+		PermissionRecordID: primitive.NewObjectID(),
+		Slug:               "example-category",
+		IsActive:           false,
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, urlRecordID).Return(updatedUrlRecord, nil)
@@ -44,11 +42,9 @@ func TestUrlRecordUsecase_Create(t *testing.T) {
 	usecase := test.NewUrlRecordUsecase(mockRepo, timeout)
 
 	newUrlRecord := &domain.UrlRecord{
-		EntityID:   primitive.NewObjectID(),
-		EntityName: "Product",
-		Slug:       "example-product",
-		IsActive:   true,
-		LanguageID: primitive.NewObjectID(),
+		PermissionRecordID: primitive.NewObjectID(),
+		Slug:               "example-product",
+		IsActive:           true,
 	}
 
 	mockRepo.On("Create", mock.Anything, newUrlRecord).Return(nil)
@@ -65,12 +61,10 @@ func TestUrlRecordUsecase_Update(t *testing.T) {
 	usecase := test.NewUrlRecordUsecase(mockRepo, timeout)
 
 	updatedUrlRecord := &domain.UrlRecord{
-		ID:         primitive.NewObjectID(), // Existing ID of the record to update
-		EntityID:   primitive.NewObjectID(),
-		EntityName: "Category",
-		Slug:       "example-category",
-		IsActive:   false,
-		LanguageID: primitive.NewObjectID(),
+		ID:                 primitive.NewObjectID(), // Existing ID of the record to update
+		PermissionRecordID: primitive.NewObjectID(),
+		Slug:               "example-category",
+		IsActive:           false,
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedUrlRecord).Return(nil)
@@ -103,20 +97,16 @@ func TestUrlRecordUsecase_Fetch(t *testing.T) {
 
 	fetchedUrlRecords := []domain.UrlRecord{
 		{
-			ID:         primitive.NewObjectID(),
-			EntityID:   primitive.NewObjectID(),
-			EntityName: "Product",
-			Slug:       "example-product",
-			IsActive:   true,
-			LanguageID: primitive.NewObjectID(),
+			ID:                 primitive.NewObjectID(),
+			PermissionRecordID: primitive.NewObjectID(),
+			Slug:               "example-product",
+			IsActive:           true,
 		},
 		{
-			ID:         primitive.NewObjectID(),
-			EntityID:   primitive.NewObjectID(),
-			EntityName: "Category",
-			Slug:       "example-category",
-			IsActive:   false,
-			LanguageID: primitive.NewObjectID(),
+			ID:                 primitive.NewObjectID(),
+			PermissionRecordID: primitive.NewObjectID(),
+			Slug:               "example-category",
+			IsActive:           false,
 		},
 	}
 

@@ -27,22 +27,43 @@ func (lc *LoginController) Login(c *gin.Context) {
 		return
 	}
 
+	request.Lang = c.Query("language")
+	request.Email = c.Query("email")
+	request.Password = c.Query("password")
+
+	sLang := ""
+	if request.Lang == "" {
+		lang, err := lc.LoginUsecase.GetSettingByName(c, "DefaultAdminLanguageId")
+		if err != nil {
+			c.JSON(http.StatusNotFound, common.ErrorResponse{Message: err.Error()})
+			return
+		}
+
+		sLang = lang.Value
+	} else {
+		lang, err := lc.LoginUsecase.GetLangugaByCode(c, request.Lang)
+		if err != nil {
+			c.JSON(http.StatusNotFound, common.ErrorResponse{Message: err.Error()})
+			return
+		}
+		sLang = lang.ID.Hex()
+	}
+
 	setting, err := lc.LoginUsecase.GetSettingByName(c, "UsernamesEnabled")
 	if err != nil {
 		c.JSON(http.StatusNotFound, common.ErrorResponse{Message: err.Error()})
 		return
 	}
 
-	locale, err := lc.LoginUsecase.GetLocalebyName(c, "Account.PasswordRecovery.EmailNotFound", "64f1a2c3d4e5f67890123456")
-	if err != nil {
-		c.JSON(http.StatusNotFound, common.ErrorResponse{Message: err.Error()})
-		return
-	}
-
 	var login custumers.Customer
-	if setting.Value == "Enabled" {
+	if setting.Value == "true" {
 		user, err := lc.LoginUsecase.GetByUserName(c, request.Email)
 		if err != nil {
+			locale, err := lc.LoginUsecase.GetLocalebyName(c, "Account.Login.WrongCredentials.CustomerNotExist", sLang)
+			if err != nil {
+				c.JSON(http.StatusNotFound, common.ErrorResponse{Message: err.Error()})
+				return
+			}
 			c.JSON(http.StatusNotFound, common.ErrorResponse{Message: locale.ResourceValue})
 			return
 		}
@@ -50,8 +71,14 @@ func (lc *LoginController) Login(c *gin.Context) {
 		login = user
 
 	} else {
+
 		user, err := lc.LoginUsecase.GetUserByEmail(c, request.Email)
 		if err != nil {
+			locale, err := lc.LoginUsecase.GetLocalebyName(c, "Account.PasswordRecovery.EmailNotFound", sLang)
+			if err != nil {
+				c.JSON(http.StatusNotFound, common.ErrorResponse{Message: err.Error()})
+				return
+			}
 			c.JSON(http.StatusNotFound, common.ErrorResponse{Message: locale.ResourceValue})
 			return
 		}
@@ -85,7 +112,12 @@ func (lc *LoginController) Login(c *gin.Context) {
 
 	valresult := service.ValidateCustomer(login)
 	if valresult != "Successful" {
-		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: valresult})
+		locale, err := lc.LoginUsecase.GetLocalebyName(c, valresult, sLang)
+		if err != nil {
+			c.JSON(http.StatusNotFound, common.ErrorResponse{Message: err.Error()})
+			return
+		}
+		c.JSON(http.StatusUnauthorized, common.ErrorResponse{Message: locale.ResourceValue})
 		return
 	}
 
@@ -102,7 +134,12 @@ func (lc *LoginController) Login(c *gin.Context) {
 	}
 
 	if multifBool {
-		c.JSON(http.StatusUnauthorized, common.ErrorResponse{Message: "Multifactor authentication required"})
+		locale, err := lc.LoginUsecase.GetLocalebyName(c, "Account.MultiFactorAuthentication.Warning.ForceActivation", sLang)
+		if err != nil {
+			c.JSON(http.StatusNotFound, common.ErrorResponse{Message: err.Error()})
+			return
+		}
+		c.JSON(http.StatusUnauthorized, common.ErrorResponse{Message: locale.ResourceValue})
 		return
 	}
 
@@ -113,17 +150,30 @@ func (lc *LoginController) Login(c *gin.Context) {
 	}
 
 	if !service.PasswordsMatch(psw.PasswordFormatID, psw.Password, psw.PasswordSalt, request.Password, encripkey.Value, algotBool, pformat.Value) {
-		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: "The Password is worng"})
+		locale, err := lc.LoginUsecase.GetLocalebyName(c, "Account.Login.WrongCredentials", sLang)
+		if err != nil {
+			c.JSON(http.StatusNotFound, common.ErrorResponse{Message: err.Error()})
+			return
+		}
+		c.JSON(http.StatusUnauthorized, common.ErrorResponse{Message: locale.ResourceValue})
 		return
 	}
 
-	accessToken, err := lc.LoginUsecase.CreateAccessToken(&login, lc.Env.AccessTokenSecret, lc.Env.AccessTokenExpiryHour)
+	slugs := []domain.UrlRecord{{
+		Name:     "Customer",
+		IsRead:   true,
+		IsWrite:  true,
+		IsDelete: true,
+		IsUpdate: true,
+	}}
+
+	accessToken, err := lc.LoginUsecase.CreateAccessToken(&login, slugs, lc.Env.AccessTokenSecret, lc.Env.AccessTokenExpiryHour)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
 		return
 	}
 
-	refreshToken, err := lc.LoginUsecase.CreateRefreshToken(&login, lc.Env.RefreshTokenSecret, lc.Env.RefreshTokenExpiryHour)
+	refreshToken, err := lc.LoginUsecase.CreateRefreshToken(&login, slugs, lc.Env.RefreshTokenSecret, lc.Env.RefreshTokenExpiryHour)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
 		return

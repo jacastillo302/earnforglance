@@ -3,7 +3,6 @@ package security
 import (
 	customers "earnforglance/server/domain/customers"
 	service "earnforglance/server/service/customers"
-	"fmt"
 	"time"
 )
 
@@ -11,20 +10,20 @@ func ValidateCustomer(customer customers.Customer) string {
 
 	sMessage := "Successful"
 	if customer.ID.Hex() == "" {
-		sMessage = "The customer not exist"
+		sMessage = "Account.Login.WrongCredentials.CustomerNotExist"
 	}
 
 	if customer.Deleted {
-		sMessage = "The customer account has been deleted"
+		sMessage = "Account.Login.WrongCredentials.Deleted"
 	}
 
 	if !customer.Active {
-		sMessage = "The account has not been activated"
+		sMessage = "Account.Login.WrongCredentials.NotActive"
 	}
 
 	if customer.CannotLoginUntilDateUtc != nil {
 		if customer.CannotLoginUntilDateUtc.After(time.Now()) {
-			sMessage = "the customer account is locked out"
+			sMessage = "Account.Login.WrongCredentials.LockedOut"
 		}
 	}
 
@@ -42,7 +41,6 @@ func PasswordsMatch(PasswordFormatID int, customerPassword string, passwordSalt 
 	case int(customers.Clear): // Keep only one case for customers.Clear
 		savedPassword = enteredPassword
 	case int(customers.Encrypted):
-
 		sPassword, err := EncryptText(enteredPassword, passwordSalt, encryptionKey, useAesEncryptionAlgorithm)
 		if err != nil {
 			return false
@@ -62,10 +60,5 @@ func PasswordsMatch(PasswordFormatID int, customerPassword string, passwordSalt 
 	if customerPassword == "" {
 		return false
 	}
-
-	fmt.Println("enteredPassword", enteredPassword)
-	fmt.Println("savedPassword", savedPassword)
-	fmt.Println("customerPassword", customerPassword)
-
 	return customerPassword == savedPassword
 }

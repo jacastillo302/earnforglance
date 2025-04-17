@@ -28,12 +28,10 @@ func (m *MockSingleResultUrlRecord) Decode(v interface{}) error {
 }
 
 var mockItemUrlRecord = &domain.UrlRecord{
-	ID:         primitive.NewObjectID(), // Existing ID of the record to update
-	EntityID:   primitive.NewObjectID(),
-	EntityName: "Category",
-	Slug:       "example-category",
-	IsActive:   false,
-	LanguageID: primitive.NewObjectID(),
+	ID:                 primitive.NewObjectID(), // Existing ID of the record to update
+	PermissionRecordID: primitive.NewObjectID(),
+	Slug:               "example-category",
+	IsActive:           false,
 }
 
 func TestUrlRecordRepository_FetchByID(t *testing.T) {

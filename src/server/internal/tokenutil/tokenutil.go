@@ -10,11 +10,12 @@ import (
 	jwt "github.com/golang-jwt/jwt/v4"
 )
 
-func CreateAccessToken(user *customers.Customer, secret string, expiry int) (accessToken string, err error) {
+func CreateAccessToken(user *customers.Customer, slugs []domain.UrlRecord, secret string, expiry int) (accessToken string, err error) {
 	exp := time.Now().Add(time.Hour * time.Duration(expiry)).Unix()
 	claims := &domain.JwtCustomClaims{
 		Name: user.FirstName,
 		ID:   user.ID.Hex(),
+		Slug: slugs,
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: exp,
 		},
@@ -27,7 +28,7 @@ func CreateAccessToken(user *customers.Customer, secret string, expiry int) (acc
 	return t, err
 }
 
-func CreateRefreshToken(user *customers.Customer, secret string, expiry int) (refreshToken string, err error) {
+func CreateRefreshToken(user *customers.Customer, slugs []domain.UrlRecord, secret string, expiry int) (refreshToken string, err error) {
 	claimsRefresh := &domain.JwtCustomRefreshClaims{
 		ID: user.ID.Hex(),
 		StandardClaims: jwt.StandardClaims{
@@ -74,4 +75,45 @@ func ExtractIDFromToken(requestToken string, secret string) (string, error) {
 	}
 
 	return claims["id"].(string), nil
+}
+
+func ExtractSlugsFromToken(requestToken string, secret string) ([]domain.UrlRecord, error) {
+	token, err := jwt.Parse(requestToken, func(token *jwt.Token) (interface{}, error) {
+		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
+		}
+		return []byte(secret), nil
+	})
+
+	if err != nil {
+		return nil, err
+	}
+
+	claims, ok := token.Claims.(jwt.MapClaims)
+
+	if !ok && !token.Valid {
+		return nil, fmt.Errorf("invalid token")
+	}
+	fmt.Println("claims", claims)
+	slugsRaw, ok := claims["slug"]
+	if !ok {
+		return nil, fmt.Errorf("slugs not found in token")
+	}
+
+	slugsIface, ok := slugsRaw.([]interface{})
+	if !ok {
+		return nil, fmt.Errorf("slugs claim is not an array")
+	}
+
+	slugs := make([]domain.UrlRecord, len(slugsIface))
+	for i, v := range slugsIface {
+		fmt.Println("v", v)
+		slugs[i], ok = v.(domain.UrlRecord)
+		if !ok {
+			return nil, fmt.Errorf("slugs claim contains non-string value")
+		}
+	}
+
+	fmt.Println("claims", claims)
+	return slugs, nil
 }

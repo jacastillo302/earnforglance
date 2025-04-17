@@ -47,12 +47,18 @@ func (lu *loginUsecase) GetSettingByName(c context.Context, name string) (settin
 	return lu.userRepository.GetSettingByName(ctx, name)
 }
 
-func (lu *loginUsecase) CreateAccessToken(user *customers.Customer, secret string, expiry int) (accessToken string, err error) {
-	return tokenutil.CreateAccessToken(user, secret, expiry)
+func (lu *loginUsecase) GetLangugaByCode(c context.Context, lang string) (localization.Language, error) {
+	ctx, cancel := context.WithTimeout(c, lu.contextTimeout)
+	defer cancel()
+	return lu.userRepository.GetLangugaByCode(ctx, lang)
 }
 
-func (lu *loginUsecase) CreateRefreshToken(user *customers.Customer, secret string, expiry int) (refreshToken string, err error) {
-	return tokenutil.CreateRefreshToken(user, secret, expiry)
+func (lu *loginUsecase) CreateAccessToken(user *customers.Customer, slugs []domain.UrlRecord, secret string, expiry int) (accessToken string, err error) {
+	return tokenutil.CreateAccessToken(user, slugs, secret, expiry)
+}
+
+func (lu *loginUsecase) CreateRefreshToken(user *customers.Customer, slugs []domain.UrlRecord, secret string, expiry int) (refreshToken string, err error) {
+	return tokenutil.CreateRefreshToken(user, slugs, secret, expiry)
 }
 
 func (lu *loginUsecase) GetLocalebyName(c context.Context, name string, languageID string) (localization.LocaleStringResource, error) {

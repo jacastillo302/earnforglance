@@ -36,13 +36,15 @@ func (rtc *RefreshTokenController) RefreshToken(c *gin.Context) {
 		return
 	}
 
-	accessToken, err := rtc.RefreshTokenUsecase.CreateAccessToken(&user, rtc.Env.AccessTokenSecret, rtc.Env.AccessTokenExpiryHour)
+	slugs := []domain.UrlRecord{}
+
+	accessToken, err := rtc.RefreshTokenUsecase.CreateAccessToken(&user, slugs, rtc.Env.AccessTokenSecret, rtc.Env.AccessTokenExpiryHour)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
 		return
 	}
 
-	refreshToken, err := rtc.RefreshTokenUsecase.CreateRefreshToken(&user, rtc.Env.RefreshTokenSecret, rtc.Env.RefreshTokenExpiryHour)
+	refreshToken, err := rtc.RefreshTokenUsecase.CreateRefreshToken(&user, slugs, rtc.Env.RefreshTokenSecret, rtc.Env.RefreshTokenExpiryHour)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
 		return

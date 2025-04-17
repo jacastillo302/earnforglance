@@ -22,6 +22,7 @@ import (
 	polls "earnforglance/server/domain/polls"
 	tasks "earnforglance/server/domain/scheduleTasks"
 	security "earnforglance/server/domain/security"
+	seo "earnforglance/server/domain/seo"
 	shippings "earnforglance/server/domain/shipping"
 	stores "earnforglance/server/domain/stores"
 	taxes "earnforglance/server/domain/tax"
@@ -155,6 +156,18 @@ func (tu *InstallUsecase) InstallCustomerRole(c context.Context, items []custome
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.InstallRepository.InstallCustomerRole(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallPermissionRecordCustomerRoleMapping(c context.Context, items []security.PermissionRecordCustomerRoleMapping) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallPermissionRecordCustomerRoleMapping(ctx, items)
+}
+
+func (tu *InstallUsecase) InstallUrlRecord(c context.Context, items []seo.UrlRecord) error {
+	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
+	defer cancel()
+	return tu.InstallRepository.InstallUrlRecord(ctx, items)
 }
 
 func (tu *InstallUsecase) InstallCustomer(c context.Context, items []customers.Customer) error {

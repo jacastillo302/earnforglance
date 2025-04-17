@@ -8,8 +8,9 @@ import (
 )
 
 type LoginRequest struct {
-	Email    string `form:"email" binding:"required,email"`
-	Password string `form:"password" binding:"required"`
+	Email    string `bson:"email"`
+	Password string `bson:"password"`
+	Lang     string `bson:"language"`
 }
 
 type LoginResponse struct {
@@ -26,9 +27,10 @@ type LoginUsecase interface {
 	GetByUserName(c context.Context, email string) (domain.Customer, error)
 	GetPasw(c context.Context, email string) (domain.CustomerPassword, error)
 	GetSettingByName(c context.Context, name string) (settings.Setting, error)
+	GetLangugaByCode(c context.Context, lang string) (localization.Language, error)
 	GetLocalebyName(c context.Context, name string, languageID string) (localization.LocaleStringResource, error)
-	CreateAccessToken(user *domain.Customer, secret string, expiry int) (accessToken string, err error)
-	CreateRefreshToken(user *domain.Customer, secret string, expiry int) (refreshToken string, err error)
+	CreateAccessToken(user *domain.Customer, slugs []UrlRecord, secret string, expiry int) (accessToken string, err error)
+	CreateRefreshToken(user *domain.Customer, slugs []UrlRecord, secret string, expiry int) (refreshToken string, err error)
 }
 
 type LoginRepository interface {
@@ -36,6 +38,7 @@ type LoginRepository interface {
 	GetByUserName(c context.Context, email string) (domain.Customer, error)
 	GetSettingByName(c context.Context, name string) (settings.Setting, error)
 	GetPasw(c context.Context, email string) (domain.CustomerPassword, error)
+	GetLangugaByCode(c context.Context, lang string) (localization.Language, error)
 	GetLocalebyName(c context.Context, name string, languageID string) (localization.LocaleStringResource, error)
 	GetByID(c context.Context, id string) (domain.Customer, error)
 }

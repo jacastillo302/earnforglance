@@ -12,12 +12,10 @@ const (
 
 // UrlRecord represents an URL record.
 type UrlRecord struct {
-	ID         primitive.ObjectID `bson:"_id,omitempty"`
-	EntityID   primitive.ObjectID `bson:"entity_id"`
-	EntityName string             `bson:"entity_name"`
-	Slug       string             `bson:"slug"`
-	IsActive   bool               `bson:"is_active"`
-	LanguageID primitive.ObjectID `bson:"language_id"`
+	ID                 primitive.ObjectID `bson:"_id,omitempty"`
+	PermissionRecordID primitive.ObjectID `bson:"entity_id"`
+	Slug               string             `bson:"slug"`
+	IsActive           bool               `bson:"is_active"`
 }
 
 // UrlRecordRepository defines the repository interface for UrlRecord

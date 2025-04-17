@@ -133,6 +133,16 @@ func (lc *InstallController) FullInstall(c *gin.Context) {
 		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
 		return
 	}
+	result = PermissionRecordCustomerRoleMapping(c, lc)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+	result = UrlRecord(c, lc)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
 	result = ProductTemplate(c, lc)
 	if !result.Status {
 		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
@@ -795,6 +805,19 @@ func (lc *InstallController) InstallCustomerRole(c *gin.Context) {
 		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
 		return
 	}
+
+	result = PermissionRecordCustomerRoleMapping(c, lc)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
+	result = UrlRecord(c, lc)
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return
+	}
+
 	c.JSON(http.StatusOK, result)
 }
 
@@ -813,6 +836,53 @@ func CustomerRole(c *gin.Context, lc *InstallController) response.Install {
 	}
 
 	err := lc.InstallUsecase.InstallCustomerRole(c, roles)
+	if err != nil {
+		result.Status = false
+		result.Details = err.Error()
+		return result
+	}
+
+	return result
+}
+
+func PermissionRecordCustomerRoleMapping(c *gin.Context, lc *InstallController) response.Install {
+
+	result, roles := service.InstallPermissionRecordCustomerRoleMapping()
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return result
+	}
+
+	if len(roles) == 0 || roles == nil {
+		result.Status = false
+		result.Details = "No CustomerRole to install"
+		return result
+	}
+
+	err := lc.InstallUsecase.InstallPermissionRecordCustomerRoleMapping(c, roles)
+	if err != nil {
+		result.Status = false
+		result.Details = err.Error()
+		return result
+	}
+	return result
+}
+
+func UrlRecord(c *gin.Context, lc *InstallController) response.Install {
+
+	result, urls := service.InstallUrlRecord()
+	if !result.Status {
+		c.JSON(http.StatusFailedDependency, common.ErrorResponse{Message: result.Details})
+		return result
+	}
+
+	if len(urls) == 0 || urls == nil {
+		result.Status = false
+		result.Details = "No UrlRecord to install"
+		return result
+	}
+
+	err := lc.InstallUsecase.InstallUrlRecord(c, urls)
 	if err != nil {
 		result.Status = false
 		result.Details = err.Error()
