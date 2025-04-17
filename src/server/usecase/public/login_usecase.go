@@ -7,7 +7,8 @@ import (
 	settings "earnforglance/server/domain/configuration"
 	customers "earnforglance/server/domain/customers"
 	localization "earnforglance/server/domain/localization"
-	domain "earnforglance/server/domain/security"
+	domain "earnforglance/server/domain/public"
+	security "earnforglance/server/domain/security"
 	"earnforglance/server/internal/tokenutil"
 )
 
@@ -53,11 +54,11 @@ func (lu *loginUsecase) GetLangugaByCode(c context.Context, lang string) (locali
 	return lu.userRepository.GetLangugaByCode(ctx, lang)
 }
 
-func (lu *loginUsecase) CreateAccessToken(user *customers.Customer, slugs []domain.UrlRecord, secret string, expiry int) (accessToken string, err error) {
+func (lu *loginUsecase) CreateAccessToken(user *customers.Customer, slugs []security.UrlRecord, secret string, expiry int) (accessToken string, err error) {
 	return tokenutil.CreateAccessToken(user, slugs, secret, expiry)
 }
 
-func (lu *loginUsecase) CreateRefreshToken(user *customers.Customer, slugs []domain.UrlRecord, secret string, expiry int) (refreshToken string, err error) {
+func (lu *loginUsecase) CreateRefreshToken(user *customers.Customer, slugs []security.UrlRecord, secret string, expiry int) (refreshToken string, err error) {
 	return tokenutil.CreateRefreshToken(user, slugs, secret, expiry)
 }
 

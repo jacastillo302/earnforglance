@@ -27,6 +27,7 @@ import (
 	orders "earnforglance/server/api/route/orders"
 	payments "earnforglance/server/api/route/payments"
 	polls "earnforglance/server/api/route/polls"
+	public "earnforglance/server/api/route/public"
 	scheduleTasks "earnforglance/server/api/route/scheduleTasks"
 	security "earnforglance/server/api/route/security"
 	seo "earnforglance/server/api/route/seo"
@@ -67,7 +68,7 @@ func Setup(env *bootstrap.Env, timeout time.Duration, db mongo.Database, gin *gi
 
 	// All Public APIs
 	publicRouter = gin.Group("/api/v1")
-	security.LoginRouter(env, timeout, db, publicRouter)
+	public.LoginRouter(env, timeout, db, publicRouter)
 	//security.SignupRouter(env, timeout, db, publicRouter)
 
 	security.RefreshTokenRouter(env, timeout, db, publicRouter)

@@ -5,7 +5,8 @@ import (
 	"time"
 
 	customers "earnforglance/server/domain/customers"
-	domain "earnforglance/server/domain/security"
+	domain "earnforglance/server/domain/public"
+	security "earnforglance/server/domain/security"
 	"earnforglance/server/internal/tokenutil"
 )
 
@@ -14,7 +15,7 @@ type refreshTokenUsecase struct {
 	contextTimeout time.Duration
 }
 
-func NewRefreshTokenUsecase(userRepository domain.LoginRepository, timeout time.Duration) domain.RefreshTokenUsecase {
+func NewRefreshTokenUsecase(userRepository domain.LoginRepository, timeout time.Duration) security.RefreshTokenUsecase {
 	return &refreshTokenUsecase{
 		userRepository: userRepository,
 		contextTimeout: timeout,
@@ -27,11 +28,11 @@ func (rtu *refreshTokenUsecase) GetUserByID(c context.Context, email string) (cu
 	return rtu.userRepository.GetByID(ctx, email)
 }
 
-func (rtu *refreshTokenUsecase) CreateAccessToken(user *customers.Customer, slugs []domain.UrlRecord, secret string, expiry int) (accessToken string, err error) {
+func (rtu *refreshTokenUsecase) CreateAccessToken(user *customers.Customer, slugs []security.UrlRecord, secret string, expiry int) (accessToken string, err error) {
 	return tokenutil.CreateAccessToken(user, slugs, secret, expiry)
 }
 
-func (rtu *refreshTokenUsecase) CreateRefreshToken(user *customers.Customer, slugs []domain.UrlRecord, secret string, expiry int) (refreshToken string, err error) {
+func (rtu *refreshTokenUsecase) CreateRefreshToken(user *customers.Customer, slugs []security.UrlRecord, secret string, expiry int) (refreshToken string, err error) {
 	return tokenutil.CreateRefreshToken(user, slugs, secret, expiry)
 }
 

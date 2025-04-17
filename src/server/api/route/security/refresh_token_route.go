@@ -5,8 +5,8 @@ import (
 
 	controller "earnforglance/server/api/controller/security"
 	"earnforglance/server/bootstrap"
-	domain "earnforglance/server/domain/security"
-	repository "earnforglance/server/repository/security"
+	domain "earnforglance/server/domain/public"
+	repository "earnforglance/server/repository/public"
 	"earnforglance/server/service/data/mongo"
 	usecase "earnforglance/server/usecase/security"
 

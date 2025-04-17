@@ -6,7 +6,7 @@ import (
 	setting "earnforglance/server/domain/configuration"
 	customers "earnforglance/server/domain/customers"
 	localization "earnforglance/server/domain/localization"
-	domain "earnforglance/server/domain/security"
+	domain "earnforglance/server/domain/public"
 	"earnforglance/server/service/data/mongo"
 
 	"go.mongodb.org/mongo-driver/bson"

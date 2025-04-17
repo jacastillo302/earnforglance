@@ -7,7 +7,8 @@ import (
 	"earnforglance/server/bootstrap"
 	common "earnforglance/server/domain/common"
 	custumers "earnforglance/server/domain/customers"
-	domain "earnforglance/server/domain/security"
+	domain "earnforglance/server/domain/public"
+	security "earnforglance/server/domain/security"
 	service "earnforglance/server/service/security"
 
 	"github.com/gin-gonic/gin"
@@ -159,7 +160,7 @@ func (lc *LoginController) Login(c *gin.Context) {
 		return
 	}
 
-	slugs := []domain.UrlRecord{{
+	slugs := []security.UrlRecord{{
 		Name:     "Customer",
 		IsRead:   true,
 		IsWrite:  true,

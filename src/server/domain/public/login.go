@@ -5,6 +5,7 @@ import (
 	settings "earnforglance/server/domain/configuration"
 	domain "earnforglance/server/domain/customers"
 	localization "earnforglance/server/domain/localization"
+	security "earnforglance/server/domain/security"
 )
 
 type LoginRequest struct {
@@ -29,8 +30,8 @@ type LoginUsecase interface {
 	GetSettingByName(c context.Context, name string) (settings.Setting, error)
 	GetLangugaByCode(c context.Context, lang string) (localization.Language, error)
 	GetLocalebyName(c context.Context, name string, languageID string) (localization.LocaleStringResource, error)
-	CreateAccessToken(user *domain.Customer, slugs []UrlRecord, secret string, expiry int) (accessToken string, err error)
-	CreateRefreshToken(user *domain.Customer, slugs []UrlRecord, secret string, expiry int) (refreshToken string, err error)
+	CreateAccessToken(user *domain.Customer, slugs []security.UrlRecord, secret string, expiry int) (accessToken string, err error)
+	CreateRefreshToken(user *domain.Customer, slugs []security.UrlRecord, secret string, expiry int) (refreshToken string, err error)
 }
 
 type LoginRepository interface {
