@@ -24,3 +24,9 @@ func (cu *catalogtUsecase) GetProduct(c context.Context, ID string) (domain.Prod
 	defer cancel()
 	return cu.itemRepository.GetProduct(ctx, ID)
 }
+
+func (cu *catalogtUsecase) GetProducts(c context.Context, filter domain.ProductRequest) ([]domain.ProductsResponse, error) {
+	ctx, cancel := context.WithTimeout(c, cu.contextTimeout)
+	defer cancel()
+	return cu.itemRepository.GetProducts(ctx, filter)
+}

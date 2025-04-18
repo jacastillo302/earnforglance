@@ -11,6 +11,8 @@ import (
 	"earnforglance/server/service/data/mongo"
 
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 type catalogRepository struct {
@@ -25,26 +27,170 @@ func NewCatalogRepository(db mongo.Database, collection string) domain.CatalogRe
 	}
 }
 
-func (cr *catalogRepository) GetProduct(c context.Context, ID string) (domain.ProductResponse, error) {
+func (cr *catalogRepository) GetProducts(c context.Context, filter domain.ProductRequest) ([]domain.ProductsResponse, error) {
+	var result []domain.ProductsResponse
+	var products []catalog.Product
 
-	var result domain.ProductResponse
-	result, err := GetProductID(cr, c, ID)
+	idHex, err := primitive.ObjectIDFromHex(filter.ID)
+	if err == nil {
+		var product catalog.Product
+
+		collection := cr.database.Collection(catalog.CollectionProduct)
+		err = collection.FindOne(c, bson.M{"_id": idHex, "deleted": false}).Decode(&product)
+		if err != nil {
+			return result, err
+		}
+
+		item, err := PrepareProduct(cr, c, product)
+		if err != nil {
+			return result, err
+		}
+
+		result = append(result, domain.ProductsResponse{Products: []domain.ProductResponse{item}})
+		return result, err
+	}
+
+	if filter.Limit == 0 {
+		filter.Limit = 20
+	}
+
+	sortOrder := 1
+	if filter.Sort == "desc" {
+		sortOrder = -1
+	}
+
+	// Build dynamic filter
+	query := bson.M{"deleted": false}
+
+	if filter.ShowOnHomepage {
+		query["show_on_homepage"] = filter.ShowOnHomepage
+	}
+
+	if filter.IsRental {
+		query["is_rental"] = filter.IsRental
+	}
+
+	if filter.IsTaxExempt {
+		query["is_tax_exempt"] = filter.IsTaxExempt
+	}
+
+	if filter.MarkAsNew {
+		query["mark_as_new"] = filter.MarkAsNew
+	}
+
+	if filter.MinPrice > 0 && filter.MxnPrice > 0 {
+		query["price"] = bson.M{
+			"$gte": filter.MinPrice,
+			"$lte": filter.MxnPrice,
+		}
+	} else if filter.MinPrice > 0 {
+		query["price"] = bson.M{
+			"$gte": filter.MinPrice,
+		}
+	} else if filter.MxnPrice > 0 {
+		query["price"] = bson.M{
+			"$lte": filter.MxnPrice,
+		}
+	}
+
+	for _, value := range filter.Filters {
+		// "contains", "eq", etc.
+		if value.Operator == "contains" {
+			query[value.Field] = bson.M{"$regex": value.Value, "$options": "i"}
+		} else {
+			query[value.Field] = value.Value
+		}
+	}
+
+	if len(filter.Categories) > 0 {
+		var products []primitive.ObjectID
+		var categories []catalog.ProductCategory
+		for i := range filter.Categories {
+			idHex, err := primitive.ObjectIDFromHex(filter.Categories[i])
+			if err == nil {
+				filter.Categories[i] = idHex.Hex()
+				collection := cr.database.Collection(catalog.CollectionProductCategory)
+				cursor, err := collection.Find(c, bson.M{"_id": idHex, "deleted": false})
+				if err != nil {
+					return result, err
+				}
+
+				err = cursor.All(c, &categories)
+				if err != nil {
+					return result, err
+				}
+
+				for i := range categories {
+					products = append(products, categories[i].ProductID)
+				}
+			}
+		}
+
+		if len(products) > 0 {
+			query["product_id"] = bson.M{"$in": products}
+		} else {
+			query["product_id"] = nil
+		}
+	}
+
+	//fmt.Println("query", query)
+	findOptions := options.Find().
+		SetLimit(int64(filter.Limit)).
+		SetSort(bson.D{{Key: "created_on_utc", Value: sortOrder}})
+
+	collection := cr.database.Collection(catalog.CollectionProduct)
+	cursor, err := collection.Find(c, query, findOptions)
+	if err != nil {
+		return result, err
+	}
+
+	err = cursor.All(c, &products)
+	if err != nil {
+		return result, err
+	}
+
+	var items []domain.ProductResponse
+	for i := range products {
+		item, err := PrepareProduct(cr, c, products[i])
+		if err != nil {
+			return result, err
+		}
+		items = append(items, item)
+	}
+	result = append(result, domain.ProductsResponse{Products: items})
+
 	return result, err
 }
 
-func GetProductID(cr *catalogRepository, c context.Context, ID string) (domain.ProductResponse, error) {
+func (cr *catalogRepository) GetProduct(c context.Context, ID string) (domain.ProductResponse, error) {
+
 	var result domain.ProductResponse
 
-	var product catalog.Product
-	collection := cr.database.Collection(catalog.CollectionProduct)
-	err := collection.FindOne(c, bson.M{"_id": ID, "deleted": false}).Decode(&product)
-	if err == nil {
-		result.Product = product
+	idHex, err := primitive.ObjectIDFromHex(ID)
+	if err != nil {
+		return result, err
 	}
 
+	var product catalog.Product
+
+	collection := cr.database.Collection(catalog.CollectionProduct)
+	err = collection.FindOne(c, bson.M{"_id": idHex, "deleted": false}).Decode(&product)
+
+	if err == nil {
+		result, err = PrepareProduct(cr, c, product)
+	}
+
+	return result, err
+}
+
+func PrepareProduct(cr *catalogRepository, c context.Context, product catalog.Product) (domain.ProductResponse, error) {
+	var result domain.ProductResponse
+
+	result.Product = product
+
 	var template catalog.ProductTemplate
-	collection = cr.database.Collection(catalog.CollectionProductTemplate)
-	err = collection.FindOne(c, bson.M{"_id": product.ProductTemplateID}).Decode(&template)
+	collection := cr.database.Collection(catalog.CollectionProductTemplate)
+	err := collection.FindOne(c, bson.M{"_id": product.ProductTemplateID}).Decode(&template)
 	if err == nil {
 		result.Template = template
 	}

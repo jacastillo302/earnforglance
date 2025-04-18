@@ -10,8 +10,9 @@ import (
 )
 
 type Filter struct {
-	Field string
-	Value string
+	Field    string
+	Value    string
+	Operator string
 }
 
 type ProductRequest struct {
@@ -91,10 +92,10 @@ type Warehouse struct {
 
 type CatalogRepository interface {
 	GetProduct(c context.Context, ID string) (ProductResponse, error)
-	//GetProducts(c context.Context, filter ProductRequest) ([]ProductsResponse, error)
+	GetProducts(c context.Context, filter ProductRequest) ([]ProductsResponse, error)
 }
 
 type CatalogtUsecase interface {
 	GetProduct(c context.Context, ID string) (ProductResponse, error)
-	//GetProducts(c context.Context, filter ProductRequest) ([]ProductsResponse, error)
+	GetProducts(c context.Context, filter ProductRequest) ([]ProductsResponse, error)
 }

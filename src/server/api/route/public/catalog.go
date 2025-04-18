@@ -14,11 +14,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func CatalgoRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database, group *gin.RouterGroup) {
+func CatalogRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database, group *gin.RouterGroup) {
 	ur := repository.NewCatalogRepository(db, domain.CollectionUser)
 	lc := &controller.CatalogController{
 		CatalogUsecase: usecase.NewCatalogtUsecase(ur, timeout),
 		Env:            env,
 	}
 	group.GET("/product", lc.GetProduct)
+	group.GET("/products", lc.GetProducts)
 }
