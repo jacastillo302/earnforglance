@@ -28,7 +28,6 @@ func (m *MockSingleResultProductSpecificationAttribute) Decode(v interface{}) er
 }
 
 var mockItemProductSpecificationAttribute = &domain.ProductSpecificationAttribute{
-	ID:                             primitive.NewObjectID(), // Existing ID of the record to update
 	ProductID:                      primitive.NewObjectID(),
 	SpecificationAttributeTypeID:   0,
 	SpecificationAttributeOptionID: primitive.NewObjectID(),
@@ -56,7 +55,7 @@ func TestProductSpecificationAttributeRepository_FetchByID(t *testing.T) {
 
 		ur := repository.NewProductSpecificationAttributeRepository(databaseHelper, collectionName)
 
-		_, err := ur.FetchByID(context.Background(), mockItemProductSpecificationAttribute.ID.Hex())
+		_, err := ur.FetchByID(context.Background(), string(mockItemProductSpecificationAttribute.ProductID.Hex()))
 
 		assert.NoError(t, err)
 		collectionHelper.AssertExpectations(t)
@@ -72,7 +71,7 @@ func TestProductSpecificationAttributeRepository_FetchByID(t *testing.T) {
 
 		ur := repository.NewProductSpecificationAttributeRepository(databaseHelper, collectionName)
 
-		_, err := ur.FetchByID(context.Background(), mockItemProductSpecificationAttribute.ID.Hex())
+		_, err := ur.FetchByID(context.Background(), mockItemProductSpecificationAttribute.ProductID.Hex())
 
 		assert.Error(t, err)
 
@@ -103,7 +102,7 @@ func TestProductSpecificationAttributeRepository_Update(t *testing.T) {
 	collectionName := domain.CollectionProductSpecificationAttribute
 
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
-	filter := bson.M{"_id": mockItemProductSpecificationAttribute.ID}
+	filter := bson.M{"_id": mockItemProductSpecificationAttribute.ProductID}
 	update := bson.M{"$set": mockItemProductSpecificationAttribute}
 
 	collectionHelper.On("UpdateOne", mock.Anything, filter, update).Return(nil, nil).Once()

@@ -22,7 +22,6 @@ func TestProductSpecificationAttributeUsecase_FetchByID(t *testing.T) {
 	productSpecificationAttributeID := primitive.NewObjectID().Hex()
 
 	updatedProductSpecificationAttribute := domain.ProductSpecificationAttribute{
-		ID:                             primitive.NewObjectID(), // Existing ID of the record to update
 		ProductID:                      primitive.NewObjectID(),
 		SpecificationAttributeTypeID:   10,
 		SpecificationAttributeOptionID: primitive.NewObjectID(),
@@ -70,7 +69,6 @@ func TestProductSpecificationAttributeUsecase_Update(t *testing.T) {
 	usecase := test.NewProductSpecificationAttributeUsecase(mockRepo, timeout)
 
 	updatedProductSpecificationAttribute := &domain.ProductSpecificationAttribute{
-		ID:                             primitive.NewObjectID(), // Existing ID of the record to update
 		ProductID:                      primitive.NewObjectID(),
 		SpecificationAttributeTypeID:   30,
 		SpecificationAttributeOptionID: primitive.NewObjectID(),
@@ -110,7 +108,6 @@ func TestProductSpecificationAttributeUsecase_Fetch(t *testing.T) {
 
 	fetchedProductSpecificationAttributes := []domain.ProductSpecificationAttribute{
 		{
-			ID:                             primitive.NewObjectID(),
 			ProductID:                      primitive.NewObjectID(),
 			SpecificationAttributeTypeID:   0,
 			SpecificationAttributeOptionID: primitive.NewObjectID(),
@@ -120,7 +117,6 @@ func TestProductSpecificationAttributeUsecase_Fetch(t *testing.T) {
 			DisplayOrder:                   1,
 		},
 		{
-			ID:                             primitive.NewObjectID(),
 			ProductID:                      primitive.NewObjectID(),
 			SpecificationAttributeTypeID:   20,
 			SpecificationAttributeOptionID: primitive.NewObjectID(),

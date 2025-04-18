@@ -21,7 +21,6 @@ func TestProductAttributeMappingUsecase_FetchByID(t *testing.T) {
 	productAttributeMappingID := primitive.NewObjectID().Hex()
 
 	expectedProductAttributeMapping := domain.ProductAttributeMapping{
-		ID:                              primitive.NewObjectID(), // Existing ID of the record to update
 		ProductID:                       primitive.NewObjectID(),
 		ProductAttributeID:              primitive.NewObjectID(),
 		TextPrompt:                      "Select a size",
@@ -79,7 +78,6 @@ func TestProductAttributeMappingUsecase_Update(t *testing.T) {
 	usecase := test.NewProductAttributeMappingUsecase(mockRepo, timeout)
 
 	updatedProductAttributeMapping := &domain.ProductAttributeMapping{
-		ID:                              primitive.NewObjectID(), // Existing ID of the record to update
 		ProductID:                       primitive.NewObjectID(),
 		ProductAttributeID:              primitive.NewObjectID(),
 		TextPrompt:                      "Select a size",
@@ -127,7 +125,6 @@ func TestProductAttributeMappingUsecase_Fetch(t *testing.T) {
 
 	fetchedProductAttributeMappings := []domain.ProductAttributeMapping{
 		{
-			ID:                              primitive.NewObjectID(),
 			ProductID:                       primitive.NewObjectID(),
 			ProductAttributeID:              primitive.NewObjectID(),
 			TextPrompt:                      "Select a color",
@@ -142,7 +139,6 @@ func TestProductAttributeMappingUsecase_Fetch(t *testing.T) {
 			ConditionAttributeXml:           "<attributes><color>red</color></attributes>",
 		},
 		{
-			ID:                              primitive.NewObjectID(),
 			ProductID:                       primitive.NewObjectID(),
 			ProductAttributeID:              primitive.NewObjectID(),
 			TextPrompt:                      "Select a size",

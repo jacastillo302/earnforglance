@@ -21,7 +21,6 @@ func TestProductWarehouseInventoryUsecase_FetchByID(t *testing.T) {
 	productWarehouseInventoryID := primitive.NewObjectID().Hex()
 
 	updatedProductWarehouseInventory := domain.ProductWarehouseInventory{
-		ID:               primitive.NewObjectID(), // Existing ID of the record to update
 		ProductID:        primitive.NewObjectID(),
 		WarehouseID:      primitive.NewObjectID(),
 		StockQuantity:    150,
@@ -63,7 +62,6 @@ func TestProductWarehouseInventoryUsecase_Update(t *testing.T) {
 	usecase := test.NewProductWarehouseInventoryUsecase(mockRepo, timeout)
 
 	updatedProductWarehouseInventory := &domain.ProductWarehouseInventory{
-		ID:               primitive.NewObjectID(), // Existing ID of the record to update
 		ProductID:        primitive.NewObjectID(),
 		WarehouseID:      primitive.NewObjectID(),
 		StockQuantity:    150,
@@ -100,14 +98,12 @@ func TestProductWarehouseInventoryUsecase_Fetch(t *testing.T) {
 
 	fetchedProductWarehouseInventories := []domain.ProductWarehouseInventory{
 		{
-			ID:               primitive.NewObjectID(),
 			ProductID:        primitive.NewObjectID(),
 			WarehouseID:      primitive.NewObjectID(),
 			StockQuantity:    100,
 			ReservedQuantity: 10,
 		},
 		{
-			ID:               primitive.NewObjectID(),
 			ProductID:        primitive.NewObjectID(),
 			WarehouseID:      primitive.NewObjectID(),
 			StockQuantity:    200,

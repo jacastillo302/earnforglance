@@ -47,7 +47,7 @@ func (ur *productwarehouseinventoryRepository) Create(c context.Context, product
 func (ur *productwarehouseinventoryRepository) Update(c context.Context, productwarehouseinventory *domain.ProductWarehouseInventory) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": productwarehouseinventory.ID}
+	filter := bson.M{"warehouse_id": productwarehouseinventory.WarehouseID, "product_id": productwarehouseinventory.ProductID}
 	update := bson.M{
 		"$set": productwarehouseinventory,
 	}

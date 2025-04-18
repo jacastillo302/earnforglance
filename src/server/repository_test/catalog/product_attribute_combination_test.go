@@ -48,7 +48,6 @@ func TestProductAttributeCombinationRepository_FetchByID(t *testing.T) {
 		OverriddenPrice:             new(float64),
 		NotifyAdminForQuantityBelow: 5,
 		MinStockQuantity:            2,
-		PictureID:                   nil,
 	}
 
 	t.Run("success", func(t *testing.T) {
@@ -104,7 +103,6 @@ func TestProductAttributeCombinationRepository_Create(t *testing.T) {
 		OverriddenPrice:             new(float64),
 		NotifyAdminForQuantityBelow: 5,
 		MinStockQuantity:            2,
-		PictureID:                   nil,
 	}
 
 	collectionHelper.On("InsertOne", mock.Anything, mockProductAttributeCombination).Return(nil, nil).Once()
@@ -136,7 +134,6 @@ func TestProductAttributeCombinationRepository_Update(t *testing.T) {
 		OverriddenPrice:             new(float64),
 		NotifyAdminForQuantityBelow: 5,
 		MinStockQuantity:            2,
-		PictureID:                   nil,
 	}
 
 	filter := bson.M{"_id": mockProductAttributeCombination.ID}

@@ -12,7 +12,6 @@ const (
 
 // ProductWarehouseInventory represents a record to manage product inventory per warehouse
 type ProductWarehouseInventory struct {
-	ID               primitive.ObjectID `bson:"_id,omitempty"`
 	ProductID        primitive.ObjectID `bson:"product_id"`
 	WarehouseID      primitive.ObjectID `bson:"warehouse_id"`
 	StockQuantity    int                `bson:"stock_quantity"`

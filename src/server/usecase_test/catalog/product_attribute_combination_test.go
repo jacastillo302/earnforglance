@@ -32,7 +32,6 @@ func TestProductAttributeCombinationUsecase_FetchByID(t *testing.T) {
 		OverriddenPrice:             new(float64),
 		NotifyAdminForQuantityBelow: 5,
 		MinStockQuantity:            2,
-		PictureID:                   nil,
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, productAttributeCombinationID).Return(expectedProductAttributeCombination, nil)
@@ -60,7 +59,6 @@ func TestProductAttributeCombinationUsecase_Create(t *testing.T) {
 		OverriddenPrice:             nil,
 		NotifyAdminForQuantityBelow: 10,
 		MinStockQuantity:            5,
-		PictureID:                   nil,
 	}
 
 	mockRepo.On("Create", mock.Anything, newProductAttributeCombination).Return(nil)
@@ -88,7 +86,6 @@ func TestProductAttributeCombinationUsecase_Update(t *testing.T) {
 		OverriddenPrice:             new(float64),
 		NotifyAdminForQuantityBelow: 5,
 		MinStockQuantity:            2,
-		PictureID:                   nil,
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedProductAttributeCombination).Return(nil)
@@ -132,7 +129,6 @@ func TestProductAttributeCombinationUsecase_Fetch(t *testing.T) {
 			OverriddenPrice:             nil,
 			NotifyAdminForQuantityBelow: 5,
 			MinStockQuantity:            2,
-			PictureID:                   nil,
 		},
 		{
 			ID:                          primitive.NewObjectID(),
@@ -146,7 +142,6 @@ func TestProductAttributeCombinationUsecase_Fetch(t *testing.T) {
 			OverriddenPrice:             new(float64),
 			NotifyAdminForQuantityBelow: 3,
 			MinStockQuantity:            1,
-			PictureID:                   nil,
 		},
 	}
 

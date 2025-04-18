@@ -47,7 +47,7 @@ func (ur *productspecificationattributeRepository) Create(c context.Context, pro
 func (ur *productspecificationattributeRepository) Update(c context.Context, productspecificationattribute *domain.ProductSpecificationAttribute) error {
 	collection := ur.database.Collection(ur.collection)
 
-	filter := bson.M{"_id": productspecificationattribute.ID}
+	filter := bson.M{"product_id": productspecificationattribute.ProductID, "specification_attribute_option_id": productspecificationattribute.SpecificationAttributeOptionID}
 	update := bson.M{
 		"$set": productspecificationattribute,
 	}

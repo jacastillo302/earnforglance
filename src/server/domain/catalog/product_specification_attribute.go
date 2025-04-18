@@ -12,7 +12,6 @@ const (
 
 // ProductSpecificationAttribute represents a product specification attribute
 type ProductSpecificationAttribute struct {
-	ID                             primitive.ObjectID `bson:"_id,omitempty"`
 	ProductID                      primitive.ObjectID `bson:"product_id"`
 	SpecificationAttributeTypeID   int                `bson:"attribute_type_id"`
 	SpecificationAttributeOptionID primitive.ObjectID `bson:"specification_attribute_option_id"`

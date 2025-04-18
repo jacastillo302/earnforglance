@@ -28,7 +28,6 @@ func (m *MockSingleResultProductWarehouseInventory) Decode(v interface{}) error 
 }
 
 var mockItemProductWarehouseInventory = &domain.ProductWarehouseInventory{
-	ID:               primitive.NewObjectID(), // Existing ID of the record to update
 	ProductID:        primitive.NewObjectID(),
 	WarehouseID:      primitive.NewObjectID(),
 	StockQuantity:    150,
@@ -53,7 +52,7 @@ func TestProductWarehouseInventoryRepository_FetchByID(t *testing.T) {
 
 		ur := repository.NewProductWarehouseInventoryRepository(databaseHelper, collectionName)
 
-		_, err := ur.FetchByID(context.Background(), mockItemProductWarehouseInventory.ID.Hex())
+		_, err := ur.FetchByID(context.Background(), mockItemProductWarehouseInventory.ProductID.Hex())
 
 		assert.NoError(t, err)
 		collectionHelper.AssertExpectations(t)
@@ -69,7 +68,7 @@ func TestProductWarehouseInventoryRepository_FetchByID(t *testing.T) {
 
 		ur := repository.NewProductWarehouseInventoryRepository(databaseHelper, collectionName)
 
-		_, err := ur.FetchByID(context.Background(), mockItemProductWarehouseInventory.ID.Hex())
+		_, err := ur.FetchByID(context.Background(), string(mockItemProductWarehouseInventory.ProductID.Hex()))
 
 		assert.Error(t, err)
 
@@ -100,7 +99,7 @@ func TestProductWarehouseInventoryRepository_Update(t *testing.T) {
 	collectionName := domain.CollectionProductWarehouseInventory
 
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
-	filter := bson.M{"_id": mockItemProductWarehouseInventory.ID}
+	filter := bson.M{"_id": mockItemProductWarehouseInventory.ProductID}
 	update := bson.M{"$set": mockItemProductWarehouseInventory}
 
 	collectionHelper.On("UpdateOne", mock.Anything, filter, update).Return(nil, nil).Once()
