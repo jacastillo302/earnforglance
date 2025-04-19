@@ -1,0 +1,50 @@
+[
+    {
+        "ID": "680423fdc2b35ff2c76903bd",
+        "PermissionRecordID": "67ed65976b3a64a8c73f794d",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "67f62ed9166c9fc55b44bb90",
+        "LocaleKey": "name",
+        "LocaleValue": "Zapatillas de running adidas Consortium Campus 80s"
+    },
+    {
+        "ID": "680423fdc2b35ff2c76903be",
+        "PermissionRecordID": "67ed65976b3a64a8c73f794d",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "67f62ed9166c9fc55b44bb90",
+        "LocaleKey": "short_description",
+        "LocaleValue": "Zapatillas adidas Consortium Campus 80s Primeknit en color granate claro/para correr"
+    },
+    {
+        "ID": "680423fdc2b35ff2c76903bf",
+        "PermissionRecordID": "67ed65976b3a64a8c73f794d",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "67f62ed9166c9fc55b44bb90",
+        "LocaleKey": "full_description",
+        "LocaleValue": "Una de las tres combinaciones de colores de las adidas Consortium Campus 80s Primeknit, que se lanzarán juntas. Este par está disponible en granate claro y blanco running. Presenta una parte superior de Primeknit con base granate y detalles blancos. Edición limitada; búscalas en cuentas selectas de adidas Consortium en todo el mundo."
+    },
+    {
+        "ID": "680423fdc2b35ff2c76903c0",
+        "PermissionRecordID": "67ed65976b3a64a8c73f794d",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "67f62ed9166c9fc55b44bb90",
+        "LocaleKey": "meta_keywords",
+        "LocaleValue": "muestra, producto, palabras clave"
+    },
+    {
+        "ID": "680423fdc2b35ff2c76903c1",
+        "PermissionRecordID": "67ed65976b3a64a8c73f794d",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "67f62ed9166c9fc55b44bb90",
+        "LocaleKey": "meta_description",
+        "LocaleValue": "muestra, producto, palabras clave"
+    },
+    {
+        "ID": "680423fdc2b35ff2c76903c2",
+        "PermissionRecordID": "67ed65976b3a64a8c73f794d",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "67f62ed9166c9fc55b44bb90",
+        "LocaleKey": "meta_title",
+        "LocaleValue": "Título de producto de muestra"
+    }
+]

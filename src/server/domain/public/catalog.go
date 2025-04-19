@@ -76,8 +76,9 @@ type ProductAttribute struct {
 
 type ProductReview struct {
 	Review      domain.ProductReview
-	Mapping     domain.ProductReviewReviewTypeMapping
-	Helpfulness domain.ProductReviewHelpfulness
+	Type        string
+	Customer    string
+	Helpfulness []domain.ProductReviewHelpfulness
 }
 
 type SpecificationAttribute struct {

@@ -3,8 +3,11 @@ package repository
 import (
 	"context"
 	catalog "earnforglance/server/domain/catalog"
+	customer "earnforglance/server/domain/customers"
+	localization "earnforglance/server/domain/localization"
 	media "earnforglance/server/domain/media"
 	domain "earnforglance/server/domain/public"
+	security "earnforglance/server/domain/security"
 	shipping "earnforglance/server/domain/shipping"
 	tax "earnforglance/server/domain/tax"
 	vendor "earnforglance/server/domain/vendors"
@@ -41,7 +44,7 @@ func (cr *catalogRepository) GetProducts(c context.Context, filter domain.Produc
 			return result, err
 		}
 
-		item, err := PrepareProduct(cr, c, product, filter.Content)
+		item, err := PrepareProduct(cr, c, product, filter.Content, filter.Lang)
 		if err != nil {
 			return result, err
 		}
@@ -151,10 +154,11 @@ func (cr *catalogRepository) GetProducts(c context.Context, filter domain.Produc
 
 	var items []domain.ProductResponse
 	for i := range products {
-		item, err := PrepareProduct(cr, c, products[i], filter.Content)
+		item, err := PrepareProduct(cr, c, products[i], filter.Content, filter.Lang)
 		if err != nil {
 			return result, err
 		}
+
 		items = append(items, item)
 	}
 	result = append(result, domain.ProductsResponse{Products: items})
@@ -162,127 +166,116 @@ func (cr *catalogRepository) GetProducts(c context.Context, filter domain.Produc
 	return result, err
 }
 
-func PrepareProduct(cr *catalogRepository, c context.Context, product catalog.Product, content []string) (domain.ProductResponse, error) {
+func PrepareProduct(cr *catalogRepository, c context.Context, product catalog.Product, content []string, lang string) (domain.ProductResponse, error) {
 	var result domain.ProductResponse
-
-	result.Product = product
 
 	for i := range content {
 		switch content[i] {
 		case "template":
-			template, err := PrepareProductTemplate(cr, c, product)
-			if err == nil {
-				return result, err
-			}
-			result.Template = template
+			result.Template, _ = PrepareProductTemplate(cr, c, product)
 		case "categories":
-			category, err := PrepareProductCategory(cr, c, product)
-			if err == nil {
-				return result, err
-			}
-			result.Categories = category
+			result.Categories, _ = PrepareProductCategory(cr, c, product)
 		case "specifications":
-			specification, err := PrepareProductSpecificationAttribute(cr, c, product)
-			if err == nil {
-				return result, err
-			}
-			result.Specifications = specification
+			result.Specifications, _ = PrepareProductSpecificationAttribute(cr, c, product)
 		case "attributes":
-			attributes, err := PrepareProductAttribute(cr, c, product)
-			if err == nil {
-				return result, err
-			}
-			result.Attributes = attributes
+			result.Attributes, _ = PrepareProductAttribute(cr, c, product)
 		case "warehouse":
-			warehouse, err := PrepareProductWarehouse(cr, c, product)
-			if err == nil {
-				return result, err
-			}
-			result.Warehouse.Warehouse = warehouse
-		case "warehouse_inventory":
-			warehouse_inventory, err := PrepareProductWarehouseInventory(cr, c, product)
-			if err == nil {
-				return result, err
-			}
-			result.Warehouse.Inventory = warehouse_inventory
-		case "delivery_date":
-			delivery_date, err := PrepareProductDeliveryDate(cr, c, product)
-			if err == nil {
-				return result, err
-			}
-			result.DeliveryDate = delivery_date
+			result.Warehouse.Warehouse, _ = PrepareProductWarehouse(cr, c, product)
+			result.Warehouse.Inventory, _ = PrepareProductWarehouseInventory(cr, c, product)
+		case "delivery":
+			result.DeliveryDate, _ = PrepareProductDeliveryDate(cr, c, product)
 		case "range":
-			availability_range, err := PrepareProductAvailabilityRange(cr, c, product)
-			if err == nil {
-				return result, err
-			}
-			result.Range = availability_range
+			result.Range, _ = PrepareProductAvailabilityRange(cr, c, product)
 		case "tax":
-			taxes, err := PrepareTaxCategory(cr, c, product.TaxCategoryID)
-			if err == nil {
-				return result, err
-			}
-			result.Tax = taxes
+			result.Tax, _ = PrepareTaxCategory(cr, c, product.TaxCategoryID)
 		case "vendor":
-			vendor, err := PrepareVendor(cr, c, product.VendorID)
-			if err == nil {
-				return result, err
-			}
-			result.Vendor = vendor
+			result.Vendor, _ = PrepareVendor(cr, c, product.VendorID)
+		case "reviews":
+			result.Reviews, _ = PrepareProductReview(cr, c, product)
 		case "download":
-			download, err := PrepareDownload(cr, c, product.DownloadID)
-			if err == nil {
-				return result, err
-			}
+			download, _ := PrepareDownload(cr, c, product.DownloadID)
 			result.Download = &download
 		case "tierprices":
-			tier_price, err := PrepareProductTierPrice(cr, c, product)
-			if err == nil {
-				return result, err
-			}
-			result.TierPrice = tier_price
+			result.TierPrice, _ = PrepareProductTierPrice(cr, c, product)
 		case "cross":
-			cross_sell, err := PrepareCrossSellProduct(cr, c, product)
-			if err == nil {
-				return result, err
-			}
-			result.Cross = cross_sell
+			result.Cross, _ = PrepareCrossSellProduct(cr, c, product)
 		case "relates":
-			related, err := PrepareRelatedProduct(cr, c, product)
-			if err == nil {
-				return result, err
-			}
-			result.Relates = related
+			result.Relates, _ = PrepareRelatedProduct(cr, c, product)
 		case "tags":
-			tags, err := PrepareProductTag(cr, c, product)
-			if err == nil {
-				return result, err
-			}
-			result.Tags = tags
+			result.Tags, _ = PrepareProductTag(cr, c, product)
 		case "manufacturers":
-			manufacturers, err := PrepareProductManufacturer(cr, c, product)
-			if err == nil {
-				return result, err
-			}
-			result.Manufacturers = manufacturers
+			result.Manufacturers, _ = PrepareProductManufacturer(cr, c, product)
 		case "videos":
-			videos, err := PrepareProductVideo(cr, c, product)
-			if err == nil {
-				return result, err
-			}
-			result.Videos = videos
+			result.Videos, _ = PrepareProductVideo(cr, c, product)
 		case "pictures":
-			pictures, err := PrepareProductPicture(cr, c, product)
-			if err == nil {
-				return result, err
-			}
-			result.Pictures = pictures
-
+			result.Pictures, _ = PrepareProductPicture(cr, c, product)
 		}
 	}
 
-	return result, nil
+	if lang != "" {
+		result.Product, _ = PrepareProductLang(cr, c, product, lang)
+	}
 
+	return result, nil
+}
+
+func GetLangugaByCode(cr *catalogRepository, c context.Context, lang string) (localization.Language, error) {
+	collection := cr.database.Collection(localization.CollectionLanguage)
+	var item localization.Language
+	err := collection.FindOne(c, bson.M{"unique_seo_code": lang}).Decode(&item)
+	return item, err
+}
+
+func GetRecordByCode(cr *catalogRepository, c context.Context, name string) (security.PermissionRecord, error) {
+	collection := cr.database.Collection(security.CollectionPermissionRecord)
+	var item security.PermissionRecord
+	err := collection.FindOne(c, bson.M{"system_name": name}).Decode(&item)
+	return item, err
+}
+
+func PrepareProductLang(cr *catalogRepository, c context.Context, product catalog.Product, lang string) (catalog.Product, error) {
+	var productLang = product
+
+	locale, err := GetLangugaByCode(cr, c, lang)
+	if err != nil {
+		return productLang, err
+	}
+
+	record, err := GetRecordByCode(cr, c, catalog.CollectionProduct)
+	if err != nil {
+		return productLang, err
+	}
+
+	var items []localization.LocalizedProperty
+	collection := cr.database.Collection(localization.CollectionLocalizedProperty)
+	cursor, err := collection.Find(c, bson.M{"entity_id": record.ID, "language_id": locale.ID, "locale_key_group": product.ID.Hex()})
+	if err != nil {
+		return productLang, err
+	}
+
+	err = cursor.All(c, &items)
+	if err != nil {
+		return productLang, err
+	}
+
+	for i := range items {
+		switch items[i].LocaleKey {
+		case "name":
+			productLang.Name = items[i].LocaleValue
+		case "full_description":
+			productLang.FullDescription = items[i].LocaleValue
+		case "short_description":
+			productLang.ShortDescription = items[i].LocaleValue
+		case "meta_title":
+			productLang.MetaTitle = items[i].LocaleValue
+		case "meta_keywords":
+			productLang.MetaKeywords = items[i].LocaleValue
+		case "meta_description":
+			productLang.MetaDescription = items[i].LocaleValue
+		}
+	}
+
+	return productLang, nil
 }
 
 func PrepareProductTemplate(cr *catalogRepository, c context.Context, product catalog.Product) (catalog.ProductTemplate, error) {
@@ -292,6 +285,56 @@ func PrepareProductTemplate(cr *catalogRepository, c context.Context, product ca
 	err := collection.FindOne(c, bson.M{"_id": product.ProductTemplateID}).Decode(&template)
 
 	return template, err
+
+}
+
+func PrepareProductReview(cr *catalogRepository, c context.Context, product catalog.Product) ([]domain.ProductReview, error) {
+
+	var reviews []domain.ProductReview
+
+	var productreview []catalog.ProductReview
+	collection := cr.database.Collection(catalog.CollectionProductReview)
+	cursor, err := collection.Find(c, bson.M{"product_id": product.ID})
+	if err != nil {
+		return nil, err
+	}
+
+	err = cursor.All(c, &productreview)
+	if err != nil {
+		return nil, err
+	}
+
+	for i := range productreview {
+
+		var reviewTypeMap catalog.ProductReviewReviewTypeMapping
+		collection = cr.database.Collection(catalog.CollectionProductReviewReviewTypeMapping)
+		err = collection.FindOne(c, bson.M{"product_review_id": productreview[i].ID}).Decode(&reviewTypeMap)
+		var reviewType catalog.ReviewType
+		if err == nil {
+			collection = cr.database.Collection(catalog.CollectionReviewType)
+			collection.FindOne(c, bson.M{"_id": reviewTypeMap.ReviewTypeID}).Decode(&reviewType)
+		}
+
+		var reviewHelps []catalog.ProductReviewHelpfulness
+		collection = cr.database.Collection(catalog.CollectionProductReviewHelpfulness)
+		cursor, err := collection.Find(c, bson.M{"product_review_id": productreview[i].ID})
+		if err != nil {
+			return nil, err
+		}
+
+		err = cursor.All(c, &reviewHelps)
+		if err != nil {
+			return nil, err
+		}
+
+		var customerReplay customer.Customer
+		collection = cr.database.Collection(customer.CollectionCustomer)
+		collection.FindOne(c, bson.M{"_id": reviewTypeMap.ReviewTypeID}).Decode(&customerReplay)
+
+		reviews = append(reviews, domain.ProductReview{Review: productreview[0], Type: reviewType.Name, Customer: customerReplay.FirstName, Helpfulness: reviewHelps})
+	}
+
+	return reviews, err
 }
 
 func PrepareProductCategory(cr *catalogRepository, c context.Context, product catalog.Product) ([]catalog.Category, error) {

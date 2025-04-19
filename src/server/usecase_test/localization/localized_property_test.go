@@ -21,12 +21,12 @@ func TestLocalizedPropertyUsecase_FetchByID(t *testing.T) {
 	localizationID := primitive.NewObjectID().Hex()
 
 	updatedLocalizedProperty := domain.LocalizedProperty{
-		ID:             primitive.NewObjectID(), // Existing ID of the record to update
-		EntityID:       primitive.NewObjectID(),
-		LanguageID:     primitive.NewObjectID(),
-		LocaleKeyGroup: "Category",
-		LocaleKey:      "Description",
-		LocaleValue:    "Electronics and Gadgets",
+		ID:                 primitive.NewObjectID(), // Existing ID of the record to update
+		PermissionRecordID: primitive.NewObjectID(),
+		LanguageID:         primitive.NewObjectID(),
+		LocaleKeyGroup:     "Category",
+		LocaleKey:          "Description",
+		LocaleValue:        "Electronics and Gadgets",
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, localizationID).Return(updatedLocalizedProperty, nil)
@@ -43,11 +43,11 @@ func TestLocalizedPropertyUsecase_Create(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewLocalizedPropertyUsecase(mockRepo, timeout)
 	newLocalizedProperty := &domain.LocalizedProperty{
-		EntityID:       primitive.NewObjectID(),
-		LanguageID:     primitive.NewObjectID(),
-		LocaleKeyGroup: "Product",
-		LocaleKey:      "Name",
-		LocaleValue:    "Laptop",
+		PermissionRecordID: primitive.NewObjectID(),
+		LanguageID:         primitive.NewObjectID(),
+		LocaleKeyGroup:     "Product",
+		LocaleKey:          "Name",
+		LocaleValue:        "Laptop",
 	}
 
 	mockRepo.On("Create", mock.Anything, newLocalizedProperty).Return(nil)
@@ -64,12 +64,12 @@ func TestLocalizedPropertyUsecase_Update(t *testing.T) {
 	usecase := test.NewLocalizedPropertyUsecase(mockRepo, timeout)
 
 	updatedLocalizedProperty := &domain.LocalizedProperty{
-		ID:             primitive.NewObjectID(), // Existing ID of the record to update
-		EntityID:       primitive.NewObjectID(),
-		LanguageID:     primitive.NewObjectID(),
-		LocaleKeyGroup: "Category",
-		LocaleKey:      "Description",
-		LocaleValue:    "Electronics and Gadgets",
+		ID:                 primitive.NewObjectID(), // Existing ID of the record to update
+		PermissionRecordID: primitive.NewObjectID(),
+		LanguageID:         primitive.NewObjectID(),
+		LocaleKeyGroup:     "Category",
+		LocaleKey:          "Description",
+		LocaleValue:        "Electronics and Gadgets",
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedLocalizedProperty).Return(nil)
@@ -102,20 +102,20 @@ func TestLocalizedPropertyUsecase_Fetch(t *testing.T) {
 
 	fetchedLocalizedProperties := []domain.LocalizedProperty{
 		{
-			ID:             primitive.NewObjectID(),
-			EntityID:       primitive.NewObjectID(),
-			LanguageID:     primitive.NewObjectID(),
-			LocaleKeyGroup: "Product",
-			LocaleKey:      "Name",
-			LocaleValue:    "Laptop",
+			ID:                 primitive.NewObjectID(),
+			PermissionRecordID: primitive.NewObjectID(),
+			LanguageID:         primitive.NewObjectID(),
+			LocaleKeyGroup:     "Product",
+			LocaleKey:          "Name",
+			LocaleValue:        "Laptop",
 		},
 		{
-			ID:             primitive.NewObjectID(),
-			EntityID:       primitive.NewObjectID(),
-			LanguageID:     primitive.NewObjectID(),
-			LocaleKeyGroup: "Category",
-			LocaleKey:      "Description",
-			LocaleValue:    "Electronics and Gadgets",
+			ID:                 primitive.NewObjectID(),
+			PermissionRecordID: primitive.NewObjectID(),
+			LanguageID:         primitive.NewObjectID(),
+			LocaleKeyGroup:     "Category",
+			LocaleKey:          "Description",
+			LocaleValue:        "Electronics and Gadgets",
 		},
 	}
 

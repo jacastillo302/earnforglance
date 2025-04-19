@@ -28,12 +28,12 @@ func (m *MockSingleResultLocalizedProperty) Decode(v interface{}) error {
 }
 
 var mockItemLocalizedProperty = &domain.LocalizedProperty{
-	ID:             primitive.NewObjectID(), // Existing ID of the record to update
-	EntityID:       primitive.NewObjectID(),
-	LanguageID:     primitive.NewObjectID(),
-	LocaleKeyGroup: "Category",
-	LocaleKey:      "Description",
-	LocaleValue:    "Electronics and Gadgets",
+	ID:                 primitive.NewObjectID(), // Existing ID of the record to update
+	PermissionRecordID: primitive.NewObjectID(),
+	LanguageID:         primitive.NewObjectID(),
+	LocaleKeyGroup:     "Category",
+	LocaleKey:          "Description",
+	LocaleValue:        "Electronics and Gadgets",
 }
 
 func TestLocalizedPropertyRepository_FetchByID(t *testing.T) {
