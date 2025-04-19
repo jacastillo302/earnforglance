@@ -29,6 +29,7 @@ type ProductRequest struct {
 	MinPrice                 float64
 	MxnPrice                 float64
 	Categories               []string
+	Content                  []string
 }
 
 type ProductResponse struct {
@@ -91,11 +92,9 @@ type Warehouse struct {
 }
 
 type CatalogRepository interface {
-	GetProduct(c context.Context, ID string) (ProductResponse, error)
 	GetProducts(c context.Context, filter ProductRequest) ([]ProductsResponse, error)
 }
 
 type CatalogtUsecase interface {
-	GetProduct(c context.Context, ID string) (ProductResponse, error)
 	GetProducts(c context.Context, filter ProductRequest) ([]ProductsResponse, error)
 }

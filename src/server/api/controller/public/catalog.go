@@ -17,30 +17,6 @@ type CatalogController struct {
 	Env            *bootstrap.Env
 }
 
-func (cc *CatalogController) GetProduct(c *gin.Context) {
-	ID := c.Query("id")
-	if ID == "" {
-		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "invalid ID format"})
-		return
-	}
-
-	err := c.ShouldBind(&ID)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: err.Error()})
-		return
-
-	}
-
-	productResponse, err := cc.CatalogUsecase.GetProduct(c, ID)
-	if err != nil {
-		c.JSON(http.StatusNotFound, common.ErrorResponse{Message: err.Error()})
-		return
-	}
-
-	c.JSON(http.StatusOK, productResponse)
-
-}
-
 func (cc *CatalogController) GetProducts(c *gin.Context) {
 	var request domain.ProductRequest
 
