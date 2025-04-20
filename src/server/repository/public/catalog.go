@@ -30,6 +30,139 @@ func NewCatalogRepository(db mongo.Database, collection string) domain.CatalogRe
 	}
 }
 
+func (cr *catalogRepository) GetCategories(c context.Context, filter domain.CategoryRequest) ([]domain.CategoriesResponse, error) {
+	var result []domain.CategoriesResponse
+	var categories []catalog.Category
+
+	idHex, err := primitive.ObjectIDFromHex(filter.ID)
+	if err == nil {
+		var category catalog.Category
+
+		collection := cr.database.Collection(catalog.CollectionCategory)
+		err = collection.FindOne(c, bson.M{"_id": idHex, "deleted": false, "published": true}).Decode(&category)
+		if err != nil {
+			return result, err
+		}
+
+		item, err := PrepareCategory(cr, c, category, filter.Content, filter.Lang)
+		if err != nil {
+			return result, err
+		}
+
+		result = append(result, domain.CategoriesResponse{Categories: []domain.CategoryResponse{item}})
+		return result, err
+	}
+
+	if filter.Limit == 0 {
+		filter.Limit = 20
+	}
+
+	sortOrder := 1
+	if filter.Sort == "desc" {
+		sortOrder = -1
+	}
+
+	// Build dynamic filter
+	query := bson.M{"deleted": false}
+
+	if filter.ShowOnHomepage {
+		query["show_on_homepage"] = filter.ShowOnHomepage
+	}
+
+	if filter.IncludeInTopMenu {
+		query["include_in_top_menu"] = filter.IncludeInTopMenu
+	}
+
+	if filter.PriceRangeFiltering {
+		query["price_range_filtering"] = filter.PriceRangeFiltering
+	}
+
+	if filter.ManuallyPriceRange {
+		query["manually_price_range"] = filter.ManuallyPriceRange
+	}
+
+	if filter.PriceFrom > 0 {
+		query["price_from"] = bson.M{"$gte": filter.PriceFrom}
+	}
+
+	if filter.PriceTo > 0 {
+		query["price_to"] = bson.M{"$lte": filter.PriceTo}
+	}
+
+	if filter.Parent != "" {
+		idHex, err := primitive.ObjectIDFromHex(filter.Parent)
+		if err == nil {
+			query["parent_category_id"] = idHex
+		}
+	}
+
+	limit := int64(filter.Limit)
+	skip := int64(filter.Page * filter.Limit)
+
+	for _, value := range filter.Filters {
+		// "contains", "eq", etc.
+		if value.Operator == "contains" {
+			query[value.Field] = bson.M{"$regex": value.Value, "$options": "i"}
+		} else {
+			query[value.Field] = value.Value
+		}
+
+		skip = 0
+	}
+
+	findOptions := options.Find().
+		SetSort(bson.D{{Key: "_id", Value: sortOrder}}).
+		SetLimit(int64(limit)).
+		SetSkip(skip)
+
+	collection := cr.database.Collection(catalog.CollectionCategory)
+	cursor, err := collection.Find(c, query, findOptions)
+	if err != nil {
+		return result, err
+	}
+
+	err = cursor.All(c, &categories)
+	if err != nil {
+		return result, err
+	}
+
+	var items []domain.CategoryResponse
+	for i := range categories {
+		item, err := PrepareCategory(cr, c, categories[i], filter.Content, filter.Lang)
+		if err != nil {
+			return result, err
+		}
+		items = append(items, item)
+	}
+
+	result = append(result, domain.CategoriesResponse{Categories: items})
+
+	return result, err
+}
+
+func PrepareCategory(cr *catalogRepository, c context.Context, category catalog.Category, content []string, lang string) (domain.CategoryResponse, error) {
+	var result domain.CategoryResponse
+
+	for i := range content {
+		switch content[i] {
+		case "template":
+			result.Template, _ = PrepareCategoryTemplate(cr, c, category)
+		case "picture":
+			result.Picture, _ = PrepareCategoryPicture(cr, c, category)
+		case "childs":
+			result.Childs, _ = PrepareCategoryChilds(cr, c, category)
+		}
+	}
+
+	if lang != "" {
+		result.Category, _ = PrepareCategoryLang(cr, c, category, lang)
+	} else {
+		result.Category = category
+	}
+
+	return result, nil
+}
+
 func (cr *catalogRepository) GetProducts(c context.Context, filter domain.ProductRequest) ([]domain.ProductsResponse, error) {
 	var result []domain.ProductsResponse
 	var products []catalog.Product
@@ -39,7 +172,7 @@ func (cr *catalogRepository) GetProducts(c context.Context, filter domain.Produc
 		var product catalog.Product
 
 		collection := cr.database.Collection(catalog.CollectionProduct)
-		err = collection.FindOne(c, bson.M{"_id": idHex, "deleted": false}).Decode(&product)
+		err = collection.FindOne(c, bson.M{"_id": idHex, "deleted": false, "published": true}).Decode(&product)
 		if err != nil {
 			return result, err
 		}
@@ -96,15 +229,6 @@ func (cr *catalogRepository) GetProducts(c context.Context, filter domain.Produc
 		}
 	}
 
-	for _, value := range filter.Filters {
-		// "contains", "eq", etc.
-		if value.Operator == "contains" {
-			query[value.Field] = bson.M{"$regex": value.Value, "$options": "i"}
-		} else {
-			query[value.Field] = value.Value
-		}
-	}
-
 	if len(filter.Categories) > 0 {
 		var products []primitive.ObjectID
 		var categories []catalog.ProductCategory
@@ -136,10 +260,24 @@ func (cr *catalogRepository) GetProducts(c context.Context, filter domain.Produc
 		}
 	}
 
-	//fmt.Println("query", query)
+	limit := int64(filter.Limit)
+	skip := int64(filter.Page * filter.Limit)
+
+	for _, value := range filter.Filters {
+		// "contains", "eq", etc.
+		if value.Operator == "contains" {
+			query[value.Field] = bson.M{"$regex": value.Value, "$options": "i"}
+		} else {
+			query[value.Field] = value.Value
+		}
+
+		skip = 0
+	}
+
 	findOptions := options.Find().
-		SetLimit(int64(filter.Limit)).
-		SetSort(bson.D{{Key: "created_on_utc", Value: sortOrder}})
+		SetSort(bson.D{{Key: "_id", Value: sortOrder}}).
+		SetLimit(int64(limit)).
+		SetSkip(skip)
 
 	collection := cr.database.Collection(catalog.CollectionProduct)
 	cursor, err := collection.Find(c, query, findOptions)
@@ -214,6 +352,8 @@ func PrepareProduct(cr *catalogRepository, c context.Context, product catalog.Pr
 
 	if lang != "" {
 		result.Product, _ = PrepareProductLang(cr, c, product, lang)
+	} else {
+		result.Product = product
 	}
 
 	return result, nil
@@ -231,6 +371,50 @@ func GetRecordByCode(cr *catalogRepository, c context.Context, name string) (sec
 	var item security.PermissionRecord
 	err := collection.FindOne(c, bson.M{"system_name": name}).Decode(&item)
 	return item, err
+}
+
+func PrepareCategoryLang(cr *catalogRepository, c context.Context, category catalog.Category, lang string) (catalog.Category, error) {
+	var categoryLang = category
+
+	locale, err := GetLangugaByCode(cr, c, lang)
+	if err != nil {
+		return categoryLang, err
+	}
+
+	record, err := GetRecordByCode(cr, c, catalog.CollectionCategory)
+	if err != nil {
+		return categoryLang, err
+	}
+
+	var items []localization.LocalizedProperty
+	collection := cr.database.Collection(localization.CollectionLocalizedProperty)
+	cursor, err := collection.Find(c, bson.M{"entity_id": record.ID, "language_id": locale.ID, "locale_key_group": category.ID.Hex()})
+
+	if err != nil {
+		return categoryLang, err
+	}
+
+	err = cursor.All(c, &items)
+	if err != nil {
+		return categoryLang, err
+	}
+
+	for i := range items {
+		switch items[i].LocaleKey {
+		case "name":
+			categoryLang.Name = items[i].LocaleValue
+		case "description":
+			categoryLang.Description = items[i].LocaleValue
+		case "meta_title":
+			categoryLang.MetaTitle = items[i].LocaleValue
+		case "meta_keywords":
+			categoryLang.MetaKeywords = items[i].LocaleValue
+		case "meta_description":
+			categoryLang.MetaDescription = items[i].LocaleValue
+		}
+	}
+
+	return categoryLang, nil
 }
 
 func PrepareProductLang(cr *catalogRepository, c context.Context, product catalog.Product, lang string) (catalog.Product, error) {
@@ -283,6 +467,16 @@ func PrepareProductTemplate(cr *catalogRepository, c context.Context, product ca
 	var template catalog.ProductTemplate
 	collection := cr.database.Collection(catalog.CollectionProductTemplate)
 	err := collection.FindOne(c, bson.M{"_id": product.ProductTemplateID}).Decode(&template)
+
+	return template, err
+
+}
+
+func PrepareCategoryTemplate(cr *catalogRepository, c context.Context, category catalog.Category) (catalog.CategoryTemplate, error) {
+
+	var template catalog.CategoryTemplate
+	collection := cr.database.Collection(catalog.CollectionCategoryTemplate)
+	err := collection.FindOne(c, bson.M{"_id": category.CategoryTemplateID}).Decode(&template)
 
 	return template, err
 
@@ -362,6 +556,30 @@ func PrepareProductCategory(cr *catalogRepository, c context.Context, product ca
 	}
 
 	return categories, err
+}
+
+func PrepareCategoryChilds(cr *catalogRepository, c context.Context, category catalog.Category) ([]domain.CategoryChilds, error) {
+
+	var result []domain.CategoryChilds
+	var categories []catalog.Category
+
+	collection := cr.database.Collection(catalog.CollectionCategory)
+	cursor, err := collection.Find(c, bson.M{"parent_category_id": category.ID})
+	if err != nil {
+		return nil, err
+	}
+
+	err = cursor.All(c, &categories)
+	if err != nil {
+		return nil, err
+	}
+
+	for i := range categories {
+		picture, _ := PrepareCategoryPicture(cr, c, category)
+		result = append(result, domain.CategoryChilds{Category: categories[i], Picture: picture})
+	}
+
+	return result, err
 }
 
 func PrepareProductSpecificationAttribute(cr *catalogRepository, c context.Context, product catalog.Product) ([]domain.SpecificationAttribute, error) {
@@ -787,6 +1005,15 @@ func PrepareProductPicture(cr *catalogRepository, c context.Context, product cat
 	}
 
 	return pictures, err
+}
+
+func PrepareCategoryPicture(cr *catalogRepository, c context.Context, category catalog.Category) (media.Picture, error) {
+	var picture media.Picture
+	picture, err := PreparePicture(cr, c, category.PictureID)
+	if err != nil {
+		return picture, err
+	}
+	return picture, err
 }
 
 func PrepareVideo(cr *catalogRepository, c context.Context, ID primitive.ObjectID) (media.Video, error) {

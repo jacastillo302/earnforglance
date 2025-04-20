@@ -15,11 +15,29 @@ type Filter struct {
 	Operator string
 }
 
+type CategoryRequest struct {
+	ID                  string
+	Filters             []Filter
+	Sort                string
+	Limit               int
+	Page                int
+	Lang                string
+	ShowOnHomepage      bool
+	IncludeInTopMenu    bool
+	PriceRangeFiltering bool
+	ManuallyPriceRange  bool
+	PriceFrom           float64
+	PriceTo             float64
+	Parent              string
+	Content             []string
+}
+
 type ProductRequest struct {
 	ID                       string
 	Filters                  []Filter
 	Sort                     string
 	Limit                    int
+	Page                     int
 	Lang                     string
 	ShowOnHomepage           bool
 	IsRental                 bool
@@ -30,6 +48,18 @@ type ProductRequest struct {
 	MxnPrice                 float64
 	Categories               []string
 	Content                  []string
+}
+
+type CategoryResponse struct {
+	Category domain.Category
+	Template domain.CategoryTemplate
+	Picture  media.Picture
+	Childs   []CategoryChilds
+}
+
+type CategoryChilds struct {
+	Category domain.Category
+	Picture  media.Picture
 }
 
 type ProductResponse struct {
@@ -56,6 +86,10 @@ type ProductResponse struct {
 
 type ProductsResponse struct {
 	Products []ProductResponse
+}
+
+type CategoriesResponse struct {
+	Categories []CategoryResponse
 }
 
 type ProductAttributeCombination struct {
@@ -93,9 +127,11 @@ type Warehouse struct {
 }
 
 type CatalogRepository interface {
+	GetCategories(c context.Context, filter CategoryRequest) ([]CategoriesResponse, error)
 	GetProducts(c context.Context, filter ProductRequest) ([]ProductsResponse, error)
 }
 
 type CatalogtUsecase interface {
+	GetCategories(c context.Context, filter CategoryRequest) ([]CategoriesResponse, error)
 	GetProducts(c context.Context, filter ProductRequest) ([]ProductsResponse, error)
 }

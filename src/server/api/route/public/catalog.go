@@ -21,4 +21,5 @@ func CatalogRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database,
 		Env:            env,
 	}
 	group.GET("/products", lc.GetProducts)
+	group.GET("/categories", lc.GetCategories)
 }

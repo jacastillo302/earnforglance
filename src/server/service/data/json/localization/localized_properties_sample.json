@@ -46,5 +46,80 @@
         "LocaleKeyGroup": "67f62ed9166c9fc55b44bb90",
         "LocaleKey": "meta_title",
         "LocaleValue": "Título de producto de muestra"
+    },
+    {
+        "ID": "680513791eb1463a45051d88",
+        "PermissionRecordID": "67ed65976b3a64a8c73f7947",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "ffac497f04c8dc60029879cf",
+        "LocaleKey": "name",
+        "LocaleValue": "Zapatillas de running adidas Consortium Campus 80s"
+    },
+    {
+        "ID": "680513791eb1463a45051d89",
+        "PermissionRecordID": "67ed65976b3a64a8c73f7947",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "ffac497f04c8dc60029879cf",
+        "LocaleKey": "description",
+        "LocaleValue": "Prueba de Texto en Español para esta categoria"
+    },
+    {
+        "ID": "680513791eb1463a45051d8a",
+        "PermissionRecordID": "67ed65976b3a64a8c73f7947",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "ffac497f04c8dc60029879cf",
+        "LocaleKey": "meta_keywords",
+        "LocaleValue": "muestra, producto, palabras clave"
+    },
+    {
+        "ID": "680513791eb1463a45051d8b",
+        "PermissionRecordID": "67ed65976b3a64a8c73f7947",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "ffac497f04c8dc60029879cf",
+        "LocaleKey": "meta_description",
+        "LocaleValue": "muestra, producto, palabras clave"
+    },
+    {
+        "ID": "680513791eb1463a45051d8c",
+        "PermissionRecordID": "67ed65976b3a64a8c73f7947",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "ffac497f04c8dc60029879cf",
+        "LocaleKey": "meta_title",
+        "LocaleValue": "Título de producto de muestra"
+    },
+    {
+        "PermissionRecordID": "67ed65976b3a64a8c73f79ea",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "67efea201987b5c78f886e2f",
+        "LocaleKey": "title",
+        "LocaleValue": "Bienvenido a nuestra tienda"
+    },
+    {
+        "PermissionRecordID": "67ed65976b3a64a8c73f79ea",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "67efea201987b5c78f886e2f",
+        "LocaleKey": "body",
+        "LocaleValue": "<p>Las compras en línea son el proceso que siguen los consumidores para adquirir productos o servicios a través de internet. Puedes editar esto en el sitio de administración.</p>"
+    },
+    {
+        "PermissionRecordID": "67ed65976b3a64a8c73f79ea",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "67efea201987b5c78f886e2f",
+        "LocaleKey": "meta_keywords",
+        "LocaleValue": "topicos, temas, paginas"
+    },
+    {
+        "PermissionRecordID": "67ed65976b3a64a8c73f79ea",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "67efea201987b5c78f886e2f",
+        "LocaleKey": "meta_description",
+        "LocaleValue": "Esta es una prueba de texto en español para esta categoria"
+    },
+    {
+        "PermissionRecordID": "67ed65976b3a64a8c73f79ea",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "67efea201987b5c78f886e2f",
+        "LocaleKey": "meta_title",
+        "LocaleValue": "Título de producto de muestra"
     }
 ]

@@ -40,3 +40,27 @@ func (cc *CatalogController) GetProducts(c *gin.Context) {
 
 	c.JSON(http.StatusOK, productResponse)
 }
+
+func (cc *CatalogController) GetCategories(c *gin.Context) {
+	var request domain.CategoryRequest
+
+	filter, err := io.ReadAll(c.Request.Body)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(filter, &request)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	productResponse, err := cc.CatalogUsecase.GetCategories(c, request)
+	if err != nil {
+		c.JSON(http.StatusNotFound, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, productResponse)
+}

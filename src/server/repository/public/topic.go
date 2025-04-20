@@ -1,1 +1,198 @@
 package repository
+
+import (
+	"context"
+	localization "earnforglance/server/domain/localization"
+	domain "earnforglance/server/domain/public"
+	security "earnforglance/server/domain/security"
+	topicdomain "earnforglance/server/domain/topics"
+	"earnforglance/server/service/data/mongo"
+	"fmt"
+
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/mongo/options"
+)
+
+type topicRepository struct {
+	database   mongo.Database
+	collection string
+}
+
+func NewTopicRepository(db mongo.Database, collection string) domain.TopicRepository {
+	return &topicRepository{
+		database:   db,
+		collection: collection,
+	}
+}
+
+func (r *topicRepository) GetTopics(c context.Context, filter domain.TopicRequest) ([]domain.TopicsResponse, error) {
+
+	var result []domain.TopicsResponse
+	var topics []topicdomain.Topic
+
+	idHex, err := primitive.ObjectIDFromHex(filter.ID)
+	if err == nil {
+		var topicitem topicdomain.Topic
+
+		collection := r.database.Collection(topicdomain.CollectionTopic)
+		err = collection.FindOne(c, bson.M{"_id": idHex, "published": true}).Decode(&topicitem)
+		if err != nil {
+			return result, err
+		}
+
+		item, err := PrepareTopic(r, c, topicitem, filter.Content, filter.Lang)
+		if err != nil {
+			return result, err
+		}
+
+		result = append(result, domain.TopicsResponse{Topics: []domain.TopicResponse{item}})
+		return result, err
+	}
+
+	if filter.Limit == 0 {
+		filter.Limit = 5
+	}
+
+	sortOrder := 1
+	if filter.Sort == "desc" {
+		sortOrder = -1
+	}
+
+	query := bson.M{"published": true}
+
+	if filter.IncludeInTopMenu {
+		query["include_in_top_menu"] = filter.IncludeInTopMenu
+	}
+
+	if filter.Password != "" {
+		query["password"] = filter.Password
+	}
+
+	for _, value := range filter.Filters {
+		if value.Operator == "contains" {
+			query[value.Field] = bson.M{"$regex": value.Value, "$options": "i"}
+		} else {
+			query[value.Field] = value.Value
+		}
+	}
+
+	findOptions := options.Find().
+		SetSort(bson.D{{Key: "_id", Value: sortOrder}}).
+		SetLimit(int64(filter.Limit)).
+		SetProjection(bson.D{{Key: "password", Value: 0}})
+
+	fmt.Println("query", query)
+	collection := r.database.Collection(topicdomain.CollectionTopic)
+	cursor, err := collection.Find(c, query, findOptions)
+	if err != nil {
+		return result, err
+	}
+
+	err = cursor.All(c, &topics)
+	if err != nil {
+		return result, err
+	}
+
+	var items []domain.TopicResponse
+	for i := range topics {
+		item, err := PrepareTopic(r, c, topics[i], filter.Content, filter.Lang)
+		if err != nil {
+			return result, err
+		}
+		items = append(items, item)
+	}
+
+	result = append(result, domain.TopicsResponse{Topics: items})
+
+	return result, err
+
+}
+
+func PrepareTopic(r *topicRepository, c context.Context, topic topicdomain.Topic, content []string, lang string) (domain.TopicResponse, error) {
+	var result domain.TopicResponse
+
+	for i := range content {
+		switch content[i] {
+		case "template":
+			result.Template, _ = PrepareTopicTemplate(r, c, topic)
+		}
+	}
+
+	if lang != "" {
+		result.Topic, _ = PrepareTopicLang(r, c, topic, lang)
+	} else {
+		result.Topic = topic
+
+	}
+
+	return result, nil
+}
+
+func PrepareTopicLang(r *topicRepository, c context.Context, item topicdomain.Topic, lang string) (topicdomain.Topic, error) {
+	var itemLang = item
+
+	locale, err := GetLangugaTopicByCode(r, c, lang)
+	if err != nil {
+		return itemLang, err
+	}
+
+	record, err := GetRecordTopicByCode(r, c, topicdomain.CollectionTopic)
+	if err != nil {
+		return itemLang, err
+	}
+
+	var items []localization.LocalizedProperty
+	collection := r.database.Collection(localization.CollectionLocalizedProperty)
+	cursor, err := collection.Find(c, bson.M{"entity_id": record.ID, "language_id": locale.ID, "locale_key_group": item.ID.Hex()})
+
+	if err != nil {
+		return itemLang, err
+	}
+
+	err = cursor.All(c, &items)
+	if err != nil {
+		return itemLang, err
+	}
+
+	for i := range items {
+		switch items[i].LocaleKey {
+		case "title":
+			itemLang.Title = items[i].LocaleValue
+		case "body":
+			itemLang.Body = items[i].LocaleValue
+		case "meta_title":
+			itemLang.MetaTitle = items[i].LocaleValue
+		case "meta_keywords":
+			itemLang.MetaKeywords = items[i].LocaleValue
+		case "meta_description":
+			itemLang.MetaDescription = items[i].LocaleValue
+		}
+	}
+
+	return itemLang, nil
+}
+
+func PrepareTopicTemplate(cr *topicRepository, c context.Context, item topicdomain.Topic) (topicdomain.TopicTemplate, error) {
+
+	var template topicdomain.TopicTemplate
+	collection := cr.database.Collection(topicdomain.CollectionTopicTemplate)
+	err := collection.FindOne(c, bson.M{"_id": item.TopicTemplateID}).Decode(&template)
+
+	return template, err
+
+}
+
+func GetLangugaTopicByCode(cr *topicRepository, c context.Context, lang string) (localization.Language, error) {
+	collection := cr.database.Collection(localization.CollectionLanguage)
+	var item localization.Language
+	err := collection.FindOne(c, bson.M{"unique_seo_code": lang}).Decode(&item)
+	return item, err
+}
+
+func GetRecordTopicByCode(cr *topicRepository, c context.Context, name string) (security.PermissionRecord, error) {
+	collection := cr.database.Collection(security.CollectionPermissionRecord)
+	var item security.PermissionRecord
+	err := collection.FindOne(c, bson.M{"system_name": name}).Decode(&item)
+	return item, err
+}
