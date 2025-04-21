@@ -28,8 +28,10 @@ type TopicsResponse struct {
 
 type TopicRepository interface {
 	GetTopics(c context.Context, filter TopicRequest) ([]TopicsResponse, error)
+	GetTopicSecret(c context.Context, filter TopicRequest) (TopicsResponse, error)
 }
 
 type TopictUsecase interface {
 	GetTopics(c context.Context, filter TopicRequest) ([]TopicsResponse, error)
+	GetTopicSecret(c context.Context, filter TopicRequest) (TopicsResponse, error)
 }

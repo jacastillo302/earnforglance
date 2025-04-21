@@ -103,6 +103,8 @@ func (cr *catalogRepository) GetCategories(c context.Context, filter domain.Cate
 		// "contains", "eq", etc.
 		if value.Operator == "contains" {
 			query[value.Field] = bson.M{"$regex": value.Value, "$options": "i"}
+		} else if value.Operator == "not_contains" {
+			query[value.Field] = bson.M{"$not": bson.M{"$regex": value.Value, "$options": "i"}}
 		} else {
 			query[value.Field] = value.Value
 		}
@@ -111,7 +113,7 @@ func (cr *catalogRepository) GetCategories(c context.Context, filter domain.Cate
 	}
 
 	findOptions := options.Find().
-		SetSort(bson.D{{Key: "_id", Value: sortOrder}}).
+		SetSort(bson.D{{Key: "display_order", Value: sortOrder}}).
 		SetLimit(int64(limit)).
 		SetSkip(skip)
 
@@ -142,25 +144,26 @@ func (cr *catalogRepository) GetCategories(c context.Context, filter domain.Cate
 
 func PrepareCategory(cr *catalogRepository, c context.Context, category catalog.Category, content []string, lang string) (domain.CategoryResponse, error) {
 	var result domain.CategoryResponse
+	err := error(nil)
 
 	for i := range content {
 		switch content[i] {
 		case "template":
-			result.Template, _ = PrepareCategoryTemplate(cr, c, category)
+			result.Template, err = PrepareCategoryTemplate(cr, c, category)
 		case "picture":
-			result.Picture, _ = PrepareCategoryPicture(cr, c, category)
+			result.Picture, err = PrepareCategoryPicture(cr, c, category)
 		case "childs":
-			result.Childs, _ = PrepareCategoryChilds(cr, c, category)
+			result.Childs, err = PrepareCategoryChilds(cr, c, category)
 		}
 	}
 
 	if lang != "" {
-		result.Category, _ = PrepareCategoryLang(cr, c, category, lang)
+		result.Category, err = PrepareCategoryLang(cr, c, category, lang)
 	} else {
 		result.Category = category
 	}
 
-	return result, nil
+	return result, err
 }
 
 func (cr *catalogRepository) GetProducts(c context.Context, filter domain.ProductRequest) ([]domain.ProductsResponse, error) {
@@ -267,6 +270,8 @@ func (cr *catalogRepository) GetProducts(c context.Context, filter domain.Produc
 		// "contains", "eq", etc.
 		if value.Operator == "contains" {
 			query[value.Field] = bson.M{"$regex": value.Value, "$options": "i"}
+		} else if value.Operator == "not_contains" {
+			query[value.Field] = bson.M{"$not": bson.M{"$regex": value.Value, "$options": "i"}}
 		} else {
 			query[value.Field] = value.Value
 		}
@@ -275,7 +280,7 @@ func (cr *catalogRepository) GetProducts(c context.Context, filter domain.Produc
 	}
 
 	findOptions := options.Find().
-		SetSort(bson.D{{Key: "_id", Value: sortOrder}}).
+		SetSort(bson.D{{Key: "display_order", Value: sortOrder}}).
 		SetLimit(int64(limit)).
 		SetSkip(skip)
 
@@ -306,47 +311,50 @@ func (cr *catalogRepository) GetProducts(c context.Context, filter domain.Produc
 
 func PrepareProduct(cr *catalogRepository, c context.Context, product catalog.Product, content []string, lang string) (domain.ProductResponse, error) {
 	var result domain.ProductResponse
+	err := error(nil)
 
 	for i := range content {
 		switch content[i] {
 		case "template":
-			result.Template, _ = PrepareProductTemplate(cr, c, product)
+			result.Template, err = PrepareProductTemplate(cr, c, product)
 		case "categories":
-			result.Categories, _ = PrepareProductCategory(cr, c, product)
+			result.Categories, err = PrepareProductCategory(cr, c, product)
 		case "specifications":
-			result.Specifications, _ = PrepareProductSpecificationAttribute(cr, c, product)
+			result.Specifications, err = PrepareProductSpecificationAttribute(cr, c, product)
 		case "attributes":
-			result.Attributes, _ = PrepareProductAttribute(cr, c, product)
+			result.Attributes, err = PrepareProductAttribute(cr, c, product)
 		case "warehouse":
-			result.Warehouse.Warehouse, _ = PrepareProductWarehouse(cr, c, product)
-			result.Warehouse.Inventory, _ = PrepareProductWarehouseInventory(cr, c, product)
+			result.Warehouse.Warehouse, err = PrepareProductWarehouse(cr, c, product)
+			if err == nil {
+				result.Warehouse.Inventory, err = PrepareProductWarehouseInventory(cr, c, product)
+			}
 		case "delivery":
-			result.DeliveryDate, _ = PrepareProductDeliveryDate(cr, c, product)
+			result.DeliveryDate, err = PrepareProductDeliveryDate(cr, c, product)
 		case "range":
-			result.Range, _ = PrepareProductAvailabilityRange(cr, c, product)
+			result.Range, err = PrepareProductAvailabilityRange(cr, c, product)
 		case "tax":
-			result.Tax, _ = PrepareTaxCategory(cr, c, product.TaxCategoryID)
+			result.Tax, err = PrepareTaxCategory(cr, c, product.TaxCategoryID)
 		case "vendor":
-			result.Vendor, _ = PrepareVendor(cr, c, product.VendorID)
+			result.Vendor, err = PrepareVendor(cr, c, product.VendorID)
 		case "reviews":
-			result.Reviews, _ = PrepareProductReview(cr, c, product)
+			result.Reviews, err = PrepareProductReview(cr, c, product)
 		case "download":
 			download, _ := PrepareDownload(cr, c, product.DownloadID)
 			result.Download = &download
 		case "tierprices":
-			result.TierPrice, _ = PrepareProductTierPrice(cr, c, product)
+			result.TierPrice, err = PrepareProductTierPrice(cr, c, product)
 		case "cross":
-			result.Cross, _ = PrepareCrossSellProduct(cr, c, product)
+			result.Cross, err = PrepareCrossSellProduct(cr, c, product)
 		case "relates":
-			result.Relates, _ = PrepareRelatedProduct(cr, c, product)
+			result.Relates, err = PrepareRelatedProduct(cr, c, product)
 		case "tags":
-			result.Tags, _ = PrepareProductTag(cr, c, product)
+			result.Tags, err = PrepareProductTag(cr, c, product)
 		case "manufacturers":
-			result.Manufacturers, _ = PrepareProductManufacturer(cr, c, product)
+			result.Manufacturers, err = PrepareProductManufacturer(cr, c, product)
 		case "videos":
-			result.Videos, _ = PrepareProductVideo(cr, c, product)
+			result.Videos, err = PrepareProductVideo(cr, c, product)
 		case "pictures":
-			result.Pictures, _ = PrepareProductPicture(cr, c, product)
+			result.Pictures, err = PrepareProductPicture(cr, c, product)
 		}
 	}
 
@@ -356,7 +364,7 @@ func PrepareProduct(cr *catalogRepository, c context.Context, product catalog.Pr
 		result.Product = product
 	}
 
-	return result, nil
+	return result, err
 }
 
 func GetLangugaByCode(cr *catalogRepository, c context.Context, lang string) (localization.Language, error) {
@@ -375,7 +383,7 @@ func GetRecordByCode(cr *catalogRepository, c context.Context, name string) (sec
 
 func PrepareCategoryLang(cr *catalogRepository, c context.Context, category catalog.Category, lang string) (catalog.Category, error) {
 	var categoryLang = category
-
+	err := error(nil)
 	locale, err := GetLangugaByCode(cr, c, lang)
 	if err != nil {
 		return categoryLang, err
@@ -414,12 +422,12 @@ func PrepareCategoryLang(cr *catalogRepository, c context.Context, category cata
 		}
 	}
 
-	return categoryLang, nil
+	return categoryLang, err
 }
 
 func PrepareProductLang(cr *catalogRepository, c context.Context, product catalog.Product, lang string) (catalog.Product, error) {
 	var productLang = product
-
+	err := error(nil)
 	locale, err := GetLangugaByCode(cr, c, lang)
 	if err != nil {
 		return productLang, err
@@ -459,7 +467,7 @@ func PrepareProductLang(cr *catalogRepository, c context.Context, product catalo
 		}
 	}
 
-	return productLang, nil
+	return productLang, err
 }
 
 func PrepareProductTemplate(cr *catalogRepository, c context.Context, product catalog.Product) (catalog.ProductTemplate, error) {

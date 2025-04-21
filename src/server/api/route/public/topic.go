@@ -21,4 +21,5 @@ func TopicRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database, g
 		Env:          env,
 	}
 	group.GET("/topics", tp.GetTopics)
+	group.GET("/topic_secret", tp.GetTopicSecret)
 }

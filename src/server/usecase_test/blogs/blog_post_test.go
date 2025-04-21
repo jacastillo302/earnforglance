@@ -22,7 +22,6 @@ func TestBlogPostUsecase_FetchByID(t *testing.T) {
 	blogID := primitive.NewObjectID().Hex()
 
 	expectedBlogPost := domain.BlogPost{
-		LanguageID:       primitive.NewObjectID(),
 		IncludeInSitemap: true,
 		Title:            "New Blog Post",
 		Body:             "This is the body of the new blog post.",
@@ -53,7 +52,6 @@ func TestBlogPostUsecase_Create(t *testing.T) {
 	usecase := test.NewBlogPostUsecase(mockRepo, timeout)
 
 	newBlogPost := &domain.BlogPost{
-		LanguageID:       primitive.NewObjectID(),
 		IncludeInSitemap: true,
 		Title:            "New Blog Post",
 		Body:             "This is the body of the new blog post.",
@@ -84,7 +82,6 @@ func TestBlogPostUsecase_Update(t *testing.T) {
 
 	updatedBlogPost := &domain.BlogPost{
 		ID:               primitive.NewObjectID(), // Existing ID of the record to update
-		LanguageID:       primitive.NewObjectID(),
 		IncludeInSitemap: false,
 		Title:            "Updated Blog Post",
 		Body:             "This is the updated body of the blog post.",
@@ -131,7 +128,6 @@ func TestBlogPostUsecase_Fetch(t *testing.T) {
 	fetchedBlogPosts := []domain.BlogPost{
 		{
 			ID:               primitive.NewObjectID(),
-			LanguageID:       primitive.NewObjectID(),
 			IncludeInSitemap: true,
 			Title:            "First Blog Post",
 			Body:             "This is the body of the first blog post.",
@@ -148,7 +144,6 @@ func TestBlogPostUsecase_Fetch(t *testing.T) {
 		},
 		{
 			ID:               primitive.NewObjectID(),
-			LanguageID:       primitive.NewObjectID(),
 			IncludeInSitemap: false,
 			Title:            "Second Blog Post",
 			Body:             "This is the body of the second blog post.",

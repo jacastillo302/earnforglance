@@ -68,9 +68,12 @@ func Setup(env *bootstrap.Env, timeout time.Duration, db mongo.Database, gin *gi
 
 	// All Public APIs
 	publicRouter = gin.Group("/api/v1")
+
 	public.LoginRouter(env, timeout, db, publicRouter)
 	public.CatalogRouter(env, timeout, db, publicRouter)
 	public.TopicRouter(env, timeout, db, publicRouter)
+	public.BlogRouter(env, timeout, db, publicRouter)
+	public.LocalizationRouter(env, timeout, db, publicRouter)
 	//security.SignupRouter(env, timeout, db, publicRouter)
 
 	security.RefreshTokenRouter(env, timeout, db, publicRouter)

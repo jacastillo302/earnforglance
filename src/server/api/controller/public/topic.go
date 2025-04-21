@@ -40,3 +40,27 @@ func (tp *TopicController) GetTopics(c *gin.Context) {
 
 	c.JSON(http.StatusOK, response)
 }
+
+func (tp *TopicController) GetTopicSecret(c *gin.Context) {
+	var request domain.TopicRequest
+
+	filter, err := io.ReadAll(c.Request.Body)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(filter, &request)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	response, err := tp.TopicUsecase.GetTopicSecret(c, request)
+	if err != nil {
+		c.JSON(http.StatusNotFound, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, response)
+}

@@ -7,7 +7,6 @@ import (
 	security "earnforglance/server/domain/security"
 	topicdomain "earnforglance/server/domain/topics"
 	"earnforglance/server/service/data/mongo"
-	"fmt"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -24,6 +23,31 @@ func NewTopicRepository(db mongo.Database, collection string) domain.TopicReposi
 		database:   db,
 		collection: collection,
 	}
+}
+
+func (r *topicRepository) GetTopicSecret(c context.Context, filter domain.TopicRequest) (domain.TopicsResponse, error) {
+	var result domain.TopicsResponse
+
+	idHex, err := primitive.ObjectIDFromHex(filter.ID)
+	if err == nil {
+		var topicitem topicdomain.Topic
+
+		collection := r.database.Collection(topicdomain.CollectionTopic)
+		err = collection.FindOne(c, bson.M{"_id": idHex, "published": true}).Decode(&topicitem)
+		if err != nil {
+			return result, err
+		}
+
+		item, err := PrepareTopicSecret(r, c, topicitem, filter.Content, filter.Lang, filter.Password)
+		if err != nil {
+			return result, err
+		}
+
+		result = domain.TopicsResponse{Topics: []domain.TopicResponse{item}}
+		return result, err
+	}
+
+	return result, err
 }
 
 func (r *topicRepository) GetTopics(c context.Context, filter domain.TopicRequest) ([]domain.TopicsResponse, error) {
@@ -65,24 +89,21 @@ func (r *topicRepository) GetTopics(c context.Context, filter domain.TopicReques
 		query["include_in_top_menu"] = filter.IncludeInTopMenu
 	}
 
-	if filter.Password != "" {
-		query["password"] = filter.Password
-	}
-
 	for _, value := range filter.Filters {
 		if value.Operator == "contains" {
 			query[value.Field] = bson.M{"$regex": value.Value, "$options": "i"}
+		} else if value.Operator == "not_contains" {
+			query[value.Field] = bson.M{"$not": bson.M{"$regex": value.Value, "$options": "i"}}
 		} else {
 			query[value.Field] = value.Value
 		}
 	}
 
 	findOptions := options.Find().
-		SetSort(bson.D{{Key: "_id", Value: sortOrder}}).
+		SetSort(bson.D{{Key: "display_order", Value: sortOrder}}).
 		SetLimit(int64(filter.Limit)).
 		SetProjection(bson.D{{Key: "password", Value: 0}})
 
-	fmt.Println("query", query)
 	collection := r.database.Collection(topicdomain.CollectionTopic)
 	cursor, err := collection.Find(c, query, findOptions)
 	if err != nil {
@@ -111,22 +132,58 @@ func (r *topicRepository) GetTopics(c context.Context, filter domain.TopicReques
 
 func PrepareTopic(r *topicRepository, c context.Context, topic topicdomain.Topic, content []string, lang string) (domain.TopicResponse, error) {
 	var result domain.TopicResponse
+	err := error(nil)
 
 	for i := range content {
 		switch content[i] {
 		case "template":
-			result.Template, _ = PrepareTopicTemplate(r, c, topic)
+			result.Template, err = PrepareTopicTemplate(r, c, topic)
 		}
 	}
 
 	if lang != "" {
-		result.Topic, _ = PrepareTopicLang(r, c, topic, lang)
+		result.Topic, err = PrepareTopicLang(r, c, topic, lang)
 	} else {
 		result.Topic = topic
 
 	}
 
-	return result, nil
+	if result.Topic.IsPasswordProtected {
+		result.Topic.Title = "This topic is password protected"
+		result.Topic.Body = "This topic is password protected"
+		result.Topic.Password = ""
+	}
+
+	return result, err
+}
+
+func PrepareTopicSecret(tr *topicRepository, c context.Context, topic topicdomain.Topic, content []string, lang string, password string) (domain.TopicResponse, error) {
+	var result domain.TopicResponse
+
+	err := error(nil)
+
+	for i := range content {
+		switch content[i] {
+		case "template":
+			result.Template, err = PrepareTopicTemplate(tr, c, topic)
+		}
+	}
+
+	if lang != "" {
+		result.Topic, err = PrepareTopicLang(tr, c, topic, lang)
+	} else {
+		result.Topic = topic
+	}
+
+	if result.Topic.IsPasswordProtected {
+		if result.Topic.Password != password {
+			result.Topic.Title = "this topic is password protected, the password is not correct"
+			result.Topic.Body = "This topic is password protected, the password is not correct"
+			result.Topic.Password = ""
+		}
+	}
+
+	return result, err
 }
 
 func PrepareTopicLang(r *topicRepository, c context.Context, item topicdomain.Topic, lang string) (topicdomain.Topic, error) {
@@ -170,29 +227,35 @@ func PrepareTopicLang(r *topicRepository, c context.Context, item topicdomain.To
 		}
 	}
 
-	return itemLang, nil
+	return itemLang, err
 }
 
-func PrepareTopicTemplate(cr *topicRepository, c context.Context, item topicdomain.Topic) (topicdomain.TopicTemplate, error) {
-
+func PrepareTopicTemplate(tr *topicRepository, c context.Context, item topicdomain.Topic) (topicdomain.TopicTemplate, error) {
 	var template topicdomain.TopicTemplate
-	collection := cr.database.Collection(topicdomain.CollectionTopicTemplate)
+	collection := tr.database.Collection(topicdomain.CollectionTopicTemplate)
 	err := collection.FindOne(c, bson.M{"_id": item.TopicTemplateID}).Decode(&template)
-
+	if err != nil {
+		return template, err
+	}
 	return template, err
-
 }
 
-func GetLangugaTopicByCode(cr *topicRepository, c context.Context, lang string) (localization.Language, error) {
-	collection := cr.database.Collection(localization.CollectionLanguage)
+func GetLangugaTopicByCode(tr *topicRepository, c context.Context, lang string) (localization.Language, error) {
+	collection := tr.database.Collection(localization.CollectionLanguage)
 	var item localization.Language
 	err := collection.FindOne(c, bson.M{"unique_seo_code": lang}).Decode(&item)
+	if err != nil {
+		return item, err
+	}
 	return item, err
 }
 
-func GetRecordTopicByCode(cr *topicRepository, c context.Context, name string) (security.PermissionRecord, error) {
-	collection := cr.database.Collection(security.CollectionPermissionRecord)
+func GetRecordTopicByCode(tr *topicRepository, c context.Context, name string) (security.PermissionRecord, error) {
+	collection := tr.database.Collection(security.CollectionPermissionRecord)
 	var item security.PermissionRecord
 	err := collection.FindOne(c, bson.M{"system_name": name}).Decode(&item)
+	if err != nil {
+		return item, err
+	}
 	return item, err
 }

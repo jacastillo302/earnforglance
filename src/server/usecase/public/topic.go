@@ -19,6 +19,12 @@ func NewtopicUsecase(itemRepository domain.TopicRepository, timeout time.Duratio
 	}
 }
 
+func (r *topicUsecase) GetTopicSecret(c context.Context, filter domain.TopicRequest) (domain.TopicsResponse, error) {
+	ctx, cancel := context.WithTimeout(c, r.contextTimeout)
+	defer cancel()
+	return r.itemRepository.GetTopicSecret(ctx, filter)
+}
+
 func (r *topicUsecase) GetTopics(c context.Context, filter domain.TopicRequest) ([]domain.TopicsResponse, error) {
 	ctx, cancel := context.WithTimeout(c, r.contextTimeout)
 	defer cancel()

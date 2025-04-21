@@ -39,7 +39,6 @@ func TestBlogPostRepository_FetchByID(t *testing.T) {
 
 	mockItem := domain.BlogPost{
 		ID:               primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
-		LanguageID:       primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
 		IncludeInSitemap: false,
 		Title:            "",
 		Body:             "",
@@ -100,7 +99,6 @@ func TestBlogPostRepository_Create(t *testing.T) {
 
 	mockBlogPost := &domain.BlogPost{
 		ID:               primitive.NewObjectID(), // Existing ID of the record to update
-		LanguageID:       primitive.NewObjectID(),
 		IncludeInSitemap: false,
 		Title:            "Updated Blog Post",
 		Body:             "This is the updated body of the blog post.",
@@ -135,7 +133,6 @@ func TestBlogPostRepository_Update(t *testing.T) {
 
 	mockBlogPost := &domain.BlogPost{
 		ID:               primitive.NewObjectID(), // Existing ID of the record to update
-		LanguageID:       primitive.NewObjectID(),
 		IncludeInSitemap: false,
 		Title:            "Updated Blog Post",
 		Body:             "This is the updated body of the blog post.",

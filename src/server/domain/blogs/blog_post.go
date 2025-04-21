@@ -14,7 +14,6 @@ const (
 // BlogPost represents a blog post
 type BlogPost struct {
 	ID               primitive.ObjectID `bson:"_id,omitempty"`
-	LanguageID       primitive.ObjectID `bson:"language_id"`
 	IncludeInSitemap bool               `bson:"include_in_sitemap"`
 	Title            string             `bson:"title"`
 	Body             string             `bson:"body"`
