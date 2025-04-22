@@ -4,6 +4,7 @@ import (
 	"context"
 	catalog "earnforglance/server/domain/catalog"
 	customer "earnforglance/server/domain/customers"
+	directory "earnforglance/server/domain/directory"
 	localization "earnforglance/server/domain/localization"
 	media "earnforglance/server/domain/media"
 	domain "earnforglance/server/domain/public"
@@ -12,6 +13,7 @@ import (
 	tax "earnforglance/server/domain/tax"
 	vendor "earnforglance/server/domain/vendors"
 	"earnforglance/server/service/data/mongo"
+	service "earnforglance/server/service/public"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -313,10 +315,21 @@ func PrepareProduct(cr *catalogRepository, c context.Context, product catalog.Pr
 	var result domain.ProductResponse
 	err := error(nil)
 
+	result.Download = nil
+	result.DownloadType = nil
+	result.Videos = nil
+	result.Pictures = nil
+	result.TierPrice = nil
+	result.Cross = nil
+	result.Relates = nil
+	result.Tags = nil
+
 	for i := range content {
 		switch content[i] {
 		case "template":
 			result.Template, err = PrepareProductTemplate(cr, c, product)
+		case "type":
+			result.Type, err = PrepareProductType(product)
 		case "categories":
 			result.Categories, err = PrepareProductCategory(cr, c, product)
 		case "specifications":
@@ -341,6 +354,8 @@ func PrepareProduct(cr *catalogRepository, c context.Context, product catalog.Pr
 		case "download":
 			download, _ := PrepareDownload(cr, c, product.DownloadID)
 			result.Download = &download
+			downloadactivation, _ := PrepareDownloadActivationType(product)
+			result.DownloadType = &downloadactivation
 		case "tierprices":
 			result.TierPrice, err = PrepareProductTierPrice(cr, c, product)
 		case "cross":
@@ -355,6 +370,25 @@ func PrepareProduct(cr *catalogRepository, c context.Context, product catalog.Pr
 			result.Videos, err = PrepareProductVideo(cr, c, product)
 		case "pictures":
 			result.Pictures, err = PrepareProductPicture(cr, c, product)
+		case "recurringproductcycleperiod":
+			recurringProductCyclePeriodType, _ := PrepareRecurringProductCyclePeriodType(product)
+			result.RecurringProductCyclePeriodType = &recurringProductCyclePeriodType
+		case "rentalpriceperiod":
+			rentalPricePeriodType, _ := PrepareRentalPricePeriodType(product)
+			result.RentalPricePeriodType = &rentalPricePeriodType
+		case "lowstockactivity":
+			lowStockActivityType, _ := PrepareLowStockActivityType(product)
+			result.LowStockActivityType = &lowStockActivityType
+		case "backordermode":
+			backorderModeType, _ := PrepareBackorderModeType(product)
+			result.BackorderModeType = &backorderModeType
+		case "basepriceunit":
+			basepriceBaseUnitType, _ := PrepareBasepriceBaseUnitType(cr, c, product.BasepriceUnitID)
+			result.BasepriceUnit = &basepriceBaseUnitType
+		case "basepricebaseunit":
+			basepriceBaseUnitType, _ := PrepareBasepriceBaseUnitType(cr, c, product.BasepriceBaseUnitID)
+			result.BasepriceBaseUnit = &basepriceBaseUnitType
+
 		}
 	}
 
@@ -365,6 +399,123 @@ func PrepareProduct(cr *catalogRepository, c context.Context, product catalog.Pr
 	}
 
 	return result, err
+}
+
+func PrepareProductType(product catalog.Product) (domain.Type, error) {
+	var Type domain.Type
+
+	items, err := service.ReadJsonMapTypes("catalog", "product")
+	if err != nil {
+		return Type, err
+	}
+
+	filtered := service.FilterTypesByValue(items, product.ProductTypeID)
+
+	Type.Name = filtered[0].Name
+	Type.Value = filtered[0].Value
+	Type.Description = filtered[0].Description
+
+	return Type, err
+
+}
+
+func PrepareDownloadActivationType(product catalog.Product) (domain.Type, error) {
+	var Type domain.Type
+
+	items, err := service.ReadJsonMapTypes("catalog", "download_activation")
+	if err != nil {
+		return Type, err
+	}
+
+	filtered := service.FilterTypesByValue(items, product.DownloadActivationTypeID)
+
+	Type.Name = filtered[0].Name
+	Type.Value = filtered[0].Value
+	Type.Description = filtered[0].Description
+
+	return Type, err
+
+}
+
+func PrepareRecurringProductCyclePeriodType(product catalog.Product) (domain.Type, error) {
+	var Type domain.Type
+
+	items, err := service.ReadJsonMapTypes("catalog", "recurring_product_cycle_period")
+	if err != nil {
+		return Type, err
+	}
+
+	filtered := service.FilterTypesByValue(items, product.RecurringProductCyclePeriodID)
+
+	Type.Name = filtered[0].Name
+	Type.Value = filtered[0].Value
+	Type.Description = filtered[0].Description
+
+	return Type, err
+
+}
+
+func PrepareRentalPricePeriodType(product catalog.Product) (domain.Type, error) {
+	var Type domain.Type
+
+	items, err := service.ReadJsonMapTypes("catalog", "rental_product_period")
+	if err != nil {
+		return Type, err
+	}
+
+	filtered := service.FilterTypesByValue(items, product.RentalPricePeriodID)
+
+	Type.Name = filtered[0].Name
+	Type.Value = filtered[0].Value
+	Type.Description = filtered[0].Description
+
+	return Type, err
+
+}
+
+func PrepareLowStockActivityType(product catalog.Product) (domain.Type, error) {
+	var Type domain.Type
+
+	items, err := service.ReadJsonMapTypes("catalog", "low_stock_activity")
+	if err != nil {
+		return Type, err
+	}
+
+	filtered := service.FilterTypesByValue(items, product.RentalPricePeriodID)
+
+	Type.Name = filtered[0].Name
+	Type.Value = filtered[0].Value
+	Type.Description = filtered[0].Description
+
+	return Type, err
+
+}
+
+func PrepareBackorderModeType(product catalog.Product) (domain.Type, error) {
+	var Type domain.Type
+
+	items, err := service.ReadJsonMapTypes("catalog", "backorder_mode")
+	if err != nil {
+		return Type, err
+	}
+
+	filtered := service.FilterTypesByValue(items, product.BackorderModeID)
+
+	Type.Name = filtered[0].Name
+	Type.Value = filtered[0].Value
+	Type.Description = filtered[0].Description
+
+	return Type, err
+
+}
+
+func PrepareBasepriceBaseUnitType(cr *catalogRepository, c context.Context, baseUnitID primitive.ObjectID) (directory.MeasureWeight, error) {
+
+	item := directory.MeasureWeight{}
+	collection := cr.database.Collection(directory.CollectionMeasureWeight)
+	err := collection.FindOne(c, bson.M{"_id": baseUnitID}).Decode(&item)
+
+	return item, err
 }
 
 func GetLangugaByCode(cr *catalogRepository, c context.Context, lang string) (localization.Language, error) {

@@ -22,7 +22,6 @@ func TestNewsItemUsecase_FetchByID(t *testing.T) {
 
 	updatedNewsItem := domain.NewsItem{
 		ID:              primitive.NewObjectID(), // Existing ID of the record to update
-		LanguageID:      primitive.NewObjectID(),
 		Title:           "Updated Feature Announcement",
 		Short:           "We have updated the feature announcement.",
 		Full:            "The new feature has been updated to include additional functionality.",
@@ -52,7 +51,6 @@ func TestNewsItemUsecase_Create(t *testing.T) {
 	usecase := test.NewNewsItemUsecase(mockRepo, timeout)
 
 	newNewsItem := &domain.NewsItem{
-		LanguageID:      primitive.NewObjectID(),
 		Title:           "New Feature Announcement",
 		Short:           "We are excited to announce a new feature.",
 		Full:            "Our platform now supports a new feature that will enhance your experience.",
@@ -81,7 +79,6 @@ func TestNewsItemUsecase_Update(t *testing.T) {
 
 	updatedNewsItem := &domain.NewsItem{
 		ID:              primitive.NewObjectID(), // Existing ID of the record to update
-		LanguageID:      primitive.NewObjectID(),
 		Title:           "Updated Feature Announcement",
 		Short:           "We have updated the feature announcement.",
 		Full:            "The new feature has been updated to include additional functionality.",
@@ -128,7 +125,6 @@ func TestNewsItemUsecase_Fetch(t *testing.T) {
 	fetchedNewsItems := []domain.NewsItem{
 		{
 			ID:              primitive.NewObjectID(),
-			LanguageID:      primitive.NewObjectID(),
 			Title:           "New Feature Announcement",
 			Short:           "We are excited to announce a new feature.",
 			Full:            "Our platform now supports a new feature that will enhance your experience.",
@@ -144,7 +140,6 @@ func TestNewsItemUsecase_Fetch(t *testing.T) {
 		},
 		{
 			ID:              primitive.NewObjectID(),
-			LanguageID:      primitive.NewObjectID(),
 			Title:           "Maintenance Update",
 			Short:           "Scheduled maintenance update.",
 			Full:            "Our platform will undergo scheduled maintenance to improve performance.",

@@ -1,44 +1,42 @@
-{
-    "RoundingTypes": [
-      {
-        "Name": "Rounding001",
-        "Value": 0,
-        "Description": "Represents default rounding (Match.Round(num, 2))"
-      },
-      {
-        "Name": "Rounding005Up",
-        "Value": 10,
-        "Description": "Represents prices rounded up to the nearest multiple of 5 cents"
-      },
-      {
-        "Name": "Rounding005Down",
-        "Value": 20,
-        "Description": "Represents prices rounded down to the nearest multiple of 5 cents"
-      },
-      {
-        "Name": "Rounding01Up",
-        "Value": 30,
-        "Description": "Represents rounding up to the nearest 10 cent value"
-      },
-      {
-        "Name": "Rounding01Down",
-        "Value": 40,
-        "Description": "Represents rounding down to the nearest 10 cent value"
-      },
-      {
-        "Name": "Rounding05",
-        "Value": 50,
-        "Description": "Represents various rounding rules for sales ending in different cents"
-      },
-      {
-        "Name": "Rounding1",
-        "Value": 60,
-        "Description": "Represents rounding rules for sales ending in different cents"
-      },
-      {
-        "Name": "Rounding1Up",
-        "Value": 70,
-        "Description": "Represents sales ending in 1–99 cents round up to the next whole dollar"
-      }
-    ]
-  }
+[
+    {
+      "Name": "Rounding001",
+      "Value": 0,
+      "Description": "Represents default rounding (Match.Round(num, 2))"
+    },
+    {
+      "Name": "Rounding005Up",
+      "Value": 10,
+      "Description": "Represents prices rounded up to the nearest multiple of 5 cents"
+    },
+    {
+      "Name": "Rounding005Down",
+      "Value": 20,
+      "Description": "Represents prices rounded down to the nearest multiple of 5 cents"
+    },
+    {
+      "Name": "Rounding01Up",
+      "Value": 30,
+      "Description": "Represents rounding up to the nearest 10 cent value"
+    },
+    {
+      "Name": "Rounding01Down",
+      "Value": 40,
+      "Description": "Represents rounding down to the nearest 10 cent value"
+    },
+    {
+      "Name": "Rounding05",
+      "Value": 50,
+      "Description": "Represents various rounding rules for sales ending in different cents"
+    },
+    {
+      "Name": "Rounding1",
+      "Value": 60,
+      "Description": "Represents rounding rules for sales ending in different cents"
+    },
+    {
+      "Name": "Rounding1Up",
+      "Value": 70,
+      "Description": "Represents sales ending in 1–99 cents round up to the next whole dollar"
+    }
+]

@@ -14,7 +14,6 @@ const (
 // NewsItem represents a news item
 type NewsItem struct {
 	ID              primitive.ObjectID `bson:"_id,omitempty"`
-	LanguageID      primitive.ObjectID `bson:"language_id"`
 	Title           string             `bson:"title"`
 	Short           string             `bson:"short"`
 	Full            string             `bson:"full"`

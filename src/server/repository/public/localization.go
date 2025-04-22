@@ -6,7 +6,6 @@ import (
 	localization "earnforglance/server/domain/localization"
 	domain "earnforglance/server/domain/public"
 	"earnforglance/server/service/data/mongo"
-	"fmt"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -99,7 +98,6 @@ func (lr *localizationRepository) GetLocalizations(c context.Context, filter dom
 		}
 	}
 
-	fmt.Println("query", query)
 	findOptions := options.Find().
 		SetSort(bson.D{{Key: "display_order", Value: sortOrder}}).
 		SetLimit(int64(filter.Limit))
@@ -136,7 +134,7 @@ func PrepareLocalization(lr *localizationRepository, c context.Context, loc loca
 	for i := range filter.Content {
 		switch filter.Content[i] {
 		case "currency":
-			result.Currency, err = PrepareCurrency(lr, c, loc)
+			result.Currency, err = PrepareLanguageCurrency(lr, c, loc)
 		case "resources":
 			result.Resources, err = PrepareResources(lr, c, loc, filter)
 		case "propertie":
@@ -148,10 +146,9 @@ func PrepareLocalization(lr *localizationRepository, c context.Context, loc loca
 	return result, err
 }
 
-func PrepareCurrency(lr *localizationRepository, c context.Context, lang localization.Language) (directory.Currency, error) {
+func PrepareLanguageCurrency(lr *localizationRepository, c context.Context, lang localization.Language) (directory.Currency, error) {
 	var result directory.Currency
 	err := error(nil)
-	fmt.Println("PrepareCurrency", lang.DefaultCurrencyID)
 	collection := lr.database.Collection(directory.CollectionCurrency)
 	err = collection.FindOne(c, bson.M{"_id": lang.DefaultCurrencyID}).Decode(&result)
 	if err != nil {

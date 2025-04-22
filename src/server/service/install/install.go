@@ -63,7 +63,7 @@ func resolvePath(basePath string, relativePath string) string {
 
 func ReadJsonMap(filePath string) (map[string]interface{}, error) {
 	// Open the JSON file
-	fileData, err := os.ReadFile(filePath)
+	fileData, err := os.ReadFile(DefaultPathJson + filePath)
 	if err != nil {
 		return nil, fmt.Errorf("failed to read JSON file: %w", err)
 	}

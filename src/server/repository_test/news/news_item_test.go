@@ -30,7 +30,6 @@ func (m *MockSingleResultNewsItem) Decode(v interface{}) error {
 
 var mockItemNewsItem = &domain.NewsItem{
 	ID:              primitive.NewObjectID(), // Existing ID of the record to update
-	LanguageID:      primitive.NewObjectID(),
 	Title:           "Updated Feature Announcement",
 	Short:           "We have updated the feature announcement.",
 	Full:            "The new feature has been updated to include additional functionality.",

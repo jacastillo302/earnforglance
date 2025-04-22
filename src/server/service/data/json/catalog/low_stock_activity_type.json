@@ -1,0 +1,17 @@
+[
+    {
+      "Name": "Nothing",
+      "Value": 0,
+      "Description": "Nothing"
+    },
+    {
+      "Name": "DisableBuyButton",
+      "Value": 1,
+      "Description": "Disable buy button"
+    },
+    {
+      "Name": "Unpublish",
+      "Value": 2,
+      "Description": "Unpublish"
+    }
+  ]

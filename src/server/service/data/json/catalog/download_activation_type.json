@@ -1,14 +1,12 @@
-{
-    "DownloadActivationTypes": [
-      {
-        "Name": "WhenOrderIsPaid",
-        "Value": 0,
-        "Description": "Represents activation when the order is paid"
-      },
-      {
-        "Name": "Manually",
-        "Value": 10,
-        "Description": "Represents manual activation"
-      }
-    ]
+[
+  {
+    "Name": "WhenOrderIsPaid",
+    "Value": 0,
+    "Description": "Represents activation when the order is paid"
+  },
+  {
+    "Name": "Manually",
+    "Value": 10,
+    "Description": "Represents manual activation"
   }
+]

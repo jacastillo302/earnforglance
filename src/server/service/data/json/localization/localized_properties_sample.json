@@ -88,6 +88,7 @@
         "LocaleValue": "Título de producto de muestra"
     },
     {
+        "ID": "68055e03fe5a9f491c0a5765",
         "PermissionRecordID": "67ed65976b3a64a8c73f79ea",
         "LanguageID": "67d821918d8dffc1c549f1b1",
         "LocaleKeyGroup": "67efea201987b5c78f886e2f",
@@ -95,6 +96,7 @@
         "LocaleValue": "Bienvenido a nuestra tienda"
     },
     {
+        "ID": "68055e03fe5a9f491c0a5766",
         "PermissionRecordID": "67ed65976b3a64a8c73f79ea",
         "LanguageID": "67d821918d8dffc1c549f1b1",
         "LocaleKeyGroup": "67efea201987b5c78f886e2f",
@@ -102,6 +104,7 @@
         "LocaleValue": "<p>Las compras en línea son el proceso que siguen los consumidores para adquirir productos o servicios a través de internet. Puedes editar esto en el sitio de administración.</p>"
     },
     {
+        "ID": "68055e03fe5a9f491c0a5767",
         "PermissionRecordID": "67ed65976b3a64a8c73f79ea",
         "LanguageID": "67d821918d8dffc1c549f1b1",
         "LocaleKeyGroup": "67efea201987b5c78f886e2f",
@@ -109,6 +112,7 @@
         "LocaleValue": "topicos, temas, paginas"
     },
     {
+        "ID": "68055e03fe5a9f491c0a5768",
         "PermissionRecordID": "67ed65976b3a64a8c73f79ea",
         "LanguageID": "67d821918d8dffc1c549f1b1",
         "LocaleKeyGroup": "67efea201987b5c78f886e2f",
@@ -116,10 +120,59 @@
         "LocaleValue": "Esta es una prueba de texto en español para esta categoria"
     },
     {
+        "ID": "68055e03fe5a9f491c0a5769",
         "PermissionRecordID": "67ed65976b3a64a8c73f79ea",
         "LanguageID": "67d821918d8dffc1c549f1b1",
         "LocaleKeyGroup": "67efea201987b5c78f886e2f",
         "LocaleKey": "meta_title",
         "LocaleValue": "Título de producto de muestra"
+    },
+    {
+        "ID": "68066ff25eafc802a731ed67",
+        "PermissionRecordID": "67ed65976b3a64a8c73f79b7",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "2b011280953d8aa9b7962a23",
+        "LocaleKey": "title",
+        "LocaleValue": "Nueva función: Actualizaciones de EarnForGlance"
+    },
+    {
+        "ID": "68066ff25eafc802a731ed68",
+        "PermissionRecordID": "67ed65976b3a64a8c73f79b7",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "2b011280953d8aa9b7962a23",
+        "LocaleKey": "short",
+        "LocaleValue": "Nos complace anunciar nuevas funciones en EarnForGlance."
+    },
+    {
+        "ID": "68066ff25eafc802a731ed69",
+        "PermissionRecordID": "67ed65976b3a64a8c73f79b7",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "2b011280953d8aa9b7962a23",
+        "LocaleKey": "full",
+        "LocaleValue": "<p>EarnForGlance ha introducido varias funciones nuevas para mejorar la experiencia del usuario. Estas incluyen análisis mejorados, un rendimiento más rápido y más opciones de personalización.</p>"
+    },
+    {
+        "ID": "68066ff25eafc802a731ed6a",
+        "PermissionRecordID": "67ed65976b3a64a8c73f79b7",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "2b011280953d8aa9b7962a23",
+        "LocaleKey": "meta_keywords",
+        "LocaleValue": "EarnForGlance, actualizaciones, funciones"
+    },
+    {
+        "ID": "68066ff25eafc802a731ed6b",
+        "PermissionRecordID": "67ed65976b3a64a8c73f79b7",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "2b011280953d8aa9b7962a23",
+        "LocaleKey": "meta_description",
+        "LocaleValue": "Obtenga más información sobre las últimas características introducidas en EarnForGlance."
+    },
+    {
+        "ID": "68066ff25eafc802a731ed6c",
+        "PermissionRecordID": "67ed65976b3a64a8c73f79b7",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "2b011280953d8aa9b7962a23",
+        "LocaleKey": "meta_title",
+        "LocaleValue": "Actualizaciones de funciones de EarnForGlance"
     }
 ]

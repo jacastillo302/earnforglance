@@ -74,6 +74,9 @@ func Setup(env *bootstrap.Env, timeout time.Duration, db mongo.Database, gin *gi
 	public.TopicRouter(env, timeout, db, publicRouter)
 	public.BlogRouter(env, timeout, db, publicRouter)
 	public.LocalizationRouter(env, timeout, db, publicRouter)
+	public.NewsItemRouter(env, timeout, db, publicRouter)
+	public.DirectoryRouter(env, timeout, db, publicRouter)
+
 	//security.SignupRouter(env, timeout, db, publicRouter)
 
 	security.RefreshTokenRouter(env, timeout, db, publicRouter)

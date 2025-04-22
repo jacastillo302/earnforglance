@@ -1,0 +1,50 @@
+[
+    {
+        "ID": "68069c91a513e833f77d8def",
+        "CurrencyCode": "USD",
+        "Rate": 1,
+        "UpdatedOn": "2025-01-01T00:00:00Z"
+    },
+    {
+        "ID": "68069c91a513e833f77d8df0",
+        "CurrencyCode": "EUR",
+        "Rate": 0.92,
+        "UpdatedOn": "2025-01-01T00:00:00Z"
+    },
+    {
+        "ID": "68069c91a513e833f77d8df1",
+        "CurrencyCode": "JPY",
+        "Rate": 154.32,
+        "UpdatedOn": "2025-01-01T00:00:00Z"
+    },
+    {
+        "ID": "6806a0046b812b800627d688",
+        "CurrencyCode": "EUR",
+        "Rate": 0.92,
+        "UpdatedOn": "2025-01-02T00:00:00Z"
+    },
+    {
+        "ID": "6806a0046b812b800627d689",
+        "CurrencyCode": "EUR",
+        "Rate": 0.93,
+        "UpdatedOn": "2025-01-03T00:00:00Z"
+    },
+    {
+        "ID": "6806a0046b812b800627d68a",
+        "CurrencyCode": "EUR",
+        "Rate": 0.94,
+        "UpdatedOn": "2025-01-04T00:00:00Z"
+    },
+    {
+        "ID": "6806a0046b812b800627d68b",
+        "CurrencyCode": "EUR",
+        "Rate": 0.95,
+        "UpdatedOn": "2025-01-05T00:00:00Z"
+    },
+    {
+        "ID": "6806a0046b812b800627d68c",
+        "CurrencyCode": "EUR",
+        "Rate": 0.96,
+        "UpdatedOn": "2025-01-06T00:00:00Z"
+    }
+]

@@ -98,9 +98,9 @@ type Product struct {
 	MaximumCustomerEnteredPrice                  float64            `bson:"maximum_customer_entered_price"`
 	BasepriceEnabled                             bool               `bson:"baseprice_enabled"`
 	BasepriceAmount                              float64            `bson:"baseprice_amount"`
-	BasepriceUnitID                              int                `bson:"baseprice_unit_id"`
+	BasepriceUnitID                              primitive.ObjectID `bson:"baseprice_unit_id"`
 	BasepriceBaseAmount                          float64            `bson:"baseprice_base_amount"`
-	BasepriceBaseUnitID                          int                `bson:"baseprice_base_unit_id"`
+	BasepriceBaseUnitID                          primitive.ObjectID `bson:"baseprice_base_unit_id"`
 	MarkAsNew                                    bool               `bson:"mark_as_new"`
 	MarkAsNewStartDateTimeUtc                    *time.Time         `bson:"mark_as_new_start_date_time_utc"`
 	MarkAsNewEndDateTimeUtc                      *time.Time         `bson:"mark_as_new_end_date_time_utc"`
