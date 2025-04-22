@@ -21,4 +21,5 @@ func DirectoryRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Databas
 		Env:              env,
 	}
 	group.GET("/currencies", tp.GetCurrencies)
+	group.GET("/countries", tp.GetCountries)
 }

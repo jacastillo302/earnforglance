@@ -5,6 +5,25 @@ import (
 	domain "earnforglance/server/domain/directory"
 )
 
+type CountryRequest struct {
+	ID             string
+	Filters        []Filter
+	Sort           string
+	AllowsBilling  bool
+	AllowsShipping bool
+	SubjectToVat   bool
+	Content        []string
+}
+
+type CountryResponse struct {
+	Countries domain.Country
+	States    []domain.StateProvince
+}
+
+type CountriesResponse struct {
+	Countries []CountryResponse
+}
+
 type CurrencyRequest struct {
 	ID      string
 	Filters []Filter
@@ -30,8 +49,10 @@ type RoundingType struct {
 
 type DirectoryRepository interface {
 	GetCurrencies(c context.Context, filter CurrencyRequest) ([]CurrenciesResponse, error)
+	GetCountries(c context.Context, filter CountryRequest) ([]CountriesResponse, error)
 }
 
 type DirectoryUsecase interface {
 	GetCurrencies(c context.Context, filter CurrencyRequest) ([]CurrenciesResponse, error)
+	GetCountries(c context.Context, filter CountryRequest) ([]CountriesResponse, error)
 }

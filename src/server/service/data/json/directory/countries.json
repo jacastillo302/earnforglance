@@ -528,7 +528,7 @@
         "ThreeLetterIsoCode": "CAN",
         "NumericIsoCode": 124,
         "SubjectToVat": false,
-        "Published": false,
+        "Published": true,
         "DisplayOrder": 41,
         "LimitedToStores": false
     },
@@ -1880,7 +1880,7 @@
         "ThreeLetterIsoCode": "MEX",
         "NumericIsoCode": 484,
         "SubjectToVat": false,
-        "Published": false,
+        "Published": true,
         "DisplayOrder": 145,
         "LimitedToStores": false
     },
@@ -3076,7 +3076,7 @@
         "ThreeLetterIsoCode": "USA",
         "NumericIsoCode": 840,
         "SubjectToVat": false,
-        "Published": false,
+        "Published": true,
         "DisplayOrder": 237,
         "LimitedToStores": false
     },

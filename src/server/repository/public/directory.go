@@ -24,6 +24,93 @@ func NewDirectoryRepository(db mongo.Database, collection string) domain.Directo
 	}
 }
 
+func (dr *directoryRepository) GetCountries(c context.Context, filter domain.CountryRequest) ([]domain.CountriesResponse, error) {
+	var result []domain.CountriesResponse
+	var countries []directory.Country
+	err := error(nil)
+
+	idHex, err := primitive.ObjectIDFromHex(filter.ID)
+	if err == nil {
+		var country directory.Country
+
+		collection := dr.database.Collection(directory.CollectionCountry)
+		err = collection.FindOne(c, bson.M{"_id": idHex}).Decode(&country)
+		if err != nil {
+			return result, err
+		}
+
+		item, err := PrepareCountry(dr, c, country, filter)
+		if err != nil {
+			return result, err
+		}
+
+		result = append(result, domain.CountriesResponse{Countries: []domain.CountryResponse{item}})
+		return result, err
+	}
+
+	query := bson.M{"published": true}
+
+	sortOrder := 1
+	if filter.Sort == "desc" {
+		sortOrder = -1
+	}
+
+	for _, value := range filter.Filters {
+
+		if value.Operator == "contains" {
+			query[value.Field] = bson.M{"$regex": value.Value, "$options": "i"}
+		} else if value.Operator == "not_contains" {
+			query[value.Field] = bson.M{"$not": bson.M{"$regex": value.Value, "$options": "i"}}
+		} else {
+			query[value.Field] = value.Value
+		}
+	}
+
+	findOptions := options.Find().
+		SetSort(bson.D{{Key: "display_order", Value: sortOrder}})
+
+	collection := dr.database.Collection(directory.CollectionCountry)
+	cursor, err := collection.Find(c, query, findOptions)
+	if err != nil {
+		return result, err
+	}
+
+	err = cursor.All(c, &countries)
+	if err != nil {
+		return result, err
+	}
+
+	var items []domain.CountryResponse
+	for i := range countries {
+		item, err := PrepareCountry(dr, c, countries[i], filter)
+		if err != nil {
+			return result, err
+		}
+		items = append(items, item)
+	}
+
+	result = append(result, domain.CountriesResponse{Countries: items})
+
+	return result, err
+}
+
+func PrepareCountry(dr *directoryRepository, c context.Context, country directory.Country, filter domain.CountryRequest) (domain.CountryResponse, error) {
+	var result domain.CountryResponse
+	err := error(nil)
+
+	result.Countries = country
+
+	for i := range filter.Content {
+		switch filter.Content[i] {
+		case "states":
+			result.States, err = PrepareStates(dr, c, country)
+		}
+	}
+
+	return result, err
+
+}
+
 func (dr *directoryRepository) GetCurrencies(c context.Context, filter domain.CurrencyRequest) ([]domain.CurrenciesResponse, error) {
 	var result []domain.CurrenciesResponse
 	var currencies []directory.Currency
@@ -110,6 +197,29 @@ func PrepareCurrency(dr *directoryRepository, c context.Context, currency direct
 	}
 
 	return result, err
+}
+
+func PrepareStates(dr *directoryRepository, c context.Context, country directory.Country) ([]directory.StateProvince, error) {
+	var states []directory.StateProvince
+	err := error(nil)
+
+	collection := dr.database.Collection(directory.CollectionStateProvince)
+
+	findOptions := options.Find().
+		SetSort(bson.D{{Key: "display_order", Value: 1}})
+
+	cursor, err := collection.Find(c, bson.M{"country_id": country.ID}, findOptions)
+
+	if err != nil {
+		return states, err
+	}
+
+	err = cursor.All(c, &states)
+	if err != nil {
+		return states, err
+	}
+
+	return states, err
 }
 
 func PrepareExchangeRate(dr *directoryRepository, c context.Context, currency directory.Currency) ([]directory.ExchangeRate, error) {

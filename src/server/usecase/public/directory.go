@@ -24,3 +24,9 @@ func (r *directoryUsecase) GetCurrencies(c context.Context, filter domain.Curren
 	defer cancel()
 	return r.itemRepository.GetCurrencies(ctx, filter)
 }
+
+func (r *directoryUsecase) GetCountries(c context.Context, filter domain.CountryRequest) ([]domain.CountriesResponse, error) {
+	ctx, cancel := context.WithTimeout(c, r.contextTimeout)
+	defer cancel()
+	return r.itemRepository.GetCountries(ctx, filter)
+}
