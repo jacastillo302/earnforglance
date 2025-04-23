@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestPollVotingRecordUsecase_FetchByID(t *testing.T) {
@@ -18,12 +18,12 @@ func TestPollVotingRecordUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewPollVotingRecordUsecase(mockRepo, timeout)
 
-	pollVotingRecordID := primitive.NewObjectID().Hex()
+	pollVotingRecordID := bson.NewObjectID().Hex()
 
 	updatedPollVotingRecord := domain.PollVotingRecord{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		PollAnswerID: primitive.NewObjectID(),
-		CustomerID:   primitive.NewObjectID(),
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
+		PollAnswerID: bson.NewObjectID(),
+		CustomerID:   bson.NewObjectID(),
 		CreatedOnUtc: time.Now().AddDate(0, 0, -7), // Created 7 days ago
 	}
 
@@ -42,8 +42,8 @@ func TestPollVotingRecordUsecase_Create(t *testing.T) {
 	usecase := test.NewPollVotingRecordUsecase(mockRepo, timeout)
 
 	newPollVotingRecord := &domain.PollVotingRecord{
-		PollAnswerID: primitive.NewObjectID(),
-		CustomerID:   primitive.NewObjectID(),
+		PollAnswerID: bson.NewObjectID(),
+		CustomerID:   bson.NewObjectID(),
 		CreatedOnUtc: time.Now(),
 	}
 
@@ -61,9 +61,9 @@ func TestPollVotingRecordUsecase_Update(t *testing.T) {
 	usecase := test.NewPollVotingRecordUsecase(mockRepo, timeout)
 
 	updatedPollVotingRecord := &domain.PollVotingRecord{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		PollAnswerID: primitive.NewObjectID(),
-		CustomerID:   primitive.NewObjectID(),
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
+		PollAnswerID: bson.NewObjectID(),
+		CustomerID:   bson.NewObjectID(),
 		CreatedOnUtc: time.Now().AddDate(0, 0, -7), // Created 7 days ago
 	}
 
@@ -80,7 +80,7 @@ func TestPollVotingRecordUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewPollVotingRecordUsecase(mockRepo, timeout)
 
-	pollVotingRecordID := primitive.NewObjectID().Hex()
+	pollVotingRecordID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, pollVotingRecordID).Return(nil)
 
@@ -97,15 +97,15 @@ func TestPollVotingRecordUsecase_Fetch(t *testing.T) {
 
 	fetchedPollVotingRecords := []domain.PollVotingRecord{
 		{
-			ID:           primitive.NewObjectID(),
-			PollAnswerID: primitive.NewObjectID(),
-			CustomerID:   primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
+			PollAnswerID: bson.NewObjectID(),
+			CustomerID:   bson.NewObjectID(),
 			CreatedOnUtc: time.Now().AddDate(0, 0, -10), // Created 10 days ago
 		},
 		{
-			ID:           primitive.NewObjectID(),
-			PollAnswerID: primitive.NewObjectID(),
-			CustomerID:   primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
+			PollAnswerID: bson.NewObjectID(),
+			CustomerID:   bson.NewObjectID(),
 			CreatedOnUtc: time.Now().AddDate(0, 0, -5), // Created 5 days ago
 		},
 	}

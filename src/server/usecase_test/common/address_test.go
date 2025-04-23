@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestAddressUsecase_FetchByID(t *testing.T) {
@@ -18,16 +18,16 @@ func TestAddressUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewAddressUsecase(mockRepo, timeout)
 
-	addressID := primitive.NewObjectID().Hex()
+	addressID := bson.NewObjectID().Hex()
 
 	updatedAddress := domain.Address{
-		ID:               primitive.NewObjectID(), // Existing ID of the record to update
+		ID:               bson.NewObjectID(), // Existing ID of the record to update
 		FirstName:        "Jane",
 		LastName:         "Smith",
 		Email:            "jane.smith@example.com",
 		Company:          "Updated Corp",
-		CountryID:        new(primitive.ObjectID),
-		StateProvinceID:  new(primitive.ObjectID),
+		CountryID:        new(bson.ObjectID),
+		StateProvinceID:  new(bson.ObjectID),
 		County:           "Updated County",
 		City:             "Updated City",
 		Address1:         "456 Elm St",
@@ -85,13 +85,13 @@ func TestAddressUsecase_Update(t *testing.T) {
 	usecase := test.NewAddressUsecase(mockRepo, timeout)
 
 	updatedAddress := &domain.Address{
-		ID:               primitive.NewObjectID(), // Existing ID of the record to update
+		ID:               bson.NewObjectID(), // Existing ID of the record to update
 		FirstName:        "Jane",
 		LastName:         "Smith",
 		Email:            "jane.smith@example.com",
 		Company:          "Updated Corp",
-		CountryID:        new(primitive.ObjectID),
-		StateProvinceID:  new(primitive.ObjectID),
+		CountryID:        new(bson.ObjectID),
+		StateProvinceID:  new(bson.ObjectID),
 		County:           "Updated County",
 		City:             "Updated City",
 		Address1:         "456 Elm St",
@@ -102,8 +102,8 @@ func TestAddressUsecase_Update(t *testing.T) {
 		CustomAttributes: "<custom><attribute>updated</attribute></custom>",
 		CreatedOnUtc:     time.Now().AddDate(0, 0, -7), // Created 7 days ago
 	}
-	*updatedAddress.CountryID = primitive.NewObjectID()
-	*updatedAddress.StateProvinceID = primitive.NewObjectID()
+	*updatedAddress.CountryID = bson.NewObjectID()
+	*updatedAddress.StateProvinceID = bson.NewObjectID()
 
 	mockRepo.On("Update", mock.Anything, updatedAddress).Return(nil)
 
@@ -118,7 +118,7 @@ func TestAddressUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewAddressUsecase(mockRepo, timeout)
 
-	addressID := primitive.NewObjectID().Hex()
+	addressID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, addressID).Return(nil)
 
@@ -135,7 +135,7 @@ func TestAddressUsecase_Fetch(t *testing.T) {
 
 	fetchedAddresses := []domain.Address{
 		{
-			ID:               primitive.NewObjectID(),
+			ID:               bson.NewObjectID(),
 			FirstName:        "John",
 			LastName:         "Doe",
 			Email:            "john.doe@example.com",
@@ -153,13 +153,13 @@ func TestAddressUsecase_Fetch(t *testing.T) {
 			CreatedOnUtc:     time.Now().AddDate(0, 0, -10), // Created 10 days ago
 		},
 		{
-			ID:               primitive.NewObjectID(),
+			ID:               bson.NewObjectID(),
 			FirstName:        "Jane",
 			LastName:         "Smith",
 			Email:            "jane.smith@example.com",
 			Company:          "Updated Corp",
-			CountryID:        new(primitive.ObjectID),
-			StateProvinceID:  new(primitive.ObjectID),
+			CountryID:        new(bson.ObjectID),
+			StateProvinceID:  new(bson.ObjectID),
 			County:           "Updated County",
 			City:             "Updated City",
 			Address1:         "456 Elm St",
@@ -171,8 +171,8 @@ func TestAddressUsecase_Fetch(t *testing.T) {
 			CreatedOnUtc:     time.Now().AddDate(0, 0, -5), // Created 5 days ago
 		},
 	}
-	*fetchedAddresses[1].CountryID = primitive.NewObjectID()
-	*fetchedAddresses[1].StateProvinceID = primitive.NewObjectID()
+	*fetchedAddresses[1].CountryID = bson.NewObjectID()
+	*fetchedAddresses[1].StateProvinceID = bson.NewObjectID()
 
 	mockRepo.On("Fetch", mock.Anything).Return(fetchedAddresses, nil)
 

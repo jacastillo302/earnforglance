@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestReviewTypeUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestReviewTypeUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewReviewTypeUsecase(mockRepo, timeout)
 
-	reviewTypeID := primitive.NewObjectID().Hex()
+	reviewTypeID := bson.NewObjectID().Hex()
 
 	updatedReviewType := domain.ReviewType{
-		ID:                    primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                    bson.NewObjectID(), // Existing ID of the record to update
 		Name:                  "Durability",
 		Description:           "Review the durability of the product.",
 		DisplayOrder:          2,
@@ -65,7 +65,7 @@ func TestReviewTypeUsecase_Update(t *testing.T) {
 	usecase := test.NewReviewTypeUsecase(mockRepo, timeout)
 
 	updatedReviewType := &domain.ReviewType{
-		ID:                    primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                    bson.NewObjectID(), // Existing ID of the record to update
 		Name:                  "Durability",
 		Description:           "Review the durability of the product.",
 		DisplayOrder:          2,
@@ -86,7 +86,7 @@ func TestReviewTypeUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewReviewTypeUsecase(mockRepo, timeout)
 
-	reviewTypeID := primitive.NewObjectID().Hex()
+	reviewTypeID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, reviewTypeID).Return(nil)
 
@@ -103,7 +103,7 @@ func TestReviewTypeUsecase_Fetch(t *testing.T) {
 
 	fetchedReviewTypes := []domain.ReviewType{
 		{
-			ID:                    primitive.NewObjectID(),
+			ID:                    bson.NewObjectID(),
 			Name:                  "Quality",
 			Description:           "Review the quality of the product.",
 			DisplayOrder:          1,
@@ -111,7 +111,7 @@ func TestReviewTypeUsecase_Fetch(t *testing.T) {
 			IsRequired:            true,
 		},
 		{
-			ID:                    primitive.NewObjectID(),
+			ID:                    bson.NewObjectID(),
 			Name:                  "Durability",
 			Description:           "Review the durability of the product.",
 			DisplayOrder:          2,

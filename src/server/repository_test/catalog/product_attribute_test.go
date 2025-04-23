@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultProductAttribute struct {
@@ -28,7 +28,7 @@ func (m *MockSingleResultProductAttribute) Decode(v interface{}) error {
 }
 
 var mockItemProductAttribute = &domain.ProductAttribute{
-	ID:          primitive.NewObjectID(),
+	ID:          bson.NewObjectID(),
 	Name:        "Size",
 	Description: "Defines the size of the product",
 }

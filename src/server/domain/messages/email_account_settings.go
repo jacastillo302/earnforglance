@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,8 +12,8 @@ const (
 
 // EmailAccountSettings  represents email account settings
 type EmailAccountSettings struct {
-	ID                    primitive.ObjectID `bson:"_id,omitempty"`
-	DefaultEmailAccountID primitive.ObjectID `bson:"default_email_account_id"`
+	ID                    bson.ObjectID `bson:"_id,omitempty"`
+	DefaultEmailAccountID bson.ObjectID `bson:"default_email_account_id"`
 }
 
 // EmailAccountSettingsRepository represents the repository interface for EmailAccountSettings

@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestBestSellersReportLineUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestBestSellersReportLineUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewBestSellersReportLineUsecase(mockRepo, timeout)
 
-	reportLineID := primitive.NewObjectID().Hex()
+	reportLineID := bson.NewObjectID().Hex()
 
 	updatedBestSellersReportLine := domain.BestSellersReportLine{
-		ProductID:     primitive.NewObjectID(), // Existing ProductID of the record to update
+		ProductID:     bson.NewObjectID(), // Existing ProductID of the record to update
 		ProductName:   "Noise-Cancelling Headphones",
 		TotalAmount:   2000.50,
 		TotalQuantity: 75,
@@ -42,7 +42,7 @@ func TestBestSellersReportLineUsecase_Create(t *testing.T) {
 	usecase := test.NewBestSellersReportLineUsecase(mockRepo, timeout)
 
 	newBestSellersReportLine := &domain.BestSellersReportLine{
-		ProductID:     primitive.NewObjectID(),
+		ProductID:     bson.NewObjectID(),
 		ProductName:   "Wireless Headphones",
 		TotalAmount:   1500.75,
 		TotalQuantity: 50,
@@ -62,7 +62,7 @@ func TestBestSellersReportLineUsecase_Update(t *testing.T) {
 	usecase := test.NewBestSellersReportLineUsecase(mockRepo, timeout)
 
 	updatedBestSellersReportLine := &domain.BestSellersReportLine{
-		ProductID:     primitive.NewObjectID(), // Existing ProductID of the record to update
+		ProductID:     bson.NewObjectID(), // Existing ProductID of the record to update
 		ProductName:   "Noise-Cancelling Headphones",
 		TotalAmount:   2000.50,
 		TotalQuantity: 75,
@@ -81,7 +81,7 @@ func TestBestSellersReportLineUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewBestSellersReportLineUsecase(mockRepo, timeout)
 
-	reportLineID := primitive.NewObjectID().Hex()
+	reportLineID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, reportLineID).Return(nil)
 
@@ -98,13 +98,13 @@ func TestBestSellersReportLineUsecase_Fetch(t *testing.T) {
 
 	fetchedBestSellersReportLines := []domain.BestSellersReportLine{
 		{
-			ProductID:     primitive.NewObjectID(),
+			ProductID:     bson.NewObjectID(),
 			ProductName:   "Wireless Headphones",
 			TotalAmount:   1500.75,
 			TotalQuantity: 50,
 		},
 		{
-			ProductID:     primitive.NewObjectID(),
+			ProductID:     bson.NewObjectID(),
 			ProductName:   "Bluetooth Speaker",
 			TotalAmount:   1200.00,
 			TotalQuantity: 30,

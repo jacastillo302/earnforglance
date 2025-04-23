@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -13,18 +13,18 @@ const (
 
 // ShoppingCartItem represents a shopping cart item
 type ShoppingCartItem struct {
-	ID                   primitive.ObjectID `bson:"_id,omitempty"`
-	StoreID              primitive.ObjectID `bson:"store_id"`
-	ShoppingCartTypeID   int                `bson:"shopping_cart_type_id"`
-	CustomerID           primitive.ObjectID `bson:"customer_id"`
-	ProductID            primitive.ObjectID `bson:"product_id"`
-	AttributesXml        string             `bson:"attributes_xml"`
-	CustomerEnteredPrice float64            `bson:"customer_entered_price"`
-	Quantity             int                `bson:"quantity"`
-	RentalStartDateUtc   *time.Time         `bson:"rental_start_date_utc"`
-	RentalEndDateUtc     *time.Time         `bson:"rental_end_date_utc"`
-	CreatedOnUtc         time.Time          `bson:"created_on_utc"`
-	UpdatedOnUtc         time.Time          `bson:"updated_on_utc"`
+	ID                   bson.ObjectID `bson:"_id,omitempty"`
+	StoreID              bson.ObjectID `bson:"store_id"`
+	ShoppingCartTypeID   int           `bson:"shopping_cart_type_id"`
+	CustomerID           bson.ObjectID `bson:"customer_id"`
+	ProductID            bson.ObjectID `bson:"product_id"`
+	AttributesXml        string        `bson:"attributes_xml"`
+	CustomerEnteredPrice float64       `bson:"customer_entered_price"`
+	Quantity             int           `bson:"quantity"`
+	RentalStartDateUtc   *time.Time    `bson:"rental_start_date_utc"`
+	RentalEndDateUtc     *time.Time    `bson:"rental_end_date_utc"`
+	CreatedOnUtc         time.Time     `bson:"created_on_utc"`
+	UpdatedOnUtc         time.Time     `bson:"updated_on_utc"`
 }
 
 // ShoppingCartItemRepository defines the repository interface for ShoppingCartItem

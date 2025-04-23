@@ -11,7 +11,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestOrderItemUsecase_FetchByID(t *testing.T) {
@@ -19,13 +19,13 @@ func TestOrderItemUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewOrderItemUsecase(mockRepo, timeout)
 
-	orderItemID := primitive.NewObjectID().Hex()
+	orderItemID := bson.NewObjectID().Hex()
 
 	updatedOrderItem := domain.OrderItem{
-		ID:                    primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                    bson.NewObjectID(), // Existing ID of the record to update
 		OrderItemGuid:         uuid.New(),
-		OrderID:               primitive.NewObjectID(),
-		ProductID:             primitive.NewObjectID(),
+		OrderID:               bson.NewObjectID(),
+		ProductID:             bson.NewObjectID(),
 		Quantity:              3,
 		UnitPriceInclTax:      60.00,
 		UnitPriceExclTax:      55.00,
@@ -38,7 +38,7 @@ func TestOrderItemUsecase_FetchByID(t *testing.T) {
 		AttributesXml:         "<Attributes><Color>Blue</Color><Size>L</Size></Attributes>",
 		DownloadCount:         1,
 		IsDownloadActivated:   true,
-		LicenseDownloadID:     new(primitive.ObjectID),
+		LicenseDownloadID:     new(bson.ObjectID),
 		ItemWeight:            new(float64),
 		RentalStartDateUtc:    new(time.Time),
 		RentalEndDateUtc:      new(time.Time),
@@ -60,8 +60,8 @@ func TestOrderItemUsecase_Create(t *testing.T) {
 
 	newOrderItem := &domain.OrderItem{
 		OrderItemGuid:         uuid.New(),
-		OrderID:               primitive.NewObjectID(),
-		ProductID:             primitive.NewObjectID(),
+		OrderID:               bson.NewObjectID(),
+		ProductID:             bson.NewObjectID(),
 		Quantity:              2,
 		UnitPriceInclTax:      50.00,
 		UnitPriceExclTax:      45.00,
@@ -95,10 +95,10 @@ func TestOrderItemUsecase_Update(t *testing.T) {
 	usecase := test.NewOrderItemUsecase(mockRepo, timeout)
 
 	updatedOrderItem := &domain.OrderItem{
-		ID:                    primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                    bson.NewObjectID(), // Existing ID of the record to update
 		OrderItemGuid:         uuid.New(),
-		OrderID:               primitive.NewObjectID(),
-		ProductID:             primitive.NewObjectID(),
+		OrderID:               bson.NewObjectID(),
+		ProductID:             bson.NewObjectID(),
 		Quantity:              3,
 		UnitPriceInclTax:      60.00,
 		UnitPriceExclTax:      55.00,
@@ -111,12 +111,12 @@ func TestOrderItemUsecase_Update(t *testing.T) {
 		AttributesXml:         "<Attributes><Color>Blue</Color><Size>L</Size></Attributes>",
 		DownloadCount:         1,
 		IsDownloadActivated:   true,
-		LicenseDownloadID:     new(primitive.ObjectID),
+		LicenseDownloadID:     new(bson.ObjectID),
 		ItemWeight:            new(float64),
 		RentalStartDateUtc:    new(time.Time),
 		RentalEndDateUtc:      new(time.Time),
 	}
-	*updatedOrderItem.LicenseDownloadID = primitive.NewObjectID()
+	*updatedOrderItem.LicenseDownloadID = bson.NewObjectID()
 	*updatedOrderItem.ItemWeight = 2.0
 	*updatedOrderItem.RentalStartDateUtc = time.Now().AddDate(0, 0, -1) // Started 1 day ago
 	*updatedOrderItem.RentalEndDateUtc = time.Now().AddDate(0, 0, 5)    // Ends in 5 days
@@ -134,7 +134,7 @@ func TestOrderItemUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewOrderItemUsecase(mockRepo, timeout)
 
-	orderItemID := primitive.NewObjectID().Hex()
+	orderItemID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, orderItemID).Return(nil)
 
@@ -151,10 +151,10 @@ func TestOrderItemUsecase_Fetch(t *testing.T) {
 
 	fetchedOrderItems := []domain.OrderItem{
 		{
-			ID:                    primitive.NewObjectID(),
+			ID:                    bson.NewObjectID(),
 			OrderItemGuid:         uuid.New(),
-			OrderID:               primitive.NewObjectID(),
-			ProductID:             primitive.NewObjectID(),
+			OrderID:               bson.NewObjectID(),
+			ProductID:             bson.NewObjectID(),
 			Quantity:              2,
 			UnitPriceInclTax:      50.00,
 			UnitPriceExclTax:      45.00,
@@ -173,10 +173,10 @@ func TestOrderItemUsecase_Fetch(t *testing.T) {
 			RentalEndDateUtc:      nil,
 		},
 		{
-			ID:                    primitive.NewObjectID(),
+			ID:                    bson.NewObjectID(),
 			OrderItemGuid:         uuid.New(),
-			OrderID:               primitive.NewObjectID(),
-			ProductID:             primitive.NewObjectID(),
+			OrderID:               bson.NewObjectID(),
+			ProductID:             bson.NewObjectID(),
 			Quantity:              3,
 			UnitPriceInclTax:      60.00,
 			UnitPriceExclTax:      55.00,
@@ -189,14 +189,14 @@ func TestOrderItemUsecase_Fetch(t *testing.T) {
 			AttributesXml:         "<Attributes><Color>Blue</Color><Size>L</Size></Attributes>",
 			DownloadCount:         1,
 			IsDownloadActivated:   true,
-			LicenseDownloadID:     new(primitive.ObjectID),
+			LicenseDownloadID:     new(bson.ObjectID),
 			ItemWeight:            new(float64),
 			RentalStartDateUtc:    new(time.Time),
 			RentalEndDateUtc:      new(time.Time),
 		},
 	}
 	*fetchedOrderItems[0].ItemWeight = 1.5
-	*fetchedOrderItems[1].LicenseDownloadID = primitive.NewObjectID()
+	*fetchedOrderItems[1].LicenseDownloadID = bson.NewObjectID()
 	*fetchedOrderItems[1].ItemWeight = 2.0
 	*fetchedOrderItems[1].RentalStartDateUtc = time.Now().AddDate(0, 0, -1) // Started 1 day ago
 	*fetchedOrderItems[1].RentalEndDateUtc = time.Now().AddDate(0, 0, 5)    // Ends in 5 days

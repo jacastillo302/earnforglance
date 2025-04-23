@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,9 +12,9 @@ const (
 
 // ProductProductTagMapping represents a product-product tag mapping class
 type ProductProductTagMapping struct {
-	ID           primitive.ObjectID `bson:"_id,omitempty"`
-	ProductID    primitive.ObjectID `bson:"product_id"`
-	ProductTagID primitive.ObjectID `bson:"product_tag_id"`
+	ID           bson.ObjectID `bson:"_id,omitempty"`
+	ProductID    bson.ObjectID `bson:"product_id"`
+	ProductTagID bson.ObjectID `bson:"product_tag_id"`
 }
 
 type ProductProductTagMappingRepository interface {

@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestEmailAccountSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestEmailAccountSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewEmailAccountSettingsUsecase(mockRepo, timeout)
 
-	emailAccountSettingsID := primitive.NewObjectID().Hex()
+	emailAccountSettingsID := bson.NewObjectID().Hex()
 	updatedEmailAccountSettings := domain.EmailAccountSettings{
-		ID:                    primitive.NewObjectID(), // Existing ID of the record to update
-		DefaultEmailAccountID: primitive.NewObjectID(),
+		ID:                    bson.NewObjectID(), // Existing ID of the record to update
+		DefaultEmailAccountID: bson.NewObjectID(),
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, emailAccountSettingsID).Return(updatedEmailAccountSettings, nil)
@@ -39,7 +39,7 @@ func TestEmailAccountSettingsUsecase_Create(t *testing.T) {
 	usecase := test.NewEmailAccountSettingsUsecase(mockRepo, timeout)
 
 	newEmailAccountSettings := &domain.EmailAccountSettings{
-		DefaultEmailAccountID: primitive.NewObjectID(),
+		DefaultEmailAccountID: bson.NewObjectID(),
 	}
 
 	mockRepo.On("Create", mock.Anything, newEmailAccountSettings).Return(nil)
@@ -56,8 +56,8 @@ func TestEmailAccountSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewEmailAccountSettingsUsecase(mockRepo, timeout)
 
 	updatedEmailAccountSettings := &domain.EmailAccountSettings{
-		ID:                    primitive.NewObjectID(), // Existing ID of the record to update
-		DefaultEmailAccountID: primitive.NewObjectID(),
+		ID:                    bson.NewObjectID(), // Existing ID of the record to update
+		DefaultEmailAccountID: bson.NewObjectID(),
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedEmailAccountSettings).Return(nil)
@@ -73,7 +73,7 @@ func TestEmailAccountSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewEmailAccountSettingsUsecase(mockRepo, timeout)
 
-	emailAccountSettingsID := primitive.NewObjectID().Hex()
+	emailAccountSettingsID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, emailAccountSettingsID).Return(nil)
 
@@ -90,12 +90,12 @@ func TestEmailAccountSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedEmailAccountSettings := []domain.EmailAccountSettings{
 		{
-			ID:                    primitive.NewObjectID(),
-			DefaultEmailAccountID: primitive.NewObjectID(),
+			ID:                    bson.NewObjectID(),
+			DefaultEmailAccountID: bson.NewObjectID(),
 		},
 		{
-			ID:                    primitive.NewObjectID(),
-			DefaultEmailAccountID: primitive.NewObjectID(),
+			ID:                    bson.NewObjectID(),
+			DefaultEmailAccountID: bson.NewObjectID(),
 		},
 	}
 

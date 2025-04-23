@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -13,10 +13,10 @@ const (
 
 // RecurringPaymentHistory represents a recurring payment history
 type RecurringPaymentHistory struct {
-	ID                 primitive.ObjectID `bson:"_id,omitempty"`
-	RecurringPaymentID primitive.ObjectID `bson:"recurring_payment_id"`
-	OrderID            primitive.ObjectID `bson:"order_id"`
-	CreatedOnUtc       time.Time          `bson:"created_on_utc"`
+	ID                 bson.ObjectID `bson:"_id,omitempty"`
+	RecurringPaymentID bson.ObjectID `bson:"recurring_payment_id"`
+	OrderID            bson.ObjectID `bson:"order_id"`
+	CreatedOnUtc       time.Time     `bson:"created_on_utc"`
 }
 
 // RecurringPaymentHistoryRepository represents the repository interface for RecurringPaymentHistory

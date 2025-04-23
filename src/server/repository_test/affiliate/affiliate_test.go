@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResult struct {
@@ -37,7 +37,7 @@ func TestFetchByID(t *testing.T) {
 	collectionName := domain.CollectionAffiliate
 
 	mockItem := domain.Affiliate{
-		ID:              primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+		ID:              bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
 		AdminComment:    "",
 		FriendlyUrlName: "",
 		Deleted:         false,
@@ -88,7 +88,7 @@ func TestCreate(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockAffiliate := &domain.Affiliate{
-		ID:              primitive.NewObjectID(),
+		ID:              bson.NewObjectID(),
 		AdminComment:    "Test Comment",
 		FriendlyUrlName: "test-url",
 		Deleted:         false,
@@ -113,7 +113,7 @@ func TestUpdate(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockAffiliate := &domain.Affiliate{
-		ID:              primitive.NewObjectID(),
+		ID:              bson.NewObjectID(),
 		AdminComment:    "Updated Comment",
 		FriendlyUrlName: "updated-url",
 		Deleted:         false,

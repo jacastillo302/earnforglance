@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultBaseAttributeValue struct {
@@ -37,11 +37,11 @@ func TestBaseAttributeValueRepository_FetchByID(t *testing.T) {
 	collectionName := domain.CollectionBaseAttributeValue
 
 	mockItem := domain.BaseAttributeValue{
-		ID:            primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+		ID:            bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
 		Name:          "",
 		IsPreSelected: false,
 		DisplayOrder:  0,
-		AttributeId:   primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+		AttributeId:   bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
 	}
 
 	t.Run("success", func(t *testing.T) {
@@ -88,11 +88,11 @@ func TestBaseAttributeValueRepository_Create(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockBaseAttributeValue := &domain.BaseAttributeValue{
-		ID:            primitive.NewObjectID(), // Existing ID of the record to update
+		ID:            bson.NewObjectID(), // Existing ID of the record to update
 		Name:          "Size",
 		IsPreSelected: true,
 		DisplayOrder:  2,
-		AttributeId:   primitive.NewObjectID(), // Reference to the related attribute
+		AttributeId:   bson.NewObjectID(), // Reference to the related attribute
 	}
 
 	collectionHelper.On("InsertOne", mock.Anything, mockBaseAttributeValue).Return(nil, nil).Once()
@@ -113,11 +113,11 @@ func TestBaseAttributeValueRepository_Update(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockBaseAttributeValue := &domain.BaseAttributeValue{
-		ID:            primitive.NewObjectID(), // Existing ID of the record to update
+		ID:            bson.NewObjectID(), // Existing ID of the record to update
 		Name:          "Size",
 		IsPreSelected: true,
 		DisplayOrder:  2,
-		AttributeId:   primitive.NewObjectID(), // Reference to the related attribute
+		AttributeId:   bson.NewObjectID(), // Reference to the related attribute
 	}
 
 	filter := bson.M{"_id": mockBaseAttributeValue.ID}

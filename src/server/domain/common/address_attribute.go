@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,17 +12,17 @@ const (
 
 // AddressAttribute represents an address attribute
 type AddressAttribute struct {
-	ID                              primitive.ObjectID `bson:"_id,omitempty"`
-	Name                            string             `bson:"name"`
-	IsRequired                      bool               `bson:"is_required"`
-	AttributeControlTypeID          int                `bson:"attribute_control_type_id"`
-	DisplayOrder                    int                `bson:"display_order"`
-	DefaultValue                    string             `bson:"default_value"`
-	ValidationMinLength             *int               `bson:"validation_min_length"`
-	ValidationMaxLength             *int               `bson:"validation_max_length"`
-	ValidationFileAllowedExtensions string             `bson:"validation_file_allowed_extensions"`
-	ValidationFileMaximumSize       *int               `bson:"validation_file_maximum_size"`
-	ConditionAttributeXml           string             `bson:"condition_attribute_xml"`
+	ID                              bson.ObjectID `bson:"_id,omitempty"`
+	Name                            string        `bson:"name"`
+	IsRequired                      bool          `bson:"is_required"`
+	AttributeControlTypeID          int           `bson:"attribute_control_type_id"`
+	DisplayOrder                    int           `bson:"display_order"`
+	DefaultValue                    string        `bson:"default_value"`
+	ValidationMinLength             *int          `bson:"validation_min_length"`
+	ValidationMaxLength             *int          `bson:"validation_max_length"`
+	ValidationFileAllowedExtensions string        `bson:"validation_file_allowed_extensions"`
+	ValidationFileMaximumSize       *int          `bson:"validation_file_maximum_size"`
+	ConditionAttributeXml           string        `bson:"condition_attribute_xml"`
 }
 
 type AddressAttributeRepository interface {

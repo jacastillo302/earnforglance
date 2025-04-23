@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestVendorSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestVendorSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewVendorSettingsUsecase(mockRepo, timeout)
 
-	vendorSettingsID := primitive.NewObjectID().Hex()
+	vendorSettingsID := bson.NewObjectID().Hex()
 
 	updatedVendorSettings := domain.VendorSettings{
-		ID:                                           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                           bson.NewObjectID(), // Existing ID of the record to update
 		DefaultVendorPageSizeOptions:                 "5,15,25",
 		VendorsBlockItemsToDisplay:                   15,
 		ShowVendorOnProductDetailsPage:               false,
@@ -81,7 +81,7 @@ func TestVendorSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewVendorSettingsUsecase(mockRepo, timeout)
 
 	updatedVendorSettings := &domain.VendorSettings{
-		ID:                                           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                           bson.NewObjectID(), // Existing ID of the record to update
 		DefaultVendorPageSizeOptions:                 "5,15,25",
 		VendorsBlockItemsToDisplay:                   15,
 		ShowVendorOnProductDetailsPage:               false,
@@ -110,7 +110,7 @@ func TestVendorSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewVendorSettingsUsecase(mockRepo, timeout)
 
-	vendorSettingsID := primitive.NewObjectID().Hex()
+	vendorSettingsID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, vendorSettingsID).Return(nil)
 
@@ -127,7 +127,7 @@ func TestVendorSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedVendorSettings := []domain.VendorSettings{
 		{
-			ID:                                           primitive.NewObjectID(),
+			ID:                                           bson.NewObjectID(),
 			DefaultVendorPageSizeOptions:                 "10,20,50",
 			VendorsBlockItemsToDisplay:                   10,
 			ShowVendorOnProductDetailsPage:               true,
@@ -143,7 +143,7 @@ func TestVendorSettingsUsecase_Fetch(t *testing.T) {
 			MaximumProductPicturesNumber:                 5,
 		},
 		{
-			ID:                                           primitive.NewObjectID(),
+			ID:                                           bson.NewObjectID(),
 			DefaultVendorPageSizeOptions:                 "5,15,25",
 			VendorsBlockItemsToDisplay:                   15,
 			ShowVendorOnProductDetailsPage:               false,

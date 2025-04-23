@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,14 +12,14 @@ const (
 
 // CheckoutAttributeValue represents a checkout attribute value.
 type CheckoutAttributeValue struct {
-	ID               primitive.ObjectID `bson:"_id,omitempty"`
-	AttributeID      primitive.ObjectID `bson:"attribute_id"`
-	Name             string             `bson:"name"`
-	DisplayOrder     int                `bson:"display_order"`
-	IsPreSelected    bool               `bson:"is_pre_selected"`
-	ColorSquaresRgb  string             `bson:"color_squares_rgb"`
-	PriceAdjustment  float64            `bson:"price_adjustment"`
-	WeightAdjustment float64            `bson:"weight_adjustment"`
+	ID               bson.ObjectID `bson:"_id,omitempty"`
+	AttributeID      bson.ObjectID `bson:"attribute_id"`
+	Name             string        `bson:"name"`
+	DisplayOrder     int           `bson:"display_order"`
+	IsPreSelected    bool          `bson:"is_pre_selected"`
+	ColorSquaresRgb  string        `bson:"color_squares_rgb"`
+	PriceAdjustment  float64       `bson:"price_adjustment"`
+	WeightAdjustment float64       `bson:"weight_adjustment"`
 }
 
 // CheckoutAttributeValueRepository interface

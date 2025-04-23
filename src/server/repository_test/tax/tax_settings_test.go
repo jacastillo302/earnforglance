@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultTaxSettings struct {
@@ -28,12 +28,12 @@ func (m *MockSingleResultTaxSettings) Decode(v interface{}) error {
 }
 
 var mockItemTaxSettings = &domain.TaxSettings{
-	ID:                                    primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                                    bson.NewObjectID(), // Existing ID of the record to update
 	TaxBasedOnID:                          1,
 	TaxBasedOnPickupPointAddress:          false,
 	TaxDisplayTypeID:                      2,
 	ActiveTaxProviderSystemName:           "UpdatedTaxProvider",
-	DefaultTaxAddressID:                   primitive.NewObjectID(),
+	DefaultTaxAddressID:                   bson.NewObjectID(),
 	DisplayTaxSuffix:                      false,
 	DisplayTaxRates:                       false,
 	PricesIncludeTax:                      true,
@@ -42,17 +42,17 @@ var mockItemTaxSettings = &domain.TaxSettings{
 	HideZeroTax:                           false,
 	HideTaxInOrderSummary:                 true,
 	ForceTaxExclusionFromOrderSubtotal:    false,
-	DefaultTaxCategoryID:                  primitive.NewObjectID(),
+	DefaultTaxCategoryID:                  bson.NewObjectID(),
 	ShippingIsTaxable:                     false,
 	ShippingPriceIncludesTax:              true,
-	ShippingTaxClassID:                    primitive.NewObjectID(),
+	ShippingTaxClassID:                    bson.NewObjectID(),
 	PaymentMethodAdditionalFeeIsTaxable:   false,
 	PaymentMethodAdditionalFeeIncludesTax: true,
-	PaymentMethodAdditionalFeeTaxClassID:  primitive.NewObjectID(),
+	PaymentMethodAdditionalFeeTaxClassID:  bson.NewObjectID(),
 	EuVatEnabled:                          false,
 	EuVatRequired:                         false,
 	EuVatEnabledForGuests:                 true,
-	EuVatShopCountryID:                    primitive.NewObjectID(),
+	EuVatShopCountryID:                    bson.NewObjectID(),
 	EuVatAllowVatExemption:                false,
 	EuVatUseWebService:                    true,
 	EuVatAssumeValid:                      true,

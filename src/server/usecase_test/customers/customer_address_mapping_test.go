@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestCustomerAddressMappingUsecase_FetchByID(t *testing.T) {
@@ -18,12 +18,12 @@ func TestCustomerAddressMappingUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCustomerAddressMappingUsecase(mockRepo, timeout)
 
-	customerAddressMappingID := primitive.NewObjectID().Hex()
+	customerAddressMappingID := bson.NewObjectID().Hex()
 
 	updatedCustomerAddressMapping := domain.CustomerAddressMapping{
-		ID:         primitive.NewObjectID(), // Existing ID of the record to update
-		CustomerID: primitive.NewObjectID(),
-		AddressID:  primitive.NewObjectID(),
+		ID:         bson.NewObjectID(), // Existing ID of the record to update
+		CustomerID: bson.NewObjectID(),
+		AddressID:  bson.NewObjectID(),
 	}
 	mockRepo.On("FetchByID", mock.Anything, customerAddressMappingID).Return(updatedCustomerAddressMapping, nil)
 
@@ -40,8 +40,8 @@ func TestCustomerAddressMappingUsecase_Create(t *testing.T) {
 	usecase := test.NewCustomerAddressMappingUsecase(mockRepo, timeout)
 
 	newCustomerAddressMapping := &domain.CustomerAddressMapping{
-		CustomerID: primitive.NewObjectID(),
-		AddressID:  primitive.NewObjectID(),
+		CustomerID: bson.NewObjectID(),
+		AddressID:  bson.NewObjectID(),
 	}
 
 	mockRepo.On("Create", mock.Anything, newCustomerAddressMapping).Return(nil)
@@ -58,9 +58,9 @@ func TestCustomerAddressMappingUsecase_Update(t *testing.T) {
 	usecase := test.NewCustomerAddressMappingUsecase(mockRepo, timeout)
 
 	updatedCustomerAddressMapping := &domain.CustomerAddressMapping{
-		ID:         primitive.NewObjectID(), // Existing ID of the record to update
-		CustomerID: primitive.NewObjectID(),
-		AddressID:  primitive.NewObjectID(),
+		ID:         bson.NewObjectID(), // Existing ID of the record to update
+		CustomerID: bson.NewObjectID(),
+		AddressID:  bson.NewObjectID(),
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedCustomerAddressMapping).Return(nil)
@@ -76,7 +76,7 @@ func TestCustomerAddressMappingUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCustomerAddressMappingUsecase(mockRepo, timeout)
 
-	customerAddressMappingID := primitive.NewObjectID().Hex()
+	customerAddressMappingID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, customerAddressMappingID).Return(nil)
 
@@ -93,14 +93,14 @@ func TestCustomerAddressMappingUsecase_Fetch(t *testing.T) {
 
 	fetchedCustomerAddressMappings := []domain.CustomerAddressMapping{
 		{
-			ID:         primitive.NewObjectID(),
-			CustomerID: primitive.NewObjectID(),
-			AddressID:  primitive.NewObjectID(),
+			ID:         bson.NewObjectID(),
+			CustomerID: bson.NewObjectID(),
+			AddressID:  bson.NewObjectID(),
 		},
 		{
-			ID:         primitive.NewObjectID(),
-			CustomerID: primitive.NewObjectID(),
-			AddressID:  primitive.NewObjectID(),
+			ID:         bson.NewObjectID(),
+			CustomerID: bson.NewObjectID(),
+			AddressID:  bson.NewObjectID(),
 		},
 	}
 

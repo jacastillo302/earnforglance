@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultSalesSummaryReportLine struct {
@@ -29,7 +29,7 @@ func (m *MockSingleResultSalesSummaryReportLine) Decode(v interface{}) error {
 }
 
 var mockItemSalesSummaryReportLine = &domain.SalesSummaryReportLine{
-	ID:             primitive.NewObjectID(), // Existing ID of the record to update
+	ID:             bson.NewObjectID(), // Existing ID of the record to update
 	Summary:        "Updated Weekly Sales Summary",
 	SummaryDate:    time.Now().AddDate(0, 0, -7), // Summary from 7 days ago
 	NumberOfOrders: 100,

@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultProductReview struct {
@@ -28,10 +28,10 @@ func (m *MockSingleResultProductReview) Decode(v interface{}) error {
 }
 
 var mockItemProductReview = &domain.ProductReview{
-	ID:                      primitive.NewObjectID(), // Existing ID of the record to update
-	CustomerID:              primitive.NewObjectID(),
-	ProductID:               primitive.NewObjectID(),
-	StoreID:                 primitive.NewObjectID(),
+	ID:                      bson.NewObjectID(), // Existing ID of the record to update
+	CustomerID:              bson.NewObjectID(),
+	ProductID:               bson.NewObjectID(),
+	StoreID:                 bson.NewObjectID(),
 	IsApproved:              false,
 	Title:                   "Updated Review Title",
 	ReviewText:              "Updated review text with more details.",

@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestPictureUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestPictureUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewPictureUsecase(mockRepo, timeout)
 
-	pictureID := primitive.NewObjectID().Hex()
+	pictureID := bson.NewObjectID().Hex()
 
 	updatedPicture := domain.Picture{
-		ID:             primitive.NewObjectID(), // Existing ID of the record to update
+		ID:             bson.NewObjectID(), // Existing ID of the record to update
 		MimeType:       "image/png",
 		SeoFilename:    "updated-image",
 		AltAttribute:   "Updated Image",
@@ -67,7 +67,7 @@ func TestPictureUsecase_Update(t *testing.T) {
 	usecase := test.NewPictureUsecase(mockRepo, timeout)
 
 	updatedPicture := &domain.Picture{
-		ID:             primitive.NewObjectID(), // Existing ID of the record to update
+		ID:             bson.NewObjectID(), // Existing ID of the record to update
 		MimeType:       "image/png",
 		SeoFilename:    "updated-image",
 		AltAttribute:   "Updated Image",
@@ -89,7 +89,7 @@ func TestPictureUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewPictureUsecase(mockRepo, timeout)
 
-	pictureID := primitive.NewObjectID().Hex()
+	pictureID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, pictureID).Return(nil)
 
@@ -106,7 +106,7 @@ func TestPictureUsecase_Fetch(t *testing.T) {
 
 	fetchedPictures := []domain.Picture{
 		{
-			ID:             primitive.NewObjectID(),
+			ID:             bson.NewObjectID(),
 			MimeType:       "image/jpeg",
 			SeoFilename:    "example-image",
 			AltAttribute:   "Example Image",
@@ -115,7 +115,7 @@ func TestPictureUsecase_Fetch(t *testing.T) {
 			VirtualPath:    "/images/example-image.jpg",
 		},
 		{
-			ID:             primitive.NewObjectID(),
+			ID:             bson.NewObjectID(),
 			MimeType:       "image/png",
 			SeoFilename:    "updated-image",
 			AltAttribute:   "Updated Image",

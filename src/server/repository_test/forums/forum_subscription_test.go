@@ -13,8 +13,8 @@ import (
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultForumSubscription struct {
@@ -30,7 +30,7 @@ func (m *MockSingleResultForumSubscription) Decode(v interface{}) error {
 }
 
 var mockItemForumSubscription = &domain.ForumSubscription{
-	ID:               primitive.NewObjectID(), // Existing ID of the record to update
+	ID:               bson.NewObjectID(), // Existing ID of the record to update
 	SubscriptionGuid: uuid.New(),
 	CustomerID:       2,
 	ForumID:          20,

@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestTaxCategoryUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestTaxCategoryUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewTaxCategoryUsecase(mockRepo, timeout)
 
-	taxCategoryID := primitive.NewObjectID().Hex()
+	taxCategoryID := bson.NewObjectID().Hex()
 
 	updatedTaxCategory := domain.TaxCategory{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
 		Name:         "Reduced Rate",
 		DisplayOrder: 2,
 	}
@@ -59,7 +59,7 @@ func TestTaxCategoryUsecase_Update(t *testing.T) {
 	usecase := test.NewTaxCategoryUsecase(mockRepo, timeout)
 
 	updatedTaxCategory := &domain.TaxCategory{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
 		Name:         "Reduced Rate",
 		DisplayOrder: 2,
 	}
@@ -77,7 +77,7 @@ func TestTaxCategoryUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewTaxCategoryUsecase(mockRepo, timeout)
 
-	taxCategoryID := primitive.NewObjectID().Hex()
+	taxCategoryID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, taxCategoryID).Return(nil)
 
@@ -94,12 +94,12 @@ func TestTaxCategoryUsecase_Fetch(t *testing.T) {
 
 	fetchedTaxCategories := []domain.TaxCategory{
 		{
-			ID:           primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
 			Name:         "Standard Rate",
 			DisplayOrder: 1,
 		},
 		{
-			ID:           primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
 			Name:         "Reduced Rate",
 			DisplayOrder: 2,
 		},

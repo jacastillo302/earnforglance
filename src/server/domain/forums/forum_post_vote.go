@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -13,11 +13,11 @@ const (
 
 // ForumPostVote represents a forum post vote
 type ForumPostVote struct {
-	ID           primitive.ObjectID `bson:"_id,omitempty"`
-	ForumPostID  primitive.ObjectID `bson:"forum_post_id"`
-	CustomerID   primitive.ObjectID `bson:"customer_id"`
-	IsUp         bool               `bson:"is_up"`
-	CreatedOnUtc time.Time          `bson:"created_on_utc"`
+	ID           bson.ObjectID `bson:"_id,omitempty"`
+	ForumPostID  bson.ObjectID `bson:"forum_post_id"`
+	CustomerID   bson.ObjectID `bson:"customer_id"`
+	IsUp         bool          `bson:"is_up"`
+	CreatedOnUtc time.Time     `bson:"created_on_utc"`
 }
 
 type ForumPostVoteRepository interface {

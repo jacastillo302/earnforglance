@@ -11,7 +11,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestBlogPostUsecase_FetchByID(t *testing.T) {
@@ -19,7 +19,7 @@ func TestBlogPostUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewBlogPostUsecase(mockRepo, timeout)
 
-	blogID := primitive.NewObjectID().Hex()
+	blogID := bson.NewObjectID().Hex()
 
 	expectedBlogPost := domain.BlogPost{
 		IncludeInSitemap: true,
@@ -81,7 +81,7 @@ func TestBlogPostUsecase_Update(t *testing.T) {
 	usecase := test.NewBlogPostUsecase(mockRepo, timeout)
 
 	updatedBlogPost := &domain.BlogPost{
-		ID:               primitive.NewObjectID(), // Existing ID of the record to update
+		ID:               bson.NewObjectID(), // Existing ID of the record to update
 		IncludeInSitemap: false,
 		Title:            "Updated Blog Post",
 		Body:             "This is the updated body of the blog post.",
@@ -110,7 +110,7 @@ func TestBlogPostUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewBlogPostUsecase(mockRepo, timeout)
 
-	blogID := primitive.NewObjectID().Hex()
+	blogID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, blogID).Return(nil)
 
@@ -127,7 +127,7 @@ func TestBlogPostUsecase_Fetch(t *testing.T) {
 
 	fetchedBlogPosts := []domain.BlogPost{
 		{
-			ID:               primitive.NewObjectID(),
+			ID:               bson.NewObjectID(),
 			IncludeInSitemap: true,
 			Title:            "First Blog Post",
 			Body:             "This is the body of the first blog post.",
@@ -143,7 +143,7 @@ func TestBlogPostUsecase_Fetch(t *testing.T) {
 			CreatedOnUtc:     time.Now().AddDate(0, 0, -10), // 10 days ago
 		},
 		{
-			ID:               primitive.NewObjectID(),
+			ID:               bson.NewObjectID(),
 			IncludeInSitemap: false,
 			Title:            "Second Blog Post",
 			Body:             "This is the body of the second blog post.",

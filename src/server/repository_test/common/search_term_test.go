@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultSearchTerm struct {
@@ -28,9 +28,9 @@ func (m *MockSingleResultSearchTerm) Decode(v interface{}) error {
 }
 
 var mockItemSearchTerm = &domain.SearchTerm{
-	ID:      primitive.NewObjectID(), // Existing ID of the record to update
+	ID:      bson.NewObjectID(), // Existing ID of the record to update
 	Keyword: "smartphone",
-	StoreID: primitive.NewObjectID(),
+	StoreID: bson.NewObjectID(),
 	Count:   200,
 }
 

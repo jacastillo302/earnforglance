@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestGiftCardUsecase_FetchByID(t *testing.T) {
@@ -18,11 +18,11 @@ func TestGiftCardUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewGiftCardUsecase(mockRepo, timeout)
 
-	giftCardID := primitive.NewObjectID().Hex()
+	giftCardID := bson.NewObjectID().Hex()
 
 	updatedGiftCard := domain.GiftCard{
-		ID:                  primitive.NewObjectID(), // Existing ID of the record to update
-		OrderItemID:         new(primitive.ObjectID),
+		ID:                  bson.NewObjectID(), // Existing ID of the record to update
+		OrderItemID:         new(bson.ObjectID),
 		GiftCardTypeID:      2,
 		Amount:              150.00,
 		IsGiftCardActivated: false,
@@ -79,8 +79,8 @@ func TestGiftCardUsecase_Update(t *testing.T) {
 	usecase := test.NewGiftCardUsecase(mockRepo, timeout)
 
 	updatedGiftCard := &domain.GiftCard{
-		ID:                  primitive.NewObjectID(), // Existing ID of the record to update
-		OrderItemID:         new(primitive.ObjectID),
+		ID:                  bson.NewObjectID(), // Existing ID of the record to update
+		OrderItemID:         new(bson.ObjectID),
 		GiftCardTypeID:      2,
 		Amount:              150.00,
 		IsGiftCardActivated: false,
@@ -93,7 +93,7 @@ func TestGiftCardUsecase_Update(t *testing.T) {
 		IsRecipientNotified: true,
 		CreatedOnUtc:        time.Now().AddDate(0, 0, -7), // Created 7 days ago
 	}
-	*updatedGiftCard.OrderItemID = primitive.NewObjectID()
+	*updatedGiftCard.OrderItemID = bson.NewObjectID()
 
 	mockRepo.On("Update", mock.Anything, updatedGiftCard).Return(nil)
 
@@ -108,7 +108,7 @@ func TestGiftCardUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewGiftCardUsecase(mockRepo, timeout)
 
-	giftCardID := primitive.NewObjectID().Hex()
+	giftCardID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, giftCardID).Return(nil)
 
@@ -125,7 +125,7 @@ func TestGiftCardUsecase_Fetch(t *testing.T) {
 
 	fetchedGiftCards := []domain.GiftCard{
 		{
-			ID:                  primitive.NewObjectID(),
+			ID:                  bson.NewObjectID(),
 			OrderItemID:         nil,
 			GiftCardTypeID:      1,
 			Amount:              100.00,
@@ -140,8 +140,8 @@ func TestGiftCardUsecase_Fetch(t *testing.T) {
 			CreatedOnUtc:        time.Now().AddDate(0, 0, -10), // Created 10 days ago
 		},
 		{
-			ID:                  primitive.NewObjectID(),
-			OrderItemID:         new(primitive.ObjectID),
+			ID:                  bson.NewObjectID(),
+			OrderItemID:         new(bson.ObjectID),
 			GiftCardTypeID:      2,
 			Amount:              150.00,
 			IsGiftCardActivated: false,
@@ -155,7 +155,7 @@ func TestGiftCardUsecase_Fetch(t *testing.T) {
 			CreatedOnUtc:        time.Now().AddDate(0, 0, -5), // Created 5 days ago
 		},
 	}
-	*fetchedGiftCards[1].OrderItemID = primitive.NewObjectID()
+	*fetchedGiftCards[1].OrderItemID = bson.NewObjectID()
 
 	mockRepo.On("Fetch", mock.Anything).Return(fetchedGiftCards, nil)
 

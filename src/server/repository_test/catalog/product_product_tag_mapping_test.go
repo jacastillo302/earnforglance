@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultProductProductTagMapping struct {
@@ -28,9 +28,9 @@ func (m *MockSingleResultProductProductTagMapping) Decode(v interface{}) error {
 }
 
 var mockItemProductProductTagMapping = &domain.ProductProductTagMapping{
-	ID:           primitive.NewObjectID(), // Existing ID of the record to update
-	ProductID:    primitive.NewObjectID(),
-	ProductTagID: primitive.NewObjectID(),
+	ID:           bson.NewObjectID(), // Existing ID of the record to update
+	ProductID:    bson.NewObjectID(),
+	ProductTagID: bson.NewObjectID(),
 }
 
 func TestProductProductTagMappingRepository_FetchByID(t *testing.T) {

@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultVendorNote struct {
@@ -29,8 +29,8 @@ func (m *MockSingleResultVendorNote) Decode(v interface{}) error {
 }
 
 var mockItemVendorNote = &domain.VendorNote{
-	ID:           primitive.NewObjectID(), // Existing ID of the record to update
-	VendorID:     primitive.NewObjectID(),
+	ID:           bson.NewObjectID(), // Existing ID of the record to update
+	VendorID:     bson.NewObjectID(),
 	Note:         "This is an updated note for the vendor.",
 	CreatedOnUtc: time.Now().AddDate(0, 0, -1), // Created 1 day ago
 }

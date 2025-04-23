@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultCurrencySettings struct {
@@ -28,10 +28,10 @@ func (m *MockSingleResultCurrencySettings) Decode(v interface{}) error {
 }
 
 var mockItemCurrencySettings = &domain.CurrencySettings{
-	ID:                                   primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                                   bson.NewObjectID(), // Existing ID of the record to update
 	DisplayCurrencyLabel:                 false,
-	PrimaryStoreCurrencyID:               primitive.NewObjectID(),
-	PrimaryExchangeRateCurrencyID:        primitive.NewObjectID(),
+	PrimaryStoreCurrencyID:               bson.NewObjectID(),
+	PrimaryExchangeRateCurrencyID:        bson.NewObjectID(),
 	ActiveExchangeRateProviderSystemName: "UpdatedExchangeRateProvider",
 	AutoUpdateEnabled:                    false,
 }

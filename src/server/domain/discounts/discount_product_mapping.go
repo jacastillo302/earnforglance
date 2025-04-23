@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -13,7 +13,7 @@ const (
 // DiscountProductMapping represents a discount-product mapping class
 type DiscountProductMapping struct {
 	DiscountMapping
-	EntityID primitive.ObjectID `bson:"entity_id"`
+	EntityID bson.ObjectID `bson:"entity_id"`
 }
 
 type DiscountProductMappingRepository interface {

@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/configuration"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type settingRepository struct {
@@ -58,7 +57,7 @@ func (ur *settingRepository) Update(c context.Context, setting *domain.Setting) 
 func (ur *settingRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *settingRepository) Delete(c context.Context, ID string) error {
 func (ur *settingRepository) Fetch(c context.Context) ([]domain.Setting, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *settingRepository) FetchByID(c context.Context, settingID string) (dom
 
 	var setting domain.Setting
 
-	idHex, err := primitive.ObjectIDFromHex(settingID)
+	idHex, err := bson.ObjectIDFromHex(settingID)
 	if err != nil {
 		return setting, err
 	}

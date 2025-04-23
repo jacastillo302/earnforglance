@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestShipmentUsecase_FetchByID(t *testing.T) {
@@ -18,11 +18,11 @@ func TestShipmentUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewShipmentUsecase(mockRepo, timeout)
 
-	shipmentID := primitive.NewObjectID().Hex()
+	shipmentID := bson.NewObjectID().Hex()
 
 	updatedShipment := domain.Shipment{
-		ID:                    primitive.NewObjectID(), // Existing ID of the record to update
-		OrderID:               primitive.NewObjectID(),
+		ID:                    bson.NewObjectID(), // Existing ID of the record to update
+		OrderID:               bson.NewObjectID(),
 		TrackingNumber:        "UPDATEDTRACK67890",
 		TotalWeight:           new(float64),
 		ShippedDateUtc:        new(time.Time),
@@ -47,7 +47,7 @@ func TestShipmentUsecase_Create(t *testing.T) {
 	usecase := test.NewShipmentUsecase(mockRepo, timeout)
 
 	newShipment := &domain.Shipment{
-		OrderID:               primitive.NewObjectID(),
+		OrderID:               bson.NewObjectID(),
 		TrackingNumber:        "TRACK12345",
 		TotalWeight:           new(float64),
 		ShippedDateUtc:        new(time.Time),
@@ -75,8 +75,8 @@ func TestShipmentUsecase_Update(t *testing.T) {
 	usecase := test.NewShipmentUsecase(mockRepo, timeout)
 
 	updatedShipment := &domain.Shipment{
-		ID:                    primitive.NewObjectID(), // Existing ID of the record to update
-		OrderID:               primitive.NewObjectID(),
+		ID:                    bson.NewObjectID(), // Existing ID of the record to update
+		OrderID:               bson.NewObjectID(),
 		TrackingNumber:        "UPDATEDTRACK67890",
 		TotalWeight:           new(float64),
 		ShippedDateUtc:        new(time.Time),
@@ -103,7 +103,7 @@ func TestShipmentUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewShipmentUsecase(mockRepo, timeout)
 
-	shipmentID := primitive.NewObjectID().Hex()
+	shipmentID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, shipmentID).Return(nil)
 
@@ -120,8 +120,8 @@ func TestShipmentUsecase_Fetch(t *testing.T) {
 
 	fetchedShipments := []domain.Shipment{
 		{
-			ID:                    primitive.NewObjectID(),
-			OrderID:               primitive.NewObjectID(),
+			ID:                    bson.NewObjectID(),
+			OrderID:               bson.NewObjectID(),
 			TrackingNumber:        "TRACK12345",
 			TotalWeight:           new(float64),
 			ShippedDateUtc:        new(time.Time),
@@ -131,8 +131,8 @@ func TestShipmentUsecase_Fetch(t *testing.T) {
 			CreatedOnUtc:          time.Now().AddDate(0, 0, -10), // Created 10 days ago
 		},
 		{
-			ID:                    primitive.NewObjectID(),
-			OrderID:               primitive.NewObjectID(),
+			ID:                    bson.NewObjectID(),
+			OrderID:               bson.NewObjectID(),
 			TrackingNumber:        "TRACK67890",
 			TotalWeight:           new(float64),
 			ShippedDateUtc:        new(time.Time),

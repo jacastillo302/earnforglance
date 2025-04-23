@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestMultiFactorAuthenticationSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,7 +18,7 @@ func TestMultiFactorAuthenticationSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewMultiFactorAuthenticationSettingsUsecase(mockRepo, timeout)
 
-	customersID := primitive.NewObjectID().Hex()
+	customersID := bson.NewObjectID().Hex()
 
 	updatedMultiFactorAuthenticationSettings := domain.MultiFactorAuthenticationSettings{
 		ActiveAuthenticationMethodSystemNames: []string{"GoogleAuthenticator", "Authy"}, // Example active authentication methods
@@ -75,7 +75,7 @@ func TestMultiFactorAuthenticationSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewMultiFactorAuthenticationSettingsUsecase(mockRepo, timeout)
 
-	customersID := primitive.NewObjectID().Hex()
+	customersID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, customersID).Return(nil)
 

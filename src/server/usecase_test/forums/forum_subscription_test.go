@@ -11,7 +11,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestForumSubscriptionUsecase_FetchByID(t *testing.T) {
@@ -19,10 +19,10 @@ func TestForumSubscriptionUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewForumSubscriptionUsecase(mockRepo, timeout)
 
-	forumSubscriptionID := primitive.NewObjectID().Hex()
+	forumSubscriptionID := bson.NewObjectID().Hex()
 
 	updatedForumSubscription := domain.ForumSubscription{
-		ID:               primitive.NewObjectID(), // Existing ID of the record to update
+		ID:               bson.NewObjectID(), // Existing ID of the record to update
 		SubscriptionGuid: uuid.New(),
 		CustomerID:       2,
 		ForumID:          20,
@@ -66,7 +66,7 @@ func TestForumSubscriptionUsecase_Update(t *testing.T) {
 	usecase := test.NewForumSubscriptionUsecase(mockRepo, timeout)
 
 	updatedForumSubscription := &domain.ForumSubscription{
-		ID:               primitive.NewObjectID(), // Existing ID of the record to update
+		ID:               bson.NewObjectID(), // Existing ID of the record to update
 		SubscriptionGuid: uuid.New(),
 		CustomerID:       2,
 		ForumID:          20,
@@ -87,7 +87,7 @@ func TestForumSubscriptionUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewForumSubscriptionUsecase(mockRepo, timeout)
 
-	forumSubscriptionID := primitive.NewObjectID().Hex()
+	forumSubscriptionID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, forumSubscriptionID).Return(nil)
 
@@ -104,7 +104,7 @@ func TestForumSubscriptionUsecase_Fetch(t *testing.T) {
 
 	fetchedForumSubscriptions := []domain.ForumSubscription{
 		{
-			ID:               primitive.NewObjectID(),
+			ID:               bson.NewObjectID(),
 			SubscriptionGuid: uuid.New(),
 			CustomerID:       1,
 			ForumID:          10,
@@ -112,7 +112,7 @@ func TestForumSubscriptionUsecase_Fetch(t *testing.T) {
 			CreatedOnUtc:     time.Now().AddDate(0, 0, -10), // Created 10 days ago
 		},
 		{
-			ID:               primitive.NewObjectID(),
+			ID:               bson.NewObjectID(),
 			SubscriptionGuid: uuid.New(),
 			CustomerID:       2,
 			ForumID:          20,

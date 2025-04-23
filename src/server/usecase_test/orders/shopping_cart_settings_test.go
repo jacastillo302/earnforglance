@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestShoppingCartSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestShoppingCartSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewShoppingCartSettingsUsecase(mockRepo, timeout)
 
-	shoppingCartSettingsID := primitive.NewObjectID().Hex()
+	shoppingCartSettingsID := bson.NewObjectID().Hex()
 
 	updatedShoppingCartSettings := domain.ShoppingCartSettings{
-		ID:                                          primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                          bson.NewObjectID(), // Existing ID of the record to update
 		DisplayCartAfterAddingProduct:               false,
 		DisplayWishlistAfterAddingProduct:           true,
 		MaximumShoppingCartItems:                    100,
@@ -97,7 +97,7 @@ func TestShoppingCartSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewShoppingCartSettingsUsecase(mockRepo, timeout)
 
 	updatedShoppingCartSettings := &domain.ShoppingCartSettings{
-		ID:                                          primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                          bson.NewObjectID(), // Existing ID of the record to update
 		DisplayCartAfterAddingProduct:               false,
 		DisplayWishlistAfterAddingProduct:           true,
 		MaximumShoppingCartItems:                    100,
@@ -134,7 +134,7 @@ func TestShoppingCartSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewShoppingCartSettingsUsecase(mockRepo, timeout)
 
-	shoppingCartSettingsID := primitive.NewObjectID().Hex()
+	shoppingCartSettingsID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, shoppingCartSettingsID).Return(nil)
 
@@ -151,7 +151,7 @@ func TestShoppingCartSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedShoppingCartSettings := []domain.ShoppingCartSettings{
 		{
-			ID:                                          primitive.NewObjectID(),
+			ID:                                          bson.NewObjectID(),
 			DisplayCartAfterAddingProduct:               true,
 			DisplayWishlistAfterAddingProduct:           false,
 			MaximumShoppingCartItems:                    50,
@@ -175,7 +175,7 @@ func TestShoppingCartSettingsUsecase_Fetch(t *testing.T) {
 			RenderAssociatedAttributeValueQuantity:      false,
 		},
 		{
-			ID:                                          primitive.NewObjectID(),
+			ID:                                          bson.NewObjectID(),
 			DisplayCartAfterAddingProduct:               false,
 			DisplayWishlistAfterAddingProduct:           true,
 			MaximumShoppingCartItems:                    100,

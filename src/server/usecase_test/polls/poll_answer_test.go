@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestPollAnswerUsecase_FetchByID(t *testing.T) {
@@ -18,11 +18,11 @@ func TestPollAnswerUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewPollAnswerUsecase(mockRepo, timeout)
 
-	pollAnswerID := primitive.NewObjectID().Hex()
+	pollAnswerID := bson.NewObjectID().Hex()
 
 	updatedPollAnswer := domain.PollAnswer{
-		ID:            primitive.NewObjectID(), // Existing ID of the record to update
-		PollID:        primitive.NewObjectID(),
+		ID:            bson.NewObjectID(), // Existing ID of the record to update
+		PollID:        bson.NewObjectID(),
 		Name:          "Updated Option A",
 		NumberOfVotes: 10,
 		DisplayOrder:  2,
@@ -43,7 +43,7 @@ func TestPollAnswerUsecase_Create(t *testing.T) {
 	usecase := test.NewPollAnswerUsecase(mockRepo, timeout)
 
 	newPollAnswer := &domain.PollAnswer{
-		PollID:        primitive.NewObjectID(),
+		PollID:        bson.NewObjectID(),
 		Name:          "Option A",
 		NumberOfVotes: 0,
 		DisplayOrder:  1,
@@ -63,8 +63,8 @@ func TestPollAnswerUsecase_Update(t *testing.T) {
 	usecase := test.NewPollAnswerUsecase(mockRepo, timeout)
 
 	updatedPollAnswer := &domain.PollAnswer{
-		ID:            primitive.NewObjectID(), // Existing ID of the record to update
-		PollID:        primitive.NewObjectID(),
+		ID:            bson.NewObjectID(), // Existing ID of the record to update
+		PollID:        bson.NewObjectID(),
 		Name:          "Updated Option A",
 		NumberOfVotes: 10,
 		DisplayOrder:  2,
@@ -83,7 +83,7 @@ func TestPollAnswerUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewPollAnswerUsecase(mockRepo, timeout)
 
-	pollAnswerID := primitive.NewObjectID().Hex()
+	pollAnswerID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, pollAnswerID).Return(nil)
 
@@ -100,15 +100,15 @@ func TestPollAnswerUsecase_Fetch(t *testing.T) {
 
 	fetchedPollAnswers := []domain.PollAnswer{
 		{
-			ID:            primitive.NewObjectID(),
-			PollID:        primitive.NewObjectID(),
+			ID:            bson.NewObjectID(),
+			PollID:        bson.NewObjectID(),
 			Name:          "Option A",
 			NumberOfVotes: 5,
 			DisplayOrder:  1,
 		},
 		{
-			ID:            primitive.NewObjectID(),
-			PollID:        primitive.NewObjectID(),
+			ID:            bson.NewObjectID(),
+			PollID:        bson.NewObjectID(),
 			Name:          "Option B",
 			NumberOfVotes: 8,
 			DisplayOrder:  2,

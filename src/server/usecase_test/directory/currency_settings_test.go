@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestCurrencySettingsUsecase_FetchByID(t *testing.T) {
@@ -18,13 +18,13 @@ func TestCurrencySettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewCurrencySettingsUsecase(mockRepo, timeout)
 
-	currencySettingsID := primitive.NewObjectID().Hex()
+	currencySettingsID := bson.NewObjectID().Hex()
 
 	updatedCurrencySettings := domain.CurrencySettings{
-		ID:                                   primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                   bson.NewObjectID(), // Existing ID of the record to update
 		DisplayCurrencyLabel:                 false,
-		PrimaryStoreCurrencyID:               primitive.NewObjectID(),
-		PrimaryExchangeRateCurrencyID:        primitive.NewObjectID(),
+		PrimaryStoreCurrencyID:               bson.NewObjectID(),
+		PrimaryExchangeRateCurrencyID:        bson.NewObjectID(),
 		ActiveExchangeRateProviderSystemName: "UpdatedExchangeRateProvider",
 		AutoUpdateEnabled:                    false,
 	}
@@ -45,8 +45,8 @@ func TestCurrencySettingsUsecase_Create(t *testing.T) {
 
 	newCurrencySettings := &domain.CurrencySettings{
 		DisplayCurrencyLabel:                 true,
-		PrimaryStoreCurrencyID:               primitive.NewObjectID(),
-		PrimaryExchangeRateCurrencyID:        primitive.NewObjectID(),
+		PrimaryStoreCurrencyID:               bson.NewObjectID(),
+		PrimaryExchangeRateCurrencyID:        bson.NewObjectID(),
 		ActiveExchangeRateProviderSystemName: "DefaultExchangeRateProvider",
 		AutoUpdateEnabled:                    true,
 	}
@@ -64,10 +64,10 @@ func TestCurrencySettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewCurrencySettingsUsecase(mockRepo, timeout)
 
 	updatedCurrencySettings := &domain.CurrencySettings{
-		ID:                                   primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                   bson.NewObjectID(), // Existing ID of the record to update
 		DisplayCurrencyLabel:                 false,
-		PrimaryStoreCurrencyID:               primitive.NewObjectID(),
-		PrimaryExchangeRateCurrencyID:        primitive.NewObjectID(),
+		PrimaryStoreCurrencyID:               bson.NewObjectID(),
+		PrimaryExchangeRateCurrencyID:        bson.NewObjectID(),
 		ActiveExchangeRateProviderSystemName: "UpdatedExchangeRateProvider",
 		AutoUpdateEnabled:                    false,
 	}
@@ -85,7 +85,7 @@ func TestCurrencySettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewCurrencySettingsUsecase(mockRepo, timeout)
 
-	currencySettingsID := primitive.NewObjectID().Hex()
+	currencySettingsID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, currencySettingsID).Return(nil)
 
@@ -102,18 +102,18 @@ func TestCurrencySettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedCurrencySettings := []domain.CurrencySettings{
 		{
-			ID:                                   primitive.NewObjectID(),
+			ID:                                   bson.NewObjectID(),
 			DisplayCurrencyLabel:                 true,
-			PrimaryStoreCurrencyID:               primitive.NewObjectID(),
-			PrimaryExchangeRateCurrencyID:        primitive.NewObjectID(),
+			PrimaryStoreCurrencyID:               bson.NewObjectID(),
+			PrimaryExchangeRateCurrencyID:        bson.NewObjectID(),
 			ActiveExchangeRateProviderSystemName: "DefaultExchangeRateProvider",
 			AutoUpdateEnabled:                    true,
 		},
 		{
-			ID:                                   primitive.NewObjectID(),
+			ID:                                   bson.NewObjectID(),
 			DisplayCurrencyLabel:                 false,
-			PrimaryStoreCurrencyID:               primitive.NewObjectID(),
-			PrimaryExchangeRateCurrencyID:        primitive.NewObjectID(),
+			PrimaryStoreCurrencyID:               bson.NewObjectID(),
+			PrimaryExchangeRateCurrencyID:        bson.NewObjectID(),
 			ActiveExchangeRateProviderSystemName: "UpdatedExchangeRateProvider",
 			AutoUpdateEnabled:                    false,
 		},

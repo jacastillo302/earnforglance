@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestExternalAuthenticationSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,7 +18,7 @@ func TestExternalAuthenticationSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewExternalAuthenticationSettingsUsecase(mockRepo, timeout)
 
-	customersID := primitive.NewObjectID().Hex()
+	customersID := bson.NewObjectID().Hex()
 
 	updatedExternalAuthenticationSettings := domian.ExternalAuthenticationSettings{
 		RequireEmailValidation:                true,                                      // Email validation is required
@@ -81,7 +81,7 @@ func TestExternalAuthenticationSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewExternalAuthenticationSettingsUsecase(mockRepo, timeout)
 
-	customersID := primitive.NewObjectID().Hex()
+	customersID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, customersID).Return(nil)
 

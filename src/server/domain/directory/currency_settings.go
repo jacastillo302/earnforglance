@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,12 +12,12 @@ const (
 
 // CurrencySettings represents currency settings
 type CurrencySettings struct {
-	ID                                   primitive.ObjectID `bson:"_id,omitempty"`
-	DisplayCurrencyLabel                 bool               `bson:"display_currency_label"`
-	PrimaryStoreCurrencyID               primitive.ObjectID `bson:"primary_store_currency_id"`
-	PrimaryExchangeRateCurrencyID        primitive.ObjectID `bson:"primary_exchange_rate_currency_id"`
-	ActiveExchangeRateProviderSystemName string             `bson:"active_exchange_rate_provider_system_name"`
-	AutoUpdateEnabled                    bool               `bson:"auto_update_enabled"`
+	ID                                   bson.ObjectID `bson:"_id,omitempty"`
+	DisplayCurrencyLabel                 bool          `bson:"display_currency_label"`
+	PrimaryStoreCurrencyID               bson.ObjectID `bson:"primary_store_currency_id"`
+	PrimaryExchangeRateCurrencyID        bson.ObjectID `bson:"primary_exchange_rate_currency_id"`
+	ActiveExchangeRateProviderSystemName string        `bson:"active_exchange_rate_provider_system_name"`
+	AutoUpdateEnabled                    bool          `bson:"auto_update_enabled"`
 }
 
 type CurrencySettingsRepository interface {

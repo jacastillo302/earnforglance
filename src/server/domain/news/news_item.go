@@ -4,7 +4,7 @@ import (
 	"context" // added context library
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -13,19 +13,19 @@ const (
 
 // NewsItem represents a news item
 type NewsItem struct {
-	ID              primitive.ObjectID `bson:"_id,omitempty"`
-	Title           string             `bson:"title"`
-	Short           string             `bson:"short"`
-	Full            string             `bson:"full"`
-	Published       bool               `bson:"published"`
-	StartDateUtc    *time.Time         `bson:"start_date_utc"`
-	EndDateUtc      *time.Time         `bson:"end_date_utc"`
-	AllowComments   bool               `bson:"allow_comments"`
-	LimitedToStores bool               `bson:"limited_to_stores"`
-	MetaKeywords    string             `bson:"meta_keywords"`
-	MetaDescription string             `bson:"meta_description"`
-	MetaTitle       string             `bson:"meta_title"`
-	CreatedOnUtc    time.Time          `bson:"created_on_utc"`
+	ID              bson.ObjectID `bson:"_id,omitempty"`
+	Title           string        `bson:"title"`
+	Short           string        `bson:"short"`
+	Full            string        `bson:"full"`
+	Published       bool          `bson:"published"`
+	StartDateUtc    *time.Time    `bson:"start_date_utc"`
+	EndDateUtc      *time.Time    `bson:"end_date_utc"`
+	AllowComments   bool          `bson:"allow_comments"`
+	LimitedToStores bool          `bson:"limited_to_stores"`
+	MetaKeywords    string        `bson:"meta_keywords"`
+	MetaDescription string        `bson:"meta_description"`
+	MetaTitle       string        `bson:"meta_title"`
+	CreatedOnUtc    time.Time     `bson:"created_on_utc"`
 }
 
 // NewsItemRepository interface

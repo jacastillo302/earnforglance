@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultPollVotingRecord struct {
@@ -29,9 +29,9 @@ func (m *MockSingleResultPollVotingRecord) Decode(v interface{}) error {
 }
 
 var mockItemPollVotingRecord = &domain.PollVotingRecord{
-	ID:           primitive.NewObjectID(), // Existing ID of the record to update
-	PollAnswerID: primitive.NewObjectID(),
-	CustomerID:   primitive.NewObjectID(),
+	ID:           bson.NewObjectID(), // Existing ID of the record to update
+	PollAnswerID: bson.NewObjectID(),
+	CustomerID:   bson.NewObjectID(),
 	CreatedOnUtc: time.Now().AddDate(0, 0, -7), // Created 7 days ago
 }
 

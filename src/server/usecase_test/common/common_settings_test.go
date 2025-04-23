@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestCommonSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestCommonSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCommonSettingsUsecase(mockRepo, timeout)
 
-	commonID := primitive.NewObjectID().Hex()
+	commonID := bson.NewObjectID().Hex()
 
 	updatedCommonSettings := domain.CommonSettings{
-		ID:                               primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                               bson.NewObjectID(), // Existing ID of the record to update
 		SubjectFieldOnContactUsForm:      false,
 		UseSystemEmailForContactUsForm:   true,
 		DisplayJavaScriptDisabledWarning: false,
@@ -87,7 +87,7 @@ func TestCommonSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewCommonSettingsUsecase(mockRepo, timeout)
 
 	updatedCommonSettings := &domain.CommonSettings{
-		ID:                               primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                               bson.NewObjectID(), // Existing ID of the record to update
 		SubjectFieldOnContactUsForm:      false,
 		UseSystemEmailForContactUsForm:   true,
 		DisplayJavaScriptDisabledWarning: false,
@@ -120,7 +120,7 @@ func TestCommonSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCommonSettingsUsecase(mockRepo, timeout)
 
-	commonID := primitive.NewObjectID().Hex()
+	commonID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, commonID).Return(nil)
 
@@ -137,7 +137,7 @@ func TestCommonSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedCommonSettings := []domain.CommonSettings{
 		{
-			ID:                               primitive.NewObjectID(),
+			ID:                               bson.NewObjectID(),
 			SubjectFieldOnContactUsForm:      true,
 			UseSystemEmailForContactUsForm:   false,
 			DisplayJavaScriptDisabledWarning: true,
@@ -156,7 +156,7 @@ func TestCommonSettingsUsecase_Fetch(t *testing.T) {
 			FooterCustomHtml:                 "<footer>Custom Footer</footer>",
 		},
 		{
-			ID:                               primitive.NewObjectID(),
+			ID:                               bson.NewObjectID(),
 			SubjectFieldOnContactUsForm:      false,
 			UseSystemEmailForContactUsForm:   true,
 			DisplayJavaScriptDisabledWarning: false,

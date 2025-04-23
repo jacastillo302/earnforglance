@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,11 +12,11 @@ const (
 
 // SpecificationAttributeOption represents a specification attribute option
 type SpecificationAttributeOption struct {
-	ID                       primitive.ObjectID `bson:"_id,omitempty"`
-	SpecificationAttributeID primitive.ObjectID `bson:"specification_attribute_id"`
-	Name                     string             `bson:"name"`
-	ColorSquaresRgb          string             `bson:"color_squares_rgb"`
-	DisplayOrder             int                `bson:"display_order"`
+	ID                       bson.ObjectID `bson:"_id,omitempty"`
+	SpecificationAttributeID bson.ObjectID `bson:"specification_attribute_id"`
+	Name                     string        `bson:"name"`
+	ColorSquaresRgb          string        `bson:"color_squares_rgb"`
+	DisplayOrder             int           `bson:"display_order"`
 }
 
 type SpecificationAttributeOptionRepository interface {

@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestBackInStockSubscriptionUsecase_FetchByID(t *testing.T) {
@@ -18,13 +18,13 @@ func TestBackInStockSubscriptionUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewBackInStockSubscriptionUsecase(mockRepo, timeout)
 
-	subscriptionID := primitive.NewObjectID().Hex()
+	subscriptionID := bson.NewObjectID().Hex()
 
 	expectedSubscription := domain.BackInStockSubscription{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		StoreID:      primitive.NewObjectID(),
-		ProductID:    primitive.NewObjectID(),
-		CustomerID:   primitive.NewObjectID(),
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
+		StoreID:      bson.NewObjectID(),
+		ProductID:    bson.NewObjectID(),
+		CustomerID:   bson.NewObjectID(),
 		CreatedOnUtc: time.Now(),
 	}
 
@@ -43,10 +43,10 @@ func TestBackInStockSubscriptionUsecase_Create(t *testing.T) {
 	usecase := test.NewBackInStockSubscriptionUsecase(mockRepo, timeout)
 
 	newSubscription := &domain.BackInStockSubscription{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		StoreID:      primitive.NewObjectID(),
-		ProductID:    primitive.NewObjectID(),
-		CustomerID:   primitive.NewObjectID(),
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
+		StoreID:      bson.NewObjectID(),
+		ProductID:    bson.NewObjectID(),
+		CustomerID:   bson.NewObjectID(),
 		CreatedOnUtc: time.Now(),
 	}
 
@@ -64,10 +64,10 @@ func TestBackInStockSubscriptionUsecase_Update(t *testing.T) {
 	usecase := test.NewBackInStockSubscriptionUsecase(mockRepo, timeout)
 
 	updatedSubscription := &domain.BackInStockSubscription{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		StoreID:      primitive.NewObjectID(),
-		ProductID:    primitive.NewObjectID(),
-		CustomerID:   primitive.NewObjectID(),
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
+		StoreID:      bson.NewObjectID(),
+		ProductID:    bson.NewObjectID(),
+		CustomerID:   bson.NewObjectID(),
 		CreatedOnUtc: time.Now(),
 	}
 
@@ -84,7 +84,7 @@ func TestBackInStockSubscriptionUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewBackInStockSubscriptionUsecase(mockRepo, timeout)
 
-	subscriptionID := primitive.NewObjectID().Hex()
+	subscriptionID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, subscriptionID).Return(nil)
 
@@ -101,17 +101,17 @@ func TestBackInStockSubscriptionUsecase_Fetch(t *testing.T) {
 
 	expectedSubscriptions := []domain.BackInStockSubscription{
 		{
-			ID:           primitive.NewObjectID(),
-			StoreID:      primitive.NewObjectID(),
-			ProductID:    primitive.NewObjectID(),
-			CustomerID:   primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
+			StoreID:      bson.NewObjectID(),
+			ProductID:    bson.NewObjectID(),
+			CustomerID:   bson.NewObjectID(),
 			CreatedOnUtc: time.Now().AddDate(0, 0, -10), // 10 days ago
 		},
 		{
-			ID:           primitive.NewObjectID(),
-			StoreID:      primitive.NewObjectID(),
-			ProductID:    primitive.NewObjectID(),
-			CustomerID:   primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
+			StoreID:      bson.NewObjectID(),
+			ProductID:    bson.NewObjectID(),
+			CustomerID:   bson.NewObjectID(),
 			CreatedOnUtc: time.Now().AddDate(0, 0, -5), // 5 days ago
 		},
 	}

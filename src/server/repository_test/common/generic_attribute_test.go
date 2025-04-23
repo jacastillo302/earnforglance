@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultGenericAttribute struct {
@@ -29,12 +29,12 @@ func (m *MockSingleResultGenericAttribute) Decode(v interface{}) error {
 }
 
 var mockItemGenericAttribute = &domain.GenericAttribute{
-	ID:                      primitive.NewObjectID(), // Existing ID of the record to update
-	EntityID:                primitive.NewObjectID(),
+	ID:                      bson.NewObjectID(), // Existing ID of the record to update
+	EntityID:                bson.NewObjectID(),
 	KeyGroup:                "Customer",
 	Key:                     "PreferredLanguage",
 	Value:                   "English",
-	StoreID:                 primitive.NewObjectID(),
+	StoreID:                 bson.NewObjectID(),
 	CreatedOrUpdatedDateUTC: new(time.Time),
 }
 

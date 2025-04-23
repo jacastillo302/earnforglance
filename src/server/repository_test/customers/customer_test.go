@@ -13,8 +13,8 @@ import (
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultCustomer struct {
@@ -30,7 +30,7 @@ func (m *MockSingleResultCustomer) Decode(v interface{}) error {
 }
 
 var mockItemCustomer = &domain.Customer{
-	ID:                          primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                          bson.NewObjectID(), // Existing ID of the record to update
 	CustomerGuid:                uuid.New(),
 	Username:                    "janedoe",
 	Email:                       "janedoe@example.com",
@@ -44,16 +44,16 @@ var mockItemCustomer = &domain.Customer{
 	ZipPostalCode:               "67890",
 	City:                        "Updated City",
 	County:                      "Updated County",
-	CountryID:                   primitive.NewObjectID(),
-	StateProvinceID:             primitive.NewObjectID(),
+	CountryID:                   bson.NewObjectID(),
+	StateProvinceID:             bson.NewObjectID(),
 	Phone:                       "987-654-3210",
 	Fax:                         "987-654-3211",
 	VatNumber:                   "VAT654321",
 	VatNumberStatusID:           "Valid",
 	TimeZoneID:                  "PST",
 	CustomCustomerAttributesXML: "<attributes><attribute>updated</attribute></attributes>",
-	CurrencyID:                  new(primitive.ObjectID),
-	LanguageID:                  new(primitive.ObjectID),
+	CurrencyID:                  new(bson.ObjectID),
+	LanguageID:                  new(bson.ObjectID),
 	TaxDisplayTypeID:            new(int),
 	EmailToRevalidate:           "janedoe@newdomain.com",
 	AdminComment:                "Updated customer",
@@ -73,9 +73,9 @@ var mockItemCustomer = &domain.Customer{
 	LastLoginDateUtc:            new(time.Time),
 	LastActivityDateUtc:         time.Now(),
 	RegisteredInStoreID:         "64f1b3d4e5f6789012345678",
-	BillingAddressID:            new(primitive.ObjectID),
+	BillingAddressID:            new(bson.ObjectID),
 	MustChangePassword:          true,
-	ShippingAddressID:           new(primitive.ObjectID),
+	ShippingAddressID:           new(bson.ObjectID),
 }
 
 func TestCustomerRepository_FetchByID(t *testing.T) {

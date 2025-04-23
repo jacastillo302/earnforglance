@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultLocalizationSettings struct {
@@ -28,8 +28,8 @@ func (m *MockSingleResultLocalizationSettings) Decode(v interface{}) error {
 }
 
 var mockItemLocalizationSettings = &domain.LocalizationSettings{
-	ID:                                  primitive.NewObjectID(), // Existing ID of the record to update
-	DefaultAdminLanguageID:              primitive.NewObjectID(),
+	ID:                                  bson.NewObjectID(), // Existing ID of the record to update
+	DefaultAdminLanguageID:              bson.NewObjectID(),
 	UseImagesForLanguageSelection:       false,
 	SeoFriendlyUrlsForLanguagesEnabled:  false,
 	AutomaticallyDetectLanguage:         true,

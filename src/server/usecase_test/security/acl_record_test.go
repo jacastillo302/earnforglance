@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestAclRecordUsecase_FetchByID(t *testing.T) {
@@ -18,11 +18,11 @@ func TestAclRecordUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewAclRecordUsecase(mockRepo, timeout)
 
-	aclRecordID := primitive.NewObjectID().Hex()
+	aclRecordID := bson.NewObjectID().Hex()
 	updatedAclRecord := domain.AclRecord{
-		EntityID:       primitive.NewObjectID(),
+		EntityID:       bson.NewObjectID(),
 		EntityName:     "Category",
-		CustomerRoleID: primitive.NewObjectID(),
+		CustomerRoleID: bson.NewObjectID(),
 		IsRead:         true,
 		IsDelete:       true,
 		IsUpdate:       true,
@@ -44,9 +44,9 @@ func TestAclRecordUsecase_Create(t *testing.T) {
 	usecase := test.NewAclRecordUsecase(mockRepo, timeout)
 
 	newAclRecord := &domain.AclRecord{
-		EntityID:       primitive.NewObjectID(),
+		EntityID:       bson.NewObjectID(),
 		EntityName:     "Product",
-		CustomerRoleID: primitive.NewObjectID(),
+		CustomerRoleID: bson.NewObjectID(),
 	}
 
 	mockRepo.On("Create", mock.Anything, newAclRecord).Return(nil)
@@ -63,9 +63,9 @@ func TestAclRecordUsecase_Update(t *testing.T) {
 	usecase := test.NewAclRecordUsecase(mockRepo, timeout)
 
 	updatedAclRecord := &domain.AclRecord{
-		EntityID:       primitive.NewObjectID(),
+		EntityID:       bson.NewObjectID(),
 		EntityName:     "Category",
-		CustomerRoleID: primitive.NewObjectID(),
+		CustomerRoleID: bson.NewObjectID(),
 		IsRead:         true,
 		IsDelete:       true,
 		IsUpdate:       true,
@@ -85,7 +85,7 @@ func TestAclRecordUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewAclRecordUsecase(mockRepo, timeout)
 
-	aclRecordID := primitive.NewObjectID().Hex()
+	aclRecordID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, aclRecordID).Return(nil)
 
@@ -102,18 +102,18 @@ func TestAclRecordUsecase_Fetch(t *testing.T) {
 
 	fetchedAclRecords := []domain.AclRecord{
 		{
-			EntityID:       primitive.NewObjectID(),
+			EntityID:       bson.NewObjectID(),
 			EntityName:     "Product",
-			CustomerRoleID: primitive.NewObjectID(),
+			CustomerRoleID: bson.NewObjectID(),
 			IsRead:         true,
 			IsDelete:       true,
 			IsUpdate:       true,
 			IsCreate:       true,
 		},
 		{
-			EntityID:       primitive.NewObjectID(),
+			EntityID:       bson.NewObjectID(),
 			EntityName:     "Category",
-			CustomerRoleID: primitive.NewObjectID(),
+			CustomerRoleID: bson.NewObjectID(),
 			IsRead:         true,
 			IsDelete:       false,
 			IsUpdate:       true,

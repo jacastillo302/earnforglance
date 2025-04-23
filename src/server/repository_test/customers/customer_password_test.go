@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultCustomerPassword struct {
@@ -29,8 +29,8 @@ func (m *MockSingleResultCustomerPassword) Decode(v interface{}) error {
 }
 
 var mockItemCustomerPassword = &domain.CustomerPassword{
-	ID:               primitive.NewObjectID(),
-	CustomerID:       primitive.NewObjectID(),
+	ID:               bson.NewObjectID(),
+	CustomerID:       bson.NewObjectID(),
 	Password:         "hashedpassword456",
 	PasswordFormatID: 2, // Example password format ID (e.g., 2 for encrypted)
 	PasswordSalt:     "anotherrandomsalt",

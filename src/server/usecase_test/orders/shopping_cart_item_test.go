@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestShoppingCartItemUsecase_FetchByID(t *testing.T) {
@@ -18,14 +18,14 @@ func TestShoppingCartItemUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewShoppingCartItemUsecase(mockRepo, timeout)
 
-	shoppingCartItemID := primitive.NewObjectID().Hex()
+	shoppingCartItemID := bson.NewObjectID().Hex()
 
 	updatedShoppingCartItem := domain.ShoppingCartItem{
-		ID:                   primitive.NewObjectID(), // Existing ID of the record to update
-		StoreID:              primitive.NewObjectID(),
+		ID:                   bson.NewObjectID(), // Existing ID of the record to update
+		StoreID:              bson.NewObjectID(),
 		ShoppingCartTypeID:   1,
-		CustomerID:           primitive.NewObjectID(),
-		ProductID:            primitive.NewObjectID(),
+		CustomerID:           bson.NewObjectID(),
+		ProductID:            bson.NewObjectID(),
 		AttributesXml:        "<Attributes><Color>Blue</Color><Size>L</Size></Attributes>",
 		CustomerEnteredPrice: 59.99,
 		Quantity:             3,
@@ -50,10 +50,10 @@ func TestShoppingCartItemUsecase_Create(t *testing.T) {
 	usecase := test.NewShoppingCartItemUsecase(mockRepo, timeout)
 
 	newShoppingCartItem := &domain.ShoppingCartItem{
-		StoreID:              primitive.NewObjectID(),
+		StoreID:              bson.NewObjectID(),
 		ShoppingCartTypeID:   2,
-		CustomerID:           primitive.NewObjectID(),
-		ProductID:            primitive.NewObjectID(),
+		CustomerID:           bson.NewObjectID(),
+		ProductID:            bson.NewObjectID(),
 		AttributesXml:        "<Attributes><Color>Red</Color><Size>M</Size></Attributes>",
 		CustomerEnteredPrice: 49.99,
 		Quantity:             2,
@@ -77,11 +77,11 @@ func TestShoppingCartItemUsecase_Update(t *testing.T) {
 	usecase := test.NewShoppingCartItemUsecase(mockRepo, timeout)
 
 	updatedShoppingCartItem := &domain.ShoppingCartItem{
-		ID:                   primitive.NewObjectID(), // Existing ID of the record to update
-		StoreID:              primitive.NewObjectID(),
+		ID:                   bson.NewObjectID(), // Existing ID of the record to update
+		StoreID:              bson.NewObjectID(),
 		ShoppingCartTypeID:   1,
-		CustomerID:           primitive.NewObjectID(),
-		ProductID:            primitive.NewObjectID(),
+		CustomerID:           bson.NewObjectID(),
+		ProductID:            bson.NewObjectID(),
 		AttributesXml:        "<Attributes><Color>Blue</Color><Size>L</Size></Attributes>",
 		CustomerEnteredPrice: 59.99,
 		Quantity:             3,
@@ -106,7 +106,7 @@ func TestShoppingCartItemUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewShoppingCartItemUsecase(mockRepo, timeout)
 
-	shoppingCartItemID := primitive.NewObjectID().Hex()
+	shoppingCartItemID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, shoppingCartItemID).Return(nil)
 
@@ -123,11 +123,11 @@ func TestShoppingCartItemUsecase_Fetch(t *testing.T) {
 
 	fetchedShoppingCartItems := []domain.ShoppingCartItem{
 		{
-			ID:                   primitive.NewObjectID(),
-			StoreID:              primitive.NewObjectID(),
+			ID:                   bson.NewObjectID(),
+			StoreID:              bson.NewObjectID(),
 			ShoppingCartTypeID:   2,
-			CustomerID:           primitive.NewObjectID(),
-			ProductID:            primitive.NewObjectID(),
+			CustomerID:           bson.NewObjectID(),
+			ProductID:            bson.NewObjectID(),
 			AttributesXml:        "<Attributes><Color>Red</Color><Size>M</Size></Attributes>",
 			CustomerEnteredPrice: 49.99,
 			Quantity:             2,
@@ -137,11 +137,11 @@ func TestShoppingCartItemUsecase_Fetch(t *testing.T) {
 			UpdatedOnUtc:         time.Now().AddDate(0, 0, -5),
 		},
 		{
-			ID:                   primitive.NewObjectID(),
-			StoreID:              primitive.NewObjectID(),
+			ID:                   bson.NewObjectID(),
+			StoreID:              bson.NewObjectID(),
 			ShoppingCartTypeID:   1,
-			CustomerID:           primitive.NewObjectID(),
-			ProductID:            primitive.NewObjectID(),
+			CustomerID:           bson.NewObjectID(),
+			ProductID:            bson.NewObjectID(),
 			AttributesXml:        "<Attributes><Color>Blue</Color><Size>L</Size></Attributes>",
 			CustomerEnteredPrice: 59.99,
 			Quantity:             3,

@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestAddressAttributeUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestAddressAttributeUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewAddressAttributeUsecase(mockRepo, timeout)
 
-	addressAttributeID := primitive.NewObjectID().Hex()
+	addressAttributeID := bson.NewObjectID().Hex()
 
 	updatedAddressAttribute := domain.AddressAttribute{
-		ID:                              primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                              bson.NewObjectID(), // Existing ID of the record to update
 		Name:                            "City",
 		IsRequired:                      false,
 		AttributeControlTypeID:          2,
@@ -77,7 +77,7 @@ func TestAddressAttributeUsecase_Update(t *testing.T) {
 	usecase := test.NewAddressAttributeUsecase(mockRepo, timeout)
 
 	updatedAddressAttribute := &domain.AddressAttribute{
-		ID:                              primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                              bson.NewObjectID(), // Existing ID of the record to update
 		Name:                            "City",
 		IsRequired:                      false,
 		AttributeControlTypeID:          2,
@@ -106,7 +106,7 @@ func TestAddressAttributeUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewAddressAttributeUsecase(mockRepo, timeout)
 
-	addressAttributeID := primitive.NewObjectID().Hex()
+	addressAttributeID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, addressAttributeID).Return(nil)
 
@@ -123,7 +123,7 @@ func TestAddressAttributeUsecase_Fetch(t *testing.T) {
 
 	fetchedAddressAttributes := []domain.AddressAttribute{
 		{
-			ID:                              primitive.NewObjectID(),
+			ID:                              bson.NewObjectID(),
 			Name:                            "Street Address",
 			IsRequired:                      true,
 			AttributeControlTypeID:          1,
@@ -136,7 +136,7 @@ func TestAddressAttributeUsecase_Fetch(t *testing.T) {
 			ConditionAttributeXml:           "<conditions><required>true</required></conditions>",
 		},
 		{
-			ID:                              primitive.NewObjectID(),
+			ID:                              bson.NewObjectID(),
 			Name:                            "City",
 			IsRequired:                      false,
 			AttributeControlTypeID:          2,

@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultVendorSettings struct {
@@ -28,7 +28,7 @@ func (m *MockSingleResultVendorSettings) Decode(v interface{}) error {
 }
 
 var mockItemVendorSettings = &domain.VendorSettings{
-	ID:                                           primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                                           bson.NewObjectID(), // Existing ID of the record to update
 	DefaultVendorPageSizeOptions:                 "5,15,25",
 	VendorsBlockItemsToDisplay:                   15,
 	ShowVendorOnProductDetailsPage:               false,

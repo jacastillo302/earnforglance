@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultPermissionRecord struct {
@@ -28,7 +28,7 @@ func (m *MockSingleResultPermissionRecord) Decode(v interface{}) error {
 }
 
 var mockItemPermissionRecord = &domain.PermissionRecord{
-	ID:         primitive.NewObjectID(), // Existing ID of the record to update
+	ID:         bson.NewObjectID(), // Existing ID of the record to update
 	Name:       "Manage Categories",
 	SystemName: "manage_categories",
 	Category:   "Catalog",

@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestProductTagUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestProductTagUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewProductTagUsecase(mockRepo, timeout)
 
-	productTagID := primitive.NewObjectID().Hex()
+	productTagID := bson.NewObjectID().Hex()
 
 	updatedProductTag := domain.ProductTag{
-		ID:              primitive.NewObjectID(), // Existing ID of the record to update
+		ID:              bson.NewObjectID(), // Existing ID of the record to update
 		Name:            "Home Appliances",
 		MetaDescription: "Tags related to home appliances",
 		MetaKeywords:    "appliances, home, kitchen",
@@ -63,7 +63,7 @@ func TestProductTagUsecase_Update(t *testing.T) {
 	usecase := test.NewProductTagUsecase(mockRepo, timeout)
 
 	updatedProductTag := &domain.ProductTag{
-		ID:              primitive.NewObjectID(), // Existing ID of the record to update
+		ID:              bson.NewObjectID(), // Existing ID of the record to update
 		Name:            "Home Appliances",
 		MetaDescription: "Tags related to home appliances",
 		MetaKeywords:    "appliances, home, kitchen",
@@ -83,7 +83,7 @@ func TestProductTagUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewProductTagUsecase(mockRepo, timeout)
 
-	productTagID := primitive.NewObjectID().Hex()
+	productTagID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, productTagID).Return(nil)
 
@@ -100,14 +100,14 @@ func TestProductTagUsecase_Fetch(t *testing.T) {
 
 	fetchedProductTags := []domain.ProductTag{
 		{
-			ID:              primitive.NewObjectID(),
+			ID:              bson.NewObjectID(),
 			Name:            "Electronics",
 			MetaDescription: "Tags related to electronic products",
 			MetaKeywords:    "electronics, gadgets, devices",
 			MetaTitle:       "Electronics Tag",
 		},
 		{
-			ID:              primitive.NewObjectID(),
+			ID:              bson.NewObjectID(),
 			Name:            "Furniture",
 			MetaDescription: "Tags related to furniture products",
 			MetaKeywords:    "furniture, home, decor",

@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestPrivateMessageUsecase_FetchByID(t *testing.T) {
@@ -18,13 +18,13 @@ func TestPrivateMessageUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewPrivateMessageUsecase(mockRepo, timeout)
 
-	privateMessageID := primitive.NewObjectID().Hex()
+	privateMessageID := bson.NewObjectID().Hex()
 
 	updatedPrivateMessage := domain.PrivateMessage{
-		ID:                   primitive.NewObjectID(), // Existing ID of the record to update
-		StoreID:              primitive.NewObjectID(),
-		FromCustomerID:       primitive.NewObjectID(),
-		ToCustomerID:         primitive.NewObjectID(),
+		ID:                   bson.NewObjectID(), // Existing ID of the record to update
+		StoreID:              bson.NewObjectID(),
+		FromCustomerID:       bson.NewObjectID(),
+		ToCustomerID:         bson.NewObjectID(),
 		Subject:              "Updated Subject",
 		Text:                 "This is an updated private message.",
 		IsRead:               true,
@@ -48,9 +48,9 @@ func TestPrivateMessageUsecase_Create(t *testing.T) {
 	usecase := test.NewPrivateMessageUsecase(mockRepo, timeout)
 
 	newPrivateMessage := &domain.PrivateMessage{
-		StoreID:              primitive.NewObjectID(),
-		FromCustomerID:       primitive.NewObjectID(),
-		ToCustomerID:         primitive.NewObjectID(),
+		StoreID:              bson.NewObjectID(),
+		FromCustomerID:       bson.NewObjectID(),
+		ToCustomerID:         bson.NewObjectID(),
 		Subject:              "Welcome to the platform",
 		Text:                 "Hello! Welcome to our platform. Let us know if you need any help.",
 		IsRead:               false,
@@ -73,10 +73,10 @@ func TestPrivateMessageUsecase_Update(t *testing.T) {
 	usecase := test.NewPrivateMessageUsecase(mockRepo, timeout)
 
 	updatedPrivateMessage := &domain.PrivateMessage{
-		ID:                   primitive.NewObjectID(), // Existing ID of the record to update
-		StoreID:              primitive.NewObjectID(),
-		FromCustomerID:       primitive.NewObjectID(),
-		ToCustomerID:         primitive.NewObjectID(),
+		ID:                   bson.NewObjectID(), // Existing ID of the record to update
+		StoreID:              bson.NewObjectID(),
+		FromCustomerID:       bson.NewObjectID(),
+		ToCustomerID:         bson.NewObjectID(),
 		Subject:              "Updated Subject",
 		Text:                 "This is an updated private message.",
 		IsRead:               true,
@@ -97,7 +97,7 @@ func TestPrivateMessageUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewPrivateMessageUsecase(mockRepo, timeout)
 
-	privateMessageID := primitive.NewObjectID().Hex()
+	privateMessageID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, privateMessageID).Return(nil)
 
@@ -114,10 +114,10 @@ func TestPrivateMessageUsecase_Fetch(t *testing.T) {
 
 	fetchedPrivateMessages := []domain.PrivateMessage{
 		{
-			ID:                   primitive.NewObjectID(),
-			StoreID:              primitive.NewObjectID(),
-			FromCustomerID:       primitive.NewObjectID(),
-			ToCustomerID:         primitive.NewObjectID(),
+			ID:                   bson.NewObjectID(),
+			StoreID:              bson.NewObjectID(),
+			FromCustomerID:       bson.NewObjectID(),
+			ToCustomerID:         bson.NewObjectID(),
 			Subject:              "Welcome to the platform",
 			Text:                 "Hello! Welcome to our platform. Let us know if you need any help.",
 			IsRead:               false,
@@ -126,10 +126,10 @@ func TestPrivateMessageUsecase_Fetch(t *testing.T) {
 			CreatedOnUtc:         time.Now().AddDate(0, 0, -10), // Created 10 days ago
 		},
 		{
-			ID:                   primitive.NewObjectID(),
-			StoreID:              primitive.NewObjectID(),
-			FromCustomerID:       primitive.NewObjectID(),
-			ToCustomerID:         primitive.NewObjectID(),
+			ID:                   bson.NewObjectID(),
+			StoreID:              bson.NewObjectID(),
+			FromCustomerID:       bson.NewObjectID(),
+			ToCustomerID:         bson.NewObjectID(),
 			Subject:              "Follow-up",
 			Text:                 "Just checking in to see if you need assistance.",
 			IsRead:               true,

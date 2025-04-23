@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultMediaSettings struct {
@@ -28,7 +28,7 @@ func (m *MockSingleResultMediaSettings) Decode(v interface{}) error {
 }
 
 var mockItemMediaSettings = &domain.MediaSettings{
-	ID:                        primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                        bson.NewObjectID(), // Existing ID of the record to update
 	AvatarPictureSize:         120,
 	ProductThumbPictureSize:   250,
 	ProductDetailsPictureSize: 450,
@@ -53,7 +53,7 @@ var mockItemMediaSettings = &domain.MediaSettings{
 	VideoIframeAllow:                            "autoplay",
 	VideoIframeWidth:                            800,
 	VideoIframeHeight:                           450,
-	ProductDefaultImageID:                       primitive.NewObjectID(),
+	ProductDefaultImageID:                       bson.NewObjectID(),
 	AutoOrientImage:                             false,
 }
 

@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultBlogPost struct {
@@ -38,7 +38,7 @@ func TestBlogPostRepository_FetchByID(t *testing.T) {
 	collectionName := domain.CollectionBlogPost
 
 	mockItem := domain.BlogPost{
-		ID:               primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+		ID:               bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
 		IncludeInSitemap: false,
 		Title:            "",
 		Body:             "",
@@ -98,7 +98,7 @@ func TestBlogPostRepository_Create(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockBlogPost := &domain.BlogPost{
-		ID:               primitive.NewObjectID(), // Existing ID of the record to update
+		ID:               bson.NewObjectID(), // Existing ID of the record to update
 		IncludeInSitemap: false,
 		Title:            "Updated Blog Post",
 		Body:             "This is the updated body of the blog post.",
@@ -132,7 +132,7 @@ func TestBlogPostRepository_Update(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockBlogPost := &domain.BlogPost{
-		ID:               primitive.NewObjectID(), // Existing ID of the record to update
+		ID:               bson.NewObjectID(), // Existing ID of the record to update
 		IncludeInSitemap: false,
 		Title:            "Updated Blog Post",
 		Body:             "This is the updated body of the blog post.",

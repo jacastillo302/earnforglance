@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,15 +12,15 @@ const (
 
 // GdprConsent represents a GDPR consents
 type GdprConsent struct {
-	ID                        primitive.ObjectID  `bson:"_id,omitempty"`
-	Title                     string              `bson:"title"`
-	Message                   string              `bson:"message"`
-	ParentID                  *primitive.ObjectID `bson:"parent_id"`
-	IsRequired                bool                `bson:"is_required"`
-	RequiredMessage           string              `bson:"required_message"`
-	DisplayDuringRegistration bool                `bson:"display_during_registration"`
-	DisplayOnCustomerInfoPage bool                `bson:"display_on_customer_info_page"`
-	DisplayOrder              int                 `bson:"display_order"`
+	ID                        bson.ObjectID  `bson:"_id,omitempty"`
+	Title                     string         `bson:"title"`
+	Message                   string         `bson:"message"`
+	ParentID                  *bson.ObjectID `bson:"parent_id"`
+	IsRequired                bool           `bson:"is_required"`
+	RequiredMessage           string         `bson:"required_message"`
+	DisplayDuringRegistration bool           `bson:"display_during_registration"`
+	DisplayOnCustomerInfoPage bool           `bson:"display_on_customer_info_page"`
+	DisplayOrder              int            `bson:"display_order"`
 }
 
 // GdprConsentRepository interface

@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestProductManufacturerUsecase_FetchByID(t *testing.T) {
@@ -18,12 +18,12 @@ func TestProductManufacturerUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewProductManufacturerUsecase(mockRepo, timeout)
 
-	productManufacturerID := primitive.NewObjectID().Hex()
+	productManufacturerID := bson.NewObjectID().Hex()
 
 	updatedProductManufacturer := domain.ProductManufacturer{
-		ID:                primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID:         primitive.NewObjectID(),
-		ManufacturerID:    primitive.NewObjectID(),
+		ID:                bson.NewObjectID(), // Existing ID of the record to update
+		ProductID:         bson.NewObjectID(),
+		ManufacturerID:    bson.NewObjectID(),
 		IsFeaturedProduct: false,
 		DisplayOrder:      2,
 	}
@@ -43,8 +43,8 @@ func TestProductManufacturerUsecase_Create(t *testing.T) {
 	usecase := test.NewProductManufacturerUsecase(mockRepo, timeout)
 
 	newProductManufacturer := &domain.ProductManufacturer{
-		ProductID:         primitive.NewObjectID(),
-		ManufacturerID:    primitive.NewObjectID(),
+		ProductID:         bson.NewObjectID(),
+		ManufacturerID:    bson.NewObjectID(),
 		IsFeaturedProduct: true,
 		DisplayOrder:      1,
 	}
@@ -63,9 +63,9 @@ func TestProductManufacturerUsecase_Update(t *testing.T) {
 	usecase := test.NewProductManufacturerUsecase(mockRepo, timeout)
 
 	updatedProductManufacturer := &domain.ProductManufacturer{
-		ID:                primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID:         primitive.NewObjectID(),
-		ManufacturerID:    primitive.NewObjectID(),
+		ID:                bson.NewObjectID(), // Existing ID of the record to update
+		ProductID:         bson.NewObjectID(),
+		ManufacturerID:    bson.NewObjectID(),
 		IsFeaturedProduct: false,
 		DisplayOrder:      2,
 	}
@@ -83,7 +83,7 @@ func TestProductManufacturerUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewProductManufacturerUsecase(mockRepo, timeout)
 
-	productManufacturerID := primitive.NewObjectID().Hex()
+	productManufacturerID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, productManufacturerID).Return(nil)
 
@@ -100,16 +100,16 @@ func TestProductManufacturerUsecase_Fetch(t *testing.T) {
 
 	fetchedProductManufacturers := []domain.ProductManufacturer{
 		{
-			ID:                primitive.NewObjectID(),
-			ProductID:         primitive.NewObjectID(),
-			ManufacturerID:    primitive.NewObjectID(),
+			ID:                bson.NewObjectID(),
+			ProductID:         bson.NewObjectID(),
+			ManufacturerID:    bson.NewObjectID(),
 			IsFeaturedProduct: true,
 			DisplayOrder:      1,
 		},
 		{
-			ID:                primitive.NewObjectID(),
-			ProductID:         primitive.NewObjectID(),
-			ManufacturerID:    primitive.NewObjectID(),
+			ID:                bson.NewObjectID(),
+			ProductID:         bson.NewObjectID(),
+			ManufacturerID:    bson.NewObjectID(),
 			IsFeaturedProduct: false,
 			DisplayOrder:      2,
 		},

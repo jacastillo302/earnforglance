@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestCustomerSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestCustomerSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCustomerSettingsUsecase(mockRepo, timeout)
 
-	customersID := primitive.NewObjectID().Hex()
+	customersID := bson.NewObjectID().Hex()
 
 	updatedCustomerSettings := domian.CustomerSettings{
-		ID:                                         primitive.NewObjectID(), // Generate a new MongoDB ObjectID
+		ID:                                         bson.NewObjectID(), // Generate a new MongoDB ObjectID
 		UsernamesEnabled:                           true,
 		CheckUsernameAvailabilityEnabled:           true,
 		AllowUsersToChangeUsernames:                false,
@@ -213,7 +213,7 @@ func TestCustomerSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewCustomerSettingsUsecase(mockRepo, timeout)
 
 	updatedCustomerSettings := &domian.CustomerSettings{
-		ID:                                         primitive.NewObjectID(), // Generate a new MongoDB ObjectID
+		ID:                                         bson.NewObjectID(), // Generate a new MongoDB ObjectID
 		UsernamesEnabled:                           true,
 		CheckUsernameAvailabilityEnabled:           true,
 		AllowUsersToChangeUsernames:                false,
@@ -308,7 +308,7 @@ func TestCustomerSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCustomerSettingsUsecase(mockRepo, timeout)
 
-	customersID := primitive.NewObjectID().Hex()
+	customersID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, customersID).Return(nil)
 
@@ -325,7 +325,7 @@ func TestCustomerSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedCustomerSettings := []domian.CustomerSettings{
 		{
-			ID:                                         primitive.NewObjectID(),
+			ID:                                         bson.NewObjectID(),
 			UsernamesEnabled:                           false,
 			CheckUsernameAvailabilityEnabled:           false,
 			AllowUsersToChangeUsernames:                true,

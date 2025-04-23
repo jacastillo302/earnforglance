@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultPrivateMessage struct {
@@ -29,10 +29,10 @@ func (m *MockSingleResultPrivateMessage) Decode(v interface{}) error {
 }
 
 var mockItemPrivateMessage = &domain.PrivateMessage{
-	ID:                   primitive.NewObjectID(), // Existing ID of the record to update
-	StoreID:              primitive.NewObjectID(),
-	FromCustomerID:       primitive.NewObjectID(),
-	ToCustomerID:         primitive.NewObjectID(),
+	ID:                   bson.NewObjectID(), // Existing ID of the record to update
+	StoreID:              bson.NewObjectID(),
+	FromCustomerID:       bson.NewObjectID(),
+	ToCustomerID:         bson.NewObjectID(),
 	Subject:              "Updated Subject",
 	Text:                 "This is an updated private message.",
 	IsRead:               true,

@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestNewsCommentUsecase_FetchByID(t *testing.T) {
@@ -18,16 +18,16 @@ func TestNewsCommentUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewNewsCommentUsecase(mockRepo, timeout)
 
-	newsCommentID := primitive.NewObjectID().Hex()
+	newsCommentID := bson.NewObjectID().Hex()
 
 	updatedNewsComment := domain.NewsComment{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
 		CommentTitle: "Updated Comment Title",
 		CommentText:  "This is an updated comment text.",
-		NewsItemID:   primitive.NewObjectID(),
-		CustomerID:   primitive.NewObjectID(),
+		NewsItemID:   bson.NewObjectID(),
+		CustomerID:   bson.NewObjectID(),
 		IsApproved:   false,
-		StoreID:      primitive.NewObjectID(),
+		StoreID:      bson.NewObjectID(),
 		CreatedOnUtc: time.Now().AddDate(0, 0, -7), // Created 7 days ago
 	}
 
@@ -48,10 +48,10 @@ func TestNewsCommentUsecase_Create(t *testing.T) {
 	newNewsComment := &domain.NewsComment{
 		CommentTitle: "Great News!",
 		CommentText:  "This is an amazing update. Keep up the good work!",
-		NewsItemID:   primitive.NewObjectID(),
-		CustomerID:   primitive.NewObjectID(),
+		NewsItemID:   bson.NewObjectID(),
+		CustomerID:   bson.NewObjectID(),
 		IsApproved:   true,
-		StoreID:      primitive.NewObjectID(),
+		StoreID:      bson.NewObjectID(),
 		CreatedOnUtc: time.Now(),
 	}
 
@@ -69,13 +69,13 @@ func TestNewsCommentUsecase_Update(t *testing.T) {
 	usecase := test.NewNewsCommentUsecase(mockRepo, timeout)
 
 	updatedNewsComment := &domain.NewsComment{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
 		CommentTitle: "Updated Comment Title",
 		CommentText:  "This is an updated comment text.",
-		NewsItemID:   primitive.NewObjectID(),
-		CustomerID:   primitive.NewObjectID(),
+		NewsItemID:   bson.NewObjectID(),
+		CustomerID:   bson.NewObjectID(),
 		IsApproved:   false,
-		StoreID:      primitive.NewObjectID(),
+		StoreID:      bson.NewObjectID(),
 		CreatedOnUtc: time.Now().AddDate(0, 0, -7), // Created 7 days ago
 	}
 
@@ -92,7 +92,7 @@ func TestNewsCommentUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewNewsCommentUsecase(mockRepo, timeout)
 
-	newsCommentID := primitive.NewObjectID().Hex()
+	newsCommentID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, newsCommentID).Return(nil)
 
@@ -109,23 +109,23 @@ func TestNewsCommentUsecase_Fetch(t *testing.T) {
 
 	fetchedNewsComments := []domain.NewsComment{
 		{
-			ID:           primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
 			CommentTitle: "Great News!",
 			CommentText:  "This is an amazing update. Keep up the good work!",
-			NewsItemID:   primitive.NewObjectID(),
-			CustomerID:   primitive.NewObjectID(),
+			NewsItemID:   bson.NewObjectID(),
+			CustomerID:   bson.NewObjectID(),
 			IsApproved:   true,
-			StoreID:      primitive.NewObjectID(),
+			StoreID:      bson.NewObjectID(),
 			CreatedOnUtc: time.Now().AddDate(0, 0, -10), // Created 10 days ago
 		},
 		{
-			ID:           primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
 			CommentTitle: "Needs Improvement",
 			CommentText:  "I think this could be better.",
-			NewsItemID:   primitive.NewObjectID(),
-			CustomerID:   primitive.NewObjectID(),
+			NewsItemID:   bson.NewObjectID(),
+			CustomerID:   bson.NewObjectID(),
 			IsApproved:   false,
-			StoreID:      primitive.NewObjectID(),
+			StoreID:      bson.NewObjectID(),
 			CreatedOnUtc: time.Now().AddDate(0, 0, -5), // Created 5 days ago
 		},
 	}

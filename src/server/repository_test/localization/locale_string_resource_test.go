@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultLocaleStringResource struct {
@@ -28,8 +28,8 @@ func (m *MockSingleResultLocaleStringResource) Decode(v interface{}) error {
 }
 
 var mockItemLocaleStringResource = &domain.LocaleStringResource{
-	ID:            primitive.NewObjectID(), // Existing ID of the record to update
-	LanguageID:    primitive.NewObjectID(),
+	ID:            bson.NewObjectID(), // Existing ID of the record to update
+	LanguageID:    bson.NewObjectID(),
 	ResourceName:  "WelcomeMessage",
 	ResourceValue: "Welcome to our updated platform!",
 }

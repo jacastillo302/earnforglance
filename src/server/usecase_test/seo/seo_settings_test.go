@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestSeoSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestSeoSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewSeoSettingsUsecase(mockRepo, timeout)
 
-	seoID := primitive.NewObjectID().Hex()
+	seoID := bson.NewObjectID().Hex()
 
 	updatedSeoSettings := domain.SeoSettings{
-		ID:                                primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                bson.NewObjectID(), // Existing ID of the record to update
 		PageTitleSeparator:                "|",
 		PageTitleSeoAdjustmentID:          2,
 		GenerateProductMetaDescription:    false,
@@ -81,7 +81,7 @@ func TestSeoSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewSeoSettingsUsecase(mockRepo, timeout)
 
 	updatedSeoSettings := &domain.SeoSettings{
-		ID:                                primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                bson.NewObjectID(), // Existing ID of the record to update
 		PageTitleSeparator:                "|",
 		PageTitleSeoAdjustmentID:          2,
 		GenerateProductMetaDescription:    false,
@@ -110,7 +110,7 @@ func TestSeoSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewSeoSettingsUsecase(mockRepo, timeout)
 
-	seoID := primitive.NewObjectID().Hex()
+	seoID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, seoID).Return(nil)
 
@@ -127,7 +127,7 @@ func TestSeoSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedSeoSettings := []domain.SeoSettings{
 		{
-			ID:                                primitive.NewObjectID(),
+			ID:                                bson.NewObjectID(),
 			PageTitleSeparator:                "-",
 			PageTitleSeoAdjustmentID:          1,
 			GenerateProductMetaDescription:    true,
@@ -143,7 +143,7 @@ func TestSeoSettingsUsecase_Fetch(t *testing.T) {
 			MicrodataEnabled:                  true,
 		},
 		{
-			ID:                                primitive.NewObjectID(),
+			ID:                                bson.NewObjectID(),
 			PageTitleSeparator:                "|",
 			PageTitleSeoAdjustmentID:          2,
 			GenerateProductMetaDescription:    false,

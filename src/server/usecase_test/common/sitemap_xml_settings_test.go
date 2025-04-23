@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestSitemapXmlSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestSitemapXmlSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewSitemapXmlSettingsUsecase(mockRepo, timeout)
 
-	sitemapXmlSettingsID := primitive.NewObjectID().Hex()
+	sitemapXmlSettingsID := bson.NewObjectID().Hex()
 
 	updatedSitemapXmlSettings := domain.SitemapXmlSettings{
-		ID:                                   primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                   bson.NewObjectID(), // Existing ID of the record to update
 		SitemapXmlEnabled:                    false,
 		SitemapXmlIncludeBlogPosts:           false,
 		SitemapXmlIncludeCategories:          false,
@@ -79,7 +79,7 @@ func TestSitemapXmlSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewSitemapXmlSettingsUsecase(mockRepo, timeout)
 
 	updatedSitemapXmlSettings := &domain.SitemapXmlSettings{
-		ID:                                   primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                   bson.NewObjectID(), // Existing ID of the record to update
 		SitemapXmlEnabled:                    false,
 		SitemapXmlIncludeBlogPosts:           false,
 		SitemapXmlIncludeCategories:          false,
@@ -107,7 +107,7 @@ func TestSitemapXmlSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewSitemapXmlSettingsUsecase(mockRepo, timeout)
 
-	sitemapXmlSettingsID := primitive.NewObjectID().Hex()
+	sitemapXmlSettingsID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, sitemapXmlSettingsID).Return(nil)
 
@@ -124,7 +124,7 @@ func TestSitemapXmlSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedSitemapXmlSettings := []domain.SitemapXmlSettings{
 		{
-			ID:                                   primitive.NewObjectID(),
+			ID:                                   bson.NewObjectID(),
 			SitemapXmlEnabled:                    true,
 			SitemapXmlIncludeBlogPosts:           true,
 			SitemapXmlIncludeCategories:          true,
@@ -139,7 +139,7 @@ func TestSitemapXmlSettingsUsecase_Fetch(t *testing.T) {
 			SitemapBuildOperationDelay:           5,
 		},
 		{
-			ID:                                   primitive.NewObjectID(),
+			ID:                                   bson.NewObjectID(),
 			SitemapXmlEnabled:                    false,
 			SitemapXmlIncludeBlogPosts:           false,
 			SitemapXmlIncludeCategories:          false,

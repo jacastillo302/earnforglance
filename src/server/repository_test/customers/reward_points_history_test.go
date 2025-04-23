@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultRewardPointsHistory struct {
@@ -29,9 +29,9 @@ func (m *MockSingleResultRewardPointsHistory) Decode(v interface{}) error {
 }
 
 var mockItemRewardPointsHistory = &domain.RewardPointsHistory{
-	ID:            primitive.NewObjectID(), // Existing ID of the record to update
-	CustomerID:    primitive.NewObjectID(),
-	StoreID:       primitive.NewObjectID(),
+	ID:            bson.NewObjectID(), // Existing ID of the record to update
+	CustomerID:    bson.NewObjectID(),
+	StoreID:       bson.NewObjectID(),
 	Points:        -50,
 	PointsBalance: new(int),
 	UsedAmount:    25.0,

@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestMeasureWeightUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestMeasureWeightUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewMeasureWeightUsecase(mockRepo, timeout)
 
-	measureWeightID := primitive.NewObjectID().Hex()
+	measureWeightID := bson.NewObjectID().Hex()
 
 	updatedMeasureWeight := domain.MeasureWeight{
-		ID:            primitive.NewObjectID(), // Existing ID of the record to update
+		ID:            bson.NewObjectID(), // Existing ID of the record to update
 		Name:          "Pound",
 		SystemKeyword: "lb",
 		Ratio:         2.20462,
@@ -63,7 +63,7 @@ func TestMeasureWeightUsecase_Update(t *testing.T) {
 	usecase := test.NewMeasureWeightUsecase(mockRepo, timeout)
 
 	updatedMeasureWeight := &domain.MeasureWeight{
-		ID:            primitive.NewObjectID(), // Existing ID of the record to update
+		ID:            bson.NewObjectID(), // Existing ID of the record to update
 		Name:          "Pound",
 		SystemKeyword: "lb",
 		Ratio:         2.20462,
@@ -83,7 +83,7 @@ func TestMeasureWeightUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewMeasureWeightUsecase(mockRepo, timeout)
 
-	measureWeightID := primitive.NewObjectID().Hex()
+	measureWeightID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, measureWeightID).Return(nil)
 
@@ -100,14 +100,14 @@ func TestMeasureWeightUsecase_Fetch(t *testing.T) {
 
 	fetchedMeasureWeights := []domain.MeasureWeight{
 		{
-			ID:            primitive.NewObjectID(),
+			ID:            bson.NewObjectID(),
 			Name:          "Kilogram",
 			SystemKeyword: "kg",
 			Ratio:         1.0,
 			DisplayOrder:  1,
 		},
 		{
-			ID:            primitive.NewObjectID(),
+			ID:            bson.NewObjectID(),
 			Name:          "Pound",
 			SystemKeyword: "lb",
 			Ratio:         2.20462,

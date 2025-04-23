@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestPdfSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,11 +18,11 @@ func TestPdfSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewPdfSettingsUsecase(mockRepo, timeout)
 
-	pdfsettingsID := primitive.NewObjectID().Hex()
+	pdfsettingsID := bson.NewObjectID().Hex()
 
 	updatedPdfSettings := domain.PdfSettings{
-		ID:                                 primitive.NewObjectID(), // Existing ID of the record to update
-		LogoPictureID:                      primitive.NewObjectID(),
+		ID:                                 bson.NewObjectID(), // Existing ID of the record to update
+		LogoPictureID:                      bson.NewObjectID(),
 		LetterPageSizeEnabled:              false,
 		RenderOrderNotes:                   false,
 		DisablePdfInvoicesForPendingOrders: true,
@@ -49,7 +49,7 @@ func TestPdfSettingsUsecase_Create(t *testing.T) {
 	usecase := test.NewPdfSettingsUsecase(mockRepo, timeout)
 
 	newPdfSettings := &domain.PdfSettings{
-		LogoPictureID:                      primitive.NewObjectID(),
+		LogoPictureID:                      bson.NewObjectID(),
 		LetterPageSizeEnabled:              true,
 		RenderOrderNotes:                   true,
 		DisablePdfInvoicesForPendingOrders: false,
@@ -75,8 +75,8 @@ func TestPdfSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewPdfSettingsUsecase(mockRepo, timeout)
 
 	updatedPdfSettings := &domain.PdfSettings{
-		ID:                                 primitive.NewObjectID(), // Existing ID of the record to update
-		LogoPictureID:                      primitive.NewObjectID(),
+		ID:                                 bson.NewObjectID(), // Existing ID of the record to update
+		LogoPictureID:                      bson.NewObjectID(),
 		LetterPageSizeEnabled:              false,
 		RenderOrderNotes:                   false,
 		DisablePdfInvoicesForPendingOrders: true,
@@ -101,7 +101,7 @@ func TestPdfSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewPdfSettingsUsecase(mockRepo, timeout)
 
-	pdfsettingsID := primitive.NewObjectID().Hex()
+	pdfsettingsID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, pdfsettingsID).Return(nil)
 
@@ -118,8 +118,8 @@ func TestPdfSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedPdfSettings := []domain.PdfSettings{
 		{
-			ID:                                 primitive.NewObjectID(),
-			LogoPictureID:                      primitive.NewObjectID(),
+			ID:                                 bson.NewObjectID(),
+			LogoPictureID:                      bson.NewObjectID(),
 			LetterPageSizeEnabled:              true,
 			RenderOrderNotes:                   true,
 			DisablePdfInvoicesForPendingOrders: false,
@@ -131,8 +131,8 @@ func TestPdfSettingsUsecase_Fetch(t *testing.T) {
 			ImageTargetSize:                    300,
 		},
 		{
-			ID:                                 primitive.NewObjectID(),
-			LogoPictureID:                      primitive.NewObjectID(),
+			ID:                                 bson.NewObjectID(),
+			LogoPictureID:                      bson.NewObjectID(),
 			LetterPageSizeEnabled:              false,
 			RenderOrderNotes:                   false,
 			DisablePdfInvoicesForPendingOrders: true,

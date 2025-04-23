@@ -11,7 +11,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestBlogCommentUsecase_FetchByID(t *testing.T) {
@@ -19,14 +19,14 @@ func TestBlogCommentUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewBlogCommentUsecase(mockRepo, timeout)
 
-	blogCommentID := primitive.NewObjectID().Hex()
+	blogCommentID := bson.NewObjectID().Hex()
 
 	expectedBlogComment := domain.BlogComment{
-		CustomerID:   primitive.NewObjectID(),
+		CustomerID:   bson.NewObjectID(),
 		CommentText:  "This is a new blog comment.",
 		IsApproved:   false,
-		StoreID:      primitive.NewObjectID(),
-		BlogPostID:   primitive.NewObjectID(),
+		StoreID:      bson.NewObjectID(),
+		BlogPostID:   bson.NewObjectID(),
 		CreatedOnUtc: time.Now(),
 	}
 
@@ -45,11 +45,11 @@ func TestBlogCommentUsecase_Create(t *testing.T) {
 	usecase := test.NewBlogCommentUsecase(mockRepo, timeout)
 
 	newBlogComment := &domain.BlogComment{
-		CustomerID:   primitive.NewObjectID(),
+		CustomerID:   bson.NewObjectID(),
 		CommentText:  "This is a new blog comment.",
 		IsApproved:   false,
-		StoreID:      primitive.NewObjectID(),
-		BlogPostID:   primitive.NewObjectID(),
+		StoreID:      bson.NewObjectID(),
+		BlogPostID:   bson.NewObjectID(),
 		CreatedOnUtc: time.Now(),
 	}
 
@@ -67,12 +67,12 @@ func TestBlogCommentUsecase_Update(t *testing.T) {
 	usecase := test.NewBlogCommentUsecase(mockRepo, timeout)
 
 	updatedBlogComment := &domain.BlogComment{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		CustomerID:   primitive.NewObjectID(),
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
+		CustomerID:   bson.NewObjectID(),
 		CommentText:  "This is an updated blog comment.",
 		IsApproved:   true,
-		StoreID:      primitive.NewObjectID(),
-		BlogPostID:   primitive.NewObjectID(),
+		StoreID:      bson.NewObjectID(),
+		BlogPostID:   bson.NewObjectID(),
 		CreatedOnUtc: time.Now(),
 	}
 
@@ -89,7 +89,7 @@ func TestBlogCommentUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewBlogCommentUsecase(mockRepo, timeout)
 
-	blogCommentID := primitive.NewObjectID().Hex()
+	blogCommentID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, blogCommentID).Return(nil)
 
@@ -106,21 +106,21 @@ func TestBlogCommentUsecase_Fetch(t *testing.T) {
 
 	expectedBlogComments := []domain.BlogComment{
 		{
-			ID:           primitive.NewObjectID(),
-			CustomerID:   primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
+			CustomerID:   bson.NewObjectID(),
 			CommentText:  "This is the first blog comment.",
 			IsApproved:   true,
-			StoreID:      primitive.NewObjectID(),
-			BlogPostID:   primitive.NewObjectID(),
+			StoreID:      bson.NewObjectID(),
+			BlogPostID:   bson.NewObjectID(),
 			CreatedOnUtc: time.Now().AddDate(0, 0, -10), // 10 days ago
 		},
 		{
-			ID:           primitive.NewObjectID(),
-			CustomerID:   primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
+			CustomerID:   bson.NewObjectID(),
 			CommentText:  "This is the second blog comment.",
 			IsApproved:   false,
-			StoreID:      primitive.NewObjectID(),
-			BlogPostID:   primitive.NewObjectID(),
+			StoreID:      bson.NewObjectID(),
+			BlogPostID:   bson.NewObjectID(),
 			CreatedOnUtc: time.Now().AddDate(0, 0, -5), // 5 days ago
 		},
 	}

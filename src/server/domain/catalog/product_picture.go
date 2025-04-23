@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,10 +12,10 @@ const (
 
 // ProductPicture represents a product picture mapping
 type ProductPicture struct {
-	ID           primitive.ObjectID `bson:"_id,omitempty"`
-	ProductID    primitive.ObjectID `bson:"product_id"`
-	PictureID    primitive.ObjectID `bson:"picture_id"`
-	DisplayOrder int                `bson:"display_order"`
+	ID           bson.ObjectID `bson:"_id,omitempty"`
+	ProductID    bson.ObjectID `bson:"product_id"`
+	PictureID    bson.ObjectID `bson:"picture_id"`
+	DisplayOrder int           `bson:"display_order"`
 }
 
 type ProductPictureRepository interface {

@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestPictureHashesUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestPictureHashesUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewPictureHashesUsecase(mockRepo, timeout)
 
-	pictureHashID := primitive.NewObjectID().Hex()
+	pictureHashID := bson.NewObjectID().Hex()
 
 	updatedPictureHashes := domain.PictureHashes{
-		PictureID: primitive.NewObjectID(), // Existing PictureID of the record to update
+		PictureID: bson.NewObjectID(), // Existing PictureID of the record to update
 		Hash:      []byte("updated_hash_data"),
 	}
 
@@ -40,7 +40,7 @@ func TestPictureHashesUsecase_Create(t *testing.T) {
 	usecase := test.NewPictureHashesUsecase(mockRepo, timeout)
 
 	newPictureHashes := &domain.PictureHashes{
-		PictureID: primitive.NewObjectID(),
+		PictureID: bson.NewObjectID(),
 		Hash:      []byte("hash_data_1"),
 	}
 
@@ -58,7 +58,7 @@ func TestPictureHashesUsecase_Update(t *testing.T) {
 	usecase := test.NewPictureHashesUsecase(mockRepo, timeout)
 
 	updatedPictureHashes := &domain.PictureHashes{
-		PictureID: primitive.NewObjectID(), // Existing PictureID of the record to update
+		PictureID: bson.NewObjectID(), // Existing PictureID of the record to update
 		Hash:      []byte("updated_hash_data"),
 	}
 
@@ -75,7 +75,7 @@ func TestPictureHashesUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewPictureHashesUsecase(mockRepo, timeout)
 
-	pictureHashID := primitive.NewObjectID().Hex()
+	pictureHashID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, pictureHashID).Return(nil)
 
@@ -92,11 +92,11 @@ func TestPictureHashesUsecase_Fetch(t *testing.T) {
 
 	fetchedPictureHashes := []domain.PictureHashes{
 		{
-			PictureID: primitive.NewObjectID(),
+			PictureID: bson.NewObjectID(),
 			Hash:      []byte("hash_data_1"),
 		},
 		{
-			PictureID: primitive.NewObjectID(),
+			PictureID: bson.NewObjectID(),
 			Hash:      []byte("hash_data_2"),
 		},
 	}

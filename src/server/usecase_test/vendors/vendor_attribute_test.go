@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestVendorAttributeUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestVendorAttributeUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewVendorAttributeUsecase(mockRepo, timeout)
 
-	vendorAttributeID := primitive.NewObjectID().Hex()
+	vendorAttributeID := bson.NewObjectID().Hex()
 
 	updatedVendorAttribute := domain.VendorAttribute{
-		ID: primitive.NewObjectID(), // Existing ID of the record to update
+		ID: bson.NewObjectID(), // Existing ID of the record to update
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, vendorAttributeID).Return(updatedVendorAttribute, nil)
@@ -39,7 +39,7 @@ func TestVendorAttributeUsecase_Create(t *testing.T) {
 	usecase := test.NewVendorAttributeUsecase(mockRepo, timeout)
 
 	newVendorAttribute := &domain.VendorAttribute{
-		ID: primitive.NewObjectID(),
+		ID: bson.NewObjectID(),
 	}
 
 	mockRepo.On("Create", mock.Anything, newVendorAttribute).Return(nil)
@@ -56,7 +56,7 @@ func TestVendorAttributeUsecase_Update(t *testing.T) {
 	usecase := test.NewVendorAttributeUsecase(mockRepo, timeout)
 
 	updatedVendorAttribute := &domain.VendorAttribute{
-		ID: primitive.NewObjectID(), // Existing ID of the record to update
+		ID: bson.NewObjectID(), // Existing ID of the record to update
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedVendorAttribute).Return(nil)
@@ -72,7 +72,7 @@ func TestVendorAttributeUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewVendorAttributeUsecase(mockRepo, timeout)
 
-	vendorAttributeID := primitive.NewObjectID().Hex()
+	vendorAttributeID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, vendorAttributeID).Return(nil)
 
@@ -89,10 +89,10 @@ func TestVendorAttributeUsecase_Fetch(t *testing.T) {
 
 	fetchedVendorAttributes := []domain.VendorAttribute{
 		{
-			ID: primitive.NewObjectID(),
+			ID: bson.NewObjectID(),
 		},
 		{
-			ID: primitive.NewObjectID(),
+			ID: bson.NewObjectID(),
 		},
 	}
 

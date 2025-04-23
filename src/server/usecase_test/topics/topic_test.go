@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestTopicUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestTopicUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewTopicUsecase(mockRepo, timeout)
 
-	topicID := primitive.NewObjectID().Hex()
+	topicID := bson.NewObjectID().Hex()
 
 	updatedTopic := domain.Topic{
-		ID:                        primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                        bson.NewObjectID(), // Existing ID of the record to update
 		SystemName:                "contact-us",
 		IncludeInSitemap:          true,
 		IncludeInTopMenu:          false,
@@ -35,7 +35,7 @@ func TestTopicUsecase_FetchByID(t *testing.T) {
 		Title:                     "Contact Us",
 		Body:                      "This is the Contact Us page content.",
 		Published:                 true,
-		TopicTemplateID:           primitive.NewObjectID(),
+		TopicTemplateID:           bson.NewObjectID(),
 		MetaKeywords:              "contact, support, help",
 		MetaDescription:           "Get in touch with us for support.",
 		MetaTitle:                 "Contact Us - Support",
@@ -73,7 +73,7 @@ func TestTopicUsecase_Create(t *testing.T) {
 		Title:                     "About Us",
 		Body:                      "This is the About Us page content.",
 		Published:                 true,
-		TopicTemplateID:           primitive.NewObjectID(),
+		TopicTemplateID:           bson.NewObjectID(),
 		MetaKeywords:              "about, company, info",
 		MetaDescription:           "Learn more about our company.",
 		MetaTitle:                 "About Us - Company Info",
@@ -97,7 +97,7 @@ func TestTopicUsecase_Update(t *testing.T) {
 	usecase := test.NewTopicUsecase(mockRepo, timeout)
 
 	updatedTopic := &domain.Topic{
-		ID:                        primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                        bson.NewObjectID(), // Existing ID of the record to update
 		SystemName:                "contact-us",
 		IncludeInSitemap:          true,
 		IncludeInTopMenu:          false,
@@ -111,7 +111,7 @@ func TestTopicUsecase_Update(t *testing.T) {
 		Title:                     "Contact Us",
 		Body:                      "This is the Contact Us page content.",
 		Published:                 true,
-		TopicTemplateID:           primitive.NewObjectID(),
+		TopicTemplateID:           bson.NewObjectID(),
 		MetaKeywords:              "contact, support, help",
 		MetaDescription:           "Get in touch with us for support.",
 		MetaTitle:                 "Contact Us - Support",
@@ -136,7 +136,7 @@ func TestTopicUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewTopicUsecase(mockRepo, timeout)
 
-	topicID := primitive.NewObjectID().Hex()
+	topicID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, topicID).Return(nil)
 
@@ -153,7 +153,7 @@ func TestTopicUsecase_Fetch(t *testing.T) {
 
 	fetchedTopics := []domain.Topic{
 		{
-			ID:                        primitive.NewObjectID(),
+			ID:                        bson.NewObjectID(),
 			SystemName:                "about-us",
 			IncludeInSitemap:          true,
 			IncludeInTopMenu:          true,
@@ -167,7 +167,7 @@ func TestTopicUsecase_Fetch(t *testing.T) {
 			Title:                     "About Us",
 			Body:                      "This is the About Us page content.",
 			Published:                 true,
-			TopicTemplateID:           primitive.NewObjectID(),
+			TopicTemplateID:           bson.NewObjectID(),
 			MetaKeywords:              "about, company, info",
 			MetaDescription:           "Learn more about our company.",
 			MetaTitle:                 "About Us - Company Info",
@@ -177,7 +177,7 @@ func TestTopicUsecase_Fetch(t *testing.T) {
 			AvailableEndDateTimeUtc:   nil,
 		},
 		{
-			ID:                        primitive.NewObjectID(),
+			ID:                        bson.NewObjectID(),
 			SystemName:                "contact-us",
 			IncludeInSitemap:          true,
 			IncludeInTopMenu:          false,
@@ -191,7 +191,7 @@ func TestTopicUsecase_Fetch(t *testing.T) {
 			Title:                     "Contact Us",
 			Body:                      "This is the Contact Us page content.",
 			Published:                 true,
-			TopicTemplateID:           primitive.NewObjectID(),
+			TopicTemplateID:           bson.NewObjectID(),
 			MetaKeywords:              "contact, support, help",
 			MetaDescription:           "Get in touch with us for support.",
 			MetaTitle:                 "Contact Us - Support",

@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestPermissionRecordUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestPermissionRecordUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewPermissionRecordUsecase(mockRepo, timeout)
 
-	permissionRecordID := primitive.NewObjectID().Hex()
+	permissionRecordID := bson.NewObjectID().Hex()
 
 	updatedPermissionRecord := domain.PermissionRecord{
-		ID:         primitive.NewObjectID(), // Existing ID of the record to update
+		ID:         bson.NewObjectID(), // Existing ID of the record to update
 		Name:       "Manage Categories",
 		SystemName: "manage_categories",
 		Category:   "Catalog",
@@ -61,7 +61,7 @@ func TestPermissionRecordUsecase_Update(t *testing.T) {
 	usecase := test.NewPermissionRecordUsecase(mockRepo, timeout)
 
 	updatedPermissionRecord := &domain.PermissionRecord{
-		ID:         primitive.NewObjectID(), // Existing ID of the record to update
+		ID:         bson.NewObjectID(), // Existing ID of the record to update
 		Name:       "Manage Categories",
 		SystemName: "manage_categories",
 		Category:   "Catalog",
@@ -80,7 +80,7 @@ func TestPermissionRecordUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewPermissionRecordUsecase(mockRepo, timeout)
 
-	permissionRecordID := primitive.NewObjectID().Hex()
+	permissionRecordID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, permissionRecordID).Return(nil)
 
@@ -97,13 +97,13 @@ func TestPermissionRecordUsecase_Fetch(t *testing.T) {
 
 	fetchedPermissionRecords := []domain.PermissionRecord{
 		{
-			ID:         primitive.NewObjectID(),
+			ID:         bson.NewObjectID(),
 			Name:       "Manage Products",
 			SystemName: "manage_products",
 			Category:   "Catalog",
 		},
 		{
-			ID:         primitive.NewObjectID(),
+			ID:         bson.NewObjectID(),
 			Name:       "Manage Orders",
 			SystemName: "manage_orders",
 			Category:   "Sales",

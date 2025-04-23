@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,10 +12,10 @@ const (
 
 // StoreMapping represents a store mapping record.
 type StoreMapping struct {
-	ID         primitive.ObjectID `bson:"_id,omitempty"`
-	EntityID   primitive.ObjectID `bson:"entity_id"`
-	EntityName string             `bson:"entity_name"`
-	StoreID    primitive.ObjectID `bson:"store_id"`
+	ID         bson.ObjectID `bson:"_id,omitempty"`
+	EntityID   bson.ObjectID `bson:"entity_id"`
+	EntityName string        `bson:"entity_name"`
+	StoreID    bson.ObjectID `bson:"store_id"`
 }
 
 // StoreMappingRepository defines the repository interface for StoreMapping

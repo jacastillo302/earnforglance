@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/catalog"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type specificationattributeRepository struct {
@@ -58,7 +57,7 @@ func (ur *specificationattributeRepository) Update(c context.Context, specificat
 func (ur *specificationattributeRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *specificationattributeRepository) Delete(c context.Context, ID string)
 func (ur *specificationattributeRepository) Fetch(c context.Context) ([]domain.SpecificationAttribute, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *specificationattributeRepository) FetchByID(c context.Context, specifi
 
 	var specificationattribute domain.SpecificationAttribute
 
-	idHex, err := primitive.ObjectIDFromHex(specificationattributeID)
+	idHex, err := bson.ObjectIDFromHex(specificationattributeID)
 	if err != nil {
 		return specificationattribute, err
 	}

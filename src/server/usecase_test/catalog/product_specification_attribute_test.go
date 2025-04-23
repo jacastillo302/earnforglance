@@ -11,7 +11,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestProductSpecificationAttributeUsecase_FetchByID(t *testing.T) {
@@ -19,12 +19,12 @@ func TestProductSpecificationAttributeUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewProductSpecificationAttributeUsecase(mockRepo, timeout)
 
-	productSpecificationAttributeID := primitive.NewObjectID().Hex()
+	productSpecificationAttributeID := bson.NewObjectID().Hex()
 
 	updatedProductSpecificationAttribute := domain.ProductSpecificationAttribute{
-		ProductID:                      primitive.NewObjectID(),
+		ProductID:                      bson.NewObjectID(),
 		SpecificationAttributeTypeID:   10,
-		SpecificationAttributeOptionID: primitive.NewObjectID(),
+		SpecificationAttributeOptionID: bson.NewObjectID(),
 		CustomValue:                    "Updated Custom Value",
 		AllowFiltering:                 false,
 		ShowOnProductPage:              false,
@@ -46,9 +46,9 @@ func TestProductSpecificationAttributeUsecase_Create(t *testing.T) {
 	usecase := test.NewProductSpecificationAttributeUsecase(mockRepo, timeout)
 
 	newProductSpecificationAttribute := &domain.ProductSpecificationAttribute{
-		ProductID:                      primitive.NewObjectID(),
+		ProductID:                      bson.NewObjectID(),
 		SpecificationAttributeTypeID:   20,
-		SpecificationAttributeOptionID: primitive.NewObjectID(),
+		SpecificationAttributeOptionID: bson.NewObjectID(),
 		CustomValue:                    "Custom Value Example",
 		AllowFiltering:                 true,
 		ShowOnProductPage:              true,
@@ -69,9 +69,9 @@ func TestProductSpecificationAttributeUsecase_Update(t *testing.T) {
 	usecase := test.NewProductSpecificationAttributeUsecase(mockRepo, timeout)
 
 	updatedProductSpecificationAttribute := &domain.ProductSpecificationAttribute{
-		ProductID:                      primitive.NewObjectID(),
+		ProductID:                      bson.NewObjectID(),
 		SpecificationAttributeTypeID:   30,
-		SpecificationAttributeOptionID: primitive.NewObjectID(),
+		SpecificationAttributeOptionID: bson.NewObjectID(),
 		CustomValue:                    "Updated Custom Value",
 		AllowFiltering:                 false,
 		ShowOnProductPage:              false,
@@ -91,7 +91,7 @@ func TestProductSpecificationAttributeUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewProductSpecificationAttributeUsecase(mockRepo, timeout)
 
-	productSpecificationAttributeID := primitive.NewObjectID().Hex()
+	productSpecificationAttributeID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, productSpecificationAttributeID).Return(nil)
 
@@ -108,18 +108,18 @@ func TestProductSpecificationAttributeUsecase_Fetch(t *testing.T) {
 
 	fetchedProductSpecificationAttributes := []domain.ProductSpecificationAttribute{
 		{
-			ProductID:                      primitive.NewObjectID(),
+			ProductID:                      bson.NewObjectID(),
 			SpecificationAttributeTypeID:   0,
-			SpecificationAttributeOptionID: primitive.NewObjectID(),
+			SpecificationAttributeOptionID: bson.NewObjectID(),
 			CustomValue:                    "Custom Value 1",
 			AllowFiltering:                 true,
 			ShowOnProductPage:              true,
 			DisplayOrder:                   1,
 		},
 		{
-			ProductID:                      primitive.NewObjectID(),
+			ProductID:                      bson.NewObjectID(),
 			SpecificationAttributeTypeID:   20,
-			SpecificationAttributeOptionID: primitive.NewObjectID(),
+			SpecificationAttributeOptionID: bson.NewObjectID(),
 			CustomValue:                    "Custom Value 2",
 			AllowFiltering:                 false,
 			ShowOnProductPage:              false,

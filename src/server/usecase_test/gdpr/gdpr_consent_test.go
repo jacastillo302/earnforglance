@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestGdprConsentUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestGdprConsentUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewGdprConsentUsecase(mockRepo, timeout)
 
-	gdprID := primitive.NewObjectID().Hex()
+	gdprID := bson.NewObjectID().Hex()
 
 	updatedGdprConsent := domain.GdprConsent{
-		ID:                        primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                        bson.NewObjectID(), // Existing ID of the record to update
 		Message:                   "Updated GDPR consent message.",
 		IsRequired:                false,
 		RequiredMessage:           "Consent is optional.",
@@ -67,7 +67,7 @@ func TestGdprConsentUsecase_Update(t *testing.T) {
 	usecase := test.NewGdprConsentUsecase(mockRepo, timeout)
 
 	updatedGdprConsent := &domain.GdprConsent{
-		ID:                        primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                        bson.NewObjectID(), // Existing ID of the record to update
 		Message:                   "Updated GDPR consent message.",
 		IsRequired:                false,
 		RequiredMessage:           "Consent is optional.",
@@ -89,7 +89,7 @@ func TestGdprConsentUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewGdprConsentUsecase(mockRepo, timeout)
 
-	gdprID := primitive.NewObjectID().Hex()
+	gdprID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, gdprID).Return(nil)
 
@@ -106,7 +106,7 @@ func TestGdprConsentUsecase_Fetch(t *testing.T) {
 
 	fetchedGdprConsents := []domain.GdprConsent{
 		{
-			ID:                        primitive.NewObjectID(),
+			ID:                        bson.NewObjectID(),
 			Message:                   "We need your consent to process your data.",
 			IsRequired:                true,
 			RequiredMessage:           "Consent is mandatory to proceed.",
@@ -115,7 +115,7 @@ func TestGdprConsentUsecase_Fetch(t *testing.T) {
 			DisplayOrder:              1,
 		},
 		{
-			ID:                        primitive.NewObjectID(),
+			ID:                        bson.NewObjectID(),
 			Message:                   "Updated GDPR consent message.",
 			IsRequired:                false,
 			RequiredMessage:           "Consent is optional.",

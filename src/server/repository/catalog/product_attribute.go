@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/catalog"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type productattributeRepository struct {
@@ -58,7 +57,7 @@ func (ur *productattributeRepository) Update(c context.Context, productattribute
 func (ur *productattributeRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -70,7 +69,8 @@ func (ur *productattributeRepository) Delete(c context.Context, ID string) error
 func (ur *productattributeRepository) Fetch(c context.Context) ([]domain.ProductAttribute, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -92,7 +92,7 @@ func (tr *productattributeRepository) FetchByID(c context.Context, productattrib
 
 	var productattribute domain.ProductAttribute
 
-	idHex, err := primitive.ObjectIDFromHex(productattributeID)
+	idHex, err := bson.ObjectIDFromHex(productattributeID)
 	if err != nil {
 		return productattribute, err
 	}

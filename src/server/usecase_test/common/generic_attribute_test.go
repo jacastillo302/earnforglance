@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestGenericAttributeUsecase_FetchByID(t *testing.T) {
@@ -18,15 +18,15 @@ func TestGenericAttributeUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewGenericAttributeUsecase(mockRepo, timeout)
 
-	genericAttributeID := primitive.NewObjectID().Hex()
+	genericAttributeID := bson.NewObjectID().Hex()
 
 	updatedGenericAttribute := domain.GenericAttribute{
-		ID:                      primitive.NewObjectID(), // Existing ID of the record to update
-		EntityID:                primitive.NewObjectID(),
+		ID:                      bson.NewObjectID(), // Existing ID of the record to update
+		EntityID:                bson.NewObjectID(),
 		KeyGroup:                "Customer",
 		Key:                     "PreferredLanguage",
 		Value:                   "English",
-		StoreID:                 primitive.NewObjectID(),
+		StoreID:                 bson.NewObjectID(),
 		CreatedOrUpdatedDateUTC: new(time.Time),
 	}
 
@@ -45,11 +45,11 @@ func TestGenericAttributeUsecase_Create(t *testing.T) {
 	usecase := test.NewGenericAttributeUsecase(mockRepo, timeout)
 
 	newGenericAttribute := &domain.GenericAttribute{
-		EntityID:                primitive.NewObjectID(),
+		EntityID:                bson.NewObjectID(),
 		KeyGroup:                "Product",
 		Key:                     "Color",
 		Value:                   "Red",
-		StoreID:                 primitive.NewObjectID(),
+		StoreID:                 bson.NewObjectID(),
 		CreatedOrUpdatedDateUTC: nil,
 	}
 
@@ -67,12 +67,12 @@ func TestGenericAttributeUsecase_Update(t *testing.T) {
 	usecase := test.NewGenericAttributeUsecase(mockRepo, timeout)
 
 	updatedGenericAttribute := &domain.GenericAttribute{
-		ID:                      primitive.NewObjectID(), // Existing ID of the record to update
-		EntityID:                primitive.NewObjectID(),
+		ID:                      bson.NewObjectID(), // Existing ID of the record to update
+		EntityID:                bson.NewObjectID(),
 		KeyGroup:                "Customer",
 		Key:                     "PreferredLanguage",
 		Value:                   "English",
-		StoreID:                 primitive.NewObjectID(),
+		StoreID:                 bson.NewObjectID(),
 		CreatedOrUpdatedDateUTC: new(time.Time),
 	}
 	*updatedGenericAttribute.CreatedOrUpdatedDateUTC = time.Now()
@@ -90,7 +90,7 @@ func TestGenericAttributeUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewGenericAttributeUsecase(mockRepo, timeout)
 
-	genericAttributeID := primitive.NewObjectID().Hex()
+	genericAttributeID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, genericAttributeID).Return(nil)
 
@@ -107,21 +107,21 @@ func TestGenericAttributeUsecase_Fetch(t *testing.T) {
 
 	fetchedGenericAttributes := []domain.GenericAttribute{
 		{
-			ID:                      primitive.NewObjectID(),
-			EntityID:                primitive.NewObjectID(),
+			ID:                      bson.NewObjectID(),
+			EntityID:                bson.NewObjectID(),
 			KeyGroup:                "Product",
 			Key:                     "Color",
 			Value:                   "Red",
-			StoreID:                 primitive.NewObjectID(),
+			StoreID:                 bson.NewObjectID(),
 			CreatedOrUpdatedDateUTC: nil,
 		},
 		{
-			ID:                      primitive.NewObjectID(),
-			EntityID:                primitive.NewObjectID(),
+			ID:                      bson.NewObjectID(),
+			EntityID:                bson.NewObjectID(),
 			KeyGroup:                "Customer",
 			Key:                     "PreferredLanguage",
 			Value:                   "English",
-			StoreID:                 primitive.NewObjectID(),
+			StoreID:                 bson.NewObjectID(),
 			CreatedOrUpdatedDateUTC: new(time.Time),
 		},
 	}

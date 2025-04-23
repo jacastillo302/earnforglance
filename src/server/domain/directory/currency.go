@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -13,18 +13,18 @@ const (
 
 // Currency represents a currency
 type Currency struct {
-	ID               primitive.ObjectID `bson:"_id,omitempty"`
-	Name             string             `bson:"name"`
-	CurrencyCode     string             `bson:"currency_code"`
-	Rate             float64            `bson:"rate"`
-	DisplayLocale    string             `bson:"display_locale"`
-	CustomFormatting string             `bson:"custom_formatting"`
-	LimitedToStores  bool               `bson:"limited_to_stores"`
-	Published        bool               `bson:"published"`
-	DisplayOrder     int                `bson:"display_order"`
-	CreatedOnUtc     time.Time          `bson:"created_on_utc"`
-	UpdatedOnUtc     time.Time          `bson:"updated_on_utc"`
-	RoundingTypeID   int                `bson:"rounding_type_id"`
+	ID               bson.ObjectID `bson:"_id,omitempty"`
+	Name             string        `bson:"name"`
+	CurrencyCode     string        `bson:"currency_code"`
+	Rate             float64       `bson:"rate"`
+	DisplayLocale    string        `bson:"display_locale"`
+	CustomFormatting string        `bson:"custom_formatting"`
+	LimitedToStores  bool          `bson:"limited_to_stores"`
+	Published        bool          `bson:"published"`
+	DisplayOrder     int           `bson:"display_order"`
+	CreatedOnUtc     time.Time     `bson:"created_on_utc"`
+	UpdatedOnUtc     time.Time     `bson:"updated_on_utc"`
+	RoundingTypeID   int           `bson:"rounding_type_id"`
 }
 
 type CurrencyRepository interface {

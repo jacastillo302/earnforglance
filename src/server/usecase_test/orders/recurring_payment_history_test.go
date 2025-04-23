@@ -11,7 +11,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestRecurringPaymentHistoryUsecase_FetchByID(t *testing.T) {
@@ -19,12 +19,12 @@ func TestRecurringPaymentHistoryUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewRecurringPaymentHistoryUsecase(mockRepo, timeout)
 
-	recurringPaymentHistoryID := primitive.NewObjectID().Hex()
+	recurringPaymentHistoryID := bson.NewObjectID().Hex()
 
 	updatedRecurringPaymentHistory := domain.RecurringPaymentHistory{
-		ID:                 primitive.NewObjectID(), // Existing ID of the record to update
-		RecurringPaymentID: primitive.NewObjectID(),
-		OrderID:            primitive.NewObjectID(),
+		ID:                 bson.NewObjectID(), // Existing ID of the record to update
+		RecurringPaymentID: bson.NewObjectID(),
+		OrderID:            bson.NewObjectID(),
 		CreatedOnUtc:       time.Now().AddDate(0, 0, -7), // Created 7 days ago
 	}
 
@@ -43,8 +43,8 @@ func TestRecurringPaymentHistoryUsecase_Create(t *testing.T) {
 	usecase := test.NewRecurringPaymentHistoryUsecase(mockRepo, timeout)
 
 	newRecurringPaymentHistory := &domain.RecurringPaymentHistory{
-		RecurringPaymentID: primitive.NewObjectID(),
-		OrderID:            primitive.NewObjectID(),
+		RecurringPaymentID: bson.NewObjectID(),
+		OrderID:            bson.NewObjectID(),
 		CreatedOnUtc:       time.Now(),
 	}
 
@@ -62,9 +62,9 @@ func TestRecurringPaymentHistoryUsecase_Update(t *testing.T) {
 	usecase := test.NewRecurringPaymentHistoryUsecase(mockRepo, timeout)
 
 	updatedRecurringPaymentHistory := &domain.RecurringPaymentHistory{
-		ID:                 primitive.NewObjectID(), // Existing ID of the record to update
-		RecurringPaymentID: primitive.NewObjectID(),
-		OrderID:            primitive.NewObjectID(),
+		ID:                 bson.NewObjectID(), // Existing ID of the record to update
+		RecurringPaymentID: bson.NewObjectID(),
+		OrderID:            bson.NewObjectID(),
 		CreatedOnUtc:       time.Now().AddDate(0, 0, -7), // Created 7 days ago
 	}
 
@@ -81,7 +81,7 @@ func TestRecurringPaymentHistoryUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewRecurringPaymentHistoryUsecase(mockRepo, timeout)
 
-	recurringPaymentHistoryID := primitive.NewObjectID().Hex()
+	recurringPaymentHistoryID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, recurringPaymentHistoryID).Return(nil)
 
@@ -98,15 +98,15 @@ func TestRecurringPaymentHistoryUsecase_Fetch(t *testing.T) {
 
 	fetchedRecurringPaymentHistories := []domain.RecurringPaymentHistory{
 		{
-			ID:                 primitive.NewObjectID(),
-			RecurringPaymentID: primitive.NewObjectID(),
-			OrderID:            primitive.NewObjectID(),
+			ID:                 bson.NewObjectID(),
+			RecurringPaymentID: bson.NewObjectID(),
+			OrderID:            bson.NewObjectID(),
 			CreatedOnUtc:       time.Now().AddDate(0, 0, -10), // Created 10 days ago
 		},
 		{
-			ID:                 primitive.NewObjectID(),
-			RecurringPaymentID: primitive.NewObjectID(),
-			OrderID:            primitive.NewObjectID(),
+			ID:                 bson.NewObjectID(),
+			RecurringPaymentID: bson.NewObjectID(),
+			OrderID:            bson.NewObjectID(),
 			CreatedOnUtc:       time.Now().AddDate(0, 0, -5), // Created 5 days ago
 		},
 	}

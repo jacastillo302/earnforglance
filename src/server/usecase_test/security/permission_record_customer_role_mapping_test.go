@@ -11,7 +11,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestPermissionRecordCustomerRoleMappingUsecase_FetchByID(t *testing.T) {
@@ -19,12 +19,12 @@ func TestPermissionRecordCustomerRoleMappingUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewPermissionRecordCustomerRoleMappingUsecase(mockRepo, timeout)
 
-	mappingID := primitive.NewObjectID().Hex()
+	mappingID := bson.NewObjectID().Hex()
 
 	updatedPermissionRecordCustomerRoleMapping := domain.PermissionRecordCustomerRoleMapping{
-		ID:                 primitive.NewObjectID(), // Existing ID of the record to update
-		PermissionRecordID: primitive.NewObjectID(),
-		CustomerRoleID:     primitive.NewObjectID(),
+		ID:                 bson.NewObjectID(), // Existing ID of the record to update
+		PermissionRecordID: bson.NewObjectID(),
+		CustomerRoleID:     bson.NewObjectID(),
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, mappingID).Return(updatedPermissionRecordCustomerRoleMapping, nil)
@@ -42,8 +42,8 @@ func TestPermissionRecordCustomerRoleMappingUsecase_Create(t *testing.T) {
 	usecase := test.NewPermissionRecordCustomerRoleMappingUsecase(mockRepo, timeout)
 
 	newPermissionRecordCustomerRoleMapping := &domain.PermissionRecordCustomerRoleMapping{
-		PermissionRecordID: primitive.NewObjectID(),
-		CustomerRoleID:     primitive.NewObjectID(),
+		PermissionRecordID: bson.NewObjectID(),
+		CustomerRoleID:     bson.NewObjectID(),
 	}
 
 	mockRepo.On("Create", mock.Anything, newPermissionRecordCustomerRoleMapping).Return(nil)
@@ -60,9 +60,9 @@ func TestPermissionRecordCustomerRoleMappingUsecase_Update(t *testing.T) {
 	usecase := test.NewPermissionRecordCustomerRoleMappingUsecase(mockRepo, timeout)
 
 	updatedPermissionRecordCustomerRoleMapping := &domain.PermissionRecordCustomerRoleMapping{
-		ID:                 primitive.NewObjectID(), // Existing ID of the record to update
-		PermissionRecordID: primitive.NewObjectID(),
-		CustomerRoleID:     primitive.NewObjectID(),
+		ID:                 bson.NewObjectID(), // Existing ID of the record to update
+		PermissionRecordID: bson.NewObjectID(),
+		CustomerRoleID:     bson.NewObjectID(),
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedPermissionRecordCustomerRoleMapping).Return(nil)
@@ -78,7 +78,7 @@ func TestPermissionRecordCustomerRoleMappingUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewPermissionRecordCustomerRoleMappingUsecase(mockRepo, timeout)
 
-	mappingID := primitive.NewObjectID().Hex()
+	mappingID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, mappingID).Return(nil)
 
@@ -95,14 +95,14 @@ func TestPermissionRecordCustomerRoleMappingUsecase_Fetch(t *testing.T) {
 
 	fetchedPermissionRecordCustomerRoleMappings := []domain.PermissionRecordCustomerRoleMapping{
 		{
-			ID:                 primitive.NewObjectID(),
-			PermissionRecordID: primitive.NewObjectID(),
-			CustomerRoleID:     primitive.NewObjectID(),
+			ID:                 bson.NewObjectID(),
+			PermissionRecordID: bson.NewObjectID(),
+			CustomerRoleID:     bson.NewObjectID(),
 		},
 		{
-			ID:                 primitive.NewObjectID(),
-			PermissionRecordID: primitive.NewObjectID(),
-			CustomerRoleID:     primitive.NewObjectID(),
+			ID:                 bson.NewObjectID(),
+			PermissionRecordID: bson.NewObjectID(),
+			CustomerRoleID:     bson.NewObjectID(),
 		},
 	}
 

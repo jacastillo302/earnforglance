@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/orders"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type returnrequestRepository struct {
@@ -58,7 +57,7 @@ func (ur *returnrequestRepository) Update(c context.Context, returnrequest *doma
 func (ur *returnrequestRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *returnrequestRepository) Delete(c context.Context, ID string) error {
 func (ur *returnrequestRepository) Fetch(c context.Context) ([]domain.ReturnRequest, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *returnrequestRepository) FetchByID(c context.Context, returnrequestID 
 
 	var returnrequest domain.ReturnRequest
 
-	idHex, err := primitive.ObjectIDFromHex(returnrequestID)
+	idHex, err := bson.ObjectIDFromHex(returnrequestID)
 	if err != nil {
 		return returnrequest, err
 	}

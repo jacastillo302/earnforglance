@@ -11,7 +11,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestProductReviewReviewTypeMappingUsecase_FetchByID(t *testing.T) {
@@ -19,12 +19,12 @@ func TestProductReviewReviewTypeMappingUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewProductReviewReviewTypeMappingUsecase(mockRepo, timeout)
 
-	mappingID := primitive.NewObjectID().Hex()
+	mappingID := bson.NewObjectID().Hex()
 
 	updatedProductReviewReviewTypeMapping := domain.ProductReviewReviewTypeMapping{
-		ID:              primitive.NewObjectID(), // Existing ID of the record to update
-		ProductReviewID: primitive.NewObjectID(),
-		ReviewTypeID:    primitive.NewObjectID(),
+		ID:              bson.NewObjectID(), // Existing ID of the record to update
+		ProductReviewID: bson.NewObjectID(),
+		ReviewTypeID:    bson.NewObjectID(),
 		Rating:          4,
 	}
 
@@ -43,8 +43,8 @@ func TestProductReviewReviewTypeMappingUsecase_Create(t *testing.T) {
 	usecase := test.NewProductReviewReviewTypeMappingUsecase(mockRepo, timeout)
 
 	newProductReviewReviewTypeMapping := &domain.ProductReviewReviewTypeMapping{
-		ProductReviewID: primitive.NewObjectID(),
-		ReviewTypeID:    primitive.NewObjectID(),
+		ProductReviewID: bson.NewObjectID(),
+		ReviewTypeID:    bson.NewObjectID(),
 		Rating:          5,
 	}
 
@@ -62,9 +62,9 @@ func TestProductReviewReviewTypeMappingUsecase_Update(t *testing.T) {
 	usecase := test.NewProductReviewReviewTypeMappingUsecase(mockRepo, timeout)
 
 	updatedProductReviewReviewTypeMapping := &domain.ProductReviewReviewTypeMapping{
-		ID:              primitive.NewObjectID(), // Existing ID of the record to update
-		ProductReviewID: primitive.NewObjectID(),
-		ReviewTypeID:    primitive.NewObjectID(),
+		ID:              bson.NewObjectID(), // Existing ID of the record to update
+		ProductReviewID: bson.NewObjectID(),
+		ReviewTypeID:    bson.NewObjectID(),
 		Rating:          4,
 	}
 
@@ -81,7 +81,7 @@ func TestProductReviewReviewTypeMappingUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewProductReviewReviewTypeMappingUsecase(mockRepo, timeout)
 
-	mappingID := primitive.NewObjectID().Hex()
+	mappingID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, mappingID).Return(nil)
 
@@ -98,15 +98,15 @@ func TestProductReviewReviewTypeMappingUsecase_Fetch(t *testing.T) {
 
 	fetchedProductReviewReviewTypeMappings := []domain.ProductReviewReviewTypeMapping{
 		{
-			ID:              primitive.NewObjectID(),
-			ProductReviewID: primitive.NewObjectID(),
-			ReviewTypeID:    primitive.NewObjectID(),
+			ID:              bson.NewObjectID(),
+			ProductReviewID: bson.NewObjectID(),
+			ReviewTypeID:    bson.NewObjectID(),
 			Rating:          5,
 		},
 		{
-			ID:              primitive.NewObjectID(),
-			ProductReviewID: primitive.NewObjectID(),
-			ReviewTypeID:    primitive.NewObjectID(),
+			ID:              bson.NewObjectID(),
+			ProductReviewID: bson.NewObjectID(),
+			ReviewTypeID:    bson.NewObjectID(),
 			Rating:          3,
 		},
 	}

@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestWarehouseUsecase_FetchByID(t *testing.T) {
@@ -18,13 +18,13 @@ func TestWarehouseUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewWarehouseUsecase(mockRepo, timeout)
 
-	warehouseID := primitive.NewObjectID().Hex()
+	warehouseID := bson.NewObjectID().Hex()
 
 	updatedWarehouse := domain.Warehouse{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
 		Name:         "Secondary Warehouse",
 		AdminComment: "Backup storage facility.",
-		AddressID:    primitive.NewObjectID(),
+		AddressID:    bson.NewObjectID(),
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, warehouseID).Return(updatedWarehouse, nil)
@@ -44,7 +44,7 @@ func TestWarehouseUsecase_Create(t *testing.T) {
 	newWarehouse := &domain.Warehouse{
 		Name:         "Main Warehouse",
 		AdminComment: "Primary storage facility.",
-		AddressID:    primitive.NewObjectID(),
+		AddressID:    bson.NewObjectID(),
 	}
 
 	mockRepo.On("Create", mock.Anything, newWarehouse).Return(nil)
@@ -61,10 +61,10 @@ func TestWarehouseUsecase_Update(t *testing.T) {
 	usecase := test.NewWarehouseUsecase(mockRepo, timeout)
 
 	updatedWarehouse := &domain.Warehouse{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
 		Name:         "Secondary Warehouse",
 		AdminComment: "Backup storage facility.",
-		AddressID:    primitive.NewObjectID(),
+		AddressID:    bson.NewObjectID(),
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedWarehouse).Return(nil)
@@ -80,7 +80,7 @@ func TestWarehouseUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewWarehouseUsecase(mockRepo, timeout)
 
-	warehouseID := primitive.NewObjectID().Hex()
+	warehouseID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, warehouseID).Return(nil)
 
@@ -97,16 +97,16 @@ func TestWarehouseUsecase_Fetch(t *testing.T) {
 
 	fetchedWarehouses := []domain.Warehouse{
 		{
-			ID:           primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
 			Name:         "Main Warehouse",
 			AdminComment: "Primary storage facility.",
-			AddressID:    primitive.NewObjectID(),
+			AddressID:    bson.NewObjectID(),
 		},
 		{
-			ID:           primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
 			Name:         "Secondary Warehouse",
 			AdminComment: "Backup storage facility.",
-			AddressID:    primitive.NewObjectID(),
+			AddressID:    bson.NewObjectID(),
 		},
 	}
 

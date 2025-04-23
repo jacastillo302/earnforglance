@@ -12,7 +12,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestRewardPointsHistoryUsecase_FetchByID(t *testing.T) {
@@ -20,12 +20,12 @@ func TestRewardPointsHistoryUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewRewardPointsHistoryUsecase(mockRepo, timeout)
 
-	rewardPointsHistoryID := primitive.NewObjectID().Hex()
+	rewardPointsHistoryID := bson.NewObjectID().Hex()
 
 	updatedRewardPointsHistory := domain.RewardPointsHistory{
-		ID:            primitive.NewObjectID(), // Existing ID of the record to update
-		CustomerID:    primitive.NewObjectID(),
-		StoreID:       primitive.NewObjectID(),
+		ID:            bson.NewObjectID(), // Existing ID of the record to update
+		CustomerID:    bson.NewObjectID(),
+		StoreID:       bson.NewObjectID(),
 		Points:        -50,
 		PointsBalance: new(int),
 		UsedAmount:    25.0,
@@ -51,8 +51,8 @@ func TestRewardPointsHistoryUsecase_Create(t *testing.T) {
 	usecase := test.NewRewardPointsHistoryUsecase(mockRepo, timeout)
 
 	newRewardPointsHistory := &domain.RewardPointsHistory{
-		CustomerID:    primitive.NewObjectID(),
-		StoreID:       primitive.NewObjectID(),
+		CustomerID:    bson.NewObjectID(),
+		StoreID:       bson.NewObjectID(),
 		Points:        100,
 		PointsBalance: new(int),
 		UsedAmount:    0.0,
@@ -79,9 +79,9 @@ func TestRewardPointsHistoryUsecase_Update(t *testing.T) {
 	usecase := test.NewRewardPointsHistoryUsecase(mockRepo, timeout)
 
 	updatedRewardPointsHistory := &domain.RewardPointsHistory{
-		ID:            primitive.NewObjectID(), // Existing ID of the record to update
-		CustomerID:    primitive.NewObjectID(),
-		StoreID:       primitive.NewObjectID(),
+		ID:            bson.NewObjectID(), // Existing ID of the record to update
+		CustomerID:    bson.NewObjectID(),
+		StoreID:       bson.NewObjectID(),
 		Points:        -50,
 		PointsBalance: new(int),
 		UsedAmount:    25.0,
@@ -109,7 +109,7 @@ func TestRewardPointsHistoryUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewRewardPointsHistoryUsecase(mockRepo, timeout)
 
-	rewardPointsHistoryID := primitive.NewObjectID().Hex()
+	rewardPointsHistoryID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, rewardPointsHistoryID).Return(nil)
 
@@ -126,9 +126,9 @@ func TestRewardPointsHistoryUsecase_Fetch(t *testing.T) {
 
 	fetchedRewardPointsHistories := []domain.RewardPointsHistory{
 		{
-			ID:            primitive.NewObjectID(),
-			CustomerID:    primitive.NewObjectID(),
-			StoreID:       primitive.NewObjectID(),
+			ID:            bson.NewObjectID(),
+			CustomerID:    bson.NewObjectID(),
+			StoreID:       bson.NewObjectID(),
 			Points:        100,
 			PointsBalance: new(int),
 			UsedAmount:    0.0,
@@ -139,9 +139,9 @@ func TestRewardPointsHistoryUsecase_Fetch(t *testing.T) {
 			UsedWithOrder: nil,
 		},
 		{
-			ID:            primitive.NewObjectID(),
-			CustomerID:    primitive.NewObjectID(),
-			StoreID:       primitive.NewObjectID(),
+			ID:            bson.NewObjectID(),
+			CustomerID:    bson.NewObjectID(),
+			StoreID:       bson.NewObjectID(),
 			Points:        -50,
 			PointsBalance: new(int),
 			UsedAmount:    25.0,

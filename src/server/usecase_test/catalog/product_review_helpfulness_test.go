@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestProductReviewHelpfulnessUsecase_FetchByID(t *testing.T) {
@@ -18,13 +18,13 @@ func TestProductReviewHelpfulnessUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewProductReviewHelpfulnessUsecase(mockRepo, timeout)
 
-	productReviewHelpfulnessID := primitive.NewObjectID().Hex()
+	productReviewHelpfulnessID := bson.NewObjectID().Hex()
 
 	updatedProductReviewHelpfulness := domain.ProductReviewHelpfulness{
-		ID:              primitive.NewObjectID(), // Existing ID of the record to update
-		ProductReviewID: primitive.NewObjectID(),
+		ID:              bson.NewObjectID(), // Existing ID of the record to update
+		ProductReviewID: bson.NewObjectID(),
 		WasHelpful:      false,
-		CustomerID:      primitive.NewObjectID(),
+		CustomerID:      bson.NewObjectID(),
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, productReviewHelpfulnessID).Return(updatedProductReviewHelpfulness, nil)
@@ -42,9 +42,9 @@ func TestProductReviewHelpfulnessUsecase_Create(t *testing.T) {
 	usecase := test.NewProductReviewHelpfulnessUsecase(mockRepo, timeout)
 
 	newProductReviewHelpfulness := &domain.ProductReviewHelpfulness{
-		ProductReviewID: primitive.NewObjectID(),
+		ProductReviewID: bson.NewObjectID(),
 		WasHelpful:      true,
-		CustomerID:      primitive.NewObjectID(),
+		CustomerID:      bson.NewObjectID(),
 	}
 
 	mockRepo.On("Create", mock.Anything, newProductReviewHelpfulness).Return(nil)
@@ -61,10 +61,10 @@ func TestProductReviewHelpfulnessUsecase_Update(t *testing.T) {
 	usecase := test.NewProductReviewHelpfulnessUsecase(mockRepo, timeout)
 
 	updatedProductReviewHelpfulness := &domain.ProductReviewHelpfulness{
-		ID:              primitive.NewObjectID(), // Existing ID of the record to update
-		ProductReviewID: primitive.NewObjectID(),
+		ID:              bson.NewObjectID(), // Existing ID of the record to update
+		ProductReviewID: bson.NewObjectID(),
 		WasHelpful:      false,
-		CustomerID:      primitive.NewObjectID(),
+		CustomerID:      bson.NewObjectID(),
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedProductReviewHelpfulness).Return(nil)
@@ -80,7 +80,7 @@ func TestProductReviewHelpfulnessUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewProductReviewHelpfulnessUsecase(mockRepo, timeout)
 
-	productReviewHelpfulnessID := primitive.NewObjectID().Hex()
+	productReviewHelpfulnessID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, productReviewHelpfulnessID).Return(nil)
 
@@ -97,16 +97,16 @@ func TestProductReviewHelpfulnessUsecase_Fetch(t *testing.T) {
 
 	fetchedProductReviewHelpfulness := []domain.ProductReviewHelpfulness{
 		{
-			ID:              primitive.NewObjectID(),
-			ProductReviewID: primitive.NewObjectID(),
+			ID:              bson.NewObjectID(),
+			ProductReviewID: bson.NewObjectID(),
 			WasHelpful:      true,
-			CustomerID:      primitive.NewObjectID(),
+			CustomerID:      bson.NewObjectID(),
 		},
 		{
-			ID:              primitive.NewObjectID(),
-			ProductReviewID: primitive.NewObjectID(),
+			ID:              bson.NewObjectID(),
+			ProductReviewID: bson.NewObjectID(),
 			WasHelpful:      false,
-			CustomerID:      primitive.NewObjectID(),
+			CustomerID:      bson.NewObjectID(),
 		},
 	}
 

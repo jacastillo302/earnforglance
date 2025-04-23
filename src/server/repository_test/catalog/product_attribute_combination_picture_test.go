@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultProductAttributeCombinationPicture struct {
@@ -37,9 +37,9 @@ func TestProductAttributeCombinationPictureRepository_FetchByID(t *testing.T) {
 	collectionName := domain.CollectionProductAttributeCombinationPicture
 
 	mockItem := domain.ProductAttributeCombinationPicture{
-		ID:                            primitive.NewObjectID(),
-		ProductAttributeCombinationID: primitive.NewObjectID(),
-		PictureID:                     primitive.NewObjectID(),
+		ID:                            bson.NewObjectID(),
+		ProductAttributeCombinationID: bson.NewObjectID(),
+		PictureID:                     bson.NewObjectID(),
 	}
 
 	t.Run("success", func(t *testing.T) {
@@ -84,9 +84,9 @@ func TestProductAttributeCombinationPictureRepository_Create(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockProductAttributeCombinationPicture := &domain.ProductAttributeCombinationPicture{
-		ID:                            primitive.NewObjectID(),
-		ProductAttributeCombinationID: primitive.NewObjectID(),
-		PictureID:                     primitive.NewObjectID(),
+		ID:                            bson.NewObjectID(),
+		ProductAttributeCombinationID: bson.NewObjectID(),
+		PictureID:                     bson.NewObjectID(),
 	}
 
 	collectionHelper.On("InsertOne", mock.Anything, mockProductAttributeCombinationPicture).Return(nil, nil).Once()
@@ -107,9 +107,9 @@ func TestProductAttributeCombinationPictureRepository_Update(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockProductAttributeCombinationPicture := &domain.ProductAttributeCombinationPicture{
-		ID:                            primitive.NewObjectID(),
-		ProductAttributeCombinationID: primitive.NewObjectID(),
-		PictureID:                     primitive.NewObjectID(),
+		ID:                            bson.NewObjectID(),
+		ProductAttributeCombinationID: bson.NewObjectID(),
+		PictureID:                     bson.NewObjectID(),
 	}
 
 	filter := bson.M{"_id": mockProductAttributeCombinationPicture.ID}

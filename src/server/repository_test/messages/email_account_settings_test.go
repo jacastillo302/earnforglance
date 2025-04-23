@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultEmailAccountSettings struct {
@@ -28,8 +28,8 @@ func (m *MockSingleResultEmailAccountSettings) Decode(v interface{}) error {
 }
 
 var mockItemEmailAccountSettings = &domain.EmailAccountSettings{
-	ID:                    primitive.NewObjectID(), // Existing ID of the record to update
-	DefaultEmailAccountID: primitive.NewObjectID(),
+	ID:                    bson.NewObjectID(), // Existing ID of the record to update
+	DefaultEmailAccountID: bson.NewObjectID(),
 }
 
 func TestEmailAccountSettingsRepository_FetchByID(t *testing.T) {

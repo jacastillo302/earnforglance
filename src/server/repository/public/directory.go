@@ -7,9 +7,9 @@ import (
 	"earnforglance/server/service/data/mongo"
 	service "earnforglance/server/service/public"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type directoryRepository struct {
@@ -29,7 +29,7 @@ func (dr *directoryRepository) GetCountries(c context.Context, filter domain.Cou
 	var countries []directory.Country
 	err := error(nil)
 
-	idHex, err := primitive.ObjectIDFromHex(filter.ID)
+	idHex, err := bson.ObjectIDFromHex(filter.ID)
 	if err == nil {
 		var country directory.Country
 
@@ -66,11 +66,11 @@ func (dr *directoryRepository) GetCountries(c context.Context, filter domain.Cou
 		}
 	}
 
-	findOptions := options.Find().
-		SetSort(bson.D{{Key: "display_order", Value: sortOrder}})
+	buildFilter := options.Find()
+	buildFilter.SetSort(bson.D{{Key: "_id", Value: sortOrder}})
 
 	collection := dr.database.Collection(directory.CollectionCountry)
-	cursor, err := collection.Find(c, query, findOptions)
+	cursor, err := collection.Find(c, query, buildFilter)
 	if err != nil {
 		return result, err
 	}
@@ -116,7 +116,7 @@ func (dr *directoryRepository) GetCurrencies(c context.Context, filter domain.Cu
 	var currencies []directory.Currency
 	err := error(nil)
 
-	idHex, err := primitive.ObjectIDFromHex(filter.ID)
+	idHex, err := bson.ObjectIDFromHex(filter.ID)
 	if err == nil {
 		var currency directory.Currency
 
@@ -153,11 +153,11 @@ func (dr *directoryRepository) GetCurrencies(c context.Context, filter domain.Cu
 		}
 	}
 
-	findOptions := options.Find().
-		SetSort(bson.D{{Key: "display_order", Value: sortOrder}})
+	buildFilter := options.Find()
+	buildFilter.SetSort(bson.D{{Key: "_id", Value: sortOrder}})
 
 	collection := dr.database.Collection(directory.CollectionCurrency)
-	cursor, err := collection.Find(c, query, findOptions)
+	cursor, err := collection.Find(c, query, buildFilter)
 	if err != nil {
 		return result, err
 	}
@@ -205,10 +205,10 @@ func PrepareStates(dr *directoryRepository, c context.Context, country directory
 
 	collection := dr.database.Collection(directory.CollectionStateProvince)
 
-	findOptions := options.Find().
-		SetSort(bson.D{{Key: "display_order", Value: 1}})
+	buildFilter := options.Find()
+	buildFilter.SetSort(bson.D{{Key: "display_order", Value: 1}})
 
-	cursor, err := collection.Find(c, bson.M{"country_id": country.ID}, findOptions)
+	cursor, err := collection.Find(c, bson.M{"country_id": country.ID}, buildFilter)
 
 	if err != nil {
 		return states, err
@@ -228,12 +228,13 @@ func PrepareExchangeRate(dr *directoryRepository, c context.Context, currency di
 	err := error(nil)
 
 	collection := dr.database.Collection(directory.CollectionExchangeRate)
+	limit := int64(3)
 
-	findOptions := options.Find().
-		SetSort(bson.D{{Key: "updated_on", Value: -1}}).
-		SetLimit(int64(3)) //only 3 records for exchange rate order by updated on desc
+	buildFilter := options.Find()
+	buildFilter.SetSort(bson.D{{Key: "updated_on", Value: -1}})
+	buildFilter.SetLimit(limit)
 
-	cursor, err := collection.Find(c, bson.M{"currency_code": currency.CurrencyCode}, findOptions)
+	cursor, err := collection.Find(c, bson.M{"currency_code": currency.CurrencyCode}, buildFilter)
 
 	if err != nil {
 		return rate, err

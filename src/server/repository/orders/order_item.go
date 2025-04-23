@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/orders"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type orderitemRepository struct {
@@ -58,7 +57,7 @@ func (ur *orderitemRepository) Update(c context.Context, orderitem *domain.Order
 func (ur *orderitemRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *orderitemRepository) Delete(c context.Context, ID string) error {
 func (ur *orderitemRepository) Fetch(c context.Context) ([]domain.OrderItem, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *orderitemRepository) FetchByID(c context.Context, orderitemID string) 
 
 	var orderitem domain.OrderItem
 
-	idHex, err := primitive.ObjectIDFromHex(orderitemID)
+	idHex, err := bson.ObjectIDFromHex(orderitemID)
 	if err != nil {
 		return orderitem, err
 	}

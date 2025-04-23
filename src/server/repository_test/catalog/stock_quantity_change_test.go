@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultStockQuantityChange struct {
@@ -29,14 +29,14 @@ func (m *MockSingleResultStockQuantityChange) Decode(v interface{}) error {
 }
 
 var mockItemStockQuantityChange = &domain.StockQuantityChange{
-	ID:                 primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                 bson.NewObjectID(), // Existing ID of the record to update
 	QuantityAdjustment: -5,
 	StockQuantity:      95,
 	Message:            "Stock reduced due to sale.",
 	CreatedOnUtc:       time.Now(),
-	ProductID:          primitive.NewObjectID(),
+	ProductID:          bson.NewObjectID(),
 	CombinationID:      nil,
-	WarehouseID:        primitive.NewObjectID(),
+	WarehouseID:        bson.NewObjectID(),
 }
 
 func TestStockQuantityChangeRepository_FetchByID(t *testing.T) {

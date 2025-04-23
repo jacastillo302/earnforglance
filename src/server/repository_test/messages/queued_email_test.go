@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultQueuedEmail struct {
@@ -29,7 +29,7 @@ func (m *MockSingleResultQueuedEmail) Decode(v interface{}) error {
 }
 
 var mockItemQueuedEmail = &domain.QueuedEmail{
-	ID:                    primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                    bson.NewObjectID(), // Existing ID of the record to update
 	PriorityID:            2,
 	From:                  "updated_sender@example.com",
 	FromName:              "Updated Sender Name",
@@ -43,12 +43,12 @@ var mockItemQueuedEmail = &domain.QueuedEmail{
 	Body:                  "This is an updated test email.",
 	AttachmentFilePath:    "/path/to/updated_attachment.pdf",
 	AttachmentFileName:    "updated_attachment.pdf",
-	AttachedDownloadID:    primitive.NewObjectID(),
+	AttachedDownloadID:    bson.NewObjectID(),
 	CreatedOnUtc:          time.Now().AddDate(0, 0, -7), // Created 7 days ago
 	DontSendBeforeDateUtc: new(time.Time),
 	SentTries:             1,
 	SentOnUtc:             new(time.Time),
-	EmailAccountID:        primitive.NewObjectID(),
+	EmailAccountID:        bson.NewObjectID(),
 }
 
 func TestQueuedEmailRepository_FetchByID(t *testing.T) {

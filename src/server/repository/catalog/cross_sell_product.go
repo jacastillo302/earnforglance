@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/catalog"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type crosssellproductRepository struct {
@@ -59,7 +58,7 @@ func (ur *crosssellproductRepository) Update(c context.Context, crosssellproduct
 func (ur *crosssellproductRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *crosssellproductRepository) Delete(c context.Context, ID string) error
 func (ur *crosssellproductRepository) Fetch(c context.Context) ([]domain.CrossSellProduct, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *crosssellproductRepository) FetchByID(c context.Context, crosssellprod
 
 	var crosssellproduct domain.CrossSellProduct
 
-	idHex, err := primitive.ObjectIDFromHex(crosssellproductID)
+	idHex, err := bson.ObjectIDFromHex(crosssellproductID)
 	if err != nil {
 		return crosssellproduct, err
 	}

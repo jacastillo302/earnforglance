@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultForumPost struct {
@@ -29,9 +29,9 @@ func (m *MockSingleResultForumPost) Decode(v interface{}) error {
 }
 
 var mockItemForumPost = &domain.ForumPost{
-	ID:           primitive.NewObjectID(), // Existing ID of the record to update
-	TopicID:      primitive.NewObjectID(),
-	CustomerID:   primitive.NewObjectID(),
+	ID:           bson.NewObjectID(), // Existing ID of the record to update
+	TopicID:      bson.NewObjectID(),
+	CustomerID:   bson.NewObjectID(),
 	Text:         "This is an updated forum post.",
 	IPAddress:    "192.168.1.2",
 	CreatedOnUtc: time.Now().AddDate(0, 0, -7), // Created 7 days ago

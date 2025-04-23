@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestCustomerPermanentlyDeletedUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestCustomerPermanentlyDeletedUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewCustomerPermanentlyDeletedUsecase(mockRepo, timeout)
 
-	customerID := primitive.NewObjectID().Hex()
+	customerID := bson.NewObjectID().Hex()
 
 	updatedCustomerPermanentlyDeleted := domain.CustomerPermanentlyDeleted{
-		CustomerID: primitive.NewObjectID(), // Existing CustomerID to update
+		CustomerID: bson.NewObjectID(), // Existing CustomerID to update
 		Email:      "updated_deleted_customer@example.com",
 	}
 
@@ -39,7 +39,7 @@ func TestCustomerPermanentlyDeletedUsecase_Create(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewCustomerPermanentlyDeletedUsecase(mockRepo, timeout)
 	newCustomerPermanentlyDeleted := &domain.CustomerPermanentlyDeleted{
-		CustomerID: primitive.NewObjectID(),
+		CustomerID: bson.NewObjectID(),
 		Email:      "deleted_customer@example.com",
 	}
 
@@ -57,7 +57,7 @@ func TestCustomerPermanentlyDeletedUsecase_Update(t *testing.T) {
 	usecase := test.NewCustomerPermanentlyDeletedUsecase(mockRepo, timeout)
 
 	updatedCustomerPermanentlyDeleted := &domain.CustomerPermanentlyDeleted{
-		CustomerID: primitive.NewObjectID(), // Existing CustomerID to update
+		CustomerID: bson.NewObjectID(), // Existing CustomerID to update
 		Email:      "updated_deleted_customer@example.com",
 	}
 
@@ -74,7 +74,7 @@ func TestCustomerPermanentlyDeletedUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewCustomerPermanentlyDeletedUsecase(mockRepo, timeout)
 
-	customerID := primitive.NewObjectID().Hex()
+	customerID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, customerID).Return(nil)
 
@@ -91,11 +91,11 @@ func TestCustomerPermanentlyDeletedUsecase_Fetch(t *testing.T) {
 
 	fetchedCustomerPermanentlyDeleted := []domain.CustomerPermanentlyDeleted{
 		{
-			CustomerID: primitive.NewObjectID(),
+			CustomerID: bson.NewObjectID(),
 			Email:      "deleted_customer1@example.com",
 		},
 		{
-			CustomerID: primitive.NewObjectID(),
+			CustomerID: bson.NewObjectID(),
 			Email:      "deleted_customer2@example.com",
 		},
 	}

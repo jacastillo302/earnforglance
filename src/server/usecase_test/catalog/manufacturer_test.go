@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestManufacturerUsecase_FetchByID(t *testing.T) {
@@ -18,17 +18,17 @@ func TestManufacturerUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewManufacturerUsecase(mockRepo, timeout)
 
-	manufacturerID := primitive.NewObjectID().Hex()
+	manufacturerID := bson.NewObjectID().Hex()
 
 	expectedManufacturer := domain.Manufacturer{
-		ID:                             primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                             bson.NewObjectID(), // Existing ID of the record to update
 		Name:                           "Updated TechCorp",
 		Description:                    "Updated description for TechCorp",
-		ManufacturerID:                 primitive.NewObjectID(),
+		ManufacturerID:                 bson.NewObjectID(),
 		MetaKeywords:                   "updated, tech, gadgets",
 		MetaDescription:                "Updated meta description for TechCorp.",
 		MetaTitle:                      "Updated TechCorp - Manufacturer",
-		PictureID:                      primitive.NewObjectID(),
+		PictureID:                      bson.NewObjectID(),
 		PageSize:                       50,
 		AllowCustomersToSelectPageSize: false,
 		PageSizeOptions:                "50,100",
@@ -62,11 +62,11 @@ func TestManufacturerUsecase_Create(t *testing.T) {
 	newManufacturer := &domain.Manufacturer{
 		Name:                           "TechCorp",
 		Description:                    "Leading manufacturer of tech products",
-		ManufacturerID:                 primitive.NewObjectID(),
+		ManufacturerID:                 bson.NewObjectID(),
 		MetaKeywords:                   "tech, gadgets, electronics",
 		MetaDescription:                "TechCorp is a leading manufacturer of high-quality tech products.",
 		MetaTitle:                      "TechCorp - Manufacturer",
-		PictureID:                      primitive.NewObjectID(),
+		PictureID:                      bson.NewObjectID(),
 		PageSize:                       20,
 		AllowCustomersToSelectPageSize: true,
 		PageSizeOptions:                "10,20,50",
@@ -97,14 +97,14 @@ func TestManufacturerUsecase_Update(t *testing.T) {
 	usecase := test.NewManufacturerUsecase(mockRepo, timeout)
 
 	updatedManufacturer := &domain.Manufacturer{
-		ID:                             primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                             bson.NewObjectID(), // Existing ID of the record to update
 		Name:                           "Updated TechCorp",
 		Description:                    "Updated description for TechCorp",
-		ManufacturerID:                 primitive.NewObjectID(),
+		ManufacturerID:                 bson.NewObjectID(),
 		MetaKeywords:                   "updated, tech, gadgets",
 		MetaDescription:                "Updated meta description for TechCorp.",
 		MetaTitle:                      "Updated TechCorp - Manufacturer",
-		PictureID:                      primitive.NewObjectID(),
+		PictureID:                      bson.NewObjectID(),
 		PageSize:                       50,
 		AllowCustomersToSelectPageSize: false,
 		PageSizeOptions:                "50,100",
@@ -134,7 +134,7 @@ func TestManufacturerUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewManufacturerUsecase(mockRepo, timeout)
 
-	manufacturerID := primitive.NewObjectID().Hex()
+	manufacturerID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, manufacturerID).Return(nil)
 
@@ -151,14 +151,14 @@ func TestManufacturerUsecase_Fetch(t *testing.T) {
 
 	expectedManufacturers := []domain.Manufacturer{
 		{
-			ID:                             primitive.NewObjectID(),
+			ID:                             bson.NewObjectID(),
 			Name:                           "TechCorp",
 			Description:                    "Leading manufacturer of tech products",
-			ManufacturerID:                 primitive.NewObjectID(),
+			ManufacturerID:                 bson.NewObjectID(),
 			MetaKeywords:                   "tech, gadgets, electronics",
 			MetaDescription:                "TechCorp is a leading manufacturer of high-quality tech products.",
 			MetaTitle:                      "TechCorp - Manufacturer",
-			PictureID:                      primitive.NewObjectID(),
+			PictureID:                      bson.NewObjectID(),
 			PageSize:                       20,
 			AllowCustomersToSelectPageSize: true,
 			PageSizeOptions:                "10,20,50",
@@ -175,14 +175,14 @@ func TestManufacturerUsecase_Fetch(t *testing.T) {
 			ManuallyPriceRange:             false,
 		},
 		{
-			ID:                             primitive.NewObjectID(),
+			ID:                             bson.NewObjectID(),
 			Name:                           "HomeTech",
 			Description:                    "Manufacturer of home appliances",
-			ManufacturerID:                 primitive.NewObjectID(),
+			ManufacturerID:                 bson.NewObjectID(),
 			MetaKeywords:                   "home, appliances, tech",
 			MetaDescription:                "HomeTech specializes in high-quality home appliances.",
 			MetaTitle:                      "HomeTech - Manufacturer",
-			PictureID:                      primitive.NewObjectID(),
+			PictureID:                      bson.NewObjectID(),
 			PageSize:                       10,
 			AllowCustomersToSelectPageSize: false,
 			PageSizeOptions:                "10,20",

@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestCategoryUsecase_FetchByID(t *testing.T) {
@@ -18,18 +18,18 @@ func TestCategoryUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCategoryUsecase(mockRepo, timeout)
 
-	categoryID := primitive.NewObjectID().Hex()
+	categoryID := bson.NewObjectID().Hex()
 
 	expectedCategory := domain.Category{
-		ID:                             primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                             bson.NewObjectID(), // Existing ID of the record to update
 		Name:                           "Updated Electronics",
 		Description:                    "Updated description for electronic products",
-		CategoryTemplateID:             primitive.NewObjectID(),
+		CategoryTemplateID:             bson.NewObjectID(),
 		MetaKeywords:                   "updated, electronics",
 		MetaDescription:                "Updated meta description for electronics",
 		MetaTitle:                      "Updated Electronics",
-		ParentCategoryID:               primitive.NewObjectID(),
-		PictureID:                      primitive.NewObjectID(),
+		ParentCategoryID:               bson.NewObjectID(),
+		PictureID:                      bson.NewObjectID(),
 		PageSize:                       50,
 		AllowCustomersToSelectPageSize: false,
 		PageSizeOptions:                "50,100",
@@ -66,7 +66,7 @@ func TestCategoryUsecase_Create(t *testing.T) {
 	newCategory := &domain.Category{
 		Name:                           "Electronics",
 		Description:                    "Category for electronic products",
-		CategoryTemplateID:             primitive.NewObjectID(),
+		CategoryTemplateID:             bson.NewObjectID(),
 		MetaKeywords:                   "electronics, gadgets",
 		MetaDescription:                "Find the best electronic products here",
 		MetaTitle:                      "Electronics",
@@ -92,15 +92,15 @@ func TestCategoryUsecase_Update(t *testing.T) {
 	usecase := test.NewCategoryUsecase(mockRepo, timeout)
 
 	updatedCategory := &domain.Category{
-		ID:                             primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                             bson.NewObjectID(), // Existing ID of the record to update
 		Name:                           "Updated Electronics",
 		Description:                    "Updated description for electronic products",
-		CategoryTemplateID:             primitive.NewObjectID(),
+		CategoryTemplateID:             bson.NewObjectID(),
 		MetaKeywords:                   "updated, electronics",
 		MetaDescription:                "Updated meta description for electronics",
 		MetaTitle:                      "Updated Electronics",
-		ParentCategoryID:               primitive.NewObjectID(),
-		PictureID:                      primitive.NewObjectID(),
+		ParentCategoryID:               bson.NewObjectID(),
+		PictureID:                      bson.NewObjectID(),
 		PageSize:                       50,
 		AllowCustomersToSelectPageSize: false,
 		PageSizeOptions:                "50,100",
@@ -133,7 +133,7 @@ func TestCategoryUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCategoryUsecase(mockRepo, timeout)
 
-	categoryID := primitive.NewObjectID().Hex()
+	categoryID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, categoryID).Return(nil)
 
@@ -150,15 +150,15 @@ func TestCategoryUsecase_Fetch(t *testing.T) {
 
 	expectedCategories := []domain.Category{
 		{
-			ID:                             primitive.NewObjectID(),
+			ID:                             bson.NewObjectID(),
 			Name:                           "Electronics",
 			Description:                    "Category for electronic products",
-			CategoryTemplateID:             primitive.NewObjectID(),
+			CategoryTemplateID:             bson.NewObjectID(),
 			MetaKeywords:                   "electronics, gadgets",
 			MetaDescription:                "Find the best electronic products here",
 			MetaTitle:                      "Electronics",
-			ParentCategoryID:               primitive.NewObjectID(),
-			PictureID:                      primitive.NewObjectID(),
+			ParentCategoryID:               bson.NewObjectID(),
+			PictureID:                      bson.NewObjectID(),
 			PageSize:                       20,
 			AllowCustomersToSelectPageSize: true,
 			PageSizeOptions:                "10,20,50",
@@ -178,15 +178,15 @@ func TestCategoryUsecase_Fetch(t *testing.T) {
 			RestrictFromVendors:            false,
 		},
 		{
-			ID:                             primitive.NewObjectID(),
+			ID:                             bson.NewObjectID(),
 			Name:                           "Home Appliances",
 			Description:                    "Category for home appliances",
-			CategoryTemplateID:             primitive.NewObjectID(),
+			CategoryTemplateID:             bson.NewObjectID(),
 			MetaKeywords:                   "home, appliances",
 			MetaDescription:                "Find the best home appliances here",
 			MetaTitle:                      "Home Appliances",
-			ParentCategoryID:               primitive.NewObjectID(),
-			PictureID:                      primitive.NewObjectID(),
+			ParentCategoryID:               bson.NewObjectID(),
+			PictureID:                      bson.NewObjectID(),
 			PageSize:                       10,
 			AllowCustomersToSelectPageSize: false,
 			PageSizeOptions:                "10,20",

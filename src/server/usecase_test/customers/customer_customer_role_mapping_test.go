@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestCustomerCustomerRoleMappingUsecase_FetchByID(t *testing.T) {
@@ -18,12 +18,12 @@ func TestCustomerCustomerRoleMappingUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCustomerCustomerRoleMappingUsecase(mockRepo, timeout)
 
-	customerCustomerRoleMappingID := primitive.NewObjectID().Hex()
+	customerCustomerRoleMappingID := bson.NewObjectID().Hex()
 
 	updatedCustomerCustomerRoleMapping := domain.CustomerCustomerRoleMapping{
-		ID:             primitive.NewObjectID(), // Existing ID of the record to update
-		CustomerID:     primitive.NewObjectID(),
-		CustomerRoleID: primitive.NewObjectID(),
+		ID:             bson.NewObjectID(), // Existing ID of the record to update
+		CustomerID:     bson.NewObjectID(),
+		CustomerRoleID: bson.NewObjectID(),
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, customerCustomerRoleMappingID).Return(updatedCustomerCustomerRoleMapping, nil)
@@ -41,8 +41,8 @@ func TestCustomerCustomerRoleMappingUsecase_Create(t *testing.T) {
 	usecase := test.NewCustomerCustomerRoleMappingUsecase(mockRepo, timeout)
 
 	newCustomerCustomerRoleMapping := &domain.CustomerCustomerRoleMapping{
-		CustomerID:     primitive.NewObjectID(),
-		CustomerRoleID: primitive.NewObjectID(),
+		CustomerID:     bson.NewObjectID(),
+		CustomerRoleID: bson.NewObjectID(),
 	}
 
 	mockRepo.On("Create", mock.Anything, newCustomerCustomerRoleMapping).Return(nil)
@@ -58,9 +58,9 @@ func TestCustomerCustomerRoleMappingUsecase_Update(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCustomerCustomerRoleMappingUsecase(mockRepo, timeout)
 	updatedCustomerCustomerRoleMapping := &domain.CustomerCustomerRoleMapping{
-		ID:             primitive.NewObjectID(), // Existing ID of the record to update
-		CustomerID:     primitive.NewObjectID(),
-		CustomerRoleID: primitive.NewObjectID(),
+		ID:             bson.NewObjectID(), // Existing ID of the record to update
+		CustomerID:     bson.NewObjectID(),
+		CustomerRoleID: bson.NewObjectID(),
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedCustomerCustomerRoleMapping).Return(nil)
@@ -76,7 +76,7 @@ func TestCustomerCustomerRoleMappingUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCustomerCustomerRoleMappingUsecase(mockRepo, timeout)
 
-	customerCustomerRoleMappingID := primitive.NewObjectID().Hex()
+	customerCustomerRoleMappingID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, customerCustomerRoleMappingID).Return(nil)
 
@@ -93,14 +93,14 @@ func TestCustomerCustomerRoleMappingUsecase_Fetch(t *testing.T) {
 
 	fetchedCustomerCustomerRoleMappings := []domain.CustomerCustomerRoleMapping{
 		{
-			ID:             primitive.NewObjectID(),
-			CustomerID:     primitive.NewObjectID(),
-			CustomerRoleID: primitive.NewObjectID(),
+			ID:             bson.NewObjectID(),
+			CustomerID:     bson.NewObjectID(),
+			CustomerRoleID: bson.NewObjectID(),
 		},
 		{
-			ID:             primitive.NewObjectID(),
-			CustomerID:     primitive.NewObjectID(),
-			CustomerRoleID: primitive.NewObjectID(),
+			ID:             bson.NewObjectID(),
+			CustomerID:     bson.NewObjectID(),
+			CustomerRoleID: bson.NewObjectID(),
 		},
 	}
 

@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,8 +12,8 @@ const (
 
 // Video represents a videos
 type Video struct {
-	ID       primitive.ObjectID `bson:"_id,omitempty"`
-	VideoUrl string             `bson:"video_url"`
+	ID       bson.ObjectID `bson:"_id,omitempty"`
+	VideoUrl string        `bson:"video_url"`
 }
 
 // VideoRepository represents the video repository interface

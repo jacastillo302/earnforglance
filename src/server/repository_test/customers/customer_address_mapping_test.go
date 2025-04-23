@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultCustomerAddressMapping struct {
@@ -28,9 +28,9 @@ func (m *MockSingleResultCustomerAddressMapping) Decode(v interface{}) error {
 }
 
 var mockItemCustomerAddressMapping = &domain.CustomerAddressMapping{
-	ID:         primitive.NewObjectID(), // Existing ID of the record to update
-	CustomerID: primitive.NewObjectID(),
-	AddressID:  primitive.NewObjectID(),
+	ID:         bson.NewObjectID(), // Existing ID of the record to update
+	CustomerID: bson.NewObjectID(),
+	AddressID:  bson.NewObjectID(),
 }
 
 func TestCustomerAddressMappingRepository_FetchByID(t *testing.T) {

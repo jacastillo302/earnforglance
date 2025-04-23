@@ -11,7 +11,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestBlogPostTagUsecase_FetchByID(t *testing.T) {
@@ -19,10 +19,10 @@ func TestBlogPostTagUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewBlogPostTagUsecase(mockRepo, timeout)
 
-	blogposttagID := primitive.NewObjectID().Hex()
+	blogposttagID := bson.NewObjectID().Hex()
 
 	newBlogPostTag := domain.BlogPostTag{
-		ID:            primitive.NewObjectID(),
+		ID:            bson.NewObjectID(),
 		Name:          "Tech Updates",
 		BlogPostCount: 10,
 	}
@@ -60,7 +60,7 @@ func TestBlogPostTagUsecase_Update(t *testing.T) {
 	usecase := test.NewBlogPostTagUsecase(mockRepo, timeout)
 
 	updatedBlogPostTag := &domain.BlogPostTag{
-		ID:            primitive.NewObjectID(), // Existing ID of the record to update
+		ID:            bson.NewObjectID(), // Existing ID of the record to update
 		Name:          "Tech Updates",
 		BlogPostCount: 10, // Updated count of blog posts associated with this tag
 	}
@@ -78,7 +78,7 @@ func TestBlogPostTagUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewBlogPostTagUsecase(mockRepo, timeout)
 
-	blogposttagID := primitive.NewObjectID().Hex()
+	blogposttagID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, blogposttagID).Return(nil)
 
@@ -95,17 +95,17 @@ func TestBlogPostTagUsecase_Fetch(t *testing.T) {
 
 	expectedBlogPostTags := []domain.BlogPostTag{
 		{
-			ID:            primitive.NewObjectID(),
+			ID:            bson.NewObjectID(),
 			Name:          "Technology",
 			BlogPostCount: 5,
 		},
 		{
-			ID:            primitive.NewObjectID(),
+			ID:            bson.NewObjectID(),
 			Name:          "Lifestyle",
 			BlogPostCount: 8,
 		},
 		{
-			ID:            primitive.NewObjectID(),
+			ID:            bson.NewObjectID(),
 			Name:          "Travel",
 			BlogPostCount: 3,
 		},

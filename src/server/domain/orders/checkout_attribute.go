@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,22 +12,22 @@ const (
 
 // CheckoutAttribute represents a checkout attribute
 type CheckoutAttribute struct {
-	ID                              primitive.ObjectID `bson:"_id,omitempty"`
-	Name                            string             `bson:"name"`
-	IsRequired                      bool               `bson:"is_required"`
-	DisplayOrder                    int                `bson:"display_order"`
-	TextPrompt                      string             `bson:"text_prompt"`
-	AttributeControlTypeID          int                `bson:"attribute_control_type_id"`
-	ShippableProductRequired        bool               `bson:"shippable_product_required"`
-	IsTaxExempt                     bool               `bson:"is_tax_exempt"`
-	TaxCategoryID                   primitive.ObjectID `bson:"tax_category_id"`
-	LimitedToStores                 bool               `bson:"limited_to_stores"`
-	ValidationMinLength             *int               `bson:"validation_min_length"`
-	ValidationMaxLength             *int               `bson:"validation_max_length"`
-	ValidationFileAllowedExtensions string             `bson:"validation_file_allowed_extensions"`
-	ValidationFileMaximumSize       *int               `bson:"validation_file_maximum_size"`
-	DefaultValue                    string             `bson:"default_value"`
-	ConditionAttributeXml           string             `bson:"condition_attribute_xml"`
+	ID                              bson.ObjectID `bson:"_id,omitempty"`
+	Name                            string        `bson:"name"`
+	IsRequired                      bool          `bson:"is_required"`
+	DisplayOrder                    int           `bson:"display_order"`
+	TextPrompt                      string        `bson:"text_prompt"`
+	AttributeControlTypeID          int           `bson:"attribute_control_type_id"`
+	ShippableProductRequired        bool          `bson:"shippable_product_required"`
+	IsTaxExempt                     bool          `bson:"is_tax_exempt"`
+	TaxCategoryID                   bson.ObjectID `bson:"tax_category_id"`
+	LimitedToStores                 bool          `bson:"limited_to_stores"`
+	ValidationMinLength             *int          `bson:"validation_min_length"`
+	ValidationMaxLength             *int          `bson:"validation_max_length"`
+	ValidationFileAllowedExtensions string        `bson:"validation_file_allowed_extensions"`
+	ValidationFileMaximumSize       *int          `bson:"validation_file_maximum_size"`
+	DefaultValue                    string        `bson:"default_value"`
+	ConditionAttributeXml           string        `bson:"condition_attribute_xml"`
 }
 
 // CheckoutAttributeRepository interface

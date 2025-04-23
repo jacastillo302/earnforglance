@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestProductAttributeUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestProductAttributeUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewProductAttributeUsecase(mockRepo, timeout)
 
-	productAttributeID := primitive.NewObjectID().Hex()
+	productAttributeID := bson.NewObjectID().Hex()
 
 	updatedProductAttribute := domain.ProductAttribute{
-		ID:          primitive.NewObjectID(),
+		ID:          bson.NewObjectID(),
 		Name:        "Size",
 		Description: "Defines the size of the product",
 	}
@@ -59,7 +59,7 @@ func TestProductAttributeUsecase_Update(t *testing.T) {
 	usecase := test.NewProductAttributeUsecase(mockRepo, timeout)
 
 	updatedProductAttribute := &domain.ProductAttribute{
-		ID:          primitive.NewObjectID(),
+		ID:          bson.NewObjectID(),
 		Name:        "Size",
 		Description: "Defines the size of the product",
 	}
@@ -77,7 +77,7 @@ func TestProductAttributeUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewProductAttributeUsecase(mockRepo, timeout)
 
-	productAttributeID := primitive.NewObjectID().Hex()
+	productAttributeID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, productAttributeID).Return(nil)
 
@@ -94,12 +94,12 @@ func TestProductAttributeUsecase_Fetch(t *testing.T) {
 
 	fetchedProductAttributes := []domain.ProductAttribute{
 		{
-			ID:          primitive.NewObjectID(),
+			ID:          bson.NewObjectID(),
 			Name:        "Material",
 			Description: "Defines the material of the product",
 		},
 		{
-			ID:          primitive.NewObjectID(),
+			ID:          bson.NewObjectID(),
 			Name:        "Brand",
 			Description: "Defines the brand of the product",
 		},

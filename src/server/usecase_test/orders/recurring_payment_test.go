@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestRecurringPaymentUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestRecurringPaymentUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewRecurringPaymentUsecase(mockRepo, timeout)
 
-	recurringPaymentID := primitive.NewObjectID().Hex()
+	recurringPaymentID := bson.NewObjectID().Hex()
 
 	updatedRecurringPayment := domain.RecurringPayment{
-		ID:                            primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                            bson.NewObjectID(), // Existing ID of the record to update
 		CycleLength:                   15,
 		RecurringProductCyclePeriodID: 2,
 		TotalCycles:                   6,
@@ -75,7 +75,7 @@ func TestRecurringPaymentUsecase_Update(t *testing.T) {
 	usecase := test.NewRecurringPaymentUsecase(mockRepo, timeout)
 
 	updatedRecurringPayment := &domain.RecurringPayment{
-		ID:                            primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                            bson.NewObjectID(), // Existing ID of the record to update
 		CycleLength:                   15,
 		RecurringProductCyclePeriodID: 2,
 		TotalCycles:                   6,
@@ -101,7 +101,7 @@ func TestRecurringPaymentUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewRecurringPaymentUsecase(mockRepo, timeout)
 
-	recurringPaymentID := primitive.NewObjectID().Hex()
+	recurringPaymentID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, recurringPaymentID).Return(nil)
 
@@ -118,7 +118,7 @@ func TestRecurringPaymentUsecase_Fetch(t *testing.T) {
 
 	fetchedRecurringPayments := []domain.RecurringPayment{
 		{
-			ID:                            primitive.NewObjectID(),
+			ID:                            bson.NewObjectID(),
 			CycleLength:                   30,
 			RecurringProductCyclePeriodID: 1,
 			TotalCycles:                   12,
@@ -131,7 +131,7 @@ func TestRecurringPaymentUsecase_Fetch(t *testing.T) {
 			CyclePeriod:                   2,
 		},
 		{
-			ID:                            primitive.NewObjectID(),
+			ID:                            bson.NewObjectID(),
 			CycleLength:                   15,
 			RecurringProductCyclePeriodID: 2,
 			TotalCycles:                   6,

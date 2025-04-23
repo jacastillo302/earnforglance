@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -13,11 +13,11 @@ const (
 
 // ForumGroup represents a forum group
 type ForumGroup struct {
-	ID           primitive.ObjectID `bson:"_id,omitempty"`
-	Name         string             `bson:"name"`
-	DisplayOrder int                `bson:"display_order"`
-	CreatedOnUtc time.Time          `bson:"created_on_utc"`
-	UpdatedOnUtc time.Time          `bson:"updated_on_utc"`
+	ID           bson.ObjectID `bson:"_id,omitempty"`
+	Name         string        `bson:"name"`
+	DisplayOrder int           `bson:"display_order"`
+	CreatedOnUtc time.Time     `bson:"created_on_utc"`
+	UpdatedOnUtc time.Time     `bson:"updated_on_utc"`
 }
 
 type ForumGroupRepository interface {

@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestOrderNoteUsecase_FetchByID(t *testing.T) {
@@ -18,13 +18,13 @@ func TestOrderNoteUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewOrderNoteUsecase(mockRepo, timeout)
 
-	orderNoteID := primitive.NewObjectID().Hex()
+	orderNoteID := bson.NewObjectID().Hex()
 
 	updatedOrderNote := domain.OrderNote{
-		ID:                primitive.NewObjectID(), // Existing ID of the record to update
-		OrderID:           primitive.NewObjectID(),
+		ID:                bson.NewObjectID(), // Existing ID of the record to update
+		OrderID:           bson.NewObjectID(),
 		Note:              "This is an updated note for the order.",
-		DownloadID:        primitive.NewObjectID(),
+		DownloadID:        bson.NewObjectID(),
 		DisplayToCustomer: false,
 		CreatedOnUtc:      time.Now().AddDate(0, 0, -7), // Created 7 days ago
 	}
@@ -44,9 +44,9 @@ func TestOrderNoteUsecase_Create(t *testing.T) {
 	usecase := test.NewOrderNoteUsecase(mockRepo, timeout)
 
 	newOrderNote := &domain.OrderNote{
-		OrderID:           primitive.NewObjectID(),
+		OrderID:           bson.NewObjectID(),
 		Note:              "This is a note for the order.",
-		DownloadID:        primitive.NewObjectID(),
+		DownloadID:        bson.NewObjectID(),
 		DisplayToCustomer: true,
 		CreatedOnUtc:      time.Now(),
 	}
@@ -65,10 +65,10 @@ func TestOrderNoteUsecase_Update(t *testing.T) {
 	usecase := test.NewOrderNoteUsecase(mockRepo, timeout)
 
 	updatedOrderNote := &domain.OrderNote{
-		ID:                primitive.NewObjectID(), // Existing ID of the record to update
-		OrderID:           primitive.NewObjectID(),
+		ID:                bson.NewObjectID(), // Existing ID of the record to update
+		OrderID:           bson.NewObjectID(),
 		Note:              "This is an updated note for the order.",
-		DownloadID:        primitive.NewObjectID(),
+		DownloadID:        bson.NewObjectID(),
 		DisplayToCustomer: false,
 		CreatedOnUtc:      time.Now().AddDate(0, 0, -7), // Created 7 days ago
 	}
@@ -86,7 +86,7 @@ func TestOrderNoteUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewOrderNoteUsecase(mockRepo, timeout)
 
-	orderNoteID := primitive.NewObjectID().Hex()
+	orderNoteID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, orderNoteID).Return(nil)
 
@@ -103,18 +103,18 @@ func TestOrderNoteUsecase_Fetch(t *testing.T) {
 
 	fetchedOrderNotes := []domain.OrderNote{
 		{
-			ID:                primitive.NewObjectID(),
-			OrderID:           primitive.NewObjectID(),
+			ID:                bson.NewObjectID(),
+			OrderID:           bson.NewObjectID(),
 			Note:              "This is a note for the order.",
-			DownloadID:        primitive.NewObjectID(),
+			DownloadID:        bson.NewObjectID(),
 			DisplayToCustomer: true,
 			CreatedOnUtc:      time.Now().AddDate(0, 0, -10), // Created 10 days ago
 		},
 		{
-			ID:                primitive.NewObjectID(),
-			OrderID:           primitive.NewObjectID(),
+			ID:                bson.NewObjectID(),
+			OrderID:           bson.NewObjectID(),
 			Note:              "This is another note for the order.",
-			DownloadID:        primitive.NewObjectID(),
+			DownloadID:        bson.NewObjectID(),
 			DisplayToCustomer: false,
 			CreatedOnUtc:      time.Now().AddDate(0, 0, -5), // Created 5 days ago
 		},

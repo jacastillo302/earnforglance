@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestPollUsecase_FetchByID(t *testing.T) {
@@ -18,11 +18,11 @@ func TestPollUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewPollUsecase(mockRepo, timeout)
 
-	pollID := primitive.NewObjectID().Hex()
+	pollID := bson.NewObjectID().Hex()
 
 	updatedPoll := domain.Poll{
-		ID:                primitive.NewObjectID(), // Existing ID of the record to update
-		LanguageID:        primitive.NewObjectID(),
+		ID:                bson.NewObjectID(), // Existing ID of the record to update
+		LanguageID:        bson.NewObjectID(),
 		Name:              "Updated Poll Name",
 		SystemKeyword:     "updated_poll_keyword",
 		Published:         false,
@@ -51,7 +51,7 @@ func TestPollUsecase_Create(t *testing.T) {
 	usecase := test.NewPollUsecase(mockRepo, timeout)
 
 	newPoll := &domain.Poll{
-		LanguageID:        primitive.NewObjectID(),
+		LanguageID:        bson.NewObjectID(),
 		Name:              "Favorite Programming Language",
 		SystemKeyword:     "favorite_programming_language",
 		Published:         true,
@@ -77,8 +77,8 @@ func TestPollUsecase_Update(t *testing.T) {
 	usecase := test.NewPollUsecase(mockRepo, timeout)
 
 	updatedPoll := &domain.Poll{
-		ID:                primitive.NewObjectID(), // Existing ID of the record to update
-		LanguageID:        primitive.NewObjectID(),
+		ID:                bson.NewObjectID(), // Existing ID of the record to update
+		LanguageID:        bson.NewObjectID(),
 		Name:              "Updated Poll Name",
 		SystemKeyword:     "updated_poll_keyword",
 		Published:         false,
@@ -105,7 +105,7 @@ func TestPollUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewPollUsecase(mockRepo, timeout)
 
-	pollID := primitive.NewObjectID().Hex()
+	pollID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, pollID).Return(nil)
 
@@ -122,8 +122,8 @@ func TestPollUsecase_Fetch(t *testing.T) {
 
 	fetchedPolls := []domain.Poll{
 		{
-			ID:                primitive.NewObjectID(),
-			LanguageID:        primitive.NewObjectID(),
+			ID:                bson.NewObjectID(),
+			LanguageID:        bson.NewObjectID(),
 			Name:              "Favorite Programming Language",
 			SystemKeyword:     "favorite_programming_language",
 			Published:         true,
@@ -135,8 +135,8 @@ func TestPollUsecase_Fetch(t *testing.T) {
 			EndDateUtc:        nil,
 		},
 		{
-			ID:                primitive.NewObjectID(),
-			LanguageID:        primitive.NewObjectID(),
+			ID:                bson.NewObjectID(),
+			LanguageID:        bson.NewObjectID(),
 			Name:              "Updated Poll Name",
 			SystemKeyword:     "updated_poll_keyword",
 			Published:         false,

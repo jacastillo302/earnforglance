@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestUrlRecordUsecase_FetchByID(t *testing.T) {
@@ -18,11 +18,11 @@ func TestUrlRecordUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewUrlRecordUsecase(mockRepo, timeout)
 
-	urlRecordID := primitive.NewObjectID().Hex()
+	urlRecordID := bson.NewObjectID().Hex()
 
 	updatedUrlRecord := domain.UrlRecord{
-		ID:                 primitive.NewObjectID(), // Existing ID of the record to update
-		PermissionRecordID: primitive.NewObjectID(),
+		ID:                 bson.NewObjectID(), // Existing ID of the record to update
+		PermissionRecordID: bson.NewObjectID(),
 		Slug:               "example-category",
 		IsActive:           false,
 	}
@@ -42,7 +42,7 @@ func TestUrlRecordUsecase_Create(t *testing.T) {
 	usecase := test.NewUrlRecordUsecase(mockRepo, timeout)
 
 	newUrlRecord := &domain.UrlRecord{
-		PermissionRecordID: primitive.NewObjectID(),
+		PermissionRecordID: bson.NewObjectID(),
 		Slug:               "example-product",
 		IsActive:           true,
 	}
@@ -61,8 +61,8 @@ func TestUrlRecordUsecase_Update(t *testing.T) {
 	usecase := test.NewUrlRecordUsecase(mockRepo, timeout)
 
 	updatedUrlRecord := &domain.UrlRecord{
-		ID:                 primitive.NewObjectID(), // Existing ID of the record to update
-		PermissionRecordID: primitive.NewObjectID(),
+		ID:                 bson.NewObjectID(), // Existing ID of the record to update
+		PermissionRecordID: bson.NewObjectID(),
 		Slug:               "example-category",
 		IsActive:           false,
 	}
@@ -80,7 +80,7 @@ func TestUrlRecordUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewUrlRecordUsecase(mockRepo, timeout)
 
-	urlRecordID := primitive.NewObjectID().Hex()
+	urlRecordID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, urlRecordID).Return(nil)
 
@@ -97,14 +97,14 @@ func TestUrlRecordUsecase_Fetch(t *testing.T) {
 
 	fetchedUrlRecords := []domain.UrlRecord{
 		{
-			ID:                 primitive.NewObjectID(),
-			PermissionRecordID: primitive.NewObjectID(),
+			ID:                 bson.NewObjectID(),
+			PermissionRecordID: bson.NewObjectID(),
 			Slug:               "example-product",
 			IsActive:           true,
 		},
 		{
-			ID:                 primitive.NewObjectID(),
-			PermissionRecordID: primitive.NewObjectID(),
+			ID:                 bson.NewObjectID(),
+			PermissionRecordID: bson.NewObjectID(),
 			Slug:               "example-category",
 			IsActive:           false,
 		},

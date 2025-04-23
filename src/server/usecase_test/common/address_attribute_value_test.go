@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestAddressAttributeValueUsecase_FetchByID(t *testing.T) {
@@ -18,11 +18,11 @@ func TestAddressAttributeValueUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewAddressAttributeValueUsecase(mockRepo, timeout)
 
-	addressAttributeValueID := primitive.NewObjectID().Hex()
+	addressAttributeValueID := bson.NewObjectID().Hex()
 
 	updatedAddressAttributeValue := domain.AddressAttributeValue{
-		ID:                 primitive.NewObjectID(), // Existing ID of the record to update
-		AddressAttributeID: primitive.NewObjectID(),
+		ID:                 bson.NewObjectID(), // Existing ID of the record to update
+		AddressAttributeID: bson.NewObjectID(),
 		Name:               "State",
 		IsPreSelected:      false,
 		DisplayOrder:       2,
@@ -43,7 +43,7 @@ func TestAddressAttributeValueUsecase_Create(t *testing.T) {
 	usecase := test.NewAddressAttributeValueUsecase(mockRepo, timeout)
 
 	newAddressAttributeValue := &domain.AddressAttributeValue{
-		AddressAttributeID: primitive.NewObjectID(),
+		AddressAttributeID: bson.NewObjectID(),
 		Name:               "Country",
 		IsPreSelected:      true,
 		DisplayOrder:       1,
@@ -63,8 +63,8 @@ func TestAddressAttributeValueUsecase_Update(t *testing.T) {
 	usecase := test.NewAddressAttributeValueUsecase(mockRepo, timeout)
 
 	updatedAddressAttributeValue := &domain.AddressAttributeValue{
-		ID:                 primitive.NewObjectID(), // Existing ID of the record to update
-		AddressAttributeID: primitive.NewObjectID(),
+		ID:                 bson.NewObjectID(), // Existing ID of the record to update
+		AddressAttributeID: bson.NewObjectID(),
 		Name:               "State",
 		IsPreSelected:      false,
 		DisplayOrder:       2,
@@ -83,7 +83,7 @@ func TestAddressAttributeValueUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewAddressAttributeValueUsecase(mockRepo, timeout)
 
-	addressAttributeValueID := primitive.NewObjectID().Hex()
+	addressAttributeValueID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, addressAttributeValueID).Return(nil)
 
@@ -100,15 +100,15 @@ func TestAddressAttributeValueUsecase_Fetch(t *testing.T) {
 
 	fetchedAddressAttributeValues := []domain.AddressAttributeValue{
 		{
-			ID:                 primitive.NewObjectID(),
-			AddressAttributeID: primitive.NewObjectID(),
+			ID:                 bson.NewObjectID(),
+			AddressAttributeID: bson.NewObjectID(),
 			Name:               "Country",
 			IsPreSelected:      true,
 			DisplayOrder:       1,
 		},
 		{
-			ID:                 primitive.NewObjectID(),
-			AddressAttributeID: primitive.NewObjectID(),
+			ID:                 bson.NewObjectID(),
+			AddressAttributeID: bson.NewObjectID(),
 			Name:               "State",
 			IsPreSelected:      false,
 			DisplayOrder:       2,

@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/customers"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type CustomerAttributeValueRepository struct {
@@ -58,7 +57,7 @@ func (ur *CustomerAttributeValueRepository) Update(c context.Context, CustomerAt
 func (ur *CustomerAttributeValueRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *CustomerAttributeValueRepository) Delete(c context.Context, ID string)
 func (ur *CustomerAttributeValueRepository) Fetch(c context.Context) ([]domain.CustomerAttributeValue, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *CustomerAttributeValueRepository) FetchByID(c context.Context, Custome
 
 	var CustomerAttributeValue domain.CustomerAttributeValue
 
-	idHex, err := primitive.ObjectIDFromHex(CustomerAttributeValueID)
+	idHex, err := bson.ObjectIDFromHex(CustomerAttributeValueID)
 	if err != nil {
 		return CustomerAttributeValue, err
 	}

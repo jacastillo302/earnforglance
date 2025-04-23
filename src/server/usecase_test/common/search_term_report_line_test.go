@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestSearchTermReportLineUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestSearchTermReportLineUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewSearchTermReportLineUsecase(mockRepo, timeout)
 
-	commonID := primitive.NewObjectID().Hex()
+	commonID := bson.NewObjectID().Hex()
 
 	updatedSearchTermReportLine := domain.SearchTermReportLine{
-		ID:      primitive.NewObjectID(), // Existing ID of the record to update
+		ID:      bson.NewObjectID(), // Existing ID of the record to update
 		Keyword: "smartphone",
 		Count:   200,
 	}
@@ -59,7 +59,7 @@ func TestSearchTermReportLineUsecase_Update(t *testing.T) {
 	usecase := test.NewSearchTermReportLineUsecase(mockRepo, timeout)
 
 	updatedSearchTermReportLine := &domain.SearchTermReportLine{
-		ID:      primitive.NewObjectID(), // Existing ID of the record to update
+		ID:      bson.NewObjectID(), // Existing ID of the record to update
 		Keyword: "smartphone",
 		Count:   200,
 	}
@@ -77,7 +77,7 @@ func TestSearchTermReportLineUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewSearchTermReportLineUsecase(mockRepo, timeout)
 
-	commonID := primitive.NewObjectID().Hex()
+	commonID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, commonID).Return(nil)
 
@@ -94,12 +94,12 @@ func TestSearchTermReportLineUsecase_Fetch(t *testing.T) {
 
 	fetchedSearchTermReportLines := []domain.SearchTermReportLine{
 		{
-			ID:      primitive.NewObjectID(),
+			ID:      bson.NewObjectID(),
 			Keyword: "laptop",
 			Count:   150,
 		},
 		{
-			ID:      primitive.NewObjectID(),
+			ID:      bson.NewObjectID(),
 			Keyword: "smartphone",
 			Count:   200,
 		},

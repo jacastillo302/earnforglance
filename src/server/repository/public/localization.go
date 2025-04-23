@@ -7,9 +7,8 @@ import (
 	domain "earnforglance/server/domain/public"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type localizationRepository struct {
@@ -29,7 +28,7 @@ func (lr *localizationRepository) GetLocalizations(c context.Context, filter dom
 	var languages []localization.Language
 	err := error(nil)
 
-	idHex, err := primitive.ObjectIDFromHex(filter.ID)
+	idHex, err := bson.ObjectIDFromHex(filter.ID)
 	if err == nil {
 		var loc localization.Language
 
@@ -98,12 +97,14 @@ func (lr *localizationRepository) GetLocalizations(c context.Context, filter dom
 		}
 	}
 
-	findOptions := options.Find().
-		SetSort(bson.D{{Key: "display_order", Value: sortOrder}}).
-		SetLimit(int64(filter.Limit))
+	limit := int64(filter.Limit)
+
+	buildFilter := options.Find()
+	buildFilter.SetSort(bson.D{{Key: "_id", Value: sortOrder}})
+	buildFilter.SetLimit(limit)
 
 	collection := lr.database.Collection(localization.CollectionLanguage)
-	cursor, err := collection.Find(c, query, findOptions)
+	cursor, err := collection.Find(c, query, buildFilter)
 	if err != nil {
 		return result, err
 	}

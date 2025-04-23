@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/catalog"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type reviewtypeRepository struct {
@@ -59,7 +58,7 @@ func (ur *reviewtypeRepository) Update(c context.Context, reviewtype *domain.Rev
 func (ur *reviewtypeRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -72,7 +71,8 @@ func (ur *reviewtypeRepository) Delete(c context.Context, ID string) error {
 func (ur *reviewtypeRepository) Fetch(c context.Context) ([]domain.ReviewType, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -94,7 +94,7 @@ func (tr *reviewtypeRepository) FetchByID(c context.Context, reviewtypeID string
 
 	var reviewtype domain.ReviewType
 
-	idHex, err := primitive.ObjectIDFromHex(reviewtypeID)
+	idHex, err := bson.ObjectIDFromHex(reviewtypeID)
 	if err != nil {
 		return reviewtype, err
 	}

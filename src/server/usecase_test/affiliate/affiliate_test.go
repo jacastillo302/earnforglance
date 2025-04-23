@@ -11,7 +11,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestAffiliateUsecase_FetchByID(t *testing.T) {
@@ -19,9 +19,9 @@ func TestAffiliateUsecase_FetchByID(t *testing.T) {
 	time := time.Duration(10)
 	usecase := test.NewAffiliateUsecase(mockRepo, time) // Assuming a constructor exists
 
-	affiliateID := primitive.NewObjectID().Hex()
+	affiliateID := bson.NewObjectID().Hex()
 	expectedAffiliate := domian.Affiliate{
-		ID:              primitive.NewObjectID(),
+		ID:              bson.NewObjectID(),
 		AdminComment:    "Test Comment",
 		FriendlyUrlName: "test-url",
 		Deleted:         false,
@@ -63,7 +63,7 @@ func TestAffiliateUsecase_Update(t *testing.T) {
 	usecase := test.NewAffiliateUsecase(mockRepo, time) // Assuming a constructor exists
 
 	updatedAffiliate := &domian.Affiliate{
-		ID:              primitive.NewObjectID(),
+		ID:              bson.NewObjectID(),
 		AdminComment:    "Updated Comment",
 		FriendlyUrlName: "updated-url",
 		Deleted:         false,
@@ -83,7 +83,7 @@ func TestAffiliateUsecase_Delete(t *testing.T) {
 	time := time.Duration(10)
 	usecase := test.NewAffiliateUsecase(mockRepo, time) // Assuming a constructor exists
 
-	affiliateID := primitive.NewObjectID().Hex()
+	affiliateID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, affiliateID).Return(nil)
 
@@ -100,14 +100,14 @@ func TestAffiliateUsecase_Fetch(t *testing.T) {
 
 	expectedAffiliates := []domian.Affiliate{
 		{
-			ID:              primitive.NewObjectID(),
+			ID:              bson.NewObjectID(),
 			AdminComment:    "Comment 1",
 			FriendlyUrlName: "url-1",
 			Deleted:         false,
 			Active:          true,
 		},
 		{
-			ID:              primitive.NewObjectID(),
+			ID:              bson.NewObjectID(),
 			AdminComment:    "Comment 2",
 			FriendlyUrlName: "url-2",
 			Deleted:         false,

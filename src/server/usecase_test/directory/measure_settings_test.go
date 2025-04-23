@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestMeasureSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestMeasureSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewMeasureSettingsUsecase(mockRepo, timeout)
 
-	directoryID := primitive.NewObjectID().Hex()
+	directoryID := bson.NewObjectID().Hex()
 
 	updatedMeasureSettings := domain.MeasureSettings{
-		ID:              primitive.NewObjectID(), // Existing ID of the record to update
+		ID:              bson.NewObjectID(), // Existing ID of the record to update
 		BaseDimensionID: 3,
 		BaseWeightID:    4,
 	}
@@ -59,7 +59,7 @@ func TestMeasureSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewMeasureSettingsUsecase(mockRepo, timeout)
 
 	updatedMeasureSettings := &domain.MeasureSettings{
-		ID:              primitive.NewObjectID(), // Existing ID of the record to update
+		ID:              bson.NewObjectID(), // Existing ID of the record to update
 		BaseDimensionID: 3,
 		BaseWeightID:    4,
 	}
@@ -77,7 +77,7 @@ func TestMeasureSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewMeasureSettingsUsecase(mockRepo, timeout)
 
-	directoryID := primitive.NewObjectID().Hex()
+	directoryID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, directoryID).Return(nil)
 
@@ -94,12 +94,12 @@ func TestMeasureSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedMeasureSettings := []domain.MeasureSettings{
 		{
-			ID:              primitive.NewObjectID(),
+			ID:              bson.NewObjectID(),
 			BaseDimensionID: 1,
 			BaseWeightID:    2,
 		},
 		{
-			ID:              primitive.NewObjectID(),
+			ID:              bson.NewObjectID(),
 			BaseDimensionID: 3,
 			BaseWeightID:    4,
 		},

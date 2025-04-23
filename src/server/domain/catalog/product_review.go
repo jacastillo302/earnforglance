@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -13,19 +13,19 @@ const (
 
 // ProductReview represents a product review
 type ProductReview struct {
-	ID                      primitive.ObjectID `bson:"_id,omitempty"`
-	CustomerID              primitive.ObjectID `bson:"customer_id"`
-	ProductID               primitive.ObjectID `bson:"product_id"`
-	StoreID                 primitive.ObjectID `bson:"store_id"`
-	IsApproved              bool               `bson:"is_approved"`
-	Title                   string             `bson:"title"`
-	ReviewText              string             `bson:"review_text"`
-	ReplyText               string             `bson:"reply_text"`
-	CustomerNotifiedOfReply bool               `bson:"customer_notified_of_reply"`
-	Rating                  int                `bson:"rating"`
-	HelpfulYesTotal         int                `bson:"helpful_yes_total"`
-	HelpfulNoTotal          int                `bson:"helpful_no_total"`
-	CreatedOnUtc            time.Time          `bson:"created_on_utc"`
+	ID                      bson.ObjectID `bson:"_id,omitempty"`
+	CustomerID              bson.ObjectID `bson:"customer_id"`
+	ProductID               bson.ObjectID `bson:"product_id"`
+	StoreID                 bson.ObjectID `bson:"store_id"`
+	IsApproved              bool          `bson:"is_approved"`
+	Title                   string        `bson:"title"`
+	ReviewText              string        `bson:"review_text"`
+	ReplyText               string        `bson:"reply_text"`
+	CustomerNotifiedOfReply bool          `bson:"customer_notified_of_reply"`
+	Rating                  int           `bson:"rating"`
+	HelpfulYesTotal         int           `bson:"helpful_yes_total"`
+	HelpfulNoTotal          int           `bson:"helpful_no_total"`
+	CreatedOnUtc            time.Time     `bson:"created_on_utc"`
 }
 
 // JSON example for ProductReview

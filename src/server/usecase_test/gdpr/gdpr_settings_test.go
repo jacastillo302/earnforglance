@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestGdprSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestGdprSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewGdprSettingsUsecase(mockRepo, timeout)
 
-	gdprID := primitive.NewObjectID().Hex()
+	gdprID := bson.NewObjectID().Hex()
 
 	updatedGdprSettings := domain.GdprSettings{
-		ID:                                 primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                 bson.NewObjectID(), // Existing ID of the record to update
 		GdprEnabled:                        false,
 		LogPrivacyPolicyConsent:            false,
 		LogNewsletterConsent:               false,
@@ -64,7 +64,7 @@ func TestGdprSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewGdprSettingsUsecase(mockRepo, timeout)
 
 	updatedGdprSettings := &domain.GdprSettings{
-		ID:                                 primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                 bson.NewObjectID(), // Existing ID of the record to update
 		GdprEnabled:                        false,
 		LogPrivacyPolicyConsent:            false,
 		LogNewsletterConsent:               false,
@@ -85,7 +85,7 @@ func TestGdprSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewGdprSettingsUsecase(mockRepo, timeout)
 
-	gdprID := primitive.NewObjectID().Hex()
+	gdprID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, gdprID).Return(nil)
 
@@ -102,7 +102,7 @@ func TestGdprSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedGdprSettings := []domain.GdprSettings{
 		{
-			ID:                                 primitive.NewObjectID(),
+			ID:                                 bson.NewObjectID(),
 			GdprEnabled:                        true,
 			LogPrivacyPolicyConsent:            true,
 			LogNewsletterConsent:               true,
@@ -110,7 +110,7 @@ func TestGdprSettingsUsecase_Fetch(t *testing.T) {
 			DeleteInactiveCustomersAfterMonths: 12,
 		},
 		{
-			ID:                                 primitive.NewObjectID(),
+			ID:                                 bson.NewObjectID(),
 			GdprEnabled:                        false,
 			LogPrivacyPolicyConsent:            false,
 			LogNewsletterConsent:               false,

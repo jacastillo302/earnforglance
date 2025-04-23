@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestProductEditorSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestProductEditorSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewProductEditorSettingsUsecase(mockRepo, timeout)
 
-	productEditorSettingsID := primitive.NewObjectID().Hex()
+	productEditorSettingsID := bson.NewObjectID().Hex()
 
 	updatedProductEditorSettings := domain.ProductEditorSettings{
-		ID:                              primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                              bson.NewObjectID(), // Existing ID of the record to update
 		ProductType:                     false,
 		VisibleIndividually:             false,
 		ProductTemplate:                 true,
@@ -175,7 +175,7 @@ func TestProductEditorSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewProductEditorSettingsUsecase(mockRepo, timeout)
 
 	updatedProductEditorSettings := &domain.ProductEditorSettings{
-		ID:                              primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                              bson.NewObjectID(), // Existing ID of the record to update
 		ProductType:                     false,
 		VisibleIndividually:             false,
 		ProductTemplate:                 true,
@@ -251,7 +251,7 @@ func TestProductEditorSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewProductEditorSettingsUsecase(mockRepo, timeout)
 
-	productEditorSettingsID := primitive.NewObjectID().Hex()
+	productEditorSettingsID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, productEditorSettingsID).Return(nil)
 
@@ -268,7 +268,7 @@ func TestProductEditorSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedProductEditorSettings := []domain.ProductEditorSettings{
 		{
-			ID:                              primitive.NewObjectID(),
+			ID:                              bson.NewObjectID(),
 			ProductType:                     true,
 			VisibleIndividually:             true,
 			ProductTemplate:                 true,
@@ -331,7 +331,7 @@ func TestProductEditorSettingsUsecase_Fetch(t *testing.T) {
 			AgeVerification:         false,
 		},
 		{
-			ID:                              primitive.NewObjectID(),
+			ID:                              bson.NewObjectID(),
 			ProductType:                     false,
 			VisibleIndividually:             false,
 			ProductTemplate:                 false,

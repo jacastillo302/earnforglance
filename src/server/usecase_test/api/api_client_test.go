@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestApiClientUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestApiClientUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewApiClientUsecase(mockRepo, timeout)
 
-	apiID := primitive.NewObjectID().Hex()
+	apiID := bson.NewObjectID().Hex()
 
 	updatedApiClient := domian.ApiClient{
-		ID:                            primitive.NewObjectID(), // Generate a new MongoDB ObjectID
+		ID:                            bson.NewObjectID(), // Generate a new MongoDB ObjectID
 		Secret:                        "supersecretkey123",
 		Enable:                        true,
 		DateExpired:                   time.Now().AddDate(1, 0, 0), // Set expiration date to 1 year from now
@@ -49,7 +49,7 @@ func TestApiClientUsecase_Create(t *testing.T) {
 	usecase := test.NewApiClientUsecase(mockRepo, timeout)
 
 	newApiClient := &domian.ApiClient{
-		ID:                            primitive.NewObjectID(), // Generate a new MongoDB ObjectID
+		ID:                            bson.NewObjectID(), // Generate a new MongoDB ObjectID
 		Secret:                        "supersecretkey123",
 		Enable:                        true,
 		DateExpired:                   time.Now().AddDate(1, 0, 0), // Set expiration date to 1 year from now
@@ -76,7 +76,7 @@ func TestApiClientUsecase_Update(t *testing.T) {
 	usecase := test.NewApiClientUsecase(mockRepo, timeout)
 
 	updatedApiClient := &domian.ApiClient{
-		ID:                            primitive.NewObjectID(), // Generate a new MongoDB ObjectID
+		ID:                            bson.NewObjectID(), // Generate a new MongoDB ObjectID
 		Secret:                        "supersecretkey123",
 		Enable:                        true,
 		DateExpired:                   time.Now().AddDate(1, 0, 0), // Set expiration date to 1 year from now
@@ -102,7 +102,7 @@ func TestApiClientUsecase_Delete(t *testing.T) {
 	time := time.Duration(10)
 	usecase := test.NewApiClientUsecase(mockRepo, time)
 
-	apiID := primitive.NewObjectID().Hex()
+	apiID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, apiID).Return(nil)
 
@@ -119,7 +119,7 @@ func TestApiClientUsecase_Fetch(t *testing.T) {
 
 	fetchedApiClients := []domian.ApiClient{
 		{
-			ID:                            primitive.NewObjectID(), // Generate a new MongoDB ObjectID
+			ID:                            bson.NewObjectID(), // Generate a new MongoDB ObjectID
 			Secret:                        "supersecretkey123",
 			Enable:                        true,
 			DateExpired:                   time.Now().AddDate(1, 0, 0), // Set expiration date to 1 year from now
@@ -132,7 +132,7 @@ func TestApiClientUsecase_Fetch(t *testing.T) {
 
 		},
 		{
-			ID:                            primitive.NewObjectID(), // Generate a new MongoDB ObjectID
+			ID:                            bson.NewObjectID(), // Generate a new MongoDB ObjectID
 			Secret:                        "supersecretkey123",
 			Enable:                        true,
 			DateExpired:                   time.Now().AddDate(1, 0, 0), // Set expiration date to 1 year from now

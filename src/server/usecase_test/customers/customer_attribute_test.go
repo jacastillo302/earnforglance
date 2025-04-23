@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestCustomerAttributeUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestCustomerAttributeUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewCustomerAttributeUsecase(mockRepo, timeout)
 
-	customerAttributeID := primitive.NewObjectID().Hex()
+	customerAttributeID := bson.NewObjectID().Hex()
 
 	updatedCustomerAttribute := domain.CustomerAttribute{
-		ID:                              primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                              bson.NewObjectID(), // Existing ID of the record to update
 		Name:                            "Preferred Language",
 		IsRequired:                      false,
 		AttributeControlTypeID:          2,
@@ -77,7 +77,7 @@ func TestCustomerAttributeUsecase_Update(t *testing.T) {
 	usecase := test.NewCustomerAttributeUsecase(mockRepo, timeout)
 
 	updatedCustomerAttribute := &domain.CustomerAttribute{
-		ID:                              primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                              bson.NewObjectID(), // Existing ID of the record to update
 		Name:                            "Preferred Language",
 		IsRequired:                      false,
 		AttributeControlTypeID:          2,
@@ -106,7 +106,7 @@ func TestCustomerAttributeUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewCustomerAttributeUsecase(mockRepo, timeout)
 
-	customerAttributeID := primitive.NewObjectID().Hex()
+	customerAttributeID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, customerAttributeID).Return(nil)
 
@@ -123,7 +123,7 @@ func TestCustomerAttributeUsecase_Fetch(t *testing.T) {
 
 	fetchedCustomerAttributes := []domain.CustomerAttribute{
 		{
-			ID:                              primitive.NewObjectID(),
+			ID:                              bson.NewObjectID(),
 			Name:                            "Date of Birth",
 			IsRequired:                      true,
 			AttributeControlTypeID:          1,
@@ -136,7 +136,7 @@ func TestCustomerAttributeUsecase_Fetch(t *testing.T) {
 			ConditionAttributeXml:           "<conditions><required>true</required></conditions>",
 		},
 		{
-			ID:                              primitive.NewObjectID(),
+			ID:                              bson.NewObjectID(),
 			Name:                            "Preferred Language",
 			IsRequired:                      false,
 			AttributeControlTypeID:          2,

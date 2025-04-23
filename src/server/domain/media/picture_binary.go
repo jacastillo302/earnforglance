@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,9 +12,9 @@ const (
 
 // PictureBinary represents a picture binary data all
 type PictureBinary struct {
-	ID         primitive.ObjectID `bson:"_id,omitempty"`
-	BinaryData []byte             `bson:"binary_data"`
-	PictureID  primitive.ObjectID `bson:"picture_id"`
+	ID         bson.ObjectID `bson:"_id,omitempty"`
+	BinaryData []byte        `bson:"binary_data"`
+	PictureID  bson.ObjectID `bson:"picture_id"`
 }
 
 // PictureBinaryRepository defines the repository interface for PictureBinary

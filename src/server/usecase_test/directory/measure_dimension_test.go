@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestMeasureDimensionUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestMeasureDimensionUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewMeasureDimensionUsecase(mockRepo, timeout)
 
-	directoryID := primitive.NewObjectID().Hex()
+	directoryID := bson.NewObjectID().Hex()
 
 	updatedMeasureDimension := domain.MeasureDimension{
-		ID:            primitive.NewObjectID(), // Existing ID of the record to update
+		ID:            bson.NewObjectID(), // Existing ID of the record to update
 		Name:          "Inch",
 		SystemKeyword: "in",
 		Ratio:         2.54,
@@ -63,7 +63,7 @@ func TestMeasureDimensionUsecase_Update(t *testing.T) {
 	usecase := test.NewMeasureDimensionUsecase(mockRepo, timeout)
 
 	updatedMeasureDimension := &domain.MeasureDimension{
-		ID:            primitive.NewObjectID(), // Existing ID of the record to update
+		ID:            bson.NewObjectID(), // Existing ID of the record to update
 		Name:          "Inch",
 		SystemKeyword: "in",
 		Ratio:         2.54,
@@ -83,7 +83,7 @@ func TestMeasureDimensionUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewMeasureDimensionUsecase(mockRepo, timeout)
 
-	directoryID := primitive.NewObjectID().Hex()
+	directoryID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, directoryID).Return(nil)
 
@@ -100,14 +100,14 @@ func TestMeasureDimensionUsecase_Fetch(t *testing.T) {
 
 	fetchedMeasureDimensions := []domain.MeasureDimension{
 		{
-			ID:            primitive.NewObjectID(),
+			ID:            bson.NewObjectID(),
 			Name:          "Centimeter",
 			SystemKeyword: "cm",
 			Ratio:         1.0,
 			DisplayOrder:  1,
 		},
 		{
-			ID:            primitive.NewObjectID(),
+			ID:            bson.NewObjectID(),
 			Name:          "Inch",
 			SystemKeyword: "in",
 			Ratio:         2.54,

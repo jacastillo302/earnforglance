@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestApiSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,14 +18,14 @@ func TestApiSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewApiSettingsUsecase(mockRepo, timeout)
 
-	apiID := primitive.NewObjectID().Hex()
+	apiID := bson.NewObjectID().Hex()
 
 	updatedApiSettings := domian.ApiSettings{
-		ID:                       primitive.NewObjectID(), // Generate a new MongoDB ObjectID
-		EnableApi:                true,                    // API is enabled
-		AllowRequestsFromSwagger: true,                    // Allow requests from Swagger
-		EnableLogging:            true,                    // Enable logging for API requests
-		TokenKey:                 "example-token-key",     // Example token key for authentication
+		ID:                       bson.NewObjectID(),  // Generate a new MongoDB ObjectID
+		EnableApi:                true,                // API is enabled
+		AllowRequestsFromSwagger: true,                // Allow requests from Swagger
+		EnableLogging:            true,                // Enable logging for API requests
+		TokenKey:                 "example-token-key", // Example token key for authentication
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, apiID).Return(updatedApiSettings, nil)
@@ -43,11 +43,11 @@ func TestApiSettingsUsecase_Create(t *testing.T) {
 	usecase := test.NewApiSettingsUsecase(mockRepo, time)
 
 	newApiSettings := &domian.ApiSettings{
-		ID:                       primitive.NewObjectID(), // Generate a new MongoDB ObjectID
-		EnableApi:                true,                    // API is enabled
-		AllowRequestsFromSwagger: true,                    // Allow requests from Swagger
-		EnableLogging:            true,                    // Enable logging for API requests
-		TokenKey:                 "example-token-key",     // Example token key for authentication
+		ID:                       bson.NewObjectID(),  // Generate a new MongoDB ObjectID
+		EnableApi:                true,                // API is enabled
+		AllowRequestsFromSwagger: true,                // Allow requests from Swagger
+		EnableLogging:            true,                // Enable logging for API requests
+		TokenKey:                 "example-token-key", // Example token key for authentication
 	}
 
 	mockRepo.On("Create", mock.Anything, newApiSettings).Return(nil)
@@ -64,11 +64,11 @@ func TestApiSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewApiSettingsUsecase(mockRepo, time)
 
 	updatedApiSettings := &domian.ApiSettings{
-		ID:                       primitive.NewObjectID(), // Generate a new MongoDB ObjectID
-		EnableApi:                true,                    // API is enabled
-		AllowRequestsFromSwagger: true,                    // Allow requests from Swagger
-		EnableLogging:            true,                    // Enable logging for API requests
-		TokenKey:                 "example-token-key",     // Example token key for authentication
+		ID:                       bson.NewObjectID(),  // Generate a new MongoDB ObjectID
+		EnableApi:                true,                // API is enabled
+		AllowRequestsFromSwagger: true,                // Allow requests from Swagger
+		EnableLogging:            true,                // Enable logging for API requests
+		TokenKey:                 "example-token-key", // Example token key for authentication
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedApiSettings).Return(nil)
@@ -84,7 +84,7 @@ func TestApiSettingsUsecase_Delete(t *testing.T) {
 	time := time.Duration(10)
 	usecase := test.NewApiSettingsUsecase(mockRepo, time)
 
-	apiID := primitive.NewObjectID().Hex()
+	apiID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, apiID).Return(nil)
 
@@ -102,20 +102,20 @@ func TestApiSettingsUsecase_Fetch(t *testing.T) {
 	fetchedApiSettings := []domian.ApiSettings{
 		{
 
-			ID:                       primitive.NewObjectID(), // Generate a new MongoDB ObjectID
-			EnableApi:                true,                    // API is enabled
-			AllowRequestsFromSwagger: true,                    // Allow requests from Swagger
-			EnableLogging:            true,                    // Enable logging for API requests
-			TokenKey:                 "example-token-key",     // Example token key for authentication
+			ID:                       bson.NewObjectID(),  // Generate a new MongoDB ObjectID
+			EnableApi:                true,                // API is enabled
+			AllowRequestsFromSwagger: true,                // Allow requests from Swagger
+			EnableLogging:            true,                // Enable logging for API requests
+			TokenKey:                 "example-token-key", // Example token key for authentication
 
 		},
 		{
 
-			ID:                       primitive.NewObjectID(), // Generate a new MongoDB ObjectID
-			EnableApi:                true,                    // API is enabled
-			AllowRequestsFromSwagger: true,                    // Allow requests from Swagger
-			EnableLogging:            true,                    // Enable logging for API requests
-			TokenKey:                 "example-token-key",     // Example token key for authentication
+			ID:                       bson.NewObjectID(),  // Generate a new MongoDB ObjectID
+			EnableApi:                true,                // API is enabled
+			AllowRequestsFromSwagger: true,                // Allow requests from Swagger
+			EnableLogging:            true,                // Enable logging for API requests
+			TokenKey:                 "example-token-key", // Example token key for authentication
 
 		},
 	}

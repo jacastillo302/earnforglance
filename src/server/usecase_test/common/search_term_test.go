@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestSearchTermUsecase_FetchByID(t *testing.T) {
@@ -18,12 +18,12 @@ func TestSearchTermUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewSearchTermUsecase(mockRepo, timeout)
 
-	searchTermID := primitive.NewObjectID().Hex()
+	searchTermID := bson.NewObjectID().Hex()
 
 	updatedSearchTerm := domain.SearchTerm{
-		ID:      primitive.NewObjectID(), // Existing ID of the record to update
+		ID:      bson.NewObjectID(), // Existing ID of the record to update
 		Keyword: "smartphone",
-		StoreID: primitive.NewObjectID(),
+		StoreID: bson.NewObjectID(),
 		Count:   200,
 	}
 
@@ -43,7 +43,7 @@ func TestSearchTermUsecase_Create(t *testing.T) {
 
 	newSearchTerm := &domain.SearchTerm{
 		Keyword: "laptop",
-		StoreID: primitive.NewObjectID(),
+		StoreID: bson.NewObjectID(),
 		Count:   150,
 	}
 
@@ -61,9 +61,9 @@ func TestSearchTermUsecase_Update(t *testing.T) {
 	usecase := test.NewSearchTermUsecase(mockRepo, timeout)
 
 	updatedSearchTerm := &domain.SearchTerm{
-		ID:      primitive.NewObjectID(), // Existing ID of the record to update
+		ID:      bson.NewObjectID(), // Existing ID of the record to update
 		Keyword: "smartphone",
-		StoreID: primitive.NewObjectID(),
+		StoreID: bson.NewObjectID(),
 		Count:   200,
 	}
 
@@ -80,7 +80,7 @@ func TestSearchTermUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewSearchTermUsecase(mockRepo, timeout)
 
-	searchTermID := primitive.NewObjectID().Hex()
+	searchTermID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, searchTermID).Return(nil)
 
@@ -97,15 +97,15 @@ func TestSearchTermUsecase_Fetch(t *testing.T) {
 
 	fetchedSearchTerms := []domain.SearchTerm{
 		{
-			ID:      primitive.NewObjectID(),
+			ID:      bson.NewObjectID(),
 			Keyword: "laptop",
-			StoreID: primitive.NewObjectID(),
+			StoreID: bson.NewObjectID(),
 			Count:   150,
 		},
 		{
-			ID:      primitive.NewObjectID(),
+			ID:      bson.NewObjectID(),
 			Keyword: "smartphone",
-			StoreID: primitive.NewObjectID(),
+			StoreID: bson.NewObjectID(),
 			Count:   200,
 		},
 	}

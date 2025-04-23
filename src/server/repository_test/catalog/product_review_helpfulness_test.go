@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultProductReviewHelpfulness struct {
@@ -28,10 +28,10 @@ func (m *MockSingleResultProductReviewHelpfulness) Decode(v interface{}) error {
 }
 
 var mockItemProductReviewHelpfulness = &domain.ProductReviewHelpfulness{
-	ID:              primitive.NewObjectID(), // Existing ID of the record to update
-	ProductReviewID: primitive.NewObjectID(),
+	ID:              bson.NewObjectID(), // Existing ID of the record to update
+	ProductReviewID: bson.NewObjectID(),
 	WasHelpful:      false,
-	CustomerID:      primitive.NewObjectID(),
+	CustomerID:      bson.NewObjectID(),
 }
 
 func TestProductReviewHelpfulnessRepository_FetchByID(t *testing.T) {

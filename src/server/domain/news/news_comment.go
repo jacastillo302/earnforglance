@@ -4,7 +4,7 @@ import (
 	"context" // added context library
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -13,14 +13,14 @@ const (
 
 // NewsComment represents a news comment
 type NewsComment struct {
-	ID           primitive.ObjectID `bson:"_id,omitempty"`
-	CommentTitle string             `bson:"comment_title"`
-	CommentText  string             `bson:"comment_text"`
-	NewsItemID   primitive.ObjectID `bson:"news_item_id"`
-	CustomerID   primitive.ObjectID `bson:"customer_id"`
-	IsApproved   bool               `bson:"is_approved"`
-	StoreID      primitive.ObjectID `bson:"store_id"`
-	CreatedOnUtc time.Time          `bson:"created_on_utc"`
+	ID           bson.ObjectID `bson:"_id,omitempty"`
+	CommentTitle string        `bson:"comment_title"`
+	CommentText  string        `bson:"comment_text"`
+	NewsItemID   bson.ObjectID `bson:"news_item_id"`
+	CustomerID   bson.ObjectID `bson:"customer_id"`
+	IsApproved   bool          `bson:"is_approved"`
+	StoreID      bson.ObjectID `bson:"store_id"`
+	CreatedOnUtc time.Time     `bson:"created_on_utc"`
 }
 
 // NewsCommentRepository interface

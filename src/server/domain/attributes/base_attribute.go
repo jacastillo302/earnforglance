@@ -5,7 +5,7 @@ import (
 
 	catalog "earnforglance/server/domain/catalog"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -14,11 +14,11 @@ const (
 
 // BaseAttribute represents the base class for attributes
 type BaseAttribute struct {
-	ID                     primitive.ObjectID `bson:"_id,omitempty"`
-	Name                   string             `bson:"name"`
-	IsRequired             bool               `bson:"is_required"`
-	AttributeControlTypeId int                `bson:"attribute_control_type_id"`
-	DisplayOrder           int                `bson:"display_order"`
+	ID                     bson.ObjectID `bson:"_id,omitempty"`
+	Name                   string        `bson:"name"`
+	IsRequired             bool          `bson:"is_required"`
+	AttributeControlTypeId int           `bson:"attribute_control_type_id"`
+	DisplayOrder           int           `bson:"display_order"`
 }
 
 type BaseAttributeRepository interface {

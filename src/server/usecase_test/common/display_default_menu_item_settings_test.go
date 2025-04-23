@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestDisplayDefaultMenuItemSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestDisplayDefaultMenuItemSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewDisplayDefaultMenuItemSettingsUsecase(mockRepo, timeout)
 
-	menuItemID := primitive.NewObjectID().Hex()
+	menuItemID := bson.NewObjectID().Hex()
 
 	updatedDisplayDefaultMenuItemSettings := domain.DisplayDefaultMenuItemSettings{
-		ID:                           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                           bson.NewObjectID(), // Existing ID of the record to update
 		DisplayHomepageMenuItem:      false,
 		DisplayNewProductsMenuItem:   false,
 		DisplayProductSearchMenuItem: true,
@@ -69,7 +69,7 @@ func TestDisplayDefaultMenuItemSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewDisplayDefaultMenuItemSettingsUsecase(mockRepo, timeout)
 
 	updatedDisplayDefaultMenuItemSettings := &domain.DisplayDefaultMenuItemSettings{
-		ID:                           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                           bson.NewObjectID(), // Existing ID of the record to update
 		DisplayHomepageMenuItem:      false,
 		DisplayNewProductsMenuItem:   false,
 		DisplayProductSearchMenuItem: true,
@@ -92,7 +92,7 @@ func TestDisplayDefaultMenuItemSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewDisplayDefaultMenuItemSettingsUsecase(mockRepo, timeout)
 
-	menuItemID := primitive.NewObjectID().Hex()
+	menuItemID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, menuItemID).Return(nil)
 
@@ -109,7 +109,7 @@ func TestDisplayDefaultMenuItemSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedDisplayDefaultMenuItemSettings := []domain.DisplayDefaultMenuItemSettings{
 		{
-			ID:                           primitive.NewObjectID(),
+			ID:                           bson.NewObjectID(),
 			DisplayHomepageMenuItem:      true,
 			DisplayNewProductsMenuItem:   true,
 			DisplayProductSearchMenuItem: true,
@@ -119,7 +119,7 @@ func TestDisplayDefaultMenuItemSettingsUsecase_Fetch(t *testing.T) {
 			DisplayContactUsMenuItem:     true,
 		},
 		{
-			ID:                           primitive.NewObjectID(),
+			ID:                           bson.NewObjectID(),
 			DisplayHomepageMenuItem:      false,
 			DisplayNewProductsMenuItem:   false,
 			DisplayProductSearchMenuItem: true,

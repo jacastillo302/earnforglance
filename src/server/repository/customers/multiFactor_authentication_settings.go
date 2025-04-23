@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/customers"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type multifactorauthenticationsettingsRepository struct {
@@ -66,7 +65,8 @@ func (ur *multifactorauthenticationsettingsRepository) Delete(c context.Context,
 func (ur *multifactorauthenticationsettingsRepository) Fetch(c context.Context) ([]domain.MultiFactorAuthenticationSettings, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -88,7 +88,7 @@ func (tr *multifactorauthenticationsettingsRepository) FetchByID(c context.Conte
 
 	var multifactorauthenticationsettings domain.MultiFactorAuthenticationSettings
 
-	idHex, err := primitive.ObjectIDFromHex(multifactorauthenticationsettingsID)
+	idHex, err := bson.ObjectIDFromHex(multifactorauthenticationsettingsID)
 	if err != nil {
 		return multifactorauthenticationsettings, err
 	}

@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultLanguage struct {
@@ -28,14 +28,14 @@ func (m *MockSingleResultLanguage) Decode(v interface{}) error {
 }
 
 var mockItemLanguage = &domain.Language{
-	ID:                primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                bson.NewObjectID(), // Existing ID of the record to update
 	Name:              "Spanish",
 	LanguageCulture:   "es-ES",
 	UniqueSeoCode:     "es",
 	FlagImageFileName: "es.png",
 	Rtl:               false,
 	LimitedToStores:   true,
-	DefaultCurrencyID: primitive.NewObjectID(),
+	DefaultCurrencyID: bson.NewObjectID(),
 	Published:         false,
 	DisplayOrder:      2,
 }

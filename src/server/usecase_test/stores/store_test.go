@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestStoreUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestStoreUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewStoreUsecase(mockRepo, timeout)
 
-	storeID := primitive.NewObjectID().Hex()
+	storeID := bson.NewObjectID().Hex()
 
 	updatedStore := domain.Store{
-		ID:                     primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                     bson.NewObjectID(), // Existing ID of the record to update
 		Name:                   "Updated Store",
 		DefaultMetaKeywords:    "updated, store, gadgets",
 		DefaultMetaDescription: "An updated description for the store.",
@@ -31,7 +31,7 @@ func TestStoreUsecase_FetchByID(t *testing.T) {
 		Url:                    "https://www.updatedstore.com",
 		SslEnabled:             false,
 		Hosts:                  "www.updatedstore.com",
-		DefaultLanguageID:      primitive.NewObjectID(),
+		DefaultLanguageID:      bson.NewObjectID(),
 		DisplayOrder:           2,
 		CompanyName:            "Updated Store LLC",
 		CompanyAddress:         "456 Updated Avenue, Townsville",
@@ -64,7 +64,7 @@ func TestStoreUsecase_Create(t *testing.T) {
 		Url:                    "https://www.mainstore.com",
 		SslEnabled:             true,
 		Hosts:                  "www.mainstore.com",
-		DefaultLanguageID:      primitive.NewObjectID(),
+		DefaultLanguageID:      bson.NewObjectID(),
 		DisplayOrder:           1,
 		CompanyName:            "Main Store Inc.",
 		CompanyAddress:         "123 Main Street, Cityville",
@@ -87,7 +87,7 @@ func TestStoreUsecase_Update(t *testing.T) {
 	usecase := test.NewStoreUsecase(mockRepo, timeout)
 
 	updatedStore := &domain.Store{
-		ID:                     primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                     bson.NewObjectID(), // Existing ID of the record to update
 		Name:                   "Updated Store",
 		DefaultMetaKeywords:    "updated, store, gadgets",
 		DefaultMetaDescription: "An updated description for the store.",
@@ -97,7 +97,7 @@ func TestStoreUsecase_Update(t *testing.T) {
 		Url:                    "https://www.updatedstore.com",
 		SslEnabled:             false,
 		Hosts:                  "www.updatedstore.com",
-		DefaultLanguageID:      primitive.NewObjectID(),
+		DefaultLanguageID:      bson.NewObjectID(),
 		DisplayOrder:           2,
 		CompanyName:            "Updated Store LLC",
 		CompanyAddress:         "456 Updated Avenue, Townsville",
@@ -118,7 +118,7 @@ func TestStoreUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewStoreUsecase(mockRepo, timeout)
 
-	storeID := primitive.NewObjectID().Hex()
+	storeID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, storeID).Return(nil)
 
@@ -135,7 +135,7 @@ func TestStoreUsecase_Fetch(t *testing.T) {
 
 	fetchedStores := []domain.Store{
 		{
-			ID:                     primitive.NewObjectID(),
+			ID:                     bson.NewObjectID(),
 			Name:                   "Main Store",
 			DefaultMetaKeywords:    "electronics, gadgets, store",
 			DefaultMetaDescription: "The best store for electronics and gadgets.",
@@ -145,7 +145,7 @@ func TestStoreUsecase_Fetch(t *testing.T) {
 			Url:                    "https://www.mainstore.com",
 			SslEnabled:             true,
 			Hosts:                  "www.mainstore.com",
-			DefaultLanguageID:      primitive.NewObjectID(),
+			DefaultLanguageID:      bson.NewObjectID(),
 			DisplayOrder:           1,
 			CompanyName:            "Main Store Inc.",
 			CompanyAddress:         "123 Main Street, Cityville",
@@ -154,7 +154,7 @@ func TestStoreUsecase_Fetch(t *testing.T) {
 			Deleted:                false,
 		},
 		{
-			ID:                     primitive.NewObjectID(),
+			ID:                     bson.NewObjectID(),
 			Name:                   "Updated Store",
 			DefaultMetaKeywords:    "updated, store, gadgets",
 			DefaultMetaDescription: "An updated description for the store.",
@@ -164,7 +164,7 @@ func TestStoreUsecase_Fetch(t *testing.T) {
 			Url:                    "https://www.updatedstore.com",
 			SslEnabled:             false,
 			Hosts:                  "www.updatedstore.com",
-			DefaultLanguageID:      primitive.NewObjectID(),
+			DefaultLanguageID:      bson.NewObjectID(),
 			DisplayOrder:           2,
 			CompanyName:            "Updated Store LLC",
 			CompanyAddress:         "456 Updated Avenue, Townsville",

@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultLocalizedProperty struct {
@@ -28,9 +28,9 @@ func (m *MockSingleResultLocalizedProperty) Decode(v interface{}) error {
 }
 
 var mockItemLocalizedProperty = &domain.LocalizedProperty{
-	ID:                 primitive.NewObjectID(), // Existing ID of the record to update
-	PermissionRecordID: primitive.NewObjectID(),
-	LanguageID:         primitive.NewObjectID(),
+	ID:                 bson.NewObjectID(), // Existing ID of the record to update
+	PermissionRecordID: bson.NewObjectID(),
+	LanguageID:         bson.NewObjectID(),
 	LocaleKeyGroup:     "Category",
 	LocaleKey:          "Description",
 	LocaleValue:        "Electronics and Gadgets",

@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/customers"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type customercustomerrolemappingRepository struct {
@@ -58,7 +57,7 @@ func (ur *customercustomerrolemappingRepository) Update(c context.Context, custo
 func (ur *customercustomerrolemappingRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *customercustomerrolemappingRepository) Delete(c context.Context, ID st
 func (ur *customercustomerrolemappingRepository) Fetch(c context.Context) ([]domain.CustomerCustomerRoleMapping, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *customercustomerrolemappingRepository) FetchByID(c context.Context, cu
 
 	var customercustomerrolemapping domain.CustomerCustomerRoleMapping
 
-	idHex, err := primitive.ObjectIDFromHex(customercustomerrolemappingID)
+	idHex, err := bson.ObjectIDFromHex(customercustomerrolemappingID)
 	if err != nil {
 		return customercustomerrolemapping, err
 	}

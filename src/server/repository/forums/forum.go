@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/forums"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type forumRepository struct {
@@ -58,7 +57,7 @@ func (ur *forumRepository) Update(c context.Context, forum *domain.Forum) error 
 func (ur *forumRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *forumRepository) Delete(c context.Context, ID string) error {
 func (ur *forumRepository) Fetch(c context.Context) ([]domain.Forum, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *forumRepository) FetchByID(c context.Context, forumID string) (domain.
 
 	var forum domain.Forum
 
-	idHex, err := primitive.ObjectIDFromHex(forumID)
+	idHex, err := bson.ObjectIDFromHex(forumID)
 	if err != nil {
 		return forum, err
 	}

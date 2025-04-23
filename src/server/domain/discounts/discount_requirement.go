@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,12 +12,12 @@ const (
 
 // DiscountRequirement represents a discount requirement
 type DiscountRequirement struct {
-	ID                                primitive.ObjectID  `bson:"_id,omitempty"`
-	DiscountID                        primitive.ObjectID  `bson:"discount_id"`
-	DiscountRequirementRuleSystemName string              `bson:"discount_requirement_rule_system_name"`
-	ParentID                          *primitive.ObjectID `bson:"parent_id"`
-	InteractionTypeID                 *int                `bson:"interaction_type_id"`
-	IsGroup                           bool                `bson:"is_group"`
+	ID                                bson.ObjectID  `bson:"_id,omitempty"`
+	DiscountID                        bson.ObjectID  `bson:"discount_id"`
+	DiscountRequirementRuleSystemName string         `bson:"discount_requirement_rule_system_name"`
+	ParentID                          *bson.ObjectID `bson:"parent_id"`
+	InteractionTypeID                 *int           `bson:"interaction_type_id"`
+	IsGroup                           bool           `bson:"is_group"`
 }
 
 type DiscountRequirementRepository interface {
@@ -39,7 +39,7 @@ type DiscountRequirementUsecase interface {
 }
 
 // NewDiscountRequirement creates a new DiscountRequirement instance
-func NewDiscountRequirement(discountID primitive.ObjectID, ruleSystemName string) *DiscountRequirement {
+func NewDiscountRequirement(discountID bson.ObjectID, ruleSystemName string) *DiscountRequirement {
 	return &DiscountRequirement{
 		DiscountID:                        discountID,
 		DiscountRequirementRuleSystemName: ruleSystemName,

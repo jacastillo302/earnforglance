@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultBestCustomerReportLine struct {
@@ -28,8 +28,8 @@ func (m *MockSingleResultBestCustomerReportLine) Decode(v interface{}) error {
 }
 
 var mockItemBestCustomerReportLine = &domain.BestCustomerReportLine{
-	ID:         primitive.NewObjectID(), // Existing ID of the record to update
-	CustomerID: primitive.NewObjectID(),
+	ID:         bson.NewObjectID(), // Existing ID of the record to update
+	CustomerID: bson.NewObjectID(),
 	OrderTotal: 2000.50,
 	OrderCount: 15,
 }

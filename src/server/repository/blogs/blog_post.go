@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/blogs"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type blogpostRepository struct {
@@ -59,7 +58,7 @@ func (ur *blogpostRepository) Update(c context.Context, blogpost *domain.BlogPos
 func (ur *blogpostRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -72,7 +71,8 @@ func (ur *blogpostRepository) Delete(c context.Context, ID string) error {
 func (ur *blogpostRepository) Fetch(c context.Context) ([]domain.BlogPost, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -94,7 +94,7 @@ func (tr *blogpostRepository) FetchByID(c context.Context, blogpostID string) (d
 
 	var blogpost domain.BlogPost
 
-	idHex, err := primitive.ObjectIDFromHex(blogpostID)
+	idHex, err := bson.ObjectIDFromHex(blogpostID)
 	if err != nil {
 		return blogpost, err
 	}

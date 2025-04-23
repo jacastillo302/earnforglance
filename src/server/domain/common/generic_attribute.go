@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -13,13 +13,13 @@ const (
 
 // GenericAttribute represents a generic attribute
 type GenericAttribute struct {
-	ID                      primitive.ObjectID `bson:"_id,omitempty"`
-	EntityID                primitive.ObjectID `bson:"entity_id"`
-	KeyGroup                string             `bson:"key_group"`
-	Key                     string             `bson:"key"`
-	Value                   string             `bson:"value"`
-	StoreID                 primitive.ObjectID `bson:"store_id"`
-	CreatedOrUpdatedDateUTC *time.Time         `bson:"created_or_updated_date_utc"`
+	ID                      bson.ObjectID `bson:"_id,omitempty"`
+	EntityID                bson.ObjectID `bson:"entity_id"`
+	KeyGroup                string        `bson:"key_group"`
+	Key                     string        `bson:"key"`
+	Value                   string        `bson:"value"`
+	StoreID                 bson.ObjectID `bson:"store_id"`
+	CreatedOrUpdatedDateUTC *time.Time    `bson:"created_or_updated_date_utc"`
 }
 
 type GenericAttributeRepository interface {

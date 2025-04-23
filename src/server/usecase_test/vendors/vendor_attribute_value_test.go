@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestVendorAttributeValueUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestVendorAttributeValueUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewVendorAttributeValueUsecase(mockRepo, timeout)
 
-	vendorAttributeValueID := primitive.NewObjectID().Hex()
+	vendorAttributeValueID := bson.NewObjectID().Hex()
 
 	updatedVendorAttributeValue := domain.VendorAttributeValue{
-		ID: primitive.NewObjectID(), // Existing ID of the record to update
+		ID: bson.NewObjectID(), // Existing ID of the record to update
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, vendorAttributeValueID).Return(updatedVendorAttributeValue, nil)
@@ -39,7 +39,7 @@ func TestVendorAttributeValueUsecase_Create(t *testing.T) {
 	usecase := test.NewVendorAttributeValueUsecase(mockRepo, timeout)
 
 	newVendorAttributeValue := &domain.VendorAttributeValue{
-		ID: primitive.NewObjectID(),
+		ID: bson.NewObjectID(),
 	}
 
 	mockRepo.On("Create", mock.Anything, newVendorAttributeValue).Return(nil)
@@ -56,7 +56,7 @@ func TestVendorAttributeValueUsecase_Update(t *testing.T) {
 	usecase := test.NewVendorAttributeValueUsecase(mockRepo, timeout)
 
 	updatedVendorAttributeValue := &domain.VendorAttributeValue{
-		ID: primitive.NewObjectID(), // Existing ID of the record to update
+		ID: bson.NewObjectID(), // Existing ID of the record to update
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedVendorAttributeValue).Return(nil)
@@ -72,7 +72,7 @@ func TestVendorAttributeValueUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewVendorAttributeValueUsecase(mockRepo, timeout)
 
-	vendorAttributeValueID := primitive.NewObjectID().Hex()
+	vendorAttributeValueID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, vendorAttributeValueID).Return(nil)
 
@@ -89,10 +89,10 @@ func TestVendorAttributeValueUsecase_Fetch(t *testing.T) {
 
 	fetchedVendorAttributeValues := []domain.VendorAttributeValue{
 		{
-			ID: primitive.NewObjectID(),
+			ID: bson.NewObjectID(),
 		},
 		{
-			ID: primitive.NewObjectID(),
+			ID: bson.NewObjectID(),
 		},
 	}
 

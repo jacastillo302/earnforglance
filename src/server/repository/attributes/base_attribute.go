@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/attributes"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type baseattributeRepository struct {
@@ -58,7 +57,7 @@ func (ur *baseattributeRepository) Update(c context.Context, baseattribute *doma
 func (ur *baseattributeRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *baseattributeRepository) Delete(c context.Context, ID string) error {
 func (ur *baseattributeRepository) Fetch(c context.Context) ([]domain.BaseAttribute, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *baseattributeRepository) FetchByID(c context.Context, baseattributeID 
 
 	var baseattribute domain.BaseAttribute
 
-	idHex, err := primitive.ObjectIDFromHex(baseattributeID)
+	idHex, err := bson.ObjectIDFromHex(baseattributeID)
 	if err != nil {
 		return baseattribute, err
 	}

@@ -11,7 +11,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestSalesSummaryReportLineUsecase_FetchByID(t *testing.T) {
@@ -19,10 +19,10 @@ func TestSalesSummaryReportLineUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewSalesSummaryReportLineUsecase(mockRepo, timeout)
 
-	orderID := primitive.NewObjectID().Hex()
+	orderID := bson.NewObjectID().Hex()
 
 	updatedSalesSummaryReportLine := domain.SalesSummaryReportLine{
-		ID:             primitive.NewObjectID(), // Existing ID of the record to update
+		ID:             bson.NewObjectID(), // Existing ID of the record to update
 		Summary:        "Updated Weekly Sales Summary",
 		SummaryDate:    time.Now().AddDate(0, 0, -7), // Summary from 7 days ago
 		NumberOfOrders: 100,
@@ -73,7 +73,7 @@ func TestSalesSummaryReportLineUsecase_Update(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewSalesSummaryReportLineUsecase(mockRepo, timeout)
 	updatedSalesSummaryReportLine := &domain.SalesSummaryReportLine{
-		ID:             primitive.NewObjectID(), // Existing ID of the record to update
+		ID:             bson.NewObjectID(), // Existing ID of the record to update
 		Summary:        "Updated Weekly Sales Summary",
 		SummaryDate:    time.Now().AddDate(0, 0, -7), // Summary from 7 days ago
 		NumberOfOrders: 100,
@@ -98,7 +98,7 @@ func TestSalesSummaryReportLineUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewSalesSummaryReportLineUsecase(mockRepo, timeout)
 
-	orderID := primitive.NewObjectID().Hex()
+	orderID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, orderID).Return(nil)
 
@@ -115,7 +115,7 @@ func TestSalesSummaryReportLineUsecase_Fetch(t *testing.T) {
 
 	fetchedSalesSummaryReportLines := []domain.SalesSummaryReportLine{
 		{
-			ID:             primitive.NewObjectID(),
+			ID:             bson.NewObjectID(),
 			Summary:        "Daily Sales Summary",
 			SummaryDate:    time.Now().AddDate(0, 0, -1), // Summary from yesterday
 			NumberOfOrders: 50,
@@ -127,7 +127,7 @@ func TestSalesSummaryReportLineUsecase_Fetch(t *testing.T) {
 			SummaryType:    1,
 		},
 		{
-			ID:             primitive.NewObjectID(),
+			ID:             bson.NewObjectID(),
 			Summary:        "Weekly Sales Summary",
 			SummaryDate:    time.Now().AddDate(0, 0, -7), // Summary from 7 days ago
 			NumberOfOrders: 100,

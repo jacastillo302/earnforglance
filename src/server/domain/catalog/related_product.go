@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,10 +12,10 @@ const (
 
 // RelatedProduct represents a related product
 type RelatedProduct struct {
-	ID           primitive.ObjectID `bson:"_id,omitempty"`
-	ProductID1   primitive.ObjectID `bson:"product_id1"`
-	ProductID2   primitive.ObjectID `bson:"product_id2"`
-	DisplayOrder int                `bson:"display_order"`
+	ID           bson.ObjectID `bson:"_id,omitempty"`
+	ProductID1   bson.ObjectID `bson:"product_id1"`
+	ProductID2   bson.ObjectID `bson:"product_id2"`
+	DisplayOrder int           `bson:"display_order"`
 }
 
 type RelatedProductRepository interface {

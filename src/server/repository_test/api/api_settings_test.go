@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultApiSettings struct {
@@ -28,11 +28,11 @@ func (m *MockSingleResultApiSettings) Decode(v interface{}) error {
 }
 
 var mockItemApiSettings = &domain.ApiSettings{
-	ID:                       primitive.NewObjectID(), // Generate a new MongoDB ObjectID
-	EnableApi:                true,                    // API is enabled
-	AllowRequestsFromSwagger: true,                    // Allow requests from Swagger
-	EnableLogging:            true,                    // Enable logging for API requests
-	TokenKey:                 "example-token-key",     // Example token key for authentication
+	ID:                       bson.NewObjectID(),  // Generate a new MongoDB ObjectID
+	EnableApi:                true,                // API is enabled
+	AllowRequestsFromSwagger: true,                // Allow requests from Swagger
+	EnableLogging:            true,                // Enable logging for API requests
+	TokenKey:                 "example-token-key", // Example token key for authentication
 
 }
 

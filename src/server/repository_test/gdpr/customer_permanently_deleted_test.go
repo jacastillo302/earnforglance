@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultCustomerPermanentlyDeleted struct {
@@ -28,7 +28,7 @@ func (m *MockSingleResultCustomerPermanentlyDeleted) Decode(v interface{}) error
 }
 
 var mockItemCustomerPermanentlyDeleted = &domain.CustomerPermanentlyDeleted{
-	CustomerID: primitive.NewObjectID(), // Existing CustomerID to update
+	CustomerID: bson.NewObjectID(), // Existing CustomerID to update
 	Email:      "updated_deleted_customer@example.com",
 }
 

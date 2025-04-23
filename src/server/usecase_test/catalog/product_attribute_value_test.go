@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestProductAttributeValueUsecase_FetchByID(t *testing.T) {
@@ -18,16 +18,16 @@ func TestProductAttributeValueUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewProductAttributeValueUsecase(mockRepo, timeout)
 
-	productAttributeValueID := primitive.NewObjectID().Hex()
+	productAttributeValueID := bson.NewObjectID().Hex()
 
 	updatedProductAttributeValue := domain.ProductAttributeValue{
-		ID:                           primitive.NewObjectID(), // Existing ID of the record to update
-		ProductAttributeMappingID:    primitive.NewObjectID(),
+		ID:                           bson.NewObjectID(), // Existing ID of the record to update
+		ProductAttributeMappingID:    bson.NewObjectID(),
 		AttributeValueTypeID:         2,
-		AssociatedProductID:          primitive.NewObjectID(),
+		AssociatedProductID:          bson.NewObjectID(),
 		Name:                         "Size - Large",
 		ColorSquaresRgb:              "",
-		ImageSquaresPictureID:        primitive.NewObjectID(),
+		ImageSquaresPictureID:        bson.NewObjectID(),
 		PriceAdjustment:              15.0,
 		PriceAdjustmentUsePercentage: true,
 		WeightAdjustment:             1.0,
@@ -54,12 +54,12 @@ func TestProductAttributeValueUsecase_Create(t *testing.T) {
 	usecase := test.NewProductAttributeValueUsecase(mockRepo, timeout)
 
 	newProductAttributeValue := &domain.ProductAttributeValue{
-		ProductAttributeMappingID:    primitive.NewObjectID(),
+		ProductAttributeMappingID:    bson.NewObjectID(),
 		AttributeValueTypeID:         1,
-		AssociatedProductID:          primitive.NewObjectID(),
+		AssociatedProductID:          bson.NewObjectID(),
 		Name:                         "Color - Red",
 		ColorSquaresRgb:              "#FF0000",
-		ImageSquaresPictureID:        primitive.NewObjectID(),
+		ImageSquaresPictureID:        bson.NewObjectID(),
 		PriceAdjustment:              10.0,
 		PriceAdjustmentUsePercentage: false,
 		WeightAdjustment:             0.5,
@@ -85,13 +85,13 @@ func TestProductAttributeValueUsecase_Update(t *testing.T) {
 	usecase := test.NewProductAttributeValueUsecase(mockRepo, timeout)
 
 	updatedProductAttributeValue := &domain.ProductAttributeValue{
-		ID:                           primitive.NewObjectID(), // Existing ID of the record to update
-		ProductAttributeMappingID:    primitive.NewObjectID(),
+		ID:                           bson.NewObjectID(), // Existing ID of the record to update
+		ProductAttributeMappingID:    bson.NewObjectID(),
 		AttributeValueTypeID:         2,
-		AssociatedProductID:          primitive.NewObjectID(),
+		AssociatedProductID:          bson.NewObjectID(),
 		Name:                         "Size - Large",
 		ColorSquaresRgb:              "",
-		ImageSquaresPictureID:        primitive.NewObjectID(),
+		ImageSquaresPictureID:        bson.NewObjectID(),
 		PriceAdjustment:              15.0,
 		PriceAdjustmentUsePercentage: true,
 		WeightAdjustment:             1.0,
@@ -116,7 +116,7 @@ func TestProductAttributeValueUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewProductAttributeValueUsecase(mockRepo, timeout)
 
-	productAttributeValueID := primitive.NewObjectID().Hex()
+	productAttributeValueID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, productAttributeValueID).Return(nil)
 
@@ -133,13 +133,13 @@ func TestProductAttributeValueUsecase_Fetch(t *testing.T) {
 
 	fetchedProductAttributeValues := []domain.ProductAttributeValue{
 		{
-			ID:                           primitive.NewObjectID(),
-			ProductAttributeMappingID:    primitive.NewObjectID(),
+			ID:                           bson.NewObjectID(),
+			ProductAttributeMappingID:    bson.NewObjectID(),
 			AttributeValueTypeID:         1,
-			AssociatedProductID:          primitive.NewObjectID(),
+			AssociatedProductID:          bson.NewObjectID(),
 			Name:                         "Color - Blue",
 			ColorSquaresRgb:              "#0000FF",
-			ImageSquaresPictureID:        primitive.NewObjectID(),
+			ImageSquaresPictureID:        bson.NewObjectID(),
 			PriceAdjustment:              5.0,
 			PriceAdjustmentUsePercentage: false,
 			WeightAdjustment:             0.2,
@@ -151,13 +151,13 @@ func TestProductAttributeValueUsecase_Fetch(t *testing.T) {
 			PictureID:                    nil, // Deprecated field
 		},
 		{
-			ID:                           primitive.NewObjectID(),
-			ProductAttributeMappingID:    primitive.NewObjectID(),
+			ID:                           bson.NewObjectID(),
+			ProductAttributeMappingID:    bson.NewObjectID(),
 			AttributeValueTypeID:         2,
-			AssociatedProductID:          primitive.NewObjectID(),
+			AssociatedProductID:          bson.NewObjectID(),
 			Name:                         "Size - Medium",
 			ColorSquaresRgb:              "",
-			ImageSquaresPictureID:        primitive.NewObjectID(),
+			ImageSquaresPictureID:        bson.NewObjectID(),
 			PriceAdjustment:              20.0,
 			PriceAdjustmentUsePercentage: true,
 			WeightAdjustment:             0.8,

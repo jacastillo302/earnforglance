@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestCaptchaSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestCaptchaSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCaptchaSettingsUsecase(mockRepo, timeout)
 
-	securityID := primitive.NewObjectID().Hex()
+	securityID := bson.NewObjectID().Hex()
 
 	updatedCaptchaSettings := domain.CaptchaSettings{
-		ID:                              primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                              bson.NewObjectID(), // Existing ID of the record to update
 		Enabled:                         false,
 		CaptchaTypeID:                   2,
 		ShowOnLoginPage:                 false,
@@ -105,7 +105,7 @@ func TestCaptchaSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewCaptchaSettingsUsecase(mockRepo, timeout)
 
 	updatedCaptchaSettings := &domain.CaptchaSettings{
-		ID:                              primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                              bson.NewObjectID(), // Existing ID of the record to update
 		Enabled:                         false,
 		CaptchaTypeID:                   1,
 		ShowOnLoginPage:                 false,
@@ -146,7 +146,7 @@ func TestCaptchaSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCaptchaSettingsUsecase(mockRepo, timeout)
 
-	securityID := primitive.NewObjectID().Hex()
+	securityID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, securityID).Return(nil)
 
@@ -163,7 +163,7 @@ func TestCaptchaSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedCaptchaSettings := []domain.CaptchaSettings{
 		{
-			ID:                              primitive.NewObjectID(),
+			ID:                              bson.NewObjectID(),
 			Enabled:                         true,
 			CaptchaTypeID:                   3,
 			ShowOnLoginPage:                 true,
@@ -190,7 +190,7 @@ func TestCaptchaSettingsUsecase_Fetch(t *testing.T) {
 			AutomaticallyChooseLanguage:     true,
 		},
 		{
-			ID:                              primitive.NewObjectID(),
+			ID:                              bson.NewObjectID(),
 			Enabled:                         false,
 			CaptchaTypeID:                   2,
 			ShowOnLoginPage:                 false,

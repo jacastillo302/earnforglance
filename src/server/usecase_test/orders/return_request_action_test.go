@@ -11,7 +11,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestReturnRequestActionUsecase_FetchByID(t *testing.T) {
@@ -19,10 +19,10 @@ func TestReturnRequestActionUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewReturnRequestActionUsecase(mockRepo, timeout)
 
-	returnRequestActionID := primitive.NewObjectID().Hex()
+	returnRequestActionID := bson.NewObjectID().Hex()
 
 	updatedReturnRequestAction := domain.ReturnRequestAction{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
 		Name:         "Refund Item",
 		DisplayOrder: 2,
 	}
@@ -60,7 +60,7 @@ func TestReturnRequestActionUsecase_Update(t *testing.T) {
 	usecase := test.NewReturnRequestActionUsecase(mockRepo, timeout)
 
 	updatedReturnRequestAction := &domain.ReturnRequestAction{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
 		Name:         "Refund Item",
 		DisplayOrder: 2,
 	}
@@ -78,7 +78,7 @@ func TestReturnRequestActionUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewReturnRequestActionUsecase(mockRepo, timeout)
 
-	returnRequestActionID := primitive.NewObjectID().Hex()
+	returnRequestActionID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, returnRequestActionID).Return(nil)
 
@@ -95,12 +95,12 @@ func TestReturnRequestActionUsecase_Fetch(t *testing.T) {
 
 	fetchedReturnRequestActions := []domain.ReturnRequestAction{
 		{
-			ID:           primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
 			Name:         "Replace Item",
 			DisplayOrder: 1,
 		},
 		{
-			ID:           primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
 			Name:         "Refund Item",
 			DisplayOrder: 2,
 		},

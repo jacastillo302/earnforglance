@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultExchangeRate struct {
@@ -29,7 +29,7 @@ func (m *MockSingleResultExchangeRate) Decode(v interface{}) error {
 }
 
 var mockItemExchangeRate = &domain.ExchangeRate{
-	ID:           primitive.NewObjectID(), // Existing ID of the record to update
+	ID:           bson.NewObjectID(), // Existing ID of the record to update
 	CurrencyCode: "EUR",
 	Rate:         0.85,
 	UpdatedOn:    time.Now(),

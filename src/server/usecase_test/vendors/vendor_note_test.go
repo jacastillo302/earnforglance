@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestVendorNoteUsecase_FetchByID(t *testing.T) {
@@ -18,11 +18,11 @@ func TestVendorNoteUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewVendorNoteUsecase(mockRepo, timeout)
 
-	vendorNoteID := primitive.NewObjectID().Hex()
+	vendorNoteID := bson.NewObjectID().Hex()
 
 	updatedVendorNote := domain.VendorNote{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		VendorID:     primitive.NewObjectID(),
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
+		VendorID:     bson.NewObjectID(),
 		Note:         "This is an updated note for the vendor.",
 		CreatedOnUtc: time.Now().AddDate(0, 0, -1), // Created 1 day ago
 	}
@@ -42,7 +42,7 @@ func TestVendorNoteUsecase_Create(t *testing.T) {
 	usecase := test.NewVendorNoteUsecase(mockRepo, timeout)
 
 	newVendorNote := &domain.VendorNote{
-		VendorID:     primitive.NewObjectID(),
+		VendorID:     bson.NewObjectID(),
 		Note:         "This is a note for the vendor.",
 		CreatedOnUtc: time.Now(),
 	}
@@ -61,8 +61,8 @@ func TestVendorNoteUsecase_Update(t *testing.T) {
 	usecase := test.NewVendorNoteUsecase(mockRepo, timeout)
 
 	updatedVendorNote := &domain.VendorNote{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		VendorID:     primitive.NewObjectID(),
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
+		VendorID:     bson.NewObjectID(),
 		Note:         "This is an updated note for the vendor.",
 		CreatedOnUtc: time.Now().AddDate(0, 0, -1), // Created 1 day ago
 	}
@@ -80,7 +80,7 @@ func TestVendorNoteUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewVendorNoteUsecase(mockRepo, timeout)
 
-	vendorNoteID := primitive.NewObjectID().Hex()
+	vendorNoteID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, vendorNoteID).Return(nil)
 
@@ -97,14 +97,14 @@ func TestVendorNoteUsecase_Fetch(t *testing.T) {
 
 	fetchedVendorNotes := []domain.VendorNote{
 		{
-			ID:           primitive.NewObjectID(),
-			VendorID:     primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
+			VendorID:     bson.NewObjectID(),
 			Note:         "This is a note for the vendor.",
 			CreatedOnUtc: time.Now().AddDate(0, 0, -7), // Created 7 days ago
 		},
 		{
-			ID:           primitive.NewObjectID(),
-			VendorID:     primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
+			VendorID:     bson.NewObjectID(),
 			Note:         "This is another note for the vendor.",
 			CreatedOnUtc: time.Now().AddDate(0, 0, -3), // Created 3 days ago
 		},

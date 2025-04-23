@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestProductReviewUsecase_FetchByID(t *testing.T) {
@@ -18,13 +18,13 @@ func TestProductReviewUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewProductReviewUsecase(mockRepo, timeout)
 
-	productReviewID := primitive.NewObjectID().Hex()
+	productReviewID := bson.NewObjectID().Hex()
 
 	updatedProductReview := domain.ProductReview{
-		ID:                      primitive.NewObjectID(), // Existing ID of the record to update
-		CustomerID:              primitive.NewObjectID(),
-		ProductID:               primitive.NewObjectID(),
-		StoreID:                 primitive.NewObjectID(),
+		ID:                      bson.NewObjectID(), // Existing ID of the record to update
+		CustomerID:              bson.NewObjectID(),
+		ProductID:               bson.NewObjectID(),
+		StoreID:                 bson.NewObjectID(),
 		IsApproved:              false,
 		Title:                   "Updated Review Title",
 		ReviewText:              "Updated review text with more details.",
@@ -51,9 +51,9 @@ func TestProductReviewUsecase_Create(t *testing.T) {
 	usecase := test.NewProductReviewUsecase(mockRepo, timeout)
 
 	newProductReview := &domain.ProductReview{
-		CustomerID:              primitive.NewObjectID(),
-		ProductID:               primitive.NewObjectID(),
-		StoreID:                 primitive.NewObjectID(),
+		CustomerID:              bson.NewObjectID(),
+		ProductID:               bson.NewObjectID(),
+		StoreID:                 bson.NewObjectID(),
 		IsApproved:              true,
 		Title:                   "Great Product!",
 		ReviewText:              "This product exceeded my expectations.",
@@ -79,10 +79,10 @@ func TestProductReviewUsecase_Update(t *testing.T) {
 	usecase := test.NewProductReviewUsecase(mockRepo, timeout)
 
 	updatedProductReview := &domain.ProductReview{
-		ID:                      primitive.NewObjectID(), // Existing ID of the record to update
-		CustomerID:              primitive.NewObjectID(),
-		ProductID:               primitive.NewObjectID(),
-		StoreID:                 primitive.NewObjectID(),
+		ID:                      bson.NewObjectID(), // Existing ID of the record to update
+		CustomerID:              bson.NewObjectID(),
+		ProductID:               bson.NewObjectID(),
+		StoreID:                 bson.NewObjectID(),
 		IsApproved:              false,
 		Title:                   "Updated Review Title",
 		ReviewText:              "Updated review text with more details.",
@@ -107,7 +107,7 @@ func TestProductReviewUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewProductReviewUsecase(mockRepo, timeout)
 
-	productReviewID := primitive.NewObjectID().Hex()
+	productReviewID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, productReviewID).Return(nil)
 
@@ -124,10 +124,10 @@ func TestProductReviewUsecase_Fetch(t *testing.T) {
 
 	fetchedProductReviews := []domain.ProductReview{
 		{
-			ID:                      primitive.NewObjectID(),
-			CustomerID:              primitive.NewObjectID(),
-			ProductID:               primitive.NewObjectID(),
-			StoreID:                 primitive.NewObjectID(),
+			ID:                      bson.NewObjectID(),
+			CustomerID:              bson.NewObjectID(),
+			ProductID:               bson.NewObjectID(),
+			StoreID:                 bson.NewObjectID(),
 			IsApproved:              true,
 			Title:                   "Excellent Product",
 			ReviewText:              "I absolutely love this product!",
@@ -139,10 +139,10 @@ func TestProductReviewUsecase_Fetch(t *testing.T) {
 			CreatedOnUtc:            time.Now().AddDate(0, 0, -10), // Created 10 days ago
 		},
 		{
-			ID:                      primitive.NewObjectID(),
-			CustomerID:              primitive.NewObjectID(),
-			ProductID:               primitive.NewObjectID(),
-			StoreID:                 primitive.NewObjectID(),
+			ID:                      bson.NewObjectID(),
+			CustomerID:              bson.NewObjectID(),
+			ProductID:               bson.NewObjectID(),
+			StoreID:                 bson.NewObjectID(),
 			IsApproved:              false,
 			Title:                   "Not Satisfied",
 			ReviewText:              "The product did not meet my expectations.",

@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultCheckoutAttributeValue struct {
@@ -28,7 +28,7 @@ func (m *MockSingleResultCheckoutAttributeValue) Decode(v interface{}) error {
 }
 
 var mockItemCheckoutAttributeValue = &domain.CheckoutAttributeValue{
-	ID:               primitive.NewObjectID(), // Existing ID of the record to update
+	ID:               bson.NewObjectID(), // Existing ID of the record to update
 	ColorSquaresRgb:  "#33FF57",
 	PriceAdjustment:  15.75,
 	WeightAdjustment: 0.50,

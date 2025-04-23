@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,20 +12,20 @@ const (
 
 // VendorSettings represents vendor settings.
 type VendorSettings struct {
-	ID                                           primitive.ObjectID `bson:"_id,omitempty"`
-	DefaultVendorPageSizeOptions                 string             `bson:"default_vendor_page_size_options"`
-	VendorsBlockItemsToDisplay                   int                `bson:"vendors_block_items_to_display"`
-	ShowVendorOnProductDetailsPage               bool               `bson:"show_vendor_on_product_details_page"`
-	ShowVendorOnOrderDetailsPage                 bool               `bson:"show_vendor_on_order_details_page"`
-	AllowCustomersToContactVendors               bool               `bson:"allow_customers_to_contact_vendors"`
-	AllowCustomersToApplyForVendorAccount        bool               `bson:"allow_customers_to_apply_for_vendor_account"`
-	TermsOfServiceEnabled                        bool               `bson:"terms_of_service_enabled"`
-	AllowSearchByVendor                          bool               `bson:"allow_search_by_vendor"`
-	AllowVendorsToEditInfo                       bool               `bson:"allow_vendors_to_edit_info"`
-	NotifyStoreOwnerAboutVendorInformationChange bool               `bson:"notify_store_owner_about_vendor_information_change"`
-	MaximumProductNumber                         int                `bson:"maximum_product_number"`
-	AllowVendorsToImportProducts                 bool               `bson:"allow_vendors_to_import_products"`
-	MaximumProductPicturesNumber                 int                `bson:"maximum_product_pictures_number"`
+	ID                                           bson.ObjectID `bson:"_id,omitempty"`
+	DefaultVendorPageSizeOptions                 string        `bson:"default_vendor_page_size_options"`
+	VendorsBlockItemsToDisplay                   int           `bson:"vendors_block_items_to_display"`
+	ShowVendorOnProductDetailsPage               bool          `bson:"show_vendor_on_product_details_page"`
+	ShowVendorOnOrderDetailsPage                 bool          `bson:"show_vendor_on_order_details_page"`
+	AllowCustomersToContactVendors               bool          `bson:"allow_customers_to_contact_vendors"`
+	AllowCustomersToApplyForVendorAccount        bool          `bson:"allow_customers_to_apply_for_vendor_account"`
+	TermsOfServiceEnabled                        bool          `bson:"terms_of_service_enabled"`
+	AllowSearchByVendor                          bool          `bson:"allow_search_by_vendor"`
+	AllowVendorsToEditInfo                       bool          `bson:"allow_vendors_to_edit_info"`
+	NotifyStoreOwnerAboutVendorInformationChange bool          `bson:"notify_store_owner_about_vendor_information_change"`
+	MaximumProductNumber                         int           `bson:"maximum_product_number"`
+	AllowVendorsToImportProducts                 bool          `bson:"allow_vendors_to_import_products"`
+	MaximumProductPicturesNumber                 int           `bson:"maximum_product_pictures_number"`
 }
 
 // NewVendorSettings creates a new instance of VendorSettings with default values

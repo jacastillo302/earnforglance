@@ -4,7 +4,7 @@ import (
 	"context" // added context library
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -13,16 +13,16 @@ const (
 
 // SalesSummaryReportLine represents sales summary report line.
 type SalesSummaryReportLine struct {
-	ID             primitive.ObjectID `bson:"_id,omitempty"`
-	Summary        string             `bson:"summary"`
-	SummaryDate    time.Time          `bson:"summary_date"`
-	NumberOfOrders int                `bson:"number_of_orders"`
-	Profit         float64            `bson:"profit"`
-	ProfitStr      string             `bson:"profit_str"`
-	Shipping       string             `bson:"shipping"`
-	Tax            string             `bson:"tax"`
-	OrderTotal     string             `bson:"order_total"`
-	SummaryType    int                `bson:"summary_type"`
+	ID             bson.ObjectID `bson:"_id,omitempty"`
+	Summary        string        `bson:"summary"`
+	SummaryDate    time.Time     `bson:"summary_date"`
+	NumberOfOrders int           `bson:"number_of_orders"`
+	Profit         float64       `bson:"profit"`
+	ProfitStr      string        `bson:"profit_str"`
+	Shipping       string        `bson:"shipping"`
+	Tax            string        `bson:"tax"`
+	OrderTotal     string        `bson:"order_total"`
+	SummaryType    int           `bson:"summary_type"`
 }
 
 // SalesSummaryReportLineRepository represents the repository interface for SalesSummaryReportLine

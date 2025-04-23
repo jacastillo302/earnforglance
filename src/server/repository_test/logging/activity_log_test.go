@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultActivityLog struct {
@@ -29,11 +29,11 @@ func (m *MockSingleResultActivityLog) Decode(v interface{}) error {
 }
 
 var mockItemActivityLog = &domain.ActivityLog{
-	ID:                primitive.NewObjectID(), // Existing ID of the record to update
-	ActivityLogTypeID: primitive.NewObjectID(),
-	EntityID:          new(primitive.ObjectID),
+	ID:                bson.NewObjectID(), // Existing ID of the record to update
+	ActivityLogTypeID: bson.NewObjectID(),
+	EntityID:          new(bson.ObjectID),
 	EntityName:        "Product",
-	CustomerID:        primitive.NewObjectID(),
+	CustomerID:        bson.NewObjectID(),
 	Comment:           "Customer viewed a product.",
 	CreatedOnUtc:      time.Now().AddDate(0, 0, -7), // Created 7 days ago
 	IpAddress:         "192.168.1.2",

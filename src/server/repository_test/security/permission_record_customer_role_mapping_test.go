@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultPermissionRecordCustomerRoleMapping struct {
@@ -28,9 +28,9 @@ func (m *MockSingleResultPermissionRecordCustomerRoleMapping) Decode(v interface
 }
 
 var mockItemPermissionRecordCustomerRoleMapping = &domain.PermissionRecordCustomerRoleMapping{
-	ID:                 primitive.NewObjectID(), // Existing ID of the record to update
-	PermissionRecordID: primitive.NewObjectID(),
-	CustomerRoleID:     primitive.NewObjectID(),
+	ID:                 bson.NewObjectID(), // Existing ID of the record to update
+	PermissionRecordID: bson.NewObjectID(),
+	CustomerRoleID:     bson.NewObjectID(),
 }
 
 func TestPermissionRecordCustomerRoleMappingRepository_FetchByID(t *testing.T) {

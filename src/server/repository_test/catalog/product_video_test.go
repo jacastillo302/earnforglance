@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultProductVideo struct {
@@ -28,9 +28,9 @@ func (m *MockSingleResultProductVideo) Decode(v interface{}) error {
 }
 
 var mockItemProductVideo = &domain.ProductVideo{
-	ID:           primitive.NewObjectID(), // Existing ID of the record to update
-	ProductID:    primitive.NewObjectID(),
-	VideoID:      primitive.NewObjectID(),
+	ID:           bson.NewObjectID(), // Existing ID of the record to update
+	ProductID:    bson.NewObjectID(),
+	VideoID:      bson.NewObjectID(),
 	DisplayOrder: 2,
 }
 

@@ -11,7 +11,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestNewsLetterSubscriptionUsecase_FetchByID(t *testing.T) {
@@ -19,16 +19,16 @@ func TestNewsLetterSubscriptionUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewNewsLetterSubscriptionUsecase(mockRepo, timeout)
 
-	newsLetterSubscriptionID := primitive.NewObjectID().Hex()
+	newsLetterSubscriptionID := bson.NewObjectID().Hex()
 
 	updatedNewsLetterSubscription := domain.NewsLetterSubscription{
-		ID:                         primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                         bson.NewObjectID(), // Existing ID of the record to update
 		NewsLetterSubscriptionGuid: uuid.New(),
 		Email:                      "updated_subscriber@example.com",
 		Active:                     false,
-		StoreID:                    primitive.NewObjectID(),
+		StoreID:                    bson.NewObjectID(),
 		CreatedOnUtc:               time.Now().AddDate(0, 0, -7), // Created 7 days ago
-		LanguageID:                 primitive.NewObjectID(),
+		LanguageID:                 bson.NewObjectID(),
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, newsLetterSubscriptionID).Return(updatedNewsLetterSubscription, nil)
@@ -49,9 +49,9 @@ func TestNewsLetterSubscriptionUsecase_Create(t *testing.T) {
 		NewsLetterSubscriptionGuid: uuid.New(),
 		Email:                      "subscriber@example.com",
 		Active:                     true,
-		StoreID:                    primitive.NewObjectID(),
+		StoreID:                    bson.NewObjectID(),
 		CreatedOnUtc:               time.Now(),
-		LanguageID:                 primitive.NewObjectID(),
+		LanguageID:                 bson.NewObjectID(),
 	}
 
 	mockRepo.On("Create", mock.Anything, newNewsLetterSubscription).Return(nil)
@@ -68,13 +68,13 @@ func TestNewsLetterSubscriptionUsecase_Update(t *testing.T) {
 	usecase := test.NewNewsLetterSubscriptionUsecase(mockRepo, timeout)
 
 	updatedNewsLetterSubscription := &domain.NewsLetterSubscription{
-		ID:                         primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                         bson.NewObjectID(), // Existing ID of the record to update
 		NewsLetterSubscriptionGuid: uuid.New(),
 		Email:                      "updated_subscriber@example.com",
 		Active:                     false,
-		StoreID:                    primitive.NewObjectID(),
+		StoreID:                    bson.NewObjectID(),
 		CreatedOnUtc:               time.Now().AddDate(0, 0, -7), // Created 7 days ago
-		LanguageID:                 primitive.NewObjectID(),
+		LanguageID:                 bson.NewObjectID(),
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedNewsLetterSubscription).Return(nil)
@@ -90,7 +90,7 @@ func TestNewsLetterSubscriptionUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewNewsLetterSubscriptionUsecase(mockRepo, timeout)
 
-	newsLetterSubscriptionID := primitive.NewObjectID().Hex()
+	newsLetterSubscriptionID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, newsLetterSubscriptionID).Return(nil)
 
@@ -107,22 +107,22 @@ func TestNewsLetterSubscriptionUsecase_Fetch(t *testing.T) {
 
 	fetchedNewsLetterSubscriptions := []domain.NewsLetterSubscription{
 		{
-			ID:                         primitive.NewObjectID(),
+			ID:                         bson.NewObjectID(),
 			NewsLetterSubscriptionGuid: uuid.New(),
 			Email:                      "subscriber1@example.com",
 			Active:                     true,
-			StoreID:                    primitive.NewObjectID(),
+			StoreID:                    bson.NewObjectID(),
 			CreatedOnUtc:               time.Now().AddDate(0, 0, -10), // Created 10 days ago
-			LanguageID:                 primitive.NewObjectID(),
+			LanguageID:                 bson.NewObjectID(),
 		},
 		{
-			ID:                         primitive.NewObjectID(),
+			ID:                         bson.NewObjectID(),
 			NewsLetterSubscriptionGuid: uuid.New(),
 			Email:                      "subscriber2@example.com",
 			Active:                     false,
-			StoreID:                    primitive.NewObjectID(),
+			StoreID:                    bson.NewObjectID(),
 			CreatedOnUtc:               time.Now().AddDate(0, 0, -5), // Created 5 days ago
-			LanguageID:                 primitive.NewObjectID(),
+			LanguageID:                 bson.NewObjectID(),
 		},
 	}
 

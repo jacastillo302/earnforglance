@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestProductWarehouseInventoryUsecase_FetchByID(t *testing.T) {
@@ -18,11 +18,11 @@ func TestProductWarehouseInventoryUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewProductWarehouseInventoryUsecase(mockRepo, timeout)
 
-	productWarehouseInventoryID := primitive.NewObjectID().Hex()
+	productWarehouseInventoryID := bson.NewObjectID().Hex()
 
 	updatedProductWarehouseInventory := domain.ProductWarehouseInventory{
-		ProductID:        primitive.NewObjectID(),
-		WarehouseID:      primitive.NewObjectID(),
+		ProductID:        bson.NewObjectID(),
+		WarehouseID:      bson.NewObjectID(),
 		StockQuantity:    150,
 		ReservedQuantity: 20,
 	}
@@ -42,8 +42,8 @@ func TestProductWarehouseInventoryUsecase_Create(t *testing.T) {
 	usecase := test.NewProductWarehouseInventoryUsecase(mockRepo, timeout)
 
 	newProductWarehouseInventory := &domain.ProductWarehouseInventory{
-		ProductID:        primitive.NewObjectID(),
-		WarehouseID:      primitive.NewObjectID(),
+		ProductID:        bson.NewObjectID(),
+		WarehouseID:      bson.NewObjectID(),
 		StockQuantity:    100,
 		ReservedQuantity: 10,
 	}
@@ -62,8 +62,8 @@ func TestProductWarehouseInventoryUsecase_Update(t *testing.T) {
 	usecase := test.NewProductWarehouseInventoryUsecase(mockRepo, timeout)
 
 	updatedProductWarehouseInventory := &domain.ProductWarehouseInventory{
-		ProductID:        primitive.NewObjectID(),
-		WarehouseID:      primitive.NewObjectID(),
+		ProductID:        bson.NewObjectID(),
+		WarehouseID:      bson.NewObjectID(),
 		StockQuantity:    150,
 		ReservedQuantity: 20,
 	}
@@ -81,7 +81,7 @@ func TestProductWarehouseInventoryUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewProductWarehouseInventoryUsecase(mockRepo, timeout)
 
-	productWarehouseInventoryID := primitive.NewObjectID().Hex()
+	productWarehouseInventoryID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, productWarehouseInventoryID).Return(nil)
 
@@ -98,14 +98,14 @@ func TestProductWarehouseInventoryUsecase_Fetch(t *testing.T) {
 
 	fetchedProductWarehouseInventories := []domain.ProductWarehouseInventory{
 		{
-			ProductID:        primitive.NewObjectID(),
-			WarehouseID:      primitive.NewObjectID(),
+			ProductID:        bson.NewObjectID(),
+			WarehouseID:      bson.NewObjectID(),
 			StockQuantity:    100,
 			ReservedQuantity: 10,
 		},
 		{
-			ProductID:        primitive.NewObjectID(),
-			WarehouseID:      primitive.NewObjectID(),
+			ProductID:        bson.NewObjectID(),
+			WarehouseID:      bson.NewObjectID(),
 			StockQuantity:    200,
 			ReservedQuantity: 30,
 		},

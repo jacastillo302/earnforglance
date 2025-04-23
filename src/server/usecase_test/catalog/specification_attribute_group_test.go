@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestSpecificationAttributeGroupUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestSpecificationAttributeGroupUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewSpecificationAttributeGroupUsecase(mockRepo, timeout)
 
-	specificationAttributeGroupID := primitive.NewObjectID().Hex()
+	specificationAttributeGroupID := bson.NewObjectID().Hex()
 
 	updatedSpecificationAttributeGroup := domain.SpecificationAttributeGroup{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
 		Name:         "Technical Specifications",
 		DisplayOrder: 2,
 	}
@@ -59,7 +59,7 @@ func TestSpecificationAttributeGroupUsecase_Update(t *testing.T) {
 	usecase := test.NewSpecificationAttributeGroupUsecase(mockRepo, timeout)
 
 	updatedSpecificationAttributeGroup := &domain.SpecificationAttributeGroup{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
 		Name:         "Technical Specifications",
 		DisplayOrder: 2,
 	}
@@ -77,7 +77,7 @@ func TestSpecificationAttributeGroupUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewSpecificationAttributeGroupUsecase(mockRepo, timeout)
 
-	specificationAttributeGroupID := primitive.NewObjectID().Hex()
+	specificationAttributeGroupID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, specificationAttributeGroupID).Return(nil)
 
@@ -94,12 +94,12 @@ func TestSpecificationAttributeGroupUsecase_Fetch(t *testing.T) {
 
 	fetchedSpecificationAttributeGroups := []domain.SpecificationAttributeGroup{
 		{
-			ID:           primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
 			Name:         "General Specifications",
 			DisplayOrder: 1,
 		},
 		{
-			ID:           primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
 			Name:         "Technical Specifications",
 			DisplayOrder: 2,
 		},

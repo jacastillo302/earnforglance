@@ -11,7 +11,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestProductTemplateUsecase_FetchByID(t *testing.T) {
@@ -19,10 +19,10 @@ func TestProductTemplateUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewProductTemplateUsecase(mockRepo, timeout)
 
-	productTemplateID := primitive.NewObjectID().Hex()
+	productTemplateID := bson.NewObjectID().Hex()
 
 	updatedProductTemplate := domain.ProductTemplate{
-		ID:                  primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                  bson.NewObjectID(), // Existing ID of the record to update
 		Name:                "Updated Template",
 		ViewPath:            "/Views/Product/Updated.cshtml",
 		DisplayOrder:        2,
@@ -64,7 +64,7 @@ func TestProductTemplateUsecase_Update(t *testing.T) {
 	usecase := test.NewProductTemplateUsecase(mockRepo, timeout)
 
 	updatedProductTemplate := &domain.ProductTemplate{
-		ID:                  primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                  bson.NewObjectID(), // Existing ID of the record to update
 		Name:                "Updated Template",
 		ViewPath:            "/Views/Product/Updated.cshtml",
 		DisplayOrder:        2,
@@ -84,7 +84,7 @@ func TestProductTemplateUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewProductTemplateUsecase(mockRepo, timeout)
 
-	productTemplateID := primitive.NewObjectID().Hex()
+	productTemplateID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, productTemplateID).Return(nil)
 
@@ -101,14 +101,14 @@ func TestProductTemplateUsecase_Fetch(t *testing.T) {
 
 	fetchedProductTemplates := []domain.ProductTemplate{
 		{
-			ID:                  primitive.NewObjectID(),
+			ID:                  bson.NewObjectID(),
 			Name:                "Default Template",
 			ViewPath:            "/Views/Product/Default.cshtml",
 			DisplayOrder:        1,
 			IgnoredProductTypes: "Digital,Service",
 		},
 		{
-			ID:                  primitive.NewObjectID(),
+			ID:                  bson.NewObjectID(),
 			Name:                "Custom Template",
 			ViewPath:            "/Views/Product/Custom.cshtml",
 			DisplayOrder:        2,

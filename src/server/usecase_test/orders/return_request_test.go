@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestReturnRequestUsecase_FetchByID(t *testing.T) {
@@ -18,20 +18,20 @@ func TestReturnRequestUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewReturnRequestUsecase(mockRepo, timeout)
 
-	returnRequestID := primitive.NewObjectID().Hex()
+	returnRequestID := bson.NewObjectID().Hex()
 
 	updatedReturnRequest := domain.ReturnRequest{
-		ID:                    primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                    bson.NewObjectID(), // Existing ID of the record to update
 		CustomNumber:          "RR67890",
-		StoreID:               primitive.NewObjectID(),
-		OrderItemID:           primitive.NewObjectID(),
-		CustomerID:            primitive.NewObjectID(),
+		StoreID:               bson.NewObjectID(),
+		OrderItemID:           bson.NewObjectID(),
+		CustomerID:            bson.NewObjectID(),
 		Quantity:              1,
 		ReturnedQuantity:      1,
 		ReasonForReturn:       "Wrong Item Delivered",
 		RequestedAction:       "Refund Item",
 		CustomerComments:      "Received the wrong item.",
-		UploadedFileID:        primitive.NewObjectID(),
+		UploadedFileID:        bson.NewObjectID(),
 		StaffNotes:            "Process refund immediately.",
 		ReturnRequestStatusID: 10,
 		CreatedOnUtc:          time.Now().AddDate(0, 0, -7), // Created 7 days ago
@@ -54,15 +54,15 @@ func TestReturnRequestUsecase_Create(t *testing.T) {
 
 	newReturnRequest := &domain.ReturnRequest{
 		CustomNumber:          "RR12345",
-		StoreID:               primitive.NewObjectID(),
-		OrderItemID:           primitive.NewObjectID(),
-		CustomerID:            primitive.NewObjectID(),
+		StoreID:               bson.NewObjectID(),
+		OrderItemID:           bson.NewObjectID(),
+		CustomerID:            bson.NewObjectID(),
 		Quantity:              2,
 		ReturnedQuantity:      0,
 		ReasonForReturn:       "Defective Item",
 		RequestedAction:       "Replace Item",
 		CustomerComments:      "The item is not working as expected.",
-		UploadedFileID:        primitive.NewObjectID(),
+		UploadedFileID:        bson.NewObjectID(),
 		StaffNotes:            "Inspect the item upon return.",
 		ReturnRequestStatusID: 40,
 		CreatedOnUtc:          time.Now(),
@@ -83,17 +83,17 @@ func TestReturnRequestUsecase_Update(t *testing.T) {
 	usecase := test.NewReturnRequestUsecase(mockRepo, timeout)
 
 	updatedReturnRequest := &domain.ReturnRequest{
-		ID:                    primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                    bson.NewObjectID(), // Existing ID of the record to update
 		CustomNumber:          "RR67890",
-		StoreID:               primitive.NewObjectID(),
-		OrderItemID:           primitive.NewObjectID(),
-		CustomerID:            primitive.NewObjectID(),
+		StoreID:               bson.NewObjectID(),
+		OrderItemID:           bson.NewObjectID(),
+		CustomerID:            bson.NewObjectID(),
 		Quantity:              1,
 		ReturnedQuantity:      1,
 		ReasonForReturn:       "Wrong Item Delivered",
 		RequestedAction:       "Refund Item",
 		CustomerComments:      "Received the wrong item.",
-		UploadedFileID:        primitive.NewObjectID(),
+		UploadedFileID:        bson.NewObjectID(),
 		StaffNotes:            "Process refund immediately.",
 		ReturnRequestStatusID: 30,
 		CreatedOnUtc:          time.Now().AddDate(0, 0, -7), // Created 7 days ago
@@ -113,7 +113,7 @@ func TestReturnRequestUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewReturnRequestUsecase(mockRepo, timeout)
 
-	returnRequestID := primitive.NewObjectID().Hex()
+	returnRequestID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, returnRequestID).Return(nil)
 
@@ -130,34 +130,34 @@ func TestReturnRequestUsecase_Fetch(t *testing.T) {
 
 	fetchedReturnRequests := []domain.ReturnRequest{
 		{
-			ID:                    primitive.NewObjectID(),
+			ID:                    bson.NewObjectID(),
 			CustomNumber:          "RR12345",
-			StoreID:               primitive.NewObjectID(),
-			OrderItemID:           primitive.NewObjectID(),
-			CustomerID:            primitive.NewObjectID(),
+			StoreID:               bson.NewObjectID(),
+			OrderItemID:           bson.NewObjectID(),
+			CustomerID:            bson.NewObjectID(),
 			Quantity:              2,
 			ReturnedQuantity:      0,
 			ReasonForReturn:       "Defective Item",
 			RequestedAction:       "Replace Item",
 			CustomerComments:      "The item is not working as expected.",
-			UploadedFileID:        primitive.NewObjectID(),
+			UploadedFileID:        bson.NewObjectID(),
 			StaffNotes:            "Inspect the item upon return.",
 			ReturnRequestStatusID: 20,
 			CreatedOnUtc:          time.Now().AddDate(0, 0, -10), // Created 10 days ago
 			UpdatedOnUtc:          time.Now().AddDate(0, 0, -5),  // Updated 5 days ago
 		},
 		{
-			ID:                    primitive.NewObjectID(),
+			ID:                    bson.NewObjectID(),
 			CustomNumber:          "RR67890",
-			StoreID:               primitive.NewObjectID(),
-			OrderItemID:           primitive.NewObjectID(),
-			CustomerID:            primitive.NewObjectID(),
+			StoreID:               bson.NewObjectID(),
+			OrderItemID:           bson.NewObjectID(),
+			CustomerID:            bson.NewObjectID(),
 			Quantity:              1,
 			ReturnedQuantity:      1,
 			ReasonForReturn:       "Wrong Item Delivered",
 			RequestedAction:       "Refund Item",
 			CustomerComments:      "Received the wrong item.",
-			UploadedFileID:        primitive.NewObjectID(),
+			UploadedFileID:        bson.NewObjectID(),
 			StaffNotes:            "Process refund immediately.",
 			ReturnRequestStatusID: 10,
 			CreatedOnUtc:          time.Now().AddDate(0, 0, -7), // Created 7 days ago

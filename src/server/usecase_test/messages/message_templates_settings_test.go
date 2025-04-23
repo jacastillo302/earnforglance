@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestMessageTemplatesSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestMessageTemplatesSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewMessageTemplatesSettingsUsecase(mockRepo, timeout)
 
-	messageID := primitive.NewObjectID().Hex()
+	messageID := bson.NewObjectID().Hex()
 
 	updatedMessageTemplatesSettings := domain.MessageTemplatesSettings{
-		ID:                       primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                       bson.NewObjectID(), // Existing ID of the record to update
 		CaseInvariantReplacement: false,
 		Color1:                   "#FFFFFF",
 		Color2:                   "#000000",
@@ -63,7 +63,7 @@ func TestMessageTemplatesSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewMessageTemplatesSettingsUsecase(mockRepo, timeout)
 
 	updatedMessageTemplatesSettings := &domain.MessageTemplatesSettings{
-		ID:                       primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                       bson.NewObjectID(), // Existing ID of the record to update
 		CaseInvariantReplacement: false,
 		Color1:                   "#FFFFFF",
 		Color2:                   "#000000",
@@ -83,7 +83,7 @@ func TestMessageTemplatesSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewMessageTemplatesSettingsUsecase(mockRepo, timeout)
 
-	messageID := primitive.NewObjectID().Hex()
+	messageID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, messageID).Return(nil)
 
@@ -100,14 +100,14 @@ func TestMessageTemplatesSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedMessageTemplatesSettings := []domain.MessageTemplatesSettings{
 		{
-			ID:                       primitive.NewObjectID(),
+			ID:                       bson.NewObjectID(),
 			CaseInvariantReplacement: true,
 			Color1:                   "#FF5733",
 			Color2:                   "#33FF57",
 			Color3:                   "#3357FF",
 		},
 		{
-			ID:                       primitive.NewObjectID(),
+			ID:                       bson.NewObjectID(),
 			CaseInvariantReplacement: false,
 			Color1:                   "#FFFFFF",
 			Color2:                   "#000000",

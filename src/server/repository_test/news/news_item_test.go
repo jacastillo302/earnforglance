@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultNewsItem struct {
@@ -29,7 +29,7 @@ func (m *MockSingleResultNewsItem) Decode(v interface{}) error {
 }
 
 var mockItemNewsItem = &domain.NewsItem{
-	ID:              primitive.NewObjectID(), // Existing ID of the record to update
+	ID:              bson.NewObjectID(), // Existing ID of the record to update
 	Title:           "Updated Feature Announcement",
 	Short:           "We have updated the feature announcement.",
 	Full:            "The new feature has been updated to include additional functionality.",

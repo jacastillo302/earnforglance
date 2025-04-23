@@ -11,7 +11,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestPredefinedProductAttributeValueUsecase_FetchByID(t *testing.T) {
@@ -19,11 +19,11 @@ func TestPredefinedProductAttributeValueUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewPredefinedProductAttributeValueUsecase(mockRepo, timeout)
 
-	predefinedProductAttributeValueID := primitive.NewObjectID().Hex()
+	predefinedProductAttributeValueID := bson.NewObjectID().Hex()
 
 	expectedPredefinedProductAttributeValue := domain.PredefinedProductAttributeValue{
-		ID:                           primitive.NewObjectID(),
-		ProductAttributeID:           primitive.NewObjectID(),
+		ID:                           bson.NewObjectID(),
+		ProductAttributeID:           bson.NewObjectID(),
 		Name:                         "Color - Blue",
 		PriceAdjustment:              15.0,
 		PriceAdjustmentUsePercentage: true,
@@ -48,7 +48,7 @@ func TestPredefinedProductAttributeValueUsecase_Create(t *testing.T) {
 	usecase := test.NewPredefinedProductAttributeValueUsecase(mockRepo, timeout)
 
 	newPredefinedProductAttributeValue := &domain.PredefinedProductAttributeValue{
-		ProductAttributeID:           primitive.NewObjectID(),
+		ProductAttributeID:           bson.NewObjectID(),
 		Name:                         "Color - Red",
 		PriceAdjustment:              10.0,
 		PriceAdjustmentUsePercentage: false,
@@ -72,8 +72,8 @@ func TestPredefinedProductAttributeValueUsecase_Update(t *testing.T) {
 	usecase := test.NewPredefinedProductAttributeValueUsecase(mockRepo, timeout)
 
 	updatedPredefinedProductAttributeValue := &domain.PredefinedProductAttributeValue{
-		ID:                           primitive.NewObjectID(),
-		ProductAttributeID:           primitive.NewObjectID(),
+		ID:                           bson.NewObjectID(),
+		ProductAttributeID:           bson.NewObjectID(),
 		Name:                         "Color - Blue",
 		PriceAdjustment:              15.0,
 		PriceAdjustmentUsePercentage: true,
@@ -96,7 +96,7 @@ func TestPredefinedProductAttributeValueUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewPredefinedProductAttributeValueUsecase(mockRepo, timeout)
 
-	predefinedProductAttributeValueID := primitive.NewObjectID().Hex()
+	predefinedProductAttributeValueID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, predefinedProductAttributeValueID).Return(nil)
 
@@ -113,8 +113,8 @@ func TestPredefinedProductAttributeValueUsecase_Fetch(t *testing.T) {
 
 	expectedPredefinedProductAttributeValues := []domain.PredefinedProductAttributeValue{
 		{
-			ID:                           primitive.NewObjectID(),
-			ProductAttributeID:           primitive.NewObjectID(),
+			ID:                           bson.NewObjectID(),
+			ProductAttributeID:           bson.NewObjectID(),
 			Name:                         "Size - Small",
 			PriceAdjustment:              5.0,
 			PriceAdjustmentUsePercentage: false,
@@ -124,8 +124,8 @@ func TestPredefinedProductAttributeValueUsecase_Fetch(t *testing.T) {
 			DisplayOrder:                 1,
 		},
 		{
-			ID:                           primitive.NewObjectID(),
-			ProductAttributeID:           primitive.NewObjectID(),
+			ID:                           bson.NewObjectID(),
+			ProductAttributeID:           bson.NewObjectID(),
 			Name:                         "Size - Large",
 			PriceAdjustment:              20.0,
 			PriceAdjustmentUsePercentage: true,

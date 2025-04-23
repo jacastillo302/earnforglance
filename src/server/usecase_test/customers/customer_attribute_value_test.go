@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestCustomerAttributeValueUsecase_FetchByID(t *testing.T) {
@@ -18,11 +18,11 @@ func TestCustomerAttributeValueUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewCustomerAttributeValueUsecase(mockRepo, timeout)
 
-	customerID := primitive.NewObjectID().Hex()
+	customerID := bson.NewObjectID().Hex()
 
 	updatedCustomerAttributeValue := domain.CustomerAttributeValue{
-		ID:                  primitive.NewObjectID(), // Existing ID of the record to update
-		CustomerAttributeID: primitive.NewObjectID(),
+		ID:                  bson.NewObjectID(), // Existing ID of the record to update
+		CustomerAttributeID: bson.NewObjectID(),
 		Name:                "Preferred Currency",
 		IsPreSelected:       false,
 		DisplayOrder:        2,
@@ -43,7 +43,7 @@ func TestCustomerAttributeValueUsecase_Create(t *testing.T) {
 	usecase := test.NewCustomerAttributeValueUsecase(mockRepo, timeout)
 
 	newCustomerAttributeValue := &domain.CustomerAttributeValue{
-		CustomerAttributeID: primitive.NewObjectID(),
+		CustomerAttributeID: bson.NewObjectID(),
 		Name:                "Preferred Language",
 		IsPreSelected:       true,
 		DisplayOrder:        1,
@@ -63,8 +63,8 @@ func TestCustomerAttributeValueUsecase_Update(t *testing.T) {
 	usecase := test.NewCustomerAttributeValueUsecase(mockRepo, timeout)
 
 	updatedCustomerAttributeValue := &domain.CustomerAttributeValue{
-		ID:                  primitive.NewObjectID(), // Existing ID of the record to update
-		CustomerAttributeID: primitive.NewObjectID(),
+		ID:                  bson.NewObjectID(), // Existing ID of the record to update
+		CustomerAttributeID: bson.NewObjectID(),
 		Name:                "Preferred Currency",
 		IsPreSelected:       false,
 		DisplayOrder:        2,
@@ -83,7 +83,7 @@ func TestCustomerAttributeValueUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewCustomerAttributeValueUsecase(mockRepo, timeout)
 
-	customerID := primitive.NewObjectID().Hex()
+	customerID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, customerID).Return(nil)
 
@@ -100,15 +100,15 @@ func TestCustomerAttributeValueUsecase_Fetch(t *testing.T) {
 
 	fetchedCustomerAttributeValues := []domain.CustomerAttributeValue{
 		{
-			ID:                  primitive.NewObjectID(),
-			CustomerAttributeID: primitive.NewObjectID(),
+			ID:                  bson.NewObjectID(),
+			CustomerAttributeID: bson.NewObjectID(),
 			Name:                "Preferred Language",
 			IsPreSelected:       true,
 			DisplayOrder:        1,
 		},
 		{
-			ID:                  primitive.NewObjectID(),
-			CustomerAttributeID: primitive.NewObjectID(),
+			ID:                  bson.NewObjectID(),
+			CustomerAttributeID: bson.NewObjectID(),
 			Name:                "Preferred Currency",
 			IsPreSelected:       false,
 			DisplayOrder:        2,

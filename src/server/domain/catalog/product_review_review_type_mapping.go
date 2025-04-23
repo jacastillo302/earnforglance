@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,10 +12,10 @@ const (
 
 // ProductReviewReviewTypeMapping represents a product review and review type mapping
 type ProductReviewReviewTypeMapping struct {
-	ID              primitive.ObjectID `bson:"_id,omitempty"`
-	ProductReviewID primitive.ObjectID `bson:"product_review_id"`
-	ReviewTypeID    primitive.ObjectID `bson:"review_type_id"`
-	Rating          int                `bson:"rating"`
+	ID              bson.ObjectID `bson:"_id,omitempty"`
+	ProductReviewID bson.ObjectID `bson:"product_review_id"`
+	ReviewTypeID    bson.ObjectID `bson:"review_type_id"`
+	Rating          int           `bson:"rating"`
 }
 
 type ProductReviewReviewTypeMappingRepository interface {

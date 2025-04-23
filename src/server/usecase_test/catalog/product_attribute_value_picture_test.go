@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestProductAttributeValuePictureUsecase_FetchByID(t *testing.T) {
@@ -18,12 +18,12 @@ func TestProductAttributeValuePictureUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewProductAttributeValuePictureUsecase(mockRepo, timeout)
 
-	productAttributeValuePictureID := primitive.NewObjectID().Hex()
+	productAttributeValuePictureID := bson.NewObjectID().Hex()
 
 	expectedProductAttributeValuePicture := domain.ProductAttributeValuePicture{
-		ID:                      primitive.NewObjectID(), // Existing ID of the record to update
-		ProductAttributeValueID: primitive.NewObjectID(),
-		PictureID:               primitive.NewObjectID(),
+		ID:                      bson.NewObjectID(), // Existing ID of the record to update
+		ProductAttributeValueID: bson.NewObjectID(),
+		PictureID:               bson.NewObjectID(),
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, productAttributeValuePictureID).Return(expectedProductAttributeValuePicture, nil)
@@ -41,8 +41,8 @@ func TestProductAttributeValuePictureUsecase_Create(t *testing.T) {
 	usecase := test.NewProductAttributeValuePictureUsecase(mockRepo, timeout)
 
 	newProductAttributeValuePicture := &domain.ProductAttributeValuePicture{
-		ProductAttributeValueID: primitive.NewObjectID(),
-		PictureID:               primitive.NewObjectID(),
+		ProductAttributeValueID: bson.NewObjectID(),
+		PictureID:               bson.NewObjectID(),
 	}
 
 	mockRepo.On("Create", mock.Anything, newProductAttributeValuePicture).Return(nil)
@@ -59,9 +59,9 @@ func TestProductAttributeValuePictureUsecase_Update(t *testing.T) {
 	usecase := test.NewProductAttributeValuePictureUsecase(mockRepo, timeout)
 
 	updatedProductAttributeValuePicture := &domain.ProductAttributeValuePicture{
-		ID:                      primitive.NewObjectID(), // Existing ID of the record to update
-		ProductAttributeValueID: primitive.NewObjectID(),
-		PictureID:               primitive.NewObjectID(),
+		ID:                      bson.NewObjectID(), // Existing ID of the record to update
+		ProductAttributeValueID: bson.NewObjectID(),
+		PictureID:               bson.NewObjectID(),
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedProductAttributeValuePicture).Return(nil)
@@ -77,7 +77,7 @@ func TestProductAttributeValuePictureUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewProductAttributeValuePictureUsecase(mockRepo, timeout)
 
-	productAttributeValuePictureID := primitive.NewObjectID().Hex()
+	productAttributeValuePictureID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, productAttributeValuePictureID).Return(nil)
 
@@ -94,14 +94,14 @@ func TestProductAttributeValuePictureUsecase_Fetch(t *testing.T) {
 
 	fetchedProductAttributeValuePictures := []domain.ProductAttributeValuePicture{
 		{
-			ID:                      primitive.NewObjectID(),
-			ProductAttributeValueID: primitive.NewObjectID(),
-			PictureID:               primitive.NewObjectID(),
+			ID:                      bson.NewObjectID(),
+			ProductAttributeValueID: bson.NewObjectID(),
+			PictureID:               bson.NewObjectID(),
 		},
 		{
-			ID:                      primitive.NewObjectID(),
-			ProductAttributeValueID: primitive.NewObjectID(),
-			PictureID:               primitive.NewObjectID(),
+			ID:                      bson.NewObjectID(),
+			ProductAttributeValueID: bson.NewObjectID(),
+			PictureID:               bson.NewObjectID(),
 		},
 	}
 

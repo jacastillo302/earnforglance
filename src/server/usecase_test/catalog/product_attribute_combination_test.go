@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestProductAttributeCombinationUsecase_FetchByID(t *testing.T) {
@@ -18,11 +18,11 @@ func TestProductAttributeCombinationUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewProductAttributeCombinationUsecase(mockRepo, timeout)
 
-	productAttributeCombinationID := primitive.NewObjectID().Hex()
+	productAttributeCombinationID := bson.NewObjectID().Hex()
 
 	expectedProductAttributeCombination := domain.ProductAttributeCombination{
-		ID:                          primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID:                   primitive.NewObjectID(),
+		ID:                          bson.NewObjectID(), // Existing ID of the record to update
+		ProductID:                   bson.NewObjectID(),
 		AttributesXml:               "<attributes><color>blue</color><size>large</size></attributes>",
 		StockQuantity:               30,
 		AllowOutOfStockOrders:       true,
@@ -49,7 +49,7 @@ func TestProductAttributeCombinationUsecase_Create(t *testing.T) {
 	usecase := test.NewProductAttributeCombinationUsecase(mockRepo, timeout)
 
 	newProductAttributeCombination := &domain.ProductAttributeCombination{
-		ProductID:                   primitive.NewObjectID(),
+		ProductID:                   bson.NewObjectID(),
 		AttributesXml:               "<attributes><color>red</color><size>medium</size></attributes>",
 		StockQuantity:               50,
 		AllowOutOfStockOrders:       false,
@@ -75,8 +75,8 @@ func TestProductAttributeCombinationUsecase_Update(t *testing.T) {
 	usecase := test.NewProductAttributeCombinationUsecase(mockRepo, timeout)
 
 	updatedProductAttributeCombination := &domain.ProductAttributeCombination{
-		ID:                          primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID:                   primitive.NewObjectID(),
+		ID:                          bson.NewObjectID(), // Existing ID of the record to update
+		ProductID:                   bson.NewObjectID(),
 		AttributesXml:               "<attributes><color>blue</color><size>large</size></attributes>",
 		StockQuantity:               30,
 		AllowOutOfStockOrders:       true,
@@ -101,7 +101,7 @@ func TestProductAttributeCombinationUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewProductAttributeCombinationUsecase(mockRepo, timeout)
 
-	productAttributeCombinationID := primitive.NewObjectID().Hex()
+	productAttributeCombinationID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, productAttributeCombinationID).Return(nil)
 
@@ -118,8 +118,8 @@ func TestProductAttributeCombinationUsecase_Fetch(t *testing.T) {
 
 	fetchedProductAttributeCombinations := []domain.ProductAttributeCombination{
 		{
-			ID:                          primitive.NewObjectID(),
-			ProductID:                   primitive.NewObjectID(),
+			ID:                          bson.NewObjectID(),
+			ProductID:                   bson.NewObjectID(),
 			AttributesXml:               "<attributes><color>blue</color><size>large</size></attributes>",
 			StockQuantity:               20,
 			AllowOutOfStockOrders:       false,
@@ -131,8 +131,8 @@ func TestProductAttributeCombinationUsecase_Fetch(t *testing.T) {
 			MinStockQuantity:            2,
 		},
 		{
-			ID:                          primitive.NewObjectID(),
-			ProductID:                   primitive.NewObjectID(),
+			ID:                          bson.NewObjectID(),
+			ProductID:                   bson.NewObjectID(),
 			AttributesXml:               "<attributes><color>green</color><size>small</size></attributes>",
 			StockQuantity:               15,
 			AllowOutOfStockOrders:       true,

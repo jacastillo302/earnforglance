@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultAddressAttributeValue struct {
@@ -28,8 +28,8 @@ func (m *MockSingleResultAddressAttributeValue) Decode(v interface{}) error {
 }
 
 var mockItemAddressAttributeValue = &domain.AddressAttributeValue{
-	ID:                 primitive.NewObjectID(), // Existing ID of the record to update
-	AddressAttributeID: primitive.NewObjectID(),
+	ID:                 bson.NewObjectID(), // Existing ID of the record to update
+	AddressAttributeID: bson.NewObjectID(),
 	Name:               "State",
 	IsPreSelected:      false,
 	DisplayOrder:       2,

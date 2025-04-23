@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultMessageTemplate struct {
@@ -28,7 +28,7 @@ func (m *MockSingleResultMessageTemplate) Decode(v interface{}) error {
 }
 
 var mockItemMessageTemplate = &domain.MessageTemplate{
-	ID:                 primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                 bson.NewObjectID(), // Existing ID of the record to update
 	Name:               "Updated Order Confirmation",
 	BccEmailAddresses:  "updated_bcc@example.com",
 	Subject:            "Updated Order Confirmation Subject",
@@ -38,7 +38,7 @@ var mockItemMessageTemplate = &domain.MessageTemplate{
 	DelayPeriodID:      2,
 	AttachedDownloadID: "",
 	AllowDirectReply:   false,
-	EmailAccountID:     primitive.NewObjectID(),
+	EmailAccountID:     bson.NewObjectID(),
 	LimitedToStores:    true,
 }
 

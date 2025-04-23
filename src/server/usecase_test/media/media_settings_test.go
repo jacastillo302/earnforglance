@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestMediaSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,9 +18,9 @@ func TestMediaSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewMediaSettingsUsecase(mockRepo, timeout)
 
-	mediaID := primitive.NewObjectID().Hex()
+	mediaID := bson.NewObjectID().Hex()
 	updatedMediaSettings := domain.MediaSettings{
-		ID:                        primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                        bson.NewObjectID(), // Existing ID of the record to update
 		AvatarPictureSize:         120,
 		ProductThumbPictureSize:   250,
 		ProductDetailsPictureSize: 450,
@@ -45,7 +45,7 @@ func TestMediaSettingsUsecase_FetchByID(t *testing.T) {
 		VideoIframeAllow:                            "autoplay",
 		VideoIframeWidth:                            800,
 		VideoIframeHeight:                           450,
-		ProductDefaultImageID:                       primitive.NewObjectID(),
+		ProductDefaultImageID:                       bson.NewObjectID(),
 		AutoOrientImage:                             false,
 	}
 
@@ -88,7 +88,7 @@ func TestMediaSettingsUsecase_Create(t *testing.T) {
 		VideoIframeAllow:                            "fullscreen",
 		VideoIframeWidth:                            640,
 		VideoIframeHeight:                           360,
-		ProductDefaultImageID:                       primitive.NewObjectID(),
+		ProductDefaultImageID:                       bson.NewObjectID(),
 		AutoOrientImage:                             true,
 	}
 
@@ -106,7 +106,7 @@ func TestMediaSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewMediaSettingsUsecase(mockRepo, timeout)
 
 	updatedMediaSettings := &domain.MediaSettings{
-		ID:                        primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                        bson.NewObjectID(), // Existing ID of the record to update
 		AvatarPictureSize:         120,
 		ProductThumbPictureSize:   250,
 		ProductDetailsPictureSize: 450,
@@ -131,7 +131,7 @@ func TestMediaSettingsUsecase_Update(t *testing.T) {
 		VideoIframeAllow:                            "autoplay",
 		VideoIframeWidth:                            800,
 		VideoIframeHeight:                           450,
-		ProductDefaultImageID:                       primitive.NewObjectID(),
+		ProductDefaultImageID:                       bson.NewObjectID(),
 		AutoOrientImage:                             false,
 	}
 
@@ -148,7 +148,7 @@ func TestMediaSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewMediaSettingsUsecase(mockRepo, timeout)
 
-	mediaID := primitive.NewObjectID().Hex()
+	mediaID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, mediaID).Return(nil)
 
@@ -165,7 +165,7 @@ func TestMediaSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedMediaSettings := []domain.MediaSettings{
 		{
-			ID:                        primitive.NewObjectID(),
+			ID:                        bson.NewObjectID(),
 			AvatarPictureSize:         100,
 			ProductThumbPictureSize:   200,
 			ProductDetailsPictureSize: 400,
@@ -190,11 +190,11 @@ func TestMediaSettingsUsecase_Fetch(t *testing.T) {
 			VideoIframeAllow:                            "fullscreen",
 			VideoIframeWidth:                            640,
 			VideoIframeHeight:                           360,
-			ProductDefaultImageID:                       primitive.NewObjectID(),
+			ProductDefaultImageID:                       bson.NewObjectID(),
 			AutoOrientImage:                             true,
 		},
 		{
-			ID:                        primitive.NewObjectID(),
+			ID:                        bson.NewObjectID(),
 			AvatarPictureSize:         120,
 			ProductThumbPictureSize:   250,
 			ProductDetailsPictureSize: 450,
@@ -219,7 +219,7 @@ func TestMediaSettingsUsecase_Fetch(t *testing.T) {
 			VideoIframeAllow:                            "autoplay",
 			VideoIframeWidth:                            800,
 			VideoIframeHeight:                           450,
-			ProductDefaultImageID:                       primitive.NewObjectID(),
+			ProductDefaultImageID:                       bson.NewObjectID(),
 			AutoOrientImage:                             false,
 		},
 	}

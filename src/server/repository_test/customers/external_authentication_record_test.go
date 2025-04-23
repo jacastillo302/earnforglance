@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultExternalAuthenticationRecord struct {
@@ -28,8 +28,8 @@ func (m *MockSingleResultExternalAuthenticationRecord) Decode(v interface{}) err
 }
 
 var mockItemExternalAuthenticationRecord = &domain.ExternalAuthenticationRecord{
-	ID:                        primitive.NewObjectID(),
-	CustomerID:                primitive.NewObjectID(),
+	ID:                        bson.NewObjectID(),
+	CustomerID:                bson.NewObjectID(),
 	Email:                     "user1@example.com",
 	ExternalIdentifier:        "external-id-67890",
 	ExternalDisplayIdentifier: "ExternalUser1",

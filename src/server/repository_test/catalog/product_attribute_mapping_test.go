@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultProductAttributeMapping struct {
@@ -28,9 +28,9 @@ func (m *MockSingleResultProductAttributeMapping) Decode(v interface{}) error {
 }
 
 var mockItem = &domain.ProductAttributeMapping{
-	ID:                              primitive.NewObjectID(), // Existing ID of the record to update
-	ProductID:                       primitive.NewObjectID(),
-	ProductAttributeID:              primitive.NewObjectID(),
+	ID:                              bson.NewObjectID(), // Existing ID of the record to update
+	ProductID:                       bson.NewObjectID(),
+	ProductAttributeID:              bson.NewObjectID(),
 	TextPrompt:                      "Select a size",
 	IsRequired:                      false,
 	AttributeControlTypeID:          2,

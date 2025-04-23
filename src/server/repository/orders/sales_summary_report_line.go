@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/orders"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type salesummaryreportlineRepository struct {
@@ -58,7 +57,7 @@ func (ur *salesummaryreportlineRepository) Update(c context.Context, salesummary
 func (ur *salesummaryreportlineRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *salesummaryreportlineRepository) Delete(c context.Context, ID string) 
 func (ur *salesummaryreportlineRepository) Fetch(c context.Context) ([]domain.SalesSummaryReportLine, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *salesummaryreportlineRepository) FetchByID(c context.Context, salesumm
 
 	var salesummaryreportline domain.SalesSummaryReportLine
 
-	idHex, err := primitive.ObjectIDFromHex(salesummaryreportlineID)
+	idHex, err := bson.ObjectIDFromHex(salesummaryreportlineID)
 	if err != nil {
 		return salesummaryreportline, err
 	}

@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultCustomerSettings struct {
@@ -28,7 +28,7 @@ func (m *MockSingleResultCustomerSettings) Decode(v interface{}) error {
 }
 
 var mockItemCustomerSettings = &domain.CustomerSettings{
-	ID:                                         primitive.NewObjectID(), // Generate a new MongoDB ObjectID
+	ID:                                         bson.NewObjectID(), // Generate a new MongoDB ObjectID
 	UsernamesEnabled:                           true,
 	CheckUsernameAvailabilityEnabled:           true,
 	AllowUsersToChangeUsernames:                false,

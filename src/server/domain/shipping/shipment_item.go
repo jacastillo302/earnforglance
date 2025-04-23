@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,11 +12,11 @@ const (
 
 // ShipmentItem represents a shipment item
 type ShipmentItem struct {
-	ID          primitive.ObjectID `bson:"_id,omitempty"`
-	ShipmentID  primitive.ObjectID `bson:"shipment_id"`
-	OrderItemID primitive.ObjectID `bson:"order_item_id"`
-	Quantity    int                `bson:"quantity"`
-	WarehouseID primitive.ObjectID `bson:"warehouse_id"`
+	ID          bson.ObjectID `bson:"_id,omitempty"`
+	ShipmentID  bson.ObjectID `bson:"shipment_id"`
+	OrderItemID bson.ObjectID `bson:"order_item_id"`
+	Quantity    int           `bson:"quantity"`
+	WarehouseID bson.ObjectID `bson:"warehouse_id"`
 }
 
 // ShipmentItemRepository defines the repository interface for ShipmentItem

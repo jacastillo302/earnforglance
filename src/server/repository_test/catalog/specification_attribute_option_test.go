@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultSpecificationAttributeOption struct {
@@ -28,8 +28,8 @@ func (m *MockSingleResultSpecificationAttributeOption) Decode(v interface{}) err
 }
 
 var mockItemSpecificationAttributeOption = &domain.SpecificationAttributeOption{
-	ID:                       primitive.NewObjectID(), // Existing ID of the record to update
-	SpecificationAttributeID: primitive.NewObjectID(),
+	ID:                       bson.NewObjectID(), // Existing ID of the record to update
+	SpecificationAttributeID: bson.NewObjectID(),
 	Name:                     "Size",
 	ColorSquaresRgb:          "",
 	DisplayOrder:             2,

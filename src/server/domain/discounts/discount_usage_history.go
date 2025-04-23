@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -13,10 +13,10 @@ const (
 
 // DiscountUsageHistory represents a discount usage history entry
 type DiscountUsageHistory struct {
-	ID           primitive.ObjectID `bson:"_id,omitempty"`
-	DiscountID   primitive.ObjectID `bson:"discount_id"`
-	OrderID      primitive.ObjectID `bson:"order_id"`
-	CreatedOnUtc time.Time          `bson:"created_on_utc"`
+	ID           bson.ObjectID `bson:"_id,omitempty"`
+	DiscountID   bson.ObjectID `bson:"discount_id"`
+	OrderID      bson.ObjectID `bson:"order_id"`
+	CreatedOnUtc time.Time     `bson:"created_on_utc"`
 }
 
 type DiscountUsageHistoryRepository interface {

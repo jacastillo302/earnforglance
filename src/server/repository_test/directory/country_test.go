@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultCountry struct {
@@ -28,7 +28,7 @@ func (m *MockSingleResultCountry) Decode(v interface{}) error {
 }
 
 var mockItemCountry = &domain.Country{
-	ID:                 primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                 bson.NewObjectID(), // Existing ID of the record to update
 	Name:               "Canada",
 	AllowsBilling:      true,
 	AllowsShipping:     true,

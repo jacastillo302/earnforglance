@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestCustomerRoleUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestCustomerRoleUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCustomerRoleUsecase(mockRepo, timeout)
 
-	customerID := primitive.NewObjectID().Hex()
+	customerID := bson.NewObjectID().Hex()
 
 	updatedCustomerRole := domian.CustomerRole{
-		ID:                      primitive.NewObjectID(),
+		ID:                      bson.NewObjectID(),
 		Name:                    "Registered",
 		FreeShipping:            false,
 		TaxExempt:               false,
@@ -76,17 +76,17 @@ func TestCustomerRoleUsecase_Update(t *testing.T) {
 	usecase := test.NewCustomerRoleUsecase(mockRepo, timeout)
 
 	updatedCustomerRole := &domian.CustomerRole{
-		ID:                      primitive.NewObjectID(), // Generate a new MongoDB ObjectID
-		Name:                    "Administrator",         // Example role name
-		FreeShipping:            true,                    // Indicates free shipping for this role
-		TaxExempt:               true,                    // Indicates tax exemption for this role
-		Active:                  true,                    // Indicates the role is active
-		IsSystemRole:            true,                    // Indicates this is a system role
-		SystemName:              "Admin",                 // Example system name
-		EnablePasswordLifetime:  true,                    // Indicates password lifetime enforcement
-		OverrideTaxDisplayType:  false,                   // Indicates no custom tax display type
-		DefaultTaxDisplayTypeID: 1,                       // Example default tax display type ID
-		PurchasedWithProductId:  0,                       // No product required for this role
+		ID:                      bson.NewObjectID(), // Generate a new MongoDB ObjectID
+		Name:                    "Administrator",    // Example role name
+		FreeShipping:            true,               // Indicates free shipping for this role
+		TaxExempt:               true,               // Indicates tax exemption for this role
+		Active:                  true,               // Indicates the role is active
+		IsSystemRole:            true,               // Indicates this is a system role
+		SystemName:              "Admin",            // Example system name
+		EnablePasswordLifetime:  true,               // Indicates password lifetime enforcement
+		OverrideTaxDisplayType:  false,              // Indicates no custom tax display type
+		DefaultTaxDisplayTypeID: 1,                  // Example default tax display type ID
+		PurchasedWithProductId:  0,                  // No product required for this role
 
 	}
 
@@ -103,7 +103,7 @@ func TestCustomerRoleUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCustomerRoleUsecase(mockRepo, timeout)
 
-	customerID := primitive.NewObjectID().Hex()
+	customerID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, customerID).Return(nil)
 
@@ -120,7 +120,7 @@ func TestCustomerRoleUsecase_Fetch(t *testing.T) {
 
 	fetchedCustomerRoles := []domian.CustomerRole{
 		{
-			ID:                      primitive.NewObjectID(),
+			ID:                      bson.NewObjectID(),
 			Name:                    "Registered",
 			FreeShipping:            false,
 			TaxExempt:               false,
@@ -133,7 +133,7 @@ func TestCustomerRoleUsecase_Fetch(t *testing.T) {
 			PurchasedWithProductId:  0,
 		},
 		{
-			ID:                      primitive.NewObjectID(),
+			ID:                      bson.NewObjectID(),
 			Name:                    "Guest",
 			FreeShipping:            false,
 			TaxExempt:               false,

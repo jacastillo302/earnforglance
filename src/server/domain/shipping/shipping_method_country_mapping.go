@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,9 +12,9 @@ const (
 
 // ShippingMethodCountryMapping represents a shipping method-country mapping class
 type ShippingMethodCountryMapping struct {
-	ID               primitive.ObjectID `bson:"_id,omitempty"`
-	ShippingMethodID primitive.ObjectID `bson:"shipping_method_id"`
-	CountryID        primitive.ObjectID `bson:"country_id"`
+	ID               bson.ObjectID `bson:"_id,omitempty"`
+	ShippingMethodID bson.ObjectID `bson:"shipping_method_id"`
+	CountryID        bson.ObjectID `bson:"country_id"`
 }
 
 // ShippingMethodCountryMappingRepository defines the repository interface for ShippingMethodCountryMapping

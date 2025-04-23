@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestRelatedProductUsecase_FetchByID(t *testing.T) {
@@ -18,12 +18,12 @@ func TestRelatedProductUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewRelatedProductUsecase(mockRepo, timeout)
 
-	catalogID := primitive.NewObjectID().Hex()
+	catalogID := bson.NewObjectID().Hex()
 
 	updatedRelatedProduct := domain.RelatedProduct{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID1:   primitive.NewObjectID(),
-		ProductID2:   primitive.NewObjectID(),
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
+		ProductID1:   bson.NewObjectID(),
+		ProductID2:   bson.NewObjectID(),
 		DisplayOrder: 2,
 	}
 
@@ -42,8 +42,8 @@ func TestRelatedProductUsecase_Create(t *testing.T) {
 	usecase := test.NewRelatedProductUsecase(mockRepo, timeout)
 
 	newRelatedProduct := &domain.RelatedProduct{
-		ProductID1:   primitive.NewObjectID(),
-		ProductID2:   primitive.NewObjectID(),
+		ProductID1:   bson.NewObjectID(),
+		ProductID2:   bson.NewObjectID(),
 		DisplayOrder: 1,
 	}
 
@@ -60,9 +60,9 @@ func TestRelatedProductUsecase_Update(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewRelatedProductUsecase(mockRepo, timeout)
 	updatedRelatedProduct := &domain.RelatedProduct{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID1:   primitive.NewObjectID(),
-		ProductID2:   primitive.NewObjectID(),
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
+		ProductID1:   bson.NewObjectID(),
+		ProductID2:   bson.NewObjectID(),
 		DisplayOrder: 2,
 	}
 
@@ -79,7 +79,7 @@ func TestRelatedProductUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewRelatedProductUsecase(mockRepo, timeout)
 
-	catalogID := primitive.NewObjectID().Hex()
+	catalogID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, catalogID).Return(nil)
 
@@ -96,15 +96,15 @@ func TestRelatedProductUsecase_Fetch(t *testing.T) {
 
 	fetchedRelatedProducts := []domain.RelatedProduct{
 		{
-			ID:           primitive.NewObjectID(),
-			ProductID1:   primitive.NewObjectID(),
-			ProductID2:   primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
+			ProductID1:   bson.NewObjectID(),
+			ProductID2:   bson.NewObjectID(),
 			DisplayOrder: 1,
 		},
 		{
-			ID:           primitive.NewObjectID(),
-			ProductID1:   primitive.NewObjectID(),
-			ProductID2:   primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
+			ProductID1:   bson.NewObjectID(),
+			ProductID2:   bson.NewObjectID(),
 			DisplayOrder: 2,
 		},
 	}

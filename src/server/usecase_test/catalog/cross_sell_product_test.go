@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestCrossSellProductUsecase_FetchByID(t *testing.T) {
@@ -18,12 +18,12 @@ func TestCrossSellProductUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewCrossSellProductUsecase(mockRepo, timeout)
 
-	crossSellProductID := primitive.NewObjectID().Hex()
+	crossSellProductID := bson.NewObjectID().Hex()
 
 	expectedCrossSellProduct := domain.CrossSellProduct{
-		ID:         primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID1: primitive.NewObjectID(),
-		ProductID2: primitive.NewObjectID(),
+		ID:         bson.NewObjectID(), // Existing ID of the record to update
+		ProductID1: bson.NewObjectID(),
+		ProductID2: bson.NewObjectID(),
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, crossSellProductID).Return(expectedCrossSellProduct, nil)
@@ -41,9 +41,9 @@ func TestCrossSellProductUsecase_Create(t *testing.T) {
 	usecase := test.NewCrossSellProductUsecase(mockRepo, timeout)
 
 	newCrossSellProduct := &domain.CrossSellProduct{
-		ID:         primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID1: primitive.NewObjectID(),
-		ProductID2: primitive.NewObjectID(),
+		ID:         bson.NewObjectID(), // Existing ID of the record to update
+		ProductID1: bson.NewObjectID(),
+		ProductID2: bson.NewObjectID(),
 	}
 
 	mockRepo.On("Create", mock.Anything, newCrossSellProduct).Return(nil)
@@ -60,9 +60,9 @@ func TestCrossSellProductUsecase_Update(t *testing.T) {
 	usecase := test.NewCrossSellProductUsecase(mockRepo, timeout)
 
 	updatedCrossSellProduct := &domain.CrossSellProduct{
-		ID:         primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID1: primitive.NewObjectID(),
-		ProductID2: primitive.NewObjectID(),
+		ID:         bson.NewObjectID(), // Existing ID of the record to update
+		ProductID1: bson.NewObjectID(),
+		ProductID2: bson.NewObjectID(),
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedCrossSellProduct).Return(nil)
@@ -78,7 +78,7 @@ func TestCrossSellProductUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewCrossSellProductUsecase(mockRepo, timeout)
 
-	crossSellProductID := primitive.NewObjectID().Hex()
+	crossSellProductID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, crossSellProductID).Return(nil)
 
@@ -95,14 +95,14 @@ func TestCrossSellProductUsecase_Fetch(t *testing.T) {
 
 	expectedCrossSellProducts := []domain.CrossSellProduct{
 		{
-			ID:         primitive.NewObjectID(),
-			ProductID1: primitive.NewObjectID(),
-			ProductID2: primitive.NewObjectID(),
+			ID:         bson.NewObjectID(),
+			ProductID1: bson.NewObjectID(),
+			ProductID2: bson.NewObjectID(),
 		},
 		{
-			ID:         primitive.NewObjectID(),
-			ProductID1: primitive.NewObjectID(),
-			ProductID2: primitive.NewObjectID(),
+			ID:         bson.NewObjectID(),
+			ProductID1: bson.NewObjectID(),
+			ProductID2: bson.NewObjectID(),
 		},
 	}
 

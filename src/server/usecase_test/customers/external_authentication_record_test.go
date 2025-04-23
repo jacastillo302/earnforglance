@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestExternalAuthenticationRecordUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestExternalAuthenticationRecordUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewExternalAuthenticationRecordUsecase(mockRepo, timeout)
 
-	customersID := primitive.NewObjectID().Hex()
+	customersID := bson.NewObjectID().Hex()
 
 	updatedExternalAuthenticationRecord := domian.ExternalAuthenticationRecord{
-		CustomerID:                primitive.NewObjectID(),  // Example Customer ID
+		CustomerID:                bson.NewObjectID(),       // Example Customer ID
 		Email:                     "example@example.com",    // Example external email
 		ExternalIdentifier:        "external-id-12345",      // Example external identifier
 		ExternalDisplayIdentifier: "ExternalUser123",        // Example external display identifier
@@ -45,8 +45,8 @@ func TestExternalAuthenticationRecordUsecase_Create(t *testing.T) {
 	usecase := test.NewExternalAuthenticationRecordUsecase(mockRepo, timeout)
 
 	newExternalAuthenticationRecord := &domian.ExternalAuthenticationRecord{
-		ID:                        primitive.NewObjectID(),  // Generate a new MongoDB ObjectID
-		CustomerID:                primitive.NewObjectID(),  // Example Customer ID
+		ID:                        bson.NewObjectID(),       // Generate a new MongoDB ObjectID
+		CustomerID:                bson.NewObjectID(),       // Example Customer ID
 		Email:                     "example@example.com",    // Example external email
 		ExternalIdentifier:        "external-id-12345",      // Example external identifier
 		ExternalDisplayIdentifier: "ExternalUser123",        // Example external display identifier
@@ -69,8 +69,8 @@ func TestExternalAuthenticationRecordUsecase_Update(t *testing.T) {
 	usecase := test.NewExternalAuthenticationRecordUsecase(mockRepo, timeout)
 
 	updatedExternalAuthenticationRecord := &domian.ExternalAuthenticationRecord{
-		ID:                        primitive.NewObjectID(),  // Generate a new MongoDB ObjectID
-		CustomerID:                primitive.NewObjectID(),  // Example Customer ID
+		ID:                        bson.NewObjectID(),       // Generate a new MongoDB ObjectID
+		CustomerID:                bson.NewObjectID(),       // Example Customer ID
 		Email:                     "example@example.com",    // Example external email
 		ExternalIdentifier:        "external-id-12345",      // Example external identifier
 		ExternalDisplayIdentifier: "ExternalUser123",        // Example external display identifier
@@ -92,7 +92,7 @@ func TestExternalAuthenticationRecordUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewExternalAuthenticationRecordUsecase(mockRepo, timeout)
 
-	customersID := primitive.NewObjectID().Hex()
+	customersID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, customersID).Return(nil)
 
@@ -109,8 +109,8 @@ func TestExternalAuthenticationRecordUsecase_Fetch(t *testing.T) {
 
 	fetchedExternalAuthenticationRecords := []domian.ExternalAuthenticationRecord{
 		{
-			ID:                        primitive.NewObjectID(),
-			CustomerID:                primitive.NewObjectID(),
+			ID:                        bson.NewObjectID(),
+			CustomerID:                bson.NewObjectID(),
 			Email:                     "user1@example.com",
 			ExternalIdentifier:        "external-id-67890",
 			ExternalDisplayIdentifier: "ExternalUser1",
@@ -119,8 +119,8 @@ func TestExternalAuthenticationRecordUsecase_Fetch(t *testing.T) {
 			ProviderSystemName:        "Facebook",
 		},
 		{
-			ID:                        primitive.NewObjectID(),
-			CustomerID:                primitive.NewObjectID(),
+			ID:                        bson.NewObjectID(),
+			CustomerID:                bson.NewObjectID(),
 			Email:                     "user2@example.com",
 			ExternalIdentifier:        "external-id-11223",
 			ExternalDisplayIdentifier: "ExternalUser2",

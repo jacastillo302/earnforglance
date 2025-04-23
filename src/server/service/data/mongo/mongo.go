@@ -6,12 +6,10 @@ import (
 	"reflect"
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/bsoncodec"
-	"go.mongodb.org/mongo-driver/bson/bsonrw"
-	"go.mongodb.org/mongo-driver/bson/bsontype"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
-	"go.mongodb.org/mongo-driver/mongo/readpref"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/mongo/readpref"
 )
 
 type Database interface {
@@ -24,11 +22,10 @@ type Collection interface {
 	InsertOne(context.Context, interface{}) (interface{}, error)
 	InsertMany(context.Context, []interface{}) ([]interface{}, error)
 	DeleteOne(context.Context, interface{}) (int64, error)
-	Find(context.Context, interface{}, ...*options.FindOptions) (Cursor, error)
-	CountDocuments(context.Context, interface{}, ...*options.CountOptions) (int64, error)
+	Find(context.Context, interface{}, ...*options.FindOptionsBuilder) (Cursor, error)
 	Aggregate(context.Context, interface{}) (Cursor, error)
-	UpdateOne(context.Context, interface{}, interface{}, ...*options.UpdateOptions) (*mongo.UpdateResult, error)
-	UpdateMany(context.Context, interface{}, interface{}, ...*options.UpdateOptions) (*mongo.UpdateResult, error)
+	UpdateOne(context.Context, interface{}, interface{}, ...options.Lister[options.UpdateOneOptions]) (*mongo.UpdateResult, error)
+	UpdateMany(context.Context, interface{}, interface{}, ...options.Lister[options.UpdateManyOptions]) (*mongo.UpdateResult, error)
 }
 
 type SingleResult interface {
@@ -46,8 +43,8 @@ type Client interface {
 	Database(string) Database
 	Connect(context.Context) error
 	Disconnect(context.Context) error
-	StartSession() (mongo.Session, error)
-	UseSession(ctx context.Context, fn func(mongo.SessionContext) error) error
+	StartSession() (**mongo.Session, error)
+	UseSession(ctx context.Context, fn func(context.Context) error) error
 	Ping(context.Context) error
 }
 
@@ -74,12 +71,12 @@ type mongoSession struct {
 }
 
 type nullawareDecoder struct {
-	defDecoder bsoncodec.ValueDecoder
+	defDecoder bson.ValueDecoder
 	zeroValue  reflect.Value
 }
 
-func (d *nullawareDecoder) DecodeValue(dctx bsoncodec.DecodeContext, vr bsonrw.ValueReader, val reflect.Value) error {
-	if vr.Type() != bsontype.Null {
+func (d *nullawareDecoder) DecodeValue(dctx bson.DecodeContext, vr bson.ValueReader, val reflect.Value) error {
+	if vr.Type() != bson.TypeNull {
 		return d.defDecoder.DecodeValue(dctx, vr, val)
 	}
 
@@ -97,7 +94,7 @@ func (d *nullawareDecoder) DecodeValue(dctx bsoncodec.DecodeContext, vr bsonrw.V
 func NewClient(connection string) (Client, error) {
 
 	time.Local = time.UTC
-	c, err := mongo.NewClient(options.Client().ApplyURI(connection))
+	c, err := mongo.Connect(options.Client().ApplyURI(connection))
 
 	return &mongoClient{cl: c}, err
 
@@ -112,17 +109,17 @@ func (mc *mongoClient) Database(dbName string) Database {
 	return &mongoDatabase{db: db}
 }
 
-func (mc *mongoClient) UseSession(ctx context.Context, fn func(mongo.SessionContext) error) error {
+func (mc *mongoClient) UseSession(ctx context.Context, fn func(context.Context) error) error {
 	return mc.cl.UseSession(ctx, fn)
 }
 
-func (mc *mongoClient) StartSession() (mongo.Session, error) {
+func (mc *mongoClient) StartSession() (**mongo.Session, error) {
 	session, err := mc.cl.StartSession()
-	return &mongoSession{session}, err
+	return &session, err
 }
 
 func (mc *mongoClient) Connect(ctx context.Context) error {
-	return mc.cl.Connect(ctx)
+	return mc.Connect(ctx)
 }
 
 func (mc *mongoClient) Disconnect(ctx context.Context) error {
@@ -144,7 +141,7 @@ func (mc *mongoCollection) FindOne(ctx context.Context, filter interface{}) Sing
 	return &mongoSingleResult{sr: singleResult}
 }
 
-func (mc *mongoCollection) UpdateOne(ctx context.Context, filter interface{}, update interface{}, opts ...*options.UpdateOptions) (*mongo.UpdateResult, error) {
+func (mc *mongoCollection) UpdateOne(ctx context.Context, filter interface{}, update interface{}, opts ...options.Lister[options.UpdateOneOptions]) (*mongo.UpdateResult, error) {
 	return mc.coll.UpdateOne(ctx, filter, update, opts[:]...)
 }
 
@@ -163,8 +160,16 @@ func (mc *mongoCollection) DeleteOne(ctx context.Context, filter interface{}) (i
 	return count.DeletedCount, err
 }
 
-func (mc *mongoCollection) Find(ctx context.Context, filter interface{}, opts ...*options.FindOptions) (Cursor, error) {
-	findResult, err := mc.coll.Find(ctx, filter, opts...)
+func (mc *mongoCollection) Find(ctx context.Context, filter interface{}, opts ...*options.FindOptionsBuilder) (Cursor, error) {
+
+	optsf := []options.Lister[options.FindOptions]{}
+	for _, opt := range opts {
+		if opt != nil {
+			optsf = append(optsf, opt)
+		}
+	}
+
+	findResult, err := mc.coll.Find(ctx, filter, optsf...)
 	return &mongoCursor{mc: findResult}, err
 }
 
@@ -173,12 +178,8 @@ func (mc *mongoCollection) Aggregate(ctx context.Context, pipeline interface{}) 
 	return &mongoCursor{mc: aggregateResult}, err
 }
 
-func (mc *mongoCollection) UpdateMany(ctx context.Context, filter interface{}, update interface{}, opts ...*options.UpdateOptions) (*mongo.UpdateResult, error) {
+func (mc *mongoCollection) UpdateMany(ctx context.Context, filter interface{}, update interface{}, opts ...options.Lister[options.UpdateManyOptions]) (*mongo.UpdateResult, error) {
 	return mc.coll.UpdateMany(ctx, filter, update, opts[:]...)
-}
-
-func (mc *mongoCollection) CountDocuments(ctx context.Context, filter interface{}, opts ...*options.CountOptions) (int64, error) {
-	return mc.coll.CountDocuments(ctx, filter, opts...)
 }
 
 func (sr *mongoSingleResult) Decode(v interface{}) error {

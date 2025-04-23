@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,10 +12,10 @@ const (
 
 // ShippingMethod represents a shipping method (used by offline shipping rate computation methods).
 type ShippingMethod struct {
-	ID           primitive.ObjectID `bson:"_id,omitempty"`
-	Name         string             `bson:"name"`
-	Description  string             `bson:"description"`
-	DisplayOrder int                `bson:"display_order"`
+	ID           bson.ObjectID `bson:"_id,omitempty"`
+	Name         string        `bson:"name"`
+	Description  string        `bson:"description"`
+	DisplayOrder int           `bson:"display_order"`
 }
 
 // ShippingMethodRepository defines the repository interface for ShippingMethod

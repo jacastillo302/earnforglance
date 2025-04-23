@@ -12,7 +12,7 @@ import (
 	service "earnforglance/server/service/install"
 
 	"github.com/gin-gonic/gin"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type InstallController struct {
@@ -1210,7 +1210,7 @@ func CustomerAdmin(c *gin.Context, lc *InstallController, model response.Install
 		customer[i].LastLoginDateUtc = nil
 		customer[i].CannotLoginUntilDateUtc = nil
 
-		billingAddressID, err := primitive.ObjectIDFromHex(adress[i].ID.Hex())
+		billingAddressID, err := bson.ObjectIDFromHex(adress[i].ID.Hex())
 		if err != nil {
 			result.Status = false
 			result.Details = err.Error()
@@ -1218,7 +1218,7 @@ func CustomerAdmin(c *gin.Context, lc *InstallController, model response.Install
 		}
 		customer[i].BillingAddressID = &billingAddressID
 
-		shippingAddressID, err := primitive.ObjectIDFromHex(adress[i].ID.Hex())
+		shippingAddressID, err := bson.ObjectIDFromHex(adress[i].ID.Hex())
 		if err != nil {
 			result.Status = false
 			result.Details = err.Error()
@@ -1326,7 +1326,7 @@ func CustomerData(c *gin.Context, lc *InstallController, sample bool) response.I
 		customer[i].LastLoginDateUtc = nil
 		customer[i].CannotLoginUntilDateUtc = nil
 
-		billingAddressID, err := primitive.ObjectIDFromHex(adress[i].ID.Hex())
+		billingAddressID, err := bson.ObjectIDFromHex(adress[i].ID.Hex())
 		if err != nil {
 			result.Status = false
 			result.Details = err.Error()
@@ -1334,7 +1334,7 @@ func CustomerData(c *gin.Context, lc *InstallController, sample bool) response.I
 		}
 		customer[i].BillingAddressID = &billingAddressID
 
-		shippingAddressID, err := primitive.ObjectIDFromHex(adress[i].ID.Hex())
+		shippingAddressID, err := bson.ObjectIDFromHex(adress[i].ID.Hex())
 		if err != nil {
 			result.Status = false
 			result.Details = err.Error()

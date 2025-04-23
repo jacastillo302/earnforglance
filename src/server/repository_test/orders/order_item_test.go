@@ -13,8 +13,8 @@ import (
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultOrderItem struct {
@@ -30,10 +30,10 @@ func (m *MockSingleResultOrderItem) Decode(v interface{}) error {
 }
 
 var mockItemOrderItem = &domain.OrderItem{
-	ID:                    primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                    bson.NewObjectID(), // Existing ID of the record to update
 	OrderItemGuid:         uuid.New(),
-	OrderID:               primitive.NewObjectID(),
-	ProductID:             primitive.NewObjectID(),
+	OrderID:               bson.NewObjectID(),
+	ProductID:             bson.NewObjectID(),
 	Quantity:              3,
 	UnitPriceInclTax:      60.00,
 	UnitPriceExclTax:      55.00,
@@ -46,7 +46,7 @@ var mockItemOrderItem = &domain.OrderItem{
 	AttributesXml:         "<Attributes><Color>Blue</Color><Size>L</Size></Attributes>",
 	DownloadCount:         1,
 	IsDownloadActivated:   true,
-	LicenseDownloadID:     new(primitive.ObjectID),
+	LicenseDownloadID:     new(bson.ObjectID),
 	ItemWeight:            new(float64),
 	RentalStartDateUtc:    new(time.Time),
 	RentalEndDateUtc:      new(time.Time),

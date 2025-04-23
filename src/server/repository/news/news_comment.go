@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/news"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type newscommentRepository struct {
@@ -59,7 +58,7 @@ func (ur *newscommentRepository) Update(c context.Context, newscomment *domain.N
 func (ur *newscommentRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -72,7 +71,8 @@ func (ur *newscommentRepository) Delete(c context.Context, ID string) error {
 func (ur *newscommentRepository) Fetch(c context.Context) ([]domain.NewsComment, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -94,7 +94,7 @@ func (tr *newscommentRepository) FetchByID(c context.Context, newscommentID stri
 
 	var newscomment domain.NewsComment
 
-	idHex, err := primitive.ObjectIDFromHex(newscommentID)
+	idHex, err := bson.ObjectIDFromHex(newscommentID)
 	if err != nil {
 		return newscomment, err
 	}

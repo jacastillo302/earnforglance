@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,9 +12,9 @@ const (
 
 // BlogPostTag represents a blog post tag
 type BlogPostTag struct {
-	ID            primitive.ObjectID `bson:"_id,omitempty"`
-	Name          string             `bson:"name"`
-	BlogPostCount int                `bson:"blog_post_count"`
+	ID            bson.ObjectID `bson:"_id,omitempty"`
+	Name          string        `bson:"name"`
+	BlogPostCount int           `bson:"blog_post_count"`
 }
 
 type BlogPostTagRepository interface {

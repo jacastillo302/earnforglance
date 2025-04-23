@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestLocalizationSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,11 +18,11 @@ func TestLocalizationSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewLocalizationSettingsUsecase(mockRepo, timeout)
 
-	localizationID := primitive.NewObjectID().Hex()
+	localizationID := bson.NewObjectID().Hex()
 
 	updatedLocalizationSettings := domain.LocalizationSettings{
-		ID:                                  primitive.NewObjectID(), // Existing ID of the record to update
-		DefaultAdminLanguageID:              primitive.NewObjectID(),
+		ID:                                  bson.NewObjectID(), // Existing ID of the record to update
+		DefaultAdminLanguageID:              bson.NewObjectID(),
 		UseImagesForLanguageSelection:       false,
 		SeoFriendlyUrlsForLanguagesEnabled:  false,
 		AutomaticallyDetectLanguage:         true,
@@ -47,7 +47,7 @@ func TestLocalizationSettingsUsecase_Create(t *testing.T) {
 	usecase := test.NewLocalizationSettingsUsecase(mockRepo, timeout)
 
 	newLocalizationSettings := &domain.LocalizationSettings{
-		DefaultAdminLanguageID:              primitive.NewObjectID(),
+		DefaultAdminLanguageID:              bson.NewObjectID(),
 		UseImagesForLanguageSelection:       true,
 		SeoFriendlyUrlsForLanguagesEnabled:  true,
 		AutomaticallyDetectLanguage:         false,
@@ -69,8 +69,8 @@ func TestLocalizationSettingsUsecase_Update(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewLocalizationSettingsUsecase(mockRepo, timeout)
 	updatedLocalizationSettings := &domain.LocalizationSettings{
-		ID:                                  primitive.NewObjectID(), // Existing ID of the record to update
-		DefaultAdminLanguageID:              primitive.NewObjectID(),
+		ID:                                  bson.NewObjectID(), // Existing ID of the record to update
+		DefaultAdminLanguageID:              bson.NewObjectID(),
 		UseImagesForLanguageSelection:       false,
 		SeoFriendlyUrlsForLanguagesEnabled:  false,
 		AutomaticallyDetectLanguage:         true,
@@ -93,7 +93,7 @@ func TestLocalizationSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewLocalizationSettingsUsecase(mockRepo, timeout)
 
-	localizationID := primitive.NewObjectID().Hex()
+	localizationID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, localizationID).Return(nil)
 
@@ -110,8 +110,8 @@ func TestLocalizationSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedLocalizationSettings := []domain.LocalizationSettings{
 		{
-			ID:                                  primitive.NewObjectID(),
-			DefaultAdminLanguageID:              primitive.NewObjectID(),
+			ID:                                  bson.NewObjectID(),
+			DefaultAdminLanguageID:              bson.NewObjectID(),
 			UseImagesForLanguageSelection:       true,
 			SeoFriendlyUrlsForLanguagesEnabled:  true,
 			AutomaticallyDetectLanguage:         false,
@@ -121,8 +121,8 @@ func TestLocalizationSettingsUsecase_Fetch(t *testing.T) {
 			IgnoreRtlPropertyForAdminArea:       false,
 		},
 		{
-			ID:                                  primitive.NewObjectID(),
-			DefaultAdminLanguageID:              primitive.NewObjectID(),
+			ID:                                  bson.NewObjectID(),
+			DefaultAdminLanguageID:              bson.NewObjectID(),
 			UseImagesForLanguageSelection:       false,
 			SeoFriendlyUrlsForLanguagesEnabled:  false,
 			AutomaticallyDetectLanguage:         true,

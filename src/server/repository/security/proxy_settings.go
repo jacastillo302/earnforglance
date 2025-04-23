@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/security"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type proxysettingsRepository struct {
@@ -58,7 +57,7 @@ func (ur *proxysettingsRepository) Update(c context.Context, proxysettings *doma
 func (ur *proxysettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *proxysettingsRepository) Delete(c context.Context, ID string) error {
 func (ur *proxysettingsRepository) Fetch(c context.Context) ([]domain.ProxySettings, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *proxysettingsRepository) FetchByID(c context.Context, proxysettingsID 
 
 	var proxysettings domain.ProxySettings
 
-	idHex, err := primitive.ObjectIDFromHex(proxysettingsID)
+	idHex, err := bson.ObjectIDFromHex(proxysettingsID)
 	if err != nil {
 		return proxysettings, err
 	}

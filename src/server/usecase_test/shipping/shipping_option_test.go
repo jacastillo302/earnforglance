@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestShippingOptionUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestShippingOptionUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewShippingOptionUsecase(mockRepo, timeout)
 
-	shippingOptionID := primitive.NewObjectID().Hex()
+	shippingOptionID := bson.NewObjectID().Hex()
 
 	updatedShippingOption := domain.ShippingOption{
-		ID:                                      primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                      bson.NewObjectID(), // Existing ID of the record to update
 		ShippingRateComputationMethodSystemName: "ExpressRate",
 		Rate:                                    20.00,
 		Name:                                    "Express Shipping",
@@ -70,7 +70,7 @@ func TestShippingOptionUsecase_Update(t *testing.T) {
 	usecase := test.NewShippingOptionUsecase(mockRepo, timeout)
 
 	updatedShippingOption := &domain.ShippingOption{
-		ID:                                      primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                      bson.NewObjectID(), // Existing ID of the record to update
 		ShippingRateComputationMethodSystemName: "ExpressRate",
 		Rate:                                    20.00,
 		Name:                                    "Express Shipping",
@@ -95,7 +95,7 @@ func TestShippingOptionUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewShippingOptionUsecase(mockRepo, timeout)
 
-	shippingOptionID := primitive.NewObjectID().Hex()
+	shippingOptionID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, shippingOptionID).Return(nil)
 
@@ -112,7 +112,7 @@ func TestShippingOptionUsecase_Fetch(t *testing.T) {
 
 	fetchedShippingOptions := []domain.ShippingOption{
 		{
-			ID:                                      primitive.NewObjectID(),
+			ID:                                      bson.NewObjectID(),
 			ShippingRateComputationMethodSystemName: "FlatRate",
 			Rate:                                    10.00,
 			Name:                                    "Standard Shipping",
@@ -122,7 +122,7 @@ func TestShippingOptionUsecase_Fetch(t *testing.T) {
 			DisplayOrder:                            new(int),
 		},
 		{
-			ID:                                      primitive.NewObjectID(),
+			ID:                                      bson.NewObjectID(),
 			ShippingRateComputationMethodSystemName: "ExpressRate",
 			Rate:                                    20.00,
 			Name:                                    "Express Shipping",

@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/forums"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type forumpostvoteRepository struct {
@@ -58,7 +57,7 @@ func (ur *forumpostvoteRepository) Update(c context.Context, forumpostvote *doma
 func (ur *forumpostvoteRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *forumpostvoteRepository) Delete(c context.Context, ID string) error {
 func (ur *forumpostvoteRepository) Fetch(c context.Context) ([]domain.ForumPostVote, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *forumpostvoteRepository) FetchByID(c context.Context, forumpostvoteID 
 
 	var forumpostvote domain.ForumPostVote
 
-	idHex, err := primitive.ObjectIDFromHex(forumpostvoteID)
+	idHex, err := bson.ObjectIDFromHex(forumpostvoteID)
 	if err != nil {
 		return forumpostvote, err
 	}

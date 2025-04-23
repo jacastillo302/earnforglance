@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestLocaleStringResourceUsecase_FetchByID(t *testing.T) {
@@ -18,11 +18,11 @@ func TestLocaleStringResourceUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewLocaleStringResourceUsecase(mockRepo, timeout)
 
-	localeStringResourceID := primitive.NewObjectID().Hex()
+	localeStringResourceID := bson.NewObjectID().Hex()
 
 	updatedLocaleStringResource := domain.LocaleStringResource{
-		ID:            primitive.NewObjectID(), // Existing ID of the record to update
-		LanguageID:    primitive.NewObjectID(),
+		ID:            bson.NewObjectID(), // Existing ID of the record to update
+		LanguageID:    bson.NewObjectID(),
 		ResourceName:  "WelcomeMessage",
 		ResourceValue: "Welcome to our updated platform!",
 	}
@@ -42,7 +42,7 @@ func TestLocaleStringResourceUsecase_Create(t *testing.T) {
 	usecase := test.NewLocaleStringResourceUsecase(mockRepo, timeout)
 
 	newLocaleStringResource := &domain.LocaleStringResource{
-		LanguageID:    primitive.NewObjectID(),
+		LanguageID:    bson.NewObjectID(),
 		ResourceName:  "WelcomeMessage",
 		ResourceValue: "Welcome to our platform!",
 	}
@@ -61,8 +61,8 @@ func TestLocaleStringResourceUsecase_Update(t *testing.T) {
 	usecase := test.NewLocaleStringResourceUsecase(mockRepo, timeout)
 
 	updatedLocaleStringResource := &domain.LocaleStringResource{
-		ID:            primitive.NewObjectID(), // Existing ID of the record to update
-		LanguageID:    primitive.NewObjectID(),
+		ID:            bson.NewObjectID(), // Existing ID of the record to update
+		LanguageID:    bson.NewObjectID(),
 		ResourceName:  "WelcomeMessage",
 		ResourceValue: "Welcome to our updated platform!",
 	}
@@ -80,7 +80,7 @@ func TestLocaleStringResourceUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewLocaleStringResourceUsecase(mockRepo, timeout)
 
-	localeStringResourceID := primitive.NewObjectID().Hex()
+	localeStringResourceID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, localeStringResourceID).Return(nil)
 
@@ -97,14 +97,14 @@ func TestLocaleStringResourceUsecase_Fetch(t *testing.T) {
 
 	fetchedLocaleStringResources := []domain.LocaleStringResource{
 		{
-			ID:            primitive.NewObjectID(),
-			LanguageID:    primitive.NewObjectID(),
+			ID:            bson.NewObjectID(),
+			LanguageID:    bson.NewObjectID(),
 			ResourceName:  "WelcomeMessage",
 			ResourceValue: "Welcome to our platform!",
 		},
 		{
-			ID:            primitive.NewObjectID(),
-			LanguageID:    primitive.NewObjectID(),
+			ID:            bson.NewObjectID(),
+			LanguageID:    bson.NewObjectID(),
 			ResourceName:  "GoodbyeMessage",
 			ResourceValue: "Thank you for visiting!",
 		},

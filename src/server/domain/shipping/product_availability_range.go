@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,9 +12,9 @@ const (
 
 // ProductAvailabilityRange represents a product availability range.
 type ProductAvailabilityRange struct {
-	ID           primitive.ObjectID `bson:"_id,omitempty"`
-	Name         string             `bson:"name"`
-	DisplayOrder int                `bson:"display_order"`
+	ID           bson.ObjectID `bson:"_id,omitempty"`
+	Name         string        `bson:"name"`
+	DisplayOrder int           `bson:"display_order"`
 }
 
 // ProductAvailabilityRangeRepository defines the repository interface for ProductAvailabilityRange

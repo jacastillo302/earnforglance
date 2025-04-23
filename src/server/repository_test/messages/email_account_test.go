@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultEmailAccount struct {
@@ -28,7 +28,7 @@ func (m *MockSingleResultEmailAccount) Decode(v interface{}) error {
 }
 
 var mockItemEmailAccount = &domain.EmailAccount{
-	ID:                          primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                          bson.NewObjectID(), // Existing ID of the record to update
 	Email:                       "updated@example.com",
 	DisplayName:                 "Updated Account",
 	Host:                        "smtp.updated.com",

@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestCheckoutAttributeValueUsecase_FetchByID(t *testing.T) {
@@ -18,9 +18,9 @@ func TestCheckoutAttributeValueUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCheckoutAttributeValueUsecase(mockRepo, timeout)
 
-	checkoutAttributeValueID := primitive.NewObjectID().Hex()
+	checkoutAttributeValueID := bson.NewObjectID().Hex()
 	updatedCheckoutAttributeValue := domain.CheckoutAttributeValue{
-		ID:               primitive.NewObjectID(), // Existing ID of the record to update
+		ID:               bson.NewObjectID(), // Existing ID of the record to update
 		ColorSquaresRgb:  "#33FF57",
 		PriceAdjustment:  15.75,
 		WeightAdjustment: 0.50,
@@ -60,7 +60,7 @@ func TestCheckoutAttributeValueUsecase_Update(t *testing.T) {
 	usecase := test.NewCheckoutAttributeValueUsecase(mockRepo, timeout)
 
 	updatedCheckoutAttributeValue := &domain.CheckoutAttributeValue{
-		ID:               primitive.NewObjectID(), // Existing ID of the record to update
+		ID:               bson.NewObjectID(), // Existing ID of the record to update
 		ColorSquaresRgb:  "#33FF57",
 		PriceAdjustment:  15.75,
 		WeightAdjustment: 0.50,
@@ -79,7 +79,7 @@ func TestCheckoutAttributeValueUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCheckoutAttributeValueUsecase(mockRepo, timeout)
 
-	checkoutAttributeValueID := primitive.NewObjectID().Hex()
+	checkoutAttributeValueID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, checkoutAttributeValueID).Return(nil)
 
@@ -96,13 +96,13 @@ func TestCheckoutAttributeValueUsecase_Fetch(t *testing.T) {
 
 	fetchedCheckoutAttributeValues := []domain.CheckoutAttributeValue{
 		{
-			ID:               primitive.NewObjectID(),
+			ID:               bson.NewObjectID(),
 			ColorSquaresRgb:  "#FF5733",
 			PriceAdjustment:  10.50,
 			WeightAdjustment: 0.25,
 		},
 		{
-			ID:               primitive.NewObjectID(),
+			ID:               bson.NewObjectID(),
 			ColorSquaresRgb:  "#3357FF",
 			PriceAdjustment:  20.00,
 			WeightAdjustment: 0.75,

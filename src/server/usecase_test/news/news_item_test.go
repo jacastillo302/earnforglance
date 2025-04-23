@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestNewsItemUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestNewsItemUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewNewsItemUsecase(mockRepo, timeout)
 
-	newsItemID := primitive.NewObjectID().Hex()
+	newsItemID := bson.NewObjectID().Hex()
 
 	updatedNewsItem := domain.NewsItem{
-		ID:              primitive.NewObjectID(), // Existing ID of the record to update
+		ID:              bson.NewObjectID(), // Existing ID of the record to update
 		Title:           "Updated Feature Announcement",
 		Short:           "We have updated the feature announcement.",
 		Full:            "The new feature has been updated to include additional functionality.",
@@ -78,7 +78,7 @@ func TestNewsItemUsecase_Update(t *testing.T) {
 	usecase := test.NewNewsItemUsecase(mockRepo, timeout)
 
 	updatedNewsItem := &domain.NewsItem{
-		ID:              primitive.NewObjectID(), // Existing ID of the record to update
+		ID:              bson.NewObjectID(), // Existing ID of the record to update
 		Title:           "Updated Feature Announcement",
 		Short:           "We have updated the feature announcement.",
 		Full:            "The new feature has been updated to include additional functionality.",
@@ -108,7 +108,7 @@ func TestNewsItemUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewNewsItemUsecase(mockRepo, timeout)
 
-	newsItemID := primitive.NewObjectID().Hex()
+	newsItemID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, newsItemID).Return(nil)
 
@@ -124,7 +124,7 @@ func TestNewsItemUsecase_Fetch(t *testing.T) {
 	usecase := test.NewNewsItemUsecase(mockRepo, timeout)
 	fetchedNewsItems := []domain.NewsItem{
 		{
-			ID:              primitive.NewObjectID(),
+			ID:              bson.NewObjectID(),
 			Title:           "New Feature Announcement",
 			Short:           "We are excited to announce a new feature.",
 			Full:            "Our platform now supports a new feature that will enhance your experience.",
@@ -139,7 +139,7 @@ func TestNewsItemUsecase_Fetch(t *testing.T) {
 			CreatedOnUtc:    time.Now().AddDate(0, 0, -10), // Created 10 days ago
 		},
 		{
-			ID:              primitive.NewObjectID(),
+			ID:              bson.NewObjectID(),
 			Title:           "Maintenance Update",
 			Short:           "Scheduled maintenance update.",
 			Full:            "Our platform will undergo scheduled maintenance to improve performance.",

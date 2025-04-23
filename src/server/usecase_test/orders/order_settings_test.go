@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestOrderSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestOrderSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewOrderSettingsUsecase(mockRepo, timeout)
 
-	orderSettingsID := primitive.NewObjectID().Hex()
+	orderSettingsID := bson.NewObjectID().Hex()
 
 	updatedOrderSettings := domain.OrderSettings{
-		ID:                                  primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                  bson.NewObjectID(), // Existing ID of the record to update
 		IsReOrderAllowed:                    false,
 		MinOrderSubtotalAmount:              75.00,
 		MinOrderSubtotalAmountIncludingTax:  false,
@@ -128,7 +128,7 @@ func TestOrderSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewOrderSettingsUsecase(mockRepo, timeout)
 
 	updatedOrderSettings := &domain.OrderSettings{
-		ID:                                  primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                  bson.NewObjectID(), // Existing ID of the record to update
 		IsReOrderAllowed:                    false,
 		MinOrderSubtotalAmount:              75.00,
 		MinOrderSubtotalAmountIncludingTax:  false,
@@ -181,7 +181,7 @@ func TestOrderSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewOrderSettingsUsecase(mockRepo, timeout)
 
-	orderSettingsID := primitive.NewObjectID().Hex()
+	orderSettingsID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, orderSettingsID).Return(nil)
 
@@ -198,7 +198,7 @@ func TestOrderSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedOrderSettings := []domain.OrderSettings{
 		{
-			ID:                                  primitive.NewObjectID(),
+			ID:                                  bson.NewObjectID(),
 			IsReOrderAllowed:                    true,
 			MinOrderSubtotalAmount:              50.00,
 			MinOrderSubtotalAmountIncludingTax:  true,
@@ -238,7 +238,7 @@ func TestOrderSettingsUsecase_Fetch(t *testing.T) {
 			PlaceOrderWithLock:                                false,
 		},
 		{
-			ID:                                  primitive.NewObjectID(),
+			ID:                                  bson.NewObjectID(),
 			IsReOrderAllowed:                    false,
 			MinOrderSubtotalAmount:              75.00,
 			MinOrderSubtotalAmountIncludingTax:  false,

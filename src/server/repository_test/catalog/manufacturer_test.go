@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultManufacturer struct {
@@ -36,7 +36,7 @@ func TestManufacturerRepository_FetchByID(t *testing.T) {
 
 	collectionName := domain.CollectionManufacturer
 
-	mockItem := domain.Manufacturer{ID: primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, Name: "", Description: "", ManufacturerID: primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, MetaKeywords: "", MetaDescription: "", MetaTitle: "", PictureID: primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, PageSize: 0, AllowCustomersToSelectPageSize: false, PageSizeOptions: "", SubjectToAcl: false, LimitedToStores: false, Published: false, Deleted: false, DisplayOrder: 0, CreatedOnUtc: time.Date(1, time.January, 1, 0, 0, 0, 0, time.UTC), UpdatedOnUtc: time.Date(1, time.January, 1, 0, 0, 0, 0, time.UTC), PriceRangeFiltering: false, PriceFrom: 0, PriceTo: 0, ManuallyPriceRange: false}
+	mockItem := domain.Manufacturer{ID: bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, Name: "", Description: "", ManufacturerID: bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, MetaKeywords: "", MetaDescription: "", MetaTitle: "", PictureID: bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, PageSize: 0, AllowCustomersToSelectPageSize: false, PageSizeOptions: "", SubjectToAcl: false, LimitedToStores: false, Published: false, Deleted: false, DisplayOrder: 0, CreatedOnUtc: time.Date(1, time.January, 1, 0, 0, 0, 0, time.UTC), UpdatedOnUtc: time.Date(1, time.January, 1, 0, 0, 0, 0, time.UTC), PriceRangeFiltering: false, PriceFrom: 0, PriceTo: 0, ManuallyPriceRange: false}
 
 	t.Run("success", func(t *testing.T) {
 		mockSingleResult := &MockSingleResultManufacturer{}
@@ -82,14 +82,14 @@ func TestManufacturerRepository_Create(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockManufacturer := &domain.Manufacturer{
-		ID:                             primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                             bson.NewObjectID(), // Existing ID of the record to update
 		Name:                           "Updated TechCorp",
 		Description:                    "Updated description for TechCorp",
-		ManufacturerID:                 primitive.NewObjectID(),
+		ManufacturerID:                 bson.NewObjectID(),
 		MetaKeywords:                   "updated, tech, gadgets",
 		MetaDescription:                "Updated meta description for TechCorp.",
 		MetaTitle:                      "Updated TechCorp - Manufacturer",
-		PictureID:                      primitive.NewObjectID(),
+		PictureID:                      bson.NewObjectID(),
 		PageSize:                       50,
 		AllowCustomersToSelectPageSize: false,
 		PageSizeOptions:                "50,100",
@@ -124,14 +124,14 @@ func TestManufacturerRepository_Update(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockManufacturer := &domain.Manufacturer{
-		ID:                             primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                             bson.NewObjectID(), // Existing ID of the record to update
 		Name:                           "Updated TechCorp",
 		Description:                    "Updated description for TechCorp",
-		ManufacturerID:                 primitive.NewObjectID(),
+		ManufacturerID:                 bson.NewObjectID(),
 		MetaKeywords:                   "updated, tech, gadgets",
 		MetaDescription:                "Updated meta description for TechCorp.",
 		MetaTitle:                      "Updated TechCorp - Manufacturer",
-		PictureID:                      primitive.NewObjectID(),
+		PictureID:                      bson.NewObjectID(),
 		PageSize:                       50,
 		AllowCustomersToSelectPageSize: false,
 		PageSizeOptions:                "50,100",

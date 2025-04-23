@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestMessageTemplateUsecase_FetchByID(t *testing.T) {
@@ -21,7 +21,7 @@ func TestMessageTemplateUsecase_FetchByID(t *testing.T) {
 	messageTemplateID := ""
 
 	updatedMessageTemplate := domain.MessageTemplate{
-		ID:                 primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                 bson.NewObjectID(), // Existing ID of the record to update
 		Name:               "Updated Order Confirmation",
 		BccEmailAddresses:  "updated_bcc@example.com",
 		Subject:            "Updated Order Confirmation Subject",
@@ -31,7 +31,7 @@ func TestMessageTemplateUsecase_FetchByID(t *testing.T) {
 		DelayPeriodID:      2,
 		AttachedDownloadID: "",
 		AllowDirectReply:   false,
-		EmailAccountID:     primitive.NewObjectID(),
+		EmailAccountID:     bson.NewObjectID(),
 		LimitedToStores:    true,
 	}
 
@@ -59,7 +59,7 @@ func TestMessageTemplateUsecase_Create(t *testing.T) {
 		DelayPeriodID:      1,
 		AttachedDownloadID: "",
 		AllowDirectReply:   true,
-		EmailAccountID:     primitive.NewObjectID(),
+		EmailAccountID:     bson.NewObjectID(),
 		LimitedToStores:    false,
 	}
 	*newMessageTemplate.DelayBeforeSend = 2
@@ -78,7 +78,7 @@ func TestMessageTemplateUsecase_Update(t *testing.T) {
 	usecase := test.NewMessageTemplateUsecase(mockRepo, timeout)
 
 	updatedMessageTemplate := &domain.MessageTemplate{
-		ID:                 primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                 bson.NewObjectID(), // Existing ID of the record to update
 		Name:               "Updated Order Confirmation",
 		BccEmailAddresses:  "updated_bcc@example.com",
 		Subject:            "Updated Order Confirmation Subject",
@@ -88,7 +88,7 @@ func TestMessageTemplateUsecase_Update(t *testing.T) {
 		DelayPeriodID:      2,
 		AttachedDownloadID: "",
 		AllowDirectReply:   false,
-		EmailAccountID:     primitive.NewObjectID(),
+		EmailAccountID:     bson.NewObjectID(),
 		LimitedToStores:    true,
 	}
 	*updatedMessageTemplate.DelayBeforeSend = 1
@@ -123,7 +123,7 @@ func TestMessageTemplateUsecase_Fetch(t *testing.T) {
 
 	fetchedMessageTemplates := []domain.MessageTemplate{
 		{
-			ID:                 primitive.NewObjectID(),
+			ID:                 bson.NewObjectID(),
 			Name:               "Order Confirmation",
 			BccEmailAddresses:  "bcc@example.com",
 			Subject:            "Your Order Confirmation",
@@ -133,11 +133,11 @@ func TestMessageTemplateUsecase_Fetch(t *testing.T) {
 			DelayPeriodID:      1,
 			AttachedDownloadID: "",
 			AllowDirectReply:   true,
-			EmailAccountID:     primitive.NewObjectID(),
+			EmailAccountID:     bson.NewObjectID(),
 			LimitedToStores:    false,
 		},
 		{
-			ID:                 primitive.NewObjectID(),
+			ID:                 bson.NewObjectID(),
 			Name:               "Shipping Notification",
 			BccEmailAddresses:  "shipping_bcc@example.com",
 			Subject:            "Your Order Has Shipped",
@@ -147,7 +147,7 @@ func TestMessageTemplateUsecase_Fetch(t *testing.T) {
 			DelayPeriodID:      2,
 			AttachedDownloadID: "",
 			AllowDirectReply:   false,
-			EmailAccountID:     primitive.NewObjectID(),
+			EmailAccountID:     bson.NewObjectID(),
 			LimitedToStores:    true,
 		},
 	}

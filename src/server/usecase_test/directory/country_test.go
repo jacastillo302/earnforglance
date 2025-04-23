@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestCountryUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestCountryUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCountryUsecase(mockRepo, timeout)
 
-	countryID := primitive.NewObjectID().Hex()
+	countryID := bson.NewObjectID().Hex()
 
 	updatedCountry := domain.Country{
-		ID:                 primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                 bson.NewObjectID(), // Existing ID of the record to update
 		Name:               "Canada",
 		AllowsBilling:      true,
 		AllowsShipping:     true,
@@ -75,7 +75,7 @@ func TestCountryUsecase_Update(t *testing.T) {
 	usecase := test.NewCountryUsecase(mockRepo, timeout)
 
 	updatedCountry := &domain.Country{
-		ID:                 primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                 bson.NewObjectID(), // Existing ID of the record to update
 		Name:               "Canada",
 		AllowsBilling:      true,
 		AllowsShipping:     true,
@@ -101,7 +101,7 @@ func TestCountryUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCountryUsecase(mockRepo, timeout)
 
-	countryID := primitive.NewObjectID().Hex()
+	countryID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, countryID).Return(nil)
 
@@ -118,7 +118,7 @@ func TestCountryUsecase_Fetch(t *testing.T) {
 
 	fetchedCountries := []domain.Country{
 		{
-			ID:                 primitive.NewObjectID(),
+			ID:                 bson.NewObjectID(),
 			Name:               "United States",
 			AllowsBilling:      true,
 			AllowsShipping:     true,
@@ -131,7 +131,7 @@ func TestCountryUsecase_Fetch(t *testing.T) {
 			LimitedToStores:    false,
 		},
 		{
-			ID:                 primitive.NewObjectID(),
+			ID:                 bson.NewObjectID(),
 			Name:               "Canada",
 			AllowsBilling:      true,
 			AllowsShipping:     true,

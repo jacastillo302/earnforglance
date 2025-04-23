@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestProductAttributeCombinationPictureUsecase_FetchByID(t *testing.T) {
@@ -18,12 +18,12 @@ func TestProductAttributeCombinationPictureUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewProductAttributeCombinationPictureUsecase(mockRepo, timeout)
 
-	productAttributeCombinationPictureID := primitive.NewObjectID().Hex()
+	productAttributeCombinationPictureID := bson.NewObjectID().Hex()
 
 	expectedProductAttributeCombinationPicture := domain.ProductAttributeCombinationPicture{
-		ID:                            primitive.NewObjectID(),
-		ProductAttributeCombinationID: primitive.NewObjectID(),
-		PictureID:                     primitive.NewObjectID(),
+		ID:                            bson.NewObjectID(),
+		ProductAttributeCombinationID: bson.NewObjectID(),
+		PictureID:                     bson.NewObjectID(),
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, productAttributeCombinationPictureID).Return(expectedProductAttributeCombinationPicture, nil)
@@ -41,8 +41,8 @@ func TestProductAttributeCombinationPictureUsecase_Create(t *testing.T) {
 	usecase := test.NewProductAttributeCombinationPictureUsecase(mockRepo, timeout)
 
 	newProductAttributeCombinationPicture := &domain.ProductAttributeCombinationPicture{
-		ProductAttributeCombinationID: primitive.NewObjectID(),
-		PictureID:                     primitive.NewObjectID(),
+		ProductAttributeCombinationID: bson.NewObjectID(),
+		PictureID:                     bson.NewObjectID(),
 	}
 
 	mockRepo.On("Create", mock.Anything, newProductAttributeCombinationPicture).Return(nil)
@@ -59,9 +59,9 @@ func TestProductAttributeCombinationPictureUsecase_Update(t *testing.T) {
 	usecase := test.NewProductAttributeCombinationPictureUsecase(mockRepo, timeout)
 
 	updatedProductAttributeCombinationPicture := &domain.ProductAttributeCombinationPicture{
-		ID:                            primitive.NewObjectID(),
-		ProductAttributeCombinationID: primitive.NewObjectID(),
-		PictureID:                     primitive.NewObjectID(),
+		ID:                            bson.NewObjectID(),
+		ProductAttributeCombinationID: bson.NewObjectID(),
+		PictureID:                     bson.NewObjectID(),
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedProductAttributeCombinationPicture).Return(nil)
@@ -77,7 +77,7 @@ func TestProductAttributeCombinationPictureUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewProductAttributeCombinationPictureUsecase(mockRepo, timeout)
 
-	productAttributeCombinationPictureID := primitive.NewObjectID().Hex()
+	productAttributeCombinationPictureID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, productAttributeCombinationPictureID).Return(nil)
 
@@ -94,14 +94,14 @@ func TestProductAttributeCombinationPictureUsecase_Fetch(t *testing.T) {
 
 	expectedProductAttributeCombinationPictures := []domain.ProductAttributeCombinationPicture{
 		{
-			ID:                            primitive.NewObjectID(),
-			ProductAttributeCombinationID: primitive.NewObjectID(),
-			PictureID:                     primitive.NewObjectID(),
+			ID:                            bson.NewObjectID(),
+			ProductAttributeCombinationID: bson.NewObjectID(),
+			PictureID:                     bson.NewObjectID(),
 		},
 		{
-			ID:                            primitive.NewObjectID(),
-			ProductAttributeCombinationID: primitive.NewObjectID(),
-			PictureID:                     primitive.NewObjectID(),
+			ID:                            bson.NewObjectID(),
+			ProductAttributeCombinationID: bson.NewObjectID(),
+			PictureID:                     bson.NewObjectID(),
 		},
 	}
 

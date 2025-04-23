@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestSitemapSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestSitemapSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewSitemapSettingsUsecase(mockRepo, timeout)
 
-	sitemapSettingsID := primitive.NewObjectID().Hex()
+	sitemapSettingsID := bson.NewObjectID().Hex()
 
 	updatedSitemapSettings := domain.SitemapSettings{
-		ID:                             primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                             bson.NewObjectID(), // Existing ID of the record to update
 		SitemapEnabled:                 false,
 		SitemapPageSize:                50,
 		SitemapIncludeBlogPosts:        false,
@@ -73,7 +73,7 @@ func TestSitemapSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewSitemapSettingsUsecase(mockRepo, timeout)
 
 	updatedSitemapSettings := &domain.SitemapSettings{
-		ID:                             primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                             bson.NewObjectID(), // Existing ID of the record to update
 		SitemapEnabled:                 false,
 		SitemapPageSize:                50,
 		SitemapIncludeBlogPosts:        false,
@@ -98,7 +98,7 @@ func TestSitemapSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewSitemapSettingsUsecase(mockRepo, timeout)
 
-	sitemapSettingsID := primitive.NewObjectID().Hex()
+	sitemapSettingsID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, sitemapSettingsID).Return(nil)
 
@@ -115,7 +115,7 @@ func TestSitemapSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedSitemapSettings := []domain.SitemapSettings{
 		{
-			ID:                             primitive.NewObjectID(),
+			ID:                             bson.NewObjectID(),
 			SitemapEnabled:                 true,
 			SitemapPageSize:                100,
 			SitemapIncludeBlogPosts:        true,
@@ -127,7 +127,7 @@ func TestSitemapSettingsUsecase_Fetch(t *testing.T) {
 			SitemapIncludeTopics:           true,
 		},
 		{
-			ID:                             primitive.NewObjectID(),
+			ID:                             bson.NewObjectID(),
 			SitemapEnabled:                 false,
 			SitemapPageSize:                50,
 			SitemapIncludeBlogPosts:        false,

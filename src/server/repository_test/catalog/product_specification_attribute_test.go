@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultProductSpecificationAttribute struct {
@@ -28,9 +28,9 @@ func (m *MockSingleResultProductSpecificationAttribute) Decode(v interface{}) er
 }
 
 var mockItemProductSpecificationAttribute = &domain.ProductSpecificationAttribute{
-	ProductID:                      primitive.NewObjectID(),
+	ProductID:                      bson.NewObjectID(),
 	SpecificationAttributeTypeID:   0,
-	SpecificationAttributeOptionID: primitive.NewObjectID(),
+	SpecificationAttributeOptionID: bson.NewObjectID(),
 	CustomValue:                    "Updated Custom Value",
 	AllowFiltering:                 false,
 	ShowOnProductPage:              false,

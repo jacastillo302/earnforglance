@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestForumGroupUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestForumGroupUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewForumGroupUsecase(mockRepo, timeout)
 
-	forumGroupID := primitive.NewObjectID().Hex()
+	forumGroupID := bson.NewObjectID().Hex()
 
 	updatedForumGroup := domain.ForumGroup{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
 		Name:         "Announcements",
 		DisplayOrder: 2,
 		CreatedOnUtc: time.Now().AddDate(0, 0, -30), // Created 30 days ago
@@ -63,7 +63,7 @@ func TestForumGroupUsecase_Update(t *testing.T) {
 	usecase := test.NewForumGroupUsecase(mockRepo, timeout)
 
 	updatedForumGroup := &domain.ForumGroup{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
 		Name:         "Announcements",
 		DisplayOrder: 2,
 		CreatedOnUtc: time.Now().AddDate(0, 0, -30), // Created 30 days ago
@@ -83,7 +83,7 @@ func TestForumGroupUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewForumGroupUsecase(mockRepo, timeout)
 
-	forumGroupID := primitive.NewObjectID().Hex()
+	forumGroupID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, forumGroupID).Return(nil)
 
@@ -100,14 +100,14 @@ func TestForumGroupUsecase_Fetch(t *testing.T) {
 
 	fetchedForumGroups := []domain.ForumGroup{
 		{
-			ID:           primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
 			Name:         "General Discussion",
 			DisplayOrder: 1,
 			CreatedOnUtc: time.Now().AddDate(0, 0, -10), // Created 10 days ago
 			UpdatedOnUtc: time.Now(),
 		},
 		{
-			ID:           primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
 			Name:         "Announcements",
 			DisplayOrder: 2,
 			CreatedOnUtc: time.Now().AddDate(0, 0, -30), // Created 30 days ago

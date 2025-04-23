@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestVideoUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestVideoUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewVideoUsecase(mockRepo, timeout)
 
-	videoID := primitive.NewObjectID().Hex()
+	videoID := bson.NewObjectID().Hex()
 
 	updatedVideo := domain.Video{
-		ID:       primitive.NewObjectID(), // Existing ID of the record to update
+		ID:       bson.NewObjectID(), // Existing ID of the record to update
 		VideoUrl: "https://example.com/updated-video.mp4",
 	}
 
@@ -57,7 +57,7 @@ func TestVideoUsecase_Update(t *testing.T) {
 	usecase := test.NewVideoUsecase(mockRepo, timeout)
 
 	updatedVideo := &domain.Video{
-		ID:       primitive.NewObjectID(), // Existing ID of the record to update
+		ID:       bson.NewObjectID(), // Existing ID of the record to update
 		VideoUrl: "https://example.com/updated-video.mp4",
 	}
 
@@ -74,7 +74,7 @@ func TestVideoUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewVideoUsecase(mockRepo, timeout)
 
-	videoID := primitive.NewObjectID().Hex()
+	videoID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, videoID).Return(nil)
 
@@ -91,11 +91,11 @@ func TestVideoUsecase_Fetch(t *testing.T) {
 
 	fetchedVideos := []domain.Video{
 		{
-			ID:       primitive.NewObjectID(),
+			ID:       bson.NewObjectID(),
 			VideoUrl: "https://example.com/video1.mp4",
 		},
 		{
-			ID:       primitive.NewObjectID(),
+			ID:       bson.NewObjectID(),
 			VideoUrl: "https://example.com/video2.mp4",
 		},
 	}

@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestScheduleTaskUsecase_FetchByID(t *testing.T) {
@@ -18,9 +18,9 @@ func TestScheduleTaskUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewScheduleTaskUsecase(mockRepo, timeout)
 
-	scheduleTaskID := primitive.NewObjectID().Hex()
+	scheduleTaskID := bson.NewObjectID().Hex()
 	updatedScheduleTask := domain.ScheduleTask{
-		ID:             primitive.NewObjectID(), // Existing ID of the record to update
+		ID:             bson.NewObjectID(), // Existing ID of the record to update
 		Name:           "Weekly Data Cleanup",
 		Seconds:        604800,
 		Type:           "CleanupTask",
@@ -72,7 +72,7 @@ func TestScheduleTaskUsecase_Update(t *testing.T) {
 	usecase := test.NewScheduleTaskUsecase(mockRepo, timeout)
 
 	updatedScheduleTask := &domain.ScheduleTask{
-		ID:             primitive.NewObjectID(), // Existing ID of the record to update
+		ID:             bson.NewObjectID(), // Existing ID of the record to update
 		Name:           "Weekly Data Cleanup",
 		Seconds:        604800,
 		Type:           "CleanupTask",
@@ -101,7 +101,7 @@ func TestScheduleTaskUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewScheduleTaskUsecase(mockRepo, timeout)
 
-	scheduleTaskID := primitive.NewObjectID().Hex()
+	scheduleTaskID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, scheduleTaskID).Return(nil)
 
@@ -117,7 +117,7 @@ func TestScheduleTaskUsecase_Fetch(t *testing.T) {
 	usecase := test.NewScheduleTaskUsecase(mockRepo, timeout)
 	fetchedScheduleTasks := []domain.ScheduleTask{
 		{
-			ID:             primitive.NewObjectID(),
+			ID:             bson.NewObjectID(),
 			Name:           "Daily Data Backup",
 			Seconds:        86400,
 			Type:           "BackupTask",
@@ -129,7 +129,7 @@ func TestScheduleTaskUsecase_Fetch(t *testing.T) {
 			LastSuccessUtc: nil,
 		},
 		{
-			ID:             primitive.NewObjectID(),
+			ID:             bson.NewObjectID(),
 			Name:           "Weekly Data Cleanup",
 			Seconds:        604800,
 			Type:           "CleanupTask",

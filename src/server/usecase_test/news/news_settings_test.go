@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestNewsSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestNewsSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewNewsSettingsUsecase(mockRepo, timeout)
 
-	newsID := primitive.NewObjectID().Hex()
+	newsID := bson.NewObjectID().Hex()
 
 	updatedNewsSettings := domain.NewsSettings{
-		ID:                                     primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                     bson.NewObjectID(), // Existing ID of the record to update
 		Enabled:                                false,
 		AllowNotRegisteredUsersToLeaveComments: true,
 		NotifyAboutNewNewsComments:             false,
@@ -73,7 +73,7 @@ func TestNewsSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewNewsSettingsUsecase(mockRepo, timeout)
 
 	updatedNewsSettings := &domain.NewsSettings{
-		ID:                                     primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                     bson.NewObjectID(), // Existing ID of the record to update
 		Enabled:                                false,
 		AllowNotRegisteredUsersToLeaveComments: true,
 		NotifyAboutNewNewsComments:             false,
@@ -98,7 +98,7 @@ func TestNewsSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewNewsSettingsUsecase(mockRepo, timeout)
 
-	newsID := primitive.NewObjectID().Hex()
+	newsID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, newsID).Return(nil)
 
@@ -115,7 +115,7 @@ func TestNewsSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedNewsSettings := []domain.NewsSettings{
 		{
-			ID:                                     primitive.NewObjectID(),
+			ID:                                     bson.NewObjectID(),
 			Enabled:                                true,
 			AllowNotRegisteredUsersToLeaveComments: false,
 			NotifyAboutNewNewsComments:             true,
@@ -127,7 +127,7 @@ func TestNewsSettingsUsecase_Fetch(t *testing.T) {
 			ShowNewsCommentsPerStore:               false,
 		},
 		{
-			ID:                                     primitive.NewObjectID(),
+			ID:                                     bson.NewObjectID(),
 			Enabled:                                false,
 			AllowNotRegisteredUsersToLeaveComments: true,
 			NotifyAboutNewNewsComments:             false,

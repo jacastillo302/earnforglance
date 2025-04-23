@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultNewsComment struct {
@@ -29,13 +29,13 @@ func (m *MockSingleResultNewsComment) Decode(v interface{}) error {
 }
 
 var mockItemNewsComment = &domain.NewsComment{
-	ID:           primitive.NewObjectID(), // Existing ID of the record to update
+	ID:           bson.NewObjectID(), // Existing ID of the record to update
 	CommentTitle: "Updated Comment Title",
 	CommentText:  "This is an updated comment text.",
-	NewsItemID:   primitive.NewObjectID(),
-	CustomerID:   primitive.NewObjectID(),
+	NewsItemID:   bson.NewObjectID(),
+	CustomerID:   bson.NewObjectID(),
 	IsApproved:   false,
-	StoreID:      primitive.NewObjectID(),
+	StoreID:      bson.NewObjectID(),
 	CreatedOnUtc: time.Now().AddDate(0, 0, -7), // Created 7 days ago
 }
 

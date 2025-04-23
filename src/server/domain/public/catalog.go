@@ -16,6 +16,20 @@ type Filter struct {
 	Operator string
 }
 
+type ManufacturerRequest struct {
+	ID                  string
+	Filters             []Filter
+	Sort                string
+	Limit               int
+	Page                int
+	Lang                string
+	PriceRangeFiltering bool
+	ManuallyPriceRange  bool
+	PriceFrom           float64
+	PriceTo             float64
+	Content             []string
+}
+
 type CategoryRequest struct {
 	ID                  string
 	Filters             []Filter
@@ -56,6 +70,12 @@ type CategoryResponse struct {
 	Template domain.CategoryTemplate
 	Picture  media.Picture
 	Childs   []CategoryChilds
+}
+
+type ManufacturerResponse struct {
+	Manufacturer domain.Manufacturer
+	Template     domain.ManufacturerTemplate
+	Picture      media.Picture
 }
 
 type CategoryChilds struct {
@@ -101,6 +121,10 @@ type CategoriesResponse struct {
 	Categories []CategoryResponse
 }
 
+type ManufacturersResponse struct {
+	Manufacturers []ManufacturerResponse
+}
+
 type ProductAttributeCombination struct {
 	Value    domain.ProductAttributeCombination
 	Pictures []media.Picture
@@ -144,9 +168,11 @@ type Type struct {
 type CatalogRepository interface {
 	GetCategories(c context.Context, filter CategoryRequest) ([]CategoriesResponse, error)
 	GetProducts(c context.Context, filter ProductRequest) ([]ProductsResponse, error)
+	GetManufacturers(c context.Context, filter ManufacturerRequest) ([]ManufacturersResponse, error)
 }
 
 type CatalogtUsecase interface {
 	GetCategories(c context.Context, filter CategoryRequest) ([]CategoriesResponse, error)
 	GetProducts(c context.Context, filter ProductRequest) ([]ProductsResponse, error)
+	GetManufacturers(c context.Context, filter ManufacturerRequest) ([]ManufacturersResponse, error)
 }

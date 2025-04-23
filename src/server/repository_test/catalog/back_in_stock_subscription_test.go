@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultBackInStockSubscription struct {
@@ -37,10 +37,10 @@ func TestBackInStockSubscriptionRepository_FetchByID(t *testing.T) {
 	collectionName := domain.CollectionBackInStockSubscription
 
 	mockItem := domain.BackInStockSubscription{
-		ID:           primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, // Existing ID of the record to update
-		StoreID:      primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
-		ProductID:    primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
-		CustomerID:   primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+		ID:           bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, // Existing ID of the record to update
+		StoreID:      bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+		ProductID:    bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+		CustomerID:   bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
 		CreatedOnUtc: time.Date(1, time.January, 1, 0, 0, 0, 0, time.UTC),
 	}
 
@@ -88,10 +88,10 @@ func TestBackInStockSubscriptionRepository_Create(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockBackInStockSubscription := &domain.BackInStockSubscription{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		StoreID:      primitive.NewObjectID(),
-		ProductID:    primitive.NewObjectID(),
-		CustomerID:   primitive.NewObjectID(),
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
+		StoreID:      bson.NewObjectID(),
+		ProductID:    bson.NewObjectID(),
+		CustomerID:   bson.NewObjectID(),
 		CreatedOnUtc: time.Now(),
 	}
 
@@ -113,10 +113,10 @@ func TestBackInStockSubscriptionRepository_Update(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockBackInStockSubscription := &domain.BackInStockSubscription{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		StoreID:      primitive.NewObjectID(),
-		ProductID:    primitive.NewObjectID(),
-		CustomerID:   primitive.NewObjectID(),
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
+		StoreID:      bson.NewObjectID(),
+		ProductID:    bson.NewObjectID(),
+		CustomerID:   bson.NewObjectID(),
 		CreatedOnUtc: time.Now(),
 	}
 

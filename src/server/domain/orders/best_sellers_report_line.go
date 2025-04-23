@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,10 +12,10 @@ const (
 
 // BestSellersReportLine represents a best sellers report line
 type BestSellersReportLine struct {
-	ProductID     primitive.ObjectID `bson:"product_id"`
-	ProductName   string             `bson:"product_name"`
-	TotalAmount   float64            `bson:"total_amount"`
-	TotalQuantity int                `bson:"total_quantity"`
+	ProductID     bson.ObjectID `bson:"product_id"`
+	ProductName   string        `bson:"product_name"`
+	TotalAmount   float64       `bson:"total_amount"`
+	TotalQuantity int           `bson:"total_quantity"`
 }
 
 type BestSellersReportLineRepository interface {

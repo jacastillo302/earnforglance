@@ -11,7 +11,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestBaseAttributeValueUsecase_FetchByID(t *testing.T) {
@@ -19,14 +19,14 @@ func TestBaseAttributeValueUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewBaseAttributeValueUsecase(mockRepo, timeout)
 
-	baseAttributeValueID := primitive.NewObjectID().Hex()
+	baseAttributeValueID := bson.NewObjectID().Hex()
 
 	expectedBaseAttributeValue := domain.BaseAttributeValue{
-		ID:            primitive.NewObjectID(), // This can be omitted for creation as MongoDB generates it
+		ID:            bson.NewObjectID(), // This can be omitted for creation as MongoDB generates it
 		Name:          "Color",
 		IsPreSelected: false,
 		DisplayOrder:  1,
-		AttributeId:   primitive.NewObjectID(), // Reference to the related attribute
+		AttributeId:   bson.NewObjectID(), // Reference to the related attribute
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, baseAttributeValueID).Return(expectedBaseAttributeValue, nil)
@@ -44,11 +44,11 @@ func TestBaseAttributeValueUsecase_Create(t *testing.T) {
 	usecase := test.NewBaseAttributeValueUsecase(mockRepo, timeout)
 
 	newBaseAttributeValue := &domain.BaseAttributeValue{
-		ID:            primitive.NewObjectID(), // Existing ID of the record to update
+		ID:            bson.NewObjectID(), // Existing ID of the record to update
 		Name:          "Size",
 		IsPreSelected: true,
 		DisplayOrder:  2,
-		AttributeId:   primitive.NewObjectID(), // Reference to the related attribute
+		AttributeId:   bson.NewObjectID(), // Reference to the related attribute
 	}
 
 	mockRepo.On("Create", mock.Anything, newBaseAttributeValue).Return(nil)
@@ -65,11 +65,11 @@ func TestBaseAttributeValueUsecase_Update(t *testing.T) {
 	usecase := test.NewBaseAttributeValueUsecase(mockRepo, timeout)
 
 	updatedBaseAttributeValue := &domain.BaseAttributeValue{
-		ID:            primitive.NewObjectID(), // Existing ID of the record to update
+		ID:            bson.NewObjectID(), // Existing ID of the record to update
 		Name:          "Size",
 		IsPreSelected: true,
 		DisplayOrder:  2,
-		AttributeId:   primitive.NewObjectID(), // Reference to the related attribute
+		AttributeId:   bson.NewObjectID(), // Reference to the related attribute
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedBaseAttributeValue).Return(nil)
@@ -85,7 +85,7 @@ func TestBaseAttributeValueUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewBaseAttributeValueUsecase(mockRepo, timeout)
 
-	baseAttributeValueID := primitive.NewObjectID().Hex()
+	baseAttributeValueID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, baseAttributeValueID).Return(nil)
 
@@ -102,18 +102,18 @@ func TestBaseAttributeValueUsecase_Fetch(t *testing.T) {
 
 	expectedBaseAttributeValues := []domain.BaseAttributeValue{
 		{
-			ID:            primitive.NewObjectID(),
+			ID:            bson.NewObjectID(),
 			Name:          "Material",
 			IsPreSelected: false,
 			DisplayOrder:  3,
-			AttributeId:   primitive.NewObjectID(),
+			AttributeId:   bson.NewObjectID(),
 		},
 		{
-			ID:            primitive.NewObjectID(),
+			ID:            bson.NewObjectID(),
 			Name:          "Brand",
 			IsPreSelected: true,
 			DisplayOrder:  4,
-			AttributeId:   primitive.NewObjectID(),
+			AttributeId:   bson.NewObjectID(),
 		},
 	}
 

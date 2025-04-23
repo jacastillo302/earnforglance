@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,13 +12,13 @@ const (
 
 // PermissionRecordCustomerRoleMapping represents a permission record-customer role mapping class
 type PermissionRecordCustomerRoleMapping struct {
-	ID                 primitive.ObjectID `bson:"_id,omitempty"`
-	PermissionRecordID primitive.ObjectID `bson:"permission_record_id"`
-	CustomerRoleID     primitive.ObjectID `bson:"customer_role_id"`
-	IsRead             bool               `bson:"is_read"`
-	IsDelete           bool               `bson:"is_delete"`
-	IsUpdate           bool               `bson:"is_update"`
-	IsCreate           bool               `bson:"is_create"`
+	ID                 bson.ObjectID `bson:"_id,omitempty"`
+	PermissionRecordID bson.ObjectID `bson:"permission_record_id"`
+	CustomerRoleID     bson.ObjectID `bson:"customer_role_id"`
+	IsRead             bool          `bson:"is_read"`
+	IsDelete           bool          `bson:"is_delete"`
+	IsUpdate           bool          `bson:"is_update"`
+	IsCreate           bool          `bson:"is_create"`
 }
 
 type PermissionRecordCustomerRoleMappingRepository interface {

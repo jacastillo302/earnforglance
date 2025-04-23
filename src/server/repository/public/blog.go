@@ -8,9 +8,8 @@ import (
 	security "earnforglance/server/domain/security"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type blogRepository struct {
@@ -30,7 +29,7 @@ func (br *blogRepository) GetBlogs(c context.Context, filter domain.BlogRequest)
 	var blogs []blog.BlogPost
 	err := error(nil)
 
-	idHex, err := primitive.ObjectIDFromHex(filter.ID)
+	idHex, err := bson.ObjectIDFromHex(filter.ID)
 	if err == nil {
 		var blogg blog.BlogPost
 
@@ -80,7 +79,7 @@ func (br *blogRepository) GetBlogs(c context.Context, filter domain.BlogRequest)
 
 	findOptions := options.Find().
 		SetSort(bson.D{{Key: "_id", Value: sortOrder}}).
-		SetLimit(int64(limit))
+		SetLimit(limit)
 
 	collection := br.database.Collection(blog.CollectionBlogPost)
 	cursor, err := collection.Find(c, query, findOptions)

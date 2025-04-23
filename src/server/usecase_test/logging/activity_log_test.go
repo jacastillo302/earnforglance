@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestActivityLogUsecase_FetchByID(t *testing.T) {
@@ -18,19 +18,19 @@ func TestActivityLogUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewActivityLogUsecase(mockRepo, timeout)
 
-	loggingID := primitive.NewObjectID().Hex()
+	loggingID := bson.NewObjectID().Hex()
 
 	updatedActivityLog := domain.ActivityLog{
-		ID:                primitive.NewObjectID(), // Existing ID of the record to update
-		ActivityLogTypeID: primitive.NewObjectID(),
-		EntityID:          new(primitive.ObjectID),
+		ID:                bson.NewObjectID(), // Existing ID of the record to update
+		ActivityLogTypeID: bson.NewObjectID(),
+		EntityID:          new(bson.ObjectID),
 		EntityName:        "Product",
-		CustomerID:        primitive.NewObjectID(),
+		CustomerID:        bson.NewObjectID(),
 		Comment:           "Customer viewed a product.",
 		CreatedOnUtc:      time.Now().AddDate(0, 0, -7), // Created 7 days ago
 		IpAddress:         "192.168.1.2",
 	}
-	*updatedActivityLog.EntityID = primitive.NewObjectID()
+	*updatedActivityLog.EntityID = bson.NewObjectID()
 
 	mockRepo.On("FetchByID", mock.Anything, loggingID).Return(updatedActivityLog, nil)
 
@@ -47,10 +47,10 @@ func TestActivityLogUsecase_Create(t *testing.T) {
 	usecase := test.NewActivityLogUsecase(mockRepo, timeout)
 
 	newActivityLog := &domain.ActivityLog{
-		ActivityLogTypeID: primitive.NewObjectID(),
+		ActivityLogTypeID: bson.NewObjectID(),
 		EntityID:          nil,
 		EntityName:        "Order",
-		CustomerID:        primitive.NewObjectID(),
+		CustomerID:        bson.NewObjectID(),
 		Comment:           "Customer placed an order.",
 		CreatedOnUtc:      time.Now(),
 		IpAddress:         "192.168.1.1",
@@ -70,16 +70,16 @@ func TestActivityLogUsecase_Update(t *testing.T) {
 	usecase := test.NewActivityLogUsecase(mockRepo, timeout)
 
 	updatedActivityLog := &domain.ActivityLog{
-		ID:                primitive.NewObjectID(), // Existing ID of the record to update
-		ActivityLogTypeID: primitive.NewObjectID(),
-		EntityID:          new(primitive.ObjectID),
+		ID:                bson.NewObjectID(), // Existing ID of the record to update
+		ActivityLogTypeID: bson.NewObjectID(),
+		EntityID:          new(bson.ObjectID),
 		EntityName:        "Product",
-		CustomerID:        primitive.NewObjectID(),
+		CustomerID:        bson.NewObjectID(),
 		Comment:           "Customer viewed a product.",
 		CreatedOnUtc:      time.Now().AddDate(0, 0, -7), // Created 7 days ago
 		IpAddress:         "192.168.1.2",
 	}
-	*updatedActivityLog.EntityID = primitive.NewObjectID()
+	*updatedActivityLog.EntityID = bson.NewObjectID()
 
 	mockRepo.On("Update", mock.Anything, updatedActivityLog).Return(nil)
 
@@ -94,7 +94,7 @@ func TestActivityLogUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewActivityLogUsecase(mockRepo, timeout)
 
-	loggingID := primitive.NewObjectID().Hex()
+	loggingID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, loggingID).Return(nil)
 
@@ -111,27 +111,27 @@ func TestActivityLogUsecase_Fetch(t *testing.T) {
 
 	fetchedActivityLogs := []domain.ActivityLog{
 		{
-			ID:                primitive.NewObjectID(),
-			ActivityLogTypeID: primitive.NewObjectID(),
+			ID:                bson.NewObjectID(),
+			ActivityLogTypeID: bson.NewObjectID(),
 			EntityID:          nil,
 			EntityName:        "Order",
-			CustomerID:        primitive.NewObjectID(),
+			CustomerID:        bson.NewObjectID(),
 			Comment:           "Customer placed an order.",
 			CreatedOnUtc:      time.Now().AddDate(0, 0, -10), // Created 10 days ago
 			IpAddress:         "192.168.1.1",
 		},
 		{
-			ID:                primitive.NewObjectID(),
-			ActivityLogTypeID: primitive.NewObjectID(),
-			EntityID:          new(primitive.ObjectID),
+			ID:                bson.NewObjectID(),
+			ActivityLogTypeID: bson.NewObjectID(),
+			EntityID:          new(bson.ObjectID),
 			EntityName:        "Product",
-			CustomerID:        primitive.NewObjectID(),
+			CustomerID:        bson.NewObjectID(),
 			Comment:           "Customer viewed a product.",
 			CreatedOnUtc:      time.Now().AddDate(0, 0, -5), // Created 5 days ago
 			IpAddress:         "192.168.1.2",
 		},
 	}
-	*fetchedActivityLogs[1].EntityID = primitive.NewObjectID()
+	*fetchedActivityLogs[1].EntityID = bson.NewObjectID()
 
 	mockRepo.On("Fetch", mock.Anything).Return(fetchedActivityLogs, nil)
 

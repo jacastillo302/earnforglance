@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/polls"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type pollvotingrecordRepository struct {
@@ -58,7 +57,7 @@ func (ur *pollvotingrecordRepository) Update(c context.Context, pollvotingrecord
 func (ur *pollvotingrecordRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,8 +70,9 @@ func (ur *pollvotingrecordRepository) Delete(c context.Context, ID string) error
 func (ur *pollvotingrecordRepository) Fetch(c context.Context) ([]domain.PollVotingRecord, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
-	cursor, err := collection.Find(c, bson.D{}, opts)
+	findOptions := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
+	cursor, err := collection.Find(c, bson.D{}, findOptions)
 
 	if err != nil {
 		return nil, err
@@ -93,7 +93,7 @@ func (tr *pollvotingrecordRepository) FetchByID(c context.Context, pollvotingrec
 
 	var pollvotingrecord domain.PollVotingRecord
 
-	idHex, err := primitive.ObjectIDFromHex(pollvotingrecordID)
+	idHex, err := bson.ObjectIDFromHex(pollvotingrecordID)
 	if err != nil {
 		return pollvotingrecord, err
 	}

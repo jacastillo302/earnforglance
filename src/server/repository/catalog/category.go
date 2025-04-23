@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/catalog"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type categoryRepository struct {
@@ -58,7 +57,7 @@ func (ur *categoryRepository) Update(c context.Context, category *domain.Categor
 func (ur *categoryRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *categoryRepository) Delete(c context.Context, ID string) error {
 func (ur *categoryRepository) Fetch(c context.Context) ([]domain.Category, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *categoryRepository) FetchByID(c context.Context, categoryID string) (d
 
 	var category domain.Category
 
-	idHex, err := primitive.ObjectIDFromHex(categoryID)
+	idHex, err := bson.ObjectIDFromHex(categoryID)
 	if err != nil {
 		return category, err
 	}

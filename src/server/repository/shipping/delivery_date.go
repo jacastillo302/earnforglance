@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/shipping"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type deliverydateRepository struct {
@@ -58,7 +57,7 @@ func (ur *deliverydateRepository) Update(c context.Context, deliverydate *domain
 func (ur *deliverydateRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -70,7 +69,8 @@ func (ur *deliverydateRepository) Delete(c context.Context, ID string) error {
 func (ur *deliverydateRepository) Fetch(c context.Context) ([]domain.DeliveryDate, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -92,7 +92,7 @@ func (tr *deliverydateRepository) FetchByID(c context.Context, deliverydateID st
 
 	var deliverydate domain.DeliveryDate
 
-	idHex, err := primitive.ObjectIDFromHex(deliverydateID)
+	idHex, err := bson.ObjectIDFromHex(deliverydateID)
 	if err != nil {
 		return deliverydate, err
 	}

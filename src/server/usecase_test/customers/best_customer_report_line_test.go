@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestBestCustomerReportLineUsecase_FetchByID(t *testing.T) {
@@ -18,11 +18,11 @@ func TestBestCustomerReportLineUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewBestCustomerReportLineUsecase(mockRepo, timeout)
 
-	customerID := primitive.NewObjectID().Hex()
+	customerID := bson.NewObjectID().Hex()
 
 	updatedBestCustomerReportLine := domain.BestCustomerReportLine{
-		ID:         primitive.NewObjectID(), // Existing ID of the record to update
-		CustomerID: primitive.NewObjectID(),
+		ID:         bson.NewObjectID(), // Existing ID of the record to update
+		CustomerID: bson.NewObjectID(),
 		OrderTotal: 2000.50,
 		OrderCount: 15,
 	}
@@ -42,7 +42,7 @@ func TestBestCustomerReportLineUsecase_Create(t *testing.T) {
 	usecase := test.NewBestCustomerReportLineUsecase(mockRepo, timeout)
 
 	newBestCustomerReportLine := &domain.BestCustomerReportLine{
-		CustomerID: primitive.NewObjectID(),
+		CustomerID: bson.NewObjectID(),
 		OrderTotal: 1500.75,
 		OrderCount: 10,
 	}
@@ -61,8 +61,8 @@ func TestBestCustomerReportLineUsecase_Update(t *testing.T) {
 	usecase := test.NewBestCustomerReportLineUsecase(mockRepo, timeout)
 
 	updatedBestCustomerReportLine := &domain.BestCustomerReportLine{
-		ID:         primitive.NewObjectID(), // Existing ID of the record to update
-		CustomerID: primitive.NewObjectID(),
+		ID:         bson.NewObjectID(), // Existing ID of the record to update
+		CustomerID: bson.NewObjectID(),
 		OrderTotal: 2000.50,
 		OrderCount: 15,
 	}
@@ -80,7 +80,7 @@ func TestBestCustomerReportLineUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewBestCustomerReportLineUsecase(mockRepo, timeout)
 
-	customerID := primitive.NewObjectID().Hex()
+	customerID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, customerID).Return(nil)
 
@@ -97,14 +97,14 @@ func TestBestCustomerReportLineUsecase_Fetch(t *testing.T) {
 
 	fetchedBestCustomerReportLines := []domain.BestCustomerReportLine{
 		{
-			ID:         primitive.NewObjectID(),
-			CustomerID: primitive.NewObjectID(),
+			ID:         bson.NewObjectID(),
+			CustomerID: bson.NewObjectID(),
 			OrderTotal: 1500.75,
 			OrderCount: 10,
 		},
 		{
-			ID:         primitive.NewObjectID(),
-			CustomerID: primitive.NewObjectID(),
+			ID:         bson.NewObjectID(),
+			CustomerID: bson.NewObjectID(),
 			OrderTotal: 2000.50,
 			OrderCount: 15,
 		},

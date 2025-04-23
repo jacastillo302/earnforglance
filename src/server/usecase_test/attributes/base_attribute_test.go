@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestBaseAttributeUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestBaseAttributeUsecase_FetchByID(t *testing.T) {
 	time := time.Duration(10)
 	usecase := test.NewBaseAttributeUsecase(mockRepo, time) // Assuming a constructor exists
 
-	attributesID := primitive.NewObjectID().Hex()
+	attributesID := bson.NewObjectID().Hex()
 
 	expectedBaseAttribute := domain.BaseAttribute{
-		ID:                     primitive.NewObjectID(),
+		ID:                     bson.NewObjectID(),
 		Name:                   "Test Attribute",
 		IsRequired:             true,
 		AttributeControlTypeId: 1, // Example: TextBox
@@ -43,7 +43,7 @@ func TestBaseAttributeUsecase_Create(t *testing.T) {
 	usecase := test.NewBaseAttributeUsecase(mockRepo, time) // Assuming a constructor exists
 
 	newBaseAttribute := &domain.BaseAttribute{
-		ID:                     primitive.NewObjectID(),
+		ID:                     bson.NewObjectID(),
 		Name:                   "Test Attribute",
 		IsRequired:             true,
 		AttributeControlTypeId: 1, // Example: TextBox
@@ -64,7 +64,7 @@ func TestBaseAttributeUsecase_Update(t *testing.T) {
 	usecase := test.NewBaseAttributeUsecase(mockRepo, time)
 
 	updatedBaseAttribute := &domain.BaseAttribute{
-		ID:                     primitive.NewObjectID(),
+		ID:                     bson.NewObjectID(),
 		Name:                   "Test Attribute",
 		IsRequired:             true,
 		AttributeControlTypeId: 1, // Example: TextBox
@@ -84,7 +84,7 @@ func TestBaseAttributeUsecase_Delete(t *testing.T) {
 	time := time.Duration(10)
 	usecase := test.NewBaseAttributeUsecase(mockRepo, time)
 
-	attributesID := primitive.NewObjectID().Hex()
+	attributesID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, attributesID).Return(nil)
 
@@ -101,14 +101,14 @@ func TestBaseAttributeUsecase_Fetch(t *testing.T) {
 
 	expectedBaseAttributes := []domain.BaseAttribute{
 		{
-			ID:                     primitive.NewObjectID(),
+			ID:                     bson.NewObjectID(),
 			Name:                   "Test Attribute",
 			IsRequired:             true,
 			AttributeControlTypeId: 1, // Example: TextBox
 			DisplayOrder:           5,
 		},
 		{
-			ID:                     primitive.NewObjectID(),
+			ID:                     bson.NewObjectID(),
 			Name:                   "Test Attribute",
 			IsRequired:             true,
 			AttributeControlTypeId: 1, // Example: TextBox

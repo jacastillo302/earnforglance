@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultLog struct {
@@ -29,12 +29,12 @@ func (m *MockSingleResultLog) Decode(v interface{}) error {
 }
 
 var mockItemLog = &domain.Log{
-	ID:           primitive.NewObjectID(), // Existing ID of the record to update
+	ID:           bson.NewObjectID(), // Existing ID of the record to update
 	LogLevelID:   2,
 	ShortMessage: "Application error",
 	FullMessage:  "An error occurred while processing the request.",
 	IpAddress:    "192.168.1.2",
-	CustomerID:   new(primitive.ObjectID),
+	CustomerID:   new(bson.ObjectID),
 	PageUrl:      "/error",
 	ReferrerUrl:  "/home",
 	CreatedOnUtc: time.Now().AddDate(0, 0, -7),

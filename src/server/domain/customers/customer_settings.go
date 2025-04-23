@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,55 +12,55 @@ const (
 
 // CustomerSettings represents customer settings in the system.
 type CustomerSettings struct {
-	ID                                         primitive.ObjectID `bson:"_id,omitempty"`
-	UsernamesEnabled                           bool               `bson:"usernames_enabled"`
-	CheckUsernameAvailabilityEnabled           bool               `bson:"check_username_availability_enabled"`
-	AllowUsersToChangeUsernames                bool               `bson:"allow_users_to_change_usernames"`
-	UsernameValidationEnabled                  bool               `bson:"username_validation_enabled"`
-	UsernameValidationUseRegex                 bool               `bson:"username_validation_use_regex"`
-	UsernameValidationRule                     string             `bson:"username_validation_rule"`
-	PhoneNumberValidationEnabled               bool               `bson:"phone_number_validation_enabled"`
-	PhoneNumberValidationUseRegex              bool               `bson:"phone_number_validation_use_regex"`
-	PhoneNumberValidationRule                  string             `bson:"phone_number_validation_rule"`
-	DefaultPasswordFormat                      string             `bson:"default_password_format"`
-	HashedPasswordFormat                       string             `bson:"hashed_password_format"`
-	PasswordMinLength                          int                `bson:"password_min_length"`
-	PasswordMaxLength                          int                `bson:"password_max_length"`
-	PasswordRequireLowercase                   bool               `bson:"password_require_lowercase"`
-	PasswordRequireUppercase                   bool               `bson:"password_require_uppercase"`
-	PasswordRequireNonAlphanumeric             bool               `bson:"password_require_non_alphanumeric"`
-	PasswordRequireDigit                       bool               `bson:"password_require_digit"`
-	UnduplicatedPasswordsNumber                int                `bson:"unduplicated_passwords_number"`
-	PasswordRecoveryLinkDaysValid              int                `bson:"password_recovery_link_days_valid"`
-	PasswordLifetime                           int                `bson:"password_lifetime"`
-	FailedPasswordAllowedAttempts              int                `bson:"failed_password_allowed_attempts"`
-	FailedPasswordLockoutMinutes               int                `bson:"failed_password_lockout_minutes"`
-	RequiredReLoginAfterPasswordChange         bool               `bson:"required_relogin_after_password_change"`
-	UserRegistrationType                       string             `bson:"user_registration_type"`
-	AllowCustomersToUploadAvatars              bool               `bson:"allow_customers_to_upload_avatars"`
-	AvatarMaximumSizeBytes                     int                `bson:"avatar_maximum_size_bytes"`
-	DefaultAvatarEnabled                       bool               `bson:"default_avatar_enabled"`
-	ShowCustomersLocation                      bool               `bson:"show_customers_location"`
-	ShowCustomersJoinDate                      bool               `bson:"show_customers_join_date"`
-	AllowViewingProfiles                       bool               `bson:"allow_viewing_profiles"`
-	NotifyNewCustomerRegistration              bool               `bson:"notify_new_customer_registration"`
-	HideDownloadableProductsTab                bool               `bson:"hide_downloadable_products_tab"`
-	HideBackInStockSubscriptionsTab            bool               `bson:"hide_back_in_stock_subscriptions_tab"`
-	DownloadableProductsValidateUser           bool               `bson:"downloadable_products_validate_user"`
-	CustomerNameFormat                         string             `bson:"customer_name_format"`
-	NewsletterEnabled                          bool               `bson:"newsletter_enabled"`
-	NewsletterTickedByDefault                  bool               `bson:"newsletter_ticked_by_default"`
-	HideNewsletterBlock                        bool               `bson:"hide_newsletter_block"`
-	NewsletterBlockAllowToUnsubscribe          bool               `bson:"newsletter_block_allow_to_unsubscribe"`
-	OnlineCustomerMinutes                      int                `bson:"online_customer_minutes"`
-	StoreLastVisitedPage                       bool               `bson:"store_last_visited_page"`
-	StoreIpAddresses                           bool               `bson:"store_ip_addresses"`
-	LastActivityMinutes                        int                `bson:"last_activity_minutes"`
-	SuffixDeletedCustomers                     bool               `bson:"suffix_deleted_customers"`
-	EnteringEmailTwice                         bool               `bson:"entering_email_twice"`
-	RequireRegistrationForDownloadableProducts bool               `bson:"require_registration_for_downloadable_products"`
-	AllowCustomersToCheckGiftCardBalance       bool               `bson:"allow_customers_to_check_gift_card_balance"`
-	DeleteGuestTaskOlderThanMinutes            int                `bson:"delete_guest_task_older_than_minutes"`
+	ID                                         bson.ObjectID `bson:"_id,omitempty"`
+	UsernamesEnabled                           bool          `bson:"usernames_enabled"`
+	CheckUsernameAvailabilityEnabled           bool          `bson:"check_username_availability_enabled"`
+	AllowUsersToChangeUsernames                bool          `bson:"allow_users_to_change_usernames"`
+	UsernameValidationEnabled                  bool          `bson:"username_validation_enabled"`
+	UsernameValidationUseRegex                 bool          `bson:"username_validation_use_regex"`
+	UsernameValidationRule                     string        `bson:"username_validation_rule"`
+	PhoneNumberValidationEnabled               bool          `bson:"phone_number_validation_enabled"`
+	PhoneNumberValidationUseRegex              bool          `bson:"phone_number_validation_use_regex"`
+	PhoneNumberValidationRule                  string        `bson:"phone_number_validation_rule"`
+	DefaultPasswordFormat                      string        `bson:"default_password_format"`
+	HashedPasswordFormat                       string        `bson:"hashed_password_format"`
+	PasswordMinLength                          int           `bson:"password_min_length"`
+	PasswordMaxLength                          int           `bson:"password_max_length"`
+	PasswordRequireLowercase                   bool          `bson:"password_require_lowercase"`
+	PasswordRequireUppercase                   bool          `bson:"password_require_uppercase"`
+	PasswordRequireNonAlphanumeric             bool          `bson:"password_require_non_alphanumeric"`
+	PasswordRequireDigit                       bool          `bson:"password_require_digit"`
+	UnduplicatedPasswordsNumber                int           `bson:"unduplicated_passwords_number"`
+	PasswordRecoveryLinkDaysValid              int           `bson:"password_recovery_link_days_valid"`
+	PasswordLifetime                           int           `bson:"password_lifetime"`
+	FailedPasswordAllowedAttempts              int           `bson:"failed_password_allowed_attempts"`
+	FailedPasswordLockoutMinutes               int           `bson:"failed_password_lockout_minutes"`
+	RequiredReLoginAfterPasswordChange         bool          `bson:"required_relogin_after_password_change"`
+	UserRegistrationType                       string        `bson:"user_registration_type"`
+	AllowCustomersToUploadAvatars              bool          `bson:"allow_customers_to_upload_avatars"`
+	AvatarMaximumSizeBytes                     int           `bson:"avatar_maximum_size_bytes"`
+	DefaultAvatarEnabled                       bool          `bson:"default_avatar_enabled"`
+	ShowCustomersLocation                      bool          `bson:"show_customers_location"`
+	ShowCustomersJoinDate                      bool          `bson:"show_customers_join_date"`
+	AllowViewingProfiles                       bool          `bson:"allow_viewing_profiles"`
+	NotifyNewCustomerRegistration              bool          `bson:"notify_new_customer_registration"`
+	HideDownloadableProductsTab                bool          `bson:"hide_downloadable_products_tab"`
+	HideBackInStockSubscriptionsTab            bool          `bson:"hide_back_in_stock_subscriptions_tab"`
+	DownloadableProductsValidateUser           bool          `bson:"downloadable_products_validate_user"`
+	CustomerNameFormat                         string        `bson:"customer_name_format"`
+	NewsletterEnabled                          bool          `bson:"newsletter_enabled"`
+	NewsletterTickedByDefault                  bool          `bson:"newsletter_ticked_by_default"`
+	HideNewsletterBlock                        bool          `bson:"hide_newsletter_block"`
+	NewsletterBlockAllowToUnsubscribe          bool          `bson:"newsletter_block_allow_to_unsubscribe"`
+	OnlineCustomerMinutes                      int           `bson:"online_customer_minutes"`
+	StoreLastVisitedPage                       bool          `bson:"store_last_visited_page"`
+	StoreIpAddresses                           bool          `bson:"store_ip_addresses"`
+	LastActivityMinutes                        int           `bson:"last_activity_minutes"`
+	SuffixDeletedCustomers                     bool          `bson:"suffix_deleted_customers"`
+	EnteringEmailTwice                         bool          `bson:"entering_email_twice"`
+	RequireRegistrationForDownloadableProducts bool          `bson:"require_registration_for_downloadable_products"`
+	AllowCustomersToCheckGiftCardBalance       bool          `bson:"allow_customers_to_check_gift_card_balance"`
+	DeleteGuestTaskOlderThanMinutes            int           `bson:"delete_guest_task_older_than_minutes"`
 
 	// Form fields
 	FirstNameEnabled           bool `bson:"first_name_enabled"`

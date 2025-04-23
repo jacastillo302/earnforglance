@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,11 +12,11 @@ const (
 
 // AddressAttributeValue represents an address attribute value
 type AddressAttributeValue struct {
-	ID                 primitive.ObjectID `bson:"_id,omitempty"`
-	AddressAttributeID primitive.ObjectID `bson:"address_attribute_id"`
-	Name               string             `bson:"name"`
-	IsPreSelected      bool               `bson:"is_pre_selected"`
-	DisplayOrder       int                `bson:"display_order"`
+	ID                 bson.ObjectID `bson:"_id,omitempty"`
+	AddressAttributeID bson.ObjectID `bson:"address_attribute_id"`
+	Name               string        `bson:"name"`
+	IsPreSelected      bool          `bson:"is_pre_selected"`
+	DisplayOrder       int           `bson:"display_order"`
 }
 
 type AddressAttributeValueRepository interface {

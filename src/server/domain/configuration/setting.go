@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,10 +12,10 @@ const (
 
 // Setting represents a setting
 type Setting struct {
-	ID      primitive.ObjectID `bson:"_id,omitempty"`
-	Name    string             `bson:"name"`
-	Value   string             `bson:"value"`
-	StoreID primitive.ObjectID `bson:"store_id"`
+	ID      bson.ObjectID `bson:"_id,omitempty"`
+	Name    string        `bson:"name"`
+	Value   string        `bson:"value"`
+	StoreID bson.ObjectID `bson:"store_id"`
 }
 
 type SettingRepository interface {
@@ -41,7 +41,7 @@ type SettingUsecase interface {
 }
 
 // NewSetting creates a new Setting instance
-func NewSetting(name string, value string, storeID primitive.ObjectID) *Setting {
+func NewSetting(name string, value string, storeID bson.ObjectID) *Setting {
 	return &Setting{
 		Name:    name,
 		Value:   value,

@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,10 +12,10 @@ const (
 
 // LocaleStringResource represents a locale string resource
 type LocaleStringResource struct {
-	ID            primitive.ObjectID `bson:"_id,omitempty"`
-	LanguageID    primitive.ObjectID `bson:"language_id"`
-	ResourceName  string             `bson:"resource_name"`
-	ResourceValue string             `bson:"resource_value"`
+	ID            bson.ObjectID `bson:"_id,omitempty"`
+	LanguageID    bson.ObjectID `bson:"language_id"`
+	ResourceName  string        `bson:"resource_name"`
+	ResourceValue string        `bson:"resource_value"`
 }
 
 type LocaleStringResourceRepository interface {

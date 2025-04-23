@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,10 +12,10 @@ const (
 
 // BestCustomerReportLine represents a best customer report line
 type BestCustomerReportLine struct {
-	ID         primitive.ObjectID `bson:"_id,omitempty"`
-	CustomerID primitive.ObjectID `bson:"customer_id"`
-	OrderTotal float64            `bson:"order_total"`
-	OrderCount int                `bson:"order_count"`
+	ID         bson.ObjectID `bson:"_id,omitempty"`
+	CustomerID bson.ObjectID `bson:"customer_id"`
+	OrderTotal float64       `bson:"order_total"`
+	OrderCount int           `bson:"order_count"`
 }
 
 type BestCustomerReportLineRepository interface {

@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultRewardPointsSettings struct {
@@ -28,7 +28,7 @@ func (m *MockSingleResultRewardPointsSettings) Decode(v interface{}) error {
 }
 
 var mockItemRewardPointsSettings = &domain.RewardPointsSettings{
-	ID:                               primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                               bson.NewObjectID(), // Existing ID of the record to update
 	Enabled:                          false,
 	ExchangeRate:                     0.02,
 	MinimumRewardPointsToUse:         200,

@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,9 +12,9 @@ const (
 
 // ProductAttribute represents a product attribute
 type ProductAttribute struct {
-	ID          primitive.ObjectID `bson:"_id,omitempty"`
-	Name        string             `bson:"name"`
-	Description string             `bson:"description"`
+	ID          bson.ObjectID `bson:"_id,omitempty"`
+	Name        string        `bson:"name"`
+	Description string        `bson:"description"`
 }
 
 type ProductAttributeRepository interface {

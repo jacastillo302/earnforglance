@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,13 +12,13 @@ const (
 
 // AclRecord represents an ACL record.
 type AclRecord struct {
-	EntityID       primitive.ObjectID `bson:"_id,omitempty"`
-	EntityName     string             `bson:"entity_name"`
-	CustomerRoleID primitive.ObjectID `bson:"customer_role_id"`
-	IsRead         bool               `bson:"is_read"`
-	IsDelete       bool               `bson:"is_delete"`
-	IsUpdate       bool               `bson:"is_update"`
-	IsCreate       bool               `bson:"is_create"`
+	EntityID       bson.ObjectID `bson:"_id,omitempty"`
+	EntityName     string        `bson:"entity_name"`
+	CustomerRoleID bson.ObjectID `bson:"customer_role_id"`
+	IsRead         bool          `bson:"is_read"`
+	IsDelete       bool          `bson:"is_delete"`
+	IsUpdate       bool          `bson:"is_update"`
+	IsCreate       bool          `bson:"is_create"`
 }
 
 // AclRecordRepository defines the repository interface for AclRecord

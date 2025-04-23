@@ -4,7 +4,7 @@ import (
 	"context" // Added context library
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -13,16 +13,16 @@ const (
 
 // ScheduleTask represents a schedule task.
 type ScheduleTask struct {
-	ID             primitive.ObjectID `bson:"_id,omitempty"`
-	Name           string             `bson:"name"`
-	Seconds        int                `bson:"seconds"`
-	Type           string             `bson:"type"`
-	LastEnabledUtc *time.Time         `bson:"last_enabled_utc"`
-	Enabled        bool               `bson:"enabled"`
-	StopOnError    bool               `bson:"stop_on_error"`
-	LastStartUtc   *time.Time         `bson:"last_start_utc"`
-	LastEndUtc     *time.Time         `bson:"last_end_utc"`
-	LastSuccessUtc *time.Time         `bson:"last_success_utc"`
+	ID             bson.ObjectID `bson:"_id,omitempty"`
+	Name           string        `bson:"name"`
+	Seconds        int           `bson:"seconds"`
+	Type           string        `bson:"type"`
+	LastEnabledUtc *time.Time    `bson:"last_enabled_utc"`
+	Enabled        bool          `bson:"enabled"`
+	StopOnError    bool          `bson:"stop_on_error"`
+	LastStartUtc   *time.Time    `bson:"last_start_utc"`
+	LastEndUtc     *time.Time    `bson:"last_end_utc"`
+	LastSuccessUtc *time.Time    `bson:"last_success_utc"`
 }
 
 // ScheduleTaskRepository defines the repository interface for ScheduleTask

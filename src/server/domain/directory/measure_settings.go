@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,9 +12,9 @@ const (
 
 // MeasureSettings represents measure settings
 type MeasureSettings struct {
-	ID              primitive.ObjectID `bson:"_id,omitempty"`
-	BaseDimensionID int                `bson:"base_dimension_id"`
-	BaseWeightID    int                `bson:"base_weight_id"`
+	ID              bson.ObjectID `bson:"_id,omitempty"`
+	BaseDimensionID int           `bson:"base_dimension_id"`
+	BaseWeightID    int           `bson:"base_weight_id"`
 }
 
 type MeasureSettingsRepository interface {

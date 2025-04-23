@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultDiscount struct {
@@ -29,7 +29,7 @@ func (m *MockSingleResultDiscount) Decode(v interface{}) error {
 }
 
 var mockItemDiscount = &domain.Discount{
-	ID:                        primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                        bson.NewObjectID(), // Existing ID of the record to update
 	Name:                      "Cyber Monday Sale",
 	AdminComment:              "Limited to electronics",
 	DiscountTypeID:            2,

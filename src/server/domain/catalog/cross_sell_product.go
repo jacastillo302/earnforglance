@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,9 +12,9 @@ const (
 
 // CrossSellProduct represents a cross-sell product
 type CrossSellProduct struct {
-	ID         primitive.ObjectID `bson:"_id,omitempty"`
-	ProductID1 primitive.ObjectID `bson:"product_id1"`
-	ProductID2 primitive.ObjectID `bson:"product_id2"`
+	ID         bson.ObjectID `bson:"_id,omitempty"`
+	ProductID1 bson.ObjectID `bson:"product_id1"`
+	ProductID2 bson.ObjectID `bson:"product_id2"`
 }
 
 type CrossSellProductRepository interface {

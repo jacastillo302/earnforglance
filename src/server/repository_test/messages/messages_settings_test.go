@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultMessagesSettings struct {
@@ -28,7 +28,7 @@ func (m *MockSingleResultMessagesSettings) Decode(v interface{}) error {
 }
 
 var mockItemMessagesSettings = &domain.MessagesSettings{
-	ID:                    primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                    bson.NewObjectID(), // Existing ID of the record to update
 	UsePopupNotifications: false,
 	UseDefaultEmailAccountForSendStoreOwnerEmails: true,
 }

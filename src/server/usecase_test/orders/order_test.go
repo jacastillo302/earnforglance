@@ -12,7 +12,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestOrderUsecase_FetchByID(t *testing.T) {
@@ -20,15 +20,15 @@ func TestOrderUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewOrderUsecase(mockRepo, timeout)
 
-	orderID := primitive.NewObjectID().Hex()
+	orderID := bson.NewObjectID().Hex()
 
 	updatedOrder := domain.Order{
-		ID:                                      primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                      bson.NewObjectID(), // Existing ID of the record to update
 		OrderGuid:                               uuid.New(),
-		StoreID:                                 primitive.NewObjectID(),
-		CustomerID:                              primitive.NewObjectID(),
-		BillingAddressID:                        primitive.NewObjectID(),
-		ShippingAddressID:                       new(primitive.ObjectID),
+		StoreID:                                 bson.NewObjectID(),
+		CustomerID:                              bson.NewObjectID(),
+		BillingAddressID:                        bson.NewObjectID(),
+		ShippingAddressID:                       new(bson.ObjectID),
 		PickupAddressID:                         nil,
 		PickupInStore:                           true,
 		OrderStatusID:                           2,
@@ -52,11 +52,11 @@ func TestOrderUsecase_FetchByID(t *testing.T) {
 		OrderDiscount:                           10.00,
 		OrderTotal:                              250.00,
 		RefundedAmount:                          0.00,
-		RewardPointsHistoryEntryID:              new(primitive.ObjectID),
+		RewardPointsHistoryEntryID:              new(bson.ObjectID),
 		CheckoutAttributeDescription:            "Gift Wrap and Note",
 		CheckoutAttributesXml:                   "<Attributes><GiftWrap>Yes</GiftWrap><Note>Happy Birthday</Note></Attributes>",
-		CustomerLanguageID:                      primitive.NewObjectID(),
-		AffiliateID:                             primitive.NewObjectID(),
+		CustomerLanguageID:                      bson.NewObjectID(),
+		AffiliateID:                             bson.NewObjectID(),
 		CustomerIp:                              "192.168.1.2",
 		AllowStoringCreditCardNumber:            true,
 		CardType:                                "MasterCard",
@@ -79,7 +79,7 @@ func TestOrderUsecase_FetchByID(t *testing.T) {
 		Deleted:                                 false,
 		CreatedOnUtc:                            time.Now().AddDate(0, 0, -7), // Created 7 days ago
 		CustomOrderNumber:                       "ORD67890",
-		RedeemedRewardPointsEntryID:             new(primitive.ObjectID),
+		RedeemedRewardPointsEntryID:             new(bson.ObjectID),
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, orderID).Return(updatedOrder, nil)
@@ -98,9 +98,9 @@ func TestOrderUsecase_Create(t *testing.T) {
 
 	newOrder := &domain.Order{
 		OrderGuid:                               uuid.New(),
-		StoreID:                                 primitive.NewObjectID(),
-		CustomerID:                              primitive.NewObjectID(),
-		BillingAddressID:                        primitive.NewObjectID(),
+		StoreID:                                 bson.NewObjectID(),
+		CustomerID:                              bson.NewObjectID(),
+		BillingAddressID:                        bson.NewObjectID(),
 		ShippingAddressID:                       nil,
 		PickupAddressID:                         nil,
 		PickupInStore:                           false,
@@ -128,8 +128,8 @@ func TestOrderUsecase_Create(t *testing.T) {
 		RewardPointsHistoryEntryID:              nil,
 		CheckoutAttributeDescription:            "Gift Wrap",
 		CheckoutAttributesXml:                   "<Attributes><GiftWrap>Yes</GiftWrap></Attributes>",
-		CustomerLanguageID:                      primitive.NewObjectID(),
-		AffiliateID:                             primitive.NewObjectID(),
+		CustomerLanguageID:                      bson.NewObjectID(),
+		AffiliateID:                             bson.NewObjectID(),
 		CustomerIp:                              "192.168.1.1",
 		AllowStoringCreditCardNumber:            false,
 		CardType:                                "Visa",
@@ -169,12 +169,12 @@ func TestOrderUsecase_Update(t *testing.T) {
 	usecase := test.NewOrderUsecase(mockRepo, timeout)
 
 	updatedOrder := &domain.Order{
-		ID:                                      primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                      bson.NewObjectID(), // Existing ID of the record to update
 		OrderGuid:                               uuid.New(),
-		StoreID:                                 primitive.NewObjectID(),
-		CustomerID:                              primitive.NewObjectID(),
-		BillingAddressID:                        primitive.NewObjectID(),
-		ShippingAddressID:                       new(primitive.ObjectID),
+		StoreID:                                 bson.NewObjectID(),
+		CustomerID:                              bson.NewObjectID(),
+		BillingAddressID:                        bson.NewObjectID(),
+		ShippingAddressID:                       new(bson.ObjectID),
 		PickupAddressID:                         nil,
 		PickupInStore:                           true,
 		OrderStatusID:                           2,
@@ -198,11 +198,11 @@ func TestOrderUsecase_Update(t *testing.T) {
 		OrderDiscount:                           10.00,
 		OrderTotal:                              250.00,
 		RefundedAmount:                          0.00,
-		RewardPointsHistoryEntryID:              new(primitive.ObjectID),
+		RewardPointsHistoryEntryID:              new(bson.ObjectID),
 		CheckoutAttributeDescription:            "Gift Wrap and Note",
 		CheckoutAttributesXml:                   "<Attributes><GiftWrap>Yes</GiftWrap><Note>Happy Birthday</Note></Attributes>",
-		CustomerLanguageID:                      primitive.NewObjectID(),
-		AffiliateID:                             primitive.NewObjectID(),
+		CustomerLanguageID:                      bson.NewObjectID(),
+		AffiliateID:                             bson.NewObjectID(),
 		CustomerIp:                              "192.168.1.2",
 		AllowStoringCreditCardNumber:            true,
 		CardType:                                "MasterCard",
@@ -225,10 +225,10 @@ func TestOrderUsecase_Update(t *testing.T) {
 		Deleted:                                 false,
 		CreatedOnUtc:                            time.Now().AddDate(0, 0, -7), // Created 7 days ago
 		CustomOrderNumber:                       "ORD67890",
-		RedeemedRewardPointsEntryID:             new(primitive.ObjectID),
+		RedeemedRewardPointsEntryID:             new(bson.ObjectID),
 	}
-	*updatedOrder.ShippingAddressID = primitive.NewObjectID()
-	*updatedOrder.RewardPointsHistoryEntryID = primitive.NewObjectID()
+	*updatedOrder.ShippingAddressID = bson.NewObjectID()
+	*updatedOrder.RewardPointsHistoryEntryID = bson.NewObjectID()
 	*updatedOrder.PaidDateUtc = time.Now().AddDate(0, 0, -1) // Paid 1 day ago
 
 	mockRepo.On("Update", mock.Anything, updatedOrder).Return(nil)
@@ -244,7 +244,7 @@ func TestOrderUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewOrderUsecase(mockRepo, timeout)
 
-	orderID := primitive.NewObjectID().Hex()
+	orderID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, orderID).Return(nil)
 
@@ -261,11 +261,11 @@ func TestOrderUsecase_Fetch(t *testing.T) {
 
 	fetchedOrders := []domain.Order{
 		{
-			ID:                                      primitive.NewObjectID(),
+			ID:                                      bson.NewObjectID(),
 			OrderGuid:                               uuid.New(),
-			StoreID:                                 primitive.NewObjectID(),
-			CustomerID:                              primitive.NewObjectID(),
-			BillingAddressID:                        primitive.NewObjectID(),
+			StoreID:                                 bson.NewObjectID(),
+			CustomerID:                              bson.NewObjectID(),
+			BillingAddressID:                        bson.NewObjectID(),
 			ShippingAddressID:                       nil,
 			PickupAddressID:                         nil,
 			PickupInStore:                           false,
@@ -293,8 +293,8 @@ func TestOrderUsecase_Fetch(t *testing.T) {
 			RewardPointsHistoryEntryID:              nil,
 			CheckoutAttributeDescription:            "Gift Wrap",
 			CheckoutAttributesXml:                   "<Attributes><GiftWrap>Yes</GiftWrap></Attributes>",
-			CustomerLanguageID:                      primitive.NewObjectID(),
-			AffiliateID:                             primitive.NewObjectID(),
+			CustomerLanguageID:                      bson.NewObjectID(),
+			AffiliateID:                             bson.NewObjectID(),
 			CustomerIp:                              "192.168.1.1",
 			AllowStoringCreditCardNumber:            false,
 			CardType:                                "Visa",
@@ -320,12 +320,12 @@ func TestOrderUsecase_Fetch(t *testing.T) {
 			RedeemedRewardPointsEntryID:             nil,
 		},
 		{
-			ID:                                      primitive.NewObjectID(),
+			ID:                                      bson.NewObjectID(),
 			OrderGuid:                               uuid.New(),
-			StoreID:                                 primitive.NewObjectID(),
-			CustomerID:                              primitive.NewObjectID(),
-			BillingAddressID:                        primitive.NewObjectID(),
-			ShippingAddressID:                       new(primitive.ObjectID),
+			StoreID:                                 bson.NewObjectID(),
+			CustomerID:                              bson.NewObjectID(),
+			BillingAddressID:                        bson.NewObjectID(),
+			ShippingAddressID:                       new(bson.ObjectID),
 			PickupAddressID:                         nil,
 			PickupInStore:                           true,
 			OrderStatusID:                           2,
@@ -349,11 +349,11 @@ func TestOrderUsecase_Fetch(t *testing.T) {
 			OrderDiscount:                           10.00,
 			OrderTotal:                              250.00,
 			RefundedAmount:                          0.00,
-			RewardPointsHistoryEntryID:              new(primitive.ObjectID),
+			RewardPointsHistoryEntryID:              new(bson.ObjectID),
 			CheckoutAttributeDescription:            "Gift Wrap and Note",
 			CheckoutAttributesXml:                   "<Attributes><GiftWrap>Yes</GiftWrap><Note>Happy Birthday</Note></Attributes>",
-			CustomerLanguageID:                      primitive.NewObjectID(),
-			AffiliateID:                             primitive.NewObjectID(),
+			CustomerLanguageID:                      bson.NewObjectID(),
+			AffiliateID:                             bson.NewObjectID(),
 			CustomerIp:                              "192.168.1.2",
 			AllowStoringCreditCardNumber:            true,
 			CardType:                                "MasterCard",
@@ -376,11 +376,11 @@ func TestOrderUsecase_Fetch(t *testing.T) {
 			Deleted:                                 false,
 			CreatedOnUtc:                            time.Now().AddDate(0, 0, -5), // Created 5 days ago
 			CustomOrderNumber:                       "ORD67890",
-			RedeemedRewardPointsEntryID:             new(primitive.ObjectID),
+			RedeemedRewardPointsEntryID:             new(bson.ObjectID),
 		},
 	}
-	*fetchedOrders[1].ShippingAddressID = primitive.NewObjectID()
-	*fetchedOrders[1].RewardPointsHistoryEntryID = primitive.NewObjectID()
+	*fetchedOrders[1].ShippingAddressID = bson.NewObjectID()
+	*fetchedOrders[1].RewardPointsHistoryEntryID = bson.NewObjectID()
 	*fetchedOrders[1].PaidDateUtc = time.Now().AddDate(0, 0, -1) // Paid 1 day ago
 
 	mockRepo.On("Fetch", mock.Anything).Return(fetchedOrders, nil)

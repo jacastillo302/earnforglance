@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/gdpr"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type gdprsettingsRepository struct {
@@ -58,7 +57,7 @@ func (ur *gdprsettingsRepository) Update(c context.Context, gdprsettings *domain
 func (ur *gdprsettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *gdprsettingsRepository) Delete(c context.Context, ID string) error {
 func (ur *gdprsettingsRepository) Fetch(c context.Context) ([]domain.GdprSettings, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *gdprsettingsRepository) FetchByID(c context.Context, gdprsettingsID st
 
 	var gdprsettings domain.GdprSettings
 
-	idHex, err := primitive.ObjectIDFromHex(gdprsettingsID)
+	idHex, err := bson.ObjectIDFromHex(gdprsettingsID)
 	if err != nil {
 		return gdprsettings, err
 	}

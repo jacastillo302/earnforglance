@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultApiClient struct {
@@ -28,7 +28,7 @@ func (m *MockSingleResultApiClient) Decode(v interface{}) error {
 }
 
 var mockItemApiClient = &domain.ApiClient{
-	ID:                            primitive.NewObjectID(), // Generate a new MongoDB ObjectID
+	ID:                            bson.NewObjectID(), // Generate a new MongoDB ObjectID
 	Secret:                        "supersecretkey123",
 	Enable:                        true,
 	DateExpired:                   time.Now().AddDate(1, 0, 0), // Set expiration date to 1 year from now

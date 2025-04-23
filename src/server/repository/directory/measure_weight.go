@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/directory"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type measureweightRepository struct {
@@ -58,7 +57,7 @@ func (ur *measureweightRepository) Update(c context.Context, measureweight *doma
 func (ur *measureweightRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *measureweightRepository) Delete(c context.Context, ID string) error {
 func (ur *measureweightRepository) Fetch(c context.Context) ([]domain.MeasureWeight, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *measureweightRepository) FetchByID(c context.Context, measureweightID 
 
 	var measureweight domain.MeasureWeight
 
-	idHex, err := primitive.ObjectIDFromHex(measureweightID)
+	idHex, err := bson.ObjectIDFromHex(measureweightID)
 	if err != nil {
 		return measureweight, err
 	}

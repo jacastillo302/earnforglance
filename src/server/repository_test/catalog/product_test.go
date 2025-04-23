@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultProduct struct {
@@ -28,16 +28,16 @@ func (m *MockSingleResultProduct) Decode(v interface{}) error {
 }
 
 var mockItemProduct = &domain.Product{
-	ID:                               primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                               bson.NewObjectID(), // Existing ID of the record to update
 	ProductTypeID:                    2,
-	ParentGroupedID:                  primitive.NewObjectID(),
+	ParentGroupedID:                  bson.NewObjectID(),
 	VisibleIndividually:              false,
 	Name:                             "Updated Product",
 	ShortDescription:                 "Updated short description.",
 	FullDescription:                  "Updated full description of the product.",
 	AdminComment:                     "Updated admin comment.",
-	ProductTemplateID:                primitive.NewObjectID(),
-	VendorID:                         primitive.NewObjectID(),
+	ProductTemplateID:                bson.NewObjectID(),
+	VendorID:                         bson.NewObjectID(),
 	ShowOnHomepage:                   false,
 	MetaKeywords:                     "updated, product, ecommerce",
 	MetaDescription:                  "Updated meta description for the product.",
@@ -59,13 +59,13 @@ var mockItemProduct = &domain.Product{
 	RequiredIDs:                      "123,456",
 	AutomaticallyAddRequiredProducts: true,
 	IsDownload:                       true,
-	DownloadID:                       primitive.NewObjectID(),
+	DownloadID:                       bson.NewObjectID(),
 	UnlimitedDownloads:               true,
 	MaxNumberOfDownloads:             5,
 	DownloadExpirationDays:           new(int),
 	DownloadActivationTypeID:         1,
 	HasSampleDownload:                true,
-	SampleDownloadID:                 primitive.NewObjectID(),
+	SampleDownloadID:                 bson.NewObjectID(),
 	HasUserAgreement:                 true,
 	UserAgreementText:                "Updated user agreement text.",
 	IsRecurring:                      true,
@@ -79,13 +79,13 @@ var mockItemProduct = &domain.Product{
 	IsFreeShipping:                   true,
 	ShipSeparately:                   true,
 	AdditionalShippingCharge:         0.0,
-	DeliveryDateID:                   primitive.NewObjectID(),
+	DeliveryDateID:                   bson.NewObjectID(),
 	IsTaxExempt:                      true,
-	TaxCategoryID:                    primitive.NewObjectID(),
+	TaxCategoryID:                    bson.NewObjectID(),
 	ManageInventoryMethodID:          2,
-	ProductAvailabilityRangeID:       primitive.NewObjectID(),
+	ProductAvailabilityRangeID:       bson.NewObjectID(),
 	UseMultipleWarehouses:            true,
-	WarehouseID:                      primitive.NewObjectID(),
+	WarehouseID:                      bson.NewObjectID(),
 	StockQuantity:                    50,
 	DisplayStockAvailability:         false,
 	DisplayStockQuantity:             false,
@@ -113,9 +113,9 @@ var mockItemProduct = &domain.Product{
 	MaximumCustomerEnteredPrice:                  50.0,
 	BasepriceEnabled:                             true,
 	BasepriceAmount:                              1.0,
-	BasepriceUnitID:                              primitive.NewObjectID(),
+	BasepriceUnitID:                              bson.NewObjectID(),
 	BasepriceBaseAmount:                          10.0,
-	BasepriceBaseUnitID:                          primitive.NewObjectID(),
+	BasepriceBaseUnitID:                          bson.NewObjectID(),
 	MarkAsNew:                                    false,
 	MarkAsNewStartDateTimeUtc:                    new(time.Time),
 	MarkAsNewEndDateTimeUtc:                      new(time.Time),

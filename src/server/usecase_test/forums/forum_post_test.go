@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestForumPostUsecase_FetchByID(t *testing.T) {
@@ -18,12 +18,12 @@ func TestForumPostUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewForumPostUsecase(mockRepo, timeout)
 
-	forumPostID := primitive.NewObjectID().Hex()
+	forumPostID := bson.NewObjectID().Hex()
 
 	updatedForumPost := domain.ForumPost{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		TopicID:      primitive.NewObjectID(),
-		CustomerID:   primitive.NewObjectID(),
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
+		TopicID:      bson.NewObjectID(),
+		CustomerID:   bson.NewObjectID(),
 		Text:         "This is an updated forum post.",
 		IPAddress:    "192.168.1.2",
 		CreatedOnUtc: time.Now().AddDate(0, 0, -7), // Created 7 days ago
@@ -46,8 +46,8 @@ func TestForumPostUsecase_Create(t *testing.T) {
 	usecase := test.NewForumPostUsecase(mockRepo, timeout)
 
 	newForumPost := &domain.ForumPost{
-		TopicID:      primitive.NewObjectID(),
-		CustomerID:   primitive.NewObjectID(),
+		TopicID:      bson.NewObjectID(),
+		CustomerID:   bson.NewObjectID(),
 		Text:         "This is a new forum post.",
 		IPAddress:    "192.168.1.1",
 		CreatedOnUtc: time.Now(),
@@ -69,9 +69,9 @@ func TestForumPostUsecase_Update(t *testing.T) {
 	usecase := test.NewForumPostUsecase(mockRepo, timeout)
 
 	updatedForumPost := &domain.ForumPost{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		TopicID:      primitive.NewObjectID(),
-		CustomerID:   primitive.NewObjectID(),
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
+		TopicID:      bson.NewObjectID(),
+		CustomerID:   bson.NewObjectID(),
 		Text:         "This is an updated forum post.",
 		IPAddress:    "192.168.1.2",
 		CreatedOnUtc: time.Now().AddDate(0, 0, -7), // Created 7 days ago
@@ -92,7 +92,7 @@ func TestForumPostUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewForumPostUsecase(mockRepo, timeout)
 
-	forumPostID := primitive.NewObjectID().Hex()
+	forumPostID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, forumPostID).Return(nil)
 
@@ -109,9 +109,9 @@ func TestForumPostUsecase_Fetch(t *testing.T) {
 
 	fetchedForumPosts := []domain.ForumPost{
 		{
-			ID:           primitive.NewObjectID(),
-			TopicID:      primitive.NewObjectID(),
-			CustomerID:   primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
+			TopicID:      bson.NewObjectID(),
+			CustomerID:   bson.NewObjectID(),
 			Text:         "This is the first forum post.",
 			IPAddress:    "192.168.1.1",
 			CreatedOnUtc: time.Now().AddDate(0, 0, -10), // Created 10 days ago
@@ -119,9 +119,9 @@ func TestForumPostUsecase_Fetch(t *testing.T) {
 			VoteCount:    3,
 		},
 		{
-			ID:           primitive.NewObjectID(),
-			TopicID:      primitive.NewObjectID(),
-			CustomerID:   primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
+			TopicID:      bson.NewObjectID(),
+			CustomerID:   bson.NewObjectID(),
 			Text:         "This is the second forum post.",
 			IPAddress:    "192.168.1.2",
 			CreatedOnUtc: time.Now().AddDate(0, 0, -7), // Created 7 days ago

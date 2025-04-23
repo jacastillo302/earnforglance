@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestProxySettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestProxySettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewProxySettingsUsecase(mockRepo, timeout)
 
-	securityID := primitive.NewObjectID().Hex()
+	securityID := bson.NewObjectID().Hex()
 
 	updatedProxySettings := domain.ProxySettings{
-		ID:              primitive.NewObjectID(), // Existing ID of the record to update
+		ID:              bson.NewObjectID(), // Existing ID of the record to update
 		Enabled:         false,
 		Address:         "10.0.0.1",
 		Port:            "3128",
@@ -68,7 +68,7 @@ func TestProxySettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewProxySettingsUsecase(mockRepo, timeout)
 
 	updatedProxySettings := &domain.ProxySettings{
-		ID:              primitive.NewObjectID(), // Existing ID of the record to update
+		ID:              bson.NewObjectID(), // Existing ID of the record to update
 		Enabled:         false,
 		Address:         "10.0.0.1",
 		Port:            "3128",
@@ -91,7 +91,7 @@ func TestProxySettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewProxySettingsUsecase(mockRepo, timeout)
 
-	securityID := primitive.NewObjectID().Hex()
+	securityID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, securityID).Return(nil)
 
@@ -108,7 +108,7 @@ func TestProxySettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedProxySettings := []domain.ProxySettings{
 		{
-			ID:              primitive.NewObjectID(),
+			ID:              bson.NewObjectID(),
 			Enabled:         true,
 			Address:         "192.168.1.1",
 			Port:            "8080",
@@ -118,7 +118,7 @@ func TestProxySettingsUsecase_Fetch(t *testing.T) {
 			PreAuthenticate: false,
 		},
 		{
-			ID:              primitive.NewObjectID(),
+			ID:              bson.NewObjectID(),
 			Enabled:         false,
 			Address:         "10.0.0.1",
 			Port:            "3128",

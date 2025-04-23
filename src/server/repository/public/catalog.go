@@ -15,9 +15,9 @@ import (
 	"earnforglance/server/service/data/mongo"
 	service "earnforglance/server/service/public"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type catalogRepository struct {
@@ -32,11 +32,183 @@ func NewCatalogRepository(db mongo.Database, collection string) domain.CatalogRe
 	}
 }
 
+func (cr *catalogRepository) GetManufacturers(c context.Context, filter domain.ManufacturerRequest) ([]domain.ManufacturersResponse, error) {
+	var result []domain.ManufacturersResponse
+	var manufacturers []catalog.Manufacturer
+
+	idHex, err := bson.ObjectIDFromHex(filter.ID)
+	if err == nil {
+		var manufacturer catalog.Manufacturer
+
+		collection := cr.database.Collection(catalog.CollectionManufacturer)
+		err = collection.FindOne(c, bson.M{"_id": idHex, "deleted": false, "published": true}).Decode(&manufacturer)
+		if err != nil {
+			return result, err
+		}
+
+		item, err := PrepareManufacturer(cr, c, manufacturer, filter.Content, filter.Lang)
+		if err != nil {
+			return result, err
+		}
+
+		result = append(result, domain.ManufacturersResponse{Manufacturers: []domain.ManufacturerResponse{item}})
+		return result, err
+	}
+
+	if filter.Limit == 0 {
+		filter.Limit = 20
+	}
+
+	sortOrder := 1
+	if filter.Sort == "desc" {
+		sortOrder = -1
+	}
+
+	// Build dynamic filter
+	query := bson.M{"deleted": false, "published": true}
+
+	if filter.PriceRangeFiltering {
+		query["price_range_filtering"] = filter.PriceRangeFiltering
+	}
+
+	if filter.ManuallyPriceRange {
+		query["manually_price_range"] = filter.ManuallyPriceRange
+	}
+
+	if filter.PriceFrom > 0 {
+		query["price_from"] = bson.M{"$gte": filter.PriceFrom}
+	}
+
+	if filter.PriceTo > 0 {
+		query["price_to"] = bson.M{"$lte": filter.PriceTo}
+	}
+
+	limit := int64(filter.Limit)
+	//skip := int64(filter.Page * filter.Limit)
+
+	for _, value := range filter.Filters {
+		// "contains", "eq", etc.
+		if value.Operator == "contains" {
+			query[value.Field] = bson.M{"$regex": value.Value, "$options": "i"}
+		} else if value.Operator == "not_contains" {
+			query[value.Field] = bson.M{"$not": bson.M{"$regex": value.Value, "$options": "i"}}
+		} else {
+			query[value.Field] = value.Value
+		}
+
+		//skip = 0
+	}
+
+	findOptions := options.Find().
+		SetSort(bson.D{{Key: "_id", Value: sortOrder}}).
+		SetLimit(limit)
+
+	collection := cr.database.Collection(catalog.CollectionManufacturer)
+	cursor, err := collection.Find(c, query, findOptions)
+	if err != nil {
+		return result, err
+	}
+
+	err = cursor.All(c, &manufacturers)
+	if err != nil {
+		return result, err
+	}
+
+	var items []domain.ManufacturerResponse
+	for i := range manufacturers {
+		item, err := PrepareManufacturer(cr, c, manufacturers[i], filter.Content, filter.Lang)
+		if err != nil {
+			return result, err
+		}
+		items = append(items, item)
+	}
+
+	result = append(result, domain.ManufacturersResponse{Manufacturers: items})
+
+	return result, err
+}
+
+func PrepareManufacturer(cr *catalogRepository, c context.Context, manufacturer catalog.Manufacturer, content []string, lang string) (domain.ManufacturerResponse, error) {
+	var result domain.ManufacturerResponse
+	err := error(nil)
+
+	for i := range content {
+		switch content[i] {
+		case "template":
+			result.Template, err = PrepareManufacturerTemplate(cr, c, manufacturer)
+		case "picture":
+			result.Picture, err = PreparePicture(cr, c, manufacturer.PictureID)
+		}
+	}
+
+	if lang != "" {
+		result.Manufacturer, err = PrepareManufacturerLang(cr, c, manufacturer, lang)
+	} else {
+		result.Manufacturer = manufacturer
+	}
+
+	return result, err
+}
+
+func PrepareManufacturerTemplate(cr *catalogRepository, c context.Context, manufacturer catalog.Manufacturer) (catalog.ManufacturerTemplate, error) {
+
+	var template catalog.ManufacturerTemplate
+	collection := cr.database.Collection(catalog.CollectionManufacturerTemplate)
+	err := collection.FindOne(c, bson.M{"_id": manufacturer.ManufacturerID}).Decode(&template)
+
+	return template, err
+
+}
+
+func PrepareManufacturerLang(cr *catalogRepository, c context.Context, manufacturer catalog.Manufacturer, lang string) (catalog.Manufacturer, error) {
+	var manufacturerLang = manufacturer
+	err := error(nil)
+	locale, err := GetLangugaByCode(cr, c, lang)
+	if err != nil {
+		return manufacturerLang, err
+	}
+
+	record, err := GetRecordByCode(cr, c, catalog.CollectionManufacturer)
+	if err != nil {
+		return manufacturerLang, err
+	}
+
+	var items []localization.LocalizedProperty
+	collection := cr.database.Collection(localization.CollectionLocalizedProperty)
+	cursor, err := collection.Find(c, bson.M{"entity_id": record.ID, "language_id": locale.ID, "locale_key_group": manufacturer.ID.Hex()})
+
+	if err != nil {
+		return manufacturerLang, err
+	}
+
+	err = cursor.All(c, &items)
+	if err != nil {
+		return manufacturerLang, err
+	}
+
+	for i := range items {
+		switch items[i].LocaleKey {
+		case "name":
+			manufacturerLang.Name = items[i].LocaleValue
+		case "description":
+			manufacturerLang.Description = items[i].LocaleValue
+		case "meta_title":
+			manufacturerLang.MetaTitle = items[i].LocaleValue
+		case "meta_keywords":
+			manufacturerLang.MetaKeywords = items[i].LocaleValue
+		case "meta_description":
+			manufacturerLang.MetaDescription = items[i].LocaleValue
+		}
+	}
+
+	return manufacturerLang, err
+}
+
 func (cr *catalogRepository) GetCategories(c context.Context, filter domain.CategoryRequest) ([]domain.CategoriesResponse, error) {
 	var result []domain.CategoriesResponse
 	var categories []catalog.Category
 
-	idHex, err := primitive.ObjectIDFromHex(filter.ID)
+	idHex, err := bson.ObjectIDFromHex(filter.ID)
 	if err == nil {
 		var category catalog.Category
 
@@ -92,7 +264,7 @@ func (cr *catalogRepository) GetCategories(c context.Context, filter domain.Cate
 	}
 
 	if filter.Parent != "" {
-		idHex, err := primitive.ObjectIDFromHex(filter.Parent)
+		idHex, err := bson.ObjectIDFromHex(filter.Parent)
 		if err == nil {
 			query["parent_category_id"] = idHex
 		}
@@ -116,7 +288,7 @@ func (cr *catalogRepository) GetCategories(c context.Context, filter domain.Cate
 
 	findOptions := options.Find().
 		SetSort(bson.D{{Key: "display_order", Value: sortOrder}}).
-		SetLimit(int64(limit)).
+		SetLimit(limit).
 		SetSkip(skip)
 
 	collection := cr.database.Collection(catalog.CollectionCategory)
@@ -153,7 +325,7 @@ func PrepareCategory(cr *catalogRepository, c context.Context, category catalog.
 		case "template":
 			result.Template, err = PrepareCategoryTemplate(cr, c, category)
 		case "picture":
-			result.Picture, err = PrepareCategoryPicture(cr, c, category)
+			result.Picture, err = PreparePicture(cr, c, category.PictureID)
 		case "childs":
 			result.Childs, err = PrepareCategoryChilds(cr, c, category)
 		}
@@ -172,7 +344,7 @@ func (cr *catalogRepository) GetProducts(c context.Context, filter domain.Produc
 	var result []domain.ProductsResponse
 	var products []catalog.Product
 
-	idHex, err := primitive.ObjectIDFromHex(filter.ID)
+	idHex, err := bson.ObjectIDFromHex(filter.ID)
 	if err == nil {
 		var product catalog.Product
 
@@ -235,10 +407,10 @@ func (cr *catalogRepository) GetProducts(c context.Context, filter domain.Produc
 	}
 
 	if len(filter.Categories) > 0 {
-		var products []primitive.ObjectID
+		var products []bson.ObjectID
 		var categories []catalog.ProductCategory
 		for i := range filter.Categories {
-			idHex, err := primitive.ObjectIDFromHex(filter.Categories[i])
+			idHex, err := bson.ObjectIDFromHex(filter.Categories[i])
 			if err == nil {
 				filter.Categories[i] = idHex.Hex()
 				collection := cr.database.Collection(catalog.CollectionProductCategory)
@@ -283,7 +455,7 @@ func (cr *catalogRepository) GetProducts(c context.Context, filter domain.Produc
 
 	findOptions := options.Find().
 		SetSort(bson.D{{Key: "display_order", Value: sortOrder}}).
-		SetLimit(int64(limit)).
+		SetLimit(limit).
 		SetSkip(skip)
 
 	collection := cr.database.Collection(catalog.CollectionProduct)
@@ -509,7 +681,7 @@ func PrepareBackorderModeType(product catalog.Product) (domain.Type, error) {
 
 }
 
-func PrepareBasepriceBaseUnitType(cr *catalogRepository, c context.Context, baseUnitID primitive.ObjectID) (directory.MeasureWeight, error) {
+func PrepareBasepriceBaseUnitType(cr *catalogRepository, c context.Context, baseUnitID bson.ObjectID) (directory.MeasureWeight, error) {
 
 	item := directory.MeasureWeight{}
 	collection := cr.database.Collection(directory.CollectionMeasureWeight)
@@ -734,7 +906,7 @@ func PrepareCategoryChilds(cr *catalogRepository, c context.Context, category ca
 	}
 
 	for i := range categories {
-		picture, _ := PrepareCategoryPicture(cr, c, category)
+		picture, _ := PreparePicture(cr, c, category.PictureID)
 		result = append(result, domain.CategoryChilds{Category: categories[i], Picture: picture})
 	}
 
@@ -955,20 +1127,20 @@ func PrepareProductAvailabilityRange(cr *catalogRepository, c context.Context, p
 	return availabilityRange, err
 }
 
-func PrepareTaxCategory(cr *catalogRepository, c context.Context, ID primitive.ObjectID) (tax.TaxCategory, error) {
+func PrepareTaxCategory(cr *catalogRepository, c context.Context, ID bson.ObjectID) (tax.TaxCategory, error) {
 	var taxes tax.TaxCategory
 	collection := cr.database.Collection(tax.CollectionTaxCategory)
 	err := collection.FindOne(c, bson.M{"_id": ID}).Decode(&taxes)
 	return taxes, err
 }
 
-func PrepareVendor(cr *catalogRepository, c context.Context, ID primitive.ObjectID) (vendor.Vendor, error) {
+func PrepareVendor(cr *catalogRepository, c context.Context, ID bson.ObjectID) (vendor.Vendor, error) {
 	var vendo vendor.Vendor
 	collection := cr.database.Collection(vendor.CollectionVendor)
 	err := collection.FindOne(c, bson.M{"_id": ID}).Decode(&vendo)
 	return vendo, err
 }
-func PrepareDownload(cr *catalogRepository, c context.Context, ID primitive.ObjectID) (media.Download, error) {
+func PrepareDownload(cr *catalogRepository, c context.Context, ID bson.ObjectID) (media.Download, error) {
 	var download media.Download
 	collection := cr.database.Collection(media.CollectionDownload)
 	err := collection.FindOne(c, bson.M{"_id": ID}).Decode(&download)
@@ -1133,7 +1305,7 @@ func PrepareProductManufacturer(cr *catalogRepository, c context.Context, produc
 	return manufacturers, err
 }
 
-func PreparePicture(cr *catalogRepository, c context.Context, ID primitive.ObjectID) (media.Picture, error) {
+func PreparePicture(cr *catalogRepository, c context.Context, ID bson.ObjectID) (media.Picture, error) {
 	var picture media.Picture
 	collection := cr.database.Collection(media.CollectionPicture)
 	err := collection.FindOne(c, bson.M{"_id": ID}).Decode(&picture)
@@ -1166,16 +1338,7 @@ func PrepareProductPicture(cr *catalogRepository, c context.Context, product cat
 	return pictures, err
 }
 
-func PrepareCategoryPicture(cr *catalogRepository, c context.Context, category catalog.Category) (media.Picture, error) {
-	var picture media.Picture
-	picture, err := PreparePicture(cr, c, category.PictureID)
-	if err != nil {
-		return picture, err
-	}
-	return picture, err
-}
-
-func PrepareVideo(cr *catalogRepository, c context.Context, ID primitive.ObjectID) (media.Video, error) {
+func PrepareVideo(cr *catalogRepository, c context.Context, ID bson.ObjectID) (media.Video, error) {
 
 	var video media.Video
 	collection := cr.database.Collection(media.CollectionVideo)

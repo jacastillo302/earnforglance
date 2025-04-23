@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultCommonSettings struct {
@@ -28,7 +28,7 @@ func (m *MockSingleResultCommonSettings) Decode(v interface{}) error {
 }
 
 var mockItemCommonSettings = &domain.CommonSettings{
-	ID:                               primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                               bson.NewObjectID(), // Existing ID of the record to update
 	SubjectFieldOnContactUsForm:      false,
 	UseSystemEmailForContactUsForm:   true,
 	DisplayJavaScriptDisabledWarning: false,

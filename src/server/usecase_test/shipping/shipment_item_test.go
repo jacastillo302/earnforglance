@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestShipmentItemUsecase_FetchByID(t *testing.T) {
@@ -18,14 +18,14 @@ func TestShipmentItemUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewShipmentItemUsecase(mockRepo, timeout)
 
-	shipmentItemID := primitive.NewObjectID().Hex()
+	shipmentItemID := bson.NewObjectID().Hex()
 
 	updatedShipmentItem := domain.ShipmentItem{
-		ID:          primitive.NewObjectID(), // Existing ID of the record to update
-		ShipmentID:  primitive.NewObjectID(),
-		OrderItemID: primitive.NewObjectID(),
+		ID:          bson.NewObjectID(), // Existing ID of the record to update
+		ShipmentID:  bson.NewObjectID(),
+		OrderItemID: bson.NewObjectID(),
 		Quantity:    15,
-		WarehouseID: primitive.NewObjectID(),
+		WarehouseID: bson.NewObjectID(),
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, shipmentItemID).Return(updatedShipmentItem, nil)
@@ -43,10 +43,10 @@ func TestShipmentItemUsecase_Create(t *testing.T) {
 	usecase := test.NewShipmentItemUsecase(mockRepo, timeout)
 
 	newShipmentItem := &domain.ShipmentItem{
-		ShipmentID:  primitive.NewObjectID(),
-		OrderItemID: primitive.NewObjectID(),
+		ShipmentID:  bson.NewObjectID(),
+		OrderItemID: bson.NewObjectID(),
 		Quantity:    10,
-		WarehouseID: primitive.NewObjectID(),
+		WarehouseID: bson.NewObjectID(),
 	}
 
 	mockRepo.On("Create", mock.Anything, newShipmentItem).Return(nil)
@@ -63,11 +63,11 @@ func TestShipmentItemUsecase_Update(t *testing.T) {
 	usecase := test.NewShipmentItemUsecase(mockRepo, timeout)
 
 	updatedShipmentItem := &domain.ShipmentItem{
-		ID:          primitive.NewObjectID(), // Existing ID of the record to update
-		ShipmentID:  primitive.NewObjectID(),
-		OrderItemID: primitive.NewObjectID(),
+		ID:          bson.NewObjectID(), // Existing ID of the record to update
+		ShipmentID:  bson.NewObjectID(),
+		OrderItemID: bson.NewObjectID(),
 		Quantity:    15,
-		WarehouseID: primitive.NewObjectID(),
+		WarehouseID: bson.NewObjectID(),
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedShipmentItem).Return(nil)
@@ -83,7 +83,7 @@ func TestShipmentItemUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewShipmentItemUsecase(mockRepo, timeout)
 
-	shipmentItemID := primitive.NewObjectID().Hex()
+	shipmentItemID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, shipmentItemID).Return(nil)
 
@@ -100,18 +100,18 @@ func TestShipmentItemUsecase_Fetch(t *testing.T) {
 
 	fetchedShipmentItems := []domain.ShipmentItem{
 		{
-			ID:          primitive.NewObjectID(),
-			ShipmentID:  primitive.NewObjectID(),
-			OrderItemID: primitive.NewObjectID(),
+			ID:          bson.NewObjectID(),
+			ShipmentID:  bson.NewObjectID(),
+			OrderItemID: bson.NewObjectID(),
 			Quantity:    10,
-			WarehouseID: primitive.NewObjectID(),
+			WarehouseID: bson.NewObjectID(),
 		},
 		{
-			ID:          primitive.NewObjectID(),
-			ShipmentID:  primitive.NewObjectID(),
-			OrderItemID: primitive.NewObjectID(),
+			ID:          bson.NewObjectID(),
+			ShipmentID:  bson.NewObjectID(),
+			OrderItemID: bson.NewObjectID(),
 			Quantity:    20,
-			WarehouseID: primitive.NewObjectID(),
+			WarehouseID: bson.NewObjectID(),
 		},
 	}
 

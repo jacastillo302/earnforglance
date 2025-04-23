@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestMessagesSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestMessagesSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewMessagesSettingsUsecase(mockRepo, timeout)
 
-	messagesSettingsID := primitive.NewObjectID().Hex()
+	messagesSettingsID := bson.NewObjectID().Hex()
 
 	updatedMessagesSettings := domain.MessagesSettings{
-		ID:                    primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                    bson.NewObjectID(), // Existing ID of the record to update
 		UsePopupNotifications: false,
 		UseDefaultEmailAccountForSendStoreOwnerEmails: true,
 	}
@@ -59,7 +59,7 @@ func TestMessagesSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewMessagesSettingsUsecase(mockRepo, timeout)
 
 	updatedMessagesSettings := &domain.MessagesSettings{
-		ID:                    primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                    bson.NewObjectID(), // Existing ID of the record to update
 		UsePopupNotifications: false,
 		UseDefaultEmailAccountForSendStoreOwnerEmails: true,
 	}
@@ -77,7 +77,7 @@ func TestMessagesSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewMessagesSettingsUsecase(mockRepo, timeout)
 
-	messagesSettingsID := primitive.NewObjectID().Hex()
+	messagesSettingsID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, messagesSettingsID).Return(nil)
 
@@ -94,12 +94,12 @@ func TestMessagesSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedMessagesSettings := []domain.MessagesSettings{
 		{
-			ID:                    primitive.NewObjectID(),
+			ID:                    bson.NewObjectID(),
 			UsePopupNotifications: true,
 			UseDefaultEmailAccountForSendStoreOwnerEmails: false,
 		},
 		{
-			ID:                    primitive.NewObjectID(),
+			ID:                    bson.NewObjectID(),
 			UsePopupNotifications: false,
 			UseDefaultEmailAccountForSendStoreOwnerEmails: true,
 		},

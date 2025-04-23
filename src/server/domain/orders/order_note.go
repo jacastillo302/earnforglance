@@ -4,7 +4,7 @@ import (
 	"context" // added context library
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -13,12 +13,12 @@ const (
 
 // OrderNote represents an order note
 type OrderNote struct {
-	ID                primitive.ObjectID `bson:"_id,omitempty"`
-	OrderID           primitive.ObjectID `bson:"order_id"`
-	Note              string             `bson:"note"`
-	DownloadID        primitive.ObjectID `bson:"download_id"`
-	DisplayToCustomer bool               `bson:"display_to_customer"`
-	CreatedOnUtc      time.Time          `bson:"created_on_utc"`
+	ID                bson.ObjectID `bson:"_id,omitempty"`
+	OrderID           bson.ObjectID `bson:"order_id"`
+	Note              string        `bson:"note"`
+	DownloadID        bson.ObjectID `bson:"download_id"`
+	DisplayToCustomer bool          `bson:"display_to_customer"`
+	CreatedOnUtc      time.Time     `bson:"created_on_utc"`
 }
 
 // OrderNoteRepository interface

@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/common"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type commonsettingsRepository struct {
@@ -59,7 +58,7 @@ func (ur *commonsettingsRepository) Update(c context.Context, commonsettings *do
 func (ur *commonsettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -72,7 +71,8 @@ func (ur *commonsettingsRepository) Delete(c context.Context, ID string) error {
 func (ur *commonsettingsRepository) Fetch(c context.Context) ([]domain.CommonSettings, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -94,7 +94,7 @@ func (tr *commonsettingsRepository) FetchByID(c context.Context, commonsettingsI
 
 	var commonsettings domain.CommonSettings
 
-	idHex, err := primitive.ObjectIDFromHex(commonsettingsID)
+	idHex, err := bson.ObjectIDFromHex(commonsettingsID)
 	if err != nil {
 		return commonsettings, err
 	}

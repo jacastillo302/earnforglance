@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,10 +12,10 @@ const (
 
 // Warehouse represents a warehouse
 type Warehouse struct {
-	ID           primitive.ObjectID `bson:"_id,omitempty"`
-	Name         string             `bson:"name"`
-	AdminComment string             `bson:"admin_comment"`
-	AddressID    primitive.ObjectID `bson:"address_id"`
+	ID           bson.ObjectID `bson:"_id,omitempty"`
+	Name         string        `bson:"name"`
+	AdminComment string        `bson:"admin_comment"`
+	AddressID    bson.ObjectID `bson:"address_id"`
 }
 
 type WarehouseRepository interface {

@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestTierPriceUsecase_FetchByID(t *testing.T) {
@@ -18,12 +18,12 @@ func TestTierPriceUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewTierPriceUsecase(mockRepo, timeout)
 
-	tierPriceID := primitive.NewObjectID().Hex()
+	tierPriceID := bson.NewObjectID().Hex()
 
 	updatedTierPrice := domain.TierPrice{
-		ID:               primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID:        primitive.NewObjectID(),
-		StoreID:          primitive.NewObjectID(),
+		ID:               bson.NewObjectID(), // Existing ID of the record to update
+		ProductID:        bson.NewObjectID(),
+		StoreID:          bson.NewObjectID(),
 		CustomerRoleID:   nil,
 		Quantity:         20,
 		Price:            39.99,
@@ -46,9 +46,9 @@ func TestTierPriceUsecase_Create(t *testing.T) {
 	usecase := test.NewTierPriceUsecase(mockRepo, timeout)
 
 	newTierPrice := &domain.TierPrice{
-		ID:               primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID:        primitive.NewObjectID(),
-		StoreID:          primitive.NewObjectID(),
+		ID:               bson.NewObjectID(), // Existing ID of the record to update
+		ProductID:        bson.NewObjectID(),
+		StoreID:          bson.NewObjectID(),
 		CustomerRoleID:   nil,
 		Quantity:         20,
 		Price:            39.99,
@@ -70,9 +70,9 @@ func TestTierPriceUsecase_Update(t *testing.T) {
 	usecase := test.NewTierPriceUsecase(mockRepo, timeout)
 
 	updatedTierPrice := &domain.TierPrice{
-		ID:               primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID:        primitive.NewObjectID(),
-		StoreID:          primitive.NewObjectID(),
+		ID:               bson.NewObjectID(), // Existing ID of the record to update
+		ProductID:        bson.NewObjectID(),
+		StoreID:          bson.NewObjectID(),
 		CustomerRoleID:   nil,
 		Quantity:         20,
 		Price:            39.99,
@@ -80,7 +80,7 @@ func TestTierPriceUsecase_Update(t *testing.T) {
 		EndDateTimeUtc:   new(time.Time),
 	}
 
-	*updatedTierPrice.CustomerRoleID = primitive.NewObjectID()
+	*updatedTierPrice.CustomerRoleID = bson.NewObjectID()
 	*updatedTierPrice.StartDateTimeUtc = time.Now().AddDate(0, 0, -7) // 7 days ago
 	*updatedTierPrice.EndDateTimeUtc = time.Now().AddDate(0, 0, 7)    // 7 days from now
 
@@ -97,7 +97,7 @@ func TestTierPriceUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewTierPriceUsecase(mockRepo, timeout)
 
-	tierPriceID := primitive.NewObjectID().Hex()
+	tierPriceID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, tierPriceID).Return(nil)
 
@@ -114,9 +114,9 @@ func TestTierPriceUsecase_Fetch(t *testing.T) {
 
 	fetchedTierPrices := []domain.TierPrice{
 		{
-			ID:               primitive.NewObjectID(),
-			ProductID:        primitive.NewObjectID(),
-			StoreID:          primitive.NewObjectID(),
+			ID:               bson.NewObjectID(),
+			ProductID:        bson.NewObjectID(),
+			StoreID:          bson.NewObjectID(),
 			CustomerRoleID:   nil,
 			Quantity:         10,
 			Price:            49.99,
@@ -124,9 +124,9 @@ func TestTierPriceUsecase_Fetch(t *testing.T) {
 			EndDateTimeUtc:   nil,
 		},
 		{
-			ID:               primitive.NewObjectID(),
-			ProductID:        primitive.NewObjectID(),
-			StoreID:          primitive.NewObjectID(),
+			ID:               bson.NewObjectID(),
+			ProductID:        bson.NewObjectID(),
+			StoreID:          bson.NewObjectID(),
 			CustomerRoleID:   nil,
 			Quantity:         20,
 			Price:            39.99,
@@ -134,7 +134,7 @@ func TestTierPriceUsecase_Fetch(t *testing.T) {
 			EndDateTimeUtc:   new(time.Time),
 		},
 	}
-	*fetchedTierPrices[1].CustomerRoleID = primitive.NewObjectID()
+	*fetchedTierPrices[1].CustomerRoleID = bson.NewObjectID()
 	*fetchedTierPrices[1].StartDateTimeUtc = time.Now().AddDate(0, 0, -7) // 7 days ago
 	*fetchedTierPrices[1].EndDateTimeUtc = time.Now().AddDate(0, 0, 7)    // 7 days from now
 

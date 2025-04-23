@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,13 +12,13 @@ const (
 
 // ProductSpecificationAttribute represents a product specification attribute
 type ProductSpecificationAttribute struct {
-	ProductID                      primitive.ObjectID `bson:"product_id"`
-	SpecificationAttributeTypeID   int                `bson:"attribute_type_id"`
-	SpecificationAttributeOptionID primitive.ObjectID `bson:"specification_attribute_option_id"`
-	CustomValue                    string             `bson:"custom_value"`
-	AllowFiltering                 bool               `bson:"allow_filtering"`
-	ShowOnProductPage              bool               `bson:"show_on_product_page"`
-	DisplayOrder                   int                `bson:"display_order"`
+	ProductID                      bson.ObjectID `bson:"product_id"`
+	SpecificationAttributeTypeID   int           `bson:"attribute_type_id"`
+	SpecificationAttributeOptionID bson.ObjectID `bson:"specification_attribute_option_id"`
+	CustomValue                    string        `bson:"custom_value"`
+	AllowFiltering                 bool          `bson:"allow_filtering"`
+	ShowOnProductPage              bool          `bson:"show_on_product_page"`
+	DisplayOrder                   int           `bson:"display_order"`
 }
 
 type ProductSpecificationAttributeRepository interface {

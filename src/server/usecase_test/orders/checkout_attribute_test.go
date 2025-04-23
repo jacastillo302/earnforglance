@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestCheckoutAttributeUsecase_FetchByID(t *testing.T) {
@@ -18,14 +18,14 @@ func TestCheckoutAttributeUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCheckoutAttributeUsecase(mockRepo, timeout)
 
-	checkoutAttributeID := primitive.NewObjectID().Hex()
+	checkoutAttributeID := bson.NewObjectID().Hex()
 
 	updatedCheckoutAttribute := domain.CheckoutAttribute{
-		ID:                              primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                              bson.NewObjectID(), // Existing ID of the record to update
 		TextPrompt:                      "Update your custom message",
 		ShippableProductRequired:        false,
 		IsTaxExempt:                     true,
-		TaxCategoryID:                   primitive.NewObjectID(),
+		TaxCategoryID:                   bson.NewObjectID(),
 		LimitedToStores:                 true,
 		ValidationMinLength:             new(int),
 		ValidationMaxLength:             new(int),
@@ -53,7 +53,7 @@ func TestCheckoutAttributeUsecase_Create(t *testing.T) {
 		TextPrompt:                      "Enter your custom message",
 		ShippableProductRequired:        true,
 		IsTaxExempt:                     false,
-		TaxCategoryID:                   primitive.NewObjectID(),
+		TaxCategoryID:                   bson.NewObjectID(),
 		LimitedToStores:                 false,
 		ValidationMinLength:             new(int),
 		ValidationMaxLength:             new(int),
@@ -80,11 +80,11 @@ func TestCheckoutAttributeUsecase_Update(t *testing.T) {
 	usecase := test.NewCheckoutAttributeUsecase(mockRepo, timeout)
 
 	updatedCheckoutAttribute := &domain.CheckoutAttribute{
-		ID:                              primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                              bson.NewObjectID(), // Existing ID of the record to update
 		TextPrompt:                      "Update your custom message",
 		ShippableProductRequired:        false,
 		IsTaxExempt:                     true,
-		TaxCategoryID:                   primitive.NewObjectID(),
+		TaxCategoryID:                   bson.NewObjectID(),
 		LimitedToStores:                 true,
 		ValidationMinLength:             new(int),
 		ValidationMaxLength:             new(int),
@@ -110,7 +110,7 @@ func TestCheckoutAttributeUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCheckoutAttributeUsecase(mockRepo, timeout)
 
-	checkoutAttributeID := primitive.NewObjectID().Hex()
+	checkoutAttributeID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, checkoutAttributeID).Return(nil)
 
@@ -127,11 +127,11 @@ func TestCheckoutAttributeUsecase_Fetch(t *testing.T) {
 
 	fetchedCheckoutAttributes := []domain.CheckoutAttribute{
 		{
-			ID:                              primitive.NewObjectID(),
+			ID:                              bson.NewObjectID(),
 			TextPrompt:                      "Enter your custom message",
 			ShippableProductRequired:        true,
 			IsTaxExempt:                     false,
-			TaxCategoryID:                   primitive.NewObjectID(),
+			TaxCategoryID:                   bson.NewObjectID(),
 			LimitedToStores:                 false,
 			ValidationMinLength:             new(int),
 			ValidationMaxLength:             new(int),
@@ -141,11 +141,11 @@ func TestCheckoutAttributeUsecase_Fetch(t *testing.T) {
 			ConditionAttributeXml:           "<Conditions></Conditions>",
 		},
 		{
-			ID:                              primitive.NewObjectID(),
+			ID:                              bson.NewObjectID(),
 			TextPrompt:                      "Update your custom message",
 			ShippableProductRequired:        false,
 			IsTaxExempt:                     true,
-			TaxCategoryID:                   primitive.NewObjectID(),
+			TaxCategoryID:                   bson.NewObjectID(),
 			LimitedToStores:                 true,
 			ValidationMinLength:             new(int),
 			ValidationMaxLength:             new(int),

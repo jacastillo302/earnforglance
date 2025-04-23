@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/forums"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type forumsubscriptionRepository struct {
@@ -58,7 +57,7 @@ func (ur *forumsubscriptionRepository) Update(c context.Context, forumsubscripti
 func (ur *forumsubscriptionRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *forumsubscriptionRepository) Delete(c context.Context, ID string) erro
 func (ur *forumsubscriptionRepository) Fetch(c context.Context) ([]domain.ForumSubscription, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *forumsubscriptionRepository) FetchByID(c context.Context, forumsubscri
 
 	var forumsubscription domain.ForumSubscription
 
-	idHex, err := primitive.ObjectIDFromHex(forumsubscriptionID)
+	idHex, err := bson.ObjectIDFromHex(forumsubscriptionID)
 	if err != nil {
 		return forumsubscription, err
 	}

@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/customers"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type externalauthenticationsettingsRepository struct {
@@ -66,7 +65,8 @@ func (ur *externalauthenticationsettingsRepository) Delete(c context.Context, ex
 func (ur *externalauthenticationsettingsRepository) Fetch(c context.Context) ([]domain.ExternalAuthenticationSettings, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -88,7 +88,7 @@ func (tr *externalauthenticationsettingsRepository) FetchByID(c context.Context,
 
 	var externalauthenticationsettings domain.ExternalAuthenticationSettings
 
-	idHex, err := primitive.ObjectIDFromHex(externalauthenticationsettingsID)
+	idHex, err := bson.ObjectIDFromHex(externalauthenticationsettingsID)
 	if err != nil {
 		return externalauthenticationsettings, err
 	}

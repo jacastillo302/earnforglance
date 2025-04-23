@@ -11,7 +11,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestCustomerUsecase_FetchByID(t *testing.T) {
@@ -19,10 +19,10 @@ func TestCustomerUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCustomerUsecase(mockRepo, timeout)
 
-	customerID := primitive.NewObjectID().Hex()
+	customerID := bson.NewObjectID().Hex()
 
 	updatedCustomer := domain.Customer{
-		ID:                          primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                          bson.NewObjectID(), // Existing ID of the record to update
 		CustomerGuid:                uuid.New(),
 		Username:                    "admin",
 		Email:                       "admin@example.com",
@@ -36,16 +36,16 @@ func TestCustomerUsecase_FetchByID(t *testing.T) {
 		ZipPostalCode:               "67890",
 		City:                        "Updated City",
 		County:                      "Updated County",
-		CountryID:                   primitive.NewObjectID(),
-		StateProvinceID:             primitive.NewObjectID(),
+		CountryID:                   bson.NewObjectID(),
+		StateProvinceID:             bson.NewObjectID(),
 		Phone:                       "987-654-3210",
 		Fax:                         "987-654-3211",
 		VatNumber:                   "VAT654321",
 		VatNumberStatusID:           "VAT123456",
 		TimeZoneID:                  "PST",
 		CustomCustomerAttributesXML: "<attributes><attribute>updated</attribute></attributes>",
-		CurrencyID:                  new(primitive.ObjectID),
-		LanguageID:                  new(primitive.ObjectID),
+		CurrencyID:                  new(bson.ObjectID),
+		LanguageID:                  new(bson.ObjectID),
 		TaxDisplayTypeID:            new(int),
 		EmailToRevalidate:           "janedoe@newdomain.com",
 		AdminComment:                "Updated customer",
@@ -65,9 +65,9 @@ func TestCustomerUsecase_FetchByID(t *testing.T) {
 		LastLoginDateUtc:            new(time.Time),
 		LastActivityDateUtc:         time.Now(),
 		RegisteredInStoreID:         "64f1b3d4e5f6789012345678",
-		BillingAddressID:            new(primitive.ObjectID),
+		BillingAddressID:            new(bson.ObjectID),
 		MustChangePassword:          true,
-		ShippingAddressID:           new(primitive.ObjectID),
+		ShippingAddressID:           new(bson.ObjectID),
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, customerID).Return(updatedCustomer, nil)
@@ -98,8 +98,8 @@ func TestCustomerUsecase_Create(t *testing.T) {
 		ZipPostalCode:               "12345",
 		City:                        "Example City",
 		County:                      "Example County",
-		CountryID:                   primitive.NewObjectID(),
-		StateProvinceID:             primitive.NewObjectID(),
+		CountryID:                   bson.NewObjectID(),
+		StateProvinceID:             bson.NewObjectID(),
 		Phone:                       "123-456-7890",
 		Fax:                         "123-456-7891",
 		VatNumber:                   "VAT123456",
@@ -146,7 +146,7 @@ func TestCustomerUsecase_Update(t *testing.T) {
 	usecase := test.NewCustomerUsecase(mockRepo, timeout)
 
 	updatedCustomer := &domain.Customer{
-		ID:                          primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                          bson.NewObjectID(), // Existing ID of the record to update
 		CustomerGuid:                uuid.New(),
 		Username:                    "janedoe",
 		Email:                       "janedoe@example.com",
@@ -160,16 +160,16 @@ func TestCustomerUsecase_Update(t *testing.T) {
 		ZipPostalCode:               "67890",
 		City:                        "Updated City",
 		County:                      "Updated County",
-		CountryID:                   primitive.NewObjectID(),
-		StateProvinceID:             primitive.NewObjectID(),
+		CountryID:                   bson.NewObjectID(),
+		StateProvinceID:             bson.NewObjectID(),
 		Phone:                       "987-654-3210",
 		Fax:                         "987-654-3211",
 		VatNumber:                   "VAT654321",
 		VatNumberStatusID:           "VAT123456",
 		TimeZoneID:                  "PST",
 		CustomCustomerAttributesXML: "<attributes><attribute>updated</attribute></attributes>",
-		CurrencyID:                  new(primitive.ObjectID),
-		LanguageID:                  new(primitive.ObjectID),
+		CurrencyID:                  new(bson.ObjectID),
+		LanguageID:                  new(bson.ObjectID),
 		TaxDisplayTypeID:            new(int),
 		EmailToRevalidate:           "janedoe@newdomain.com",
 		AdminComment:                "Updated customer",
@@ -189,18 +189,18 @@ func TestCustomerUsecase_Update(t *testing.T) {
 		LastLoginDateUtc:            new(time.Time),
 		LastActivityDateUtc:         time.Now(),
 		RegisteredInStoreID:         "64f1b3d4e5f6789012345678",
-		BillingAddressID:            new(primitive.ObjectID),
+		BillingAddressID:            new(bson.ObjectID),
 		MustChangePassword:          true,
-		ShippingAddressID:           new(primitive.ObjectID),
+		ShippingAddressID:           new(bson.ObjectID),
 	}
 	*updatedCustomer.DateOfBirth = time.Now().AddDate(-30, 0, 0)           // 30 years ago
 	*updatedCustomer.CannotLoginUntilDateUtc = time.Now().AddDate(0, 0, 7) // 7 days from now
 	*updatedCustomer.LastLoginDateUtc = time.Now().AddDate(0, 0, -1)       // 1 day ago
-	*updatedCustomer.CurrencyID = primitive.NewObjectID()
-	*updatedCustomer.LanguageID = primitive.NewObjectID()
+	*updatedCustomer.CurrencyID = bson.NewObjectID()
+	*updatedCustomer.LanguageID = bson.NewObjectID()
 	*updatedCustomer.TaxDisplayTypeID = 10
-	*updatedCustomer.BillingAddressID = primitive.NewObjectID()
-	*updatedCustomer.ShippingAddressID = primitive.NewObjectID()
+	*updatedCustomer.BillingAddressID = bson.NewObjectID()
+	*updatedCustomer.ShippingAddressID = bson.NewObjectID()
 
 	mockRepo.On("Update", mock.Anything, updatedCustomer).Return(nil)
 
@@ -215,7 +215,7 @@ func TestCustomerUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCustomerUsecase(mockRepo, timeout)
 
-	customerID := primitive.NewObjectID().Hex()
+	customerID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, customerID).Return(nil)
 
@@ -232,7 +232,7 @@ func TestCustomerUsecase_Fetch(t *testing.T) {
 
 	fetchedCustomers := []domain.Customer{
 		{
-			ID:                          primitive.NewObjectID(),
+			ID:                          bson.NewObjectID(),
 			CustomerGuid:                uuid.New(),
 			Username:                    "johndoe",
 			Email:                       "johndoe@example.com",
@@ -246,8 +246,8 @@ func TestCustomerUsecase_Fetch(t *testing.T) {
 			ZipPostalCode:               "12345",
 			City:                        "Example City",
 			County:                      "Example County",
-			CountryID:                   primitive.NewObjectID(),
-			StateProvinceID:             primitive.NewObjectID(),
+			CountryID:                   bson.NewObjectID(),
+			StateProvinceID:             bson.NewObjectID(),
 			Phone:                       "123-456-7890",
 			Fax:                         "123-456-7891",
 			VatNumber:                   "VAT123456",
@@ -280,7 +280,7 @@ func TestCustomerUsecase_Fetch(t *testing.T) {
 			ShippingAddressID:           nil,
 		},
 		{
-			ID:                          primitive.NewObjectID(),
+			ID:                          bson.NewObjectID(),
 			CustomerGuid:                uuid.New(),
 			Username:                    "janedoe",
 			Email:                       "janedoe@example.com",
@@ -294,16 +294,16 @@ func TestCustomerUsecase_Fetch(t *testing.T) {
 			ZipPostalCode:               "67890",
 			City:                        "Updated City",
 			County:                      "Updated County",
-			CountryID:                   primitive.NewObjectID(),
-			StateProvinceID:             primitive.NewObjectID(),
+			CountryID:                   bson.NewObjectID(),
+			StateProvinceID:             bson.NewObjectID(),
 			Phone:                       "987-654-3210",
 			Fax:                         "987-654-3211",
 			VatNumber:                   "VAT654321",
 			VatNumberStatusID:           "VAT123456",
 			TimeZoneID:                  "PST",
 			CustomCustomerAttributesXML: "<attributes><attribute>updated</attribute></attributes>",
-			CurrencyID:                  new(primitive.ObjectID),
-			LanguageID:                  new(primitive.ObjectID),
+			CurrencyID:                  new(bson.ObjectID),
+			LanguageID:                  new(bson.ObjectID),
 			TaxDisplayTypeID:            new(int),
 			EmailToRevalidate:           "janedoe@newdomain.com",
 			AdminComment:                "Updated customer",
@@ -323,18 +323,18 @@ func TestCustomerUsecase_Fetch(t *testing.T) {
 			LastLoginDateUtc:            new(time.Time),
 			LastActivityDateUtc:         time.Now(),
 			RegisteredInStoreID:         "64f1b3d4e5f6789012345678",
-			BillingAddressID:            new(primitive.ObjectID),
+			BillingAddressID:            new(bson.ObjectID),
 			MustChangePassword:          true,
-			ShippingAddressID:           new(primitive.ObjectID),
+			ShippingAddressID:           new(bson.ObjectID),
 		},
 	}
 	*fetchedCustomers[1].DateOfBirth = time.Now().AddDate(-30, 0, 0)           // 30 years ago
 	*fetchedCustomers[1].CannotLoginUntilDateUtc = time.Now().AddDate(0, 0, 7) // 7 days from now
 	*fetchedCustomers[1].LastLoginDateUtc = time.Now().AddDate(0, 0, -1)       // 1 day ago
-	*fetchedCustomers[1].CurrencyID = primitive.NewObjectID()
-	*fetchedCustomers[1].LanguageID = primitive.NewObjectID()
-	*fetchedCustomers[1].BillingAddressID = primitive.NewObjectID()
-	*fetchedCustomers[1].ShippingAddressID = primitive.NewObjectID()
+	*fetchedCustomers[1].CurrencyID = bson.NewObjectID()
+	*fetchedCustomers[1].LanguageID = bson.NewObjectID()
+	*fetchedCustomers[1].BillingAddressID = bson.NewObjectID()
+	*fetchedCustomers[1].ShippingAddressID = bson.NewObjectID()
 
 	mockRepo.On("Fetch", mock.Anything).Return(fetchedCustomers, nil)
 

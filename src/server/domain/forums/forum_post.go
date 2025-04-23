@@ -4,7 +4,7 @@ import (
 	"context" // added context library
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -13,14 +13,14 @@ const (
 
 // ForumPost represents a forum post
 type ForumPost struct {
-	ID           primitive.ObjectID `bson:"_id,omitempty"`
-	TopicID      primitive.ObjectID `bson:"topic_id"`
-	CustomerID   primitive.ObjectID `bson:"customer_id"`
-	Text         string             `bson:"text"`
-	IPAddress    string             `bson:"ip_address"`
-	CreatedOnUtc time.Time          `bson:"created_on_utc"`
-	UpdatedOnUtc time.Time          `bson:"updated_on_utc"`
-	VoteCount    int                `bson:"vote_count"`
+	ID           bson.ObjectID `bson:"_id,omitempty"`
+	TopicID      bson.ObjectID `bson:"topic_id"`
+	CustomerID   bson.ObjectID `bson:"customer_id"`
+	Text         string        `bson:"text"`
+	IPAddress    string        `bson:"ip_address"`
+	CreatedOnUtc time.Time     `bson:"created_on_utc"`
+	UpdatedOnUtc time.Time     `bson:"updated_on_utc"`
+	VoteCount    int           `bson:"vote_count"`
 }
 
 // ForumPostRepository interface

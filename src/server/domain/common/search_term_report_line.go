@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,9 +12,9 @@ const (
 
 // SearchTermReportLine represents a search term record (for statistics)
 type SearchTermReportLine struct {
-	ID      primitive.ObjectID `bson:"_id,omitempty"`
-	Keyword string             `bson:"keyword"`
-	Count   int                `bson:"count"`
+	ID      bson.ObjectID `bson:"_id,omitempty"`
+	Keyword string        `bson:"keyword"`
+	Count   int           `bson:"count"`
 }
 
 type SearchTermReportLineRepository interface {

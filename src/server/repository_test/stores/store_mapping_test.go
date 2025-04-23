@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultStoreMapping struct {
@@ -28,10 +28,10 @@ func (m *MockSingleResultStoreMapping) Decode(v interface{}) error {
 }
 
 var mockItemStoreMapping = &domain.StoreMapping{
-	ID:         primitive.NewObjectID(), // Existing ID of the record to update
-	EntityID:   primitive.NewObjectID(),
+	ID:         bson.NewObjectID(), // Existing ID of the record to update
+	EntityID:   bson.NewObjectID(),
 	EntityName: "Category",
-	StoreID:    primitive.NewObjectID(),
+	StoreID:    bson.NewObjectID(),
 }
 
 func TestStoreMappingRepository_FetchByID(t *testing.T) {

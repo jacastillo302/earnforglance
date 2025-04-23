@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestExchangeRateUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestExchangeRateUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewExchangeRateUsecase(mockRepo, timeout)
 
-	exchangeRateID := primitive.NewObjectID().Hex()
+	exchangeRateID := bson.NewObjectID().Hex()
 
 	updatedExchangeRate := domain.ExchangeRate{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
 		CurrencyCode: "EUR",
 		Rate:         0.85,
 		UpdatedOn:    time.Now(),
@@ -61,7 +61,7 @@ func TestExchangeRateUsecase_Update(t *testing.T) {
 	usecase := test.NewExchangeRateUsecase(mockRepo, timeout)
 
 	updatedExchangeRate := &domain.ExchangeRate{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
 		CurrencyCode: "EUR",
 		Rate:         0.85,
 		UpdatedOn:    time.Now(),
@@ -80,7 +80,7 @@ func TestExchangeRateUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewExchangeRateUsecase(mockRepo, timeout)
 
-	exchangeRateID := primitive.NewObjectID().Hex()
+	exchangeRateID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, exchangeRateID).Return(nil)
 
@@ -97,13 +97,13 @@ func TestExchangeRateUsecase_Fetch(t *testing.T) {
 
 	fetchedExchangeRates := []domain.ExchangeRate{
 		{
-			ID:           primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
 			CurrencyCode: "USD",
 			Rate:         1.0,
 			UpdatedOn:    time.Now().AddDate(0, 0, -10), // Updated 10 days ago
 		},
 		{
-			ID:           primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
 			CurrencyCode: "EUR",
 			Rate:         0.85,
 			UpdatedOn:    time.Now().AddDate(0, 0, -5), // Updated 5 days ago

@@ -4,7 +4,7 @@ import (
 	"context" // added context library
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -13,16 +13,16 @@ const (
 
 // PrivateMessage represents a private message
 type PrivateMessage struct {
-	ID                   primitive.ObjectID `bson:"_id,omitempty"`
-	StoreID              primitive.ObjectID `bson:"store_id"`
-	FromCustomerID       primitive.ObjectID `bson:"from_customer_id"`
-	ToCustomerID         primitive.ObjectID `bson:"to_customer_id"`
-	Subject              string             `bson:"subject"`
-	Text                 string             `bson:"text"`
-	IsRead               bool               `bson:"is_read"`
-	IsDeletedByAuthor    bool               `bson:"is_deleted_by_author"`
-	IsDeletedByRecipient bool               `bson:"is_deleted_by_recipient"`
-	CreatedOnUtc         time.Time          `bson:"created_on_utc"`
+	ID                   bson.ObjectID `bson:"_id,omitempty"`
+	StoreID              bson.ObjectID `bson:"store_id"`
+	FromCustomerID       bson.ObjectID `bson:"from_customer_id"`
+	ToCustomerID         bson.ObjectID `bson:"to_customer_id"`
+	Subject              string        `bson:"subject"`
+	Text                 string        `bson:"text"`
+	IsRead               bool          `bson:"is_read"`
+	IsDeletedByAuthor    bool          `bson:"is_deleted_by_author"`
+	IsDeletedByRecipient bool          `bson:"is_deleted_by_recipient"`
+	CreatedOnUtc         time.Time     `bson:"created_on_utc"`
 }
 
 // PrivateMessageRepository interface

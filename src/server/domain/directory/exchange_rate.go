@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -14,10 +14,10 @@ const (
 
 // ExchangeRate represents an exchange rate
 type ExchangeRate struct {
-	ID           primitive.ObjectID `bson:"_id,omitempty"`
-	CurrencyCode string             `bson:"currency_code"`
-	Rate         float64            `bson:"rate"`
-	UpdatedOn    time.Time          `bson:"updated_on"`
+	ID           bson.ObjectID `bson:"_id,omitempty"`
+	CurrencyCode string        `bson:"currency_code"`
+	Rate         float64       `bson:"rate"`
+	UpdatedOn    time.Time     `bson:"updated_on"`
 }
 
 type ExchangeRateRepository interface {

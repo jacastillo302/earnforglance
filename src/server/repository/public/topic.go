@@ -8,9 +8,8 @@ import (
 	topicdomain "earnforglance/server/domain/topics"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type topicRepository struct {
@@ -28,7 +27,7 @@ func NewTopicRepository(db mongo.Database, collection string) domain.TopicReposi
 func (r *topicRepository) GetTopicSecret(c context.Context, filter domain.TopicRequest) (domain.TopicsResponse, error) {
 	var result domain.TopicsResponse
 
-	idHex, err := primitive.ObjectIDFromHex(filter.ID)
+	idHex, err := bson.ObjectIDFromHex(filter.ID)
 	if err == nil {
 		var topicitem topicdomain.Topic
 
@@ -55,7 +54,7 @@ func (r *topicRepository) GetTopics(c context.Context, filter domain.TopicReques
 	var result []domain.TopicsResponse
 	var topics []topicdomain.Topic
 
-	idHex, err := primitive.ObjectIDFromHex(filter.ID)
+	idHex, err := bson.ObjectIDFromHex(filter.ID)
 	if err == nil {
 		var topicitem topicdomain.Topic
 
@@ -99,9 +98,11 @@ func (r *topicRepository) GetTopics(c context.Context, filter domain.TopicReques
 		}
 	}
 
+	limit := int64(filter.Limit)
+
 	findOptions := options.Find().
-		SetSort(bson.D{{Key: "display_order", Value: sortOrder}}).
-		SetLimit(int64(filter.Limit)).
+		SetSort(bson.D{{Key: "_id", Value: sortOrder}}).
+		SetLimit(limit).
 		SetProjection(bson.D{{Key: "password", Value: 0}})
 
 	collection := r.database.Collection(topicdomain.CollectionTopic)

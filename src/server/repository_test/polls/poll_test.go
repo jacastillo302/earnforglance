@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultPoll struct {
@@ -29,8 +29,8 @@ func (m *MockSingleResultPoll) Decode(v interface{}) error {
 }
 
 var mockItemPoll = &domain.Poll{
-	ID:                primitive.NewObjectID(), // Existing ID of the record to update
-	LanguageID:        primitive.NewObjectID(),
+	ID:                bson.NewObjectID(), // Existing ID of the record to update
+	LanguageID:        bson.NewObjectID(),
 	Name:              "Updated Poll Name",
 	SystemKeyword:     "updated_poll_keyword",
 	Published:         false,

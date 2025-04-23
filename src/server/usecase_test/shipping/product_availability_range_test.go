@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestProductAvailabilityRangeUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestProductAvailabilityRangeUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewProductAvailabilityRangeUsecase(mockRepo, timeout)
 
-	productAvailabilityRangeID := primitive.NewObjectID().Hex()
+	productAvailabilityRangeID := bson.NewObjectID().Hex()
 
 	updatedProductAvailabilityRange := domain.ProductAvailabilityRange{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
 		Name:         "Out of Stock",
 		DisplayOrder: 2,
 	}
@@ -59,7 +59,7 @@ func TestProductAvailabilityRangeUsecase_Update(t *testing.T) {
 	usecase := test.NewProductAvailabilityRangeUsecase(mockRepo, timeout)
 
 	updatedProductAvailabilityRange := &domain.ProductAvailabilityRange{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
 		Name:         "Out of Stock",
 		DisplayOrder: 2,
 	}
@@ -77,7 +77,7 @@ func TestProductAvailabilityRangeUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewProductAvailabilityRangeUsecase(mockRepo, timeout)
 
-	productAvailabilityRangeID := primitive.NewObjectID().Hex()
+	productAvailabilityRangeID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, productAvailabilityRangeID).Return(nil)
 
@@ -94,12 +94,12 @@ func TestProductAvailabilityRangeUsecase_Fetch(t *testing.T) {
 
 	fetchedProductAvailabilityRanges := []domain.ProductAvailabilityRange{
 		{
-			ID:           primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
 			Name:         "In Stock",
 			DisplayOrder: 1,
 		},
 		{
-			ID:           primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
 			Name:         "Out of Stock",
 			DisplayOrder: 2,
 		},

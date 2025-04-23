@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/common"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type addressattributevalueRepository struct {
@@ -58,7 +57,7 @@ func (ur *addressattributevalueRepository) Update(c context.Context, addressattr
 func (ur *addressattributevalueRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *addressattributevalueRepository) Delete(c context.Context, ID string) 
 func (ur *addressattributevalueRepository) Fetch(c context.Context) ([]domain.AddressAttributeValue, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *addressattributevalueRepository) FetchByID(c context.Context, addressa
 
 	var addressattributevalue domain.AddressAttributeValue
 
-	idHex, err := primitive.ObjectIDFromHex(addressattributevalueID)
+	idHex, err := bson.ObjectIDFromHex(addressattributevalueID)
 	if err != nil {
 		return addressattributevalue, err
 	}

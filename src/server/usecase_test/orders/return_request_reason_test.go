@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestReturnRequestReasonUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestReturnRequestReasonUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewReturnRequestReasonUsecase(mockRepo, timeout)
 
-	returnRequestReasonID := primitive.NewObjectID().Hex()
+	returnRequestReasonID := bson.NewObjectID().Hex()
 
 	updatedReturnRequestReason := domain.ReturnRequestReason{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
 		Name:         "Wrong Item Delivered",
 		DisplayOrder: 2,
 	}
@@ -59,7 +59,7 @@ func TestReturnRequestReasonUsecase_Update(t *testing.T) {
 	usecase := test.NewReturnRequestReasonUsecase(mockRepo, timeout)
 
 	updatedReturnRequestReason := &domain.ReturnRequestReason{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
 		Name:         "Wrong Item Delivered",
 		DisplayOrder: 2,
 	}
@@ -77,7 +77,7 @@ func TestReturnRequestReasonUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewReturnRequestReasonUsecase(mockRepo, timeout)
 
-	returnRequestReasonID := primitive.NewObjectID().Hex()
+	returnRequestReasonID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, returnRequestReasonID).Return(nil)
 
@@ -94,12 +94,12 @@ func TestReturnRequestReasonUsecase_Fetch(t *testing.T) {
 
 	fetchedReturnRequestReasons := []domain.ReturnRequestReason{
 		{
-			ID:           primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
 			Name:         "Defective Item",
 			DisplayOrder: 1,
 		},
 		{
-			ID:           primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
 			Name:         "Wrong Item Delivered",
 			DisplayOrder: 2,
 		},

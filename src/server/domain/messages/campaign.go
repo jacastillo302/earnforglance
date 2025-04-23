@@ -4,7 +4,7 @@ import (
 	"context" // added context library
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -13,14 +13,14 @@ const (
 
 // Campaign represents a Campaign
 type Campaign struct {
-	ID                    primitive.ObjectID `bson:"_id,omitempty"`
-	Name                  string             `bson:"name"`
-	Subject               string             `bson:"subject"`
-	Body                  string             `bson:"body"`
-	StoreID               primitive.ObjectID `bson:"store_id"`
-	CustomerRoleID        primitive.ObjectID `bson:"customer_role_id"`
-	CreatedOnUtc          time.Time          `bson:"created_on_utc"`
-	DontSendBeforeDateUtc *time.Time         `bson:"dont_send_before_date_utc"`
+	ID                    bson.ObjectID `bson:"_id,omitempty"`
+	Name                  string        `bson:"name"`
+	Subject               string        `bson:"subject"`
+	Body                  string        `bson:"body"`
+	StoreID               bson.ObjectID `bson:"store_id"`
+	CustomerRoleID        bson.ObjectID `bson:"customer_role_id"`
+	CreatedOnUtc          time.Time     `bson:"created_on_utc"`
+	DontSendBeforeDateUtc *time.Time    `bson:"dont_send_before_date_utc"`
 }
 
 // CampaignRepository represents the repository interface for Campaign

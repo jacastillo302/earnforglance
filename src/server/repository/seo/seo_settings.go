@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/seo"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type seosettingsRepository struct {
@@ -58,7 +57,7 @@ func (ur *seosettingsRepository) Update(c context.Context, seosettings *domain.S
 func (ur *seosettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *seosettingsRepository) Delete(c context.Context, ID string) error {
 func (ur *seosettingsRepository) Fetch(c context.Context) ([]domain.SeoSettings, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *seosettingsRepository) FetchByID(c context.Context, seosettingsID stri
 
 	var seosettings domain.SeoSettings
 
-	idHex, err := primitive.ObjectIDFromHex(seosettingsID)
+	idHex, err := bson.ObjectIDFromHex(seosettingsID)
 	if err != nil {
 		return seosettings, err
 	}

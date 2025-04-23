@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestProductPictureUsecase_FetchByID(t *testing.T) {
@@ -18,12 +18,12 @@ func TestProductPictureUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewProductPictureUsecase(mockRepo, timeout)
 
-	productPictureID := primitive.NewObjectID().Hex()
+	productPictureID := bson.NewObjectID().Hex()
 
 	updatedProductPicture := domain.ProductPicture{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID:    primitive.NewObjectID(),
-		PictureID:    primitive.NewObjectID(),
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
+		ProductID:    bson.NewObjectID(),
+		PictureID:    bson.NewObjectID(),
 		DisplayOrder: 2,
 	}
 
@@ -42,8 +42,8 @@ func TestProductPictureUsecase_Create(t *testing.T) {
 	usecase := test.NewProductPictureUsecase(mockRepo, timeout)
 
 	newProductPicture := &domain.ProductPicture{
-		ProductID:    primitive.NewObjectID(),
-		PictureID:    primitive.NewObjectID(),
+		ProductID:    bson.NewObjectID(),
+		PictureID:    bson.NewObjectID(),
 		DisplayOrder: 1,
 	}
 
@@ -61,9 +61,9 @@ func TestProductPictureUsecase_Update(t *testing.T) {
 	usecase := test.NewProductPictureUsecase(mockRepo, timeout)
 
 	updatedProductPicture := &domain.ProductPicture{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID:    primitive.NewObjectID(),
-		PictureID:    primitive.NewObjectID(),
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
+		ProductID:    bson.NewObjectID(),
+		PictureID:    bson.NewObjectID(),
 		DisplayOrder: 2,
 	}
 	mockRepo.On("Update", mock.Anything, updatedProductPicture).Return(nil)
@@ -79,7 +79,7 @@ func TestProductPictureUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewProductPictureUsecase(mockRepo, timeout)
 
-	productPictureID := primitive.NewObjectID().Hex()
+	productPictureID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, productPictureID).Return(nil)
 
@@ -96,15 +96,15 @@ func TestProductPictureUsecase_Fetch(t *testing.T) {
 
 	fetchedProductPictures := []domain.ProductPicture{
 		{
-			ID:           primitive.NewObjectID(),
-			ProductID:    primitive.NewObjectID(),
-			PictureID:    primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
+			ProductID:    bson.NewObjectID(),
+			PictureID:    bson.NewObjectID(),
 			DisplayOrder: 1,
 		},
 		{
-			ID:           primitive.NewObjectID(),
-			ProductID:    primitive.NewObjectID(),
-			PictureID:    primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
+			ProductID:    bson.NewObjectID(),
+			PictureID:    bson.NewObjectID(),
 			DisplayOrder: 2,
 		},
 	}

@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultOrderNote struct {
@@ -29,10 +29,10 @@ func (m *MockSingleResultOrderNote) Decode(v interface{}) error {
 }
 
 var mockItemOrderNote = &domain.OrderNote{
-	ID:                primitive.NewObjectID(), // Existing ID of the record to update
-	OrderID:           primitive.NewObjectID(),
+	ID:                bson.NewObjectID(), // Existing ID of the record to update
+	OrderID:           bson.NewObjectID(),
 	Note:              "This is an updated note for the order.",
-	DownloadID:        primitive.NewObjectID(),
+	DownloadID:        bson.NewObjectID(),
 	DisplayToCustomer: false,
 	CreatedOnUtc:      time.Now().AddDate(0, 0, -7), // Created 7 days ago
 }

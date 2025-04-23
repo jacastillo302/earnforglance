@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultAclRecord struct {
@@ -28,9 +28,9 @@ func (m *MockSingleResultAclRecord) Decode(v interface{}) error {
 }
 
 var mockItemAclRecord = &domain.AclRecord{
-	EntityID:       primitive.NewObjectID(),
+	EntityID:       bson.NewObjectID(),
 	EntityName:     "Category",
-	CustomerRoleID: primitive.NewObjectID(),
+	CustomerRoleID: bson.NewObjectID(),
 	IsRead:         true,
 	IsDelete:       true,
 	IsUpdate:       true,

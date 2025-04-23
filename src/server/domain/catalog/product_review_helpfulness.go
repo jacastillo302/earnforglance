@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,10 +12,10 @@ const (
 
 // ProductReviewHelpfulness represents a product review helpfulness
 type ProductReviewHelpfulness struct {
-	ID              primitive.ObjectID `bson:"_id,omitempty"`
-	ProductReviewID primitive.ObjectID `bson:"product_review_id"`
-	WasHelpful      bool               `bson:"was_helpful"`
-	CustomerID      primitive.ObjectID `bson:"customer_id"`
+	ID              bson.ObjectID `bson:"_id,omitempty"`
+	ProductReviewID bson.ObjectID `bson:"product_review_id"`
+	WasHelpful      bool          `bson:"was_helpful"`
+	CustomerID      bson.ObjectID `bson:"customer_id"`
 }
 
 type ProductReviewHelpfulnessRepository interface {

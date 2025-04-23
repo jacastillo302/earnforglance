@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/messages"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type queuedemailRepository struct {
@@ -58,7 +57,7 @@ func (ur *queuedemailRepository) Update(c context.Context, queuedemail *domain.Q
 func (ur *queuedemailRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *queuedemailRepository) Delete(c context.Context, ID string) error {
 func (ur *queuedemailRepository) Fetch(c context.Context) ([]domain.QueuedEmail, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *queuedemailRepository) FetchByID(c context.Context, queuedemailID stri
 
 	var queuedemail domain.QueuedEmail
 
-	idHex, err := primitive.ObjectIDFromHex(queuedemailID)
+	idHex, err := bson.ObjectIDFromHex(queuedemailID)
 	if err != nil {
 		return queuedemail, err
 	}

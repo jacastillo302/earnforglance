@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,8 +12,8 @@ const (
 
 // PictureHashes is a helper class for making picture hashes from DB
 type PictureHashes struct {
-	PictureID primitive.ObjectID `bson:"picture_id"`
-	Hash      []byte             `bson:"hash"`
+	PictureID bson.ObjectID `bson:"picture_id"`
+	Hash      []byte        `bson:"hash"`
 }
 
 // PictureHashesRepository defines the repository interface for PictureHashes

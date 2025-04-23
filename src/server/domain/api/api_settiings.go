@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,11 +12,11 @@ const (
 
 // ApiSettings represents the API settings configuration
 type ApiSettings struct {
-	ID                       primitive.ObjectID `bson:"_id,omitempty"`               // MongoDB document ID
-	EnableApi                bool               `bson:"enable_api"`                  // Indicates if the API is enabled
-	AllowRequestsFromSwagger bool               `bson:"allow_requests_from_swagger"` // Indicates if requests from Swagger are allowed
-	EnableLogging            bool               `bson:"enable_logging"`              // Indicates if logging is enabled
-	TokenKey                 string             `bson:"token_key"`                   // The token key for API authentication
+	ID                       bson.ObjectID `bson:"_id,omitempty"`               // MongoDB document ID
+	EnableApi                bool          `bson:"enable_api"`                  // Indicates if the API is enabled
+	AllowRequestsFromSwagger bool          `bson:"allow_requests_from_swagger"` // Indicates if requests from Swagger are allowed
+	EnableLogging            bool          `bson:"enable_logging"`              // Indicates if logging is enabled
+	TokenKey                 string        `bson:"token_key"`                   // The token key for API authentication
 }
 
 type ApiSettingsRepository interface {

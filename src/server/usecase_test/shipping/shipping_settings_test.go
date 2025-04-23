@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestShippingSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestShippingSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewShippingSettingsUsecase(mockRepo, timeout)
 
-	shippingID := primitive.NewObjectID().Hex()
+	shippingID := bson.NewObjectID().Hex()
 
 	updatedShippingSettings := domain.ShippingSettings{
-		ID: primitive.NewObjectID(), // Existing ID of the record to update
+		ID: bson.NewObjectID(), // Existing ID of the record to update
 		ActiveShippingRateComputationMethodSystemNames:   []string{"ExpressRate"},
 		ActivePickupPointProviderSystemNames:             []string{"DHL"},
 		ShipToSameAddress:                                false,
@@ -107,7 +107,7 @@ func TestShippingSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewShippingSettingsUsecase(mockRepo, timeout)
 
 	updatedShippingSettings := &domain.ShippingSettings{
-		ID: primitive.NewObjectID(), // Existing ID of the record to update
+		ID: bson.NewObjectID(), // Existing ID of the record to update
 		ActiveShippingRateComputationMethodSystemNames:   []string{"ExpressRate"},
 		ActivePickupPointProviderSystemNames:             []string{"DHL"},
 		ShipToSameAddress:                                false,
@@ -149,7 +149,7 @@ func TestShippingSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewShippingSettingsUsecase(mockRepo, timeout)
 
-	shippingID := primitive.NewObjectID().Hex()
+	shippingID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, shippingID).Return(nil)
 
@@ -166,7 +166,7 @@ func TestShippingSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedShippingSettings := []domain.ShippingSettings{
 		{
-			ID: primitive.NewObjectID(),
+			ID: bson.NewObjectID(),
 			ActiveShippingRateComputationMethodSystemNames:   []string{"FlatRate", "WeightBased"},
 			ActivePickupPointProviderSystemNames:             []string{"FedEx", "UPS"},
 			ShipToSameAddress:                                true,
@@ -195,7 +195,7 @@ func TestShippingSettingsUsecase_Fetch(t *testing.T) {
 			ShippingSortingID:                                2,
 		},
 		{
-			ID: primitive.NewObjectID(),
+			ID: bson.NewObjectID(),
 			ActiveShippingRateComputationMethodSystemNames:   []string{"ExpressRate"},
 			ActivePickupPointProviderSystemNames:             []string{"DHL"},
 			ShipToSameAddress:                                false,

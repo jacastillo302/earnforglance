@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultTierPrice struct {
@@ -29,9 +29,9 @@ func (m *MockSingleResultTierPrice) Decode(v interface{}) error {
 }
 
 var mockItemTierPrice = &domain.TierPrice{
-	ID:               primitive.NewObjectID(), // Existing ID of the record to update
-	ProductID:        primitive.NewObjectID(),
-	StoreID:          primitive.NewObjectID(),
+	ID:               bson.NewObjectID(), // Existing ID of the record to update
+	ProductID:        bson.NewObjectID(),
+	StoreID:          bson.NewObjectID(),
 	CustomerRoleID:   nil,
 	Quantity:         20,
 	Price:            39.99,

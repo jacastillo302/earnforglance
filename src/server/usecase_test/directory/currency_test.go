@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestCurrencyUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestCurrencyUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCurrencyUsecase(mockRepo, timeout)
 
-	currencyID := primitive.NewObjectID().Hex()
+	currencyID := bson.NewObjectID().Hex()
 
 	updatedCurrency := domain.Currency{
-		ID:               primitive.NewObjectID(), // Existing ID of the record to update
+		ID:               bson.NewObjectID(), // Existing ID of the record to update
 		Name:             "Euro",
 		CurrencyCode:     "EUR",
 		Rate:             0.85,
@@ -77,7 +77,7 @@ func TestCurrencyUsecase_Update(t *testing.T) {
 	usecase := test.NewCurrencyUsecase(mockRepo, timeout)
 
 	updatedCurrency := &domain.Currency{
-		ID:               primitive.NewObjectID(), // Existing ID of the record to update
+		ID:               bson.NewObjectID(), // Existing ID of the record to update
 		Name:             "Euro",
 		CurrencyCode:     "EUR",
 		Rate:             0.85,
@@ -104,7 +104,7 @@ func TestCurrencyUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCurrencyUsecase(mockRepo, timeout)
 
-	currencyID := primitive.NewObjectID().Hex()
+	currencyID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, currencyID).Return(nil)
 
@@ -121,7 +121,7 @@ func TestCurrencyUsecase_Fetch(t *testing.T) {
 
 	fetchedCurrencies := []domain.Currency{
 		{
-			ID:               primitive.NewObjectID(),
+			ID:               bson.NewObjectID(),
 			Name:             "US Dollar",
 			CurrencyCode:     "USD",
 			Rate:             1.0,
@@ -135,7 +135,7 @@ func TestCurrencyUsecase_Fetch(t *testing.T) {
 			RoundingTypeID:   1,
 		},
 		{
-			ID:               primitive.NewObjectID(),
+			ID:               bson.NewObjectID(),
 			Name:             "Euro",
 			CurrencyCode:     "EUR",
 			Rate:             0.85,

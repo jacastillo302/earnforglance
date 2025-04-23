@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -13,14 +13,14 @@ const (
 
 // TierPrice represents a tier price
 type TierPrice struct {
-	ID               primitive.ObjectID  `bson:"_id,omitempty"`
-	ProductID        primitive.ObjectID  `bson:"product_id"`
-	StoreID          primitive.ObjectID  `bson:"store_id"`
-	CustomerRoleID   *primitive.ObjectID `bson:"customer_role_id"`
-	Quantity         int                 `bson:"quantity"`
-	Price            float64             `bson:"price"`
-	StartDateTimeUtc *time.Time          `bson:"start_date_time_utc"`
-	EndDateTimeUtc   *time.Time          `bson:"end_date_time_utc"`
+	ID               bson.ObjectID  `bson:"_id,omitempty"`
+	ProductID        bson.ObjectID  `bson:"product_id"`
+	StoreID          bson.ObjectID  `bson:"store_id"`
+	CustomerRoleID   *bson.ObjectID `bson:"customer_role_id"`
+	Quantity         int            `bson:"quantity"`
+	Price            float64        `bson:"price"`
+	StartDateTimeUtc *time.Time     `bson:"start_date_time_utc"`
+	EndDateTimeUtc   *time.Time     `bson:"end_date_time_utc"`
 }
 
 type TierPriceRepository interface {

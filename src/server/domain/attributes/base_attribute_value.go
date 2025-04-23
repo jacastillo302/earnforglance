@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,11 +12,11 @@ const (
 
 // BaseAttributeValue represents the base class for attribute values
 type BaseAttributeValue struct {
-	ID            primitive.ObjectID `bson:"_id,omitempty"`
-	Name          string             `bson:"name"`
-	IsPreSelected bool               `bson:"is_pre_selected"`
-	DisplayOrder  int                `bson:"display_order"`
-	AttributeId   primitive.ObjectID `bson:"attribute_id"`
+	ID            bson.ObjectID `bson:"_id,omitempty"`
+	Name          string        `bson:"name"`
+	IsPreSelected bool          `bson:"is_pre_selected"`
+	DisplayOrder  int           `bson:"display_order"`
+	AttributeId   bson.ObjectID `bson:"attribute_id"`
 }
 
 type BaseAttributeValueRepository interface {

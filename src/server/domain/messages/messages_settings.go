@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,9 +12,9 @@ const (
 
 // MessagesSettings represents message settings
 type MessagesSettings struct {
-	ID                                            primitive.ObjectID `bson:"_id,omitempty"`
-	UsePopupNotifications                         bool               `bson:"use_popup_notifications"`
-	UseDefaultEmailAccountForSendStoreOwnerEmails bool               `bson:"use_default_email_account_for_send_store_owner_emails"`
+	ID                                            bson.ObjectID `bson:"_id,omitempty"`
+	UsePopupNotifications                         bool          `bson:"use_popup_notifications"`
+	UseDefaultEmailAccountForSendStoreOwnerEmails bool          `bson:"use_default_email_account_for_send_store_owner_emails"`
 }
 
 type MessagesSettingsRepository interface {

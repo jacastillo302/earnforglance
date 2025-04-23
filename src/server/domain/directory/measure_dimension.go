@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,11 +12,11 @@ const (
 
 // MeasureDimension represents a measure dimension
 type MeasureDimension struct {
-	ID            primitive.ObjectID `bson:"_id,omitempty"`
-	Name          string             `bson:"name"`
-	SystemKeyword string             `bson:"system_keyword"`
-	Ratio         float64            `bson:"ratio"`
-	DisplayOrder  int                `bson:"display_order"`
+	ID            bson.ObjectID `bson:"_id,omitempty"`
+	Name          string        `bson:"name"`
+	SystemKeyword string        `bson:"system_keyword"`
+	Ratio         float64       `bson:"ratio"`
+	DisplayOrder  int           `bson:"display_order"`
 }
 
 type MeasureDimensionRepository interface {

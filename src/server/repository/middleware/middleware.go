@@ -6,8 +6,7 @@ import (
 	security "earnforglance/server/domain/security"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MiddlewareRepository struct {
@@ -24,7 +23,7 @@ func (tu *MiddlewareRepository) GetPermissionsCustumer(c context.Context, custum
 
 	collection := tu.database.Collection(security.CollectionPermissionRecordCustomerRoleMapping)
 
-	customer, err := primitive.ObjectIDFromHex(custumerID)
+	customer, err := bson.ObjectIDFromHex(custumerID)
 	if err != nil {
 		return nil, err
 	}

@@ -11,7 +11,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestQueuedEmailUsecase_FetchByID(t *testing.T) {
@@ -19,10 +19,10 @@ func TestQueuedEmailUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewQueuedEmailUsecase(mockRepo, timeout)
 
-	queuedEmailID := primitive.NewObjectID().Hex()
+	queuedEmailID := bson.NewObjectID().Hex()
 
 	updatedQueuedEmail := domain.QueuedEmail{
-		ID:                    primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                    bson.NewObjectID(), // Existing ID of the record to update
 		PriorityID:            2,
 		From:                  "updated_sender@example.com",
 		FromName:              "Updated Sender Name",
@@ -36,12 +36,12 @@ func TestQueuedEmailUsecase_FetchByID(t *testing.T) {
 		Body:                  "This is an updated test email.",
 		AttachmentFilePath:    "/path/to/updated_attachment.pdf",
 		AttachmentFileName:    "updated_attachment.pdf",
-		AttachedDownloadID:    primitive.NewObjectID(),
+		AttachedDownloadID:    bson.NewObjectID(),
 		CreatedOnUtc:          time.Now().AddDate(0, 0, -7), // Created 7 days ago
 		DontSendBeforeDateUtc: new(time.Time),
 		SentTries:             1,
 		SentOnUtc:             new(time.Time),
-		EmailAccountID:        primitive.NewObjectID(),
+		EmailAccountID:        bson.NewObjectID(),
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, queuedEmailID).Return(updatedQueuedEmail, nil)
@@ -72,12 +72,12 @@ func TestQueuedEmailUsecase_Create(t *testing.T) {
 		Body:                  "This is a test email.",
 		AttachmentFilePath:    "/path/to/attachment.pdf",
 		AttachmentFileName:    "attachment.pdf",
-		AttachedDownloadID:    primitive.NewObjectID(),
+		AttachedDownloadID:    bson.NewObjectID(),
 		CreatedOnUtc:          time.Now(),
 		DontSendBeforeDateUtc: nil,
 		SentTries:             0,
 		SentOnUtc:             nil,
-		EmailAccountID:        primitive.NewObjectID(),
+		EmailAccountID:        bson.NewObjectID(),
 	}
 
 	mockRepo.On("Create", mock.Anything, newQueuedEmail).Return(nil)
@@ -94,7 +94,7 @@ func TestQueuedEmailUsecase_Update(t *testing.T) {
 	usecase := test.NewQueuedEmailUsecase(mockRepo, timeout)
 
 	updatedQueuedEmail := &domain.QueuedEmail{
-		ID:                    primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                    bson.NewObjectID(), // Existing ID of the record to update
 		PriorityID:            2,
 		From:                  "updated_sender@example.com",
 		FromName:              "Updated Sender Name",
@@ -108,12 +108,12 @@ func TestQueuedEmailUsecase_Update(t *testing.T) {
 		Body:                  "This is an updated test email.",
 		AttachmentFilePath:    "/path/to/updated_attachment.pdf",
 		AttachmentFileName:    "updated_attachment.pdf",
-		AttachedDownloadID:    primitive.NewObjectID(),
+		AttachedDownloadID:    bson.NewObjectID(),
 		CreatedOnUtc:          time.Now().AddDate(0, 0, -7), // Created 7 days ago
 		DontSendBeforeDateUtc: new(time.Time),
 		SentTries:             1,
 		SentOnUtc:             new(time.Time),
-		EmailAccountID:        primitive.NewObjectID(),
+		EmailAccountID:        bson.NewObjectID(),
 	}
 	*updatedQueuedEmail.DontSendBeforeDateUtc = time.Now().AddDate(0, 0, 1) // Don't send before tomorrow
 	*updatedQueuedEmail.SentOnUtc = time.Now()
@@ -131,7 +131,7 @@ func TestQueuedEmailUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewQueuedEmailUsecase(mockRepo, timeout)
 
-	queuedEmailID := primitive.NewObjectID().Hex()
+	queuedEmailID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, queuedEmailID).Return(nil)
 
@@ -147,7 +147,7 @@ func TestQueuedEmailUsecase_Fetch(t *testing.T) {
 	usecase := test.NewQueuedEmailUsecase(mockRepo, timeout)
 	fetchedQueuedEmails := []domain.QueuedEmail{
 		{
-			ID:                    primitive.NewObjectID(),
+			ID:                    bson.NewObjectID(),
 			PriorityID:            1,
 			From:                  "sender1@example.com",
 			FromName:              "Sender One",
@@ -161,15 +161,15 @@ func TestQueuedEmailUsecase_Fetch(t *testing.T) {
 			Body:                  "This is the first test email.",
 			AttachmentFilePath:    "/path/to/attachment1.pdf",
 			AttachmentFileName:    "attachment1.pdf",
-			AttachedDownloadID:    primitive.NewObjectID(),
+			AttachedDownloadID:    bson.NewObjectID(),
 			CreatedOnUtc:          time.Now().AddDate(0, 0, -10), // Created 10 days ago
 			DontSendBeforeDateUtc: nil,
 			SentTries:             0,
 			SentOnUtc:             nil,
-			EmailAccountID:        primitive.NewObjectID(),
+			EmailAccountID:        bson.NewObjectID(),
 		},
 		{
-			ID:                    primitive.NewObjectID(),
+			ID:                    bson.NewObjectID(),
 			PriorityID:            2,
 			From:                  "sender2@example.com",
 			FromName:              "Sender Two",
@@ -183,12 +183,12 @@ func TestQueuedEmailUsecase_Fetch(t *testing.T) {
 			Body:                  "This is the second test email.",
 			AttachmentFilePath:    "/path/to/attachment2.pdf",
 			AttachmentFileName:    "attachment2.pdf",
-			AttachedDownloadID:    primitive.NewObjectID(),
+			AttachedDownloadID:    bson.NewObjectID(),
 			CreatedOnUtc:          time.Now().AddDate(0, 0, -5), // Created 5 days ago
 			DontSendBeforeDateUtc: new(time.Time),
 			SentTries:             1,
 			SentOnUtc:             new(time.Time),
-			EmailAccountID:        primitive.NewObjectID(),
+			EmailAccountID:        bson.NewObjectID(),
 		},
 	}
 	*fetchedQueuedEmails[1].DontSendBeforeDateUtc = time.Now().AddDate(0, 0, 2) // Don't send before 2 days from now

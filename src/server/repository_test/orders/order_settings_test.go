@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultOrderSettings struct {
@@ -28,7 +28,7 @@ func (m *MockSingleResultOrderSettings) Decode(v interface{}) error {
 }
 
 var mockItemOrderSettings = &domain.OrderSettings{
-	ID:                                  primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                                  bson.NewObjectID(), // Existing ID of the record to update
 	IsReOrderAllowed:                    false,
 	MinOrderSubtotalAmount:              75.00,
 	MinOrderSubtotalAmountIncludingTax:  false,

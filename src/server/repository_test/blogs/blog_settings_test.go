@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultBlogSettings struct {
@@ -37,7 +37,7 @@ func TestBlogSettingsRepository_FetchByID(t *testing.T) {
 	collectionName := domain.CollectionBlogSettings
 
 	mockItem := domain.BlogSettings{
-		ID:                                     primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+		ID:                                     bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
 		Enabled:                                false,
 		PostsPageSize:                          0,
 		AllowNotRegisteredUsersToLeaveComments: false,
@@ -120,7 +120,7 @@ func TestBlogSettingsRepository_Update(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockBlogSettings := &domain.BlogSettings{
-		ID:                                     primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                     bson.NewObjectID(), // Existing ID of the record to update
 		Enabled:                                false,
 		PostsPageSize:                          20,
 		AllowNotRegisteredUsersToLeaveComments: false,

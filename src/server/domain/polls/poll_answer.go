@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,11 +12,11 @@ const (
 
 // PollAnswer represents a poll answer
 type PollAnswer struct {
-	ID            primitive.ObjectID `bson:"_id,omitempty"`
-	PollID        primitive.ObjectID `bson:"poll_id"`
-	Name          string             `bson:"name"`
-	NumberOfVotes int                `bson:"number_of_votes"`
-	DisplayOrder  int                `bson:"display_order"`
+	ID            bson.ObjectID `bson:"_id,omitempty"`
+	PollID        bson.ObjectID `bson:"poll_id"`
+	Name          string        `bson:"name"`
+	NumberOfVotes int           `bson:"number_of_votes"`
+	DisplayOrder  int           `bson:"display_order"`
 }
 
 // PollAnswerRepository defines the repository interface for PollAnswer

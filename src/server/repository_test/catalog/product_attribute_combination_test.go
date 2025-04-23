@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultProductAttributeCombination struct {
@@ -37,8 +37,8 @@ func TestProductAttributeCombinationRepository_FetchByID(t *testing.T) {
 	collectionName := domain.CollectionProductAttributeCombination
 
 	mockItem := domain.ProductAttributeCombination{
-		ID:                          primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID:                   primitive.NewObjectID(),
+		ID:                          bson.NewObjectID(), // Existing ID of the record to update
+		ProductID:                   bson.NewObjectID(),
 		AttributesXml:               "<attributes><color>blue</color><size>large</size></attributes>",
 		StockQuantity:               30,
 		AllowOutOfStockOrders:       true,
@@ -92,8 +92,8 @@ func TestProductAttributeCombinationRepository_Create(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockProductAttributeCombination := &domain.ProductAttributeCombination{
-		ID:                          primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID:                   primitive.NewObjectID(),
+		ID:                          bson.NewObjectID(), // Existing ID of the record to update
+		ProductID:                   bson.NewObjectID(),
 		AttributesXml:               "<attributes><color>blue</color><size>large</size></attributes>",
 		StockQuantity:               30,
 		AllowOutOfStockOrders:       true,
@@ -123,8 +123,8 @@ func TestProductAttributeCombinationRepository_Update(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockProductAttributeCombination := &domain.ProductAttributeCombination{
-		ID:                          primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID:                   primitive.NewObjectID(),
+		ID:                          bson.NewObjectID(), // Existing ID of the record to update
+		ProductID:                   bson.NewObjectID(),
 		AttributesXml:               "<attributes><color>blue</color><size>large</size></attributes>",
 		StockQuantity:               30,
 		AllowOutOfStockOrders:       true,

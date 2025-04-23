@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultPdfSettings struct {
@@ -28,8 +28,8 @@ func (m *MockSingleResultPdfSettings) Decode(v interface{}) error {
 }
 
 var mockItemPdfSettings = &domain.PdfSettings{
-	ID:                                 primitive.NewObjectID(), // Existing ID of the record to update
-	LogoPictureID:                      primitive.NewObjectID(),
+	ID:                                 bson.NewObjectID(), // Existing ID of the record to update
+	LogoPictureID:                      bson.NewObjectID(),
 	LetterPageSizeEnabled:              false,
 	RenderOrderNotes:                   false,
 	DisablePdfInvoicesForPendingOrders: true,

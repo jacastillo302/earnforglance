@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/media"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type videoRepository struct {
@@ -58,7 +57,7 @@ func (ur *videoRepository) Update(c context.Context, video *domain.Video) error 
 func (ur *videoRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *videoRepository) Delete(c context.Context, ID string) error {
 func (ur *videoRepository) Fetch(c context.Context) ([]domain.Video, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *videoRepository) FetchByID(c context.Context, videoID string) (domain.
 
 	var video domain.Video
 
-	idHex, err := primitive.ObjectIDFromHex(videoID)
+	idHex, err := bson.ObjectIDFromHex(videoID)
 	if err != nil {
 		return video, err
 	}

@@ -13,8 +13,8 @@ import (
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultNewsLetterSubscription struct {
@@ -30,13 +30,13 @@ func (m *MockSingleResultNewsLetterSubscription) Decode(v interface{}) error {
 }
 
 var mockItemNewsLetterSubscription = &domain.NewsLetterSubscription{
-	ID:                         primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                         bson.NewObjectID(), // Existing ID of the record to update
 	NewsLetterSubscriptionGuid: uuid.New(),
 	Email:                      "updated_subscriber@example.com",
 	Active:                     false,
-	StoreID:                    primitive.NewObjectID(),
+	StoreID:                    bson.NewObjectID(),
 	CreatedOnUtc:               time.Now().AddDate(0, 0, -7), // Created 7 days ago
-	LanguageID:                 primitive.NewObjectID(),
+	LanguageID:                 bson.NewObjectID(),
 }
 
 func TestNewsLetterSubscriptionRepository_FetchByID(t *testing.T) {

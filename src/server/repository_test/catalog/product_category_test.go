@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultProductCategory struct {
@@ -28,9 +28,9 @@ func (m *MockSingleResultProductCategory) Decode(v interface{}) error {
 }
 
 var mockItemProductCategory = &domain.ProductCategory{
-	ID:                primitive.NewObjectID(),
-	ProductID:         primitive.NewObjectID(),
-	CategoryID:        primitive.NewObjectID(),
+	ID:                bson.NewObjectID(),
+	ProductID:         bson.NewObjectID(),
+	CategoryID:        bson.NewObjectID(),
 	IsFeaturedProduct: false,
 	DisplayOrder:      2,
 }

@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,9 +12,9 @@ const (
 
 // DiscountMapping represents an abstract discount mapping
 type DiscountMapping struct {
-	ID         primitive.ObjectID `bson:"_id,omitempty"`
-	DiscountID primitive.ObjectID `bson:"discount_id"`
-	EntityID   primitive.ObjectID `bson:"entity_id"`
+	ID         bson.ObjectID `bson:"_id,omitempty"`
+	DiscountID bson.ObjectID `bson:"discount_id"`
+	EntityID   bson.ObjectID `bson:"entity_id"`
 }
 
 type DiscountMappingRepository interface {
@@ -36,7 +36,7 @@ type DiscountMappingUsecase interface {
 }
 
 // NewDiscountMapping creates a new DiscountMapping instance
-func NewDiscountMapping(discountID primitive.ObjectID, entityID primitive.ObjectID) *DiscountMapping {
+func NewDiscountMapping(discountID bson.ObjectID, entityID bson.ObjectID) *DiscountMapping {
 	return &DiscountMapping{
 		DiscountID: discountID,
 		EntityID:   entityID,

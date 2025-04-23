@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -13,15 +13,15 @@ const (
 
 // Shipment represents a shipment
 type Shipment struct {
-	ID                    primitive.ObjectID `bson:"_id,omitempty"`
-	OrderID               primitive.ObjectID `bson:"order_id"`
-	TrackingNumber        string             `bson:"tracking_number"`
-	TotalWeight           *float64           `bson:"total_weight"`
-	ShippedDateUtc        *time.Time         `bson:"shipped_date_utc"`
-	DeliveryDateUtc       *time.Time         `bson:"delivery_date_utc"`
-	ReadyForPickupDateUtc *time.Time         `bson:"ready_for_pickup_date_utc"`
-	AdminComment          string             `bson:"admin_comment"`
-	CreatedOnUtc          time.Time          `bson:"created_on_utc"`
+	ID                    bson.ObjectID `bson:"_id,omitempty"`
+	OrderID               bson.ObjectID `bson:"order_id"`
+	TrackingNumber        string        `bson:"tracking_number"`
+	TotalWeight           *float64      `bson:"total_weight"`
+	ShippedDateUtc        *time.Time    `bson:"shipped_date_utc"`
+	DeliveryDateUtc       *time.Time    `bson:"delivery_date_utc"`
+	ReadyForPickupDateUtc *time.Time    `bson:"ready_for_pickup_date_utc"`
+	AdminComment          string        `bson:"admin_comment"`
+	CreatedOnUtc          time.Time     `bson:"created_on_utc"`
 }
 
 // ShipmentRepository defines the repository interface for Shipment

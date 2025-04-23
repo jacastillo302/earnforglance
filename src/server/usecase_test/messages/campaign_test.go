@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestCampaignUsecase_FetchByID(t *testing.T) {
@@ -18,15 +18,15 @@ func TestCampaignUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCampaignUsecase(mockRepo, timeout)
 
-	campaignID := primitive.NewObjectID().Hex()
+	campaignID := bson.NewObjectID().Hex()
 
 	updatedCampaign := domain.Campaign{
-		ID:                    primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                    bson.NewObjectID(), // Existing ID of the record to update
 		Name:                  "Updated Holiday Sale",
 		Subject:               "Updated Discounts for the Holidays!",
 		Body:                  "Enjoy up to 60% off on selected items. Offer extended!",
-		StoreID:               primitive.NewObjectID(),
-		CustomerRoleID:        primitive.NewObjectID(),
+		StoreID:               bson.NewObjectID(),
+		CustomerRoleID:        bson.NewObjectID(),
 		CreatedOnUtc:          time.Now().AddDate(0, 0, -7), // Created 7 days ago
 		DontSendBeforeDateUtc: new(time.Time),
 	}
@@ -50,8 +50,8 @@ func TestCampaignUsecase_Create(t *testing.T) {
 		Name:                  "Holiday Sale",
 		Subject:               "Exclusive Holiday Discounts!",
 		Body:                  "Enjoy up to 50% off on selected items. Limited time offer!",
-		StoreID:               primitive.NewObjectID(),
-		CustomerRoleID:        primitive.NewObjectID(),
+		StoreID:               bson.NewObjectID(),
+		CustomerRoleID:        bson.NewObjectID(),
 		CreatedOnUtc:          time.Now(),
 		DontSendBeforeDateUtc: nil,
 	}
@@ -70,12 +70,12 @@ func TestCampaignUsecase_Update(t *testing.T) {
 	usecase := test.NewCampaignUsecase(mockRepo, timeout)
 
 	updatedCampaign := &domain.Campaign{
-		ID:                    primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                    bson.NewObjectID(), // Existing ID of the record to update
 		Name:                  "Updated Holiday Sale",
 		Subject:               "Updated Discounts for the Holidays!",
 		Body:                  "Enjoy up to 60% off on selected items. Offer extended!",
-		StoreID:               primitive.NewObjectID(),
-		CustomerRoleID:        primitive.NewObjectID(),
+		StoreID:               bson.NewObjectID(),
+		CustomerRoleID:        bson.NewObjectID(),
 		CreatedOnUtc:          time.Now().AddDate(0, 0, -7), // Created 7 days ago
 		DontSendBeforeDateUtc: new(time.Time),
 	}
@@ -94,7 +94,7 @@ func TestCampaignUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCampaignUsecase(mockRepo, timeout)
 
-	campaignID := primitive.NewObjectID().Hex()
+	campaignID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, campaignID).Return(nil)
 
@@ -111,22 +111,22 @@ func TestCampaignUsecase_Fetch(t *testing.T) {
 
 	fetchedCampaigns := []domain.Campaign{
 		{
-			ID:                    primitive.NewObjectID(),
+			ID:                    bson.NewObjectID(),
 			Name:                  "Holiday Sale",
 			Subject:               "Exclusive Holiday Discounts!",
 			Body:                  "Enjoy up to 50% off on selected items. Limited time offer!",
-			StoreID:               primitive.NewObjectID(),
-			CustomerRoleID:        primitive.NewObjectID(),
+			StoreID:               bson.NewObjectID(),
+			CustomerRoleID:        bson.NewObjectID(),
 			CreatedOnUtc:          time.Now().AddDate(0, 0, -10), // Created 10 days ago
 			DontSendBeforeDateUtc: nil,
 		},
 		{
-			ID:                    primitive.NewObjectID(),
+			ID:                    bson.NewObjectID(),
 			Name:                  "Spring Sale",
 			Subject:               "Fresh Deals for Spring!",
 			Body:                  "Get ready for spring with our exclusive discounts.",
-			StoreID:               primitive.NewObjectID(),
-			CustomerRoleID:        primitive.NewObjectID(),
+			StoreID:               bson.NewObjectID(),
+			CustomerRoleID:        bson.NewObjectID(),
 			CreatedOnUtc:          time.Now().AddDate(0, 0, -5), // Created 5 days ago
 			DontSendBeforeDateUtc: new(time.Time),
 		},

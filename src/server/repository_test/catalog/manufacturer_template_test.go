@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultManufacturerTemplate struct {
@@ -36,7 +36,7 @@ func TestManufacturerTemplateRepository_FetchByID(t *testing.T) {
 
 	collectionName := domain.CollectionManufacturerTemplate
 
-	mockItem := domain.ManufacturerTemplate{ID: primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, Name: "", ViewPath: "", DisplayOrder: 0}
+	mockItem := domain.ManufacturerTemplate{ID: bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, Name: "", ViewPath: "", DisplayOrder: 0}
 
 	t.Run("success", func(t *testing.T) {
 		mockSingleResult := &MockSingleResultManufacturerTemplate{}
@@ -82,7 +82,7 @@ func TestManufacturerTemplateRepository_Create(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockManufacturerTemplate := &domain.ManufacturerTemplate{
-		ID:           primitive.NewObjectID(),
+		ID:           bson.NewObjectID(),
 		Name:         "Updated Manufacturer Template",
 		ViewPath:     "/Views/Manufacturer/Updated.cshtml",
 		DisplayOrder: 2,
@@ -106,7 +106,7 @@ func TestManufacturerTemplateRepository_Update(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockManufacturerTemplate := &domain.ManufacturerTemplate{
-		ID:           primitive.NewObjectID(),
+		ID:           bson.NewObjectID(),
 		Name:         "Updated Manufacturer Template",
 		ViewPath:     "/Views/Manufacturer/Updated.cshtml",
 		DisplayOrder: 2,

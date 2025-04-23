@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestAddressSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestAddressSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewAddressSettingsUsecase(mockRepo, timeout)
 
-	addressSettingsID := primitive.NewObjectID().Hex()
+	addressSettingsID := bson.NewObjectID().Hex()
 
 	updatedAddressSettings := domain.AddressSettings{
-		ID:                        primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                        bson.NewObjectID(), // Existing ID of the record to update
 		CompanyEnabled:            false,
 		CompanyRequired:           false,
 		StreetAddressEnabled:      true,
@@ -35,7 +35,7 @@ func TestAddressSettingsUsecase_FetchByID(t *testing.T) {
 		CountyEnabled:             true,
 		CountyRequired:            true,
 		CountryEnabled:            true,
-		DefaultCountryID:          new(primitive.ObjectID),
+		DefaultCountryID:          new(bson.ObjectID),
 		StateProvinceEnabled:      false,
 		PhoneEnabled:              true,
 		PhoneRequired:             false,
@@ -95,7 +95,7 @@ func TestAddressSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewAddressSettingsUsecase(mockRepo, timeout)
 
 	updatedAddressSettings := &domain.AddressSettings{
-		ID:                        primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                        bson.NewObjectID(), // Existing ID of the record to update
 		CompanyEnabled:            false,
 		CompanyRequired:           false,
 		StreetAddressEnabled:      true,
@@ -109,7 +109,7 @@ func TestAddressSettingsUsecase_Update(t *testing.T) {
 		CountyEnabled:             true,
 		CountyRequired:            true,
 		CountryEnabled:            true,
-		DefaultCountryID:          new(primitive.ObjectID),
+		DefaultCountryID:          new(bson.ObjectID),
 		StateProvinceEnabled:      false,
 		PhoneEnabled:              true,
 		PhoneRequired:             false,
@@ -117,7 +117,7 @@ func TestAddressSettingsUsecase_Update(t *testing.T) {
 		FaxRequired:               true,
 		PreselectCountryIfOnlyOne: false,
 	}
-	*updatedAddressSettings.DefaultCountryID = primitive.NewObjectID()
+	*updatedAddressSettings.DefaultCountryID = bson.NewObjectID()
 
 	mockRepo.On("Update", mock.Anything, updatedAddressSettings).Return(nil)
 
@@ -132,7 +132,7 @@ func TestAddressSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewAddressSettingsUsecase(mockRepo, timeout)
 
-	addressSettingsID := primitive.NewObjectID().Hex()
+	addressSettingsID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, addressSettingsID).Return(nil)
 
@@ -149,7 +149,7 @@ func TestAddressSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedAddressSettings := []domain.AddressSettings{
 		{
-			ID:                        primitive.NewObjectID(),
+			ID:                        bson.NewObjectID(),
 			CompanyEnabled:            true,
 			CompanyRequired:           false,
 			StreetAddressEnabled:      true,
@@ -172,7 +172,7 @@ func TestAddressSettingsUsecase_Fetch(t *testing.T) {
 			PreselectCountryIfOnlyOne: true,
 		},
 		{
-			ID:                        primitive.NewObjectID(),
+			ID:                        bson.NewObjectID(),
 			CompanyEnabled:            false,
 			CompanyRequired:           false,
 			StreetAddressEnabled:      true,
@@ -186,7 +186,7 @@ func TestAddressSettingsUsecase_Fetch(t *testing.T) {
 			CountyEnabled:             true,
 			CountyRequired:            true,
 			CountryEnabled:            true,
-			DefaultCountryID:          new(primitive.ObjectID),
+			DefaultCountryID:          new(bson.ObjectID),
 			StateProvinceEnabled:      false,
 			PhoneEnabled:              true,
 			PhoneRequired:             false,
@@ -195,7 +195,7 @@ func TestAddressSettingsUsecase_Fetch(t *testing.T) {
 			PreselectCountryIfOnlyOne: false,
 		},
 	}
-	*fetchedAddressSettings[1].DefaultCountryID = primitive.NewObjectID()
+	*fetchedAddressSettings[1].DefaultCountryID = bson.NewObjectID()
 
 	mockRepo.On("Fetch", mock.Anything).Return(fetchedAddressSettings, nil)
 

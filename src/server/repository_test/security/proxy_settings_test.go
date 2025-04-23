@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultProxySettings struct {
@@ -28,7 +28,7 @@ func (m *MockSingleResultProxySettings) Decode(v interface{}) error {
 }
 
 var mockItemProxySettings = &domain.ProxySettings{
-	ID:              primitive.NewObjectID(), // Existing ID of the record to update
+	ID:              bson.NewObjectID(), // Existing ID of the record to update
 	Enabled:         false,
 	Address:         "10.0.0.1",
 	Port:            "3128",

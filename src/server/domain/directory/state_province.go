@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,12 +12,12 @@ const (
 
 // StateProvince represents a state/province
 type StateProvince struct {
-	ID           primitive.ObjectID `bson:"_id,omitempty"`
-	CountryID    primitive.ObjectID `bson:"country_id"`
-	Name         string             `bson:"name"`
-	Abbreviation string             `bson:"abbreviation"`
-	Published    bool               `bson:"published"`
-	DisplayOrder int                `bson:"display_order"`
+	ID           bson.ObjectID `bson:"_id,omitempty"`
+	CountryID    bson.ObjectID `bson:"country_id"`
+	Name         string        `bson:"name"`
+	Abbreviation string        `bson:"abbreviation"`
+	Published    bool          `bson:"published"`
+	DisplayOrder int           `bson:"display_order"`
 }
 
 type StateProvinceRepository interface {

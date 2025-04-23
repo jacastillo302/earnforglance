@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -13,10 +13,10 @@ const (
 
 // PollVotingRecord represents a poll voting record
 type PollVotingRecord struct {
-	ID           primitive.ObjectID `bson:"_id,omitempty"`
-	PollAnswerID primitive.ObjectID `bson:"poll_answer_id"`
-	CustomerID   primitive.ObjectID `bson:"customer_id"`
-	CreatedOnUtc time.Time          `bson:"created_on_utc"`
+	ID           bson.ObjectID `bson:"_id,omitempty"`
+	PollAnswerID bson.ObjectID `bson:"poll_answer_id"`
+	CustomerID   bson.ObjectID `bson:"customer_id"`
+	CreatedOnUtc time.Time     `bson:"created_on_utc"`
 }
 
 // PollVotingRecordRepository defines the repository interface for PollVotingRecord

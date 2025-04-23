@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/directory"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type currencyRepository struct {
@@ -59,7 +58,7 @@ func (ur *currencyRepository) Update(c context.Context, currency *domain.Currenc
 func (ur *currencyRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -72,7 +71,8 @@ func (ur *currencyRepository) Delete(c context.Context, ID string) error {
 func (ur *currencyRepository) Fetch(c context.Context) ([]domain.Currency, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -94,7 +94,7 @@ func (tr *currencyRepository) FetchByID(c context.Context, currencyID string) (d
 
 	var currency domain.Currency
 
-	idHex, err := primitive.ObjectIDFromHex(currencyID)
+	idHex, err := bson.ObjectIDFromHex(currencyID)
 	if err != nil {
 		return currency, err
 	}

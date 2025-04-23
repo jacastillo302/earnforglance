@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultGiftCard struct {
@@ -29,8 +29,8 @@ func (m *MockSingleResultGiftCard) Decode(v interface{}) error {
 }
 
 var mockItemGiftCard = &domain.GiftCard{
-	ID:                  primitive.NewObjectID(), // Existing ID of the record to update
-	OrderItemID:         new(primitive.ObjectID),
+	ID:                  bson.NewObjectID(), // Existing ID of the record to update
+	OrderItemID:         new(bson.ObjectID),
 	GiftCardTypeID:      2,
 	Amount:              150.00,
 	IsGiftCardActivated: false,

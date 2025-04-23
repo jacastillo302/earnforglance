@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestStateProvinceUsecase_FetchByID(t *testing.T) {
@@ -18,11 +18,11 @@ func TestStateProvinceUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewStateProvinceUsecase(mockRepo, timeout)
 
-	stateprovinceID := primitive.NewObjectID().Hex()
+	stateprovinceID := bson.NewObjectID().Hex()
 
 	updatedStateProvince := domain.StateProvince{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		CountryID:    primitive.NewObjectID(),
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
+		CountryID:    bson.NewObjectID(),
 		Name:         "Ontario",
 		Abbreviation: "ON",
 		Published:    false,
@@ -44,7 +44,7 @@ func TestStateProvinceUsecase_Create(t *testing.T) {
 	usecase := test.NewStateProvinceUsecase(mockRepo, timeout)
 
 	newStateProvince := &domain.StateProvince{
-		CountryID:    primitive.NewObjectID(),
+		CountryID:    bson.NewObjectID(),
 		Name:         "California",
 		Abbreviation: "CA",
 		Published:    true,
@@ -65,8 +65,8 @@ func TestStateProvinceUsecase_Update(t *testing.T) {
 	usecase := test.NewStateProvinceUsecase(mockRepo, timeout)
 
 	updatedStateProvince := &domain.StateProvince{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		CountryID:    primitive.NewObjectID(),
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
+		CountryID:    bson.NewObjectID(),
 		Name:         "Ontario",
 		Abbreviation: "ON",
 		Published:    false,
@@ -86,7 +86,7 @@ func TestStateProvinceUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewStateProvinceUsecase(mockRepo, timeout)
 
-	stateprovinceID := primitive.NewObjectID().Hex()
+	stateprovinceID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, stateprovinceID).Return(nil)
 
@@ -103,16 +103,16 @@ func TestStateProvinceUsecase_Fetch(t *testing.T) {
 
 	fetchedStateProvinces := []domain.StateProvince{
 		{
-			ID:           primitive.NewObjectID(),
-			CountryID:    primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
+			CountryID:    bson.NewObjectID(),
 			Name:         "California",
 			Abbreviation: "CA",
 			Published:    true,
 			DisplayOrder: 1,
 		},
 		{
-			ID:           primitive.NewObjectID(),
-			CountryID:    primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
+			CountryID:    bson.NewObjectID(),
 			Name:         "Ontario",
 			Abbreviation: "ON",
 			Published:    false,

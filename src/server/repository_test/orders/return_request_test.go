@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultReturnRequest struct {
@@ -29,17 +29,17 @@ func (m *MockSingleResultReturnRequest) Decode(v interface{}) error {
 }
 
 var mockItemReturnRequest = &domain.ReturnRequest{
-	ID:                    primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                    bson.NewObjectID(), // Existing ID of the record to update
 	CustomNumber:          "RR67890",
-	StoreID:               primitive.NewObjectID(),
-	OrderItemID:           primitive.NewObjectID(),
-	CustomerID:            primitive.NewObjectID(),
+	StoreID:               bson.NewObjectID(),
+	OrderItemID:           bson.NewObjectID(),
+	CustomerID:            bson.NewObjectID(),
 	Quantity:              1,
 	ReturnedQuantity:      1,
 	ReasonForReturn:       "Wrong Item Delivered",
 	RequestedAction:       "Refund Item",
 	CustomerComments:      "Received the wrong item.",
-	UploadedFileID:        primitive.NewObjectID(),
+	UploadedFileID:        bson.NewObjectID(),
 	StaffNotes:            "Process refund immediately.",
 	ReturnRequestStatusID: 0,
 	CreatedOnUtc:          time.Now().AddDate(0, 0, -7), // Created 7 days ago

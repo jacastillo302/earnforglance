@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultPictureHashes struct {
@@ -28,7 +28,7 @@ func (m *MockSingleResultPictureHashes) Decode(v interface{}) error {
 }
 
 var mockItemPictureHashes = &domain.PictureHashes{
-	PictureID: primitive.NewObjectID(), // Existing PictureID of the record to update
+	PictureID: bson.NewObjectID(), // Existing PictureID of the record to update
 	Hash:      []byte("updated_hash_data"),
 }
 

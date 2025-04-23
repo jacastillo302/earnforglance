@@ -4,7 +4,7 @@ import (
 	"context" // added context library
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -13,19 +13,19 @@ const (
 
 // Forum represents a forum
 type Forum struct {
-	ID                 primitive.ObjectID `bson:"_id,omitempty"`
-	ForumGroupID       primitive.ObjectID `bson:"forum_group_id"`
-	Name               string             `bson:"name"`
-	Description        string             `bson:"description"`
-	NumTopics          int                `bson:"num_topics"`
-	NumPosts           int                `bson:"num_posts"`
-	LastTopicID        primitive.ObjectID `bson:"last_topic_id"`
-	LastPostID         primitive.ObjectID `bson:"last_post_id"`
-	LastPostCustomerID primitive.ObjectID `bson:"last_post_customer_id"`
-	LastPostTime       *time.Time         `bson:"last_post_time"`
-	DisplayOrder       int                `bson:"display_order"`
-	CreatedOnUtc       time.Time          `bson:"created_on_utc"`
-	UpdatedOnUtc       time.Time          `bson:"updated_on_utc"`
+	ID                 bson.ObjectID `bson:"_id,omitempty"`
+	ForumGroupID       bson.ObjectID `bson:"forum_group_id"`
+	Name               string        `bson:"name"`
+	Description        string        `bson:"description"`
+	NumTopics          int           `bson:"num_topics"`
+	NumPosts           int           `bson:"num_posts"`
+	LastTopicID        bson.ObjectID `bson:"last_topic_id"`
+	LastPostID         bson.ObjectID `bson:"last_post_id"`
+	LastPostCustomerID bson.ObjectID `bson:"last_post_customer_id"`
+	LastPostTime       *time.Time    `bson:"last_post_time"`
+	DisplayOrder       int           `bson:"display_order"`
+	CreatedOnUtc       time.Time     `bson:"created_on_utc"`
+	UpdatedOnUtc       time.Time     `bson:"updated_on_utc"`
 }
 
 // ForumRepository interface

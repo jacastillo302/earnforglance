@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,9 +12,9 @@ const (
 
 // CustomerAddressMapping represents a customer-address mapping class
 type CustomerAddressMapping struct {
-	ID         primitive.ObjectID `bson:"_id,omitempty"`
-	CustomerID primitive.ObjectID `bson:"customer_id"`
-	AddressID  primitive.ObjectID `bson:"address_id"`
+	ID         bson.ObjectID `bson:"_id,omitempty"`
+	CustomerID bson.ObjectID `bson:"customer_id"`
+	AddressID  bson.ObjectID `bson:"address_id"`
 }
 
 type CustomerAddressMappingRepository interface {

@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -13,14 +13,14 @@ const (
 
 // StockQuantityChange represents a stock quantity change entry
 type StockQuantityChange struct {
-	ID                 primitive.ObjectID  `bson:"_id,omitempty"`
-	QuantityAdjustment int                 `bson:"quantity_adjustment"`
-	StockQuantity      int                 `bson:"stock_quantity"`
-	Message            string              `bson:"message"`
-	CreatedOnUtc       time.Time           `bson:"created_on_utc"`
-	ProductID          primitive.ObjectID  `bson:"product_id"`
-	CombinationID      *primitive.ObjectID `bson:"combination_id"`
-	WarehouseID        primitive.ObjectID  `bson:"warehouse_id"`
+	ID                 bson.ObjectID  `bson:"_id,omitempty"`
+	QuantityAdjustment int            `bson:"quantity_adjustment"`
+	StockQuantity      int            `bson:"stock_quantity"`
+	Message            string         `bson:"message"`
+	CreatedOnUtc       time.Time      `bson:"created_on_utc"`
+	ProductID          bson.ObjectID  `bson:"product_id"`
+	CombinationID      *bson.ObjectID `bson:"combination_id"`
+	WarehouseID        bson.ObjectID  `bson:"warehouse_id"`
 }
 
 type StockQuantityChangeRepository interface {

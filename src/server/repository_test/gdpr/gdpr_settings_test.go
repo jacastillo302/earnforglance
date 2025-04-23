@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultGdprSettings struct {
@@ -28,7 +28,7 @@ func (m *MockSingleResultGdprSettings) Decode(v interface{}) error {
 }
 
 var mockItemGdprSettings = &domain.GdprSettings{
-	ID:                                 primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                                 bson.NewObjectID(), // Existing ID of the record to update
 	GdprEnabled:                        false,
 	LogPrivacyPolicyConsent:            false,
 	LogNewsletterConsent:               false,

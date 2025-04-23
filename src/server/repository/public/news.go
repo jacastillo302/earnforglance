@@ -8,9 +8,8 @@ import (
 	security "earnforglance/server/domain/security"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type newsItemRepository struct {
@@ -30,7 +29,7 @@ func (lr *newsItemRepository) GetNewsItems(c context.Context, filter domain.News
 	var newsItems []news.NewsItem
 	err := error(nil)
 
-	idHex, err := primitive.ObjectIDFromHex(filter.ID)
+	idHex, err := bson.ObjectIDFromHex(filter.ID)
 	if err == nil {
 		var newsItem news.NewsItem
 
@@ -75,9 +74,11 @@ func (lr *newsItemRepository) GetNewsItems(c context.Context, filter domain.News
 		}
 	}
 
+	limit := int64(filter.Limit)
+
 	findOptions := options.Find().
 		SetSort(bson.D{{Key: "created_on_utc", Value: sortOrder}}).
-		SetLimit(int64(filter.Limit))
+		SetLimit(limit)
 
 	collection := lr.database.Collection(news.CollectionNewsItem)
 	cursor, err := collection.Find(c, query, findOptions)

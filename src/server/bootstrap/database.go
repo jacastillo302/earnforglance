@@ -10,7 +10,7 @@ import (
 )
 
 func NewMongoDatabase(env *Env) mongo.Client {
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	_, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
 	dbHost := env.DBHost
@@ -25,16 +25,6 @@ func NewMongoDatabase(env *Env) mongo.Client {
 	}
 
 	client, err := mongo.NewClient(mongodbURI)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	err = client.Connect(ctx)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	err = client.Ping(ctx)
 	if err != nil {
 		log.Fatal(err)
 	}

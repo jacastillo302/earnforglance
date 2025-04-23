@@ -11,7 +11,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestBlogSettingsUsecase_FetchByID(t *testing.T) {
@@ -19,7 +19,7 @@ func TestBlogSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewBlogSettingsUsecase(mockRepo, timeout)
 
-	blogID := primitive.NewObjectID().Hex()
+	blogID := bson.NewObjectID().Hex()
 
 	expectedBlogSettings := domain.BlogSettings{
 		Enabled:                                true,
@@ -71,7 +71,7 @@ func TestBlogSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewBlogSettingsUsecase(mockRepo, timeout)
 
 	updatedBlogSettings := &domain.BlogSettings{
-		ID:                                     primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                     bson.NewObjectID(), // Existing ID of the record to update
 		Enabled:                                false,
 		PostsPageSize:                          20,
 		AllowNotRegisteredUsersToLeaveComments: false,
@@ -95,7 +95,7 @@ func TestBlogSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewBlogSettingsUsecase(mockRepo, timeout)
 
-	blogID := primitive.NewObjectID().Hex()
+	blogID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, blogID).Return(nil)
 
@@ -112,7 +112,7 @@ func TestBlogSettingsUsecase_Fetch(t *testing.T) {
 
 	expectedBlogSettings := []domain.BlogSettings{
 		{
-			ID:                                     primitive.NewObjectID(),
+			ID:                                     bson.NewObjectID(),
 			Enabled:                                true,
 			PostsPageSize:                          15,
 			AllowNotRegisteredUsersToLeaveComments: true,
@@ -123,7 +123,7 @@ func TestBlogSettingsUsecase_Fetch(t *testing.T) {
 			ShowBlogCommentsPerStore:               true,
 		},
 		{
-			ID:                                     primitive.NewObjectID(),
+			ID:                                     bson.NewObjectID(),
 			Enabled:                                false,
 			PostsPageSize:                          25,
 			AllowNotRegisteredUsersToLeaveComments: false,

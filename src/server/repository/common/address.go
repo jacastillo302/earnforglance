@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/common"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type addressRepository struct {
@@ -58,7 +57,7 @@ func (ur *addressRepository) Update(c context.Context, address *domain.Address) 
 func (ur *addressRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *addressRepository) Delete(c context.Context, ID string) error {
 func (ur *addressRepository) Fetch(c context.Context) ([]domain.Address, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *addressRepository) FetchByID(c context.Context, addressID string) (dom
 
 	var address domain.Address
 
-	idHex, err := primitive.ObjectIDFromHex(addressID)
+	idHex, err := bson.ObjectIDFromHex(addressID)
 	if err != nil {
 		return address, err
 	}

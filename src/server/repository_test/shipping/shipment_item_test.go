@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultShipmentItem struct {
@@ -28,11 +28,11 @@ func (m *MockSingleResultShipmentItem) Decode(v interface{}) error {
 }
 
 var mockItemShipmentItem = &domain.ShipmentItem{
-	ID:          primitive.NewObjectID(), // Existing ID of the record to update
-	ShipmentID:  primitive.NewObjectID(),
-	OrderItemID: primitive.NewObjectID(),
+	ID:          bson.NewObjectID(), // Existing ID of the record to update
+	ShipmentID:  bson.NewObjectID(),
+	OrderItemID: bson.NewObjectID(),
 	Quantity:    15,
-	WarehouseID: primitive.NewObjectID(),
+	WarehouseID: bson.NewObjectID(),
 }
 
 func TestShipmentItemRepository_FetchByID(t *testing.T) {

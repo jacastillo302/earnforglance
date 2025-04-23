@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestSettingUsecase_FetchByID(t *testing.T) {
@@ -18,13 +18,13 @@ func TestSettingUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewSettingUsecase(mockRepo, timeout)
 
-	settingID := primitive.NewObjectID().Hex()
+	settingID := bson.NewObjectID().Hex()
 
 	updatedSetting := domain.Setting{
-		ID:      primitive.NewObjectID(), // Existing ID of the record to update
+		ID:      bson.NewObjectID(), // Existing ID of the record to update
 		Name:    "SiteTitle",
 		Value:   "Updated E-Commerce Store",
-		StoreID: primitive.NewObjectID(),
+		StoreID: bson.NewObjectID(),
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, settingID).Return(updatedSetting, nil)
@@ -44,7 +44,7 @@ func TestSettingUsecase_Create(t *testing.T) {
 	newSetting := &domain.Setting{
 		Name:    "SiteTitle",
 		Value:   "My E-Commerce Store",
-		StoreID: primitive.NewObjectID(),
+		StoreID: bson.NewObjectID(),
 	}
 
 	mockRepo.On("Create", mock.Anything, newSetting).Return(nil)
@@ -61,10 +61,10 @@ func TestSettingUsecase_Update(t *testing.T) {
 	usecase := test.NewSettingUsecase(mockRepo, timeout)
 
 	updatedSetting := &domain.Setting{
-		ID:      primitive.NewObjectID(), // Existing ID of the record to update
+		ID:      bson.NewObjectID(), // Existing ID of the record to update
 		Name:    "SiteTitle",
 		Value:   "Updated E-Commerce Store",
-		StoreID: primitive.NewObjectID(),
+		StoreID: bson.NewObjectID(),
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedSetting).Return(nil)
@@ -80,7 +80,7 @@ func TestSettingUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewSettingUsecase(mockRepo, timeout)
 
-	settingID := primitive.NewObjectID().Hex()
+	settingID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, settingID).Return(nil)
 
@@ -97,16 +97,16 @@ func TestSettingUsecase_Fetch(t *testing.T) {
 
 	fetchedSettings := []domain.Setting{
 		{
-			ID:      primitive.NewObjectID(),
+			ID:      bson.NewObjectID(),
 			Name:    "SiteTitle",
 			Value:   "My E-Commerce Store",
-			StoreID: primitive.NewObjectID(),
+			StoreID: bson.NewObjectID(),
 		},
 		{
-			ID:      primitive.NewObjectID(),
+			ID:      bson.NewObjectID(),
 			Name:    "Currency",
 			Value:   "USD",
-			StoreID: primitive.NewObjectID(),
+			StoreID: bson.NewObjectID(),
 		},
 	}
 

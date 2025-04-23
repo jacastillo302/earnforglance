@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestDiscountUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestDiscountUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewDiscountUsecase(mockRepo, timeout)
 
-	discountID := primitive.NewObjectID().Hex()
+	discountID := bson.NewObjectID().Hex()
 
 	updatedDiscount := domain.Discount{
-		ID:                        primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                        bson.NewObjectID(), // Existing ID of the record to update
 		Name:                      "Cyber Monday Sale",
 		AdminComment:              "Limited to electronics",
 		DiscountTypeID:            2,
@@ -95,7 +95,7 @@ func TestDiscountUsecase_Update(t *testing.T) {
 	usecase := test.NewDiscountUsecase(mockRepo, timeout)
 
 	updatedDiscount := &domain.Discount{
-		ID:                        primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                        bson.NewObjectID(), // Existing ID of the record to update
 		Name:                      "Cyber Monday Sale",
 		AdminComment:              "Limited to electronics",
 		DiscountTypeID:            2,
@@ -131,7 +131,7 @@ func TestDiscountUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewDiscountUsecase(mockRepo, timeout)
 
-	discountID := primitive.NewObjectID().Hex()
+	discountID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, discountID).Return(nil)
 
@@ -148,7 +148,7 @@ func TestDiscountUsecase_Fetch(t *testing.T) {
 
 	fetchedDiscounts := []domain.Discount{
 		{
-			ID:                        primitive.NewObjectID(),
+			ID:                        bson.NewObjectID(),
 			Name:                      "Black Friday Sale",
 			AdminComment:              "Applies to all products",
 			DiscountTypeID:            1,
@@ -169,7 +169,7 @@ func TestDiscountUsecase_Fetch(t *testing.T) {
 			VendorID:                  nil,
 		},
 		{
-			ID:                        primitive.NewObjectID(),
+			ID:                        bson.NewObjectID(),
 			Name:                      "Cyber Monday Sale",
 			AdminComment:              "Limited to electronics",
 			DiscountTypeID:            2,

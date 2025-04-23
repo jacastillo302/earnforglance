@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -13,14 +13,14 @@ const (
 
 // ActivityLog represents an activity log records
 type ActivityLog struct {
-	ID                primitive.ObjectID  `bson:"_id,omitempty"`
-	ActivityLogTypeID primitive.ObjectID  `bson:"activity_log_type_id"`
-	EntityID          *primitive.ObjectID `bson:"entity_id"`
-	EntityName        string              `bson:"entity_name"`
-	CustomerID        primitive.ObjectID  `bson:"customer_id"`
-	Comment           string              `bson:"comment"`
-	CreatedOnUtc      time.Time           `bson:"created_on_utc"`
-	IpAddress         string              `bson:"ip_address"`
+	ID                bson.ObjectID  `bson:"_id,omitempty"`
+	ActivityLogTypeID bson.ObjectID  `bson:"activity_log_type_id"`
+	EntityID          *bson.ObjectID `bson:"entity_id"`
+	EntityName        string         `bson:"entity_name"`
+	CustomerID        bson.ObjectID  `bson:"customer_id"`
+	Comment           string         `bson:"comment"`
+	CreatedOnUtc      time.Time      `bson:"created_on_utc"`
+	IpAddress         string         `bson:"ip_address"`
 }
 
 type ActivityLogRepository interface {

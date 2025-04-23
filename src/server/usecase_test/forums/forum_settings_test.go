@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestForumSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestForumSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewForumSettingsUsecase(mockRepo, timeout)
 
-	forumSettingsID := primitive.NewObjectID().Hex()
+	forumSettingsID := bson.NewObjectID().Hex()
 
 	updatedForumSettings := domain.ForumSettings{
-		ID:                                  primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                  bson.NewObjectID(), // Existing ID of the record to update
 		ForumsEnabled:                       false,
 		RelativeDateTimeFormattingEnabled:   false,
 		AllowCustomersToEditPosts:           false,
@@ -121,7 +121,7 @@ func TestForumSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewForumSettingsUsecase(mockRepo, timeout)
 
 	updatedForumSettings := &domain.ForumSettings{
-		ID:                                  primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                  bson.NewObjectID(), // Existing ID of the record to update
 		ForumsEnabled:                       false,
 		RelativeDateTimeFormattingEnabled:   false,
 		AllowCustomersToEditPosts:           false,
@@ -170,7 +170,7 @@ func TestForumSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewForumSettingsUsecase(mockRepo, timeout)
 
-	forumSettingsID := primitive.NewObjectID().Hex()
+	forumSettingsID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, forumSettingsID).Return(nil)
 
@@ -187,7 +187,7 @@ func TestForumSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedForumSettings := []domain.ForumSettings{
 		{
-			ID:                                  primitive.NewObjectID(),
+			ID:                                  bson.NewObjectID(),
 			ForumsEnabled:                       true,
 			RelativeDateTimeFormattingEnabled:   true,
 			AllowCustomersToEditPosts:           true,
@@ -223,7 +223,7 @@ func TestForumSettingsUsecase_Fetch(t *testing.T) {
 			ForumSearchTermMinimumLength:        3,
 		},
 		{
-			ID:                                  primitive.NewObjectID(),
+			ID:                                  bson.NewObjectID(),
 			ForumsEnabled:                       false,
 			RelativeDateTimeFormattingEnabled:   false,
 			AllowCustomersToEditPosts:           false,

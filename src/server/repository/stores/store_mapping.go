@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/stores"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type storemappingRepository struct {
@@ -58,7 +57,7 @@ func (ur *storemappingRepository) Update(c context.Context, storemapping *domain
 func (ur *storemappingRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -70,7 +69,8 @@ func (ur *storemappingRepository) Delete(c context.Context, ID string) error {
 func (ur *storemappingRepository) Fetch(c context.Context) ([]domain.StoreMapping, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -92,7 +92,7 @@ func (tr *storemappingRepository) FetchByID(c context.Context, storemappingID st
 
 	var storemapping domain.StoreMapping
 
-	idHex, err := primitive.ObjectIDFromHex(storemappingID)
+	idHex, err := bson.ObjectIDFromHex(storemappingID)
 	if err != nil {
 		return storemapping, err
 	}

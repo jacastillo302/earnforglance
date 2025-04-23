@@ -39,10 +39,9 @@ import (
 	"time"
 
 	"github.com/google/uuid"
+	"go.mongodb.org/mongo-driver/v2/bson"
 
 	"encoding/base64"
-
-	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 type InstallService struct {
@@ -298,7 +297,7 @@ func InstallLocaleStringResource(languageID string, culture string) (response.In
 		return result, nil
 	}
 
-	ID, err := primitive.ObjectIDFromHex(languageID)
+	ID, err := bson.ObjectIDFromHex(languageID)
 	if err != nil {
 		result.Status = false
 		result.Details = "Invalid languageID: " + err.Error()
@@ -309,8 +308,8 @@ func InstallLocaleStringResource(languageID string, culture string) (response.In
 	localeStringResources := make([]lang.LocaleStringResource, 0)
 	for _, item := range nameValueItems {
 		localeStringResources = append(localeStringResources, lang.LocaleStringResource{
-			ID:            primitive.NewObjectID(), // Generate a new ObjectID
-			LanguageID:    ID,                      // Replace with actual LanguageID if available
+			ID:            bson.NewObjectID(), // Generate a new ObjectID
+			LanguageID:    ID,                 // Replace with actual LanguageID if available
 			ResourceName:  item.Name,
 			ResourceValue: item.Value,
 		})
@@ -810,7 +809,7 @@ func InstallCustomer(isSample bool) (response.Install, []customers.Customer) {
 	return result, items
 }
 
-func InstallCustomerPassword(customerID primitive.ObjectID, psw string) (response.Install, []customers.CustomerPassword) {
+func InstallCustomerPassword(customerID bson.ObjectID, psw string) (response.Install, []customers.CustomerPassword) {
 	var result response.Install
 	collection := customers.CollectionCustomer
 
@@ -837,7 +836,7 @@ func InstallCustomerPassword(customerID primitive.ObjectID, psw string) (respons
 
 	items := []customers.CustomerPassword{
 		{
-			ID:               primitive.NewObjectID(),
+			ID:               bson.NewObjectID(),
 			CustomerID:       customerID,
 			Password:         hash,
 			PasswordFormatID: int(customers.Hashed),
@@ -892,7 +891,7 @@ func InstallAddress(isSample bool) (response.Install, []commons.Address) {
 	return result, items
 }
 
-func InstallCustomerAddressMapping(customerID primitive.ObjectID, addressID primitive.ObjectID) (response.Install, customers.CustomerAddressMapping) {
+func InstallCustomerAddressMapping(customerID bson.ObjectID, addressID bson.ObjectID) (response.Install, customers.CustomerAddressMapping) {
 	var result response.Install
 	collection := customers.CollectionCustomerAddressMapping
 
@@ -909,14 +908,14 @@ func InstallCustomerAddressMapping(customerID primitive.ObjectID, addressID prim
 	return result, items
 }
 
-func InstallCustomerCustomerRoleMapping(customerID primitive.ObjectID, rolesID []customers.CustomerRole) (response.Install, []customers.CustomerCustomerRoleMapping) {
+func InstallCustomerCustomerRoleMapping(customerID bson.ObjectID, rolesID []customers.CustomerRole) (response.Install, []customers.CustomerCustomerRoleMapping) {
 	var result response.Install
 	collection := customers.CollectionCustomerCustomerRoleMapping
 
 	items := make([]customers.CustomerCustomerRoleMapping, 0)
 	for _, item := range rolesID {
 		items = append(items, customers.CustomerCustomerRoleMapping{
-			ID:             primitive.NewObjectID(),
+			ID:             bson.NewObjectID(),
 			CustomerID:     customerID,
 			CustomerRoleID: item.ID,
 		})
@@ -2630,7 +2629,7 @@ func InstallProductReview(isSample bool, products []catalog.Product) (response.I
 		}
 
 		review := catalog.ProductReview{
-			ID:                      primitive.NewObjectID(),
+			ID:                      bson.NewObjectID(),
 			CustomerID:              items[0].CustomerID,
 			ProductID:               item.ID,
 			StoreID:                 items[0].StoreID,
@@ -2685,7 +2684,7 @@ func InstallStockQuantityChange(isSample bool, products []catalog.Product) (resp
 		for _, item := range products {
 
 			stock := catalog.StockQuantityChange{
-				ID:                 primitive.NewObjectID(),
+				ID:                 bson.NewObjectID(),
 				QuantityAdjustment: item.StockQuantity,
 				StockQuantity:      item.StockQuantity,
 				Message:            "The stock quantity by the product: " + item.Name,

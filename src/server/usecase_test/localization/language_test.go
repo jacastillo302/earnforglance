@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestLanguageUsecase_FetchByID(t *testing.T) {
@@ -18,17 +18,17 @@ func TestLanguageUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewLanguageUsecase(mockRepo, timeout)
 
-	languageID := primitive.NewObjectID().Hex()
+	languageID := bson.NewObjectID().Hex()
 
 	updatedLanguage := domain.Language{
-		ID:                primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                bson.NewObjectID(), // Existing ID of the record to update
 		Name:              "Spanish",
 		LanguageCulture:   "es-ES",
 		UniqueSeoCode:     "es",
 		FlagImageFileName: "es.png",
 		Rtl:               false,
 		LimitedToStores:   true,
-		DefaultCurrencyID: primitive.NewObjectID(),
+		DefaultCurrencyID: bson.NewObjectID(),
 		Published:         false,
 		DisplayOrder:      2,
 	}
@@ -54,7 +54,7 @@ func TestLanguageUsecase_Create(t *testing.T) {
 		FlagImageFileName: "us.png",
 		Rtl:               false,
 		LimitedToStores:   false,
-		DefaultCurrencyID: primitive.NewObjectID(),
+		DefaultCurrencyID: bson.NewObjectID(),
 		Published:         true,
 		DisplayOrder:      1,
 	}
@@ -73,14 +73,14 @@ func TestLanguageUsecase_Update(t *testing.T) {
 	usecase := test.NewLanguageUsecase(mockRepo, timeout)
 
 	updatedLanguage := &domain.Language{
-		ID:                primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                bson.NewObjectID(), // Existing ID of the record to update
 		Name:              "Spanish",
 		LanguageCulture:   "es-ES",
 		UniqueSeoCode:     "es",
 		FlagImageFileName: "es.png",
 		Rtl:               false,
 		LimitedToStores:   true,
-		DefaultCurrencyID: primitive.NewObjectID(),
+		DefaultCurrencyID: bson.NewObjectID(),
 		Published:         false,
 		DisplayOrder:      2,
 	}
@@ -98,7 +98,7 @@ func TestLanguageUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewLanguageUsecase(mockRepo, timeout)
 
-	languageID := primitive.NewObjectID().Hex()
+	languageID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, languageID).Return(nil)
 
@@ -115,26 +115,26 @@ func TestLanguageUsecase_Fetch(t *testing.T) {
 
 	fetchedLanguages := []domain.Language{
 		{
-			ID:                primitive.NewObjectID(),
+			ID:                bson.NewObjectID(),
 			Name:              "English",
 			LanguageCulture:   "en-US",
 			UniqueSeoCode:     "en",
 			FlagImageFileName: "us.png",
 			Rtl:               false,
 			LimitedToStores:   false,
-			DefaultCurrencyID: primitive.NewObjectID(),
+			DefaultCurrencyID: bson.NewObjectID(),
 			Published:         true,
 			DisplayOrder:      1,
 		},
 		{
-			ID:                primitive.NewObjectID(),
+			ID:                bson.NewObjectID(),
 			Name:              "Spanish",
 			LanguageCulture:   "es-ES",
 			UniqueSeoCode:     "es",
 			FlagImageFileName: "es.png",
 			Rtl:               false,
 			LimitedToStores:   true,
-			DefaultCurrencyID: primitive.NewObjectID(),
+			DefaultCurrencyID: bson.NewObjectID(),
 			Published:         false,
 			DisplayOrder:      2,
 		},

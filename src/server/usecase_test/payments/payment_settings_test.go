@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestPaymentSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestPaymentSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewPaymentSettingsUsecase(mockRepo, timeout)
 
-	paymentSettingsID := primitive.NewObjectID().Hex()
+	paymentSettingsID := bson.NewObjectID().Hex()
 
 	updatedPaymentSettings := domain.PaymentSettings{
-		ID:                                    primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                    bson.NewObjectID(), // Existing ID of the record to update
 		ActivePaymentMethodSystemNames:        []string{"Square", "Authorize.Net"},
 		AllowRePostingPayments:                false,
 		BypassPaymentMethodSelectionIfOnlyOne: false,
@@ -69,7 +69,7 @@ func TestPaymentSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewPaymentSettingsUsecase(mockRepo, timeout)
 
 	updatedPaymentSettings := &domain.PaymentSettings{
-		ID:                                    primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                    bson.NewObjectID(), // Existing ID of the record to update
 		ActivePaymentMethodSystemNames:        []string{"Square", "Authorize.Net"},
 		AllowRePostingPayments:                false,
 		BypassPaymentMethodSelectionIfOnlyOne: false,
@@ -92,7 +92,7 @@ func TestPaymentSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewPaymentSettingsUsecase(mockRepo, timeout)
 
-	paymentSettingsID := primitive.NewObjectID().Hex()
+	paymentSettingsID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, paymentSettingsID).Return(nil)
 
@@ -109,7 +109,7 @@ func TestPaymentSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedPaymentSettings := []domain.PaymentSettings{
 		{
-			ID:                                    primitive.NewObjectID(),
+			ID:                                    bson.NewObjectID(),
 			ActivePaymentMethodSystemNames:        []string{"PayPal", "Stripe"},
 			AllowRePostingPayments:                true,
 			BypassPaymentMethodSelectionIfOnlyOne: true,
@@ -119,7 +119,7 @@ func TestPaymentSettingsUsecase_Fetch(t *testing.T) {
 			RegenerateOrderGuidInterval:                     30,
 		},
 		{
-			ID:                                    primitive.NewObjectID(),
+			ID:                                    bson.NewObjectID(),
 			ActivePaymentMethodSystemNames:        []string{"Square", "Authorize.Net"},
 			AllowRePostingPayments:                false,
 			BypassPaymentMethodSelectionIfOnlyOne: false,

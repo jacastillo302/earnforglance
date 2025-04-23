@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultDiscountUsageHistory struct {
@@ -29,9 +29,9 @@ func (m *MockSingleResultDiscountUsageHistory) Decode(v interface{}) error {
 }
 
 var mockItemDiscountUsageHistory = &domain.DiscountUsageHistory{
-	ID:           primitive.NewObjectID(), // Existing ID of the record to update
-	DiscountID:   primitive.NewObjectID(),
-	OrderID:      primitive.NewObjectID(),
+	ID:           bson.NewObjectID(), // Existing ID of the record to update
+	DiscountID:   bson.NewObjectID(),
+	OrderID:      bson.NewObjectID(),
 	CreatedOnUtc: time.Now().AddDate(0, 0, -7), // Created 7 days ago
 }
 

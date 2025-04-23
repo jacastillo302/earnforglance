@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultShippingSettings struct {
@@ -28,7 +28,7 @@ func (m *MockSingleResultShippingSettings) Decode(v interface{}) error {
 }
 
 var mockItemShippingSettings = &domain.ShippingSettings{
-	ID: primitive.NewObjectID(), // Existing ID of the record to update
+	ID: bson.NewObjectID(), // Existing ID of the record to update
 	ActiveShippingRateComputationMethodSystemNames:   []string{"ExpressRate"},
 	ActivePickupPointProviderSystemNames:             []string{"DHL"},
 	ShipToSameAddress:                                false,

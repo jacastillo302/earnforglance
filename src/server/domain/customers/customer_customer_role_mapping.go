@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,9 +12,9 @@ const (
 
 // CustomerCustomerRoleMapping represents a customer-customer role mapping class
 type CustomerCustomerRoleMapping struct {
-	ID             primitive.ObjectID `bson:"_id,omitempty"`
-	CustomerID     primitive.ObjectID `bson:"customer_id,omitempty"`
-	CustomerRoleID primitive.ObjectID `bson:"customer_role_id,omitempty"`
+	ID             bson.ObjectID `bson:"_id,omitempty"`
+	CustomerID     bson.ObjectID `bson:"customer_id,omitempty"`
+	CustomerRoleID bson.ObjectID `bson:"customer_role_id,omitempty"`
 }
 
 type CustomerCustomerRoleMappingRepository interface {

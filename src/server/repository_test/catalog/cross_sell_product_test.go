@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultCrossSellProduct struct {
@@ -36,7 +36,7 @@ func TestCrossSellProductRepository_FetchByID(t *testing.T) {
 
 	collectionName := domain.CollectionCrossSellProduct
 
-	mockItem := domain.CrossSellProduct{ID: primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, ProductID1: primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, ProductID2: primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}}
+	mockItem := domain.CrossSellProduct{ID: bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, ProductID1: bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, ProductID2: bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}}
 
 	t.Run("success", func(t *testing.T) {
 		mockSingleResult := &MockSingleResultCrossSellProduct{}
@@ -82,9 +82,9 @@ func TestCrossSellProductRepository_Create(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockCrossSellProduct := &domain.CrossSellProduct{
-		ID:         primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID1: primitive.NewObjectID(),
-		ProductID2: primitive.NewObjectID(),
+		ID:         bson.NewObjectID(), // Existing ID of the record to update
+		ProductID1: bson.NewObjectID(),
+		ProductID2: bson.NewObjectID(),
 	}
 
 	collectionHelper.On("InsertOne", mock.Anything, mockCrossSellProduct).Return(nil, nil).Once()
@@ -105,9 +105,9 @@ func TestCrossSellProductRepository_Update(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockCrossSellProduct := &domain.CrossSellProduct{
-		ID:         primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID1: primitive.NewObjectID(),
-		ProductID2: primitive.NewObjectID(),
+		ID:         bson.NewObjectID(), // Existing ID of the record to update
+		ProductID1: bson.NewObjectID(),
+		ProductID2: bson.NewObjectID(),
 	}
 
 	filter := bson.M{"_id": mockCrossSellProduct.ID}

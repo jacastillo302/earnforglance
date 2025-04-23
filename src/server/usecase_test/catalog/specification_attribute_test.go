@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestSpecificationAttributeUsecase_FetchByID(t *testing.T) {
@@ -18,12 +18,12 @@ func TestSpecificationAttributeUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewSpecificationAttributeUsecase(mockRepo, timeout)
 
-	specificationAttributeID := primitive.NewObjectID().Hex()
-	specificationAttributeGroupID := primitive.NewObjectID() // Create the ObjectID
+	specificationAttributeID := bson.NewObjectID().Hex()
+	specificationAttributeGroupID := bson.NewObjectID() // Create the ObjectID
 	specificationAttributeGroupIDPointer := &specificationAttributeGroupID
 
 	updatedSpecificationAttribute := domain.SpecificationAttribute{
-		ID:                            primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                            bson.NewObjectID(), // Existing ID of the record to update
 		Name:                          "Color",
 		DisplayOrder:                  2,
 		SpecificationAttributeGroupID: specificationAttributeGroupIDPointer,
@@ -63,7 +63,7 @@ func TestSpecificationAttributeUsecase_Update(t *testing.T) {
 	usecase := test.NewSpecificationAttributeUsecase(mockRepo, timeout)
 
 	updatedSpecificationAttribute := &domain.SpecificationAttribute{
-		ID:                            primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                            bson.NewObjectID(), // Existing ID of the record to update
 		Name:                          "Color",
 		DisplayOrder:                  2,
 		SpecificationAttributeGroupID: nil,
@@ -82,7 +82,7 @@ func TestSpecificationAttributeUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewSpecificationAttributeUsecase(mockRepo, timeout)
 
-	specificationAttributeID := primitive.NewObjectID().Hex()
+	specificationAttributeID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, specificationAttributeID).Return(nil)
 
@@ -99,13 +99,13 @@ func TestSpecificationAttributeUsecase_Fetch(t *testing.T) {
 
 	fetchedSpecificationAttributes := []domain.SpecificationAttribute{
 		{
-			ID:                            primitive.NewObjectID(),
+			ID:                            bson.NewObjectID(),
 			Name:                          "Material",
 			DisplayOrder:                  1,
 			SpecificationAttributeGroupID: nil,
 		},
 		{
-			ID:                            primitive.NewObjectID(),
+			ID:                            bson.NewObjectID(),
 			Name:                          "Color",
 			DisplayOrder:                  2,
 			SpecificationAttributeGroupID: nil,

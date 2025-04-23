@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,7 +12,7 @@ const (
 
 // VendorAttribute represents a vendor attribute.
 type VendorAttribute struct {
-	ID primitive.ObjectID `bson:"_id,omitempty"`
+	ID bson.ObjectID `bson:"_id,omitempty"`
 	// Add other fields from BaseAttribute if needed
 }
 

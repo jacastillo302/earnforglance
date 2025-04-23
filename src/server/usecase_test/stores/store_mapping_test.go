@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestStoreMappingUsecase_FetchByID(t *testing.T) {
@@ -18,13 +18,13 @@ func TestStoreMappingUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewStoreMappingUsecase(mockRepo, timeout)
 
-	storeMappingID := primitive.NewObjectID().Hex()
+	storeMappingID := bson.NewObjectID().Hex()
 
 	updatedStoreMapping := domain.StoreMapping{
-		ID:         primitive.NewObjectID(), // Existing ID of the record to update
-		EntityID:   primitive.NewObjectID(),
+		ID:         bson.NewObjectID(), // Existing ID of the record to update
+		EntityID:   bson.NewObjectID(),
 		EntityName: "Category",
-		StoreID:    primitive.NewObjectID(),
+		StoreID:    bson.NewObjectID(),
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, storeMappingID).Return(updatedStoreMapping, nil)
@@ -42,9 +42,9 @@ func TestStoreMappingUsecase_Create(t *testing.T) {
 	usecase := test.NewStoreMappingUsecase(mockRepo, timeout)
 
 	newStoreMapping := &domain.StoreMapping{
-		EntityID:   primitive.NewObjectID(),
+		EntityID:   bson.NewObjectID(),
 		EntityName: "Product",
-		StoreID:    primitive.NewObjectID(),
+		StoreID:    bson.NewObjectID(),
 	}
 
 	mockRepo.On("Create", mock.Anything, newStoreMapping).Return(nil)
@@ -61,10 +61,10 @@ func TestStoreMappingUsecase_Update(t *testing.T) {
 	usecase := test.NewStoreMappingUsecase(mockRepo, timeout)
 
 	updatedStoreMapping := &domain.StoreMapping{
-		ID:         primitive.NewObjectID(), // Existing ID of the record to update
-		EntityID:   primitive.NewObjectID(),
+		ID:         bson.NewObjectID(), // Existing ID of the record to update
+		EntityID:   bson.NewObjectID(),
 		EntityName: "Category",
-		StoreID:    primitive.NewObjectID(),
+		StoreID:    bson.NewObjectID(),
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedStoreMapping).Return(nil)
@@ -80,7 +80,7 @@ func TestStoreMappingUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewStoreMappingUsecase(mockRepo, timeout)
 
-	storeMappingID := primitive.NewObjectID().Hex()
+	storeMappingID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, storeMappingID).Return(nil)
 
@@ -97,16 +97,16 @@ func TestStoreMappingUsecase_Fetch(t *testing.T) {
 
 	fetchedStoreMappings := []domain.StoreMapping{
 		{
-			ID:         primitive.NewObjectID(),
-			EntityID:   primitive.NewObjectID(),
+			ID:         bson.NewObjectID(),
+			EntityID:   bson.NewObjectID(),
 			EntityName: "Product",
-			StoreID:    primitive.NewObjectID(),
+			StoreID:    bson.NewObjectID(),
 		},
 		{
-			ID:         primitive.NewObjectID(),
-			EntityID:   primitive.NewObjectID(),
+			ID:         bson.NewObjectID(),
+			EntityID:   bson.NewObjectID(),
 			EntityName: "Category",
-			StoreID:    primitive.NewObjectID(),
+			StoreID:    bson.NewObjectID(),
 		},
 	}
 

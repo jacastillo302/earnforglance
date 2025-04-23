@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/common"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type sitemapxmlsettingsRepository struct {
@@ -59,7 +58,7 @@ func (ur *sitemapxmlsettingsRepository) Update(c context.Context, sitemapxmlsett
 func (ur *sitemapxmlsettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -72,7 +71,8 @@ func (ur *sitemapxmlsettingsRepository) Delete(c context.Context, ID string) err
 func (ur *sitemapxmlsettingsRepository) Fetch(c context.Context) ([]domain.SitemapXmlSettings, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -94,7 +94,7 @@ func (tr *sitemapxmlsettingsRepository) FetchByID(c context.Context, sitemapxmls
 
 	var sitemapxmlsettings domain.SitemapXmlSettings
 
-	idHex, err := primitive.ObjectIDFromHex(sitemapxmlsettingsID)
+	idHex, err := bson.ObjectIDFromHex(sitemapxmlsettingsID)
 	if err != nil {
 		return sitemapxmlsettings, err
 	}

@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestAdminAreaSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestAdminAreaSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewAdminAreaSettingsUsecase(mockRepo, timeout)
 
-	adminAreaSettingsID := primitive.NewObjectID().Hex()
+	adminAreaSettingsID := bson.NewObjectID().Hex()
 
 	updatedAdminAreaSettings := domain.AdminAreaSettings{
-		ID:                              primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                              bson.NewObjectID(), // Existing ID of the record to update
 		DefaultGridPageSize:             30,
 		ProductsBulkEditGridPageSize:    100,
 		PopupGridPageSize:               15,
@@ -87,7 +87,7 @@ func TestAdminAreaSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewAdminAreaSettingsUsecase(mockRepo, timeout)
 
 	updatedAdminAreaSettings := &domain.AdminAreaSettings{
-		ID:                              primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                              bson.NewObjectID(), // Existing ID of the record to update
 		DefaultGridPageSize:             30,
 		ProductsBulkEditGridPageSize:    100,
 		PopupGridPageSize:               15,
@@ -119,7 +119,7 @@ func TestAdminAreaSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewAdminAreaSettingsUsecase(mockRepo, timeout)
 
-	adminAreaSettingsID := primitive.NewObjectID().Hex()
+	adminAreaSettingsID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, adminAreaSettingsID).Return(nil)
 
@@ -136,7 +136,7 @@ func TestAdminAreaSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedAdminAreaSettings := []domain.AdminAreaSettings{
 		{
-			ID:                              primitive.NewObjectID(),
+			ID:                              bson.NewObjectID(),
 			DefaultGridPageSize:             20,
 			ProductsBulkEditGridPageSize:    50,
 			PopupGridPageSize:               10,
@@ -155,7 +155,7 @@ func TestAdminAreaSettingsUsecase_Fetch(t *testing.T) {
 			MinimumDropdownItemsForSearch:   5,
 		},
 		{
-			ID:                              primitive.NewObjectID(),
+			ID:                              bson.NewObjectID(),
 			DefaultGridPageSize:             30,
 			ProductsBulkEditGridPageSize:    100,
 			PopupGridPageSize:               15,

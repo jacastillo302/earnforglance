@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,11 +12,11 @@ const (
 
 // ProductManufacturer represents a product manufacturer mapping
 type ProductManufacturer struct {
-	ID                primitive.ObjectID `bson:"_id,omitempty"`
-	ProductID         primitive.ObjectID `bson:"product_id"`
-	ManufacturerID    primitive.ObjectID `bson:"manufacturer_id"`
-	IsFeaturedProduct bool               `bson:"is_featured_product"`
-	DisplayOrder      int                `bson:"display_order"`
+	ID                bson.ObjectID `bson:"_id,omitempty"`
+	ProductID         bson.ObjectID `bson:"product_id"`
+	ManufacturerID    bson.ObjectID `bson:"manufacturer_id"`
+	IsFeaturedProduct bool          `bson:"is_featured_product"`
+	DisplayOrder      int           `bson:"display_order"`
 }
 
 type ProductManufacturerRepository interface {

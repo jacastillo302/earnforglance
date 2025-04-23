@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultCheckoutAttribute struct {
@@ -28,11 +28,11 @@ func (m *MockSingleResultCheckoutAttribute) Decode(v interface{}) error {
 }
 
 var mockItemCheckoutAttribute = &domain.CheckoutAttribute{
-	ID:                              primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                              bson.NewObjectID(), // Existing ID of the record to update
 	TextPrompt:                      "Update your custom message",
 	ShippableProductRequired:        false,
 	IsTaxExempt:                     true,
-	TaxCategoryID:                   primitive.NewObjectID(),
+	TaxCategoryID:                   bson.NewObjectID(),
 	LimitedToStores:                 true,
 	ValidationMinLength:             new(int),
 	ValidationMaxLength:             new(int),

@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/api"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type api_clientRepository struct {
@@ -66,7 +65,8 @@ func (ur *api_clientRepository) Delete(c context.Context, api_client string) err
 func (ur *api_clientRepository) Fetch(c context.Context) ([]domain.ApiClient, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -88,7 +88,7 @@ func (tr *api_clientRepository) FetchByID(c context.Context, api_clientID string
 
 	var api_client domain.ApiClient
 
-	idHex, err := primitive.ObjectIDFromHex(api_clientID)
+	idHex, err := bson.ObjectIDFromHex(api_clientID)
 	if err != nil {
 		return api_client, err
 	}

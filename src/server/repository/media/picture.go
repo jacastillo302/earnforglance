@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/media"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type pictureRepository struct {
@@ -58,7 +57,7 @@ func (ur *pictureRepository) Update(c context.Context, picture *domain.Picture) 
 func (ur *pictureRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *pictureRepository) Delete(c context.Context, ID string) error {
 func (ur *pictureRepository) Fetch(c context.Context) ([]domain.Picture, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *pictureRepository) FetchByID(c context.Context, pictureID string) (dom
 
 	var picture domain.Picture
 
-	idHex, err := primitive.ObjectIDFromHex(pictureID)
+	idHex, err := bson.ObjectIDFromHex(pictureID)
 	if err != nil {
 		return picture, err
 	}

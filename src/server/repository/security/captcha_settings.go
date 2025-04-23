@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/security"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type captchasettingsRepository struct {
@@ -59,7 +58,7 @@ func (ur *captchasettingsRepository) Update(c context.Context, captchasettings *
 func (ur *captchasettingsRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -72,7 +71,8 @@ func (ur *captchasettingsRepository) Delete(c context.Context, ID string) error 
 func (ur *captchasettingsRepository) Fetch(c context.Context) ([]domain.CaptchaSettings, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -94,7 +94,7 @@ func (tr *captchasettingsRepository) FetchByID(c context.Context, captchasetting
 
 	var captchasettings domain.CaptchaSettings
 
-	idHex, err := primitive.ObjectIDFromHex(captchasettingsID)
+	idHex, err := bson.ObjectIDFromHex(captchasettingsID)
 	if err != nil {
 		return captchasettings, err
 	}

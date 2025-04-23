@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestProductProductTagMappingUsecase_FetchByID(t *testing.T) {
@@ -18,12 +18,12 @@ func TestProductProductTagMappingUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewProductProductTagMappingUsecase(mockRepo, timeout)
 
-	productProductTagMappingID := primitive.NewObjectID().Hex()
+	productProductTagMappingID := bson.NewObjectID().Hex()
 
 	updatedProductProductTagMapping := domain.ProductProductTagMapping{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID:    primitive.NewObjectID(),
-		ProductTagID: primitive.NewObjectID(),
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
+		ProductID:    bson.NewObjectID(),
+		ProductTagID: bson.NewObjectID(),
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, productProductTagMappingID).Return(updatedProductProductTagMapping, nil)
@@ -41,8 +41,8 @@ func TestProductProductTagMappingUsecase_Create(t *testing.T) {
 	usecase := test.NewProductProductTagMappingUsecase(mockRepo, timeout)
 
 	newProductProductTagMapping := &domain.ProductProductTagMapping{
-		ProductID:    primitive.NewObjectID(),
-		ProductTagID: primitive.NewObjectID(),
+		ProductID:    bson.NewObjectID(),
+		ProductTagID: bson.NewObjectID(),
 	}
 
 	mockRepo.On("Create", mock.Anything, newProductProductTagMapping).Return(nil)
@@ -59,9 +59,9 @@ func TestProductProductTagMappingUsecase_Update(t *testing.T) {
 	usecase := test.NewProductProductTagMappingUsecase(mockRepo, timeout)
 
 	updatedProductProductTagMapping := &domain.ProductProductTagMapping{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID:    primitive.NewObjectID(),
-		ProductTagID: primitive.NewObjectID(),
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
+		ProductID:    bson.NewObjectID(),
+		ProductTagID: bson.NewObjectID(),
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedProductProductTagMapping).Return(nil)
@@ -77,7 +77,7 @@ func TestProductProductTagMappingUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewProductProductTagMappingUsecase(mockRepo, timeout)
 
-	productProductTagMappingID := primitive.NewObjectID().Hex()
+	productProductTagMappingID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, productProductTagMappingID).Return(nil)
 
@@ -94,14 +94,14 @@ func TestProductProductTagMappingUsecase_Fetch(t *testing.T) {
 
 	fetchedProductProductTagMappings := []domain.ProductProductTagMapping{
 		{
-			ID:           primitive.NewObjectID(),
-			ProductID:    primitive.NewObjectID(),
-			ProductTagID: primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
+			ProductID:    bson.NewObjectID(),
+			ProductTagID: bson.NewObjectID(),
 		},
 		{
-			ID:           primitive.NewObjectID(),
-			ProductID:    primitive.NewObjectID(),
-			ProductTagID: primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
+			ProductID:    bson.NewObjectID(),
+			ProductTagID: bson.NewObjectID(),
 		},
 	}
 

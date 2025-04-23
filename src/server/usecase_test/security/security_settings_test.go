@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestSecuritySettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestSecuritySettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewSecuritySettingsUsecase(mockRepo, timeout)
 
-	securityID := primitive.NewObjectID().Hex()
+	securityID := bson.NewObjectID().Hex()
 
 	updatedSecuritySettings := domain.SecuritySettings{
-		ID:                               primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                               bson.NewObjectID(), // Existing ID of the record to update
 		EncryptionKey:                    "updatedEncryptionKey456",
 		AdminAreaAllowedIpAddresses:      []string{"127.0.0.1", "192.168.0.1"},
 		HoneypotEnabled:                  false,
@@ -71,7 +71,7 @@ func TestSecuritySettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewSecuritySettingsUsecase(mockRepo, timeout)
 
 	updatedSecuritySettings := &domain.SecuritySettings{
-		ID:                               primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                               bson.NewObjectID(), // Existing ID of the record to update
 		EncryptionKey:                    "updatedEncryptionKey456",
 		AdminAreaAllowedIpAddresses:      []string{"127.0.0.1", "192.168.0.1"},
 		HoneypotEnabled:                  false,
@@ -95,7 +95,7 @@ func TestSecuritySettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewSecuritySettingsUsecase(mockRepo, timeout)
 
-	securityID := primitive.NewObjectID().Hex()
+	securityID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, securityID).Return(nil)
 
@@ -112,7 +112,7 @@ func TestSecuritySettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedSecuritySettings := []domain.SecuritySettings{
 		{
-			ID:                               primitive.NewObjectID(),
+			ID:                               bson.NewObjectID(),
 			EncryptionKey:                    "randomEncryptionKey123",
 			AdminAreaAllowedIpAddresses:      []string{"192.168.1.1", "10.0.0.1"},
 			HoneypotEnabled:                  true,
@@ -123,7 +123,7 @@ func TestSecuritySettingsUsecase_Fetch(t *testing.T) {
 			AllowStoreOwnerExportImportCustomersWithHashedPassword: false,
 		},
 		{
-			ID:                               primitive.NewObjectID(),
+			ID:                               bson.NewObjectID(),
 			EncryptionKey:                    "updatedEncryptionKey456",
 			AdminAreaAllowedIpAddresses:      []string{"127.0.0.1", "192.168.0.1"},
 			HoneypotEnabled:                  false,

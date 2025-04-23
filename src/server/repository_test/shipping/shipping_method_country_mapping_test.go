@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultShippingMethodCountryMapping struct {
@@ -28,9 +28,9 @@ func (m *MockSingleResultShippingMethodCountryMapping) Decode(v interface{}) err
 }
 
 var mockItemShippingMethodCountryMapping = &domain.ShippingMethodCountryMapping{
-	ID:               primitive.NewObjectID(), // Existing ID of the record to update
-	ShippingMethodID: primitive.NewObjectID(),
-	CountryID:        primitive.NewObjectID(),
+	ID:               bson.NewObjectID(), // Existing ID of the record to update
+	ShippingMethodID: bson.NewObjectID(),
+	CountryID:        bson.NewObjectID(),
 }
 
 func TestShippingMethodCountryMappingRepository_FetchByID(t *testing.T) {

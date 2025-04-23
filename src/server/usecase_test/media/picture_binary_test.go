@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestPictureBinaryUsecase_FetchByID(t *testing.T) {
@@ -18,12 +18,12 @@ func TestPictureBinaryUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewPictureBinaryUsecase(mockRepo, timeout)
 
-	pictureBinaryID := primitive.NewObjectID().Hex()
+	pictureBinaryID := bson.NewObjectID().Hex()
 
 	updatedPictureBinary := domain.PictureBinary{
-		ID:         primitive.NewObjectID(), // Existing ID of the record to update
+		ID:         bson.NewObjectID(), // Existing ID of the record to update
 		BinaryData: []byte("updated binary image data"),
-		PictureID:  primitive.NewObjectID(),
+		PictureID:  bson.NewObjectID(),
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, pictureBinaryID).Return(updatedPictureBinary, nil)
@@ -42,7 +42,7 @@ func TestPictureBinaryUsecase_Create(t *testing.T) {
 
 	newPictureBinary := &domain.PictureBinary{
 		BinaryData: []byte("binary image data"),
-		PictureID:  primitive.NewObjectID(),
+		PictureID:  bson.NewObjectID(),
 	}
 
 	mockRepo.On("Create", mock.Anything, newPictureBinary).Return(nil)
@@ -59,9 +59,9 @@ func TestPictureBinaryUsecase_Update(t *testing.T) {
 	usecase := test.NewPictureBinaryUsecase(mockRepo, timeout)
 
 	updatedPictureBinary := &domain.PictureBinary{
-		ID:         primitive.NewObjectID(), // Existing ID of the record to update
+		ID:         bson.NewObjectID(), // Existing ID of the record to update
 		BinaryData: []byte("updated binary image data"),
-		PictureID:  primitive.NewObjectID(),
+		PictureID:  bson.NewObjectID(),
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedPictureBinary).Return(nil)
@@ -77,7 +77,7 @@ func TestPictureBinaryUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewPictureBinaryUsecase(mockRepo, timeout)
 
-	pictureBinaryID := primitive.NewObjectID().Hex()
+	pictureBinaryID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, pictureBinaryID).Return(nil)
 
@@ -94,14 +94,14 @@ func TestPictureBinaryUsecase_Fetch(t *testing.T) {
 
 	fetchedPictureBinaries := []domain.PictureBinary{
 		{
-			ID:         primitive.NewObjectID(),
+			ID:         bson.NewObjectID(),
 			BinaryData: []byte("binary image data 1"),
-			PictureID:  primitive.NewObjectID(),
+			PictureID:  bson.NewObjectID(),
 		},
 		{
-			ID:         primitive.NewObjectID(),
+			ID:         bson.NewObjectID(),
 			BinaryData: []byte("binary image data 2"),
-			PictureID:  primitive.NewObjectID(),
+			PictureID:  bson.NewObjectID(),
 		},
 	}
 

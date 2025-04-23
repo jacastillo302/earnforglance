@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestProductVideoUsecase_FetchByID(t *testing.T) {
@@ -18,12 +18,12 @@ func TestProductVideoUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewProductVideoUsecase(mockRepo, timeout)
 
-	productVideoID := primitive.NewObjectID().Hex()
+	productVideoID := bson.NewObjectID().Hex()
 
 	updatedProductVideo := domain.ProductVideo{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID:    primitive.NewObjectID(),
-		VideoID:      primitive.NewObjectID(),
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
+		ProductID:    bson.NewObjectID(),
+		VideoID:      bson.NewObjectID(),
 		DisplayOrder: 2,
 	}
 
@@ -42,8 +42,8 @@ func TestProductVideoUsecase_Create(t *testing.T) {
 	usecase := test.NewProductVideoUsecase(mockRepo, timeout)
 
 	newProductVideo := &domain.ProductVideo{
-		ProductID:    primitive.NewObjectID(),
-		VideoID:      primitive.NewObjectID(),
+		ProductID:    bson.NewObjectID(),
+		VideoID:      bson.NewObjectID(),
 		DisplayOrder: 1,
 	}
 
@@ -61,9 +61,9 @@ func TestProductVideoUsecase_Update(t *testing.T) {
 	usecase := test.NewProductVideoUsecase(mockRepo, timeout)
 
 	updatedProductVideo := &domain.ProductVideo{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		ProductID:    primitive.NewObjectID(),
-		VideoID:      primitive.NewObjectID(),
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
+		ProductID:    bson.NewObjectID(),
+		VideoID:      bson.NewObjectID(),
 		DisplayOrder: 2,
 	}
 
@@ -80,7 +80,7 @@ func TestProductVideoUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewProductVideoUsecase(mockRepo, timeout)
 
-	productVideoID := primitive.NewObjectID().Hex()
+	productVideoID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, productVideoID).Return(nil)
 
@@ -97,15 +97,15 @@ func TestProductVideoUsecase_Fetch(t *testing.T) {
 
 	fetchedProductVideos := []domain.ProductVideo{
 		{
-			ID:           primitive.NewObjectID(),
-			ProductID:    primitive.NewObjectID(),
-			VideoID:      primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
+			ProductID:    bson.NewObjectID(),
+			VideoID:      bson.NewObjectID(),
 			DisplayOrder: 1,
 		},
 		{
-			ID:           primitive.NewObjectID(),
-			ProductID:    primitive.NewObjectID(),
-			VideoID:      primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
+			ProductID:    bson.NewObjectID(),
+			VideoID:      bson.NewObjectID(),
 			DisplayOrder: 2,
 		},
 	}

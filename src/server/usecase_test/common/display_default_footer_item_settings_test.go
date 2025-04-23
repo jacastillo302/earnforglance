@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestDisplayDefaultFooterItemSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestDisplayDefaultFooterItemSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewDisplayDefaultFooterItemSettingsUsecase(mockRepo, timeout)
 
-	footerItemID := primitive.NewObjectID().Hex()
+	footerItemID := bson.NewObjectID().Hex()
 
 	updatedDisplayDefaultFooterItemSettings := domain.DisplayDefaultFooterItemSettings{
-		ID:                                      primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                      bson.NewObjectID(), // Existing ID of the record to update
 		DisplaySitemapFooterItem:                false,
 		DisplayContactUsFooterItem:              false,
 		DisplayProductSearchFooterItem:          true,
@@ -85,7 +85,7 @@ func TestDisplayDefaultFooterItemSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewDisplayDefaultFooterItemSettingsUsecase(mockRepo, timeout)
 
 	updatedDisplayDefaultFooterItemSettings := &domain.DisplayDefaultFooterItemSettings{
-		ID:                                      primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                      bson.NewObjectID(), // Existing ID of the record to update
 		DisplaySitemapFooterItem:                false,
 		DisplayContactUsFooterItem:              false,
 		DisplayProductSearchFooterItem:          true,
@@ -116,7 +116,7 @@ func TestDisplayDefaultFooterItemSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewDisplayDefaultFooterItemSettingsUsecase(mockRepo, timeout)
 
-	footerItemID := primitive.NewObjectID().Hex()
+	footerItemID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, footerItemID).Return(nil)
 
@@ -133,7 +133,7 @@ func TestDisplayDefaultFooterItemSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedDisplayDefaultFooterItemSettings := []domain.DisplayDefaultFooterItemSettings{
 		{
-			ID:                                      primitive.NewObjectID(),
+			ID:                                      bson.NewObjectID(),
 			DisplaySitemapFooterItem:                true,
 			DisplayContactUsFooterItem:              true,
 			DisplayProductSearchFooterItem:          true,
@@ -151,7 +151,7 @@ func TestDisplayDefaultFooterItemSettingsUsecase_Fetch(t *testing.T) {
 			DisplayApplyVendorAccountFooterItem:     false,
 		},
 		{
-			ID:                                      primitive.NewObjectID(),
+			ID:                                      bson.NewObjectID(),
 			DisplaySitemapFooterItem:                false,
 			DisplayContactUsFooterItem:              false,
 			DisplayProductSearchFooterItem:          true,

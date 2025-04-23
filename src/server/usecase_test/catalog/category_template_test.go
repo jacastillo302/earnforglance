@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestCategoryTemplateUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestCategoryTemplateUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCategoryTemplateUsecase(mockRepo, timeout)
 
-	categoryTemplateID := primitive.NewObjectID().Hex()
+	categoryTemplateID := bson.NewObjectID().Hex()
 
 	expectedCategoryTemplate := domain.CategoryTemplate{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
 		Name:         "Updated Category Template",
 		ViewPath:     "/Views/Category/Updated.cshtml",
 		DisplayOrder: 2,
@@ -61,7 +61,7 @@ func TestCategoryTemplateUsecase_Update(t *testing.T) {
 	usecase := test.NewCategoryTemplateUsecase(mockRepo, timeout)
 
 	updatedCategoryTemplate := &domain.CategoryTemplate{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
 		Name:         "Updated Category Template",
 		ViewPath:     "/Views/Category/Updated.cshtml",
 		DisplayOrder: 2,
@@ -80,7 +80,7 @@ func TestCategoryTemplateUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCategoryTemplateUsecase(mockRepo, timeout)
 
-	categoryTemplateID := primitive.NewObjectID().Hex()
+	categoryTemplateID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, categoryTemplateID).Return(nil)
 
@@ -97,13 +97,13 @@ func TestCategoryTemplateUsecase_Fetch(t *testing.T) {
 
 	expectedCategoryTemplates := []domain.CategoryTemplate{
 		{
-			ID:           primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
 			Name:         "Default Category Template",
 			ViewPath:     "/Views/Category/Default.cshtml",
 			DisplayOrder: 1,
 		},
 		{
-			ID:           primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
 			Name:         "Custom Category Template",
 			ViewPath:     "/Views/Category/Custom.cshtml",
 			DisplayOrder: 2,

@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultAddressSettings struct {
@@ -28,7 +28,7 @@ func (m *MockSingleResultAddressSettings) Decode(v interface{}) error {
 }
 
 var mockItemAddressSettings = &domain.AddressSettings{
-	ID:                        primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                        bson.NewObjectID(), // Existing ID of the record to update
 	CompanyEnabled:            false,
 	CompanyRequired:           false,
 	StreetAddressEnabled:      true,
@@ -42,7 +42,7 @@ var mockItemAddressSettings = &domain.AddressSettings{
 	CountyEnabled:             true,
 	CountyRequired:            true,
 	CountryEnabled:            true,
-	DefaultCountryID:          new(primitive.ObjectID),
+	DefaultCountryID:          new(bson.ObjectID),
 	StateProvinceEnabled:      false,
 	PhoneEnabled:              true,
 	PhoneRequired:             false,

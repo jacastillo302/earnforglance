@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/vendors"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type vendorattributeRepository struct {
@@ -58,7 +57,7 @@ func (ur *vendorattributeRepository) Update(c context.Context, vendorattribute *
 func (ur *vendorattributeRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *vendorattributeRepository) Delete(c context.Context, ID string) error 
 func (ur *vendorattributeRepository) Fetch(c context.Context) ([]domain.VendorAttribute, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *vendorattributeRepository) FetchByID(c context.Context, vendorattribut
 
 	var vendorattribute domain.VendorAttribute
 
-	idHex, err := primitive.ObjectIDFromHex(vendorattributeID)
+	idHex, err := bson.ObjectIDFromHex(vendorattributeID)
 	if err != nil {
 		return vendorattribute, err
 	}

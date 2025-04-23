@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultBaseAttribute struct {
@@ -37,7 +37,7 @@ func TestBaseAttributeRepository_FetchByID(t *testing.T) {
 	collectionName := domain.CollectionBaseAttribute
 
 	mockItem := domain.BaseAttribute{
-		ID:                     primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+		ID:                     bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
 		Name:                   "",
 		IsRequired:             false,
 		AttributeControlTypeId: 0,
@@ -88,7 +88,7 @@ func TestBaseAttributeRepository_Create(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockBaseAttribute := &domain.BaseAttribute{
-		ID:                     primitive.NewObjectID(),
+		ID:                     bson.NewObjectID(),
 		Name:                   "Test Attribute",
 		IsRequired:             true,
 		AttributeControlTypeId: 1, // Example: TextBox
@@ -113,7 +113,7 @@ func TestBaseAttributeRepository_Update(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockBaseAttribute := &domain.BaseAttribute{
-		ID:                     primitive.NewObjectID(),
+		ID:                     bson.NewObjectID(),
 		Name:                   "Test Attribute",
 		IsRequired:             true,
 		AttributeControlTypeId: 1, // Example: TextBox

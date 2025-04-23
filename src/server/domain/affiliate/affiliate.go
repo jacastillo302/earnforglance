@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,12 +12,12 @@ const (
 
 // Affiliate represents an affiliate
 type Affiliate struct {
-	ID              primitive.ObjectID `bson:"_id,omitempty"`
-	AddressID       primitive.ObjectID `bson:"address_id"`
-	AdminComment    string             `bson:"admin_comment"`
-	FriendlyUrlName string             `bson:"friendly_url_name"`
-	Deleted         bool               `bson:"deleted"`
-	Active          bool               `bson:"active"`
+	ID              bson.ObjectID `bson:"_id,omitempty"`
+	AddressID       bson.ObjectID `bson:"address_id"`
+	AdminComment    string        `bson:"admin_comment"`
+	FriendlyUrlName string        `bson:"friendly_url_name"`
+	Deleted         bool          `bson:"deleted"`
+	Active          bool          `bson:"active"`
 }
 
 type AffiliateRepository interface {

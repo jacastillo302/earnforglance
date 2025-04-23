@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,11 +12,11 @@ const (
 
 // ProductTag represents a product tag
 type ProductTag struct {
-	ID              primitive.ObjectID `bson:"_id,omitempty"`
-	Name            string             `bson:"name"`
-	MetaDescription string             `bson:"meta_description"`
-	MetaKeywords    string             `bson:"meta_keywords"`
-	MetaTitle       string             `bson:"meta_title"`
+	ID              bson.ObjectID `bson:"_id,omitempty"`
+	Name            string        `bson:"name"`
+	MetaDescription string        `bson:"meta_description"`
+	MetaKeywords    string        `bson:"meta_keywords"`
+	MetaTitle       string        `bson:"meta_title"`
 }
 
 type ProductTagRepository interface {

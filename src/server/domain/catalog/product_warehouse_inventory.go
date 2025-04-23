@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,10 +12,10 @@ const (
 
 // ProductWarehouseInventory represents a record to manage product inventory per warehouse
 type ProductWarehouseInventory struct {
-	ProductID        primitive.ObjectID `bson:"product_id"`
-	WarehouseID      primitive.ObjectID `bson:"warehouse_id"`
-	StockQuantity    int                `bson:"stock_quantity"`
-	ReservedQuantity int                `bson:"reserved_quantity"`
+	ProductID        bson.ObjectID `bson:"product_id"`
+	WarehouseID      bson.ObjectID `bson:"warehouse_id"`
+	StockQuantity    int           `bson:"stock_quantity"`
+	ReservedQuantity int           `bson:"reserved_quantity"`
 }
 
 type ProductWarehouseInventoryRepository interface {

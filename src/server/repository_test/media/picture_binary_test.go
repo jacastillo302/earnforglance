@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultPictureBinary struct {
@@ -28,9 +28,9 @@ func (m *MockSingleResultPictureBinary) Decode(v interface{}) error {
 }
 
 var mockItemPictureBinary = &domain.PictureBinary{
-	ID:         primitive.NewObjectID(), // Existing ID of the record to update
+	ID:         bson.NewObjectID(), // Existing ID of the record to update
 	BinaryData: []byte("updated binary image data"),
-	PictureID:  primitive.NewObjectID(),
+	PictureID:  bson.NewObjectID(),
 }
 
 func TestPictureBinaryRepository_FetchByID(t *testing.T) {

@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,9 +12,9 @@ const (
 
 // ProductAttributeCombinationPicture represents a product attribute combination picture
 type ProductAttributeCombinationPicture struct {
-	ID                            primitive.ObjectID `bson:"_id,omitempty"`
-	ProductAttributeCombinationID primitive.ObjectID `bson:"product_attribute_combination_id"`
-	PictureID                     primitive.ObjectID `bson:"picture_id"`
+	ID                            bson.ObjectID `bson:"_id,omitempty"`
+	ProductAttributeCombinationID bson.ObjectID `bson:"product_attribute_combination_id"`
+	PictureID                     bson.ObjectID `bson:"picture_id"`
 }
 
 type ProductAttributeCombinationPictureRepository interface {

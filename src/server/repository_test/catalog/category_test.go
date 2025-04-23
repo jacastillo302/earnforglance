@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultCategory struct {
@@ -36,7 +36,7 @@ func TestCategoryRepository_FetchByID(t *testing.T) {
 
 	collectionName := domain.CollectionCategory
 
-	mockItem := domain.Category{ID: primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, Name: "", Description: "", CategoryTemplateID: primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, MetaKeywords: "", MetaDescription: "", MetaTitle: "", ParentCategoryID: primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, PictureID: primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, PageSize: 0, AllowCustomersToSelectPageSize: false, PageSizeOptions: "", ShowOnHomepage: false, IncludeInTopMenu: false, SubjectToAcl: false, LimitedToStores: false, Published: false, Deleted: false, DisplayOrder: 0, CreatedOnUtc: time.Date(1, time.January, 1, 0, 0, 0, 0, time.UTC), UpdatedOnUtc: time.Date(1, time.January, 1, 0, 0, 0, 0, time.UTC), PriceRangeFiltering: false, PriceFrom: 0, PriceTo: 0, ManuallyPriceRange: false, RestrictFromVendors: false}
+	mockItem := domain.Category{ID: bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, Name: "", Description: "", CategoryTemplateID: bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, MetaKeywords: "", MetaDescription: "", MetaTitle: "", ParentCategoryID: bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, PictureID: bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, PageSize: 0, AllowCustomersToSelectPageSize: false, PageSizeOptions: "", ShowOnHomepage: false, IncludeInTopMenu: false, SubjectToAcl: false, LimitedToStores: false, Published: false, Deleted: false, DisplayOrder: 0, CreatedOnUtc: time.Date(1, time.January, 1, 0, 0, 0, 0, time.UTC), UpdatedOnUtc: time.Date(1, time.January, 1, 0, 0, 0, 0, time.UTC), PriceRangeFiltering: false, PriceFrom: 0, PriceTo: 0, ManuallyPriceRange: false, RestrictFromVendors: false}
 
 	t.Run("success", func(t *testing.T) {
 		mockSingleResult := &MockSingleResultCategory{}
@@ -82,15 +82,15 @@ func TestCategoryRepository_Create(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockCategory := &domain.Category{
-		ID:                             primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                             bson.NewObjectID(), // Existing ID of the record to update
 		Name:                           "Updated Electronics",
 		Description:                    "Updated description for electronic products",
-		CategoryTemplateID:             primitive.NewObjectID(),
+		CategoryTemplateID:             bson.NewObjectID(),
 		MetaKeywords:                   "updated, electronics",
 		MetaDescription:                "Updated meta description for electronics",
 		MetaTitle:                      "Updated Electronics",
-		ParentCategoryID:               primitive.NewObjectID(),
-		PictureID:                      primitive.NewObjectID(),
+		ParentCategoryID:               bson.NewObjectID(),
+		PictureID:                      bson.NewObjectID(),
 		PageSize:                       50,
 		AllowCustomersToSelectPageSize: false,
 		PageSizeOptions:                "50,100",
@@ -128,15 +128,15 @@ func TestCategoryRepository_Update(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockCategory := &domain.Category{
-		ID:                             primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                             bson.NewObjectID(), // Existing ID of the record to update
 		Name:                           "Updated Electronics",
 		Description:                    "Updated description for electronic products",
-		CategoryTemplateID:             primitive.NewObjectID(),
+		CategoryTemplateID:             bson.NewObjectID(),
 		MetaKeywords:                   "updated, electronics",
 		MetaDescription:                "Updated meta description for electronics",
 		MetaTitle:                      "Updated Electronics",
-		ParentCategoryID:               primitive.NewObjectID(),
-		PictureID:                      primitive.NewObjectID(),
+		ParentCategoryID:               bson.NewObjectID(),
+		PictureID:                      bson.NewObjectID(),
 		PageSize:                       50,
 		AllowCustomersToSelectPageSize: false,
 		PageSizeOptions:                "50,100",

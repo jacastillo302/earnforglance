@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestLogUsecase_FetchByID(t *testing.T) {
@@ -18,14 +18,14 @@ func TestLogUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewLogUsecase(mockRepo, timeout)
 
-	logID := primitive.NewObjectID().Hex()
+	logID := bson.NewObjectID().Hex()
 	updatedLog := domain.Log{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
 		LogLevelID:   2,
 		ShortMessage: "Application error",
 		FullMessage:  "An error occurred while processing the request.",
 		IpAddress:    "192.168.1.2",
-		CustomerID:   new(primitive.ObjectID),
+		CustomerID:   new(bson.ObjectID),
 		PageUrl:      "/error",
 		ReferrerUrl:  "/home",
 		CreatedOnUtc: time.Now().AddDate(0, 0, -7), // Created 7 days ago
@@ -71,18 +71,18 @@ func TestLogUsecase_Update(t *testing.T) {
 	usecase := test.NewLogUsecase(mockRepo, timeout)
 
 	updatedLog := &domain.Log{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
 		LogLevelID:   2,
 		ShortMessage: "Application error",
 		FullMessage:  "An error occurred while processing the request.",
 		IpAddress:    "192.168.1.2",
-		CustomerID:   new(primitive.ObjectID),
+		CustomerID:   new(bson.ObjectID),
 		PageUrl:      "/error",
 		ReferrerUrl:  "/home",
 		CreatedOnUtc: time.Now().AddDate(0, 0, -7), // Created 7 days ago
 
 	}
-	*updatedLog.CustomerID = primitive.NewObjectID()
+	*updatedLog.CustomerID = bson.NewObjectID()
 
 	mockRepo.On("Update", mock.Anything, updatedLog).Return(nil)
 
@@ -97,7 +97,7 @@ func TestLogUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewLogUsecase(mockRepo, timeout)
 
-	logID := primitive.NewObjectID().Hex()
+	logID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, logID).Return(nil)
 
@@ -114,7 +114,7 @@ func TestLogUsecase_Fetch(t *testing.T) {
 
 	fetchedLogs := []domain.Log{
 		{
-			ID:           primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
 			LogLevelID:   1,
 			ShortMessage: "Application started",
 			FullMessage:  "The application has successfully started.",
@@ -126,19 +126,19 @@ func TestLogUsecase_Fetch(t *testing.T) {
 
 		},
 		{
-			ID:           primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
 			LogLevelID:   2,
 			ShortMessage: "Application error",
 			FullMessage:  "An error occurred while processing the request.",
 			IpAddress:    "192.168.1.2",
-			CustomerID:   new(primitive.ObjectID),
+			CustomerID:   new(bson.ObjectID),
 			PageUrl:      "/error",
 			ReferrerUrl:  "/home",
 			CreatedOnUtc: time.Now().AddDate(0, 0, -5), // Created 5 days ago
 
 		},
 	}
-	*fetchedLogs[1].CustomerID = primitive.NewObjectID()
+	*fetchedLogs[1].CustomerID = bson.NewObjectID()
 
 	mockRepo.On("Fetch", mock.Anything).Return(fetchedLogs, nil)
 

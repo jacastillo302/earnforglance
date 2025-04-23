@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,10 +12,10 @@ const (
 
 // UrlRecord represents an URL record.
 type UrlRecord struct {
-	ID                 primitive.ObjectID `bson:"_id,omitempty"`
-	PermissionRecordID primitive.ObjectID `bson:"entity_id"`
-	Slug               string             `bson:"slug"`
-	IsActive           bool               `bson:"is_active"`
+	ID                 bson.ObjectID `bson:"_id,omitempty"`
+	PermissionRecordID bson.ObjectID `bson:"entity_id"`
+	Slug               string        `bson:"slug"`
+	IsActive           bool          `bson:"is_active"`
 }
 
 // UrlRecordRepository defines the repository interface for UrlRecord

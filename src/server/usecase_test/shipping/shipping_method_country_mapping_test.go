@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestShippingMethodCountryMappingUsecase_FetchByID(t *testing.T) {
@@ -18,12 +18,12 @@ func TestShippingMethodCountryMappingUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewShippingMethodCountryMappingUsecase(mockRepo, timeout)
 
-	shippingMethodCountryMappingID := primitive.NewObjectID().Hex()
+	shippingMethodCountryMappingID := bson.NewObjectID().Hex()
 
 	updatedShippingMethodCountryMapping := domain.ShippingMethodCountryMapping{
-		ID:               primitive.NewObjectID(), // Existing ID of the record to update
-		ShippingMethodID: primitive.NewObjectID(),
-		CountryID:        primitive.NewObjectID(),
+		ID:               bson.NewObjectID(), // Existing ID of the record to update
+		ShippingMethodID: bson.NewObjectID(),
+		CountryID:        bson.NewObjectID(),
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, shippingMethodCountryMappingID).Return(updatedShippingMethodCountryMapping, nil)
@@ -41,8 +41,8 @@ func TestShippingMethodCountryMappingUsecase_Create(t *testing.T) {
 	usecase := test.NewShippingMethodCountryMappingUsecase(mockRepo, timeout)
 
 	newShippingMethodCountryMapping := &domain.ShippingMethodCountryMapping{
-		ShippingMethodID: primitive.NewObjectID(),
-		CountryID:        primitive.NewObjectID(),
+		ShippingMethodID: bson.NewObjectID(),
+		CountryID:        bson.NewObjectID(),
 	}
 
 	mockRepo.On("Create", mock.Anything, newShippingMethodCountryMapping).Return(nil)
@@ -59,9 +59,9 @@ func TestShippingMethodCountryMappingUsecase_Update(t *testing.T) {
 	usecase := test.NewShippingMethodCountryMappingUsecase(mockRepo, timeout)
 
 	updatedShippingMethodCountryMapping := &domain.ShippingMethodCountryMapping{
-		ID:               primitive.NewObjectID(), // Existing ID of the record to update
-		ShippingMethodID: primitive.NewObjectID(),
-		CountryID:        primitive.NewObjectID(),
+		ID:               bson.NewObjectID(), // Existing ID of the record to update
+		ShippingMethodID: bson.NewObjectID(),
+		CountryID:        bson.NewObjectID(),
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedShippingMethodCountryMapping).Return(nil)
@@ -77,7 +77,7 @@ func TestShippingMethodCountryMappingUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewShippingMethodCountryMappingUsecase(mockRepo, timeout)
 
-	shippingMethodCountryMappingID := primitive.NewObjectID().Hex()
+	shippingMethodCountryMappingID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, shippingMethodCountryMappingID).Return(nil)
 
@@ -94,14 +94,14 @@ func TestShippingMethodCountryMappingUsecase_Fetch(t *testing.T) {
 
 	fetchedShippingMethodCountryMappings := []domain.ShippingMethodCountryMapping{
 		{
-			ID:               primitive.NewObjectID(),
-			ShippingMethodID: primitive.NewObjectID(),
-			CountryID:        primitive.NewObjectID(),
+			ID:               bson.NewObjectID(),
+			ShippingMethodID: bson.NewObjectID(),
+			CountryID:        bson.NewObjectID(),
 		},
 		{
-			ID:               primitive.NewObjectID(),
-			ShippingMethodID: primitive.NewObjectID(),
-			CountryID:        primitive.NewObjectID(),
+			ID:               bson.NewObjectID(),
+			ShippingMethodID: bson.NewObjectID(),
+			CountryID:        bson.NewObjectID(),
 		},
 	}
 

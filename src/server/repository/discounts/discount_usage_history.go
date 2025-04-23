@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/discounts"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type discountusagehistoryRepository struct {
@@ -58,7 +57,7 @@ func (ur *discountusagehistoryRepository) Update(c context.Context, discountusag
 func (ur *discountusagehistoryRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *discountusagehistoryRepository) Delete(c context.Context, ID string) e
 func (ur *discountusagehistoryRepository) Fetch(c context.Context) ([]domain.DiscountUsageHistory, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *discountusagehistoryRepository) FetchByID(c context.Context, discountu
 
 	var discountusagehistory domain.DiscountUsageHistory
 
-	idHex, err := primitive.ObjectIDFromHex(discountusagehistoryID)
+	idHex, err := bson.ObjectIDFromHex(discountusagehistoryID)
 	if err != nil {
 		return discountusagehistory, err
 	}

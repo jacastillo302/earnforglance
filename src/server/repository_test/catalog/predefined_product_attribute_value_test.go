@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultPredefinedProductAttributeValue struct {
@@ -37,8 +37,8 @@ func TestPredefinedProductAttributeValueRepository_FetchByID(t *testing.T) {
 	collectionName := domain.CollectionPredefinedProductAttributeValue
 
 	mockItem := domain.PredefinedProductAttributeValue{
-		ID:                           primitive.NewObjectID(),
-		ProductAttributeID:           primitive.NewObjectID(),
+		ID:                           bson.NewObjectID(),
+		ProductAttributeID:           bson.NewObjectID(),
 		Name:                         "Color - Blue",
 		PriceAdjustment:              15.0,
 		PriceAdjustmentUsePercentage: true,
@@ -91,8 +91,8 @@ func TestPredefinedProductAttributeValueRepository_Create(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockPredefinedProductAttributeValue := &domain.PredefinedProductAttributeValue{
-		ID:                           primitive.NewObjectID(),
-		ProductAttributeID:           primitive.NewObjectID(),
+		ID:                           bson.NewObjectID(),
+		ProductAttributeID:           bson.NewObjectID(),
 		Name:                         "Color - Blue",
 		PriceAdjustment:              15.0,
 		PriceAdjustmentUsePercentage: true,
@@ -119,8 +119,8 @@ func TestPredefinedProductAttributeValueRepository_Update(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockPredefinedProductAttributeValue := &domain.PredefinedProductAttributeValue{
-		ID:                           primitive.NewObjectID(),
-		ProductAttributeID:           primitive.NewObjectID(),
+		ID:                           bson.NewObjectID(),
+		ProductAttributeID:           bson.NewObjectID(),
 		Name:                         "Color - Blue",
 		PriceAdjustment:              15.0,
 		PriceAdjustmentUsePercentage: true,

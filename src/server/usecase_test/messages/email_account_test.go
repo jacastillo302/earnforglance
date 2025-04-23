@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestEmailAccountUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestEmailAccountUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewEmailAccountUsecase(mockRepo, timeout)
 
-	emailAccountID := primitive.NewObjectID().Hex()
+	emailAccountID := bson.NewObjectID().Hex()
 
 	updatedEmailAccount := domain.EmailAccount{
-		ID:                          primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                          bson.NewObjectID(), // Existing ID of the record to update
 		Email:                       "updated@example.com",
 		DisplayName:                 "Updated Account",
 		Host:                        "smtp.updated.com",
@@ -81,7 +81,7 @@ func TestEmailAccountUsecase_Update(t *testing.T) {
 	usecase := test.NewEmailAccountUsecase(mockRepo, timeout)
 
 	updatedEmailAccount := &domain.EmailAccount{
-		ID:                          primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                          bson.NewObjectID(), // Existing ID of the record to update
 		Email:                       "updated@example.com",
 		DisplayName:                 "Updated Account",
 		Host:                        "smtp.updated.com",
@@ -110,7 +110,7 @@ func TestEmailAccountUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewEmailAccountUsecase(mockRepo, timeout)
 
-	emailAccountID := primitive.NewObjectID().Hex()
+	emailAccountID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, emailAccountID).Return(nil)
 
@@ -126,7 +126,7 @@ func TestEmailAccountUsecase_Fetch(t *testing.T) {
 	usecase := test.NewEmailAccountUsecase(mockRepo, timeout)
 	fetchedEmailAccounts := []domain.EmailAccount{
 		{
-			ID:                          primitive.NewObjectID(),
+			ID:                          bson.NewObjectID(),
 			Email:                       "example@example.com",
 			DisplayName:                 "Example Account",
 			Host:                        "smtp.example.com",
@@ -142,7 +142,7 @@ func TestEmailAccountUsecase_Fetch(t *testing.T) {
 			EmailAuthenticationMethod:   2,
 		},
 		{
-			ID:                          primitive.NewObjectID(),
+			ID:                          bson.NewObjectID(),
 			Email:                       "updated@example.com",
 			DisplayName:                 "Updated Account",
 			Host:                        "smtp.updated.com",

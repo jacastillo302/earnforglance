@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultReviewType struct {
@@ -28,7 +28,7 @@ func (m *MockSingleResultReviewType) Decode(v interface{}) error {
 }
 
 var mockItemReviewType = &domain.ReviewType{
-	ID:                    primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                    bson.NewObjectID(), // Existing ID of the record to update
 	Name:                  "Durability",
 	Description:           "Review the durability of the product.",
 	DisplayOrder:          2,

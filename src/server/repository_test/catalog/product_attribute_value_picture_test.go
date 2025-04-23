@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultProductAttributeValuePicture struct {
@@ -28,9 +28,9 @@ func (m *MockSingleResultProductAttributeValuePicture) Decode(v interface{}) err
 }
 
 var mockItemProductAttributeValuePicture = &domain.ProductAttributeValuePicture{
-	ID:                      primitive.NewObjectID(), // Existing ID of the record to update
-	ProductAttributeValueID: primitive.NewObjectID(),
-	PictureID:               primitive.NewObjectID(),
+	ID:                      bson.NewObjectID(), // Existing ID of the record to update
+	ProductAttributeValueID: bson.NewObjectID(),
+	PictureID:               bson.NewObjectID(),
 }
 
 func TestProductAttributeValuePictureRepository_FetchByID(t *testing.T) {

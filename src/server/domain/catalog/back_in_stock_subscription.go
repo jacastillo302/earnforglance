@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -13,11 +13,11 @@ const (
 
 // BackInStockSubscription represents a back in stock subscription
 type BackInStockSubscription struct {
-	ID           primitive.ObjectID `bson:"_id,omitempty"`
-	StoreID      primitive.ObjectID `bson:"store_id"`
-	ProductID    primitive.ObjectID `bson:"product_id"`
-	CustomerID   primitive.ObjectID `bson:"customer_id"`
-	CreatedOnUtc time.Time          `bson:"created_on_utc"`
+	ID           bson.ObjectID `bson:"_id,omitempty"`
+	StoreID      bson.ObjectID `bson:"store_id"`
+	ProductID    bson.ObjectID `bson:"product_id"`
+	CustomerID   bson.ObjectID `bson:"customer_id"`
+	CreatedOnUtc time.Time     `bson:"created_on_utc"`
 }
 
 type BackInStockSubscriptionRepository interface {

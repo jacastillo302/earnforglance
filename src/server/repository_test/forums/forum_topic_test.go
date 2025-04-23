@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultForumTopic struct {
@@ -29,15 +29,15 @@ func (m *MockSingleResultForumTopic) Decode(v interface{}) error {
 }
 
 var mockItemForumTopic = &domain.ForumTopic{
-	ID:                 primitive.NewObjectID(), // Existing ID of the record to update
-	ForumID:            primitive.NewObjectID(),
-	CustomerID:         primitive.NewObjectID(),
+	ID:                 bson.NewObjectID(), // Existing ID of the record to update
+	ForumID:            bson.NewObjectID(),
+	CustomerID:         bson.NewObjectID(),
 	TopicTypeID:        2,
 	Subject:            "Updated Forum Topic",
 	NumPosts:           10,
 	Views:              100,
-	LastPostID:         primitive.NewObjectID(),
-	LastPostCustomerID: primitive.NewObjectID(),
+	LastPostID:         bson.NewObjectID(),
+	LastPostCustomerID: bson.NewObjectID(),
 	LastPostTime:       new(time.Time),
 	CreatedOnUtc:       time.Now().AddDate(0, 0, -7), // Created 7 days ago
 	UpdatedOnUtc:       time.Now(),

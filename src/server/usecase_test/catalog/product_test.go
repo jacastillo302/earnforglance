@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestProductUsecase_FetchByID(t *testing.T) {
@@ -18,19 +18,19 @@ func TestProductUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewProductUsecase(mockRepo, timeout)
 
-	productID := primitive.NewObjectID().Hex()
+	productID := bson.NewObjectID().Hex()
 
 	updatedProduct := domain.Product{
-		ID:                               primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                               bson.NewObjectID(), // Existing ID of the record to update
 		ProductTypeID:                    2,
-		ParentGroupedID:                  primitive.NewObjectID(),
+		ParentGroupedID:                  bson.NewObjectID(),
 		VisibleIndividually:              false,
 		Name:                             "Updated Product",
 		ShortDescription:                 "Updated short description.",
 		FullDescription:                  "Updated full description of the product.",
 		AdminComment:                     "Updated admin comment.",
-		ProductTemplateID:                primitive.NewObjectID(),
-		VendorID:                         primitive.NewObjectID(),
+		ProductTemplateID:                bson.NewObjectID(),
+		VendorID:                         bson.NewObjectID(),
 		ShowOnHomepage:                   false,
 		MetaKeywords:                     "updated, product, ecommerce",
 		MetaDescription:                  "Updated meta description for the product.",
@@ -52,13 +52,13 @@ func TestProductUsecase_FetchByID(t *testing.T) {
 		RequiredIDs:                      "123,456",
 		AutomaticallyAddRequiredProducts: true,
 		IsDownload:                       true,
-		DownloadID:                       primitive.NewObjectID(),
+		DownloadID:                       bson.NewObjectID(),
 		UnlimitedDownloads:               true,
 		MaxNumberOfDownloads:             5,
 		DownloadExpirationDays:           new(int),
 		DownloadActivationTypeID:         1,
 		HasSampleDownload:                true,
-		SampleDownloadID:                 primitive.NewObjectID(),
+		SampleDownloadID:                 bson.NewObjectID(),
 		HasUserAgreement:                 true,
 		UserAgreementText:                "Updated user agreement text.",
 		IsRecurring:                      true,
@@ -72,13 +72,13 @@ func TestProductUsecase_FetchByID(t *testing.T) {
 		IsFreeShipping:                   true,
 		ShipSeparately:                   true,
 		AdditionalShippingCharge:         0.0,
-		DeliveryDateID:                   primitive.NewObjectID(),
+		DeliveryDateID:                   bson.NewObjectID(),
 		IsTaxExempt:                      true,
-		TaxCategoryID:                    primitive.NewObjectID(),
+		TaxCategoryID:                    bson.NewObjectID(),
 		ManageInventoryMethodID:          2,
-		ProductAvailabilityRangeID:       primitive.NewObjectID(),
+		ProductAvailabilityRangeID:       bson.NewObjectID(),
 		UseMultipleWarehouses:            true,
-		WarehouseID:                      primitive.NewObjectID(),
+		WarehouseID:                      bson.NewObjectID(),
 		StockQuantity:                    50,
 		DisplayStockAvailability:         false,
 		DisplayStockQuantity:             false,
@@ -106,9 +106,9 @@ func TestProductUsecase_FetchByID(t *testing.T) {
 		MaximumCustomerEnteredPrice:                  50.0,
 		BasepriceEnabled:                             true,
 		BasepriceAmount:                              1.0,
-		BasepriceUnitID:                              primitive.NewObjectID(),
+		BasepriceUnitID:                              bson.NewObjectID(),
 		BasepriceBaseAmount:                          10.0,
-		BasepriceBaseUnitID:                          primitive.NewObjectID(),
+		BasepriceBaseUnitID:                          bson.NewObjectID(),
 		MarkAsNew:                                    false,
 		MarkAsNewStartDateTimeUtc:                    new(time.Time),
 		MarkAsNewEndDateTimeUtc:                      new(time.Time),
@@ -143,14 +143,14 @@ func TestProductUsecase_Create(t *testing.T) {
 
 	newProduct := &domain.Product{
 		ProductTypeID:                    1,
-		ParentGroupedID:                  primitive.NewObjectID(),
+		ParentGroupedID:                  bson.NewObjectID(),
 		VisibleIndividually:              true,
 		Name:                             "Sample Product",
 		ShortDescription:                 "This is a short description.",
 		FullDescription:                  "This is a full description of the product.",
 		AdminComment:                     "Admin comment here.",
-		ProductTemplateID:                primitive.NewObjectID(),
-		VendorID:                         primitive.NewObjectID(),
+		ProductTemplateID:                bson.NewObjectID(),
+		VendorID:                         bson.NewObjectID(),
 		ShowOnHomepage:                   true,
 		MetaKeywords:                     "sample, product, ecommerce",
 		MetaDescription:                  "Meta description for the sample product.",
@@ -172,13 +172,13 @@ func TestProductUsecase_Create(t *testing.T) {
 		RequiredIDs:                      "",
 		AutomaticallyAddRequiredProducts: false,
 		IsDownload:                       false,
-		DownloadID:                       primitive.NewObjectID(),
+		DownloadID:                       bson.NewObjectID(),
 		UnlimitedDownloads:               false,
 		MaxNumberOfDownloads:             0,
 		DownloadExpirationDays:           nil,
 		DownloadActivationTypeID:         0,
 		HasSampleDownload:                false,
-		SampleDownloadID:                 primitive.NewObjectID(),
+		SampleDownloadID:                 bson.NewObjectID(),
 		HasUserAgreement:                 false,
 		UserAgreementText:                "",
 		IsRecurring:                      false,
@@ -192,13 +192,13 @@ func TestProductUsecase_Create(t *testing.T) {
 		IsFreeShipping:                   false,
 		ShipSeparately:                   false,
 		AdditionalShippingCharge:         5.0,
-		DeliveryDateID:                   primitive.NewObjectID(),
+		DeliveryDateID:                   bson.NewObjectID(),
 		IsTaxExempt:                      false,
-		TaxCategoryID:                    primitive.NewObjectID(),
+		TaxCategoryID:                    bson.NewObjectID(),
 		ManageInventoryMethodID:          1,
-		ProductAvailabilityRangeID:       primitive.NewObjectID(),
+		ProductAvailabilityRangeID:       bson.NewObjectID(),
 		UseMultipleWarehouses:            false,
-		WarehouseID:                      primitive.NewObjectID(),
+		WarehouseID:                      bson.NewObjectID(),
 		StockQuantity:                    100,
 		DisplayStockAvailability:         true,
 		DisplayStockQuantity:             true,
@@ -226,9 +226,9 @@ func TestProductUsecase_Create(t *testing.T) {
 		MaximumCustomerEnteredPrice:                  0.0,
 		BasepriceEnabled:                             false,
 		BasepriceAmount:                              0.0,
-		BasepriceUnitID:                              primitive.NewObjectID(),
+		BasepriceUnitID:                              bson.NewObjectID(),
 		BasepriceBaseAmount:                          0.0,
-		BasepriceBaseUnitID:                          primitive.NewObjectID(),
+		BasepriceBaseUnitID:                          bson.NewObjectID(),
 		MarkAsNew:                                    true,
 		MarkAsNewStartDateTimeUtc:                    nil,
 		MarkAsNewEndDateTimeUtc:                      nil,
@@ -261,16 +261,16 @@ func TestProductUsecase_Update(t *testing.T) {
 	usecase := test.NewProductUsecase(mockRepo, timeout)
 
 	updatedProduct := &domain.Product{
-		ID:                               primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                               bson.NewObjectID(), // Existing ID of the record to update
 		ProductTypeID:                    2,
-		ParentGroupedID:                  primitive.NewObjectID(),
+		ParentGroupedID:                  bson.NewObjectID(),
 		VisibleIndividually:              false,
 		Name:                             "Updated Product",
 		ShortDescription:                 "Updated short description.",
 		FullDescription:                  "Updated full description of the product.",
 		AdminComment:                     "Updated admin comment.",
-		ProductTemplateID:                primitive.NewObjectID(),
-		VendorID:                         primitive.NewObjectID(),
+		ProductTemplateID:                bson.NewObjectID(),
+		VendorID:                         bson.NewObjectID(),
 		ShowOnHomepage:                   false,
 		MetaKeywords:                     "updated, product, ecommerce",
 		MetaDescription:                  "Updated meta description for the product.",
@@ -292,13 +292,13 @@ func TestProductUsecase_Update(t *testing.T) {
 		RequiredIDs:                      "123,456",
 		AutomaticallyAddRequiredProducts: true,
 		IsDownload:                       true,
-		DownloadID:                       primitive.NewObjectID(),
+		DownloadID:                       bson.NewObjectID(),
 		UnlimitedDownloads:               true,
 		MaxNumberOfDownloads:             5,
 		DownloadExpirationDays:           new(int),
 		DownloadActivationTypeID:         1,
 		HasSampleDownload:                true,
-		SampleDownloadID:                 primitive.NewObjectID(),
+		SampleDownloadID:                 bson.NewObjectID(),
 		HasUserAgreement:                 true,
 		UserAgreementText:                "Updated user agreement text.",
 		IsRecurring:                      true,
@@ -312,13 +312,13 @@ func TestProductUsecase_Update(t *testing.T) {
 		IsFreeShipping:                   true,
 		ShipSeparately:                   true,
 		AdditionalShippingCharge:         0.0,
-		DeliveryDateID:                   primitive.NewObjectID(),
+		DeliveryDateID:                   bson.NewObjectID(),
 		IsTaxExempt:                      true,
-		TaxCategoryID:                    primitive.NewObjectID(),
+		TaxCategoryID:                    bson.NewObjectID(),
 		ManageInventoryMethodID:          2,
-		ProductAvailabilityRangeID:       primitive.NewObjectID(),
+		ProductAvailabilityRangeID:       bson.NewObjectID(),
 		UseMultipleWarehouses:            true,
-		WarehouseID:                      primitive.NewObjectID(),
+		WarehouseID:                      bson.NewObjectID(),
 		StockQuantity:                    50,
 		DisplayStockAvailability:         false,
 		DisplayStockQuantity:             false,
@@ -346,9 +346,9 @@ func TestProductUsecase_Update(t *testing.T) {
 		MaximumCustomerEnteredPrice:                  50.0,
 		BasepriceEnabled:                             true,
 		BasepriceAmount:                              1.0,
-		BasepriceUnitID:                              primitive.NewObjectID(),
+		BasepriceUnitID:                              bson.NewObjectID(),
 		BasepriceBaseAmount:                          10.0,
-		BasepriceBaseUnitID:                          primitive.NewObjectID(),
+		BasepriceBaseUnitID:                          bson.NewObjectID(),
 		MarkAsNew:                                    false,
 		MarkAsNewStartDateTimeUtc:                    new(time.Time),
 		MarkAsNewEndDateTimeUtc:                      new(time.Time),
@@ -385,7 +385,7 @@ func TestProductUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewProductUsecase(mockRepo, timeout)
 
-	productID := primitive.NewObjectID().Hex()
+	productID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, productID).Return(nil)
 
@@ -402,9 +402,9 @@ func TestProductUsecase_Fetch(t *testing.T) {
 
 	fetchedProducts := []domain.Product{
 		{
-			ID:                  primitive.NewObjectID(),
+			ID:                  bson.NewObjectID(),
 			ProductTypeID:       1,
-			ParentGroupedID:     primitive.NewObjectID(),
+			ParentGroupedID:     bson.NewObjectID(),
 			VisibleIndividually: true,
 			Name:                "Product 1",
 			ShortDescription:    "Short description for product 1.",
@@ -416,9 +416,9 @@ func TestProductUsecase_Fetch(t *testing.T) {
 			UpdatedOnUtc:        time.Now(),
 		},
 		{
-			ID:                  primitive.NewObjectID(),
+			ID:                  bson.NewObjectID(),
 			ProductTypeID:       2,
-			ParentGroupedID:     primitive.NewObjectID(),
+			ParentGroupedID:     bson.NewObjectID(),
 			VisibleIndividually: false,
 			Name:                "Product 2",
 			ShortDescription:    "Short description for product 2.",

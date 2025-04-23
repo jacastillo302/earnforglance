@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestTaxSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,15 +18,15 @@ func TestTaxSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewTaxSettingsUsecase(mockRepo, timeout)
 
-	taxSettingsID := primitive.NewObjectID().Hex()
+	taxSettingsID := bson.NewObjectID().Hex()
 
 	updatedTaxSettings := domain.TaxSettings{
-		ID:                                    primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                    bson.NewObjectID(), // Existing ID of the record to update
 		TaxBasedOnID:                          1,
 		TaxBasedOnPickupPointAddress:          false,
 		TaxDisplayTypeID:                      2,
 		ActiveTaxProviderSystemName:           "UpdatedTaxProvider",
-		DefaultTaxAddressID:                   primitive.NewObjectID(),
+		DefaultTaxAddressID:                   bson.NewObjectID(),
 		DisplayTaxSuffix:                      false,
 		DisplayTaxRates:                       false,
 		PricesIncludeTax:                      true,
@@ -35,17 +35,17 @@ func TestTaxSettingsUsecase_FetchByID(t *testing.T) {
 		HideZeroTax:                           false,
 		HideTaxInOrderSummary:                 true,
 		ForceTaxExclusionFromOrderSubtotal:    false,
-		DefaultTaxCategoryID:                  primitive.NewObjectID(),
+		DefaultTaxCategoryID:                  bson.NewObjectID(),
 		ShippingIsTaxable:                     false,
 		ShippingPriceIncludesTax:              true,
-		ShippingTaxClassID:                    primitive.NewObjectID(),
+		ShippingTaxClassID:                    bson.NewObjectID(),
 		PaymentMethodAdditionalFeeIsTaxable:   false,
 		PaymentMethodAdditionalFeeIncludesTax: true,
-		PaymentMethodAdditionalFeeTaxClassID:  primitive.NewObjectID(),
+		PaymentMethodAdditionalFeeTaxClassID:  bson.NewObjectID(),
 		EuVatEnabled:                          false,
 		EuVatRequired:                         false,
 		EuVatEnabledForGuests:                 true,
-		EuVatShopCountryID:                    primitive.NewObjectID(),
+		EuVatShopCountryID:                    bson.NewObjectID(),
 		EuVatAllowVatExemption:                false,
 		EuVatUseWebService:                    true,
 		EuVatAssumeValid:                      true,
@@ -72,7 +72,7 @@ func TestTaxSettingsUsecase_Create(t *testing.T) {
 		TaxBasedOnPickupPointAddress:          true,
 		TaxDisplayTypeID:                      1,
 		ActiveTaxProviderSystemName:           "DefaultTaxProvider",
-		DefaultTaxAddressID:                   primitive.NewObjectID(),
+		DefaultTaxAddressID:                   bson.NewObjectID(),
 		DisplayTaxSuffix:                      true,
 		DisplayTaxRates:                       true,
 		PricesIncludeTax:                      false,
@@ -81,17 +81,17 @@ func TestTaxSettingsUsecase_Create(t *testing.T) {
 		HideZeroTax:                           true,
 		HideTaxInOrderSummary:                 false,
 		ForceTaxExclusionFromOrderSubtotal:    true,
-		DefaultTaxCategoryID:                  primitive.NewObjectID(),
+		DefaultTaxCategoryID:                  bson.NewObjectID(),
 		ShippingIsTaxable:                     true,
 		ShippingPriceIncludesTax:              false,
-		ShippingTaxClassID:                    primitive.NewObjectID(),
+		ShippingTaxClassID:                    bson.NewObjectID(),
 		PaymentMethodAdditionalFeeIsTaxable:   true,
 		PaymentMethodAdditionalFeeIncludesTax: false,
-		PaymentMethodAdditionalFeeTaxClassID:  primitive.NewObjectID(),
+		PaymentMethodAdditionalFeeTaxClassID:  bson.NewObjectID(),
 		EuVatEnabled:                          true,
 		EuVatRequired:                         true,
 		EuVatEnabledForGuests:                 false,
-		EuVatShopCountryID:                    primitive.NewObjectID(),
+		EuVatShopCountryID:                    bson.NewObjectID(),
 		EuVatAllowVatExemption:                true,
 		EuVatUseWebService:                    false,
 		EuVatAssumeValid:                      false,
@@ -113,12 +113,12 @@ func TestTaxSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewTaxSettingsUsecase(mockRepo, timeout)
 
 	updatedTaxSettings := &domain.TaxSettings{
-		ID:                                    primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                                    bson.NewObjectID(), // Existing ID of the record to update
 		TaxBasedOnID:                          1,
 		TaxBasedOnPickupPointAddress:          false,
 		TaxDisplayTypeID:                      2,
 		ActiveTaxProviderSystemName:           "UpdatedTaxProvider",
-		DefaultTaxAddressID:                   primitive.NewObjectID(),
+		DefaultTaxAddressID:                   bson.NewObjectID(),
 		DisplayTaxSuffix:                      false,
 		DisplayTaxRates:                       false,
 		PricesIncludeTax:                      true,
@@ -127,17 +127,17 @@ func TestTaxSettingsUsecase_Update(t *testing.T) {
 		HideZeroTax:                           false,
 		HideTaxInOrderSummary:                 true,
 		ForceTaxExclusionFromOrderSubtotal:    false,
-		DefaultTaxCategoryID:                  primitive.NewObjectID(),
+		DefaultTaxCategoryID:                  bson.NewObjectID(),
 		ShippingIsTaxable:                     false,
 		ShippingPriceIncludesTax:              true,
-		ShippingTaxClassID:                    primitive.NewObjectID(),
+		ShippingTaxClassID:                    bson.NewObjectID(),
 		PaymentMethodAdditionalFeeIsTaxable:   false,
 		PaymentMethodAdditionalFeeIncludesTax: true,
-		PaymentMethodAdditionalFeeTaxClassID:  primitive.NewObjectID(),
+		PaymentMethodAdditionalFeeTaxClassID:  bson.NewObjectID(),
 		EuVatEnabled:                          false,
 		EuVatRequired:                         false,
 		EuVatEnabledForGuests:                 true,
-		EuVatShopCountryID:                    primitive.NewObjectID(),
+		EuVatShopCountryID:                    bson.NewObjectID(),
 		EuVatAllowVatExemption:                false,
 		EuVatUseWebService:                    true,
 		EuVatAssumeValid:                      true,
@@ -158,7 +158,7 @@ func TestTaxSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewTaxSettingsUsecase(mockRepo, timeout)
 
-	taxSettingsID := primitive.NewObjectID().Hex()
+	taxSettingsID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, taxSettingsID).Return(nil)
 
@@ -175,12 +175,12 @@ func TestTaxSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedTaxSettings := []domain.TaxSettings{
 		{
-			ID:                                    primitive.NewObjectID(),
+			ID:                                    bson.NewObjectID(),
 			TaxBasedOnID:                          2,
 			TaxBasedOnPickupPointAddress:          true,
 			TaxDisplayTypeID:                      1,
 			ActiveTaxProviderSystemName:           "DefaultTaxProvider",
-			DefaultTaxAddressID:                   primitive.NewObjectID(),
+			DefaultTaxAddressID:                   bson.NewObjectID(),
 			DisplayTaxSuffix:                      true,
 			DisplayTaxRates:                       true,
 			PricesIncludeTax:                      false,
@@ -189,17 +189,17 @@ func TestTaxSettingsUsecase_Fetch(t *testing.T) {
 			HideZeroTax:                           true,
 			HideTaxInOrderSummary:                 false,
 			ForceTaxExclusionFromOrderSubtotal:    true,
-			DefaultTaxCategoryID:                  primitive.NewObjectID(),
+			DefaultTaxCategoryID:                  bson.NewObjectID(),
 			ShippingIsTaxable:                     true,
 			ShippingPriceIncludesTax:              false,
-			ShippingTaxClassID:                    primitive.NewObjectID(),
+			ShippingTaxClassID:                    bson.NewObjectID(),
 			PaymentMethodAdditionalFeeIsTaxable:   true,
 			PaymentMethodAdditionalFeeIncludesTax: false,
-			PaymentMethodAdditionalFeeTaxClassID:  primitive.NewObjectID(),
+			PaymentMethodAdditionalFeeTaxClassID:  bson.NewObjectID(),
 			EuVatEnabled:                          true,
 			EuVatRequired:                         true,
 			EuVatEnabledForGuests:                 false,
-			EuVatShopCountryID:                    primitive.NewObjectID(),
+			EuVatShopCountryID:                    bson.NewObjectID(),
 			EuVatAllowVatExemption:                true,
 			EuVatUseWebService:                    false,
 			EuVatAssumeValid:                      false,
@@ -207,12 +207,12 @@ func TestTaxSettingsUsecase_Fetch(t *testing.T) {
 			LogErrors:                             true,
 		},
 		{
-			ID:                                    primitive.NewObjectID(),
+			ID:                                    bson.NewObjectID(),
 			TaxBasedOnID:                          1,
 			TaxBasedOnPickupPointAddress:          false,
 			TaxDisplayTypeID:                      2,
 			ActiveTaxProviderSystemName:           "UpdatedTaxProvider",
-			DefaultTaxAddressID:                   primitive.NewObjectID(),
+			DefaultTaxAddressID:                   bson.NewObjectID(),
 			DisplayTaxSuffix:                      false,
 			DisplayTaxRates:                       false,
 			PricesIncludeTax:                      true,
@@ -221,17 +221,17 @@ func TestTaxSettingsUsecase_Fetch(t *testing.T) {
 			HideZeroTax:                           false,
 			HideTaxInOrderSummary:                 true,
 			ForceTaxExclusionFromOrderSubtotal:    false,
-			DefaultTaxCategoryID:                  primitive.NewObjectID(),
+			DefaultTaxCategoryID:                  bson.NewObjectID(),
 			ShippingIsTaxable:                     false,
 			ShippingPriceIncludesTax:              true,
-			ShippingTaxClassID:                    primitive.NewObjectID(),
+			ShippingTaxClassID:                    bson.NewObjectID(),
 			PaymentMethodAdditionalFeeIsTaxable:   false,
 			PaymentMethodAdditionalFeeIncludesTax: true,
-			PaymentMethodAdditionalFeeTaxClassID:  primitive.NewObjectID(),
+			PaymentMethodAdditionalFeeTaxClassID:  bson.NewObjectID(),
 			EuVatEnabled:                          false,
 			EuVatRequired:                         false,
 			EuVatEnabledForGuests:                 true,
-			EuVatShopCountryID:                    primitive.NewObjectID(),
+			EuVatShopCountryID:                    bson.NewObjectID(),
 			EuVatAllowVatExemption:                false,
 			EuVatUseWebService:                    true,
 			EuVatAssumeValid:                      true,

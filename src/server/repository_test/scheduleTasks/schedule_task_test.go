@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultScheduleTask struct {
@@ -29,7 +29,7 @@ func (m *MockSingleResultScheduleTask) Decode(v interface{}) error {
 }
 
 var mockItemScheduleTask = &domain.ScheduleTask{
-	ID:             primitive.NewObjectID(), // Existing ID of the record to update
+	ID:             bson.NewObjectID(), // Existing ID of the record to update
 	Name:           "Weekly Data Cleanup",
 	Seconds:        604800,
 	Type:           "CleanupTask",

@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -13,11 +13,11 @@ const (
 
 // GiftCardUsageHistory represents a gift card usage history entry
 type GiftCardUsageHistory struct {
-	ID           primitive.ObjectID `bson:"_id,omitempty"`
-	GiftCardID   primitive.ObjectID `bson:"gift_card_id"`
-	OrderID      primitive.ObjectID `bson:"used_with_order_id"`
-	UsedValue    float64            `bson:"used_value"`
-	CreatedOnUtc time.Time          `bson:"created_on_utc"`
+	ID           bson.ObjectID `bson:"_id,omitempty"`
+	GiftCardID   bson.ObjectID `bson:"gift_card_id"`
+	OrderID      bson.ObjectID `bson:"used_with_order_id"`
+	UsedValue    float64       `bson:"used_value"`
+	CreatedOnUtc time.Time     `bson:"created_on_utc"`
 }
 
 // GiftCardUsageHistoryRepository defines the repository interface for GiftCardUsageHistory

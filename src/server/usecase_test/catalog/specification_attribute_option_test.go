@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestSpecificationAttributeOptionUsecase_FetchByID(t *testing.T) {
@@ -18,11 +18,11 @@ func TestSpecificationAttributeOptionUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewSpecificationAttributeOptionUsecase(mockRepo, timeout)
 
-	specificationAttributeOptionID := primitive.NewObjectID().Hex()
+	specificationAttributeOptionID := bson.NewObjectID().Hex()
 
 	updatedSpecificationAttributeOption := domain.SpecificationAttributeOption{
-		ID:                       primitive.NewObjectID(), // Existing ID of the record to update
-		SpecificationAttributeID: primitive.NewObjectID(),
+		ID:                       bson.NewObjectID(), // Existing ID of the record to update
+		SpecificationAttributeID: bson.NewObjectID(),
 		Name:                     "Size",
 		ColorSquaresRgb:          "",
 		DisplayOrder:             2,
@@ -43,7 +43,7 @@ func TestSpecificationAttributeOptionUsecase_Create(t *testing.T) {
 	usecase := test.NewSpecificationAttributeOptionUsecase(mockRepo, timeout)
 
 	newSpecificationAttributeOption := &domain.SpecificationAttributeOption{
-		SpecificationAttributeID: primitive.NewObjectID(),
+		SpecificationAttributeID: bson.NewObjectID(),
 		Name:                     "Color",
 		ColorSquaresRgb:          "#FF0000",
 		DisplayOrder:             1,
@@ -63,8 +63,8 @@ func TestSpecificationAttributeOptionUsecase_Update(t *testing.T) {
 	usecase := test.NewSpecificationAttributeOptionUsecase(mockRepo, timeout)
 
 	updatedSpecificationAttributeOption := &domain.SpecificationAttributeOption{
-		ID:                       primitive.NewObjectID(), // Existing ID of the record to update
-		SpecificationAttributeID: primitive.NewObjectID(),
+		ID:                       bson.NewObjectID(), // Existing ID of the record to update
+		SpecificationAttributeID: bson.NewObjectID(),
 		Name:                     "Size",
 		ColorSquaresRgb:          "",
 		DisplayOrder:             2,
@@ -83,7 +83,7 @@ func TestSpecificationAttributeOptionUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewSpecificationAttributeOptionUsecase(mockRepo, timeout)
 
-	specificationAttributeOptionID := primitive.NewObjectID().Hex()
+	specificationAttributeOptionID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, specificationAttributeOptionID).Return(nil)
 
@@ -100,15 +100,15 @@ func TestSpecificationAttributeOptionUsecase_Fetch(t *testing.T) {
 
 	fetchedSpecificationAttributeOptions := []domain.SpecificationAttributeOption{
 		{
-			ID:                       primitive.NewObjectID(),
-			SpecificationAttributeID: primitive.NewObjectID(),
+			ID:                       bson.NewObjectID(),
+			SpecificationAttributeID: bson.NewObjectID(),
 			Name:                     "Color",
 			ColorSquaresRgb:          "#FF0000",
 			DisplayOrder:             1,
 		},
 		{
-			ID:                       primitive.NewObjectID(),
-			SpecificationAttributeID: primitive.NewObjectID(),
+			ID:                       bson.NewObjectID(),
+			SpecificationAttributeID: bson.NewObjectID(),
 			Name:                     "Size",
 			ColorSquaresRgb:          "",
 			DisplayOrder:             2,

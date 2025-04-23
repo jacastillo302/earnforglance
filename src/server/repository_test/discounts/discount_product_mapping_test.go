@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultDiscountProductMapping struct {
@@ -29,9 +29,9 @@ func (m *MockSingleResultDiscountProductMapping) Decode(v interface{}) error {
 
 var mockItemDiscountProductMapping = &domain.DiscountProductMapping{
 	DiscountMapping: domain.DiscountMapping{
-		DiscountID: primitive.NewObjectID(),
+		DiscountID: bson.NewObjectID(),
 	},
-	EntityID: primitive.NewObjectID(),
+	EntityID: bson.NewObjectID(),
 }
 
 func TestDiscountProductMappingRepository_FetchByID(t *testing.T) {

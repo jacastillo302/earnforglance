@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/discounts"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type discountcategorymappingRepository struct {
@@ -58,7 +57,7 @@ func (ur *discountcategorymappingRepository) Update(c context.Context, discountc
 func (ur *discountcategorymappingRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *discountcategorymappingRepository) Delete(c context.Context, ID string
 func (ur *discountcategorymappingRepository) Fetch(c context.Context) ([]domain.DiscountCategoryMapping, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *discountcategorymappingRepository) FetchByID(c context.Context, discou
 
 	var discountcategorymapping domain.DiscountCategoryMapping
 
-	idHex, err := primitive.ObjectIDFromHex(discountcategorymappingID)
+	idHex, err := bson.ObjectIDFromHex(discountcategorymappingID)
 	if err != nil {
 		return discountcategorymapping, err
 	}

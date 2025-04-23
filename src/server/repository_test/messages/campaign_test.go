@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultCampaign struct {
@@ -29,12 +29,12 @@ func (m *MockSingleResultCampaign) Decode(v interface{}) error {
 }
 
 var mockItemCampaign = &domain.Campaign{
-	ID:                    primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                    bson.NewObjectID(), // Existing ID of the record to update
 	Name:                  "Updated Holiday Sale",
 	Subject:               "Updated Discounts for the Holidays!",
 	Body:                  "Enjoy up to 60% off on selected items. Offer extended!",
-	StoreID:               primitive.NewObjectID(),
-	CustomerRoleID:        primitive.NewObjectID(),
+	StoreID:               bson.NewObjectID(),
+	CustomerRoleID:        bson.NewObjectID(),
 	CreatedOnUtc:          time.Now().AddDate(0, 0, -7), // Created 7 days ago
 	DontSendBeforeDateUtc: new(time.Time),
 }

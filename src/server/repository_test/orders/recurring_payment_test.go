@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultRecurringPayment struct {
@@ -29,7 +29,7 @@ func (m *MockSingleResultRecurringPayment) Decode(v interface{}) error {
 }
 
 var mockItemRecurringPayment = &domain.RecurringPayment{
-	ID:                            primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                            bson.NewObjectID(), // Existing ID of the record to update
 	CycleLength:                   15,
 	RecurringProductCyclePeriodID: 2,
 	TotalCycles:                   6,

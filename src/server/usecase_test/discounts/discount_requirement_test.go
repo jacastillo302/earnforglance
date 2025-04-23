@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestDiscountRequirementUsecase_FetchByID(t *testing.T) {
@@ -18,17 +18,17 @@ func TestDiscountRequirementUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewDiscountRequirementUsecase(mockRepo, timeout)
 
-	discountRequirementID := primitive.NewObjectID().Hex()
+	discountRequirementID := bson.NewObjectID().Hex()
 
 	updatedDiscountRequirement := domain.DiscountRequirement{
-		ID:                                primitive.NewObjectID(), // Existing ID of the record to update
-		DiscountID:                        primitive.NewObjectID(),
+		ID:                                bson.NewObjectID(), // Existing ID of the record to update
+		DiscountID:                        bson.NewObjectID(),
 		DiscountRequirementRuleSystemName: "CustomerRoleRequirement",
-		ParentID:                          new(primitive.ObjectID),
+		ParentID:                          new(bson.ObjectID),
 		InteractionTypeID:                 new(int),
 		IsGroup:                           true,
 	}
-	*updatedDiscountRequirement.ParentID = primitive.NewObjectID()
+	*updatedDiscountRequirement.ParentID = bson.NewObjectID()
 	*updatedDiscountRequirement.InteractionTypeID = 1
 
 	mockRepo.On("FetchByID", mock.Anything, discountRequirementID).Return(updatedDiscountRequirement, nil)
@@ -46,7 +46,7 @@ func TestDiscountRequirementUsecase_Create(t *testing.T) {
 	usecase := test.NewDiscountRequirementUsecase(mockRepo, timeout)
 
 	newDiscount := &domain.DiscountRequirement{
-		DiscountID:                        primitive.NewObjectID(),
+		DiscountID:                        bson.NewObjectID(),
 		DiscountRequirementRuleSystemName: "MinimumOrderTotalRequirement",
 		ParentID:                          nil,
 		InteractionTypeID:                 nil,
@@ -67,14 +67,14 @@ func TestDiscountRequirementUsecase_Update(t *testing.T) {
 	usecase := test.NewDiscountRequirementUsecase(mockRepo, timeout)
 
 	updatedDiscountRequirement := &domain.DiscountRequirement{
-		ID:                                primitive.NewObjectID(), // Existing ID of the record to update
-		DiscountID:                        primitive.NewObjectID(),
+		ID:                                bson.NewObjectID(), // Existing ID of the record to update
+		DiscountID:                        bson.NewObjectID(),
 		DiscountRequirementRuleSystemName: "CustomerRoleRequirement",
-		ParentID:                          new(primitive.ObjectID),
+		ParentID:                          new(bson.ObjectID),
 		InteractionTypeID:                 new(int),
 		IsGroup:                           true,
 	}
-	*updatedDiscountRequirement.ParentID = primitive.NewObjectID()
+	*updatedDiscountRequirement.ParentID = bson.NewObjectID()
 	*updatedDiscountRequirement.InteractionTypeID = 1
 
 	mockRepo.On("Update", mock.Anything, updatedDiscountRequirement).Return(nil)
@@ -90,7 +90,7 @@ func TestDiscountRequirementUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewDiscountRequirementUsecase(mockRepo, timeout)
 
-	discountRequirementID := primitive.NewObjectID().Hex()
+	discountRequirementID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, discountRequirementID).Return(nil)
 
@@ -107,23 +107,23 @@ func TestDiscountRequirementUsecase_Fetch(t *testing.T) {
 
 	fetchedDiscountRequirements := []domain.DiscountRequirement{
 		{
-			ID:                                primitive.NewObjectID(),
-			DiscountID:                        primitive.NewObjectID(),
+			ID:                                bson.NewObjectID(),
+			DiscountID:                        bson.NewObjectID(),
 			DiscountRequirementRuleSystemName: "MinimumOrderTotalRequirement",
 			ParentID:                          nil,
 			InteractionTypeID:                 nil,
 			IsGroup:                           false,
 		},
 		{
-			ID:                                primitive.NewObjectID(),
-			DiscountID:                        primitive.NewObjectID(),
+			ID:                                bson.NewObjectID(),
+			DiscountID:                        bson.NewObjectID(),
 			DiscountRequirementRuleSystemName: "CustomerRoleRequirement",
-			ParentID:                          new(primitive.ObjectID),
+			ParentID:                          new(bson.ObjectID),
 			InteractionTypeID:                 new(int),
 			IsGroup:                           true,
 		},
 	}
-	*fetchedDiscountRequirements[1].ParentID = primitive.NewObjectID()
+	*fetchedDiscountRequirements[1].ParentID = bson.NewObjectID()
 	*fetchedDiscountRequirements[1].InteractionTypeID = 1
 
 	mockRepo.On("Fetch", mock.Anything).Return(fetchedDiscountRequirements, nil)

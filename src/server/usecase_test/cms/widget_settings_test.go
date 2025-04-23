@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestWidgetSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestWidgetSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewWidgetSettingsUsecase(mockRepo, timeout)
 
-	widgetSettingsID := primitive.NewObjectID().Hex()
+	widgetSettingsID := bson.NewObjectID().Hex()
 
 	updatedWidgetSettings := domain.WidgetSettings{
-		ID:                      primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                      bson.NewObjectID(), // Existing ID of the record to update
 		ActiveWidgetSystemNames: []string{"WidgetX", "WidgetY"},
 	}
 
@@ -57,7 +57,7 @@ func TestWidgetSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewWidgetSettingsUsecase(mockRepo, timeout)
 
 	updatedWidgetSettings := &domain.WidgetSettings{
-		ID:                      primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                      bson.NewObjectID(), // Existing ID of the record to update
 		ActiveWidgetSystemNames: []string{"WidgetX", "WidgetY"},
 	}
 
@@ -74,7 +74,7 @@ func TestWidgetSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewWidgetSettingsUsecase(mockRepo, timeout)
 
-	widgetSettingsID := primitive.NewObjectID().Hex()
+	widgetSettingsID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, widgetSettingsID).Return(nil)
 
@@ -91,11 +91,11 @@ func TestWidgetSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedWidgetSettings := []domain.WidgetSettings{
 		{
-			ID:                      primitive.NewObjectID(),
+			ID:                      bson.NewObjectID(),
 			ActiveWidgetSystemNames: []string{"WidgetA", "WidgetB", "WidgetC"},
 		},
 		{
-			ID:                      primitive.NewObjectID(),
+			ID:                      bson.NewObjectID(),
 			ActiveWidgetSystemNames: []string{"WidgetX", "WidgetY"},
 		},
 	}

@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,10 +12,10 @@ const (
 
 // PermissionRecord represents a permission record.
 type PermissionRecord struct {
-	ID         primitive.ObjectID `bson:"_id,omitempty"`
-	Name       string             `bson:"name"`
-	SystemName string             `bson:"system_name"`
-	Category   string             `bson:"category"`
+	ID         bson.ObjectID `bson:"_id,omitempty"`
+	Name       string        `bson:"name"`
+	SystemName string        `bson:"system_name"`
+	Category   string        `bson:"category"`
 }
 
 // PermissionRecordRepository defines the repository interface for PermissionRecord

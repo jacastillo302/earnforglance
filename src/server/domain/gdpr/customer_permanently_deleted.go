@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,12 +12,12 @@ const (
 
 // CustomerPermanentlyDeleted represents a customer permanently deleted (GDPR)
 type CustomerPermanentlyDeleted struct {
-	CustomerID primitive.ObjectID `bson:"customer_id"`
-	Email      string             `bson:"email"`
+	CustomerID bson.ObjectID `bson:"customer_id"`
+	Email      string        `bson:"email"`
 }
 
 // NewCustomerPermanentlyDeleted creates a new CustomerPermanentlyDeleted instance
-func NewCustomerPermanentlyDeleted(customerID primitive.ObjectID, email string) *CustomerPermanentlyDeleted {
+func NewCustomerPermanentlyDeleted(customerID bson.ObjectID, email string) *CustomerPermanentlyDeleted {
 	return &CustomerPermanentlyDeleted{
 		CustomerID: customerID,
 		Email:      email,

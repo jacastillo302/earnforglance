@@ -9,9 +9,8 @@ import (
 	domain "earnforglance/server/domain/public"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type userRepository struct {
@@ -37,7 +36,8 @@ func (ur *userRepository) Create(c context.Context, user *customers.Customer) er
 func (ur *userRepository) Fetch(c context.Context) ([]customers.Customer, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -72,12 +72,14 @@ func (ur *userRepository) GetPasw(c context.Context, CustumerID string) (custome
 	collection := ur.database.Collection(customers.CollectionCustomerPassword)
 	var user customers.CustomerPassword
 
-	idHex, err := primitive.ObjectIDFromHex(CustumerID)
+	idHex, err := bson.ObjectIDFromHex(CustumerID)
 	if err != nil {
 		return user, err
 	}
 
-	opts := options.Find().SetSort(bson.D{{Key: "created_on_utc", Value: -1}})
+	opts := options.Find().
+		SetSort(bson.D{{Key: "created_on_utc", Value: 1}})
+
 	cursor, err := collection.Find(c, bson.M{"customer_id": idHex}, opts)
 	if err != nil {
 		return user, err
@@ -105,8 +107,8 @@ func (ur *userRepository) GetSettingByName(c context.Context, name string) (sett
 func (ur *userRepository) GetLocalebyName(c context.Context, name string, languageID string) (localization.LocaleStringResource, error) {
 	collection := ur.database.Collection(localization.CollectionLocaleStringResource)
 	var item localization.LocaleStringResource
-	var language_id primitive.ObjectID
-	language_id, err := primitive.ObjectIDFromHex(languageID)
+	var language_id bson.ObjectID
+	language_id, err := bson.ObjectIDFromHex(languageID)
 	if err != nil {
 		return item, err
 	}
@@ -126,7 +128,7 @@ func (ur *userRepository) GetByID(c context.Context, id string) (customers.Custo
 
 	var user customers.Customer
 
-	idHex, err := primitive.ObjectIDFromHex(id)
+	idHex, err := bson.ObjectIDFromHex(id)
 	if err != nil {
 		return user, err
 	}

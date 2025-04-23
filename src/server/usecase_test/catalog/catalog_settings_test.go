@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestCatalogSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestCatalogSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCatalogSettingsUsecase(mockRepo, timeout)
 
-	catalogID := primitive.NewObjectID().Hex()
+	catalogID := bson.NewObjectID().Hex()
 
 	expectedCatalogSettings := domain.CatalogSettings{
-		ID:                              primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                              bson.NewObjectID(), // Existing ID of the record to update
 		AllowViewUnpublishedProductPage: false,
 		DisplayDiscontinuedMessageForUnpublishedProducts: true,
 		PublishBackProductWhenCancellingOrders:           false,
@@ -101,7 +101,7 @@ func TestCatalogSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewCatalogSettingsUsecase(mockRepo, timeout)
 
 	updatedCatalogSettings := &domain.CatalogSettings{
-		ID:                              primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                              bson.NewObjectID(), // Existing ID of the record to update
 		AllowViewUnpublishedProductPage: false,
 		DisplayDiscontinuedMessageForUnpublishedProducts: true,
 		PublishBackProductWhenCancellingOrders:           false,
@@ -140,7 +140,7 @@ func TestCatalogSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewCatalogSettingsUsecase(mockRepo, timeout)
 
-	catalogID := primitive.NewObjectID().Hex()
+	catalogID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, catalogID).Return(nil)
 
@@ -157,7 +157,7 @@ func TestCatalogSettingsUsecase_Fetch(t *testing.T) {
 
 	expectedCatalogSettings := []domain.CatalogSettings{
 		{
-			ID:                              primitive.NewObjectID(),
+			ID:                              bson.NewObjectID(),
 			AllowViewUnpublishedProductPage: true,
 			DisplayDiscontinuedMessageForUnpublishedProducts: false,
 			PublishBackProductWhenCancellingOrders:           true,
@@ -183,7 +183,7 @@ func TestCatalogSettingsUsecase_Fetch(t *testing.T) {
 			NumberOfBestsellersOnHomepage:                    10,
 		},
 		{
-			ID:                              primitive.NewObjectID(),
+			ID:                              bson.NewObjectID(),
 			AllowViewUnpublishedProductPage: false,
 			DisplayDiscontinuedMessageForUnpublishedProducts: true,
 			PublishBackProductWhenCancellingOrders:           false,

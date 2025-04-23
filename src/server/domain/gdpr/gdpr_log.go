@@ -4,7 +4,7 @@ import (
 	"context" // added context library
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -13,13 +13,13 @@ const (
 
 // GdprLog represents a GDPR logs
 type GdprLog struct {
-	ID             primitive.ObjectID `bson:"_id,omitempty"`
-	CustomerID     primitive.ObjectID `bson:"customer_id"`
-	ConsentID      primitive.ObjectID `bson:"consent_id"`
-	CustomerInfo   string             `bson:"customer_info"`
-	RequestTypeID  int                `bson:"request_type_id"`
-	RequestDetails string             `bson:"request_details"`
-	CreatedOnUtc   time.Time          `bson:"created_on_utc"`
+	ID             bson.ObjectID `bson:"_id,omitempty"`
+	CustomerID     bson.ObjectID `bson:"customer_id"`
+	ConsentID      bson.ObjectID `bson:"consent_id"`
+	CustomerInfo   string        `bson:"customer_info"`
+	RequestTypeID  int           `bson:"request_type_id"`
+	RequestDetails string        `bson:"request_details"`
+	CreatedOnUtc   time.Time     `bson:"created_on_utc"`
 }
 
 // GdprLogRepository interface

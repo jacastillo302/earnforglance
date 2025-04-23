@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestDeliveryDateUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestDeliveryDateUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewDeliveryDateUsecase(mockRepo, timeout)
 
-	deliveryDateID := primitive.NewObjectID().Hex()
+	deliveryDateID := bson.NewObjectID().Hex()
 
 	updatedDeliveryDate := domain.DeliveryDate{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
 		Name:         "Standard Delivery",
 		DisplayOrder: 2,
 	}
@@ -59,7 +59,7 @@ func TestDeliveryDateUsecase_Update(t *testing.T) {
 	usecase := test.NewDeliveryDateUsecase(mockRepo, timeout)
 
 	updatedDeliveryDate := &domain.DeliveryDate{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
 		Name:         "Standard Delivery",
 		DisplayOrder: 2,
 	}
@@ -77,7 +77,7 @@ func TestDeliveryDateUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewDeliveryDateUsecase(mockRepo, timeout)
 
-	deliveryDateID := primitive.NewObjectID().Hex()
+	deliveryDateID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, deliveryDateID).Return(nil)
 
@@ -94,12 +94,12 @@ func TestDeliveryDateUsecase_Fetch(t *testing.T) {
 
 	fetchedDeliveryDates := []domain.DeliveryDate{
 		{
-			ID:           primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
 			Name:         "Next Day Delivery",
 			DisplayOrder: 1,
 		},
 		{
-			ID:           primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
 			Name:         "Standard Delivery",
 			DisplayOrder: 2,
 		},

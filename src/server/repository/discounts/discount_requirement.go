@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/discounts"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type discountrequirementRepository struct {
@@ -58,7 +57,7 @@ func (ur *discountrequirementRepository) Update(c context.Context, discountrequi
 func (ur *discountrequirementRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *discountrequirementRepository) Delete(c context.Context, ID string) er
 func (ur *discountrequirementRepository) Fetch(c context.Context) ([]domain.DiscountRequirement, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *discountrequirementRepository) FetchByID(c context.Context, discountre
 
 	var discountrequirement domain.DiscountRequirement
 
-	idHex, err := primitive.ObjectIDFromHex(discountrequirementID)
+	idHex, err := bson.ObjectIDFromHex(discountrequirementID)
 	if err != nil {
 		return discountrequirement, err
 	}

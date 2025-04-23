@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/shipping"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type pickupPointRepository struct {
@@ -58,7 +57,7 @@ func (ur *pickupPointRepository) Update(c context.Context, pickupPoint *domain.P
 func (ur *pickupPointRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *pickupPointRepository) Delete(c context.Context, ID string) error {
 func (ur *pickupPointRepository) Fetch(c context.Context) ([]domain.PickupPoint, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *pickupPointRepository) FetchByID(c context.Context, pickupPointID stri
 
 	var pickupPoint domain.PickupPoint
 
-	idHex, err := primitive.ObjectIDFromHex(pickupPointID)
+	idHex, err := bson.ObjectIDFromHex(pickupPointID)
 	if err != nil {
 		return pickupPoint, err
 	}

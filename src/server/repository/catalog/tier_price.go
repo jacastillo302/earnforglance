@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/catalog"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type tierpriceRepository struct {
@@ -58,7 +57,7 @@ func (ur *tierpriceRepository) Update(c context.Context, tierprice *domain.TierP
 func (ur *tierpriceRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *tierpriceRepository) Delete(c context.Context, ID string) error {
 func (ur *tierpriceRepository) Fetch(c context.Context) ([]domain.TierPrice, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *tierpriceRepository) FetchByID(c context.Context, tierpriceID string) 
 
 	var tierprice domain.TierPrice
 
-	idHex, err := primitive.ObjectIDFromHex(tierpriceID)
+	idHex, err := bson.ObjectIDFromHex(tierpriceID)
 	if err != nil {
 		return tierprice, err
 	}

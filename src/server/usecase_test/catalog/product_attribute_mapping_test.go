@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestProductAttributeMappingUsecase_FetchByID(t *testing.T) {
@@ -18,11 +18,11 @@ func TestProductAttributeMappingUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewProductAttributeMappingUsecase(mockRepo, timeout)
 
-	productAttributeMappingID := primitive.NewObjectID().Hex()
+	productAttributeMappingID := bson.NewObjectID().Hex()
 
 	expectedProductAttributeMapping := domain.ProductAttributeMapping{
-		ProductID:                       primitive.NewObjectID(),
-		ProductAttributeID:              primitive.NewObjectID(),
+		ProductID:                       bson.NewObjectID(),
+		ProductAttributeID:              bson.NewObjectID(),
 		TextPrompt:                      "Select a size",
 		IsRequired:                      false,
 		AttributeControlTypeID:          2,
@@ -50,8 +50,8 @@ func TestProductAttributeMappingUsecase_Create(t *testing.T) {
 	usecase := test.NewProductAttributeMappingUsecase(mockRepo, timeout)
 
 	newProductAttributeMapping := &domain.ProductAttributeMapping{
-		ProductID:                       primitive.NewObjectID(),
-		ProductAttributeID:              primitive.NewObjectID(),
+		ProductID:                       bson.NewObjectID(),
+		ProductAttributeID:              bson.NewObjectID(),
 		TextPrompt:                      "Select a color",
 		IsRequired:                      true,
 		AttributeControlTypeID:          1,
@@ -78,8 +78,8 @@ func TestProductAttributeMappingUsecase_Update(t *testing.T) {
 	usecase := test.NewProductAttributeMappingUsecase(mockRepo, timeout)
 
 	updatedProductAttributeMapping := &domain.ProductAttributeMapping{
-		ProductID:                       primitive.NewObjectID(),
-		ProductAttributeID:              primitive.NewObjectID(),
+		ProductID:                       bson.NewObjectID(),
+		ProductAttributeID:              bson.NewObjectID(),
 		TextPrompt:                      "Select a size",
 		IsRequired:                      false,
 		AttributeControlTypeID:          2,
@@ -108,7 +108,7 @@ func TestProductAttributeMappingUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewProductAttributeMappingUsecase(mockRepo, timeout)
 
-	productAttributeMappingID := primitive.NewObjectID().Hex()
+	productAttributeMappingID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, productAttributeMappingID).Return(nil)
 
@@ -125,8 +125,8 @@ func TestProductAttributeMappingUsecase_Fetch(t *testing.T) {
 
 	fetchedProductAttributeMappings := []domain.ProductAttributeMapping{
 		{
-			ProductID:                       primitive.NewObjectID(),
-			ProductAttributeID:              primitive.NewObjectID(),
+			ProductID:                       bson.NewObjectID(),
+			ProductAttributeID:              bson.NewObjectID(),
 			TextPrompt:                      "Select a color",
 			IsRequired:                      true,
 			AttributeControlTypeID:          1,
@@ -139,8 +139,8 @@ func TestProductAttributeMappingUsecase_Fetch(t *testing.T) {
 			ConditionAttributeXml:           "<attributes><color>red</color></attributes>",
 		},
 		{
-			ProductID:                       primitive.NewObjectID(),
-			ProductAttributeID:              primitive.NewObjectID(),
+			ProductID:                       bson.NewObjectID(),
+			ProductAttributeID:              bson.NewObjectID(),
 			TextPrompt:                      "Select a size",
 			IsRequired:                      false,
 			AttributeControlTypeID:          2,

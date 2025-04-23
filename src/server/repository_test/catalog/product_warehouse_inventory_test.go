@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultProductWarehouseInventory struct {
@@ -28,8 +28,8 @@ func (m *MockSingleResultProductWarehouseInventory) Decode(v interface{}) error 
 }
 
 var mockItemProductWarehouseInventory = &domain.ProductWarehouseInventory{
-	ProductID:        primitive.NewObjectID(),
-	WarehouseID:      primitive.NewObjectID(),
+	ProductID:        bson.NewObjectID(),
+	WarehouseID:      bson.NewObjectID(),
 	StockQuantity:    150,
 	ReservedQuantity: 20,
 }

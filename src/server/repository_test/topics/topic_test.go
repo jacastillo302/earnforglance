@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultTopic struct {
@@ -29,7 +29,7 @@ func (m *MockSingleResultTopic) Decode(v interface{}) error {
 }
 
 var mockItemTopic = &domain.Topic{
-	ID:                        primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                        bson.NewObjectID(), // Existing ID of the record to update
 	SystemName:                "contact-us",
 	IncludeInSitemap:          true,
 	IncludeInTopMenu:          false,
@@ -43,7 +43,7 @@ var mockItemTopic = &domain.Topic{
 	Title:                     "Contact Us",
 	Body:                      "This is the Contact Us page content.",
 	Published:                 true,
-	TopicTemplateID:           primitive.NewObjectID(),
+	TopicTemplateID:           bson.NewObjectID(),
 	MetaKeywords:              "contact, support, help",
 	MetaDescription:           "Get in touch with us for support.",
 	MetaTitle:                 "Contact Us - Support",

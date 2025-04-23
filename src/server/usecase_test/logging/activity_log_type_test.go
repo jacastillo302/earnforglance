@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestActivityLogTypeUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestActivityLogTypeUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewActivityLogTypeUsecase(mockRepo, timeout)
 
-	activityLogTypeID := primitive.NewObjectID().Hex()
+	activityLogTypeID := bson.NewObjectID().Hex()
 
 	updatedActivityLogType := domain.ActivityLogType{
-		ID:            primitive.NewObjectID(), // Existing ID of the record to update
+		ID:            bson.NewObjectID(), // Existing ID of the record to update
 		SystemKeyword: "customer_registration",
 		Name:          "Customer Registration",
 		Enabled:       false,
@@ -61,7 +61,7 @@ func TestActivityLogTypeUsecase_Update(t *testing.T) {
 	usecase := test.NewActivityLogTypeUsecase(mockRepo, timeout)
 
 	updatedActivityLogType := &domain.ActivityLogType{
-		ID:            primitive.NewObjectID(), // Existing ID of the record to update
+		ID:            bson.NewObjectID(), // Existing ID of the record to update
 		SystemKeyword: "customer_registration",
 		Name:          "Customer Registration",
 		Enabled:       false,
@@ -80,7 +80,7 @@ func TestActivityLogTypeUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewActivityLogTypeUsecase(mockRepo, timeout)
 
-	activityLogTypeID := primitive.NewObjectID().Hex()
+	activityLogTypeID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, activityLogTypeID).Return(nil)
 
@@ -97,13 +97,13 @@ func TestActivityLogTypeUsecase_Fetch(t *testing.T) {
 
 	fetchedActivityLogTypes := []domain.ActivityLogType{
 		{
-			ID:            primitive.NewObjectID(),
+			ID:            bson.NewObjectID(),
 			SystemKeyword: "customer_login",
 			Name:          "Customer Login",
 			Enabled:       true,
 		},
 		{
-			ID:            primitive.NewObjectID(),
+			ID:            bson.NewObjectID(),
 			SystemKeyword: "customer_registration",
 			Name:          "Customer Registration",
 			Enabled:       false,

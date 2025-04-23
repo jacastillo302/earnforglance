@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/shipping"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type shippingmethodcountrymappingRepository struct {
@@ -58,7 +57,7 @@ func (ur *shippingmethodcountrymappingRepository) Update(c context.Context, ship
 func (ur *shippingmethodcountrymappingRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -71,7 +70,8 @@ func (ur *shippingmethodcountrymappingRepository) Delete(c context.Context, ID s
 func (ur *shippingmethodcountrymappingRepository) Fetch(c context.Context) ([]domain.ShippingMethodCountryMapping, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -93,7 +93,7 @@ func (tr *shippingmethodcountrymappingRepository) FetchByID(c context.Context, s
 
 	var shippingmethodcountrymapping domain.ShippingMethodCountryMapping
 
-	idHex, err := primitive.ObjectIDFromHex(shippingmethodcountrymappingID)
+	idHex, err := bson.ObjectIDFromHex(shippingmethodcountrymappingID)
 	if err != nil {
 		return shippingmethodcountrymapping, err
 	}

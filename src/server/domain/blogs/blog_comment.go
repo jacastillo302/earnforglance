@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -13,13 +13,13 @@ const (
 
 // BlogComment represents a blog comment
 type BlogComment struct {
-	ID           primitive.ObjectID `bson:"_id,omitempty"`
-	CustomerID   primitive.ObjectID `bson:"customer_id"`
-	CommentText  string             `bson:"comment_text"`
-	IsApproved   bool               `bson:"is_approved"`
-	StoreID      primitive.ObjectID `bson:"store_id"`
-	BlogPostID   primitive.ObjectID `bson:"blog_post_id"`
-	CreatedOnUtc time.Time          `bson:"created_on_utc"`
+	ID           bson.ObjectID `bson:"_id,omitempty"`
+	CustomerID   bson.ObjectID `bson:"customer_id"`
+	CommentText  string        `bson:"comment_text"`
+	IsApproved   bool          `bson:"is_approved"`
+	StoreID      bson.ObjectID `bson:"store_id"`
+	BlogPostID   bson.ObjectID `bson:"blog_post_id"`
+	CreatedOnUtc time.Time     `bson:"created_on_utc"`
 }
 
 type BlogCommentRepository interface {

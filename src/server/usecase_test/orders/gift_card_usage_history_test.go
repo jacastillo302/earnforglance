@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestGiftCardUsageHistoryUsecase_FetchByID(t *testing.T) {
@@ -18,12 +18,12 @@ func TestGiftCardUsageHistoryUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewGiftCardUsageHistoryUsecase(mockRepo, timeout)
 
-	giftCardUsageHistoryID := primitive.NewObjectID().Hex()
+	giftCardUsageHistoryID := bson.NewObjectID().Hex()
 
 	updatedGiftCardUsageHistory := domain.GiftCardUsageHistory{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		GiftCardID:   primitive.NewObjectID(),
-		OrderID:      primitive.NewObjectID(),
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
+		GiftCardID:   bson.NewObjectID(),
+		OrderID:      bson.NewObjectID(),
 		UsedValue:    75.00,
 		CreatedOnUtc: time.Now().AddDate(0, 0, -7), // Created 7 days ago
 	}
@@ -43,8 +43,8 @@ func TestGiftCardUsageHistoryUsecase_Create(t *testing.T) {
 	usecase := test.NewGiftCardUsageHistoryUsecase(mockRepo, timeout)
 
 	newGiftCardUsageHistory := &domain.GiftCardUsageHistory{
-		GiftCardID:   primitive.NewObjectID(),
-		OrderID:      primitive.NewObjectID(),
+		GiftCardID:   bson.NewObjectID(),
+		OrderID:      bson.NewObjectID(),
 		UsedValue:    50.00,
 		CreatedOnUtc: time.Now(),
 	}
@@ -63,9 +63,9 @@ func TestGiftCardUsageHistoryUsecase_Update(t *testing.T) {
 	usecase := test.NewGiftCardUsageHistoryUsecase(mockRepo, timeout)
 
 	updatedGiftCardUsageHistory := &domain.GiftCardUsageHistory{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
-		GiftCardID:   primitive.NewObjectID(),
-		OrderID:      primitive.NewObjectID(),
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
+		GiftCardID:   bson.NewObjectID(),
+		OrderID:      bson.NewObjectID(),
 		UsedValue:    75.00,
 		CreatedOnUtc: time.Now().AddDate(0, 0, -7), // Created 7 days ago
 	}
@@ -83,7 +83,7 @@ func TestGiftCardUsageHistoryUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewGiftCardUsageHistoryUsecase(mockRepo, timeout)
 
-	giftCardUsageHistoryID := primitive.NewObjectID().Hex()
+	giftCardUsageHistoryID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, giftCardUsageHistoryID).Return(nil)
 
@@ -100,16 +100,16 @@ func TestGiftCardUsageHistoryUsecase_Fetch(t *testing.T) {
 
 	fetchedGiftCardUsageHistories := []domain.GiftCardUsageHistory{
 		{
-			ID:           primitive.NewObjectID(),
-			GiftCardID:   primitive.NewObjectID(),
-			OrderID:      primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
+			GiftCardID:   bson.NewObjectID(),
+			OrderID:      bson.NewObjectID(),
 			UsedValue:    50.00,
 			CreatedOnUtc: time.Now().AddDate(0, 0, -10), // Created 10 days ago
 		},
 		{
-			ID:           primitive.NewObjectID(),
-			GiftCardID:   primitive.NewObjectID(),
-			OrderID:      primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
+			GiftCardID:   bson.NewObjectID(),
+			OrderID:      bson.NewObjectID(),
 			UsedValue:    100.00,
 			CreatedOnUtc: time.Now().AddDate(0, 0, -5), // Created 5 days ago
 		},

@@ -13,8 +13,8 @@ import (
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultOrder struct {
@@ -30,12 +30,12 @@ func (m *MockSingleResultOrder) Decode(v interface{}) error {
 }
 
 var mockItemOrder = &domain.Order{
-	ID:                                      primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                                      bson.NewObjectID(), // Existing ID of the record to update
 	OrderGuid:                               uuid.New(),
-	StoreID:                                 primitive.NewObjectID(),
-	CustomerID:                              primitive.NewObjectID(),
-	BillingAddressID:                        primitive.NewObjectID(),
-	ShippingAddressID:                       new(primitive.ObjectID),
+	StoreID:                                 bson.NewObjectID(),
+	CustomerID:                              bson.NewObjectID(),
+	BillingAddressID:                        bson.NewObjectID(),
+	ShippingAddressID:                       new(bson.ObjectID),
 	PickupAddressID:                         nil,
 	PickupInStore:                           true,
 	OrderStatusID:                           2,
@@ -59,11 +59,11 @@ var mockItemOrder = &domain.Order{
 	OrderDiscount:                           10.00,
 	OrderTotal:                              250.00,
 	RefundedAmount:                          0.00,
-	RewardPointsHistoryEntryID:              new(primitive.ObjectID),
+	RewardPointsHistoryEntryID:              new(bson.ObjectID),
 	CheckoutAttributeDescription:            "Gift Wrap and Note",
 	CheckoutAttributesXml:                   "<Attributes><GiftWrap>Yes</GiftWrap><Note>Happy Birthday</Note></Attributes>",
-	CustomerLanguageID:                      primitive.NewObjectID(),
-	AffiliateID:                             primitive.NewObjectID(),
+	CustomerLanguageID:                      bson.NewObjectID(),
+	AffiliateID:                             bson.NewObjectID(),
 	CustomerIp:                              "192.168.1.2",
 	AllowStoringCreditCardNumber:            true,
 	CardType:                                "MasterCard",
@@ -86,7 +86,7 @@ var mockItemOrder = &domain.Order{
 	Deleted:                                 false,
 	CreatedOnUtc:                            time.Now().AddDate(0, 0, -7), // Created 7 days ago
 	CustomOrderNumber:                       "ORD67890",
-	RedeemedRewardPointsEntryID:             new(primitive.ObjectID),
+	RedeemedRewardPointsEntryID:             new(bson.ObjectID),
 }
 
 func TestOrderRepository_FetchByID(t *testing.T) {

@@ -11,8 +11,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultSeoSettings struct {
@@ -28,7 +27,7 @@ func (m *MockSingleResultSeoSettings) Decode(v interface{}) error {
 }
 
 var mockItemSeoSettings = &domain.SeoSettings{
-	ID:                                primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                                bson.NewObjectID(), // Existing ID of the record to update
 	PageTitleSeparator:                "|",
 	PageTitleSeoAdjustmentID:          2,
 	GenerateProductMetaDescription:    false,

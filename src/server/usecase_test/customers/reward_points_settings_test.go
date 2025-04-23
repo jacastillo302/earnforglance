@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestRewardPointsSettingsUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestRewardPointsSettingsUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewRewardPointsSettingsUsecase(mockRepo, timeout)
 
-	rewardPointsSettingsID := primitive.NewObjectID().Hex()
+	rewardPointsSettingsID := bson.NewObjectID().Hex()
 
 	updatedRewardPointsSettings := domain.RewardPointsSettings{
-		ID:                               primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                               bson.NewObjectID(), // Existing ID of the record to update
 		Enabled:                          false,
 		ExchangeRate:                     0.02,
 		MinimumRewardPointsToUse:         200,
@@ -89,7 +89,7 @@ func TestRewardPointsSettingsUsecase_Update(t *testing.T) {
 	usecase := test.NewRewardPointsSettingsUsecase(mockRepo, timeout)
 
 	updatedRewardPointsSettings := &domain.RewardPointsSettings{
-		ID:                               primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                               bson.NewObjectID(), // Existing ID of the record to update
 		Enabled:                          false,
 		ExchangeRate:                     0.02,
 		MinimumRewardPointsToUse:         200,
@@ -123,7 +123,7 @@ func TestRewardPointsSettingsUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewRewardPointsSettingsUsecase(mockRepo, timeout)
 
-	rewardPointsSettingsID := primitive.NewObjectID().Hex()
+	rewardPointsSettingsID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, rewardPointsSettingsID).Return(nil)
 
@@ -140,7 +140,7 @@ func TestRewardPointsSettingsUsecase_Fetch(t *testing.T) {
 
 	fetchedRewardPointsSettings := []domain.RewardPointsSettings{
 		{
-			ID:                               primitive.NewObjectID(),
+			ID:                               bson.NewObjectID(),
 			Enabled:                          true,
 			ExchangeRate:                     0.01,
 			MinimumRewardPointsToUse:         100,
@@ -159,7 +159,7 @@ func TestRewardPointsSettingsUsecase_Fetch(t *testing.T) {
 			PageSize:                         20,
 		},
 		{
-			ID:                               primitive.NewObjectID(),
+			ID:                               bson.NewObjectID(),
 			Enabled:                          false,
 			ExchangeRate:                     0.02,
 			MinimumRewardPointsToUse:         200,

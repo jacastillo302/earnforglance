@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestManufacturerTemplateUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestManufacturerTemplateUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewManufacturerTemplateUsecase(mockRepo, timeout)
 
-	manufacturerTemplateID := primitive.NewObjectID().Hex()
+	manufacturerTemplateID := bson.NewObjectID().Hex()
 
 	expectedManufacturerTemplate := domain.ManufacturerTemplate{
-		ID:           primitive.NewObjectID(),
+		ID:           bson.NewObjectID(),
 		Name:         "Updated Manufacturer Template",
 		ViewPath:     "/Views/Manufacturer/Updated.cshtml",
 		DisplayOrder: 2,
@@ -60,7 +60,7 @@ func TestManufacturerTemplateUsecase_Update(t *testing.T) {
 	usecase := test.NewManufacturerTemplateUsecase(mockRepo, timeout)
 
 	updatedManufacturerTemplate := &domain.ManufacturerTemplate{
-		ID:           primitive.NewObjectID(),
+		ID:           bson.NewObjectID(),
 		Name:         "Updated Manufacturer Template",
 		ViewPath:     "/Views/Manufacturer/Updated.cshtml",
 		DisplayOrder: 2,
@@ -79,7 +79,7 @@ func TestManufacturerTemplateUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewManufacturerTemplateUsecase(mockRepo, timeout)
 
-	manufacturerTemplateID := primitive.NewObjectID().Hex()
+	manufacturerTemplateID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, manufacturerTemplateID).Return(nil)
 
@@ -96,13 +96,13 @@ func TestManufacturerTemplateUsecase_Fetch(t *testing.T) {
 
 	expectedManufacturerTemplates := []domain.ManufacturerTemplate{
 		{
-			ID:           primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
 			Name:         "Default Manufacturer Template",
 			ViewPath:     "/Views/Manufacturer/Default.cshtml",
 			DisplayOrder: 1,
 		},
 		{
-			ID:           primitive.NewObjectID(),
+			ID:           bson.NewObjectID(),
 			Name:         "Custom Manufacturer Template",
 			ViewPath:     "/Views/Manufacturer/Custom.cshtml",
 			DisplayOrder: 2,

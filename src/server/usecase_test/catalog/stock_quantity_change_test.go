@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestStockQuantityChangeUsecase_FetchByID(t *testing.T) {
@@ -18,17 +18,17 @@ func TestStockQuantityChangeUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewStockQuantityChangeUsecase(mockRepo, timeout)
 
-	stockQuantityChangeID := primitive.NewObjectID().Hex()
+	stockQuantityChangeID := bson.NewObjectID().Hex()
 
 	updatedStockQuantityChange := domain.StockQuantityChange{
-		ID:                 primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                 bson.NewObjectID(), // Existing ID of the record to update
 		QuantityAdjustment: -5,
 		StockQuantity:      95,
 		Message:            "Stock reduced due to sale.",
 		CreatedOnUtc:       time.Now(),
-		ProductID:          primitive.NewObjectID(),
+		ProductID:          bson.NewObjectID(),
 		CombinationID:      nil,
-		WarehouseID:        primitive.NewObjectID(),
+		WarehouseID:        bson.NewObjectID(),
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, stockQuantityChangeID).Return(updatedStockQuantityChange, nil)
@@ -50,9 +50,9 @@ func TestStockQuantityChangeUsecase_Create(t *testing.T) {
 		StockQuantity:      100,
 		Message:            "Initial stock added.",
 		CreatedOnUtc:       time.Now(),
-		ProductID:          primitive.NewObjectID(),
+		ProductID:          bson.NewObjectID(),
 		CombinationID:      nil,
-		WarehouseID:        primitive.NewObjectID(),
+		WarehouseID:        bson.NewObjectID(),
 	}
 
 	mockRepo.On("Create", mock.Anything, newStockQuantityChange).Return(nil)
@@ -69,14 +69,14 @@ func TestStockQuantityChangeUsecase_Update(t *testing.T) {
 	usecase := test.NewStockQuantityChangeUsecase(mockRepo, timeout)
 
 	updatedStockQuantityChange := &domain.StockQuantityChange{
-		ID:                 primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                 bson.NewObjectID(), // Existing ID of the record to update
 		QuantityAdjustment: -5,
 		StockQuantity:      95,
 		Message:            "Stock reduced due to sale.",
 		CreatedOnUtc:       time.Now(),
-		ProductID:          primitive.NewObjectID(),
+		ProductID:          bson.NewObjectID(),
 		CombinationID:      nil,
-		WarehouseID:        primitive.NewObjectID(),
+		WarehouseID:        bson.NewObjectID(),
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedStockQuantityChange).Return(nil)
@@ -92,7 +92,7 @@ func TestStockQuantityChangeUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewStockQuantityChangeUsecase(mockRepo, timeout)
 
-	stockQuantityChangeID := primitive.NewObjectID().Hex()
+	stockQuantityChangeID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, stockQuantityChangeID).Return(nil)
 
@@ -109,24 +109,24 @@ func TestStockQuantityChangeUsecase_Fetch(t *testing.T) {
 
 	fetchedStockQuantityChanges := []domain.StockQuantityChange{
 		{
-			ID:                 primitive.NewObjectID(),
+			ID:                 bson.NewObjectID(),
 			QuantityAdjustment: 10,
 			StockQuantity:      100,
 			Message:            "Initial stock added.",
 			CreatedOnUtc:       time.Now().AddDate(0, 0, -10), // 10 days ago
-			ProductID:          primitive.NewObjectID(),
+			ProductID:          bson.NewObjectID(),
 			CombinationID:      nil,
-			WarehouseID:        primitive.NewObjectID(),
+			WarehouseID:        bson.NewObjectID(),
 		},
 		{
-			ID:                 primitive.NewObjectID(),
+			ID:                 bson.NewObjectID(),
 			QuantityAdjustment: -5,
 			StockQuantity:      95,
 			Message:            "Stock reduced due to sale.",
 			CreatedOnUtc:       time.Now().AddDate(0, 0, -5), // 5 days ago
-			ProductID:          primitive.NewObjectID(),
+			ProductID:          bson.NewObjectID(),
 			CombinationID:      nil,
-			WarehouseID:        primitive.NewObjectID(),
+			WarehouseID:        bson.NewObjectID(),
 		},
 	}
 	fetchedStockQuantityChanges[1].StockQuantity = 100

@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,10 +12,10 @@ const (
 
 // ActivityLogType represents an activity log type records
 type ActivityLogType struct {
-	ID            primitive.ObjectID `bson:"_id,omitempty"`
-	SystemKeyword string             `bson:"system_keyword"`
-	Name          string             `bson:"name"`
-	Enabled       bool               `bson:"enabled"`
+	ID            bson.ObjectID `bson:"_id,omitempty"`
+	SystemKeyword string        `bson:"system_keyword"`
+	Name          string        `bson:"name"`
+	Enabled       bool          `bson:"enabled"`
 }
 
 type ActivityLogTypeRepository interface {

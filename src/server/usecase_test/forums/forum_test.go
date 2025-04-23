@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestForumUsecase_FetchByID(t *testing.T) {
@@ -18,18 +18,18 @@ func TestForumUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewForumUsecase(mockRepo, timeout)
 
-	forumID := primitive.NewObjectID().Hex()
+	forumID := bson.NewObjectID().Hex()
 
 	updatedForum := domain.Forum{
-		ID:                 primitive.NewObjectID(), // Existing ID of the record to update
-		ForumGroupID:       primitive.NewObjectID(),
+		ID:                 bson.NewObjectID(), // Existing ID of the record to update
+		ForumGroupID:       bson.NewObjectID(),
 		Name:               "Announcements",
 		Description:        "Official announcements and updates.",
 		NumTopics:          10,
 		NumPosts:           50,
-		LastTopicID:        primitive.NewObjectID(),
-		LastPostID:         primitive.NewObjectID(),
-		LastPostCustomerID: primitive.NewObjectID(),
+		LastTopicID:        bson.NewObjectID(),
+		LastPostID:         bson.NewObjectID(),
+		LastPostCustomerID: bson.NewObjectID(),
 		LastPostTime:       new(time.Time),
 		DisplayOrder:       2,
 		CreatedOnUtc:       time.Now().AddDate(0, 0, -30), // Created 30 days ago
@@ -52,14 +52,14 @@ func TestForumUsecase_Create(t *testing.T) {
 	usecase := test.NewForumUsecase(mockRepo, timeout)
 
 	newForum := &domain.Forum{
-		ForumGroupID:       primitive.NewObjectID(),
+		ForumGroupID:       bson.NewObjectID(),
 		Name:               "General Discussion",
 		Description:        "A place for general topics and discussions.",
 		NumTopics:          0,
 		NumPosts:           0,
-		LastTopicID:        primitive.NilObjectID,
-		LastPostID:         primitive.NilObjectID,
-		LastPostCustomerID: primitive.NilObjectID,
+		LastTopicID:        bson.NilObjectID,
+		LastPostID:         bson.NilObjectID,
+		LastPostCustomerID: bson.NilObjectID,
 		LastPostTime:       nil,
 		DisplayOrder:       1,
 		CreatedOnUtc:       time.Now(),
@@ -80,15 +80,15 @@ func TestForumUsecase_Update(t *testing.T) {
 	usecase := test.NewForumUsecase(mockRepo, timeout)
 
 	updatedForum := &domain.Forum{
-		ID:                 primitive.NewObjectID(), // Existing ID of the record to update
-		ForumGroupID:       primitive.NewObjectID(),
+		ID:                 bson.NewObjectID(), // Existing ID of the record to update
+		ForumGroupID:       bson.NewObjectID(),
 		Name:               "Announcements",
 		Description:        "Official announcements and updates.",
 		NumTopics:          10,
 		NumPosts:           50,
-		LastTopicID:        primitive.NewObjectID(),
-		LastPostID:         primitive.NewObjectID(),
-		LastPostCustomerID: primitive.NewObjectID(),
+		LastTopicID:        bson.NewObjectID(),
+		LastPostID:         bson.NewObjectID(),
+		LastPostCustomerID: bson.NewObjectID(),
 		LastPostTime:       new(time.Time),
 		DisplayOrder:       2,
 		CreatedOnUtc:       time.Now().AddDate(0, 0, -30), // Created 30 days ago
@@ -109,7 +109,7 @@ func TestForumUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewForumUsecase(mockRepo, timeout)
 
-	forumID := primitive.NewObjectID().Hex()
+	forumID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, forumID).Return(nil)
 
@@ -126,30 +126,30 @@ func TestForumUsecase_Fetch(t *testing.T) {
 
 	fetchedForums := []domain.Forum{
 		{
-			ID:                 primitive.NewObjectID(),
-			ForumGroupID:       primitive.NewObjectID(),
+			ID:                 bson.NewObjectID(),
+			ForumGroupID:       bson.NewObjectID(),
 			Name:               "General Discussion",
 			Description:        "A place for general topics and discussions.",
 			NumTopics:          5,
 			NumPosts:           20,
-			LastTopicID:        primitive.NewObjectID(),
-			LastPostID:         primitive.NewObjectID(),
-			LastPostCustomerID: primitive.NewObjectID(),
+			LastTopicID:        bson.NewObjectID(),
+			LastPostID:         bson.NewObjectID(),
+			LastPostCustomerID: bson.NewObjectID(),
 			LastPostTime:       new(time.Time),
 			DisplayOrder:       1,
 			CreatedOnUtc:       time.Now().AddDate(0, 0, -10), // Created 10 days ago
 			UpdatedOnUtc:       time.Now().AddDate(0, 0, -5),  // Updated 5 days ago
 		},
 		{
-			ID:                 primitive.NewObjectID(),
-			ForumGroupID:       primitive.NewObjectID(),
+			ID:                 bson.NewObjectID(),
+			ForumGroupID:       bson.NewObjectID(),
 			Name:               "Announcements",
 			Description:        "Official announcements and updates.",
 			NumTopics:          10,
 			NumPosts:           50,
-			LastTopicID:        primitive.NewObjectID(),
-			LastPostID:         primitive.NewObjectID(),
-			LastPostCustomerID: primitive.NewObjectID(),
+			LastTopicID:        bson.NewObjectID(),
+			LastPostID:         bson.NewObjectID(),
+			LastPostCustomerID: bson.NewObjectID(),
 			LastPostTime:       new(time.Time),
 			DisplayOrder:       2,
 			CreatedOnUtc:       time.Now().AddDate(0, 0, -30), // Created 30 days ago

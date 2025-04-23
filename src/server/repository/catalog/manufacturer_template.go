@@ -6,9 +6,8 @@ import (
 	domain "earnforglance/server/domain/catalog"
 	"earnforglance/server/service/data/mongo"
 
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+	"go.mongodb.org/mongo-driver/v2/mongo/options"
 )
 
 type manufacturertemplateRepository struct {
@@ -59,7 +58,7 @@ func (ur *manufacturertemplateRepository) Update(c context.Context, manufacturer
 func (ur *manufacturertemplateRepository) Delete(c context.Context, ID string) error {
 	collection := ur.database.Collection(ur.collection)
 
-	idHex, err := primitive.ObjectIDFromHex(ID)
+	idHex, err := bson.ObjectIDFromHex(ID)
 	if err != nil {
 		return err
 	}
@@ -72,7 +71,8 @@ func (ur *manufacturertemplateRepository) Delete(c context.Context, ID string) e
 func (ur *manufacturertemplateRepository) Fetch(c context.Context) ([]domain.ManufacturerTemplate, error) {
 	collection := ur.database.Collection(ur.collection)
 
-	opts := options.Find().SetProjection(bson.D{{Key: "password", Value: 0}})
+	opts := options.Find().
+		SetProjection(bson.D{{Key: "password", Value: 0}})
 	cursor, err := collection.Find(c, bson.D{}, opts)
 
 	if err != nil {
@@ -94,7 +94,7 @@ func (tr *manufacturertemplateRepository) FetchByID(c context.Context, manufactu
 
 	var manufacturertemplate domain.ManufacturerTemplate
 
-	idHex, err := primitive.ObjectIDFromHex(manufacturertemplateID)
+	idHex, err := bson.ObjectIDFromHex(manufacturertemplateID)
 	if err != nil {
 		return manufacturertemplate, err
 	}

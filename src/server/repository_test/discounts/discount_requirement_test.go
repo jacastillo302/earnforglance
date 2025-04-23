@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultDiscountRequirement struct {
@@ -28,10 +28,10 @@ func (m *MockSingleResultDiscountRequirement) Decode(v interface{}) error {
 }
 
 var mockItemDiscountRequirement = &domain.DiscountRequirement{
-	ID:                                primitive.NewObjectID(), // Existing ID of the record to update
-	DiscountID:                        primitive.NewObjectID(),
+	ID:                                bson.NewObjectID(), // Existing ID of the record to update
+	DiscountID:                        bson.NewObjectID(),
 	DiscountRequirementRuleSystemName: "CustomerRoleRequirement",
-	ParentID:                          new(primitive.ObjectID),
+	ParentID:                          new(bson.ObjectID),
 	InteractionTypeID:                 new(int),
 	IsGroup:                           true,
 }

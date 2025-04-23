@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultStore struct {
@@ -28,7 +28,7 @@ func (m *MockSingleResultStore) Decode(v interface{}) error {
 }
 
 var mockItemStore = &domain.Store{
-	ID:                     primitive.NewObjectID(), // Existing ID of the record to update
+	ID:                     bson.NewObjectID(), // Existing ID of the record to update
 	Name:                   "Updated Store",
 	DefaultMetaKeywords:    "updated, store, gadgets",
 	DefaultMetaDescription: "An updated description for the store.",
@@ -38,7 +38,7 @@ var mockItemStore = &domain.Store{
 	Url:                    "https://www.updatedstore.com",
 	SslEnabled:             false,
 	Hosts:                  "www.updatedstore.com",
-	DefaultLanguageID:      primitive.NewObjectID(),
+	DefaultLanguageID:      bson.NewObjectID(),
 	DisplayOrder:           2,
 	CompanyName:            "Updated Store LLC",
 	CompanyAddress:         "456 Updated Avenue, Townsville",

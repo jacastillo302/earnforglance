@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultBlogPostTag struct {
@@ -37,7 +37,7 @@ func TestBlogPostTagRepository_FetchByID(t *testing.T) {
 	collectionName := domain.CollectionBlogPostTag
 
 	mockItem := domain.BlogPostTag{
-		ID:            primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+		ID:            bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
 		Name:          "",
 		BlogPostCount: 0,
 	}
@@ -86,7 +86,7 @@ func TestBlogPostTagRepository_Create(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockBlogPostTag := &domain.BlogPostTag{
-		ID:            primitive.NewObjectID(), // Existing ID of the record to update
+		ID:            bson.NewObjectID(), // Existing ID of the record to update
 		Name:          "Tech Updates",
 		BlogPostCount: 10, // Updated count of blog posts associated with this tag
 	}

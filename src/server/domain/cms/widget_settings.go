@@ -3,7 +3,7 @@ package domain
 import (
 	"context"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 const (
@@ -12,8 +12,8 @@ const (
 
 // WidgetSettings represents widget settings
 type WidgetSettings struct {
-	ID                      primitive.ObjectID `bson:"_id,omitempty"`
-	ActiveWidgetSystemNames []string           `bson:"active_widget_system_names"`
+	ID                      bson.ObjectID `bson:"_id,omitempty"`
+	ActiveWidgetSystemNames []string      `bson:"active_widget_system_names"`
 }
 
 type WidgetSettingsRepository interface {

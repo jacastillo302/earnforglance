@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestLocalizedPropertyUsecase_FetchByID(t *testing.T) {
@@ -18,12 +18,12 @@ func TestLocalizedPropertyUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewLocalizedPropertyUsecase(mockRepo, timeout)
 
-	localizationID := primitive.NewObjectID().Hex()
+	localizationID := bson.NewObjectID().Hex()
 
 	updatedLocalizedProperty := domain.LocalizedProperty{
-		ID:                 primitive.NewObjectID(), // Existing ID of the record to update
-		PermissionRecordID: primitive.NewObjectID(),
-		LanguageID:         primitive.NewObjectID(),
+		ID:                 bson.NewObjectID(), // Existing ID of the record to update
+		PermissionRecordID: bson.NewObjectID(),
+		LanguageID:         bson.NewObjectID(),
 		LocaleKeyGroup:     "Category",
 		LocaleKey:          "Description",
 		LocaleValue:        "Electronics and Gadgets",
@@ -43,8 +43,8 @@ func TestLocalizedPropertyUsecase_Create(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewLocalizedPropertyUsecase(mockRepo, timeout)
 	newLocalizedProperty := &domain.LocalizedProperty{
-		PermissionRecordID: primitive.NewObjectID(),
-		LanguageID:         primitive.NewObjectID(),
+		PermissionRecordID: bson.NewObjectID(),
+		LanguageID:         bson.NewObjectID(),
 		LocaleKeyGroup:     "Product",
 		LocaleKey:          "Name",
 		LocaleValue:        "Laptop",
@@ -64,9 +64,9 @@ func TestLocalizedPropertyUsecase_Update(t *testing.T) {
 	usecase := test.NewLocalizedPropertyUsecase(mockRepo, timeout)
 
 	updatedLocalizedProperty := &domain.LocalizedProperty{
-		ID:                 primitive.NewObjectID(), // Existing ID of the record to update
-		PermissionRecordID: primitive.NewObjectID(),
-		LanguageID:         primitive.NewObjectID(),
+		ID:                 bson.NewObjectID(), // Existing ID of the record to update
+		PermissionRecordID: bson.NewObjectID(),
+		LanguageID:         bson.NewObjectID(),
 		LocaleKeyGroup:     "Category",
 		LocaleKey:          "Description",
 		LocaleValue:        "Electronics and Gadgets",
@@ -85,7 +85,7 @@ func TestLocalizedPropertyUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewLocalizedPropertyUsecase(mockRepo, timeout)
 
-	localizationID := primitive.NewObjectID().Hex()
+	localizationID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, localizationID).Return(nil)
 
@@ -102,17 +102,17 @@ func TestLocalizedPropertyUsecase_Fetch(t *testing.T) {
 
 	fetchedLocalizedProperties := []domain.LocalizedProperty{
 		{
-			ID:                 primitive.NewObjectID(),
-			PermissionRecordID: primitive.NewObjectID(),
-			LanguageID:         primitive.NewObjectID(),
+			ID:                 bson.NewObjectID(),
+			PermissionRecordID: bson.NewObjectID(),
+			LanguageID:         bson.NewObjectID(),
 			LocaleKeyGroup:     "Product",
 			LocaleKey:          "Name",
 			LocaleValue:        "Laptop",
 		},
 		{
-			ID:                 primitive.NewObjectID(),
-			PermissionRecordID: primitive.NewObjectID(),
-			LanguageID:         primitive.NewObjectID(),
+			ID:                 bson.NewObjectID(),
+			PermissionRecordID: bson.NewObjectID(),
+			LanguageID:         bson.NewObjectID(),
 			LocaleKeyGroup:     "Category",
 			LocaleKey:          "Description",
 			LocaleValue:        "Electronics and Gadgets",

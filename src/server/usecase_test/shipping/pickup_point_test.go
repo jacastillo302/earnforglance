@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestPickupPointUsecase_FetchByID(t *testing.T) {
@@ -18,10 +18,10 @@ func TestPickupPointUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewPickupPointUsecase(mockRepo, timeout)
 
-	pickupPointID := primitive.NewObjectID().Hex()
+	pickupPointID := bson.NewObjectID().Hex()
 
 	updatedPickupPoint := domain.PickupPoint{
-		ID:                 primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                 bson.NewObjectID(), // Existing ID of the record to update
 		Name:               "Downtown Pickup",
 		Description:        "Pickup point located downtown.",
 		ProviderSystemName: "UPS",
@@ -90,7 +90,7 @@ func TestPickupPointUsecase_Update(t *testing.T) {
 	usecase := test.NewPickupPointUsecase(mockRepo, timeout)
 
 	updatedPickupPoint := &domain.PickupPoint{
-		ID:                 primitive.NewObjectID(), // Existing ID of the record to update
+		ID:                 bson.NewObjectID(), // Existing ID of the record to update
 		Name:               "Downtown Pickup",
 		Description:        "Pickup point located downtown.",
 		ProviderSystemName: "UPS",
@@ -124,7 +124,7 @@ func TestPickupPointUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewPickupPointUsecase(mockRepo, timeout)
 
-	pickupPointID := primitive.NewObjectID().Hex()
+	pickupPointID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, pickupPointID).Return(nil)
 
@@ -141,7 +141,7 @@ func TestPickupPointUsecase_Fetch(t *testing.T) {
 
 	fetchedPickupPoints := []domain.PickupPoint{
 		{
-			ID:                 primitive.NewObjectID(),
+			ID:                 bson.NewObjectID(),
 			Name:               "Main Street Pickup",
 			Description:        "Pickup point located on Main Street.",
 			ProviderSystemName: "FedEx",
@@ -159,7 +159,7 @@ func TestPickupPointUsecase_Fetch(t *testing.T) {
 			TransitDays:        new(int),
 		},
 		{
-			ID:                 primitive.NewObjectID(),
+			ID:                 bson.NewObjectID(),
 			Name:               "Downtown Pickup",
 			Description:        "Pickup point located downtown.",
 			ProviderSystemName: "UPS",

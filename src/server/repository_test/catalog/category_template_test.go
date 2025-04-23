@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type MockSingleResultCategoryTemplate struct {
@@ -36,7 +36,7 @@ func TestCategoryTemplateRepository_FetchByID(t *testing.T) {
 
 	collectionName := domain.CollectionCategoryTemplate
 
-	mockItem := domain.CategoryTemplate{ID: primitive.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, Name: "", ViewPath: "", DisplayOrder: 0}
+	mockItem := domain.CategoryTemplate{ID: bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, Name: "", ViewPath: "", DisplayOrder: 0}
 
 	t.Run("success", func(t *testing.T) {
 		mockSingleResult := &MockSingleResultCategoryTemplate{}
@@ -82,7 +82,7 @@ func TestCategoryTemplateRepository_Create(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockCategoryTemplate := &domain.CategoryTemplate{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
 		Name:         "Updated Category Template",
 		ViewPath:     "/Views/Category/Updated.cshtml",
 		DisplayOrder: 2,
@@ -106,7 +106,7 @@ func TestCategoryTemplateRepository_Update(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockCategoryTemplate := &domain.CategoryTemplate{
-		ID:           primitive.NewObjectID(), // Existing ID of the record to update
+		ID:           bson.NewObjectID(), // Existing ID of the record to update
 		Name:         "Updated Category Template",
 		ViewPath:     "/Views/Category/Updated.cshtml",
 		DisplayOrder: 2,

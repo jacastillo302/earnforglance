@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestDiscountCategoryMappingUsecase_FetchByID(t *testing.T) {
@@ -18,13 +18,13 @@ func TestDiscountCategoryMappingUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewDiscountCategoryMappingUsecase(mockRepo, timeout)
 
-	discountCategoryMappingID := primitive.NewObjectID().Hex()
+	discountCategoryMappingID := bson.NewObjectID().Hex()
 
 	updatedDiscountCategoryMapping := domain.DiscountCategoryMapping{
 		DiscountMapping: domain.DiscountMapping{
-			DiscountID: primitive.NewObjectID(),
+			DiscountID: bson.NewObjectID(),
 		},
-		EntityID: primitive.NewObjectID(),
+		EntityID: bson.NewObjectID(),
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, discountCategoryMappingID).Return(updatedDiscountCategoryMapping, nil)
@@ -43,9 +43,9 @@ func TestDiscountCategoryMappingUsecase_Create(t *testing.T) {
 
 	newDiscountCategoryMapping := &domain.DiscountCategoryMapping{
 		DiscountMapping: domain.DiscountMapping{
-			DiscountID: primitive.NewObjectID(),
+			DiscountID: bson.NewObjectID(),
 		},
-		EntityID: primitive.NewObjectID(),
+		EntityID: bson.NewObjectID(),
 	}
 
 	mockRepo.On("Create", mock.Anything, newDiscountCategoryMapping).Return(nil)
@@ -63,9 +63,9 @@ func TestDiscountCategoryMappingUsecase_Update(t *testing.T) {
 
 	updatedDiscountCategoryMapping := &domain.DiscountCategoryMapping{
 		DiscountMapping: domain.DiscountMapping{
-			DiscountID: primitive.NewObjectID(),
+			DiscountID: bson.NewObjectID(),
 		},
-		EntityID: primitive.NewObjectID(),
+		EntityID: bson.NewObjectID(),
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedDiscountCategoryMapping).Return(nil)
@@ -81,7 +81,7 @@ func TestDiscountCategoryMappingUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10) * time.Second
 	usecase := test.NewDiscountCategoryMappingUsecase(mockRepo, timeout)
 
-	discountCategoryMappingID := primitive.NewObjectID().Hex()
+	discountCategoryMappingID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, discountCategoryMappingID).Return(nil)
 
@@ -99,15 +99,15 @@ func TestDiscountCategoryMappingUsecase_Fetch(t *testing.T) {
 	fetchedDiscountCategoryMappings := []domain.DiscountCategoryMapping{
 		{
 			DiscountMapping: domain.DiscountMapping{
-				DiscountID: primitive.NewObjectID(),
+				DiscountID: bson.NewObjectID(),
 			},
-			EntityID: primitive.NewObjectID(),
+			EntityID: bson.NewObjectID(),
 		},
 		{
 			DiscountMapping: domain.DiscountMapping{
-				DiscountID: primitive.NewObjectID(),
+				DiscountID: bson.NewObjectID(),
 			},
-			EntityID: primitive.NewObjectID(),
+			EntityID: bson.NewObjectID(),
 		},
 	}
 

@@ -11,7 +11,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestDownloadUsecase_FetchByID(t *testing.T) {
@@ -19,10 +19,10 @@ func TestDownloadUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewDownloadUsecase(mockRepo, timeout)
 
-	mediaID := primitive.NewObjectID().Hex()
+	mediaID := bson.NewObjectID().Hex()
 
 	updatedDownload := domain.Download{
-		ID:             primitive.NewObjectID(), // Existing ID of the record to update
+		ID:             bson.NewObjectID(), // Existing ID of the record to update
 		DownloadGuid:   uuid.New(),
 		UseDownloadUrl: false,
 		DownloadUrl:    "",
@@ -72,7 +72,7 @@ func TestDownloadUsecase_Update(t *testing.T) {
 	usecase := test.NewDownloadUsecase(mockRepo, timeout)
 
 	updatedDownload := &domain.Download{
-		ID:             primitive.NewObjectID(), // Existing ID of the record to update
+		ID:             bson.NewObjectID(), // Existing ID of the record to update
 		DownloadGuid:   uuid.New(),
 		UseDownloadUrl: false,
 		DownloadUrl:    "",
@@ -96,7 +96,7 @@ func TestDownloadUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewDownloadUsecase(mockRepo, timeout)
 
-	mediaID := primitive.NewObjectID().Hex()
+	mediaID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, mediaID).Return(nil)
 
@@ -113,7 +113,7 @@ func TestDownloadUsecase_Fetch(t *testing.T) {
 
 	fetchedDownloads := []domain.Download{
 		{
-			ID:             primitive.NewObjectID(),
+			ID:             bson.NewObjectID(),
 			DownloadGuid:   uuid.New(),
 			UseDownloadUrl: true,
 			DownloadUrl:    "https://example.com/file1.pdf",
@@ -124,7 +124,7 @@ func TestDownloadUsecase_Fetch(t *testing.T) {
 			IsNew:          true,
 		},
 		{
-			ID:             primitive.NewObjectID(),
+			ID:             bson.NewObjectID(),
 			DownloadGuid:   uuid.New(),
 			UseDownloadUrl: false,
 			DownloadUrl:    "",

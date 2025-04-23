@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 func TestGdprLogUsecase_FetchByID(t *testing.T) {
@@ -18,12 +18,12 @@ func TestGdprLogUsecase_FetchByID(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewGdprLogUsecase(mockRepo, timeout)
 
-	gdprID := primitive.NewObjectID().Hex()
+	gdprID := bson.NewObjectID().Hex()
 
 	updatedGdprLog := domain.GdprLog{
-		ID:             primitive.NewObjectID(), // Existing ID of the record to update
-		CustomerID:     primitive.NewObjectID(),
-		ConsentID:      primitive.NewObjectID(),
+		ID:             bson.NewObjectID(), // Existing ID of the record to update
+		CustomerID:     bson.NewObjectID(),
+		ConsentID:      bson.NewObjectID(),
 		CustomerInfo:   "Jane Doe, jane.doe@example.com",
 		RequestTypeID:  2,
 		RequestDetails: "Request to export personal data.",
@@ -45,8 +45,8 @@ func TestGdprLogUsecase_Create(t *testing.T) {
 	usecase := test.NewGdprLogUsecase(mockRepo, timeout)
 
 	newGdprLog := &domain.GdprLog{
-		CustomerID:     primitive.NewObjectID(),
-		ConsentID:      primitive.NewObjectID(),
+		CustomerID:     bson.NewObjectID(),
+		ConsentID:      bson.NewObjectID(),
 		CustomerInfo:   "John Doe, john.doe@example.com",
 		RequestTypeID:  1,
 		RequestDetails: "Request to delete personal data.",
@@ -67,9 +67,9 @@ func TestGdprLogUsecase_Update(t *testing.T) {
 	usecase := test.NewGdprLogUsecase(mockRepo, timeout)
 
 	updatedGdprLog := &domain.GdprLog{
-		ID:             primitive.NewObjectID(), // Existing ID of the record to update
-		CustomerID:     primitive.NewObjectID(),
-		ConsentID:      primitive.NewObjectID(),
+		ID:             bson.NewObjectID(), // Existing ID of the record to update
+		CustomerID:     bson.NewObjectID(),
+		ConsentID:      bson.NewObjectID(),
 		CustomerInfo:   "Jane Doe, jane.doe@example.com",
 		RequestTypeID:  2,
 		RequestDetails: "Request to export personal data.",
@@ -90,7 +90,7 @@ func TestGdprLogUsecase_Delete(t *testing.T) {
 	timeout := time.Duration(10)
 	usecase := test.NewGdprLogUsecase(mockRepo, timeout)
 
-	gdprID := primitive.NewObjectID().Hex()
+	gdprID := bson.NewObjectID().Hex()
 
 	mockRepo.On("Delete", mock.Anything, gdprID).Return(nil)
 
@@ -107,9 +107,9 @@ func TestGdprLogUsecase_Fetch(t *testing.T) {
 
 	fetchedGdprLogs := []domain.GdprLog{
 		{
-			ID:             primitive.NewObjectID(),
-			CustomerID:     primitive.NewObjectID(),
-			ConsentID:      primitive.NewObjectID(),
+			ID:             bson.NewObjectID(),
+			CustomerID:     bson.NewObjectID(),
+			ConsentID:      bson.NewObjectID(),
 			CustomerInfo:   "John Doe, john.doe@example.com",
 			RequestTypeID:  1,
 			RequestDetails: "Request to delete personal data.",
@@ -117,9 +117,9 @@ func TestGdprLogUsecase_Fetch(t *testing.T) {
 
 		},
 		{
-			ID:             primitive.NewObjectID(),
-			CustomerID:     primitive.NewObjectID(),
-			ConsentID:      primitive.NewObjectID(),
+			ID:             bson.NewObjectID(),
+			CustomerID:     bson.NewObjectID(),
+			ConsentID:      bson.NewObjectID(),
 			CustomerInfo:   "Jane Doe, jane.doe@example.com",
 			RequestTypeID:  2,
 			RequestDetails: "Request to export personal data.",
