@@ -100,7 +100,7 @@ func (cr *catalogRepository) GetManufacturers(c context.Context, filter domain.M
 	}
 
 	findOptions := options.Find().
-		SetSort(bson.D{{Key: "_id", Value: sortOrder}}).
+		SetSort(bson.D{{Key: "display_order", Value: sortOrder}}).
 		SetLimit(limit)
 
 	collection := cr.database.Collection(catalog.CollectionManufacturer)
@@ -520,7 +520,7 @@ func PrepareProduct(cr *catalogRepository, c context.Context, product catalog.Pr
 		case "tax":
 			result.Tax, err = PrepareTaxCategory(cr, c, product.TaxCategoryID)
 		case "vendor":
-			result.Vendor, err = PrepareVendor(cr, c, product.VendorID)
+			result.Vendor, err = PrepareProductVendor(cr, c, product.VendorID)
 		case "reviews":
 			result.Reviews, err = PrepareProductReview(cr, c, product)
 		case "download":
@@ -1134,7 +1134,7 @@ func PrepareTaxCategory(cr *catalogRepository, c context.Context, ID bson.Object
 	return taxes, err
 }
 
-func PrepareVendor(cr *catalogRepository, c context.Context, ID bson.ObjectID) (vendor.Vendor, error) {
+func PrepareProductVendor(cr *catalogRepository, c context.Context, ID bson.ObjectID) (vendor.Vendor, error) {
 	var vendo vendor.Vendor
 	collection := cr.database.Collection(vendor.CollectionVendor)
 	err := collection.FindOne(c, bson.M{"_id": ID}).Decode(&vendo)

@@ -30,13 +30,13 @@ func (m *MockSingleResultNewsLetterSubscription) Decode(v interface{}) error {
 }
 
 var mockItemNewsLetterSubscription = &domain.NewsLetterSubscription{
-	ID:                         bson.NewObjectID(), // Existing ID of the record to update
-	NewsLetterSubscriptionGuid: uuid.New(),
-	Email:                      "updated_subscriber@example.com",
-	Active:                     false,
-	StoreID:                    bson.NewObjectID(),
-	CreatedOnUtc:               time.Now().AddDate(0, 0, -7), // Created 7 days ago
-	LanguageID:                 bson.NewObjectID(),
+	ID:           bson.NewObjectID(), // Existing ID of the record to update
+	Guid:         uuid.New(),
+	Email:        "updated_subscriber@example.com",
+	Active:       false,
+	StoreID:      bson.NewObjectID(),
+	CreatedOnUtc: time.Now().AddDate(0, 0, -7), // Created 7 days ago
+	LanguageID:   bson.NewObjectID(),
 }
 
 func TestNewsLetterSubscriptionRepository_FetchByID(t *testing.T) {

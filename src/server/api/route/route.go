@@ -6,7 +6,6 @@ import (
 
 	"earnforglance/server/api/middleware"
 	affiliate "earnforglance/server/api/route/affiliate"
-	auth "earnforglance/server/api/route/api"
 	attributes "earnforglance/server/api/route/attributes"
 	blogs "earnforglance/server/api/route/blogs"
 	catalog "earnforglance/server/api/route/catalog"
@@ -68,32 +67,84 @@ func Setup(env *bootstrap.Env, timeout time.Duration, db mongo.Database, gin *gi
 
 	// All Public APIs
 	publicRouter = gin.Group("/api/v1")
+	registerPublicRouters(env, timeout, db, publicRouter)
 
-	public.LoginRouter(env, timeout, db, publicRouter)
-	public.CatalogRouter(env, timeout, db, publicRouter)
-	public.TopicRouter(env, timeout, db, publicRouter)
-	public.BlogRouter(env, timeout, db, publicRouter)
-	public.LocalizationRouter(env, timeout, db, publicRouter)
-	public.NewsItemRouter(env, timeout, db, publicRouter)
-	public.DirectoryRouter(env, timeout, db, publicRouter)
-
-	//security.SignupRouter(env, timeout, db, publicRouter)
-
-	security.RefreshTokenRouter(env, timeout, db, publicRouter)
-
-	publicRouter = gin.Group("/api/v1/client/")
-	auth.ApiClientRouter(env, timeout, db, publicRouter)
-
+	//Install APIs
 	publicRouter = gin.Group("/api/v1/install/")
 	install.InstallRouter(env, timeout, db, publicRouter)
 
 	// Middleware to verify AccessToken
 	protectedRouter := gin.Group("")
-
 	protectedRouter.Use(middleware.JwtAuthMiddleware(env.AccessTokenSecret))
 
 	// Register all domain-specific routers
 	registerModuleRouters(env, timeout, db, protectedRouter)
+}
+
+func registerPublicRouters(env *bootstrap.Env, timeout time.Duration, db mongo.Database, router *gin.RouterGroup) {
+
+	moduleRouters := ModuleRouters{
+
+		"affiliate":  {},
+		"attributes": {},
+		"blogs": {
+			public.BlogRouter,
+		},
+		"catalog": {
+			public.CatalogRouter,
+		},
+		"cms":    {},
+		"common": {},
+		"configuration": {
+			public.ConfigurationRouter,
+		},
+		"customers": {},
+		"directory": {
+			public.DirectoryRouter,
+		},
+		"discounts": {},
+		"forums":    {},
+		"gdpr": {
+			public.GdprConsentRouter,
+		},
+		"localization": {
+			public.LocalizationRouter,
+		},
+		"logging": {},
+		"media":   {},
+		"messages": {
+			public.NewsLetterRouter,
+		},
+		"news": {
+			public.NewsItemRouter,
+		},
+		"orders":        {},
+		"payments":      {},
+		"polls":         {},
+		"scheduleTasks": {},
+		"security": {
+			public.LoginRouter,
+			security.RefreshTokenRouter,
+		},
+		"seo":      {},
+		"shipping": {},
+		"stores":   {},
+		"tax":      {},
+		"topics": {
+			public.TopicRouter,
+		},
+		"vendors": {
+			public.VendorRouter,
+		},
+	}
+
+	// Register all routers from all modules
+	for _, routerFuncs := range moduleRouters {
+		for _, routerFunc := range routerFuncs {
+			routerFunc(env, timeout, db, router)
+		}
+	}
+
 }
 
 func registerModuleRouters(env *bootstrap.Env, timeout time.Duration, db mongo.Database, router *gin.RouterGroup) {

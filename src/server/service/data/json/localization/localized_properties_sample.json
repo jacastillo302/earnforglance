@@ -174,5 +174,69 @@
         "LocaleKeyGroup": "2b011280953d8aa9b7962a23",
         "LocaleKey": "meta_title",
         "LocaleValue": "Actualizaciones de funciones de EarnForGlance"
+    },
+    {
+        "ID": "6808ca46a4b1ad0167be9703",
+        "PermissionRecordID": "67ed65976b3a64a8c73f794a",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "67f32d25c689547e8bb3eb47",
+        "LocaleKey": "name",
+        "LocaleValue": "Nike Latam."
+    },
+    {
+        "ID": "6808ca46a4b1ad0167be9704",
+        "PermissionRecordID": "67ed65976b3a64a8c73f794a",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "67f32d25c689547e8bb3eb47",
+        "LocaleKey": "description",
+        "LocaleValue": "Nike zapatillas deportivas para correr, zapatillas de baloncesto, ropa deportiva y accesorios. Compra en línea en Nike.com."
+    },
+    {
+        "ID": "6808ca46a4b1ad0167be9705",
+        "PermissionRecordID": "67ed65976b3a64a8c73f794a",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "67f32d25c689547e8bb3eb47",
+        "LocaleKey": "meta_keywords",
+        "LocaleValue": "Zapatillas, Nike, Ropa deportiva"
+    },
+    {
+        "ID": "6808ca46a4b1ad0167be9706",
+        "PermissionRecordID": "67ed65976b3a64a8c73f794a",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "67f32d25c689547e8bb3eb47",
+        "LocaleKey": "meta_description",
+        "LocaleValue": " Nike zapatillas deportivas para correr, zapatillas de baloncesto, ropa deportiva y accesorios. Compra en línea en Nike.com."
+    },
+    {
+        "ID": "6808ca46a4b1ad0167be9707",
+        "PermissionRecordID": "67ed65976b3a64a8c73f794a",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "67f32d25c689547e8bb3eb47",
+        "LocaleKey": "meta_title",
+        "LocaleValue": " Nike Latam. and more"
+    },
+    {
+        "ID": "68090de7b287914ef644b56e",
+        "PermissionRecordID": "67ed65976b3a64a8c73f799e",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "67f9525a59e758b435015847",
+        "LocaleKey": "title",
+        "LocaleValue": "Visualización de contenido"
+    },
+    {
+        "ID": "68090de7b287914ef644b56f",
+        "PermissionRecordID": "67ed65976b3a64a8c73f799e",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "67f9525a59e758b435015847",
+        "LocaleKey": "message",
+        "LocaleValue": "Este propósito es necesario para que nuestro sitio web funcione con normalidad y no puede"
+    },
+    {
+        "ID": "68090de7b287914ef644b570",
+        "PermissionRecordID": "67ed65976b3a64a8c73f799e",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "67f9525a59e758b435015847",
+        "LocaleKey": "required_message",
+        "LocaleValue": "Visualización de contenido"
     }
 ]
