@@ -6,6 +6,7 @@ import (
 	message "earnforglance/server/domain/messages"
 	domain "earnforglance/server/domain/public"
 	"earnforglance/server/service/data/mongo"
+	mail "earnforglance/server/service/message/mail/smtp"
 	"fmt"
 	"time"
 
@@ -29,7 +30,7 @@ func NewNewsLetterRepository(db mongo.Database, collection string) domain.NewsLe
 func (cr *newsLetterRepository) NewsLetterSubscription(c context.Context, filter domain.NewsLetterRequest, IpAdress string) (domain.NewsLetterResponse, error) {
 	var result domain.NewsLetterResponse
 	err := error(nil)
-
+	mail.SendEmail()
 	result, err = PrepareNewsLetterSubscription(cr, c, filter, IpAdress)
 	if err != nil || !result.Result {
 		return result, err
