@@ -4,7 +4,6 @@ import (
 	"net/http"
 	"time"
 
-	"earnforglance/server/api/middleware"
 	affiliate "earnforglance/server/api/route/affiliate"
 	attributes "earnforglance/server/api/route/attributes"
 	blogs "earnforglance/server/api/route/blogs"
@@ -17,7 +16,6 @@ import (
 	discounts "earnforglance/server/api/route/discounts"
 	forums "earnforglance/server/api/route/forums"
 	gdpr "earnforglance/server/api/route/gdpr"
-	install "earnforglance/server/api/route/install"
 	localization "earnforglance/server/api/route/localization"
 	logging "earnforglance/server/api/route/logging"
 	media "earnforglance/server/api/route/media"
@@ -70,15 +68,15 @@ func Setup(env *bootstrap.Env, timeout time.Duration, db mongo.Database, gin *gi
 	registerPublicRouters(env, timeout, db, publicRouter)
 
 	//Install APIs
-	publicRouter = gin.Group("/api/v1/install/")
-	install.InstallRouter(env, timeout, db, publicRouter)
+	//publicRouter = gin.Group("/api/v1/install/")
+	//install.InstallRouter(env, timeout, db, publicRouter)
 
 	// Middleware to verify AccessToken
-	protectedRouter := gin.Group("")
-	protectedRouter.Use(middleware.JwtAuthMiddleware(env.AccessTokenSecret))
+	//protectedRouter := gin.Group("")
+	//protectedRouter.Use(middleware.JwtAuthMiddleware(env.AccessTokenSecret))
 
 	// Register all domain-specific routers
-	registerModuleRouters(env, timeout, db, protectedRouter)
+	//registerModuleRouters(env, timeout, db, protectedRouter)
 }
 
 func registerPublicRouters(env *bootstrap.Env, timeout time.Duration, db mongo.Database, router *gin.RouterGroup) {

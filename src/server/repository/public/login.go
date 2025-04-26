@@ -98,29 +98,29 @@ func (ur *userRepository) GetPasw(c context.Context, CustumerID string) (custome
 }
 
 func (ur *userRepository) GetSettingByName(c context.Context, name string) (setting.Setting, error) {
-	collection := ur.database.Collection(setting.CollectionSetting)
-	var item setting.Setting
-	err := collection.FindOne(c, bson.M{"name": name}).Decode(&item)
-	return item, err
-}
-
-func (ur *userRepository) GetLocalebyName(c context.Context, name string, languageID string) (localization.LocaleStringResource, error) {
-	collection := ur.database.Collection(localization.CollectionLocaleStringResource)
-	var item localization.LocaleStringResource
-	var language_id bson.ObjectID
-	language_id, err := bson.ObjectIDFromHex(languageID)
+	item, err := GetSettingByName(c, name, ur.database.Collection(setting.CollectionSetting))
 	if err != nil {
 		return item, err
 	}
-	err = collection.FindOne(c, bson.M{"resource_name": name, "language_id": language_id}).Decode(&item)
 	return item, err
 }
 
 func (ur *userRepository) GetLangugaByCode(c context.Context, lang string) (localization.Language, error) {
-	collection := ur.database.Collection(localization.CollectionLanguage)
-	var item localization.Language
-	err := collection.FindOne(c, bson.M{"unique_seo_code": lang}).Decode(&item)
-	return item, err
+	err := error(nil)
+	locale, err := GetLangugaByCode(c, lang, ur.database.Collection(localization.CollectionLanguage))
+	if err != nil {
+		return locale, err
+	}
+	return locale, err
+}
+
+func (ur *userRepository) GetLocalebyName(c context.Context, name string, languageID string) (localization.LocaleStringResource, error) {
+	err := error(nil)
+	locale, err := GetLocalebyName(c, name, languageID, ur.database.Collection(localization.CollectionLocalizedProperty))
+	if err != nil {
+		return locale, err
+	}
+	return locale, err
 }
 
 func (ur *userRepository) GetByID(c context.Context, id string) (customers.Customer, error) {

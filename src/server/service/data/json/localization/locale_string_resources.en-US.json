@@ -24512,6 +24512,10 @@
 		"Name": "Newsletter.ResultActivated"
 	},
 	{
+		"Value": "The token guid is invalid.",
+		"Name": "Newsletter.ResultActivated.InvalidGuid"
+	},
+	{
 		"Value": "Your subscription has been deactivated.",
 		"Name": "Newsletter.ResultDeactivated"
 	},

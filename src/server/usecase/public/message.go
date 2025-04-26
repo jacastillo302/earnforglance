@@ -19,8 +19,32 @@ func NewNewsLetterUsecase(itemRepository domain.NewsLetterRepository, timeout ti
 	}
 }
 
-func (cu *newsLetterUsecase) NewsLetterSubscription(c context.Context, filter domain.NewsLetterRequest, IpAdress string) (domain.NewsLetterResponse, error) {
+func (cu *newsLetterUsecase) NewsLetterSubscription(c context.Context, news domain.NewsLetterRequest, IpAdress string) (domain.NewsLetterResponse, error) {
 	ctx, cancel := context.WithTimeout(c, cu.contextTimeout)
 	defer cancel()
-	return cu.itemRepository.NewsLetterSubscription(ctx, filter, IpAdress)
+	return cu.itemRepository.NewsLetterSubscription(ctx, news, IpAdress)
+}
+
+func (cu *newsLetterUsecase) NewsLetterUnSubscribe(c context.Context, news domain.NewsLetterRequest) (domain.NewsLetterResponse, error) {
+	ctx, cancel := context.WithTimeout(c, cu.contextTimeout)
+	defer cancel()
+	return cu.itemRepository.NewsLetterUnSubscribe(ctx, news)
+}
+
+func (cu *newsLetterUsecase) NewsLetterActivation(c context.Context, Guid string) (domain.NewsLetterResponse, error) {
+	ctx, cancel := context.WithTimeout(c, cu.contextTimeout)
+	defer cancel()
+	return cu.itemRepository.NewsLetterActivation(ctx, Guid)
+}
+
+func (cu *newsLetterUsecase) NewsLetterInactivate(c context.Context, Guid string) (domain.NewsLetterResponse, error) {
+	ctx, cancel := context.WithTimeout(c, cu.contextTimeout)
+	defer cancel()
+	return cu.itemRepository.NewsLetterInactivate(ctx, Guid)
+}
+
+func (cu *newsLetterUsecase) GetSlugs(c context.Context, record string) ([]string, error) {
+	ctx, cancel := context.WithTimeout(c, cu.contextTimeout)
+	defer cancel()
+	return cu.itemRepository.GetSlugs(ctx, record)
 }

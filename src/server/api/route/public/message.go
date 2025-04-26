@@ -1,11 +1,12 @@
 package route
 
 import (
-	"time"
-
+	"context"
 	controller "earnforglance/server/api/controller/public"
 	"earnforglance/server/bootstrap"
+	messages "earnforglance/server/domain/messages"
 	domain "earnforglance/server/domain/public"
+	"time"
 
 	repository "earnforglance/server/repository/public"
 	"earnforglance/server/service/data/mongo"
@@ -20,5 +21,18 @@ func NewsLetterRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Databa
 		NewsLetterUsecase: usecase.NewNewsLetterUsecase(ur, timeout),
 		Env:               env,
 	}
-	group.GET("/newsletter", tp.NewsLetterSubscription)
+
+	ctx, cancel := context.WithTimeout(context.Background(), timeout)
+	defer cancel()
+
+	slugs, _ := tp.NewsLetterUsecase.GetSlugs(ctx, messages.CollectionNewsLetterSubscription)
+
+	for _, slug := range slugs {
+		group.GET(slug, tp.NewsLetterSubscription)
+		group.GET(slug+"_confirm", tp.NewsLetterActivation)
+		group.GET(slug+"_unsuscribe", tp.NewsLetterUnSubscribe)
+		group.GET(slug+"_inactivate", tp.NewsLetterInactivate)
+
+	}
+
 }

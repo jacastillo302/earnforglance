@@ -121,8 +121,15 @@ func PrepareConfiguration(vr *configurationRepository, c context.Context, config
 }
 
 func PrepareStore(vr *configurationRepository, c context.Context, ID bson.ObjectID) (*store.Store, error) {
-	var configuration store.Store
-	collection := vr.database.Collection(store.CollectionStore)
-	err := collection.FindOne(c, bson.M{"_id": ID}).Decode(&configuration)
-	return &configuration, err
+	store, err := GetStoreByID(c, ID, vr.database.Collection(store.CollectionStore))
+	if err != nil {
+		return nil, err
+	}
+	return store, err
+}
+
+func GetSettingByName(c context.Context, name string, collection mongo.Collection) (configuration.Setting, error) {
+	var item configuration.Setting
+	err := collection.FindOne(c, bson.M{"name": name}).Decode(&item)
+	return item, err
 }

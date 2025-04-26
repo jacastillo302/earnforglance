@@ -249,3 +249,37 @@ func PrepareProperties(lr *localizationRepository, c context.Context, lang local
 
 	return result, err
 }
+
+func GetLangugaByCode(c context.Context, lang string, collection mongo.Collection) (localization.Language, error) {
+
+	var item localization.Language
+	err := collection.FindOne(c, bson.M{"unique_seo_code": lang}).Decode(&item)
+	return item, err
+}
+
+func GetLocalebyName(c context.Context, name string, languageID string, collection mongo.Collection) (localization.LocaleStringResource, error) {
+	var item localization.LocaleStringResource
+	var language_id bson.ObjectID
+	language_id, err := bson.ObjectIDFromHex(languageID)
+	if err != nil {
+		return item, err
+	}
+
+	err = collection.FindOne(c, bson.M{"resource_name": name, "language_id": language_id}).Decode(&item)
+	return item, err
+}
+
+func GetLocalizedProperty(c context.Context, recordID bson.ObjectID, languageID bson.ObjectID, KeyID string, collection mongo.Collection) ([]localization.LocalizedProperty, error) {
+
+	var items []localization.LocalizedProperty
+	cursor, err := collection.Find(c, bson.M{"entity_id": recordID, "language_id": languageID, "locale_key_group": KeyID})
+	if err != nil {
+		return items, err
+	}
+
+	err = cursor.All(c, &items)
+	if err != nil {
+		return items, err
+	}
+	return items, err
+}

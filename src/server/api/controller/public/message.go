@@ -17,16 +17,72 @@ type NewsLetterController struct {
 	Env               *bootstrap.Env
 }
 
-func (cc *NewsLetterController) NewsLetterSubscription(c *gin.Context) {
+func (cc *NewsLetterController) NewsLetterInactivate(c *gin.Context) {
+	guid := c.Query("guid")
+	if guid == "" {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Missing guid parameter"})
+		return
+	}
+
+	productResponse, err := cc.NewsLetterUsecase.NewsLetterInactivate(c, guid)
+	if err != nil {
+		c.JSON(http.StatusNotFound, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, productResponse)
+}
+
+func (cc *NewsLetterController) NewsLetterUnSubscribe(c *gin.Context) {
 	var request domain.NewsLetterRequest
 
-	filter, err := io.ReadAll(c.Request.Body)
+	news, err := io.ReadAll(c.Request.Body)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
 		return
 	}
 
-	err = json.Unmarshal(filter, &request)
+	err = json.Unmarshal(news, &request)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
+		return
+	}
+
+	productResponse, err := cc.NewsLetterUsecase.NewsLetterUnSubscribe(c, request)
+	if err != nil {
+		c.JSON(http.StatusNotFound, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, productResponse)
+}
+
+func (cc *NewsLetterController) NewsLetterActivation(c *gin.Context) {
+	guid := c.Query("guid")
+	if guid == "" {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Missing guid parameter"})
+		return
+	}
+
+	productResponse, err := cc.NewsLetterUsecase.NewsLetterActivation(c, guid)
+	if err != nil {
+		c.JSON(http.StatusNotFound, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, productResponse)
+}
+
+func (cc *NewsLetterController) NewsLetterSubscription(c *gin.Context) {
+	var request domain.NewsLetterRequest
+
+	news, err := io.ReadAll(c.Request.Body)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Failed to read request body"})
+		return
+	}
+
+	err = json.Unmarshal(news, &request)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "Invalid request body"})
 		return

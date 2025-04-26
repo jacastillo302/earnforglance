@@ -24512,6 +24512,10 @@
 		"Name": "Newsletter.ResultActivated"
 	},
 	{
+		"Value": "El valor guid es invalido.",
+		"Name": "Newsletter.ResultActivated.InvalidGuid"
+	},
+	{
 		"Value": "Su suscripción ha sido desactivada.",
 		"Name": "Newsletter.ResultDeactivated"
 	},

@@ -163,7 +163,7 @@ func PrepareManufacturerTemplate(cr *catalogRepository, c context.Context, manuf
 func PrepareManufacturerLang(cr *catalogRepository, c context.Context, manufacturer catalog.Manufacturer, lang string) (catalog.Manufacturer, error) {
 	var manufacturerLang = manufacturer
 	err := error(nil)
-	locale, err := GetLangugaByCode(cr, c, lang)
+	locale, err := GetLangugaByCode(c, lang, cr.database.Collection(localization.CollectionLanguage))
 	if err != nil {
 		return manufacturerLang, err
 	}
@@ -690,13 +690,6 @@ func PrepareBasepriceBaseUnitType(cr *catalogRepository, c context.Context, base
 	return item, err
 }
 
-func GetLangugaByCode(cr *catalogRepository, c context.Context, lang string) (localization.Language, error) {
-	collection := cr.database.Collection(localization.CollectionLanguage)
-	var item localization.Language
-	err := collection.FindOne(c, bson.M{"unique_seo_code": lang}).Decode(&item)
-	return item, err
-}
-
 func GetRecordByCode(cr *catalogRepository, c context.Context, name string) (security.PermissionRecord, error) {
 	collection := cr.database.Collection(security.CollectionPermissionRecord)
 	var item security.PermissionRecord
@@ -707,7 +700,8 @@ func GetRecordByCode(cr *catalogRepository, c context.Context, name string) (sec
 func PrepareCategoryLang(cr *catalogRepository, c context.Context, category catalog.Category, lang string) (catalog.Category, error) {
 	var categoryLang = category
 	err := error(nil)
-	locale, err := GetLangugaByCode(cr, c, lang)
+
+	locale, err := GetLangugaByCode(c, lang, cr.database.Collection(localization.CollectionLanguage))
 	if err != nil {
 		return categoryLang, err
 	}
@@ -717,15 +711,7 @@ func PrepareCategoryLang(cr *catalogRepository, c context.Context, category cata
 		return categoryLang, err
 	}
 
-	var items []localization.LocalizedProperty
-	collection := cr.database.Collection(localization.CollectionLocalizedProperty)
-	cursor, err := collection.Find(c, bson.M{"entity_id": record.ID, "language_id": locale.ID, "locale_key_group": category.ID.Hex()})
-
-	if err != nil {
-		return categoryLang, err
-	}
-
-	err = cursor.All(c, &items)
+	items, err := GetLocalizedProperty(c, record.ID, locale.ID, category.ID.Hex(), cr.database.Collection(localization.CollectionLocalizedProperty))
 	if err != nil {
 		return categoryLang, err
 	}
@@ -751,7 +737,7 @@ func PrepareCategoryLang(cr *catalogRepository, c context.Context, category cata
 func PrepareProductLang(cr *catalogRepository, c context.Context, product catalog.Product, lang string) (catalog.Product, error) {
 	var productLang = product
 	err := error(nil)
-	locale, err := GetLangugaByCode(cr, c, lang)
+	locale, err := GetLangugaByCode(c, lang, cr.database.Collection(localization.CollectionLanguage))
 	if err != nil {
 		return productLang, err
 	}
@@ -761,14 +747,7 @@ func PrepareProductLang(cr *catalogRepository, c context.Context, product catalo
 		return productLang, err
 	}
 
-	var items []localization.LocalizedProperty
-	collection := cr.database.Collection(localization.CollectionLocalizedProperty)
-	cursor, err := collection.Find(c, bson.M{"entity_id": record.ID, "language_id": locale.ID, "locale_key_group": product.ID.Hex()})
-	if err != nil {
-		return productLang, err
-	}
-
-	err = cursor.All(c, &items)
+	items, err := GetLocalizedProperty(c, record.ID, locale.ID, productLang.ID.Hex(), cr.database.Collection(localization.CollectionLocalizedProperty))
 	if err != nil {
 		return productLang, err
 	}
