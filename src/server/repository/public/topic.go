@@ -4,7 +4,6 @@ import (
 	"context"
 	localization "earnforglance/server/domain/localization"
 	domain "earnforglance/server/domain/public"
-	security "earnforglance/server/domain/security"
 	topicdomain "earnforglance/server/domain/topics"
 	"earnforglance/server/service/data/mongo"
 
@@ -190,25 +189,17 @@ func PrepareTopicSecret(tr *topicRepository, c context.Context, topic topicdomai
 func PrepareTopicLang(r *topicRepository, c context.Context, item topicdomain.Topic, lang string) (topicdomain.Topic, error) {
 	var itemLang = item
 
-	locale, err := GetLangugaTopicByCode(r, c, lang)
+	locale, err := GetLangugaByCode(c, lang, r.database.Collection(localization.CollectionLanguage))
 	if err != nil {
 		return itemLang, err
 	}
 
-	record, err := GetRecordTopicByCode(r, c, topicdomain.CollectionTopic)
+	record, err := GetRercordBySystemName(c, topicdomain.CollectionTopic, r.database.Collection(topicdomain.CollectionTopicTemplate))
 	if err != nil {
 		return itemLang, err
 	}
 
-	var items []localization.LocalizedProperty
-	collection := r.database.Collection(localization.CollectionLocalizedProperty)
-	cursor, err := collection.Find(c, bson.M{"entity_id": record.ID, "language_id": locale.ID, "locale_key_group": item.ID.Hex()})
-
-	if err != nil {
-		return itemLang, err
-	}
-
-	err = cursor.All(c, &items)
+	items, err := GetLocalizedProperty(c, record.ID, locale.ID, item.ID.Hex(), r.database.Collection(localization.CollectionLocalizedProperty))
 	if err != nil {
 		return itemLang, err
 	}
@@ -239,24 +230,4 @@ func PrepareTopicTemplate(tr *topicRepository, c context.Context, item topicdoma
 		return template, err
 	}
 	return template, err
-}
-
-func GetLangugaTopicByCode(tr *topicRepository, c context.Context, lang string) (localization.Language, error) {
-	collection := tr.database.Collection(localization.CollectionLanguage)
-	var item localization.Language
-	err := collection.FindOne(c, bson.M{"unique_seo_code": lang}).Decode(&item)
-	if err != nil {
-		return item, err
-	}
-	return item, err
-}
-
-func GetRecordTopicByCode(tr *topicRepository, c context.Context, name string) (security.PermissionRecord, error) {
-	collection := tr.database.Collection(security.CollectionPermissionRecord)
-	var item security.PermissionRecord
-	err := collection.FindOne(c, bson.M{"system_name": name}).Decode(&item)
-	if err != nil {
-		return item, err
-	}
-	return item, err
 }

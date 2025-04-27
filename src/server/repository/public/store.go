@@ -13,3 +13,9 @@ func GetStoreByID(c context.Context, ID bson.ObjectID, collection mongo.Collecti
 	err := collection.FindOne(c, bson.M{"_id": ID}).Decode(&store)
 	return &store, err
 }
+
+func GetFieldsByID(c context.Context, ID bson.ObjectID, collection mongo.Collection) (*bson.M, error) {
+	var store bson.M
+	err := collection.FindOne(c, bson.M{"_id": ID}).Decode(&store)
+	return &store, err
+}

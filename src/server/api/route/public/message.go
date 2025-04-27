@@ -26,7 +26,6 @@ func NewsLetterRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Databa
 	defer cancel()
 
 	slugs, _ := tp.NewsLetterUsecase.GetSlugs(ctx, messages.CollectionNewsLetterSubscription)
-
 	for _, slug := range slugs {
 		group.GET(slug, tp.NewsLetterSubscription)
 		group.GET(slug+"_confirm", tp.NewsLetterActivation)

@@ -238,5 +238,37 @@
         "LocaleKeyGroup": "67f9525a59e758b435015847",
         "LocaleKey": "required_message",
         "LocaleValue": "Visualización de contenido"
+    },
+    {
+        "ID": "680e9a2f92badcc42b3d4ba7",
+        "PermissionRecordID": "67ed65976b3a64a8c73f79b2",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "67ee5270bddb92ece25d3f2b",
+        "LocaleKey": "subject",
+        "LocaleValue": "%stores.name%. Mensaje de activación de suscripción."
+    },
+    {
+        "ID": "680e9a2f92badcc42b3d4ba8",
+        "PermissionRecordID": "67ed65976b3a64a8c73f79b2",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "67ee5270bddb92ece25d3f2b",
+        "LocaleKey": "body",
+        "LocaleValue": "<p><br/><a href=\"%stores.url%/%url_records.slug%_confirm?guid=%news_letter_subscriptions.newsletter_subscription_guid%\">Haga clic aquí para confirmar su suscripción a nuestra lista.</a><br/><br/><p><br/>Si recibió este correo electrónico por error, simplemente elimínelo.<br/><br/>"
+    },
+    {
+        "ID": "680e9a2f92badcc42b3d4ba9",
+        "PermissionRecordID": "67ed65976b3a64a8c73f79b2",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "67ee5270bddb92ece25d3f2c",
+        "LocaleKey": "subject",
+        "LocaleValue": "%stores.name%. Mensaje de desactivación de suscripción."
+    },
+    {
+        "ID": "680e9a2f92badcc42b3d4baa",
+        "PermissionRecordID": "67ed65976b3a64a8c73f79b2",
+        "LanguageID": "67d821918d8dffc1c549f1b1",
+        "LocaleKeyGroup": "67ee5270bddb92ece25d3f2c",
+        "LocaleKey": "body",
+        "LocaleValue": "<p><br/><a href=\"%stores.url%/%url_records.slug%_inactivate\">Haga clic aquí para darse de baja de nuestro boletín informativo.</a><br/><br/><p><br/>Si recibió este correo electrónico por error, simplemente elimínelo.<br/><br/>"
     }
 ]

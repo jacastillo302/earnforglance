@@ -710,7 +710,7 @@
     {
         "ID": "67ed65976b3a64a8c73f79b2",
         "Name": "Message Template",
-        "SystemName": "message_template",
+        "SystemName": "message_templates",
         "Category": "messages"
     },
     {

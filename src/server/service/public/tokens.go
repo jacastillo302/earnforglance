@@ -11,7 +11,7 @@ type TokenGroup struct {
 	Tokens []string `json:"tokens"`
 }
 
-func ReadJsonTokens(groupName string) ([]string, error) {
+func ReadJsonTokens(groupNames []string) ([]string, error) {
 	var tokens []string
 	filePath := resolvePath(DefaultPathJson, "messages\\tokens.json")
 	// Open the JSON file
@@ -25,9 +25,11 @@ func ReadJsonTokens(groupName string) ([]string, error) {
 		return nil, err
 	}
 
-	for _, g := range groups {
-		if g.Group == groupName {
-			tokens = g.Tokens
+	for _, groupName := range groupNames {
+		for _, g := range groups {
+			if g.Group == groupName {
+				tokens = append(tokens, g.Tokens...)
+			}
 		}
 	}
 

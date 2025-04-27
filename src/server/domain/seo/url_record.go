@@ -16,6 +16,7 @@ type UrlRecord struct {
 	PermissionRecordID bson.ObjectID `bson:"entity_id"`
 	Slug               string        `bson:"slug"`
 	IsActive           bool          `bson:"is_active"`
+	LanguageID         bson.ObjectID `bson:"language_id"`
 }
 
 // UrlRecordRepository defines the repository interface for UrlRecord

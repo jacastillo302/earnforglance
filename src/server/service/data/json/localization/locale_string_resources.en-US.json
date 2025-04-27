@@ -27398,5 +27398,9 @@
 	{
 		"Value": "Your wishlist URL for sharing",
 		"Name": "Wishlist.YourWishlistURL"
-	}
+	},
+	{
+		"Value": "You're already subscribed for this store back in stock notification",
+		"Name": "Newsletter.AlreadySubscribed"
+	}	
 ]

@@ -27398,5 +27398,9 @@
 	{
 		"Value": "Su URL de lista de deseos para compartir",
 		"Name": "Wishlist.YourWishlistURL"
+	},
+	{
+		"Value": "Ya estás suscrito a las noticias de notificaciones de esta tienda.",
+		"Name": "Newsletter.AlreadySubscribed"
 	}
 ]

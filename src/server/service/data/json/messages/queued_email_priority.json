@@ -1,14 +1,12 @@
-{
-    "QueuedEmailPriorities": [
-      {
-        "Name": "Low",
-        "Value": 0,
-        "Description": "Represents low priority"
-      },
-      {
-        "Name": "High",
-        "Value": 5,
-        "Description": "Represents high priority"
-      }
-    ]
+[
+  {
+    "Name": "Low",
+    "Value": 0,
+    "Description": "Represents low priority"
+  },
+  {
+    "Name": "High",
+    "Value": 5,
+    "Description": "Represents high priority"
   }
+]

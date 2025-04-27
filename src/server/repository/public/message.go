@@ -7,10 +7,11 @@ import (
 	domain "earnforglance/server/domain/public"
 	security "earnforglance/server/domain/security"
 	seo "earnforglance/server/domain/seo"
-
+	stores "earnforglance/server/domain/stores"
 	"earnforglance/server/service/data/mongo"
-	service "earnforglance/server/service/public"
 	"fmt"
+	"regexp"
+	"strings"
 	"time"
 
 	"github.com/google/uuid"
@@ -262,9 +263,9 @@ func PrepareNewsLetterSubscription(nr *newsLetterRepository, c context.Context, 
 	var result domain.NewsLetterResponse
 	err := error(nil)
 
-	for _, store := range filter.StoreID {
+	for _, ID := range filter.StoreID {
 
-		storeID, err := bson.ObjectIDFromHex(store)
+		storeID, err := bson.ObjectIDFromHex(ID)
 		if err != nil {
 			result.Result = false
 			result.Message = "Invalid Store ID"
@@ -278,33 +279,82 @@ func PrepareNewsLetterSubscription(nr *newsLetterRepository, c context.Context, 
 			return result, err
 		}
 
+		fields, err := GetFieldsByID(c, storeID, nr.database.Collection(stores.CollectionStore))
+		if err != nil {
+			result.Result = false
+			result.Message = "Failed to get store fields"
+			return result, err
+		}
+
+		store := (*fields)["_id"]
 		suscriptionNews := message.NewsLetterSubscription{
 			Guid:         uuid.New(),
 			Email:        filter.Email,
 			Active:       false,
-			StoreID:      storeID,
+			StoreID:      store.(bson.ObjectID),
 			CreatedOnUtc: time.Now(),
 			IpAddress:    IpAdress,
 			LanguageID:   lang.ID,
 		}
 
+		state, err := AddNewsLetterSubscription(nr, c, suscriptionNews)
+		if err != nil {
+			result.Result = false
+			result.Message = "Failed to add subscription"
+			return result, err
+		}
+
+		// Send email to the user for confirmation to activate the subscription
+		if state {
+
+			template, err := GetMessageTemplateEmail(nr, c, "NEWSLETTER_SUBSCRIPTION_ACTIVATION_MESSAGE", lang.ID, nr.database.Collection(message.CollectionMessageTemplate))
+			if err != nil {
+				return result, err
+			}
+
+			tokensSubject := GetTokens(c, template.Subject)
+			template.Subject = ReplaceTokens(c, template.Subject, tokensSubject, fields, stores.CollectionStore)
+
+			slugs, err := GetSlugsNewsLetterbyLang(nr, c, message.CollectionNewsLetterSubscription, lang.ID)
+			if err != nil {
+				return result, err
+			}
+
+			tokensBody := GetTokens(c, template.Body)
+			template.Body = ReplaceTokens(c, template.Body, tokensBody, fields, stores.CollectionStore)
+			template.Body = ReplaceTokens(c, template.Body, tokensBody, slugs, seo.CollectionUrlRecord)
+
+			// Convert suscriptionNews (struct) to bson.M
+			doc, err := bson.Marshal(suscriptionNews)
+			if err != nil {
+				// handle error
+			}
+			var bsonMap bson.M
+			err = bson.Unmarshal(doc, &bsonMap)
+			if err != nil {
+				// handle error
+			}
+
+			template.Body = ReplaceTokens(c, template.Body, tokensBody, &bsonMap, message.CollectionNewsLetterSubscription)
+
+			email, err := GetEmailAcount(c, nr.database.Collection(message.CollectionEmailAccount))
+			if err != nil || email == nil {
+				result.Result = false
+				result.Message = "Failed to get email account"
+				return result, err
+			}
+
+			ok, err := AddQueuedEmail(c, *email, filter.Email, "", "", message.High, template.Subject, template.Body, bson.ObjectID{}, nr.database.Collection(message.CollectionQueuedEmail))
+			if err != nil {
+				result.Result = false
+				result.Message = "Failed to add queued email"
+				return result, err
+			}
+			fmt.Println("ok", ok)
+
+		}
+
 		locale, _ := GetLocalebyName(c, "Newsletter.SubscribeEmailSent", lang.ID.Hex(), nr.database.Collection(localization.CollectionLocaleStringResource))
-		AddNewsLetterSubscription(nr, c, suscriptionNews)
-
-		tokens, err := service.ReadJsonTokens("StoreTokens")
-		if err != nil {
-			return result, err
-		}
-
-		fmt.Println("tokens", tokens)
-
-		tokens, err = service.ReadJsonTokens("SubscriptionTokens")
-		if err != nil {
-			return result, err
-		}
-
-		fmt.Println("tokens", tokens)
-
 		result.Result = true
 		result.Message = locale.ResourceValue
 
@@ -313,9 +363,8 @@ func PrepareNewsLetterSubscription(nr *newsLetterRepository, c context.Context, 
 	return result, err
 }
 
-func AddNewsLetterSubscription(vr *newsLetterRepository, c context.Context, suscriptionNews message.NewsLetterSubscription) (bool, error) {
+func AddNewsLetterSubscription(nr *newsLetterRepository, c context.Context, suscriptionNews message.NewsLetterSubscription) (bool, error) {
 	var suscriber []message.NewsLetterSubscription
-	result := false
 
 	findOptions := options.Find().
 		SetLimit(1)
@@ -325,41 +374,78 @@ func AddNewsLetterSubscription(vr *newsLetterRepository, c context.Context, susc
 		"store_id": suscriptionNews.StoreID,
 	}
 
-	collection := vr.database.Collection(message.CollectionNewsLetterSubscription)
+	collection := nr.database.Collection(message.CollectionNewsLetterSubscription)
 	cursor, err := collection.Find(c, query, findOptions)
 	if err != nil {
-		return result, err
+		return false, err
 	}
 
 	err = cursor.All(c, &suscriber)
 	if err != nil {
-		return result, err
+		return false, err
 	}
+	defer cursor.Close(c)
 
 	if len(suscriber) > 0 {
+		// Check if the subscription is already active
 		if suscriber[0].Active {
-			return true, err
+			locale, err := GetLocalebyName(c, "Newsletter.AlreadySubscribed", suscriber[0].LanguageID.Hex(), nr.database.Collection(localization.CollectionLocaleStringResource))
+			if err != nil {
+				return false, err
+			}
+			return false, fmt.Errorf("%s", locale.ResourceValue)
 		}
-		return false, err
-	}
-
-	_, err = collection.InsertOne(c, suscriptionNews)
-	if err != nil {
-		return false, err
-	}
-
-	_, err = GetMessageTemplateEmail(c, "NEWSLETTER_SUBSCRIPTION_ACTIVATION_MESSAGE", map[string]string{"email": suscriptionNews.Email}, vr.database.Collection(message.CollectionQueuedEmail))
-	if err != nil {
-		return false, err
+	} else {
+		// Insert a new subscription
+		_, err = collection.InsertOne(c, suscriptionNews)
+		if err != nil {
+			return false, err
+		}
 	}
 
 	return true, err
 }
 
-func AddQueuedEmail(c context.Context, item message.QueuedEmail, collection mongo.Collection) (bool, error) {
+func AddQueuedEmail(c context.Context,
+	email message.EmailAccount,
+	to string,
+	cc string,
+	bcc string,
+	priority int,
+	subject string,
+	body string,
+	attachedID bson.ObjectID,
+	collection mongo.Collection) (bool, error) {
+
+	var item message.QueuedEmail
+
+	if priority != message.High {
+		priority = int(message.Low)
+	}
+
+	item = message.QueuedEmail{
+		PriorityID:            priority,
+		From:                  email.Email,
+		FromName:              email.DisplayName,
+		To:                    to,
+		ToName:                "",
+		ReplyTo:               "",
+		ReplyToName:           "",
+		CC:                    cc,
+		Bcc:                   bcc,
+		Subject:               subject,
+		Body:                  body,
+		AttachmentFilePath:    "",
+		AttachmentFileName:    "",
+		AttachedDownloadID:    attachedID,
+		CreatedOnUtc:          time.Now(),
+		DontSendBeforeDateUtc: nil,
+		SentTries:             3,
+		SentOnUtc:             nil,
+		EmailAccountID:        email.ID,
+	}
 
 	_, err := collection.InsertOne(c, item)
-
 	if err != nil {
 		return false, err
 	}
@@ -367,8 +453,28 @@ func AddQueuedEmail(c context.Context, item message.QueuedEmail, collection mong
 	return true, err
 }
 
-func GetMessageTemplateEmail(c context.Context, name string, tokens map[string]string, collection mongo.Collection) (message.QueuedEmail, error) {
-	var item message.QueuedEmail
+func GetEmailAcount(c context.Context, collection mongo.Collection) (*message.EmailAccount, error) {
+	email := []message.EmailAccount{}
+	err := error(nil)
+
+	findOptions := options.Find().
+		SetLimit(1)
+
+	query := bson.M{}
+	cursor, err := collection.Find(c, query, findOptions)
+	if err != nil {
+		return nil, err
+	}
+
+	err = cursor.All(c, &email)
+	if err != nil {
+		return nil, err
+	}
+
+	return &email[0], err
+}
+
+func GetMessageTemplateEmail(nr *newsLetterRepository, c context.Context, name string, landID bson.ObjectID, collection mongo.Collection) (message.MessageTemplate, error) {
 	err := error(nil)
 
 	query := bson.M{
@@ -378,21 +484,86 @@ func GetMessageTemplateEmail(c context.Context, name string, tokens map[string]s
 	template := message.MessageTemplate{}
 	err = collection.FindOne(c, query).Decode(&template)
 	if err != nil {
-		return item, err
+		return template, err
 	}
 
-	//filtered := service.FilterTypesByValue(items, product.ProductTypeID)
+	record, err := GetRercordBySystemName(c, message.CollectionMessageTemplate, nr.database.Collection(security.CollectionPermissionRecord))
+	if err != nil {
+		return template, err
 
-	for key, value := range tokens {
-		item.Body = ReplaceToken(c, template.Body, key, value, collection)
-		item.Subject = ReplaceToken(c, template.Subject, key, value, collection)
 	}
 
-	return item, err
+	items, err := GetLocalizedProperty(c, record.ID, landID, template.ID.Hex(), nr.database.Collection(localization.CollectionLocalizedProperty))
+	if err != nil {
+		return template, err
+	}
+
+	for i := range items {
+		switch items[i].LocaleKey {
+		case "subject":
+			template.Subject = items[i].LocaleValue
+		case "body":
+			template.Body = items[i].LocaleValue
+		}
+	}
+
+	return template, err
 }
 
-func ReplaceToken(c context.Context, body string, key string, value string, collection mongo.Collection) string {
+func GetTokensTemplateEmail(c context.Context, name string, collection mongo.Collection) ([]string, error) {
+	err := error(nil)
+
+	query := bson.M{
+		"name": name,
+	}
+
+	template := message.MessageTemplate{}
+	err = collection.FindOne(c, query).Decode(&template)
+	if err != nil {
+		return nil, err
+	}
+
+	joined := append(GetTokens(c, template.Subject), GetTokens(c, template.Body)...)
+
+	return joined, err
+}
+
+func GetTokens(c context.Context, text string) []string {
+	var items []string
+
+	// Regex to find all words between %%
+	re := regexp.MustCompile(`%([^%]+)%`)
+	matches := re.FindAllStringSubmatch(text, -1)
+
+	for _, match := range matches {
+		if len(match) > 1 {
+			items = append(items, "%"+match[1]+"%")
+		}
+	}
+
+	return items
+}
+
+func ReplaceTokens(c context.Context, text string, key []string, values *bson.M, subfix string) string {
 	var item string
+	item = text
+	subfixReplace := subfix + "."
+
+	// Iterate over the keys and replace them with their corresponding values
+	for _, k := range key {
+		kk := k[1 : len(k)-1]
+		if subfix == strings.Split(kk, ".")[0] {
+			// Remove the % from the key
+			kk = kk[len(subfixReplace):]
+
+			// Check if the key exists in the map and replace it with the value
+			if value, ok := (*values)[kk]; ok {
+				// Convert the value to a string and replace the token in the text
+				valueStr := ToStringAlways(value)
+				item = strings.Replace(text, k, valueStr, -1)
+			}
+		}
+	}
 
 	return item
 }
@@ -415,4 +586,27 @@ func (cu *newsLetterRepository) GetSlugs(c context.Context, record string) ([]st
 	}
 
 	return slugs, nil
+}
+
+func GetSlugsNewsLetterbyLang(cu *newsLetterRepository, c context.Context, record string, lang bson.ObjectID) (*bson.M, error) {
+
+	urlRecord, err := GetRercordBySystemName(c, record, cu.database.Collection(security.CollectionPermissionRecord))
+	if err != nil {
+		return nil, err
+	}
+
+	slugs := bson.M{}
+	urls, err := GetSlugsByRecordLang(c, urlRecord.ID, lang, cu.database.Collection(seo.CollectionUrlRecord))
+	if err != nil || len(urls) == 0 {
+		urls, err = GetSlugsByPermission(c, urlRecord.ID, cu.database.Collection(seo.CollectionUrlRecord))
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	if len(urls) > 0 {
+		slugs = urls[0]
+	}
+
+	return &slugs, err
 }
