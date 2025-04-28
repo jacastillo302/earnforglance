@@ -10,6 +10,8 @@ import (
 	domain "earnforglance/server/domain/public"
 	security "earnforglance/server/domain/security"
 	"earnforglance/server/internal/tokenutil"
+
+	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type loginUsecase struct {
@@ -66,4 +68,10 @@ func (lu *loginUsecase) GetLocalebyName(c context.Context, name string, language
 	ctx, cancel := context.WithTimeout(c, lu.contextTimeout)
 	defer cancel()
 	return lu.userRepository.GetLocalebyName(ctx, name, languageID)
+}
+
+func (lu *loginUsecase) AddActivityLog(c context.Context, customerID bson.ObjectID, systemKeyword string, comment string, ipAddress string) (bool, error) {
+	ctx, cancel := context.WithTimeout(c, lu.contextTimeout)
+	defer cancel()
+	return lu.userRepository.AddActivityLog(ctx, customerID, systemKeyword, comment, ipAddress)
 }

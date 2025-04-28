@@ -6,7 +6,9 @@ import (
 	setting "earnforglance/server/domain/configuration"
 	customers "earnforglance/server/domain/customers"
 	localization "earnforglance/server/domain/localization"
+	logging "earnforglance/server/domain/logging"
 	domain "earnforglance/server/domain/public"
+	security "earnforglance/server/domain/security"
 	"earnforglance/server/service/data/mongo"
 
 	"go.mongodb.org/mongo-driver/v2/bson"
@@ -116,7 +118,7 @@ func (ur *userRepository) GetLangugaByCode(c context.Context, lang string) (loca
 
 func (ur *userRepository) GetLocalebyName(c context.Context, name string, languageID string) (localization.LocaleStringResource, error) {
 	err := error(nil)
-	locale, err := GetLocalebyName(c, name, languageID, ur.database.Collection(localization.CollectionLocalizedProperty))
+	locale, err := GetLocalebyName(c, name, languageID, ur.database.Collection(localization.CollectionLocaleStringResource))
 	if err != nil {
 		return locale, err
 	}
@@ -135,4 +137,29 @@ func (ur *userRepository) GetByID(c context.Context, id string) (customers.Custo
 
 	err = collection.FindOne(c, bson.M{"_id": idHex}).Decode(&user)
 	return user, err
+}
+
+func (ur *userRepository) AddActivityLog(c context.Context, customerID bson.ObjectID, systemKeyword string, comment string, ipAddress string) (bool, error) {
+
+	result := true
+
+	record, err := GetRercordBySystemName(c, customers.CollectionCustomer, ur.database.Collection(security.CollectionPermissionRecord))
+	if err != nil {
+		result = false
+		return result, err
+
+	}
+
+	activityLogType, err := GetActivityLogTypeBySystemKeyword(c, systemKeyword, ur.database.Collection(logging.CollectionActivityLogType))
+	if err != nil && activityLogType == nil {
+		return false, err
+	}
+
+	result, err = InsertActivity(c, record.ID, record.Name, customerID, *activityLogType, comment, ipAddress, ur.database.Collection(logging.CollectionActivityLog))
+	if err != nil {
+		result = false
+		return result, err
+	}
+
+	return result, err
 }

@@ -151,12 +151,34 @@ func (lc *LoginController) Login(c *gin.Context) {
 	}
 
 	if !service.PasswordsMatch(psw.PasswordFormatID, psw.Password, psw.PasswordSalt, request.Password, encripkey.Value, algotBool, pformat.Value) {
+
 		locale, err := lc.LoginUsecase.GetLocalebyName(c, "Account.Login.WrongCredentials", sLang)
 		if err != nil {
 			c.JSON(http.StatusNotFound, common.ErrorResponse{Message: err.Error()})
 			return
 		}
+
+		// Insert activity log WrongCredentials
+		_, err = lc.LoginUsecase.AddActivityLog(c, login.ID, "PublicStore.Login", locale.ResourceValue, login.LastIpAddress)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
+			return
+		}
+
 		c.JSON(http.StatusUnauthorized, common.ErrorResponse{Message: locale.ResourceValue})
+		return
+	}
+
+	locale, err := lc.LoginUsecase.GetLocalebyName(c, "ActivityLog.PublicStore.Login", sLang)
+	if err != nil {
+		c.JSON(http.StatusNotFound, common.ErrorResponse{Message: err.Error()})
+		return
+	}
+
+	// Insert activity log Login
+	_, err = lc.LoginUsecase.AddActivityLog(c, login.ID, "PublicStore.Login", locale.ResourceValue, login.LastIpAddress)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
 		return
 	}
 
