@@ -4,7 +4,6 @@ import (
 	"context" // added context library
 	"time"
 
-	"github.com/google/uuid"
 	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
@@ -15,7 +14,7 @@ const (
 // NewsLetterSubscription represents NewsLetterSubscription entity
 type NewsLetterSubscription struct {
 	ID           bson.ObjectID `bson:"_id,omitempty"`
-	Guid         uuid.UUID     `bson:"newsletter_subscription_guid"`
+	Guid         string        `bson:"newsletter_subscription_guid"`
 	Email        string        `bson:"email"`
 	Active       bool          `bson:"active"`
 	StoreID      bson.ObjectID `bson:"store_id"`

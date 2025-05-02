@@ -23,7 +23,7 @@ func TestNewsLetterSubscriptionUsecase_FetchByID(t *testing.T) {
 
 	updatedNewsLetterSubscription := domain.NewsLetterSubscription{
 		ID:           bson.NewObjectID(), // Existing ID of the record to update
-		Guid:         uuid.New(),
+		Guid:         uuid.New().String(),
 		Email:        "updated_subscriber@example.com",
 		Active:       false,
 		StoreID:      bson.NewObjectID(),
@@ -46,7 +46,7 @@ func TestNewsLetterSubscriptionUsecase_Create(t *testing.T) {
 	usecase := test.NewNewsLetterSubscriptionUsecase(mockRepo, timeout)
 
 	newNewsLetterSubscription := &domain.NewsLetterSubscription{
-		Guid:         uuid.New(),
+		Guid:         uuid.New().String(),
 		Email:        "subscriber@example.com",
 		Active:       true,
 		StoreID:      bson.NewObjectID(),
@@ -69,7 +69,7 @@ func TestNewsLetterSubscriptionUsecase_Update(t *testing.T) {
 
 	updatedNewsLetterSubscription := &domain.NewsLetterSubscription{
 		ID:           bson.NewObjectID(), // Existing ID of the record to update
-		Guid:         uuid.New(),
+		Guid:         uuid.New().String(),
 		Email:        "updated_subscriber@example.com",
 		Active:       false,
 		StoreID:      bson.NewObjectID(),
@@ -108,7 +108,7 @@ func TestNewsLetterSubscriptionUsecase_Fetch(t *testing.T) {
 	fetchedNewsLetterSubscriptions := []domain.NewsLetterSubscription{
 		{
 			ID:           bson.NewObjectID(),
-			Guid:         uuid.New(),
+			Guid:         uuid.New().String(),
 			Email:        "subscriber1@example.com",
 			Active:       true,
 			StoreID:      bson.NewObjectID(),
@@ -117,7 +117,7 @@ func TestNewsLetterSubscriptionUsecase_Fetch(t *testing.T) {
 		},
 		{
 			ID:           bson.NewObjectID(),
-			Guid:         uuid.New(),
+			Guid:         uuid.New().String(),
 			Email:        "subscriber2@example.com",
 			Active:       false,
 			StoreID:      bson.NewObjectID(),

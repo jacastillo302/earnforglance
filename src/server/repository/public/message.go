@@ -31,6 +31,110 @@ func NewNewsLetterRepository(db mongo.Database, collection string) domain.NewsLe
 	}
 }
 
+func (cr *newsLetterRepository) ContactUs(c context.Context, contact domain.ContactUsRequest) (domain.NewsLetterResponse, error) {
+	var result domain.NewsLetterResponse
+	err := error(nil)
+
+	result, err = PrepareContactUs(cr, c, contact)
+	if err != nil || !result.Result {
+		return result, err
+	}
+
+	if contact.News {
+		request := domain.NewsLetterRequest{Email: contact.Email, StoreID: contact.StoreID, Lang: contact.Lang}
+		result, err = PrepareNewsLetterSubscription(cr, c, request, contact.IpAddress)
+		if err != nil || !result.Result {
+			return result, err
+		}
+	}
+
+	return result, err
+}
+
+func PrepareContactUs(nr *newsLetterRepository, c context.Context, contact domain.ContactUsRequest) (domain.NewsLetterResponse, error) {
+	var result domain.NewsLetterResponse
+	err := error(nil)
+
+	langID, err := GetLangugaByCode(c, contact.Lang, nr.database.Collection(localization.CollectionLanguage))
+	if err != nil {
+		result.Result = false
+		result.Message = "Invalid Language Code"
+		return result, err
+	}
+
+	if contact.Email == "" {
+		result.Result = false
+		result.Message = "Invalid email"
+		return result, err
+	}
+
+	emailAccount, err := GetEmailAcount(c, nr.database.Collection(message.CollectionEmailAccount))
+	if err != nil || emailAccount == nil {
+		result.Result = false
+		result.Message = "Failed to get email account"
+		return result, err
+	}
+
+	// Send email to the user for confirmation to deactivate the subscription
+	template, err := GetMessageTemplateEmail(nr, c, "CONTACT_US_MESSAGE", langID.ID, nr.database.Collection(message.CollectionMessageTemplate))
+	if err != nil {
+		return result, err
+	}
+
+	for _, store := range contact.StoreID {
+
+		storeID, err := bson.ObjectIDFromHex(store)
+		if err != nil {
+			result.Result = false
+			result.Message = "Invalid Store ID"
+			return result, err
+		}
+
+		fields, err := GetFieldsByID(c, storeID, nr.database.Collection(stores.CollectionStore))
+		if err != nil {
+			result.Result = false
+			result.Message = "Failed to get store fields"
+			return result, err
+		}
+
+		tokensSubject := GetTokens(c, template.Subject)
+		template.Subject = ReplaceTokens(c, template.Subject, tokensSubject, fields, stores.CollectionStore)
+
+		tokensBody := GetTokens(c, template.Body)
+		template.Body = ReplaceTokens(c, template.Body, tokensBody, fields, stores.CollectionStore)
+
+		// Convert suscriptionNews (struct) to bson.M
+		doc, err := bson.Marshal(contact)
+		if err != nil {
+			result.Result = false
+			result.Message = "Failed to convert suscriptionNews (struct) to bson.M"
+			return result, err
+		}
+		// Convert doc to bson.M
+		var bsonMap bson.M
+		err = bson.Unmarshal(doc, &bsonMap)
+		if err != nil {
+			result.Result = false
+			result.Message = "Failed to convert suscriptionNews doc to bson.M"
+			return result, err
+		}
+
+		template.Body = ReplaceTokens(c, template.Body, tokensBody, &bsonMap, "ContactUs")
+
+		ok, err := AddQueuedEmail(c, *emailAccount, emailAccount.Email, "", "", int(message.Low), template.Subject, template.Body, bson.ObjectID{}, nr.database.Collection(message.CollectionQueuedEmail))
+		if err != nil || !ok {
+			result.Result = false
+			result.Message = "Failed to add queued email"
+			return result, err
+		}
+	}
+
+	locale, err := GetLocalebyName(c, "Newsletter.UnsubscribeEmailSent", langID.ID.Hex(), nr.database.Collection(localization.CollectionLocaleStringResource))
+	result.Result = true
+	result.Message = locale.ResourceValue
+	return result, err
+}
+
 func (cr *newsLetterRepository) NewsLetterUnSubscribe(c context.Context, filter domain.NewsLetterRequest) (domain.NewsLetterResponse, error) {
 	var result domain.NewsLetterResponse
 	err := error(nil)
@@ -69,30 +173,71 @@ func PrepareNewsLetterUnSubscribe(nr *newsLetterRepository, c context.Context, e
 		"store_id": storeID,
 	}
 
-	news := message.NewsLetterSubscription{}
+	suscriptionNews := message.NewsLetterSubscription{}
 	collection := nr.database.Collection(message.CollectionNewsLetterSubscription)
-	collection.FindOne(c, query).Decode(&news)
-
-	if news.Active {
-
-		update, err := collection.UpdateOne(c, query, bson.M{"$set": bson.M{"active": false, "newsletter_subscription_guid": uuid.New()}})
-		if err != nil {
-			result.Result = false
-			result.Message = "Failed to inactivate subscription"
-			return result, err
-		}
-
-		if update.MatchedCount == 0 {
-			result.Result = false
-			result.Message = "No matching subscription found"
-			return result, err
-		}
-	}
+	collection.FindOne(c, query).Decode(&suscriptionNews)
 
 	langID, err := GetLangugaByCode(c, lang, nr.database.Collection(localization.CollectionLanguage))
 	if err != nil {
 		result.Result = false
 		result.Message = "Invalid Language Code"
+		return result, err
+	}
+
+	emailAccount, err := GetEmailAcount(c, nr.database.Collection(message.CollectionEmailAccount))
+	if err != nil || emailAccount == nil {
+		result.Result = false
+		result.Message = "Failed to get email account"
+		return result, err
+	}
+
+	// Send email to the user for confirmation to deactivate the subscription
+	template, err := GetMessageTemplateEmail(nr, c, "NEWSLETTER_SUBSCRIPTION_DEACTIVATION_MESSAGE", langID.ID, nr.database.Collection(message.CollectionMessageTemplate))
+	if err != nil {
+		return result, err
+	}
+
+	fields, err := GetFieldsByID(c, storeID, nr.database.Collection(stores.CollectionStore))
+	if err != nil {
+		result.Result = false
+		result.Message = "Failed to get store fields"
+		return result, err
+	}
+
+	tokensSubject := GetTokens(c, template.Subject)
+	template.Subject = ReplaceTokens(c, template.Subject, tokensSubject, fields, stores.CollectionStore)
+
+	slugs, err := GetSlugsNewsLetterbyLang(nr, c, message.CollectionNewsLetterSubscription, langID.ID)
+	if err != nil {
+		return result, err
+	}
+
+	tokensBody := GetTokens(c, template.Body)
+	template.Body = ReplaceTokens(c, template.Body, tokensBody, fields, stores.CollectionStore)
+	template.Body = ReplaceTokens(c, template.Body, tokensBody, slugs, seo.CollectionUrlRecord)
+
+	// Convert suscriptionNews (struct) to bson.M
+	doc, err := bson.Marshal(suscriptionNews)
+	if err != nil {
+		result.Result = false
+		result.Message = "Failed to convert suscriptionNews (struct) to bson.M"
+		return result, err
+	}
+	// Convert doc to bson.M
+	var bsonMap bson.M
+	err = bson.Unmarshal(doc, &bsonMap)
+	if err != nil {
+		result.Result = false
+		result.Message = "Failed to convert suscriptionNews doc to bson.M"
+		return result, err
+	}
+
+	template.Body = ReplaceTokens(c, template.Body, tokensBody, &bsonMap, message.CollectionNewsLetterSubscription)
+
+	ok, err := AddQueuedEmail(c, *emailAccount, email, "", "", message.High, template.Subject, template.Body, bson.ObjectID{}, nr.database.Collection(message.CollectionQueuedEmail))
+	if err != nil || !ok {
+		result.Result = false
+		result.Message = "Failed to add queued email"
 		return result, err
 	}
 
@@ -125,15 +270,8 @@ func PrepareNewsLetterInactivate(nr *newsLetterRepository, c context.Context, gu
 		return result, err
 	}
 
-	uu_id, err := uuid.Parse(guid)
-	if err != nil {
-		result.Result = false
-		result.Message = "Invalid Guid"
-		return result, err
-	}
-
 	query := bson.M{
-		"newsletter_subscription_guid": uu_id,
+		"newsletter_subscription_guid": guid,
 	}
 
 	news := message.NewsLetterSubscription{}
@@ -145,7 +283,7 @@ func PrepareNewsLetterInactivate(nr *newsLetterRepository, c context.Context, gu
 		return result, err
 	}
 
-	if news.Guid.String() != guid {
+	if news.Guid != guid {
 		locale, err := GetLocalebyName(c, "Newsletter.ResultActivated.InvalidGuid", news.LanguageID.Hex(), nr.database.Collection(localization.CollectionLocaleStringResource))
 		result.Result = false
 		result.Message = locale.ResourceValue
@@ -154,7 +292,7 @@ func PrepareNewsLetterInactivate(nr *newsLetterRepository, c context.Context, gu
 
 	if news.Active {
 		// Deactivate the subscription
-		update, err := collection.UpdateOne(c, query, bson.M{"$set": bson.M{"active": false, "newsletter_subscription_guid": uuid.New()}})
+		update, err := collection.UpdateOne(c, query, bson.M{"$set": bson.M{"active": false, "newsletter_subscription_guid": uuid.New().String()}})
 		if err != nil {
 			result.Result = false
 			result.Message = "Failed to update subscription"
@@ -197,15 +335,8 @@ func PrepareNewsLetterActivation(nr *newsLetterRepository, c context.Context, gu
 		return result, err
 	}
 
-	uu_id, err := uuid.Parse(guid)
-	if err != nil {
-		result.Result = false
-		result.Message = "Invalid Guid"
-		return result, err
-	}
-
 	query := bson.M{
-		"newsletter_subscription_guid": uu_id,
+		"newsletter_subscription_guid": guid,
 	}
 
 	news := message.NewsLetterSubscription{}
@@ -217,7 +348,7 @@ func PrepareNewsLetterActivation(nr *newsLetterRepository, c context.Context, gu
 		return result, err
 	}
 
-	if news.Guid.String() != guid {
+	if news.Guid != guid {
 		locale, err := GetLocalebyName(c, "Newsletter.ResultActivated.InvalidGuid", news.LanguageID.Hex(), nr.database.Collection(localization.CollectionLocaleStringResource))
 		result.Result = false
 		result.Message = locale.ResourceValue
@@ -226,7 +357,7 @@ func PrepareNewsLetterActivation(nr *newsLetterRepository, c context.Context, gu
 
 	if !news.Active {
 		// Activate the subscription
-		update, err := collection.UpdateOne(c, query, bson.M{"$set": bson.M{"active": true, "newsletter_subscription_guid": uuid.New()}})
+		update, err := collection.UpdateOne(c, query, bson.M{"$set": bson.M{"active": true, "newsletter_subscription_guid": uuid.New().String()}})
 		if err != nil {
 			result.Result = false
 			result.Message = "Failed to update subscription"
@@ -288,7 +419,7 @@ func PrepareNewsLetterSubscription(nr *newsLetterRepository, c context.Context, 
 
 		store := (*fields)["_id"]
 		suscriptionNews := message.NewsLetterSubscription{
-			Guid:         uuid.New(),
+			Guid:         uuid.New().String(),
 			Email:        filter.Email,
 			Active:       false,
 			StoreID:      store.(bson.ObjectID),
@@ -327,12 +458,17 @@ func PrepareNewsLetterSubscription(nr *newsLetterRepository, c context.Context, 
 			// Convert suscriptionNews (struct) to bson.M
 			doc, err := bson.Marshal(suscriptionNews)
 			if err != nil {
-				// handle error
+				result.Result = false
+				result.Message = "Failed to convert suscriptionNews (struct) to bson.M"
+				return result, err
 			}
+			// Convert doc to bson.M
 			var bsonMap bson.M
 			err = bson.Unmarshal(doc, &bsonMap)
 			if err != nil {
-				// handle error
+				result.Result = false
+				result.Message = "Failed to convert suscriptionNews doc to bson.M"
+				return result, err
 			}
 
 			template.Body = ReplaceTokens(c, template.Body, tokensBody, &bsonMap, message.CollectionNewsLetterSubscription)
@@ -345,13 +481,11 @@ func PrepareNewsLetterSubscription(nr *newsLetterRepository, c context.Context, 
 			}
 
 			ok, err := AddQueuedEmail(c, *email, filter.Email, "", "", message.High, template.Subject, template.Body, bson.ObjectID{}, nr.database.Collection(message.CollectionQueuedEmail))
-			if err != nil {
+			if err != nil || !ok {
 				result.Result = false
 				result.Message = "Failed to add queued email"
 				return result, err
 			}
-			fmt.Println("ok", ok)
-
 		}
 
 		locale, _ := GetLocalebyName(c, "Newsletter.SubscribeEmailSent", lang.ID.Hex(), nr.database.Collection(localization.CollectionLocaleStringResource))
@@ -548,10 +682,10 @@ func ReplaceTokens(c context.Context, text string, key []string, values *bson.M,
 	var item string
 	item = text
 	subfixReplace := subfix + "."
-
 	// Iterate over the keys and replace them with their corresponding values
 	for _, k := range key {
 		kk := k[1 : len(k)-1]
+
 		if subfix == strings.Split(kk, ".")[0] {
 			// Remove the % from the key
 			kk = kk[len(subfixReplace):]
@@ -560,7 +694,7 @@ func ReplaceTokens(c context.Context, text string, key []string, values *bson.M,
 			if value, ok := (*values)[kk]; ok {
 				// Convert the value to a string and replace the token in the text
 				valueStr := ToStringAlways(value)
-				item = strings.Replace(text, k, valueStr, -1)
+				item = strings.Replace(item, k, valueStr, -1)
 			}
 		}
 	}

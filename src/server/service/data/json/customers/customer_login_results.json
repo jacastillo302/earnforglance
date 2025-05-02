@@ -1,44 +1,42 @@
-{
-    "CustomerLoginResults": [
-      {
-        "Name": "Successful",
-        "Value": 1,
-        "Description": "Indicates a successful login"
-      },
-      {
-        "Name": "CustomerNotExist",
-        "Value": 2,
-        "Description": "Indicates that the customer does not exist (email or username)"
-      },
-      {
-        "Name": "WrongPassword",
-        "Value": 3,
-        "Description": "Indicates that the provided password is incorrect"
-      },
-      {
-        "Name": "NotActive",
-        "Value": 4,
-        "Description": "Indicates that the account has not been activated"
-      },
-      {
-        "Name": "Deleted",
-        "Value": 5,
-        "Description": "Indicates that the customer account has been deleted"
-      },
-      {
-        "Name": "NotRegistered",
-        "Value": 6,
-        "Description": "Indicates that the customer is not registered"
-      },
-      {
-        "Name": "LockedOut",
-        "Value": 7,
-        "Description": "Indicates that the customer account is locked out"
-      },
-      {
-        "Name": "MultiFactorAuthenticationRequired",
-        "Value": 8,
-        "Description": "Indicates that multi-factor authentication is required"
-      }
-    ]
-  }
+  [
+    {
+      "Name": "Successful",
+      "Value": 1,
+      "Description": "Indicates a successful login"
+    },
+    {
+      "Name": "CustomerNotExist",
+      "Value": 2,
+      "Description": "Indicates that the customer does not exist (email or username)"
+    },
+    {
+      "Name": "WrongPassword",
+      "Value": 3,
+      "Description": "Indicates that the provided password is incorrect"
+    },
+    {
+      "Name": "NotActive",
+      "Value": 4,
+      "Description": "Indicates that the account has not been activated"
+    },
+    {
+      "Name": "Deleted",
+      "Value": 5,
+      "Description": "Indicates that the customer account has been deleted"
+    },
+    {
+      "Name": "NotRegistered",
+      "Value": 6,
+      "Description": "Indicates that the customer is not registered"
+    },
+    {
+      "Name": "LockedOut",
+      "Value": 7,
+      "Description": "Indicates that the customer account is locked out"
+    },
+    {
+      "Name": "MultiFactorAuthenticationRequired",
+      "Value": 8,
+      "Description": "Indicates that multi-factor authentication is required"
+    }
+  ]

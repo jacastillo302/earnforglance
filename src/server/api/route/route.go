@@ -17,7 +17,6 @@ import (
 	discounts "earnforglance/server/api/route/discounts"
 	forums "earnforglance/server/api/route/forums"
 	gdpr "earnforglance/server/api/route/gdpr"
-	install "earnforglance/server/api/route/install"
 	localization "earnforglance/server/api/route/localization"
 	logging "earnforglance/server/api/route/logging"
 	media "earnforglance/server/api/route/media"
@@ -35,6 +34,8 @@ import (
 	tax "earnforglance/server/api/route/tax"
 	topics "earnforglance/server/api/route/topics"
 	vendors "earnforglance/server/api/route/vendors"
+
+	install "earnforglance/server/api/route/install"
 
 	"earnforglance/server/bootstrap"
 	"earnforglance/server/service/data/mongo"
@@ -98,7 +99,9 @@ func registerPublicRouters(env *bootstrap.Env, timeout time.Duration, db mongo.D
 		"configuration": {
 			public.ConfigurationRouter,
 		},
-		"customers": {},
+		"customers": {
+			public.CustomerRouter,
+		},
 		"directory": {
 			public.DirectoryRouter,
 		},

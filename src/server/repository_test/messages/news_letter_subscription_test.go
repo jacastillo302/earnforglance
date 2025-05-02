@@ -31,7 +31,7 @@ func (m *MockSingleResultNewsLetterSubscription) Decode(v interface{}) error {
 
 var mockItemNewsLetterSubscription = &domain.NewsLetterSubscription{
 	ID:           bson.NewObjectID(), // Existing ID of the record to update
-	Guid:         uuid.New(),
+	Guid:         uuid.New().String(),
 	Email:        "updated_subscriber@example.com",
 	Active:       false,
 	StoreID:      bson.NewObjectID(),

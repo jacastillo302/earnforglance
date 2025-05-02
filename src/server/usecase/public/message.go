@@ -19,6 +19,12 @@ func NewNewsLetterUsecase(itemRepository domain.NewsLetterRepository, timeout ti
 	}
 }
 
+func (cu *newsLetterUsecase) ContactUs(c context.Context, contact domain.ContactUsRequest) (domain.NewsLetterResponse, error) {
+	ctx, cancel := context.WithTimeout(c, cu.contextTimeout)
+	defer cancel()
+	return cu.itemRepository.ContactUs(ctx, contact)
+}
+
 func (cu *newsLetterUsecase) NewsLetterSubscription(c context.Context, news domain.NewsLetterRequest, IpAdress string) (domain.NewsLetterResponse, error) {
 	ctx, cancel := context.WithTimeout(c, cu.contextTimeout)
 	defer cancel()

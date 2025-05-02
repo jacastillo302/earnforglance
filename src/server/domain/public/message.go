@@ -4,6 +4,17 @@ import (
 	"context"
 )
 
+type ContactUsRequest struct {
+	Email     string
+	Subject   string
+	Enquiry   string
+	FullName  string
+	StoreID   []string
+	News      bool
+	IpAddress string
+	Lang      string
+}
+
 type NewsLetterRequest struct {
 	Email     string
 	StoreID   []string
@@ -21,6 +32,7 @@ type NewsLetterRepository interface {
 	NewsLetterUnSubscribe(c context.Context, news NewsLetterRequest) (NewsLetterResponse, error)
 	NewsLetterActivation(c context.Context, Guid string) (NewsLetterResponse, error)
 	NewsLetterInactivate(c context.Context, Guid string) (NewsLetterResponse, error)
+	ContactUs(c context.Context, contact ContactUsRequest) (NewsLetterResponse, error)
 	GetSlugs(c context.Context, record string) ([]string, error)
 }
 
@@ -29,5 +41,6 @@ type NewsLetterUsecase interface {
 	NewsLetterUnSubscribe(c context.Context, news NewsLetterRequest) (NewsLetterResponse, error)
 	NewsLetterActivation(c context.Context, Guid string) (NewsLetterResponse, error)
 	NewsLetterInactivate(c context.Context, Guid string) (NewsLetterResponse, error)
+	ContactUs(c context.Context, contact ContactUsRequest) (NewsLetterResponse, error)
 	GetSlugs(c context.Context, record string) ([]string, error)
 }

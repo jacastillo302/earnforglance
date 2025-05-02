@@ -1,24 +1,22 @@
-{
-    "UserRegistrationTypes": [
-      {
-        "Name": "Standard",
-        "Value": 1,
-        "Description": "Represents standard account creation"
-      },
-      {
-        "Name": "EmailValidation",
-        "Value": 2,
-        "Description": "Represents email validation required after registration"
-      },
-      {
-        "Name": "AdminApproval",
-        "Value": 3,
-        "Description": "Represents a customer should be approved by an administrator"
-      },
-      {
-        "Name": "Disabled",
-        "Value": 4,
-        "Description": "Represents registration is disabled"
-      }
-    ]
+[
+  {
+    "Name": "Standard",
+    "Value": 1,
+    "Description": "Represents standard account creation"
+  },
+  {
+    "Name": "EmailValidation",
+    "Value": 2,
+    "Description": "Represents email validation required after registration"
+  },
+  {
+    "Name": "AdminApproval",
+    "Value": 3,
+    "Description": "Represents a customer should be approved by an administrator"
+  },
+  {
+    "Name": "Disabled",
+    "Value": 4,
+    "Description": "Represents registration is disabled"
   }
+]

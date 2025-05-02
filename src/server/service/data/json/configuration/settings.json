@@ -1482,10 +1482,10 @@
       "StoreID": "64f1b3d4e5f6789012345678"
   },
   {
-      "ID": "67ed840939ef71573b3872b4",
-      "Name": "UserRegistrationType",
-      "Value": "UserRegistrationType.Standard",
-      "StoreID": "64f1b3d4e5f6789012345678"
+    "ID": "67ed840939ef71573b3872b4",
+    "Name": "UserRegistrationType",
+    "Value": "1",//Standart
+    "StoreID": "64f1b3d4e5f6789012345678"
   },
   {
       "ID": "67ed840939ef71573b3872b5",

@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"reflect"
 
+	"github.com/gofrs/uuid"
 	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
@@ -29,7 +30,12 @@ func ToStringAlways(v interface{}) string {
 			}
 		}
 	case bson.Binary:
-		fmt.Println("bson.Binary")
+		// Handle bson.Binary type
+		guid, err := uuid.FromBytes(val.Data)
+		if err == nil {
+
+			return guid.String()
+		}
 		return base64.StdEncoding.EncodeToString(val.Data)
 	default:
 		rv := reflect.ValueOf(v)
