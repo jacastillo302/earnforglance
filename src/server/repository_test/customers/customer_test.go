@@ -31,7 +31,7 @@ func (m *MockSingleResultCustomer) Decode(v interface{}) error {
 
 var mockItemCustomer = &domain.Customer{
 	ID:                          bson.NewObjectID(), // Existing ID of the record to update
-	CustomerGuid:                uuid.New(),
+	CustomerGuid:                uuid.New().String(),
 	Username:                    "janedoe",
 	Email:                       "janedoe@example.com",
 	FirstName:                   "Jane",

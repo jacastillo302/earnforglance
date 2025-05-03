@@ -26,7 +26,7 @@ func TestBaseAttributeValueUsecase_FetchByID(t *testing.T) {
 		Name:          "Color",
 		IsPreSelected: false,
 		DisplayOrder:  1,
-		AttributeId:   bson.NewObjectID(), // Reference to the related attribute
+		AttributeID:   bson.NewObjectID(), // Reference to the related attribute
 	}
 
 	mockRepo.On("FetchByID", mock.Anything, baseAttributeValueID).Return(expectedBaseAttributeValue, nil)
@@ -48,7 +48,7 @@ func TestBaseAttributeValueUsecase_Create(t *testing.T) {
 		Name:          "Size",
 		IsPreSelected: true,
 		DisplayOrder:  2,
-		AttributeId:   bson.NewObjectID(), // Reference to the related attribute
+		AttributeID:   bson.NewObjectID(), // Reference to the related attribute
 	}
 
 	mockRepo.On("Create", mock.Anything, newBaseAttributeValue).Return(nil)
@@ -69,7 +69,7 @@ func TestBaseAttributeValueUsecase_Update(t *testing.T) {
 		Name:          "Size",
 		IsPreSelected: true,
 		DisplayOrder:  2,
-		AttributeId:   bson.NewObjectID(), // Reference to the related attribute
+		AttributeID:   bson.NewObjectID(), // Reference to the related attribute
 	}
 
 	mockRepo.On("Update", mock.Anything, updatedBaseAttributeValue).Return(nil)
@@ -106,14 +106,14 @@ func TestBaseAttributeValueUsecase_Fetch(t *testing.T) {
 			Name:          "Material",
 			IsPreSelected: false,
 			DisplayOrder:  3,
-			AttributeId:   bson.NewObjectID(),
+			AttributeID:   bson.NewObjectID(),
 		},
 		{
 			ID:            bson.NewObjectID(),
 			Name:          "Brand",
 			IsPreSelected: true,
 			DisplayOrder:  4,
-			AttributeId:   bson.NewObjectID(),
+			AttributeID:   bson.NewObjectID(),
 		},
 	}
 

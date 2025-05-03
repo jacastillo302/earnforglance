@@ -2,9 +2,9 @@ package usecase_test
 
 import (
 	"context"
-	domain "earnforglance/server/domain/customers"
+	domain "earnforglance/server/domain/attributes"
 	mocks "earnforglance/server/domain/mocks"
-	test "earnforglance/server/usecase/customers"
+	test "earnforglance/server/usecase/attributes"
 	"testing"
 	"time"
 

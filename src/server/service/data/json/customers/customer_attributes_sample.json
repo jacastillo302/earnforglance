@@ -1,0 +1,14 @@
+[
+    {
+        "Name": "Date of Birth",
+        "IsRequired": true,
+        "AttributeControlTypeID": 20,
+        "DisplayOrder": 1,
+        "DefaultValue": "",
+        "ValidationMinLength": 8,
+        "ValidationMaxLength": 10,
+        "ValidationFileAllowedExtensions": "",
+        "ValidationFileMaximumSize": null,
+        "ConditionAttributeXml": "<Conditions></Conditions>"
+      }
+]

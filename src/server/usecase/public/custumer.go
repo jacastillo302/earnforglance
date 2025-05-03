@@ -8,11 +8,12 @@ import (
 )
 
 type customerUsecase struct {
+	newsRepository domain.NewsLetterRepository
 	itemRepository domain.CustomerRepository
 	contextTimeout time.Duration
 }
 
-func NewCustomerUsecase(itemRepository domain.CustomerRepository, timeout time.Duration) domain.CustomerRepository {
+func NewCustomerUsecase(itemRepository domain.CustomerRepository, newsRepository domain.NewsLetterRepository, timeout time.Duration) domain.CustomerRepository {
 	return &customerUsecase{
 		itemRepository: itemRepository,
 		contextTimeout: timeout,

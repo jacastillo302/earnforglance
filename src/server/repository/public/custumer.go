@@ -17,18 +17,21 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/google/uuid"
 	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
 type customerRepository struct {
-	database   mongo.Database
-	collection string
+	newsRepository domain.NewsLetterRepository
+	database       mongo.Database
+	collection     string
 }
 
-func NewCustomerRepository(db mongo.Database, collection string) domain.CustomerRepository {
+func NewCustomerRepository(db mongo.Database, collection string, news domain.NewsLetterRepository) domain.CustomerRepository {
 	return &customerRepository{
-		database:   db,
-		collection: collection,
+		newsRepository: news,
+		database:       db,
+		collection:     collection,
 	}
 }
 
@@ -92,34 +95,33 @@ func PrepareSingIn(nr *customerRepository, c context.Context, sigin domain.SingI
 
 	sigin.Customer.RegisteredInStoreID = store.ID.Hex()
 
+	langID, _ := GetLangugaByCode(c, sigin.Lang, nr.database.Collection(localization.CollectionLanguage))
+
+	sigin.Customer.LanguageID = &langID.ID
+
 	isRegistered, sMessage, err := IsCustomerRegistered(nr, c, sigin)
+
 	if err != nil {
 		return result, err
 	}
 
 	if isRegistered.Result {
-
-		if sMessage != "" {
-			locale, err := GetLocalebyName(c, sMessage, sigin.Lang, nr.database.Collection(localization.CollectionLocaleStringResource))
-			if err != nil {
-				return result, err
-			}
-			return result, fmt.Errorf("%s", locale.ResourceValue)
-		}
-
+		result.Message = sMessage
+		result.Result = isRegistered.Result
 		return result, err
 	}
 
-	sigin.Customer.CreatedOnUtc = time.Now()
 	newCustomer, err := NewCustomer(c, sigin.Customer, nr.database.Collection(customers.CollectionCustomer))
 	if err != nil {
 		return result, err
 	}
+
 	if newCustomer.ID == bson.NilObjectID {
 		return result, fmt.Errorf("customer id is nil")
 	}
 
-	sigin.Customer.ID = newCustomer.ID
+	sigin.Customer = newCustomer
+
 	role, err := GetCustomerRolByName(c, customers.CustomerDefaults.GuestsRoleName, nr.database.Collection(customers.CollectionCustomerRole))
 	if err != nil || role == nil {
 		return result, fmt.Errorf("rol no found")
@@ -135,18 +137,91 @@ func PrepareSingIn(nr *customerRepository, c context.Context, sigin domain.SingI
 		return result, fmt.Errorf("password not generated")
 	}
 
-	setPw, err := NewCustomerPassword(c, customerPassword[0], nr.database.Collection(customers.CollectionCustomerPassword))
-	if err != nil {
-		return result, err
-	}
-	if !setPw {
-		return result, fmt.Errorf("password not set")
-	}
-	if customerPassword[0].ID == bson.NilObjectID {
-		return result, fmt.Errorf("password id is nil")
+	if getPw {
+		setPw, err := NewCustomerPassword(c, customerPassword[0], nr.database.Collection(customers.CollectionCustomerPassword))
+		if err != nil || !setPw {
+			return result, err
+		}
 	}
 
-	fmt.Println("sigin:", sigin.Customer)
+	SubucribeNews(nr, c, sigin)
+	SetCustomerAddress(nr, c, sigin)
+	SetCutomerAttributes(nr, c, sigin)
+	SetPrivacyConsents(nr, c, sigin)
+	SendNotifications(nr, c, sigin)
+
+	result.Message = sMessage
+	return result, err
+}
+
+func SendNotifications(nr *customerRepository, c context.Context, sigin domain.SingInRequest) (bool, error) {
+	err := error(nil)
+	result := false
+	return result, err
+}
+
+func SetCustomerAddress(nr *customerRepository, c context.Context, sigin domain.SingInRequest) (bool, error) {
+	err := error(nil)
+	result := false
+	return result, err
+}
+
+func SetCutomerAttributes(nr *customerRepository, c context.Context, sigin domain.SingInRequest) (bool, error) {
+	err := error(nil)
+	result := false
+	return result, err
+}
+
+func SetPrivacyConsents(nr *customerRepository, c context.Context, sigin domain.SingInRequest) (bool, error) {
+	err := error(nil)
+	result := false
+	return result, err
+}
+
+func SubucribeNews(nr *customerRepository, c context.Context, sigin domain.SingInRequest) (bool, error) {
+
+	err := error(nil)
+	result := false
+
+	if sigin.News {
+		setting, err := GetSettingByName(c, "NewsletterEnabled", nr.database.Collection(configuration.CollectionSetting))
+		if err != nil {
+			return result, err
+		}
+
+		if setting.Value == "" {
+			return result, fmt.Errorf("setting NewsletterEnabled is not set")
+		}
+
+		if setting.Value != "true" {
+			return result, fmt.Errorf("setting NewsletterEnabled is diabled")
+		}
+
+		newsRequest := domain.NewsLetterRequest{
+			Email:     sigin.Customer.Email,
+			StoreID:   []string{sigin.Customer.RegisteredInStoreID},
+			IpAddress: sigin.IpAddress,
+			Lang:      sigin.Lang,
+		}
+
+		newResult, err := nr.newsRepository.NewsLetterSubscription(c, newsRequest, sigin.IpAddress)
+		if err != nil {
+			return result, err
+		}
+
+		if newResult.Result {
+			result = true
+		} else {
+			locale, err := GetLocalebyName(c, newResult.Message, sigin.Lang, nr.database.Collection(localization.CollectionLocaleStringResource))
+			if err != nil {
+				return result, err
+			}
+			err = fmt.Errorf("%s", locale.ResourceValue)
+			return result, err
+
+		}
+	}
+
 	return result, err
 }
 
@@ -154,7 +229,7 @@ func IsCustomerRegistered(nr *customerRepository, c context.Context, sigin domai
 
 	var result domain.SingInResponse
 	err := error(nil)
-	result.Result = false
+	result.Result = true
 	sMessage := ""
 
 	setting, err := GetSettingByName(c, "UsernamesEnabled", nr.database.Collection(configuration.CollectionSetting))
@@ -166,58 +241,29 @@ func IsCustomerRegistered(nr *customerRepository, c context.Context, sigin domai
 		return result, sMessage, fmt.Errorf("UsernamesEnabled settings is not set")
 	}
 
-	var customer *customers.Customer
-
 	if setting.Value != "true" {
-		sMessage = "Account.Register.Errors.EmailAlreadyExists"
-		customer, err = GetCustomerByEmail(c, sigin.Customer.Email, nr.database.Collection(customers.CollectionCustomer))
-		if err != nil {
-			return result, sMessage, err
+		customer, err := GetCustomerByEmail(c, sigin.Customer.Email, nr.database.Collection(customers.CollectionCustomer))
+		if customer != nil && err == nil {
+			sMessage = "Account.Register.Errors.EmailAlreadyExists"
 		}
 	} else {
-		sMessage = "Account.Register.Errors.UsernameAlreadyExists"
-		customer, err = GetCustomerByUserName(c, sigin.Customer.Username, nr.database.Collection(customers.CollectionCustomer))
-		if err != nil {
-			return result, sMessage, err
+		customer, err := GetCustomerByUserName(c, sigin.Customer.Username, nr.database.Collection(customers.CollectionCustomer))
+		if customer != nil && err == nil {
+			sMessage = "Account.Register.Errors.UsernameAlreadyExists"
 		}
 	}
 
-	if customer != nil {
+	if sMessage == "" {
+		result.Result = false
+		sMessage = "Account.Login.WrongCredentials.CustomerNotExist"
+	}
 
-		result.Result = true
-
-		if customer.Deleted {
-			return result, sMessage, fmt.Errorf("customer is deleted")
-		}
-
-		if customer.RegisteredInStoreID != sigin.Customer.RegisteredInStoreID {
-			return result, sMessage, fmt.Errorf("customer is not registered in this store")
-		}
-
-		typeResult, err := GetCustomerExist(nr, c, customer)
-		if err != nil {
-			return result, sMessage, err
-		}
-		switch typeResult {
-		case customers.LockedOut:
-			sMessage = "Account.Login.WrongCredentials.LockedOut"
-		case customers.Deleted:
-			sMessage = "Account.Login.WrongCredentials.Deleted"
-		case customers.NotRegistered:
-			sMessage = "Account.Login.WrongCredentials.NotRegistered"
-		case customers.CustomerNotExist:
-			sMessage = "Account.Login.WrongCredentials.CustomerNotExist"
-		case customers.NotActive:
-			sMessage = "Account.Login.WrongCredentials.NotActive"
-		case customers.WrongPassword:
-			sMessage = "Account.Login.WrongCredentials"
-		case customers.Successful:
-			err = fmt.Errorf("%s", sMessage)
-			result.Result = true
-		}
-
+	locale, err := GetLocalebyName(c, sMessage, sigin.Customer.LanguageID.Hex(), nr.database.Collection(localization.CollectionLocaleStringResource))
+	if err != nil {
 		return result, sMessage, err
 	}
+
+	sMessage = locale.ResourceValue
 
 	return result, sMessage, err
 }
@@ -276,11 +322,10 @@ func GetCustomerByEmail(c context.Context, email string, collection mongo.Collec
 	return user, err
 }
 
-func GetCustomerRolMapping(c context.Context, customerID bson.ObjectID, rolID bson.ObjectID, collection mongo.Collection) (*customers.CustomerCustomerRoleMapping, error) {
-	var roles *customers.CustomerCustomerRoleMapping
+func GetCustomerRolMapping(c context.Context, customerID bson.ObjectID, rolID bson.ObjectID, collection mongo.Collection) ([]*customers.CustomerCustomerRoleMapping, error) {
+	var roles []*customers.CustomerCustomerRoleMapping
 	err := error(nil)
-
-	cursor, err := collection.Find(c, bson.M{"customer_id": customerID, "customer_rol_id": rolID})
+	cursor, err := collection.Find(c, bson.M{"customer_id": customerID, "customer_role_id": rolID})
 	if err != nil {
 		return roles, err
 	}
@@ -289,6 +334,7 @@ func GetCustomerRolMapping(c context.Context, customerID bson.ObjectID, rolID bs
 	if err != nil {
 		return roles, err
 	}
+
 	defer cursor.Close(c)
 
 	return roles, err
@@ -313,6 +359,10 @@ func GetCustomerRolByID(c context.Context, rolID bson.ObjectID, collection mongo
 func NewCustomer(c context.Context, user customers.Customer, collection mongo.Collection) (customers.Customer, error) {
 	err := error(nil)
 	var result customers.Customer
+
+	user.CreatedOnUtc = time.Now()
+	user.CustomerGuid = uuid.New().String()
+
 	insertResult, err := collection.InsertOne(c, user)
 	if err != nil {
 		return result, err

@@ -6,8 +6,8 @@ import (
 	"net/http"
 
 	"earnforglance/server/bootstrap"
+	domain "earnforglance/server/domain/attributes"
 	common "earnforglance/server/domain/common"
-	domain "earnforglance/server/domain/customers"
 
 	"github.com/gin-gonic/gin"
 )

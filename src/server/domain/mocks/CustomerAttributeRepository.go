@@ -4,7 +4,7 @@ package mocks
 
 import (
 	context "context"
-	domain "earnforglance/server/domain/customers"
+	domain "earnforglance/server/domain/attributes"
 
 	mock "github.com/stretchr/testify/mock"
 )

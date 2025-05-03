@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	CollectionCustomerAttribute = "customer_customer_attributes"
+	CollectionCustomerAttribute = "customer_attributes"
 )
 
 // CustomerAttribute represents a customer attribute

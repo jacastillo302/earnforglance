@@ -15,7 +15,7 @@ const (
 // Customer represents a customer
 type Customer struct {
 	ID                          bson.ObjectID  `bson:"_id,omitempty"`
-	CustomerGuid                uuid.UUID      `bson:"customer_guid"`
+	CustomerGuid                string         `bson:"customer_guid"`
 	Username                    string         `bson:"username"`
 	Email                       string         `bson:"email"`
 	FirstName                   string         `bson:"first_name"`
@@ -83,6 +83,7 @@ type CustomerUsecase interface {
 // NewCustomer creates a new Customer instance
 func NewCustomer() *Customer {
 	return &Customer{
-		CustomerGuid: uuid.New(),
+		CustomerGuid: uuid.New().String(),
+		CreatedOnUtc: time.Now(),
 	}
 }

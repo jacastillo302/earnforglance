@@ -41,7 +41,7 @@ func TestBaseAttributeValueRepository_FetchByID(t *testing.T) {
 		Name:          "",
 		IsPreSelected: false,
 		DisplayOrder:  0,
-		AttributeId:   bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+		AttributeID:   bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
 	}
 
 	t.Run("success", func(t *testing.T) {
@@ -92,7 +92,7 @@ func TestBaseAttributeValueRepository_Create(t *testing.T) {
 		Name:          "Size",
 		IsPreSelected: true,
 		DisplayOrder:  2,
-		AttributeId:   bson.NewObjectID(), // Reference to the related attribute
+		AttributeID:   bson.NewObjectID(), // Reference to the related attribute
 	}
 
 	collectionHelper.On("InsertOne", mock.Anything, mockBaseAttributeValue).Return(nil, nil).Once()
@@ -117,7 +117,7 @@ func TestBaseAttributeValueRepository_Update(t *testing.T) {
 		Name:          "Size",
 		IsPreSelected: true,
 		DisplayOrder:  2,
-		AttributeId:   bson.NewObjectID(), // Reference to the related attribute
+		AttributeID:   bson.NewObjectID(), // Reference to the related attribute
 	}
 
 	filter := bson.M{"_id": mockBaseAttributeValue.ID}

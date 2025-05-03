@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	domain "earnforglance/server/domain/customers"
+	domain "earnforglance/server/domain/attributes"
 )
 
 type customerattributeUsecase struct {

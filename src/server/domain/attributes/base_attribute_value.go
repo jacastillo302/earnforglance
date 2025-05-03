@@ -13,10 +13,10 @@ const (
 // BaseAttributeValue represents the base class for attribute values
 type BaseAttributeValue struct {
 	ID            bson.ObjectID `bson:"_id,omitempty"`
+	AttributeID   bson.ObjectID `bson:"attribute_id"`
 	Name          string        `bson:"name"`
 	IsPreSelected bool          `bson:"is_pre_selected"`
 	DisplayOrder  int           `bson:"display_order"`
-	AttributeId   bson.ObjectID `bson:"attribute_id"`
 }
 
 type BaseAttributeValueRepository interface {

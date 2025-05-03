@@ -23,7 +23,7 @@ func TestCustomerUsecase_FetchByID(t *testing.T) {
 
 	updatedCustomer := domain.Customer{
 		ID:                          bson.NewObjectID(), // Existing ID of the record to update
-		CustomerGuid:                uuid.New(),
+		CustomerGuid:                uuid.New().String(),
 		Username:                    "admin",
 		Email:                       "admin@example.com",
 		FirstName:                   "FirstName",
@@ -85,7 +85,7 @@ func TestCustomerUsecase_Create(t *testing.T) {
 	usecase := test.NewCustomerUsecase(mockRepo, timeout)
 
 	newCustomer := &domain.Customer{
-		CustomerGuid:                uuid.New(),
+		CustomerGuid:                uuid.New().String(),
 		Username:                    "johndoe",
 		Email:                       "johndoe@example.com",
 		FirstName:                   "John",
@@ -147,7 +147,7 @@ func TestCustomerUsecase_Update(t *testing.T) {
 
 	updatedCustomer := &domain.Customer{
 		ID:                          bson.NewObjectID(), // Existing ID of the record to update
-		CustomerGuid:                uuid.New(),
+		CustomerGuid:                uuid.New().String(),
 		Username:                    "janedoe",
 		Email:                       "janedoe@example.com",
 		FirstName:                   "Jane",
@@ -233,7 +233,7 @@ func TestCustomerUsecase_Fetch(t *testing.T) {
 	fetchedCustomers := []domain.Customer{
 		{
 			ID:                          bson.NewObjectID(),
-			CustomerGuid:                uuid.New(),
+			CustomerGuid:                uuid.New().String(),
 			Username:                    "johndoe",
 			Email:                       "johndoe@example.com",
 			FirstName:                   "John",
@@ -281,7 +281,7 @@ func TestCustomerUsecase_Fetch(t *testing.T) {
 		},
 		{
 			ID:                          bson.NewObjectID(),
-			CustomerGuid:                uuid.New(),
+			CustomerGuid:                uuid.New().String(),
 			Username:                    "janedoe",
 			Email:                       "janedoe@example.com",
 			FirstName:                   "Jane",
