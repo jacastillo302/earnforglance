@@ -1185,11 +1185,11 @@
 	},
 	{
 		"Value": "Added a new customer attribute (ID = {0})",
-		"Name": "ActivityLog.AddNewCustomerAttribute"
+		"Name": "ActivityLog.AddNewPermisionRecordAttribute"
 	},
 	{
 		"Value": "Added a new customer attribute value (ID = {0})",
-		"Name": "ActivityLog.AddNewCustomerAttributeValue"
+		"Name": "ActivityLog.AddNewPermisionRecordAttributeValue"
 	},
 	{
 		"Value": "Added a new customer role ('{0}')",
@@ -1329,11 +1329,11 @@
 	},
 	{
 		"Value": "Deleted a customer attribute (ID = {0})",
-		"Name": "ActivityLog.DeleteCustomerAttribute"
+		"Name": "ActivityLog.DeletePermisionRecordAttribute"
 	},
 	{
 		"Value": "Deleted a customer attribute value (ID = {0})",
-		"Name": "ActivityLog.DeleteCustomerAttributeValue"
+		"Name": "ActivityLog.DeletePermisionRecordAttributeValue"
 	},
 	{
 		"Value": "Deleted a customer role ('{0}')",
@@ -1501,11 +1501,11 @@
 	},
 	{
 		"Value": "Edited a customer attribute (ID = {0})",
-		"Name": "ActivityLog.EditCustomerAttribute"
+		"Name": "ActivityLog.EditPermisionRecordAttribute"
 	},
 	{
 		"Value": "Edited a customer attribute value (ID = {0})",
-		"Name": "ActivityLog.EditCustomerAttributeValue"
+		"Name": "ActivityLog.EditPermisionRecordAttributeValue"
 	},
 	{
 		"Value": "Edited a customer role ('{0}')",
@@ -15621,119 +15621,119 @@
 	},
 	{
 		"Value": "Custom customer attributes",
-		"Name": "Admin.Customers.CustomerAttributes"
+		"Name": "Admin.Customers.PermisionRecordAttributes"
 	},
 	{
 		"Value": "The new attribute has been added successfully.",
-		"Name": "Admin.Customers.CustomerAttributes.Added"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Added"
 	},
 	{
 		"Value": "Add a new customer attribute",
-		"Name": "Admin.Customers.CustomerAttributes.AddNew"
+		"Name": "Admin.Customers.PermisionRecordAttributes.AddNew"
 	},
 	{
 		"Value": "back to customer attribute list",
-		"Name": "Admin.Customers.CustomerAttributes.BackToList"
+		"Name": "Admin.Customers.PermisionRecordAttributes.BackToList"
 	},
 	{
 		"Value": "The attribute has been deleted successfully.",
-		"Name": "Admin.Customers.CustomerAttributes.Deleted"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Deleted"
 	},
 	{
 		"Value": "If the default form fields are not enough for your needs, then you can manage additional customer attributes below.",
-		"Name": "Admin.Customers.CustomerAttributes.Description"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Description"
 	},
 	{
 		"Value": "Edit customer attribute details",
-		"Name": "Admin.Customers.CustomerAttributes.EditAttributeDetails"
+		"Name": "Admin.Customers.PermisionRecordAttributes.EditAttributeDetails"
 	},
 	{
 		"Value": "Control type",
-		"Name": "Admin.Customers.CustomerAttributes.Fields.AttributeControlType"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Fields.AttributeControlType"
 	},
 	{
 		"Value": "Choose how to display your attribute values.",
-		"Name": "Admin.Customers.CustomerAttributes.Fields.AttributeControlType.Hint"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Fields.AttributeControlType.Hint"
 	},
 	{
 		"Value": "Display order",
-		"Name": "Admin.Customers.CustomerAttributes.Fields.DisplayOrder"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Fields.DisplayOrder"
 	},
 	{
 		"Value": "The customer attribute display order. 1 represents the first item in the list.",
-		"Name": "Admin.Customers.CustomerAttributes.Fields.DisplayOrder.Hint"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Fields.DisplayOrder.Hint"
 	},
 	{
 		"Value": "Required",
-		"Name": "Admin.Customers.CustomerAttributes.Fields.IsRequired"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Fields.IsRequired"
 	},
 	{
 		"Value": "When an attribute is required, the customer must choose an appropriate attribute value before they can continue.",
-		"Name": "Admin.Customers.CustomerAttributes.Fields.IsRequired.Hint"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Fields.IsRequired.Hint"
 	},
 	{
 		"Value": "Name",
-		"Name": "Admin.Customers.CustomerAttributes.Fields.Name"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Fields.Name"
 	},
 	{
 		"Value": "The name of the customer attribute.",
-		"Name": "Admin.Customers.CustomerAttributes.Fields.Name.Hint"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Fields.Name.Hint"
 	},
 	{
 		"Value": "Please provide a name.",
-		"Name": "Admin.Customers.CustomerAttributes.Fields.Name.Required"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Fields.Name.Required"
 	},
 	{
 		"Value": "Attribute info",
-		"Name": "Admin.Customers.CustomerAttributes.Info"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Info"
 	},
 	{
 		"Value": "The attribute has been updated successfully.",
-		"Name": "Admin.Customers.CustomerAttributes.Updated"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Updated"
 	},
 	{
 		"Value": "Attribute values",
-		"Name": "Admin.Customers.CustomerAttributes.Values"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Values"
 	},
 	{
 		"Value": "Add a new customer value",
-		"Name": "Admin.Customers.CustomerAttributes.Values.AddNew"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Values.AddNew"
 	},
 	{
 		"Value": "Edit customer value details",
-		"Name": "Admin.Customers.CustomerAttributes.Values.EditValueDetails"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Values.EditValueDetails"
 	},
 	{
 		"Value": "Display order",
-		"Name": "Admin.Customers.CustomerAttributes.Values.Fields.DisplayOrder"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Values.Fields.DisplayOrder"
 	},
 	{
 		"Value": "The display order of the attribute value. 1 represents the first item in attribute value list.",
-		"Name": "Admin.Customers.CustomerAttributes.Values.Fields.DisplayOrder.Hint"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Values.Fields.DisplayOrder.Hint"
 	},
 	{
 		"Value": "Pre-selected",
-		"Name": "Admin.Customers.CustomerAttributes.Values.Fields.IsPreSelected"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Values.Fields.IsPreSelected"
 	},
 	{
 		"Value": "Determines whether this attribute value is pre-selected for the customer.",
-		"Name": "Admin.Customers.CustomerAttributes.Values.Fields.IsPreSelected.Hint"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Values.Fields.IsPreSelected.Hint"
 	},
 	{
 		"Value": "Name",
-		"Name": "Admin.Customers.CustomerAttributes.Values.Fields.Name"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Values.Fields.Name"
 	},
 	{
 		"Value": "The name of the customer value.",
-		"Name": "Admin.Customers.CustomerAttributes.Values.Fields.Name.Hint"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Values.Fields.Name.Hint"
 	},
 	{
 		"Value": "Please provide a name.",
-		"Name": "Admin.Customers.CustomerAttributes.Values.Fields.Name.Required"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Values.Fields.Name.Required"
 	},
 	{
 		"Value": "You need to save the customer attribute before you can add values for this customer attribute page.",
-		"Name": "Admin.Customers.CustomerAttributes.Values.SaveBeforeEdit"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Values.SaveBeforeEdit"
 	},
 	{
 		"Value": "Customer roles",

@@ -30,6 +30,18 @@
         "Category": "attributes"
     },
     {
+        "ID": "67ed65976b3a64a8c73f7981",
+        "Name": "permission Attribute",
+        "SystemName": "permission_record_attributes",
+        "Category": "attributes"
+    },
+    {
+        "ID": "67ed65976b3a64a8c73f7982",
+        "Name": "permission Attribute Value",
+        "SystemName": "permission_record_attribute_values",
+        "Category": "attributes"
+    },
+    {
         "ID": "67ed65976b3a64a8c73f7941",
         "Name": "Blog Comment",
         "SystemName": "blog_comments",
@@ -411,18 +423,6 @@
         "ID": "67ed65976b3a64a8c73f7980",
         "Name": "Customer Address Mapping",
         "SystemName": "customer_address_mappings",
-        "Category": "customers"
-    },
-    {
-        "ID": "67ed65976b3a64a8c73f7981",
-        "Name": "Customer Attribute",
-        "SystemName": "customer_attributes",
-        "Category": "customers"
-    },
-    {
-        "ID": "67ed65976b3a64a8c73f7982",
-        "Name": "Customer Attribute Value",
-        "SystemName": "customer_attribute_values",
         "Category": "customers"
     },
     {

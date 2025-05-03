@@ -8,31 +8,31 @@ import (
 )
 
 type customerattributevalueUsecase struct {
-	customerattributevalueRepository domain.CustomerAttributeValueRepository
+	customerattributevalueRepository domain.PermisionRecordAttributeValueRepository
 	contextTimeout                   time.Duration
 }
 
-func NewCustomerAttributeValueUsecase(customerattributevalueRepository domain.CustomerAttributeValueRepository, timeout time.Duration) domain.CustomerAttributeValueUsecase {
+func NewPermisionRecordAttributeValueUsecase(customerattributevalueRepository domain.PermisionRecordAttributeValueRepository, timeout time.Duration) domain.PermisionRecordAttributeValueUsecase {
 	return &customerattributevalueUsecase{
 		customerattributevalueRepository: customerattributevalueRepository,
 		contextTimeout:                   timeout,
 	}
 }
 
-func (tu *customerattributevalueUsecase) CreateMany(c context.Context, items []domain.CustomerAttributeValue) error {
+func (tu *customerattributevalueUsecase) CreateMany(c context.Context, items []domain.PermisionRecordAttributeValue) error {
 	ctx,
 		cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.customerattributevalueRepository.CreateMany(ctx, items)
 }
 
-func (tu *customerattributevalueUsecase) Create(c context.Context, customerattributevalue *domain.CustomerAttributeValue) error {
+func (tu *customerattributevalueUsecase) Create(c context.Context, customerattributevalue *domain.PermisionRecordAttributeValue) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.customerattributevalueRepository.Create(ctx, customerattributevalue)
 }
 
-func (tu *customerattributevalueUsecase) Update(c context.Context, customerattributevalue *domain.CustomerAttributeValue) error {
+func (tu *customerattributevalueUsecase) Update(c context.Context, customerattributevalue *domain.PermisionRecordAttributeValue) error {
 	ctx, cancel := context.WithTimeout(c, tu.contextTimeout)
 	defer cancel()
 	return tu.customerattributevalueRepository.Update(ctx, customerattributevalue)
@@ -44,13 +44,13 @@ func (tu *customerattributevalueUsecase) Delete(c context.Context, customerattri
 	return tu.customerattributevalueRepository.Delete(ctx, customerattributevalue)
 }
 
-func (lu *customerattributevalueUsecase) FetchByID(c context.Context, customerattributevalueID string) (domain.CustomerAttributeValue, error) {
+func (lu *customerattributevalueUsecase) FetchByID(c context.Context, customerattributevalueID string) (domain.PermisionRecordAttributeValue, error) {
 	ctx, cancel := context.WithTimeout(c, lu.contextTimeout)
 	defer cancel()
 	return lu.customerattributevalueRepository.FetchByID(ctx, customerattributevalueID)
 }
 
-func (lu *customerattributevalueUsecase) Fetch(c context.Context) ([]domain.CustomerAttributeValue, error) {
+func (lu *customerattributevalueUsecase) Fetch(c context.Context) ([]domain.PermisionRecordAttributeValue, error) {
 	ctx, cancel := context.WithTimeout(c, lu.contextTimeout)
 	defer cancel()
 	return lu.customerattributevalueRepository.Fetch(ctx)

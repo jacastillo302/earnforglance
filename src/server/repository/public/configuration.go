@@ -133,3 +133,26 @@ func GetSettingByName(c context.Context, name string, collection mongo.Collectio
 	err := collection.FindOne(c, bson.M{"name": name}).Decode(&item)
 	return item, err
 }
+
+func GetSettingByNames(c context.Context, names []string, collection mongo.Collection) ([]configuration.Setting, error) {
+	var settings []configuration.Setting
+
+	findOptions := options.Find().
+		SetSort(bson.D{{Key: "name", Value: 1}})
+
+	query := bson.M{
+		"name": bson.M{"$in": names},
+	}
+
+	cursor, err := collection.Find(c, query, findOptions)
+	if err != nil {
+		return settings, err
+	}
+
+	err = cursor.All(c, &settings)
+	if err != nil {
+		return settings, err
+	}
+
+	return settings, err
+}

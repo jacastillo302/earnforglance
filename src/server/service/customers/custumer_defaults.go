@@ -18,8 +18,8 @@ func (CustomerServicesDefaults) DefaultHashedPasswordFormat() string {
 	return "SHA512"
 }
 
-// CustomerAttributePrefix returns the default prefix for customer attributes
-func (CustomerServicesDefaults) CustomerAttributePrefix() string {
+// PermisionRecordAttributePrefix returns the default prefix for customer attributes
+func (CustomerServicesDefaults) PermisionRecordAttributePrefix() string {
 	return "customer_attribute_"
 }
 

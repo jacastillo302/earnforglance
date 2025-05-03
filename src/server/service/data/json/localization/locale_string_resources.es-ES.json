@@ -1185,11 +1185,11 @@
 	},
 	{
 		"Value": "Se agregó un nuevo atributo de cliente (ID = {0})",
-		"Name": "ActivityLog.AddNewCustomerAttribute"
+		"Name": "ActivityLog.AddNewPermisionRecordAttribute"
 	},
 	{
 		"Value": "Se agregó un nuevo valor de atributo de cliente (ID = {0})",
-		"Name": "ActivityLog.AddNewCustomerAttributeValue"
+		"Name": "ActivityLog.AddNewPermisionRecordAttributeValue"
 	},
 	{
 		"Value": "Se agregó un nuevo rol de cliente (' {0} ')",
@@ -1329,11 +1329,11 @@
 	},
 	{
 		"Value": "Eliminado un atributo de cliente (ID = {0})",
-		"Name": "ActivityLog.DeleteCustomerAttribute"
+		"Name": "ActivityLog.DeletePermisionRecordAttribute"
 	},
 	{
 		"Value": "Eliminado un valor de atributo de cliente (ID = {0})",
-		"Name": "ActivityLog.DeleteCustomerAttributeValue"
+		"Name": "ActivityLog.DeletePermisionRecordAttributeValue"
 	},
 	{
 		"Value": "Eliminado un rol de cliente (' {0} ')",
@@ -1501,11 +1501,11 @@
 	},
 	{
 		"Value": "Editar un atributo de cliente (ID = {0})",
-		"Name": "ActivityLog.EditCustomerAttribute"
+		"Name": "ActivityLog.EditPermisionRecordAttribute"
 	},
 	{
 		"Value": "Editar un valor de atributo de cliente (ID = {0})",
-		"Name": "ActivityLog.EditCustomerAttributeValue"
+		"Name": "ActivityLog.EditPermisionRecordAttributeValue"
 	},
 	{
 		"Value": "Editar un rol de cliente (' {0} ')",
@@ -15621,119 +15621,119 @@
 	},
 	{
 		"Value": "Atributos personalizados del cliente",
-		"Name": "Admin.Customers.CustomerAttributes"
+		"Name": "Admin.Customers.PermisionRecordAttributes"
 	},
 	{
 		"Value": "El nuevo atributo se ha agregado correctamente.",
-		"Name": "Admin.Customers.CustomerAttributes.Added"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Added"
 	},
 	{
 		"Value": "Agregar un nuevo atributo de cliente",
-		"Name": "Admin.Customers.CustomerAttributes.AddNew"
+		"Name": "Admin.Customers.PermisionRecordAttributes.AddNew"
 	},
 	{
 		"Value": "volver a la lista de atributos del cliente",
-		"Name": "Admin.Customers.CustomerAttributes.BackToList"
+		"Name": "Admin.Customers.PermisionRecordAttributes.BackToList"
 	},
 	{
 		"Value": "El atributo se ha eliminado correctamente.",
-		"Name": "Admin.Customers.CustomerAttributes.Deleted"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Deleted"
 	},
 	{
 		"Value": "Si los campos de formulario predeterminados no son suficientes para sus necesidades, puede administrar atributos de cliente adicionales a continuación.",
-		"Name": "Admin.Customers.CustomerAttributes.Description"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Description"
 	},
 	{
 		"Value": "Editar detalles de atributos de cliente",
-		"Name": "Admin.Customers.CustomerAttributes.EditAttributeDetails"
+		"Name": "Admin.Customers.PermisionRecordAttributes.EditAttributeDetails"
 	},
 	{
 		"Value": "Tipo de control",
-		"Name": "Admin.Customers.CustomerAttributes.Fields.AttributeControlType"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Fields.AttributeControlType"
 	},
 	{
 		"Value": "Elija cómo mostrar los valores de los atributos.",
-		"Name": "Admin.Customers.CustomerAttributes.Fields.AttributeControlType.Hint"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Fields.AttributeControlType.Hint"
 	},
 	{
 		"Value": "Orden de visualización",
-		"Name": "Admin.Customers.CustomerAttributes.Fields.DisplayOrder"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Fields.DisplayOrder"
 	},
 	{
 		"Value": "El orden de visualización de atributos de cliente. 1 representa el primer elemento de la lista.",
-		"Name": "Admin.Customers.CustomerAttributes.Fields.DisplayOrder.Hint"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Fields.DisplayOrder.Hint"
 	},
 	{
 		"Value": "Obligatorio",
-		"Name": "Admin.Customers.CustomerAttributes.Fields.IsRequired"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Fields.IsRequired"
 	},
 	{
 		"Value": "Cuando se requiere un atributo, el cliente debe elegir un valor de atributo adecuado para poder continuar.",
-		"Name": "Admin.Customers.CustomerAttributes.Fields.IsRequired.Hint"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Fields.IsRequired.Hint"
 	},
 	{
 		"Value": "Nombre",
-		"Name": "Admin.Customers.CustomerAttributes.Fields.Name"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Fields.Name"
 	},
 	{
 		"Value": "El nombre del atributo de cliente.",
-		"Name": "Admin.Customers.CustomerAttributes.Fields.Name.Hint"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Fields.Name.Hint"
 	},
 	{
 		"Value": "Por favor, proporcione un nombre.",
-		"Name": "Admin.Customers.CustomerAttributes.Fields.Name.Required"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Fields.Name.Required"
 	},
 	{
 		"Value": "Información de atributos",
-		"Name": "Admin.Customers.CustomerAttributes.Info"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Info"
 	},
 	{
 		"Value": "El atributo se ha actualizado correctamente.",
-		"Name": "Admin.Customers.CustomerAttributes.Updated"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Updated"
 	},
 	{
 		"Value": "Valores de atributo",
-		"Name": "Admin.Customers.CustomerAttributes.Values"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Values"
 	},
 	{
 		"Value": "Agregar un nuevo valor de cliente",
-		"Name": "Admin.Customers.CustomerAttributes.Values.AddNew"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Values.AddNew"
 	},
 	{
 		"Value": "Editar los detalles del valor del cliente",
-		"Name": "Admin.Customers.CustomerAttributes.Values.EditValueDetails"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Values.EditValueDetails"
 	},
 	{
 		"Value": "Orden de visualización",
-		"Name": "Admin.Customers.CustomerAttributes.Values.Fields.DisplayOrder"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Values.Fields.DisplayOrder"
 	},
 	{
 		"Value": "El orden de visualización del valor de atributo. 1 representa el primer elemento en la lista de valores de atributo.",
-		"Name": "Admin.Customers.CustomerAttributes.Values.Fields.DisplayOrder.Hint"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Values.Fields.DisplayOrder.Hint"
 	},
 	{
 		"Value": "Pre-seleccionado",
-		"Name": "Admin.Customers.CustomerAttributes.Values.Fields.IsPreSelected"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Values.Fields.IsPreSelected"
 	},
 	{
 		"Value": "Determina si este valor de atributo está preselecciona para el cliente.",
-		"Name": "Admin.Customers.CustomerAttributes.Values.Fields.IsPreSelected.Hint"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Values.Fields.IsPreSelected.Hint"
 	},
 	{
 		"Value": "Nombre",
-		"Name": "Admin.Customers.CustomerAttributes.Values.Fields.Name"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Values.Fields.Name"
 	},
 	{
 		"Value": "El nombre del valor del cliente.",
-		"Name": "Admin.Customers.CustomerAttributes.Values.Fields.Name.Hint"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Values.Fields.Name.Hint"
 	},
 	{
 		"Value": "Por favor, proporcione un nombre.",
-		"Name": "Admin.Customers.CustomerAttributes.Values.Fields.Name.Required"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Values.Fields.Name.Required"
 	},
 	{
 		"Value": "Debe guardar el atributo de cliente antes de poder agregar valores para esta página de atributos de cliente.",
-		"Name": "Admin.Customers.CustomerAttributes.Values.SaveBeforeEdit"
+		"Name": "Admin.Customers.PermisionRecordAttributes.Values.SaveBeforeEdit"
 	},
 	{
 		"Value": "Roles de cliente",

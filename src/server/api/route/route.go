@@ -160,8 +160,8 @@ func registerModuleRouters(env *bootstrap.Env, timeout time.Duration, db mongo.D
 		"attributes": {
 			attributes.BaseAttributeRouter,
 			attributes.BaseAttributeValueRouter,
-			attributes.CustomerAttributeRouter,
-			attributes.CustomerAttributeValueRouter,
+			attributes.PermisionRecordAttributeRouter,
+			attributes.PermisionRecordAttributeValueRouter,
 		},
 		"blogs": {
 			blogs.BlogCommentRouter,

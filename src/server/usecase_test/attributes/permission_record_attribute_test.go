@@ -13,18 +13,17 @@ import (
 	"go.mongodb.org/mongo-driver/v2/bson"
 )
 
-func TestCustomerAttributeUsecase_FetchByID(t *testing.T) {
-	mockRepo := new(mocks.CustomerAttributeRepository)
+func TestPermisionRecordAttributeUsecase_FetchByID(t *testing.T) {
+	mockRepo := new(mocks.PermisionRecordAttributeRepository)
 	timeout := time.Duration(10) * time.Second
-	usecase := test.NewCustomerAttributeUsecase(mockRepo, timeout)
+	usecase := test.NewPermisionRecordAttributeUsecase(mockRepo, timeout)
 
-	customerAttributeID := bson.NewObjectID().Hex()
+	permisionRecordAttributeID := bson.NewObjectID().Hex()
 
-	updatedCustomerAttribute := domain.CustomerAttribute{
+	updatedPermisionRecordAttribute := domain.PermisionRecordAttribute{
 		ID:                              bson.NewObjectID(), // Existing ID of the record to update
 		Name:                            "Preferred Language",
 		IsRequired:                      false,
-		AttributeControlTypeID:          2,
 		DisplayOrder:                    2,
 		DefaultValue:                    "English",
 		ValidationMinLength:             new(int),
@@ -34,24 +33,23 @@ func TestCustomerAttributeUsecase_FetchByID(t *testing.T) {
 		ConditionAttributeXml:           "<conditions><required>false</required></conditions>",
 	}
 
-	mockRepo.On("FetchByID", mock.Anything, customerAttributeID).Return(updatedCustomerAttribute, nil)
+	mockRepo.On("FetchByID", mock.Anything, permisionRecordAttributeID).Return(updatedPermisionRecordAttribute, nil)
 
-	result, err := usecase.FetchByID(context.Background(), customerAttributeID)
+	result, err := usecase.FetchByID(context.Background(), permisionRecordAttributeID)
 
 	assert.NoError(t, err)
-	assert.Equal(t, updatedCustomerAttribute, result)
+	assert.Equal(t, updatedPermisionRecordAttribute, result)
 	mockRepo.AssertExpectations(t)
 }
 
-func TestCustomerAttributeUsecase_Create(t *testing.T) {
-	mockRepo := new(mocks.CustomerAttributeRepository)
+func TestPermisionRecordAttributeUsecase_Create(t *testing.T) {
+	mockRepo := new(mocks.PermisionRecordAttributeRepository)
 	timeout := time.Duration(10) * time.Second
-	usecase := test.NewCustomerAttributeUsecase(mockRepo, timeout)
+	usecase := test.NewPermisionRecordAttributeUsecase(mockRepo, timeout)
 
-	newCustomerAttribute := &domain.CustomerAttribute{
+	newPermisionRecordAttribute := &domain.PermisionRecordAttribute{
 		Name:                            "Date of Birth",
 		IsRequired:                      true,
-		AttributeControlTypeID:          1,
 		DisplayOrder:                    1,
 		DefaultValue:                    "01/01/2000",
 		ValidationMinLength:             new(int),
@@ -60,27 +58,26 @@ func TestCustomerAttributeUsecase_Create(t *testing.T) {
 		ValidationFileMaximumSize:       nil,
 		ConditionAttributeXml:           "<conditions><required>true</required></conditions>",
 	}
-	*newCustomerAttribute.ValidationMinLength = 10
-	*newCustomerAttribute.ValidationMaxLength = 10
+	*newPermisionRecordAttribute.ValidationMinLength = 10
+	*newPermisionRecordAttribute.ValidationMaxLength = 10
 
-	mockRepo.On("Create", mock.Anything, newCustomerAttribute).Return(nil)
+	mockRepo.On("Create", mock.Anything, newPermisionRecordAttribute).Return(nil)
 
-	err := usecase.Create(context.Background(), newCustomerAttribute)
+	err := usecase.Create(context.Background(), newPermisionRecordAttribute)
 
 	assert.NoError(t, err)
 	mockRepo.AssertExpectations(t)
 }
 
-func TestCustomerAttributeUsecase_Update(t *testing.T) {
-	mockRepo := new(mocks.CustomerAttributeRepository)
+func TestPermisionRecordAttributeUsecase_Update(t *testing.T) {
+	mockRepo := new(mocks.PermisionRecordAttributeRepository)
 	timeout := time.Duration(10) * time.Second
-	usecase := test.NewCustomerAttributeUsecase(mockRepo, timeout)
+	usecase := test.NewPermisionRecordAttributeUsecase(mockRepo, timeout)
 
-	updatedCustomerAttribute := &domain.CustomerAttribute{
+	updatedPermisionRecordAttribute := &domain.PermisionRecordAttribute{
 		ID:                              bson.NewObjectID(), // Existing ID of the record to update
 		Name:                            "Preferred Language",
 		IsRequired:                      false,
-		AttributeControlTypeID:          2,
 		DisplayOrder:                    2,
 		DefaultValue:                    "English",
 		ValidationMinLength:             new(int),
@@ -89,44 +86,43 @@ func TestCustomerAttributeUsecase_Update(t *testing.T) {
 		ValidationFileMaximumSize:       new(int),
 		ConditionAttributeXml:           "<conditions><required>false</required></conditions>",
 	}
-	*updatedCustomerAttribute.ValidationMinLength = 3
-	*updatedCustomerAttribute.ValidationMaxLength = 20
-	*updatedCustomerAttribute.ValidationFileMaximumSize = 2048
+	*updatedPermisionRecordAttribute.ValidationMinLength = 3
+	*updatedPermisionRecordAttribute.ValidationMaxLength = 20
+	*updatedPermisionRecordAttribute.ValidationFileMaximumSize = 2048
 
-	mockRepo.On("Update", mock.Anything, updatedCustomerAttribute).Return(nil)
+	mockRepo.On("Update", mock.Anything, updatedPermisionRecordAttribute).Return(nil)
 
-	err := usecase.Update(context.Background(), updatedCustomerAttribute)
-
-	assert.NoError(t, err)
-	mockRepo.AssertExpectations(t)
-}
-
-func TestCustomerAttributeUsecase_Delete(t *testing.T) {
-	mockRepo := new(mocks.CustomerAttributeRepository)
-	timeout := time.Duration(10) * time.Second
-	usecase := test.NewCustomerAttributeUsecase(mockRepo, timeout)
-
-	customerAttributeID := bson.NewObjectID().Hex()
-
-	mockRepo.On("Delete", mock.Anything, customerAttributeID).Return(nil)
-
-	err := usecase.Delete(context.Background(), customerAttributeID)
+	err := usecase.Update(context.Background(), updatedPermisionRecordAttribute)
 
 	assert.NoError(t, err)
 	mockRepo.AssertExpectations(t)
 }
 
-func TestCustomerAttributeUsecase_Fetch(t *testing.T) {
-	mockRepo := new(mocks.CustomerAttributeRepository)
+func TestPermisionRecordAttributeUsecase_Delete(t *testing.T) {
+	mockRepo := new(mocks.PermisionRecordAttributeRepository)
 	timeout := time.Duration(10) * time.Second
-	usecase := test.NewCustomerAttributeUsecase(mockRepo, timeout)
+	usecase := test.NewPermisionRecordAttributeUsecase(mockRepo, timeout)
 
-	fetchedCustomerAttributes := []domain.CustomerAttribute{
+	permisionRecordAttributeID := bson.NewObjectID().Hex()
+
+	mockRepo.On("Delete", mock.Anything, permisionRecordAttributeID).Return(nil)
+
+	err := usecase.Delete(context.Background(), permisionRecordAttributeID)
+
+	assert.NoError(t, err)
+	mockRepo.AssertExpectations(t)
+}
+
+func TestPermisionRecordAttributeUsecase_Fetch(t *testing.T) {
+	mockRepo := new(mocks.PermisionRecordAttributeRepository)
+	timeout := time.Duration(10) * time.Second
+	usecase := test.NewPermisionRecordAttributeUsecase(mockRepo, timeout)
+
+	fetchedPermisionRecordAttributes := []domain.PermisionRecordAttribute{
 		{
 			ID:                              bson.NewObjectID(),
 			Name:                            "Date of Birth",
 			IsRequired:                      true,
-			AttributeControlTypeID:          1,
 			DisplayOrder:                    1,
 			DefaultValue:                    "01/01/2000",
 			ValidationMinLength:             new(int),
@@ -139,7 +135,6 @@ func TestCustomerAttributeUsecase_Fetch(t *testing.T) {
 			ID:                              bson.NewObjectID(),
 			Name:                            "Preferred Language",
 			IsRequired:                      false,
-			AttributeControlTypeID:          2,
 			DisplayOrder:                    2,
 			DefaultValue:                    "English",
 			ValidationMinLength:             new(int),
@@ -149,17 +144,17 @@ func TestCustomerAttributeUsecase_Fetch(t *testing.T) {
 			ConditionAttributeXml:           "<conditions><required>false</required></conditions>",
 		},
 	}
-	*fetchedCustomerAttributes[0].ValidationMinLength = 10
-	*fetchedCustomerAttributes[0].ValidationMaxLength = 10
-	*fetchedCustomerAttributes[1].ValidationMinLength = 3
-	*fetchedCustomerAttributes[1].ValidationMaxLength = 20
-	*fetchedCustomerAttributes[1].ValidationFileMaximumSize = 2048
+	*fetchedPermisionRecordAttributes[0].ValidationMinLength = 10
+	*fetchedPermisionRecordAttributes[0].ValidationMaxLength = 10
+	*fetchedPermisionRecordAttributes[1].ValidationMinLength = 3
+	*fetchedPermisionRecordAttributes[1].ValidationMaxLength = 20
+	*fetchedPermisionRecordAttributes[1].ValidationFileMaximumSize = 2048
 
-	mockRepo.On("Fetch", mock.Anything).Return(fetchedCustomerAttributes, nil)
+	mockRepo.On("Fetch", mock.Anything).Return(fetchedPermisionRecordAttributes, nil)
 
 	result, err := usecase.Fetch(context.Background())
 
 	assert.NoError(t, err)
-	assert.Equal(t, fetchedCustomerAttributes, result)
+	assert.Equal(t, fetchedPermisionRecordAttributes, result)
 	mockRepo.AssertExpectations(t)
 }

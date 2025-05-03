@@ -1,0 +1,42 @@
+[
+  {
+    "Name": "DropdownList",
+    "Value": 1
+  },
+  {
+    "Name": "RadioList",
+    "Value": 2
+  },
+  {
+    "Name": "Checkboxes",
+    "Value": 3
+  },
+  {
+    "Name": "TextBox",
+    "Value": 4
+  },
+  {
+    "Name": "MultilineTextbox",
+    "Value": 10
+  },
+  {
+    "Name": "Datepicker",
+    "Value": 20
+  },
+  {
+    "Name": "FileUpload",
+    "Value": 30
+  },
+  {
+    "Name": "ColorSquares",
+    "Value": 40
+  },
+  {
+    "Name": "ImageSquares",
+    "Value": 45
+  },
+  {
+    "Name": "ReadonlyCheckboxes",
+    "Value": 50
+  }
+]

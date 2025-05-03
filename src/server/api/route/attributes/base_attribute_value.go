@@ -22,7 +22,6 @@ func BaseAttributeValueRouter(env *bootstrap.Env, timeout time.Duration, db mong
 	}
 
 	itemGroup := group.Group("/api/v1/attributes")
-
 	itemGroup.GET("/base_attribute_values", lc.Fetch)
 	itemGroup.GET("/base_attribute_value", lc.FetchByID)
 	itemGroup.POST("/base_attribute_value", lc.Create)

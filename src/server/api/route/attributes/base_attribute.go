@@ -20,13 +20,11 @@ func BaseAttributeRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Dat
 		BaseAttributeUsecase: usecase.NewBaseAttributeUsecase(ur, timeout),
 		Env:                  env,
 	}
-
-	group.Group("/attributes")
-
-	group.GET("/base_attributes", lc.Fetch)
-	group.GET("/base_attribute", lc.FetchByID)
-	group.POST("/base_attribute", lc.Create)
-	group.POST("/base_attributes", lc.CreateMany)
-	group.PUT("/base_attribute", lc.Update)
-	group.DELETE("/base_attribute", lc.Delete)
+	itemGroup := group.Group("/api/v1/attributes")
+	itemGroup.GET("/base_attributes", lc.Fetch)
+	itemGroup.GET("/base_attribute", lc.FetchByID)
+	itemGroup.POST("/base_attribute", lc.Create)
+	itemGroup.POST("/base_attributes", lc.CreateMany)
+	itemGroup.PUT("/base_attribute", lc.Update)
+	itemGroup.DELETE("/base_attribute", lc.Delete)
 }

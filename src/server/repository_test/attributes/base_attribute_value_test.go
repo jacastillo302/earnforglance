@@ -37,11 +37,11 @@ func TestBaseAttributeValueRepository_FetchByID(t *testing.T) {
 	collectionName := domain.CollectionBaseAttributeValue
 
 	mockItem := domain.BaseAttributeValue{
-		ID:            bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
-		Name:          "",
-		IsPreSelected: false,
-		DisplayOrder:  0,
-		AttributeID:   bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+		ID:              bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
+		Name:            "",
+		IsPreSelected:   false,
+		DisplayOrder:    0,
+		BaseAttributeID: bson.ObjectID{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0},
 	}
 
 	t.Run("success", func(t *testing.T) {
@@ -88,11 +88,11 @@ func TestBaseAttributeValueRepository_Create(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockBaseAttributeValue := &domain.BaseAttributeValue{
-		ID:            bson.NewObjectID(), // Existing ID of the record to update
-		Name:          "Size",
-		IsPreSelected: true,
-		DisplayOrder:  2,
-		AttributeID:   bson.NewObjectID(), // Reference to the related attribute
+		ID:              bson.NewObjectID(), // Existing ID of the record to update
+		Name:            "Size",
+		IsPreSelected:   true,
+		DisplayOrder:    2,
+		BaseAttributeID: bson.NewObjectID(), // Reference to the related attribute
 	}
 
 	collectionHelper.On("InsertOne", mock.Anything, mockBaseAttributeValue).Return(nil, nil).Once()
@@ -113,11 +113,11 @@ func TestBaseAttributeValueRepository_Update(t *testing.T) {
 	databaseHelper.On("Collection", collectionName).Return(collectionHelper)
 
 	mockBaseAttributeValue := &domain.BaseAttributeValue{
-		ID:            bson.NewObjectID(), // Existing ID of the record to update
-		Name:          "Size",
-		IsPreSelected: true,
-		DisplayOrder:  2,
-		AttributeID:   bson.NewObjectID(), // Reference to the related attribute
+		ID:              bson.NewObjectID(), // Existing ID of the record to update
+		Name:            "Size",
+		IsPreSelected:   true,
+		DisplayOrder:    2,
+		BaseAttributeID: bson.NewObjectID(), // Reference to the related attribute
 	}
 
 	filter := bson.M{"_id": mockBaseAttributeValue.ID}

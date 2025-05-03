@@ -61,13 +61,13 @@
     },
     {
         "ID": "67eff47c8698777b15777273",
-        "SystemKeyword": "AddNewCustomerAttribute",
+        "SystemKeyword": "AddNewPermisionRecordAttribute",
         "Name": "Add a new customer attribute",
         "Enabled": true
     },
     {
         "ID": "67eff47c8698777b15777274",
-        "SystemKeyword": "AddNewCustomerAttributeValue",
+        "SystemKeyword": "AddNewPermisionRecordAttributeValue",
         "Name": "Add a new customer attribute value",
         "Enabled": true
     },
@@ -283,13 +283,13 @@
     },
     {
         "ID": "67eff47c8698777b15777298",
-        "SystemKeyword": "DeleteCustomerAttribute",
+        "SystemKeyword": "DeletePermisionRecordAttribute",
         "Name": "Delete a customer attribute",
         "Enabled": true
     },
     {
         "ID": "67eff47c8698777b15777299",
-        "SystemKeyword": "DeleteCustomerAttributeValue",
+        "SystemKeyword": "DeletePermisionRecordAttributeValue",
         "Name": "Delete a customer attribute value",
         "Enabled": true
     },
@@ -541,13 +541,13 @@
     },
     {
         "ID": "67eff47c8698777b157772c3",
-        "SystemKeyword": "EditCustomerAttribute",
+        "SystemKeyword": "EditPermisionRecordAttribute",
         "Name": "Edit a customer attribute",
         "Enabled": true
     },
     {
         "ID": "67eff47c8698777b157772c4",
-        "SystemKeyword": "EditCustomerAttributeValue",
+        "SystemKeyword": "EditPermisionRecordAttributeValue",
         "Name": "Edit a customer attribute value",
         "Enabled": true
     },

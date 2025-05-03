@@ -3,6 +3,7 @@ package repository
 import (
 	"context"
 	"crypto/rand"
+	attributes "earnforglance/server/domain/attributes"
 	configuration "earnforglance/server/domain/configuration"
 	customers "earnforglance/server/domain/customers"
 	localization "earnforglance/server/domain/localization"
@@ -145,8 +146,8 @@ func PrepareSingIn(nr *customerRepository, c context.Context, sigin domain.SingI
 	}
 
 	SubucribeNews(nr, c, sigin)
+	SetCustomerAttributes(nr, c, sigin, newCustomer)
 	SetCustomerAddress(nr, c, sigin)
-	SetCutomerAttributes(nr, c, sigin)
 	SetPrivacyConsents(nr, c, sigin)
 	SendNotifications(nr, c, sigin)
 
@@ -166,10 +167,159 @@ func SetCustomerAddress(nr *customerRepository, c context.Context, sigin domain.
 	return result, err
 }
 
-func SetCutomerAttributes(nr *customerRepository, c context.Context, sigin domain.SingInRequest) (bool, error) {
+func SetCustomerAttributes(nr *customerRepository, c context.Context, sigin domain.SingInRequest, newCustomer customers.Customer) (customers.Customer, error) {
 	err := error(nil)
-	result := false
+	result := newCustomer
+
+	filter := []string{"GenderEnabled", "FirstNameEnabled", "LastNameEnabled", "DateOfBirthEnabled", "CompanyEnabled", "StreetAddressEnabled", "StreetAddress2Enabled", "ZipPostalCodeEnabled", "CityEnabled", "CountyEnabled", "CountryEnabled", "StateProvinceEnabled", "PhoneEnabled", "FaxEnabled"}
+
+	settings, err := GetSettingByNames(c, filter, nr.database.Collection(configuration.CollectionSetting))
+	if err != nil {
+		return result, err
+	}
+
+	for i := range settings {
+		switch settings[i].Name {
+		case "GenderEnabled":
+			if settings[i].Value == "true" {
+				if sigin.Customer.Gender != "" {
+					result.Gender = sigin.Customer.Gender
+				}
+			}
+		case "FirstNameEnabled":
+			if settings[i].Value == "true" {
+				if sigin.Customer.FirstName != "" {
+					result.FirstName = sigin.Customer.FirstName
+				}
+			}
+		case "LastNameEnabled":
+			if settings[i].Value == "true" {
+				if sigin.Customer.LastName != "" {
+					result.LastName = sigin.Customer.LastName
+				}
+			}
+		case "DateOfBirthEnabled":
+			if settings[i].Value == "true" {
+				if sigin.Customer.DateOfBirth != nil {
+					result.DateOfBirth = sigin.Customer.DateOfBirth
+				}
+			}
+		case "CompanyEnabled":
+			if settings[i].Value == "true" {
+				if sigin.Customer.Company != "" {
+					result.Company = sigin.Customer.Company
+				}
+			}
+		case "StreetAddressEnabled":
+			if settings[i].Value == "true" {
+				if sigin.Customer.StreetAddress != "" {
+					result.StreetAddress = sigin.Customer.StreetAddress
+				}
+			}
+		case "StreetAddress2Enabled":
+			if settings[i].Value == "true" {
+				if sigin.Customer.StreetAddress2 != "" {
+					result.StreetAddress2 = sigin.Customer.StreetAddress2
+				}
+			}
+		case "ZipPostalCodeEnabled":
+			if settings[i].Value == "true" {
+				if sigin.Customer.ZipPostalCode != "" {
+					result.ZipPostalCode = sigin.Customer.ZipPostalCode
+				}
+			}
+		case "CityEnabled":
+			if settings[i].Value == "true" {
+				if sigin.Customer.City != "" {
+					result.City = sigin.Customer.City
+				}
+			}
+		case "CountyEnabled":
+			if settings[i].Value == "true" {
+				if sigin.Customer.County != "" {
+					result.County = sigin.Customer.County
+				}
+			}
+		case "CountryEnabled":
+			if settings[i].Value == "true" {
+				if sigin.Customer.CountryID != bson.NilObjectID {
+					result.CountryID = sigin.Customer.CountryID
+				}
+			}
+		case "StateProvinceEnabled":
+			if settings[i].Value == "true" {
+				if sigin.Customer.StateProvinceID != bson.NilObjectID {
+					result.StateProvinceID = sigin.Customer.StateProvinceID
+				}
+			}
+		case "PhoneEnabled":
+			if settings[i].Value == "true" {
+				if sigin.Customer.Phone != "" {
+					result.Phone = sigin.Customer.Phone
+				}
+			}
+		case "FaxEnabled":
+			if settings[i].Value == "true" {
+				if sigin.Customer.Fax != "" {
+					result.Fax = sigin.Customer.Fax
+				}
+			}
+		}
+	}
+
+	update, err := UpdateCustomer(c, result, nr.database.Collection(customers.CollectionCustomer))
+	if err != nil {
+		fmt.Println("err", err)
+		return result, err
+	}
+
+	fmt.Println("update", update)
+	if !update {
+		return result, fmt.Errorf("failed to update customer fields")
+	}
+
+	SetCustomerCustomAttributes(nr, c, sigin, result)
+
 	return result, err
+}
+
+func SetCustomerCustomAttributes(nr *customerRepository, c context.Context, sigin domain.SingInRequest, newCustomer customers.Customer) (bool, error) {
+	result := false
+	err := error(nil)
+
+	customerRecord, err := GetRercordBySystemName(c, customers.CollectionCustomer, nr.database.Collection(security.CollectionPermissionRecord))
+	if err != nil {
+		return result, err
+	}
+
+	customAttributes, err := GetCustomAttributes(c, customerRecord.ID, nr.database.Collection(attributes.CollectionPermisionRecordAttribute))
+	if err != nil {
+		return result, err
+	}
+
+	for i := range customAttributes {
+		order := 0
+
+		baseAtributte, err := GetCustomAttribute(c, customAttributes[i].BaseAttributeID, nr.database.Collection(attributes.CollectionBaseAttribute))
+		if err != nil {
+			return result, err
+		}
+
+		value, ok := sigin.Attributes[baseAtributte.Name]
+		if ok {
+			preselected := false
+
+			if order == 0 {
+				preselected = true
+			}
+
+			order = i + 1
+			SetCustomAttributeValue(c, customAttributes[i].ID, newCustomer.ID, value, preselected, order, nr.database.Collection(attributes.CollectionPermisionRecordAttributeValue))
+		}
+	}
+
+	return result, err
+
 }
 
 func SetPrivacyConsents(nr *customerRepository, c context.Context, sigin domain.SingInRequest) (bool, error) {
@@ -412,6 +562,24 @@ func NewCustomerPassword(c context.Context, customerPw customers.CustomerPasswor
 	}
 
 	return false, err
+}
+
+func UpdateCustomer(c context.Context, customer customers.Customer, collection mongo.Collection) (bool, error) {
+	err := error(nil)
+
+	query := bson.M{
+		"_id": customer.ID,
+	}
+
+	update := bson.M{
+		"$set": customer,
+	}
+	_, err = collection.UpdateOne(c, query, update)
+	if err != nil {
+		return false, err
+	}
+
+	return true, err
 }
 
 func GetCustomerPassword(customerID bson.ObjectID, psw string) (bool, []customers.CustomerPassword) {

@@ -12,13 +12,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type CustomerAttributeController struct {
-	CustomerAttributeUsecase domain.CustomerAttributeUsecase
-	Env                      *bootstrap.Env
+type PermisionRecordAttributeValueController struct {
+	PermisionRecordAttributeValueUsecase domain.PermisionRecordAttributeValueUsecase
+	Env                                  *bootstrap.Env
 }
 
-func (tc *CustomerAttributeController) CreateMany(c *gin.Context) {
-	var task []domain.CustomerAttribute
+func (tc *PermisionRecordAttributeValueController) CreateMany(c *gin.Context) {
+	var task []domain.PermisionRecordAttributeValue
 	body, err := io.ReadAll(c.Request.Body)
 
 	if err != nil {
@@ -32,19 +32,19 @@ func (tc *CustomerAttributeController) CreateMany(c *gin.Context) {
 		return
 	}
 
-	err = tc.CustomerAttributeUsecase.CreateMany(c, task)
+	err = tc.PermisionRecordAttributeValueUsecase.CreateMany(c, task)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
 		return
 	}
 
 	c.JSON(http.StatusOK, common.SuccessResponse{
-		Message: "CustomerAttribute created successfully",
+		Message: "PermisionRecordAttributeValue created successfully",
 	})
 }
 
-func (tc *CustomerAttributeController) Create(c *gin.Context) {
-	var task domain.CustomerAttribute
+func (tc *PermisionRecordAttributeValueController) Create(c *gin.Context) {
+	var task domain.PermisionRecordAttributeValue
 	body, err := io.ReadAll(c.Request.Body)
 
 	if err != nil {
@@ -58,19 +58,19 @@ func (tc *CustomerAttributeController) Create(c *gin.Context) {
 		return
 	}
 
-	err = tc.CustomerAttributeUsecase.Create(c, &task)
+	err = tc.PermisionRecordAttributeValueUsecase.Create(c, &task)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
 		return
 	}
 
 	c.JSON(http.StatusOK, common.SuccessResponse{
-		Message: "CustomerAttribute created successfully",
+		Message: "PermisionRecordAttributeValue created successfully",
 	})
 }
 
-func (tc *CustomerAttributeController) Update(c *gin.Context) {
-	var task domain.CustomerAttribute
+func (tc *PermisionRecordAttributeValueController) Update(c *gin.Context) {
+	var task domain.PermisionRecordAttributeValue
 	body, err := io.ReadAll(c.Request.Body)
 
 	if err != nil {
@@ -84,25 +84,25 @@ func (tc *CustomerAttributeController) Update(c *gin.Context) {
 		return
 	}
 
-	err = tc.CustomerAttributeUsecase.Update(c, &task)
+	err = tc.PermisionRecordAttributeValueUsecase.Update(c, &task)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, common.ErrorResponse{Message: err.Error()})
 		return
 	}
 
 	c.JSON(http.StatusOK, common.SuccessResponse{
-		Message: "CustomerAttribute update successfully",
+		Message: "PermisionRecordAttributeValue update successfully",
 	})
 }
 
-func (tc *CustomerAttributeController) Delete(c *gin.Context) {
+func (tc *PermisionRecordAttributeValueController) Delete(c *gin.Context) {
 	ID := c.Query("id")
 	if ID == "" {
 		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "invalid ID format"})
 		return
 	}
 
-	err := tc.CustomerAttributeUsecase.Delete(c, ID)
+	err := tc.PermisionRecordAttributeValueUsecase.Delete(c, ID)
 	if err != nil {
 		c.JSON(http.StatusNotFound, common.ErrorResponse{Message: ID})
 		return
@@ -113,29 +113,29 @@ func (tc *CustomerAttributeController) Delete(c *gin.Context) {
 	})
 }
 
-func (lc *CustomerAttributeController) FetchByID(c *gin.Context) {
-	CustomerAttributeID := c.Query("id")
-	if CustomerAttributeID == "" {
+func (lc *PermisionRecordAttributeValueController) FetchByID(c *gin.Context) {
+	PermisionRecordAttributeValueID := c.Query("id")
+	if PermisionRecordAttributeValueID == "" {
 		c.JSON(http.StatusBadRequest, common.ErrorResponse{Message: "invalid ID format"})
 		return
 	}
 
-	CustomerAttribute, err := lc.CustomerAttributeUsecase.FetchByID(c, CustomerAttributeID)
+	PermisionRecordAttributeValue, err := lc.PermisionRecordAttributeValueUsecase.FetchByID(c, PermisionRecordAttributeValueID)
 	if err != nil {
-		c.JSON(http.StatusNotFound, common.ErrorResponse{Message: CustomerAttributeID})
+		c.JSON(http.StatusNotFound, common.ErrorResponse{Message: PermisionRecordAttributeValueID})
 		return
 	}
 
-	c.JSON(http.StatusOK, CustomerAttribute)
+	c.JSON(http.StatusOK, PermisionRecordAttributeValue)
 }
 
-func (lc *CustomerAttributeController) Fetch(c *gin.Context) {
+func (lc *PermisionRecordAttributeValueController) Fetch(c *gin.Context) {
 
-	CustomerAttribute, err := lc.CustomerAttributeUsecase.Fetch(c)
+	PermisionRecordAttributeValue, err := lc.PermisionRecordAttributeValueUsecase.Fetch(c)
 	if err != nil {
 		c.JSON(http.StatusNotFound, common.ErrorResponse{Message: err.Error()})
 		return
 	}
 
-	c.JSON(http.StatusOK, CustomerAttribute)
+	c.JSON(http.StatusOK, PermisionRecordAttributeValue)
 }

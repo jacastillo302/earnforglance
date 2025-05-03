@@ -15,14 +15,14 @@ type customerattributeRepository struct {
 	collection string
 }
 
-func NewCustomerAttributeRepository(db mongo.Database, collection string) domain.CustomerAttributeRepository {
+func NewPermisionRecordAttributeRepository(db mongo.Database, collection string) domain.PermisionRecordAttributeRepository {
 	return &customerattributeRepository{
 		database:   db,
 		collection: collection,
 	}
 }
 
-func (ur *customerattributeRepository) CreateMany(c context.Context, items []domain.CustomerAttribute) error {
+func (ur *customerattributeRepository) CreateMany(c context.Context, items []domain.PermisionRecordAttribute) error {
 	collection := ur.database.Collection(ur.collection)
 
 	interfaces := make([]interface{}, len(items))
@@ -35,7 +35,7 @@ func (ur *customerattributeRepository) CreateMany(c context.Context, items []dom
 	return err
 }
 
-func (ur *customerattributeRepository) Create(c context.Context, customerattribute *domain.CustomerAttribute) error {
+func (ur *customerattributeRepository) Create(c context.Context, customerattribute *domain.PermisionRecordAttribute) error {
 	collection := ur.database.Collection(ur.collection)
 
 	_, err := collection.InsertOne(c, customerattribute)
@@ -43,7 +43,7 @@ func (ur *customerattributeRepository) Create(c context.Context, customerattribu
 	return err
 }
 
-func (ur *customerattributeRepository) Update(c context.Context, customerattribute *domain.CustomerAttribute) error {
+func (ur *customerattributeRepository) Update(c context.Context, customerattribute *domain.PermisionRecordAttribute) error {
 	collection := ur.database.Collection(ur.collection)
 
 	filter := bson.M{"_id": customerattribute.ID}
@@ -67,7 +67,7 @@ func (ur *customerattributeRepository) Delete(c context.Context, ID string) erro
 
 }
 
-func (ur *customerattributeRepository) Fetch(c context.Context) ([]domain.CustomerAttribute, error) {
+func (ur *customerattributeRepository) Fetch(c context.Context) ([]domain.PermisionRecordAttribute, error) {
 	collection := ur.database.Collection(ur.collection)
 
 	opts := options.Find().
@@ -78,20 +78,20 @@ func (ur *customerattributeRepository) Fetch(c context.Context) ([]domain.Custom
 		return nil, err
 	}
 
-	var customerattributes []domain.CustomerAttribute
+	var customerattributes []domain.PermisionRecordAttribute
 
 	err = cursor.All(c, &customerattributes)
 	if customerattributes == nil {
-		return []domain.CustomerAttribute{}, err
+		return []domain.PermisionRecordAttribute{}, err
 	}
 
 	return customerattributes, err
 }
 
-func (tr *customerattributeRepository) FetchByID(c context.Context, customerattributeID string) (domain.CustomerAttribute, error) {
+func (tr *customerattributeRepository) FetchByID(c context.Context, customerattributeID string) (domain.PermisionRecordAttribute, error) {
 	collection := tr.database.Collection(tr.collection)
 
-	var customerattribute domain.CustomerAttribute
+	var customerattribute domain.PermisionRecordAttribute
 
 	idHex, err := bson.ObjectIDFromHex(customerattributeID)
 	if err != nil {
