@@ -29,6 +29,7 @@ import (
 	topics "earnforglance/server/domain/topics"
 	vendors "earnforglance/server/domain/vendors"
 	"earnforglance/server/service/data/mongo"
+	"fmt"
 
 	"go.mongodb.org/mongo-driver/v2/bson"
 )
@@ -172,7 +173,7 @@ func (tu *intallRepository) InstallSettings(c context.Context, items []settings.
 	}
 
 	_, err := collection.InsertMany(c, interfaces)
-
+	fmt.Println("interfaces", interfaces)
 	return err
 }
 

@@ -1,2004 +1,288 @@
 [
-    {
-        "ID": "67ffd84963f38f19602e7aec",
-        "PermissionRecordID": "67ed65976b3a64a8c73f793c",
-        "Slug": "api_clients",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7aed",
-        "PermissionRecordID": "67ed65976b3a64a8c73f793e",
-        "Slug": "affiliates",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7aee",
-        "PermissionRecordID": "67ed65976b3a64a8c73f793f",
-        "Slug": "base_attributes",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7aef",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7940",
-        "Slug": "base_attribute_values",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7af0",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7941",
-        "Slug": "blog_comments",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7af1",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7942",
-        "Slug": "blog_posts",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7af2",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7943",
-        "Slug": "blog_post_tags",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7af3",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7945",
-        "Slug": "back_in_stock_subscriptions",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7af4",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7947",
-        "Slug": "categories",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7af5",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7948",
-        "Slug": "category_templates",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7af6",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7949",
-        "Slug": "cross_sell_products",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7af7",
-        "PermissionRecordID": "67ed65976b3a64a8c73f794a",
-        "Slug": "manufacturers",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7af8",
-        "PermissionRecordID": "67ed65976b3a64a8c73f794b",
-        "Slug": "manufacturer_templates",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7af9",
-        "PermissionRecordID": "67ed65976b3a64a8c73f794c",
-        "Slug": "predefined_product_attribute_values",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7afa",
-        "PermissionRecordID": "67ed65976b3a64a8c73f794d",
-        "Slug": "products",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7afb",
-        "PermissionRecordID": "67ed65976b3a64a8c73f794e",
-        "Slug": "product_attributes",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7afc",
-        "PermissionRecordID": "67ed65976b3a64a8c73f794f",
-        "Slug": "product_attribute_combinations",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7afd",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7950",
-        "Slug": "product_attribute_combination_pictures",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7afe",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7951",
-        "Slug": "product_attribute_mappings",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7aff",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7952",
-        "Slug": "product_attribute_values",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b00",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7953",
-        "Slug": "product_attribute_value_pictures",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b01",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7954",
-        "Slug": "product_categories",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b02",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7956",
-        "Slug": "product_manufacturers",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b03",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7957",
-        "Slug": "product_pictures",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b04",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7958",
-        "Slug": "product_product_tag_mappings",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b05",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7959",
-        "Slug": "product_reviews",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b06",
-        "PermissionRecordID": "67ed65976b3a64a8c73f795a",
-        "Slug": "product_review_helpfulness",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b07",
-        "PermissionRecordID": "67ed65976b3a64a8c73f795b",
-        "Slug": "product_review_review_type_mappings",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b08",
-        "PermissionRecordID": "67ed65976b3a64a8c73f795c",
-        "Slug": "product_specification_attributes",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b09",
-        "PermissionRecordID": "67ed65976b3a64a8c73f795d",
-        "Slug": "product_tags",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b0a",
-        "PermissionRecordID": "67ed65976b3a64a8c73f795e",
-        "Slug": "product_templates",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b0b",
-        "PermissionRecordID": "67ed65976b3a64a8c73f795f",
-        "Slug": "product_videos",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b0c",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7960",
-        "Slug": "product_warehouse_inventories",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b0d",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7961",
-        "Slug": "related_products",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b0e",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7962",
-        "Slug": "review_types",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b0f",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7963",
-        "Slug": "specification_attributes",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b10",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7964",
-        "Slug": "specification_attribute_groups",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b11",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7965",
-        "Slug": "specification_attribute_options",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b12",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7966",
-        "Slug": "stock_quantity_changes",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b13",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7967",
-        "Slug": "tier_prices",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b14",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7969",
-        "Slug": "addresses",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b15",
-        "PermissionRecordID": "67ed65976b3a64a8c73f796a",
-        "Slug": "address_attributes",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b16",
-        "PermissionRecordID": "67ed65976b3a64a8c73f796b",
-        "Slug": "address_attribute_values",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b17",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7971",
-        "Slug": "generic_attributes",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b18",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7973",
-        "Slug": "search_terms",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b19",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7974",
-        "Slug": "search_term_report_lines",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b1a",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7977",
-        "Slug": "settings",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b1b",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7978",
-        "Slug": "best_customer_report_lines",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b1c",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7979",
-        "Slug": "customer_passwords",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b1d",
-        "PermissionRecordID": "67ed65976b3a64a8c73f797a",
-        "Slug": "customer_roles",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b1e",
-        "PermissionRecordID": "67ed65976b3a64a8c73f797c",
-        "Slug": "customers",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b1f",
-        "PermissionRecordID": "67ed65976b3a64a8c73f797d",
-        "Slug": "external_authentication_records",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b20",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7980",
-        "Slug": "customer_address_mappings",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b21",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7981",
-        "Slug": "customer_attributes",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b22",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7982",
-        "Slug": "customer_attribute_values",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b23",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7983",
-        "Slug": "customer_customer_role_mappings",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b24",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7984",
-        "Slug": "reward_points_history",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b25",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7986",
-        "Slug": "countries",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b26",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7987",
-        "Slug": "currencies",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b27",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7989",
-        "Slug": "exchange_rates",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b28",
-        "PermissionRecordID": "67ed65976b3a64a8c73f798a",
-        "Slug": "measure_dimensions",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b29",
-        "PermissionRecordID": "67ed65976b3a64a8c73f798c",
-        "Slug": "measure_weights",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b2a",
-        "PermissionRecordID": "67ed65976b3a64a8c73f798d",
-        "Slug": "state_provinces",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b2b",
-        "PermissionRecordID": "67ed65976b3a64a8c73f798e",
-        "Slug": "discounts",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b2c",
-        "PermissionRecordID": "67ed65976b3a64a8c73f798f",
-        "Slug": "discount_category_mappings",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b2d",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7990",
-        "Slug": "discount_manufacturer_mappings",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b2e",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7991",
-        "Slug": "discount_mappings",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b2f",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7992",
-        "Slug": "discount_product_mappings",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b30",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7993",
-        "Slug": "discount_requirements",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b31",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7994",
-        "Slug": "discount_usage_histories",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b32",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7995",
-        "Slug": "forums",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b33",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7996",
-        "Slug": "forum_groups",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b34",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7997",
-        "Slug": "forum_posts",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b35",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7998",
-        "Slug": "forum_post_votes",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b36",
-        "PermissionRecordID": "67ed65976b3a64a8c73f799a",
-        "Slug": "forum_subscriptions",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b37",
-        "PermissionRecordID": "67ed65976b3a64a8c73f799b",
-        "Slug": "forum_topics",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b38",
-        "PermissionRecordID": "67ed65976b3a64a8c73f799c",
-        "Slug": "private_messages",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b39",
-        "PermissionRecordID": "67ed65976b3a64a8c73f799d",
-        "Slug": "customer_permanently_deleteds",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b3a",
-        "PermissionRecordID": "67ed65976b3a64a8c73f799e",
-        "Slug": "gdpr_consents",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b3b",
-        "PermissionRecordID": "67ed65976b3a64a8c73f799f",
-        "Slug": "gdpr_logs",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b3c",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79a1",
-        "Slug": "languages",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b3d",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79a2",
-        "Slug": "locale_string_resources",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b3e",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79a4",
-        "Slug": "localized_properties",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b3f",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79a5",
-        "Slug": "activity_logs",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b40",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79a6",
-        "Slug": "activity_log_types",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b41",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79a7",
-        "Slug": "logs",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b42",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79a8",
-        "Slug": "downloads",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b43",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79aa",
-        "Slug": "pictures",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b44",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79ab",
-        "Slug": "picture_binaries",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b45",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79ac",
-        "Slug": "picture_hashes",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b46",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79ad",
-        "Slug": "videos",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b47",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79ae",
-        "Slug": "campaigns",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b48",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79af",
-        "Slug": "email_accounts",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b49",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79b2",
-        "Slug": "message_template",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b4b",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79b5",
-        "Slug": "queued_emails",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b4c",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79b6",
-        "Slug": "news_comments",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b4d",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79b7",
-        "Slug": "news_items",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b4e",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79b9",
-        "Slug": "best_sellers_report_lines",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b4f",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79ba",
-        "Slug": "checkout_attributes",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b50",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79bb",
-        "Slug": "checkout_attribute_values",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b51",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79bc",
-        "Slug": "gift_cards",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b52",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79bd",
-        "Slug": "gift_card_usage_histories",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b53",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79be",
-        "Slug": "orders",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b54",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79bf",
-        "Slug": "order_average_report_lines",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b55",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79c0",
-        "Slug": "order_average_report_line_summaries",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b56",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79c1",
-        "Slug": "order_by_country_report_lines",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b57",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79c2",
-        "Slug": "order_items",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b58",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79c3",
-        "Slug": "order_notes",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b59",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79c5",
-        "Slug": "recurring_payments",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b5a",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79c6",
-        "Slug": "recurring_payment_histories",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b5b",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79c7",
-        "Slug": "return_requests",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b5c",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79c8",
-        "Slug": "return_request_actions",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b5d",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79c9",
-        "Slug": "return_request_reasons",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b5e",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79ca",
-        "Slug": "sales_summary_report_lines",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b5f",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79cb",
-        "Slug": "shopping_cart_items",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b60",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79ce",
-        "Slug": "polls",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b61",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79cf",
-        "Slug": "poll_answers",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b62",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79d0",
-        "Slug": "poll_voting_records",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b63",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79d1",
-        "Slug": "schedule_tasks",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b64",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79d2",
-        "Slug": "acl_records",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b65",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79d3",
-        "Slug": "acl_record_permissions",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b66",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79d5",
-        "Slug": "permission_records",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b67",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79d6",
-        "Slug": "permission_record_customer_role_mappings",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b68",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79db",
-        "Slug": "url_records",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b69",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79dc",
-        "Slug": "delivery_dates",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b6a",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79dd",
-        "Slug": "pickup_points",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b6b",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79de",
-        "Slug": "product_availability_ranges",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b6c",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79df",
-        "Slug": "shipment",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b6d",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79e0",
-        "Slug": "shipment_items",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b6e",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79e1",
-        "Slug": "shipping_methods",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b6f",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79e2",
-        "Slug": "shipping_method_country_mappings",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b70",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79e3",
-        "Slug": "shipping_options",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b71",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79e5",
-        "Slug": "warehouses",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b72",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79e6",
-        "Slug": "stores",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b73",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79e7",
-        "Slug": "store_mappings",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b74",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79e8",
-        "Slug": "tax_categories",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b75",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79ea",
-        "Slug": "topics",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b76",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79eb",
-        "Slug": "topic_templates",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b77",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79ec",
-        "Slug": "vendors",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b78",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79ed",
-        "Slug": "vendor_attributes",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b79",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79ee",
-        "Slug": "vendor_attribute_values",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b7a",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79ef",
-        "Slug": "vendor_notes",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b7b",
-        "PermissionRecordID": "67ed65976b3a64a8c73f793c",
-        "Slug": "api_client",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b7c",
-        "PermissionRecordID": "67ed65976b3a64a8c73f793e",
-        "Slug": "affiliate",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b7d",
-        "PermissionRecordID": "67ed65976b3a64a8c73f793f",
-        "Slug": "base_attribute",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b7e",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7940",
-        "Slug": "base_attribute_value",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b7f",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7941",
-        "Slug": "blog_comment",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b80",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7942",
-        "Slug": "blog_post",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b81",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7943",
-        "Slug": "blog_post_tag",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b82",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7945",
-        "Slug": "back_in_stock_subscription",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b83",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7947",
-        "Slug": "category",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b84",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7948",
-        "Slug": "category_template",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b85",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7949",
-        "Slug": "cross_sell_product",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b86",
-        "PermissionRecordID": "67ed65976b3a64a8c73f794a",
-        "Slug": "manufacturer",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b87",
-        "PermissionRecordID": "67ed65976b3a64a8c73f794b",
-        "Slug": "manufacturer_template",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b88",
-        "PermissionRecordID": "67ed65976b3a64a8c73f794c",
-        "Slug": "predefined_product_attribute_value",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b89",
-        "PermissionRecordID": "67ed65976b3a64a8c73f794d",
-        "Slug": "product",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b8a",
-        "PermissionRecordID": "67ed65976b3a64a8c73f794e",
-        "Slug": "product_attribute",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b8b",
-        "PermissionRecordID": "67ed65976b3a64a8c73f794f",
-        "Slug": "product_attribute_combination",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b8c",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7950",
-        "Slug": "product_attribute_combination_picture",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b8d",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7951",
-        "Slug": "product_attribute_mapping",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b8e",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7952",
-        "Slug": "product_attribute_value",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b8f",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7953",
-        "Slug": "product_attribute_value_picture",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b90",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7954",
-        "Slug": "product_category",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b91",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7956",
-        "Slug": "product_manufacturer",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b92",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7957",
-        "Slug": "product_picture",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b93",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7958",
-        "Slug": "product_product_tag_mapping",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b94",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7959",
-        "Slug": "product_review",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b95",
-        "PermissionRecordID": "67ed65976b3a64a8c73f795a",
-        "Slug": "product_review_helpfulnes",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b96",
-        "PermissionRecordID": "67ed65976b3a64a8c73f795b",
-        "Slug": "product_review_review_type_mapping",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b97",
-        "PermissionRecordID": "67ed65976b3a64a8c73f795c",
-        "Slug": "product_specification_attribute",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b98",
-        "PermissionRecordID": "67ed65976b3a64a8c73f795d",
-        "Slug": "product_tag",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b99",
-        "PermissionRecordID": "67ed65976b3a64a8c73f795e",
-        "Slug": "product_template",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b9a",
-        "PermissionRecordID": "67ed65976b3a64a8c73f795f",
-        "Slug": "product_video",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b9b",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7960",
-        "Slug": "product_warehouse_inventory",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b9c",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7961",
-        "Slug": "related_product",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b9d",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7962",
-        "Slug": "review_type",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b9e",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7963",
-        "Slug": "specification_attribute",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7b9f",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7964",
-        "Slug": "specification_attribute_group",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7ba0",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7965",
-        "Slug": "specification_attribute_option",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7ba1",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7966",
-        "Slug": "stock_quantity_change",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7ba2",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7967",
-        "Slug": "tier_price",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7ba3",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7969",
-        "Slug": "addresse",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7ba4",
-        "PermissionRecordID": "67ed65976b3a64a8c73f796a",
-        "Slug": "address_attribute",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7ba5",
-        "PermissionRecordID": "67ed65976b3a64a8c73f796b",
-        "Slug": "address_attribute_value",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7ba6",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7971",
-        "Slug": "generic_attribute",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7ba7",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7973",
-        "Slug": "search_term",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7ba8",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7974",
-        "Slug": "search_term_report_line",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7ba9",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7977",
-        "Slug": "setting",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7baa",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7978",
-        "Slug": "best_customer_report_line",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bab",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7979",
-        "Slug": "customer_password",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bac",
-        "PermissionRecordID": "67ed65976b3a64a8c73f797a",
-        "Slug": "customer_role",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bad",
-        "PermissionRecordID": "67ed65976b3a64a8c73f797c",
-        "Slug": "customer",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bae",
-        "PermissionRecordID": "67ed65976b3a64a8c73f797d",
-        "Slug": "external_authentication_record",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7baf",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7980",
-        "Slug": "customer_address_mapping",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bb0",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7981",
-        "Slug": "customer_attribute",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bb1",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7982",
-        "Slug": "customer_attribute_value",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bb2",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7983",
-        "Slug": "customer_customer_role_mapping",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bb3",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7984",
-        "Slug": "reward_points_history",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bb4",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7986",
-        "Slug": "countrie",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bb5",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7987",
-        "Slug": "currencie",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bb6",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7989",
-        "Slug": "exchange_rate",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bb7",
-        "PermissionRecordID": "67ed65976b3a64a8c73f798a",
-        "Slug": "measure_dimension",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bb8",
-        "PermissionRecordID": "67ed65976b3a64a8c73f798c",
-        "Slug": "measure_weight",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bb9",
-        "PermissionRecordID": "67ed65976b3a64a8c73f798d",
-        "Slug": "state_province",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bba",
-        "PermissionRecordID": "67ed65976b3a64a8c73f798e",
-        "Slug": "discount",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bbb",
-        "PermissionRecordID": "67ed65976b3a64a8c73f798f",
-        "Slug": "discount_category_mapping",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bbc",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7990",
-        "Slug": "discount_manufacturer_mapping",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bbd",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7991",
-        "Slug": "discount_mapping",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bbe",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7992",
-        "Slug": "discount_product_mapping",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bbf",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7993",
-        "Slug": "discount_requirement",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bc0",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7994",
-        "Slug": "discount_usage_historie",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bc1",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7995",
-        "Slug": "forum",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bc2",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7996",
-        "Slug": "forum_group",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bc3",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7997",
-        "Slug": "forum_post",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bc4",
-        "PermissionRecordID": "67ed65976b3a64a8c73f7998",
-        "Slug": "forum_post_vote",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bc5",
-        "PermissionRecordID": "67ed65976b3a64a8c73f799a",
-        "Slug": "forum_subscription",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bc6",
-        "PermissionRecordID": "67ed65976b3a64a8c73f799b",
-        "Slug": "forum_topic",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bc7",
-        "PermissionRecordID": "67ed65976b3a64a8c73f799c",
-        "Slug": "private_message",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bc8",
-        "PermissionRecordID": "67ed65976b3a64a8c73f799d",
-        "Slug": "customer_permanently_deleted",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bc9",
-        "PermissionRecordID": "67ed65976b3a64a8c73f799e",
-        "Slug": "gdpr_consent",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bca",
-        "PermissionRecordID": "67ed65976b3a64a8c73f799f",
-        "Slug": "gdpr_log",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bcb",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79a1",
-        "Slug": "language",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bcc",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79a2",
-        "Slug": "locale_string_resource",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bcd",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79a4",
-        "Slug": "localized_propertie",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bce",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79a5",
-        "Slug": "activity_log",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bcf",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79a6",
-        "Slug": "activity_log_type",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bd0",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79a7",
-        "Slug": "log",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bd1",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79a8",
-        "Slug": "download",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bd2",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79aa",
-        "Slug": "picture",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bd3",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79ab",
-        "Slug": "picture_binarie",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bd4",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79ac",
-        "Slug": "picture_hashe",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bd5",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79ad",
-        "Slug": "video",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bd6",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79ae",
-        "Slug": "campaign",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bd7",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79af",
-        "Slug": "email_account",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bd8",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79b2",
-        "Slug": "message_templat",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bd9",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79b4",
-        "Slug": "newsletter",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7aaa",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79b4",
-        "Slug": "noticias",
-        "IsActive": true,
-        "LanguageID": "67d821918d8dffc1c549f1b1"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bda",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79b5",
-        "Slug": "queued_email",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bdb",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79b6",
-        "Slug": "news_comment",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bdc",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79b7",
-        "Slug": "news_item",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bdd",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79b9",
-        "Slug": "best_sellers_report_line",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bde",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79ba",
-        "Slug": "checkout_attribute",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bdf",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79bb",
-        "Slug": "checkout_attribute_value",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7be0",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79bc",
-        "Slug": "gift_card",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7be1",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79bd",
-        "Slug": "gift_card_usage_historie",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7be2",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79be",
-        "Slug": "order",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7be3",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79bf",
-        "Slug": "order_average_report_line",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7be4",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79c0",
-        "Slug": "order_average_report_line_summarie",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7be5",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79c1",
-        "Slug": "order_by_country_report_line",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7be6",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79c2",
-        "Slug": "order_item",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7be7",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79c3",
-        "Slug": "order_note",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7be8",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79c5",
-        "Slug": "recurring_payment",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7be9",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79c6",
-        "Slug": "recurring_payment_historie",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bea",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79c7",
-        "Slug": "return_request",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7beb",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79c8",
-        "Slug": "return_request_action",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bec",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79c9",
-        "Slug": "return_request_reason",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bed",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79ca",
-        "Slug": "sales_summary_report_line",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bee",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79cb",
-        "Slug": "shopping_cart_item",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bef",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79ce",
-        "Slug": "poll",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bf0",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79cf",
-        "Slug": "poll_answer",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bf1",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79d0",
-        "Slug": "poll_voting_record",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bf2",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79d1",
-        "Slug": "schedule_task",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bf3",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79d2",
-        "Slug": "acl_record",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bf4",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79d3",
-        "Slug": "acl_record_permission",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bf5",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79d5",
-        "Slug": "permission_record",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bf6",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79d6",
-        "Slug": "permission_record_customer_role_mapping",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bf7",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79db",
-        "Slug": "url_record",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bf8",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79dc",
-        "Slug": "delivery_date",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bf9",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79dd",
-        "Slug": "pickup_point",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bfa",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79de",
-        "Slug": "product_availability_range",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bfb",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79df",
-        "Slug": "shipmen",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bfc",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79e0",
-        "Slug": "shipment_item",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bfd",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79e1",
-        "Slug": "shipping_method",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bfe",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79e2",
-        "Slug": "shipping_method_country_mapping",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7bff",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79e3",
-        "Slug": "shipping_option",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7c00",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79e5",
-        "Slug": "warehouse",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7c01",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79e6",
-        "Slug": "store",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7c02",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79e7",
-        "Slug": "store_mapping",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7c03",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79e8",
-        "Slug": "tax_category",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7c04",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79ea",
-        "Slug": "topic",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7c05",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79eb",
-        "Slug": "topic_template",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7c06",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79ec",
-        "Slug": "vendor",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7c07",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79ed",
-        "Slug": "vendor_attribute",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7c08",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79ee",
-        "Slug": "vendor_attribute_value",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    },
-    {
-        "ID": "67ffd84963f38f19602e7c09",
-        "PermissionRecordID": "67ed65976b3a64a8c73f79ef",
-        "Slug": "vendor_note",
-        "IsActive": true,
-        "LanguageID": "64f1a2c3d4e5f67890123456"
-    }
+    {"PermissionRecordID":"67ed65976b3a64a8c73f793c","Slug":"api_clients","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f793e","Slug":"affiliates","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f793f","Slug":"base_attributes","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7940","Slug":"base_attribute_values","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7941","Slug":"blog_comments","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7942","Slug":"blog_posts","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7943","Slug":"blog_post_tags","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7945","Slug":"back_in_stock_subscriptions","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7947","Slug":"categories","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7948","Slug":"category_templates","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7949","Slug":"cross_sell_products","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f794a","Slug":"manufacturers","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f794b","Slug":"manufacturer_templates","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f794c","Slug":"predefined_product_attribute_values","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f794d","Slug":"products","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f794e","Slug":"product_attributes","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f794f","Slug":"product_attribute_combinations","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7950","Slug":"product_attribute_combination_pictures","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7951","Slug":"product_attribute_mappings","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7952","Slug":"product_attribute_values","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7953","Slug":"product_attribute_value_pictures","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7954","Slug":"product_categories","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7956","Slug":"product_manufacturers","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7957","Slug":"product_pictures","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7958","Slug":"product_product_tag_mappings","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7959","Slug":"product_reviews","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f795a","Slug":"product_review_helpfulness","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f795b","Slug":"product_review_review_type_mappings","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f795c","Slug":"product_specification_attributes","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f795d","Slug":"product_tags","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f795e","Slug":"product_templates","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f795f","Slug":"product_videos","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7960","Slug":"product_warehouse_inventories","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7961","Slug":"related_products","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7962","Slug":"review_types","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7963","Slug":"specification_attributes","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7964","Slug":"specification_attribute_groups","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7965","Slug":"specification_attribute_options","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7966","Slug":"stock_quantity_changes","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7967","Slug":"tier_prices","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7969","Slug":"addresses","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f796a","Slug":"address_attributes","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f796b","Slug":"address_attribute_values","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7971","Slug":"generic_attributes","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7973","Slug":"search_terms","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7974","Slug":"search_term_report_lines","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7977","Slug":"settings","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7978","Slug":"best_customer_report_lines","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7979","Slug":"customer_passwords","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f797a","Slug":"customer_roles","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f797c","Slug":"customers","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f797d","Slug":"external_authentication_records","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7980","Slug":"customer_address_mappings","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7981","Slug":"customer_attributes","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7982","Slug":"customer_attribute_values","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7983","Slug":"customer_customer_role_mappings","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7984","Slug":"reward_points_history","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7986","Slug":"countries","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7987","Slug":"currencies","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7989","Slug":"exchange_rates","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f798a","Slug":"measure_dimensions","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f798c","Slug":"measure_weights","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f798d","Slug":"state_provinces","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f798e","Slug":"discounts","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f798f","Slug":"discount_category_mappings","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7990","Slug":"discount_manufacturer_mappings","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7991","Slug":"discount_mappings","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7992","Slug":"discount_product_mappings","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7993","Slug":"discount_requirements","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7994","Slug":"discount_usage_histories","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7995","Slug":"forums","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7996","Slug":"forum_groups","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7997","Slug":"forum_posts","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7998","Slug":"forum_post_votes","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f799a","Slug":"forum_subscriptions","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f799b","Slug":"forum_topics","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f799c","Slug":"private_messages","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f799d","Slug":"customer_permanently_deleteds","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f799e","Slug":"gdpr_consents","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f799f","Slug":"gdpr_logs","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79a1","Slug":"languages","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79a2","Slug":"locale_string_resources","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79a4","Slug":"localized_properties","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79a5","Slug":"activity_logs","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79a6","Slug":"activity_log_types","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79a7","Slug":"logs","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79a8","Slug":"downloads","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79aa","Slug":"pictures","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79ab","Slug":"picture_binaries","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79ac","Slug":"picture_hashes","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79ad","Slug":"videos","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79ae","Slug":"campaigns","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79af","Slug":"email_accounts","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79b2","Slug":"message_template","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79b4","Slug":"news_letter_subscriptions","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79b5","Slug":"queued_emails","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79b6","Slug":"news_comments","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79b7","Slug":"news_items","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79b9","Slug":"best_sellers_report_lines","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79ba","Slug":"checkout_attributes","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79bb","Slug":"checkout_attribute_values","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79bc","Slug":"gift_cards","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79bd","Slug":"gift_card_usage_histories","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79be","Slug":"orders","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79bf","Slug":"order_average_report_lines","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79c0","Slug":"order_average_report_line_summaries","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79c1","Slug":"order_by_country_report_lines","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79c2","Slug":"order_items","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79c3","Slug":"order_notes","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79c5","Slug":"recurring_payments","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79c6","Slug":"recurring_payment_histories","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79c7","Slug":"return_requests","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79c8","Slug":"return_request_actions","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79c9","Slug":"return_request_reasons","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79ca","Slug":"sales_summary_report_lines","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79cb","Slug":"shopping_cart_items","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79ce","Slug":"polls","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79cf","Slug":"poll_answers","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79d0","Slug":"poll_voting_records","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79d1","Slug":"schedule_tasks","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79d2","Slug":"acl_records","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79d3","Slug":"acl_record_permissions","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79d5","Slug":"permission_records","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79d6","Slug":"permission_record_customer_role_mappings","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79db","Slug":"url_records","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79dc","Slug":"delivery_dates","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79dd","Slug":"pickup_points","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79de","Slug":"product_availability_ranges","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79df","Slug":"shipment","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79e0","Slug":"shipment_items","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79e1","Slug":"shipping_methods","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79e2","Slug":"shipping_method_country_mappings","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79e3","Slug":"shipping_options","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79e5","Slug":"warehouses","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79e6","Slug":"stores","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79e7","Slug":"store_mappings","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79e8","Slug":"tax_categories","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79ea","Slug":"topics","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79eb","Slug":"topic_templates","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79ec","Slug":"vendors","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79ed","Slug":"vendor_attributes","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79ee","Slug":"vendor_attribute_values","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79ef","Slug":"vendor_notes","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f793c","Slug":"api_client","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f793e","Slug":"affiliate","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f793f","Slug":"base_attribute","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7940","Slug":"base_attribute_value","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7941","Slug":"blog_comment","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7942","Slug":"blog_post","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7943","Slug":"blog_post_tag","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7945","Slug":"back_in_stock_subscription","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7947","Slug":"category","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7948","Slug":"category_template","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7949","Slug":"cross_sell_product","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f794a","Slug":"manufacturer","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f794b","Slug":"manufacturer_template","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f794c","Slug":"predefined_product_attribute_value","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f794d","Slug":"product","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f794e","Slug":"product_attribute","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f794f","Slug":"product_attribute_combination","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7950","Slug":"product_attribute_combination_picture","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7951","Slug":"product_attribute_mapping","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7952","Slug":"product_attribute_value","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7953","Slug":"product_attribute_value_picture","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7954","Slug":"product_category","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7956","Slug":"product_manufacturer","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7957","Slug":"product_picture","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7958","Slug":"product_product_tag_mapping","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7959","Slug":"product_review","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f795a","Slug":"product_review_helpfulnes","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f795b","Slug":"product_review_review_type_mapping","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f795c","Slug":"product_specification_attribute","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f795d","Slug":"product_tag","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f795e","Slug":"product_template","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f795f","Slug":"product_video","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7960","Slug":"product_warehouse_inventory","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7961","Slug":"related_product","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7962","Slug":"review_type","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7963","Slug":"specification_attribute","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7964","Slug":"specification_attribute_group","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7965","Slug":"specification_attribute_option","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7966","Slug":"stock_quantity_change","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7967","Slug":"tier_price","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7969","Slug":"addresse","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f796a","Slug":"address_attribute","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f796b","Slug":"address_attribute_value","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7971","Slug":"generic_attribute","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7973","Slug":"search_term","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7974","Slug":"search_term_report_line","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7977","Slug":"setting","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7978","Slug":"best_customer_report_line","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7979","Slug":"customer_password","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f797a","Slug":"customer_role","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f797c","Slug":"customer","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f797d","Slug":"external_authentication_record","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7980","Slug":"customer_address_mapping","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7981","Slug":"customer_attribute","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7982","Slug":"customer_attribute_value","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7983","Slug":"customer_customer_role_mapping","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7984","Slug":"reward_points_history","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7986","Slug":"countrie","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7987","Slug":"currencie","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7989","Slug":"exchange_rate","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f798a","Slug":"measure_dimension","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f798c","Slug":"measure_weight","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f798d","Slug":"state_province","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f798e","Slug":"discount","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f798f","Slug":"discount_category_mapping","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7990","Slug":"discount_manufacturer_mapping","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7991","Slug":"discount_mapping","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7992","Slug":"discount_product_mapping","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7993","Slug":"discount_requirement","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7994","Slug":"discount_usage_historie","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7995","Slug":"forum","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7996","Slug":"forum_group","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7997","Slug":"forum_post","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f7998","Slug":"forum_post_vote","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f799a","Slug":"forum_subscription","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f799b","Slug":"forum_topic","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f799c","Slug":"private_message","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f799d","Slug":"customer_permanently_deleted","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f799e","Slug":"gdpr_consent","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f799f","Slug":"gdpr_log","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79a1","Slug":"language","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79a2","Slug":"locale_string_resource","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79a4","Slug":"localized_propertie","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79a5","Slug":"activity_log","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79a6","Slug":"activity_log_type","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79a7","Slug":"log","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79a8","Slug":"download","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79aa","Slug":"picture","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79ab","Slug":"picture_binarie","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79ac","Slug":"picture_hashe","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79ad","Slug":"video","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79ae","Slug":"campaign","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79af","Slug":"email_account","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79b2","Slug":"message_templat","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79b4","Slug":"news_letter_subscription","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79b5","Slug":"queued_email","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79b6","Slug":"news_comment","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79b7","Slug":"news_item","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79b9","Slug":"best_sellers_report_line","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79ba","Slug":"checkout_attribute","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79bb","Slug":"checkout_attribute_value","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79bc","Slug":"gift_card","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79bd","Slug":"gift_card_usage_historie","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79be","Slug":"order","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79bf","Slug":"order_average_report_line","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79c0","Slug":"order_average_report_line_summarie","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79c1","Slug":"order_by_country_report_line","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79c2","Slug":"order_item","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79c3","Slug":"order_note","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79c5","Slug":"recurring_payment","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79c6","Slug":"recurring_payment_historie","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79c7","Slug":"return_request","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79c8","Slug":"return_request_action","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79c9","Slug":"return_request_reason","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79ca","Slug":"sales_summary_report_line","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79cb","Slug":"shopping_cart_item","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79ce","Slug":"poll","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79cf","Slug":"poll_answer","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79d0","Slug":"poll_voting_record","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79d1","Slug":"schedule_task","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79d2","Slug":"acl_record","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79d3","Slug":"acl_record_permission","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79d5","Slug":"permission_record","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79d6","Slug":"permission_record_customer_role_mapping","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79db","Slug":"url_record","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79dc","Slug":"delivery_date","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79dd","Slug":"pickup_point","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79de","Slug":"product_availability_range","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79df","Slug":"shipmen","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79e0","Slug":"shipment_item","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79e1","Slug":"shipping_method","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79e2","Slug":"shipping_method_country_mapping","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79e3","Slug":"shipping_option","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79e5","Slug":"warehouse","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79e6","Slug":"store","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79e7","Slug":"store_mapping","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79e8","Slug":"tax_category","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79ea","Slug":"topic","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79eb","Slug":"topic_template","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79ec","Slug":"vendor","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79ed","Slug":"vendor_attribute","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79ee","Slug":"vendor_attribute_value","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false},
+    {"PermissionRecordID":"67ed65976b3a64a8c73f79ef","Slug":"vendor_note","LanguageID":"64f1a2c3d4e5f67890123456","IsActive":false}    
 ]

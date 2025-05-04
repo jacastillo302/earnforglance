@@ -27,7 +27,7 @@ func main() {
 
 	route.Setup(env, timeout, db, gin)
 
-	gin.Use(static.Serve("/", static.LocalFile("../web/dist", false)))
+	gin.Use(static.Serve("/", static.LocalFile("./web/dist", false)))
 
 	gin.Run(env.ServerAddress)
 
