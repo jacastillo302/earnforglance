@@ -20,9 +20,9 @@ func NewCatalogtUsecase(itemRepository domain.CatalogRepository, timeout time.Du
 }
 
 func (cu *catalogtUsecase) GetProducts(c context.Context, filter domain.ProductRequest) ([]domain.ProductsResponse, error) {
-	ctx, cancel := context.WithTimeout(c, cu.contextTimeout)
-	defer cancel()
-	return cu.itemRepository.GetProducts(ctx, filter)
+	//ctx, cancel := context.WithTimeout(c, cu.contextTimeout)
+	//defer cancel()
+	return cu.itemRepository.GetProducts(c, filter)
 }
 
 func (cu *catalogtUsecase) GetCategories(c context.Context, filter domain.CategoryRequest) ([]domain.CategoriesResponse, error) {
