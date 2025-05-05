@@ -8,7 +8,6 @@ import (
 )
 
 type customerUsecase struct {
-	newsRepository domain.NewsLetterRepository
 	itemRepository domain.CustomerRepository
 	contextTimeout time.Duration
 }
