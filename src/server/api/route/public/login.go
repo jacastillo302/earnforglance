@@ -21,4 +21,6 @@ func LoginRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database, g
 		Env:          env,
 	}
 	group.POST("/login", lc.Login)
+	group.POST("/login_google", lc.LoginGoogle)
+	group.POST("/login_google_redirect", lc.LoginGoogleRedirec)
 }
