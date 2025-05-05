@@ -4,14 +4,13 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"time"
 
 	"earnforglance/server/service/data/mongo"
 )
 
 func NewMongoDatabase(env *Env) mongo.Client {
-	_, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
+	//_, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	//defer cancel()
 
 	dbHost := env.DBHost
 	dbPort := env.DBPort
@@ -20,8 +19,16 @@ func NewMongoDatabase(env *Env) mongo.Client {
 
 	mongodbURI := fmt.Sprintf("mongodb+srv://%s:%s@%s", dbUser, dbPass, dbHost)
 
-	if dbPort != "" {
+	if env.AppEnv == "development" {
 		mongodbURI = fmt.Sprintf("mongodb://%s:%s@%s:%s", dbUser, dbPass, dbHost, dbPort)
+
+		if dbUser == "" || dbPass == "" {
+			mongodbURI = fmt.Sprintf("mongodb://%s:%s", dbHost, dbPort)
+		}
+	} else {
+		if dbPort != "" {
+			mongodbURI = fmt.Sprintf("mongodb+srv://%s:%s@%s:%s", dbUser, dbPass, dbHost, dbPort)
+		}
 	}
 
 	client, err := mongo.NewClient(mongodbURI)
