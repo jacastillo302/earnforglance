@@ -4,6 +4,7 @@ import './css/index.css'
 import './css/legacy.css'
 import './css/bem-components.css'
 import App from './App.tsx'
+import './i18n';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
