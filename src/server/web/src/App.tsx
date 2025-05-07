@@ -1,11 +1,16 @@
 import './css/App.css'
-import LayoutContainer from './components/Layout'; // Assuming path
+import { Counter } from "./features/counter/Counter"
+import { Quotes } from "./features/quotes/Quotes"
+import { Layaut } from "./features/layout/layout"
 
-function App() {
-  
-  return (
-    <LayoutContainer/>
-  )
-}
-
-export default App
+export const App = () => (
+  <Layaut>
+    <div className="app-container">
+      <h1 className="section-header-title-text">EarnForGlance</h1>
+      <div className="app-content">
+        <Counter />
+        <Quotes />
+      </div>
+    </div>
+  </Layaut>
+)
