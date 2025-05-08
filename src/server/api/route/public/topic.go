@@ -20,6 +20,6 @@ func TopicRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database, g
 		TopicUsecase: usecase.NewtopicUsecase(ur, timeout),
 		Env:          env,
 	}
-	group.GET("/topics", tp.GetTopics)
-	group.GET("/topic_secret", tp.GetTopicSecret)
+	group.POST("/topics", tp.GetTopics)
+	group.POST("/topic_secret", tp.GetTopicSecret)
 }

@@ -20,5 +20,5 @@ func GdprConsentRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Datab
 		GdprConsentUsecase: usecase.NewGdprConsentUsecase(ur, timeout),
 		Env:                env,
 	}
-	group.GET("/gdprs", tp.GetGdprConsents)
+	group.POST("/gdprs", tp.GetGdprConsents)
 }

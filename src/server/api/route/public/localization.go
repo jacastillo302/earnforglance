@@ -20,5 +20,5 @@ func LocalizationRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Data
 		LocalizationUsecase: usecase.NewlocalizationUsecase(ur, timeout),
 		Env:                 env,
 	}
-	group.GET("/localizations", tp.GetLocalizations)
+	group.POST("/localizations", tp.GetLocalizations)
 }

@@ -1,7 +1,7 @@
 import type { JSX } from "react"
 import { Footer } from './../footer/footer';
-import { Header } from './../header/header';
-import { Navbar } from './../navbar/navbar';
+import { Header } from '../header/app';
+import { Navbar } from '../navbar/sidebar';
 import { Content } from './../content/content';
 
 interface LayoutProps {

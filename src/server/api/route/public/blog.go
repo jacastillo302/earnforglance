@@ -20,5 +20,5 @@ func BlogRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database, gr
 		BlogUsecase: usecase.NewblogUsecase(ur, timeout),
 		Env:         env,
 	}
-	group.GET("/blogs", tp.GetBlogs)
+	group.POST("/blogs", tp.GetBlogs)
 }

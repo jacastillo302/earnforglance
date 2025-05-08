@@ -20,5 +20,5 @@ func ConfigurationRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Dat
 		ConfigurationUsecase: usecase.NewConfigurationUsecase(ur, timeout),
 		Env:                  env,
 	}
-	group.GET("/settings", tp.GetConfigurations)
+	group.POST("/settings", tp.GetConfigurations)
 }

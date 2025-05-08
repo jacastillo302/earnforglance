@@ -20,7 +20,7 @@ func CatalogRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database,
 		CatalogUsecase: usecase.NewCatalogtUsecase(ur, timeout),
 		Env:            env,
 	}
-	group.GET("/products", lc.GetProducts)
-	group.GET("/categories", lc.GetCategories)
-	group.GET("/manufacturers", lc.GetManufacturers)
+	group.POST("/products", lc.GetProducts)
+	group.POST("/categories", lc.GetCategories)
+	group.POST("/manufacturers", lc.GetManufacturers)
 }

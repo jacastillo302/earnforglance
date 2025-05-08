@@ -20,5 +20,5 @@ func VendorRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database, 
 		VendorUsecase: usecase.NewVendortUsecase(ur, timeout),
 		Env:           env,
 	}
-	group.GET("/vendors", tp.GetVendors)
+	group.POST("/vendors", tp.GetVendors)
 }

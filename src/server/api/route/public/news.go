@@ -20,5 +20,5 @@ func NewsItemRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Database
 		NewsItemUsecase: usecase.NewnewsItemUsecase(ur, timeout),
 		Env:             env,
 	}
-	group.GET("/news", tp.GetNewsItems)
+	group.POST("/news", tp.GetNewsItems)
 }

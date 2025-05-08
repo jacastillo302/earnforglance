@@ -20,6 +20,6 @@ func DirectoryRouter(env *bootstrap.Env, timeout time.Duration, db mongo.Databas
 		DirectoryUsecase: usecase.NewdirectoryUsecase(ur, timeout),
 		Env:              env,
 	}
-	group.GET("/currencies", tp.GetCurrencies)
-	group.GET("/countries", tp.GetCountries)
+	group.POST("/currencies", tp.GetCurrencies)
+	group.POST("/countries", tp.GetCountries)
 }

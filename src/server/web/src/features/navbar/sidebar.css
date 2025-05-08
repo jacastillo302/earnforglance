@@ -1,0 +1,64 @@
+.side-nav-container {
+  width: 240px; /* Adjust width as needed */
+  background-color: #f0f2f5; /* Light grey background */
+  height: 100vh; /* Full height */
+  padding: 16px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Subtle shadow */
+}
+
+.modern-menu {
+  padding: 0;
+  margin: 0;
+}
+
+.modern-menu .MuiListItemButton-root {
+  border-radius: 8px; /* Rounded corners for buttons */
+  margin-bottom: 8px; /* Space between items */
+  transition: background-color 0.3s ease-in-out; /* Smooth transition for background */
+}
+
+.modern-menu .MuiListItemButton-root:hover,
+.modern-menu .MuiListItemButton-root:focus {
+  background-color: #f0f0f0; /* Example hover/focus color */
+}
+
+.modern-menu .MuiListItemDecorator-root {
+  color: #3f51b5; /* Icon color - example (Material UI primary) */
+}
+
+.modern-menu .MuiTypography-root {
+  font-weight: 500; /* Medium font weight */
+  color: #333; /* Darker text color */
+}
+
+/* Styling for nested ListItems (sub-items) */
+.modern-menu .MuiListItem-root .MuiList-root {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0;
+  visibility: hidden; /* Initially hide to prevent interaction */
+}
+
+/* Styling for open nested ListItems */
+.modern-menu .MuiListItem-root.Mui-expanded .MuiList-root {
+  max-height: 500px; /* Adjust as needed to fit content */
+  opacity: 1;
+  visibility: visible; /* Make visible when expanded */
+}
+
+/* Styling for the arrow icon for rotation */
+.modern-menu .MuiListItem-root .MuiSvgIcon-root {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Rotate arrow icon when the ListItem is expanded */
+.modern-menu .MuiListItem-root.Mui-expanded .MuiSvgIcon-root {
+  transform: rotate(180deg);
+}
+
+/* Style for ListItemContent to ensure text is aligned */
+.modern-menu .MuiListItemContent-root {
+  display: flex;
+  align-items: center;
+}
