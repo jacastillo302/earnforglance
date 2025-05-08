@@ -37,29 +37,29 @@ interface LocalizationItem {
   Properties: null; // Or a more specific type
 }
 
-interface LocalizationData {
+export interface LocalizationData {
   Localizations: LocalizationItem[];
 }
 
 // Define the API slice
 export const localizationsApi = createApi({
   reducerPath: 'localizationsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://personasyrecursos.com/api/v1' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://personasyrecursos.com/api/v1/' }),
   endpoints: (builder) => ({
     getLocalizations: builder.query<LocalizationData[], void>({
       query: () => ({
         url: 'localizations',
-        method: 'GET',
-        body: {
-          "ID": "",
-          "Filters": JSON.stringify([]),
-          "Sort": "asc",
-          "Limit": 10,
-          "Page": 1,
-          "Lang": "",
-          "AllowComments": false,
-          "Content": JSON.stringify(["currency"])
-        },
+        method: 'POST',
+        body: JSON.stringify({
+          ID: "",
+          Filters: [], // Modified to be an array directly
+          Sort: "asc",
+          Limit: 10,
+          Page: 1,
+          Lang: "",
+          AllowComments: false,
+          Content: ["currency"], // Modified to be an array directly
+        }),
       }),
     }),
   }),

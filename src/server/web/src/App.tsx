@@ -1,6 +1,6 @@
 import './css/App.css'
 import { Provider } from 'react-redux';
-import { Layaut } from "./features/layout/layout"
+import { Layaut } from "./features/layout/app"
 import { store } from './app/store';
 import LoginPage from './features/security/sign-up/app';
 import ForgotPage from './features/security/forgot/app';
