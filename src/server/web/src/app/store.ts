@@ -5,7 +5,7 @@ import { counterSlice } from "../features/counter/counterSlice"
 import { quotesApiSlice } from "../features/quotes/quotesApiSlice"
 import authReducer from '../features/security/sign-up/authSlice'; // Adjusted path
 import { SigInApiSlice } from "../features/security/sign-up/authSlice"; // Import the new API slice
-import localizationsSlice, { localizationsApi } from '../features/localizations/localizationsSlice'; // Import the reducer and API slice
+import localizationsSlice, { localizationsApi } from '../features/localization/localizationsSlice'; // Import the reducer and API slice
 
 // `combineSlices` automatically combines the reducers using
 // their `reducerPath`s, therefore we no longer need to call `combineReducers`.

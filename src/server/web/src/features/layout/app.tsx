@@ -1,7 +1,6 @@
 import type { JSX } from "react"
 import { Footer } from '../footer/footer';
 import { Header } from '../header/app';
-import { Navbar } from '../navbar/sidebar';
 import { Content } from '../content/content';
 import Box from '@mui/joy/Box';
 
@@ -22,7 +21,7 @@ export const Layaut = ({ children }: LayoutProps): JSX.Element | null => {
         sx={{
           display: 'flex',
           flexGrow: 1,
-          flexDirection: { xs: 'column', md: 'row' }, // Stack on small screens, row on medium+
+          flexDirection: { xs: 'column'}, // Stack on small screens, row on medium+
         }}
       >
         {/* Content area taking most space */}
@@ -50,7 +49,6 @@ export const Layaut = ({ children }: LayoutProps): JSX.Element | null => {
             // Example: backgroundColor: 'background.level1', // Optional: for visual distinction
           }}
         >
-          <Navbar />
         </Box>
       </Box>
 

@@ -106,7 +106,7 @@ const LoginPage = (): JSX.Element | null => {
               // htmlAttributes={{ autoComplete: 'username' }} // MUI Joy might use inputProps or similar
               name="username"
               type="text"
-              placeholder="Username (admin)"
+              placeholder="Username or email"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               onBlur={() => { if (username) setShowPassword(true); }} // Show password field on blur if username is not empty

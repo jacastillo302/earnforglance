@@ -4,8 +4,6 @@ import { createRoot } from 'react-dom/client'
 import { Provider } from "react-redux"
 import { store } from "./app/store"
 import './css/index.css'
-import './css/legacy.css'
-import './css/bem-components.css'
 import './i18n';
 
 const container = document.getElementById("root")
