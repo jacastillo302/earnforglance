@@ -1,25 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/joy/Box';
 import Sheet from '@mui/joy/Sheet';
-import Typography from '@mui/joy/Typography'; // Added for placeholder text
 
 const BannerPage: React.FC = () => {
   // Placeholder for images - in a real slider, this would be dynamic
   const images = [
-    { src: 'placeholder-image-1.jpg', alt: 'Slide 1' },
-    { src: 'placeholder-image-2.jpg', alt: 'Slide 2' },
-    { src: 'placeholder-image-3.jpg', alt: 'Slide 3' },
+    { src: import.meta.env.VITE_MEDIA_URL + 'images/banner/1.jpg', alt: 'Slide 1' },
+    { src: import.meta.env.VITE_MEDIA_URL + 'images/banner/2.jpg', alt: 'Slide 2' },
+    { src: import.meta.env.VITE_MEDIA_URL + 'images/banner/3.jpg', alt: 'Slide 3' },
+    { src: import.meta.env.VITE_MEDIA_URL + 'images/banner/4.jpg', alt: 'Slide 4' },
   ];
 
-  // For simplicity, this example shows a static view.
-  // A real slider would require state and logic to change slides.
-  const currentImage = images[0]; // Displaying the first image as an example
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 3000); // Change image every 3 seconds
+
+    return () => clearTimeout(timer); // Cleanup the timer on component unmount
+  }, [currentImageIndex, images.length]);
+
+  const currentImage = images[currentImageIndex];
 
   return (
     <Sheet
       variant="outlined" // or "plain", "soft"
       sx={{
-        width: '100vw',
         height: '20vh',
         overflow: 'hidden', // To contain the image if it's larger
         position: 'relative', // For potential absolute positioning of controls
@@ -31,24 +40,15 @@ const BannerPage: React.FC = () => {
     >
       {/* This Box would be the content of a single slide */}
       <Box
+        component="img"
+        src={currentImage.src}
+        alt={currentImage.alt}
         sx={{
           width: '100%',
           height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          // Placeholder for image styling or an <img> tag
-          // For an actual image:
-          // backgroundImage: `url(${currentImage.src})`,
-          // backgroundSize: 'cover',
-          // backgroundPosition: 'center',
+          objectFit: 'cover', // Ensures the image covers the area, might crop
         }}
-      >
-        <Typography level="h1" textColor="text.primary">
-          {/* Placeholder text, replace with actual image or slider content */}
-          Image Slider / Banner Content
-        </Typography>
-      </Box>
+      />
       {/* Slider controls (dots, arrows) would go here */}
     </Sheet>
   );

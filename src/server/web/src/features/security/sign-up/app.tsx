@@ -30,6 +30,8 @@ const LoginPage = (): JSX.Element | null => {
         
       result.then((data) => {
           dispatch(loginSuccess({ user: { id: '1', username: username }, accessToken: data.accessToken, refreshToken: data.refreshToken }));
+          localStorage.setItem('authToken', data.accessToken);
+          localStorage.setItem('refreshAuthToken', data.refreshToken);
           setUsername('');
           setPassword('');
       }

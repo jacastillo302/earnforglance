@@ -12,9 +12,7 @@ export const Layaut = ({ children }: LayoutProps): JSX.Element | null => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       {/* Header at the top */}
-      <Box component="header">
-        <Header />
-      </Box>
+      <Header />
 
       {/* Main content area: Navbar on left, Content on right/middle */}
       <Box
@@ -25,18 +23,7 @@ export const Layaut = ({ children }: LayoutProps): JSX.Element | null => {
         }}
       >
         {/* Content area taking most space */}
-        <Box
-          component="main"
-          sx={{
-            flexGrow: 1,
-            p: { xs: 1, sm: 2 }, // Padding responsive to screen size
-            order: { xs: 2, md: 2 }, // Content below navbar on xs, right of navbar on md
-            borderRight: { xs: 'none', md: '1px solid' }, // Border on the right of content
-            borderColor: 'divider', // Border color
-          }}
-        >
-          <Content>{children}</Content>
-        </Box>
+        <Content>{children}</Content>
 
         {/* Navbar on the left */}
         <Box
@@ -51,11 +38,7 @@ export const Layaut = ({ children }: LayoutProps): JSX.Element | null => {
         >
         </Box>
       </Box>
-
-      {/* Footer at the bottom */}
-      <Box component="footer">
-        <Footer />
-      </Box>
+      <Footer />
     </Box>
   )
 }

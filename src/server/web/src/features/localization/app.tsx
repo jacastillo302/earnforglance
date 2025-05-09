@@ -3,74 +3,129 @@ import { Select, Option, Typography, Box, CircularProgress } from '@mui/joy';
 import { useGetLocalizationsQuery } from './localizationsSlice'; // Import the hook and interface
 
 const Localizations: React.FC = () => {
-  const { data: localData, error, isLoading: loading } = useGetLocalizationsQuery(); // Use the hook
-  const [selectedLanguage, setSelectedLanguageState] = useState<string | null>(null); // Changed initial state
-  const [selectedCurrency, setSelectedCurrencyState] = useState<string | null>('USD');
-  const [cachedLanguages, setCachedLanguages] = useState<any[] | null>(null);
-  const [cachedCurrencies, setCachedCurrencies] = useState<any[] | null>(null);
+  // Attempt to load from localStorage initially
+  const [cachedLanguages, setCachedLanguages] = useState<any[] | null>(() => {
+    try {
+      const item = localStorage.getItem('appCachedLanguages');
+      if (item) {
+        return JSON.parse(item);
+      }
+      return null;
+    } catch (error) {
+      console.error("Error reading appCachedLanguages from localStorage", error);
+      // Attempt to remove corrupted item
+      try {
+        localStorage.removeItem('appCachedLanguages');
+      } catch (removeError) {
+        console.error("Error removing corrupted appCachedLanguages from localStorage", removeError);
+      }
+      return null;
+    }
+  });
+  const [cachedCurrencies, setCachedCurrencies] = useState<any[] | null>(() => {
+    try {
+      const item = localStorage.getItem('appCachedCurrencies');
+      if (item) {
+        return JSON.parse(item);
+      }
+      return null;
+    } catch (error) {
+      console.error("Error reading appCachedCurrencies from localStorage", error);
+      // Attempt to remove corrupted item
+      try {
+        localStorage.removeItem('appCachedCurrencies');
+      } catch (removeError) {
+        console.error("Error removing corrupted appCachedCurrencies from localStorage", removeError);
+      }
+      return null;
+    }
+  });
 
+  const [selectedLanguage, setSelectedLanguageState] = useState<string | null>(null);
+  const [selectedCurrency, setSelectedCurrencyState] = useState<string | null>('USD'); // Default USD
+
+  // API call, skipped if data is already cached from localStorage
+  const { data: localData, error, isLoading } = useGetLocalizationsQuery(
+    undefined,
+    { skip: !!(cachedLanguages && cachedCurrencies && cachedLanguages.length > 0 && cachedCurrencies.length > 0) } // Skip if both have data
+  );
+
+  // Effect to process data from API and save to localStorage
   useEffect(() => {
     if (localData) {
-      if (!cachedLanguages) {
-        const allLanguages = localData.flatMap(entry =>
-          entry.Localizations ? entry.Localizations.map(loc => loc.Language) : []
-        );
-        const processedLanguages = allLanguages
-          .filter(lang =>
-            lang &&
-            lang.ID != null &&
-            lang.LanguageCulture != null &&
-            lang.Name != null &&
-            lang.FlagImageFileName != null && // Added check
-            lang.UniqueSeoCode != null        // Added check
-          )
-          .map(lang => ({
-            ...lang,
-            UniqueSeoCode: lang.UniqueSeoCode.toUpperCase() // Uppercase UniqueSeoCode
-          }));
-
-        const uniqueLanguages = Array.from(
-          new Map(processedLanguages.map(lang => [lang.ID, lang])).values()
-        );
-        setCachedLanguages(uniqueLanguages);
-
-        // Set initial selected language
-        if (uniqueLanguages.length > 0) {
-          const defaultLang = uniqueLanguages.find(lang => lang.LanguageCulture === 'en-US');
-          if (defaultLang) {
-            setSelectedLanguageState(defaultLang.UniqueSeoCode); // Already uppercased
-          } else {
-            // Fallback to the first language in the list if 'en-US' not found
-            setSelectedLanguageState(uniqueLanguages[0].UniqueSeoCode); // Already uppercased
-          }
-        } else {
-          setSelectedLanguageState(null);
-        }
+      // Process languages from API data
+      const allLanguagesApi = localData.flatMap(entry =>
+        entry.Localizations ? entry.Localizations.map(loc => loc.Language) : []
+      );
+      const processedLanguagesApi = allLanguagesApi
+        .filter(lang =>
+          lang &&
+          lang.ID != null &&
+          lang.LanguageCulture != null &&
+          lang.Name != null &&
+          lang.FlagImageFileName != null &&
+          lang.UniqueSeoCode != null
+        )
+        .map(lang => ({
+          ...lang,
+          UniqueSeoCode: lang.UniqueSeoCode.toUpperCase()
+        }));
+      const uniqueLanguagesApi = Array.from(
+        new Map(processedLanguagesApi.map(lang => [lang.ID, lang])).values()
+      );
+      setCachedLanguages(uniqueLanguagesApi);
+      try {
+        localStorage.setItem('appCachedLanguages', JSON.stringify(uniqueLanguagesApi));
+      } catch (e) {
+        console.error("Error saving languages to localStorage", e);
       }
 
-      if (!cachedCurrencies) {
-        const allCurrencies = localData.flatMap(entry =>
-          entry.Localizations ? entry.Localizations.map(loc => loc.Currency) : []
-        );
-        const uniqueCurrencies = Array.from(
-          new Map(
-            allCurrencies
-              .filter(curr => curr && curr.ID != null && curr.CurrencyCode != null && curr.Name != null)
-              .map(curr => [curr.ID, curr])
-          ).values()
-        );
-        setCachedCurrencies(uniqueCurrencies);
+      // Process currencies from API data
+      const allCurrenciesApi = localData.flatMap(entry =>
+        entry.Localizations ? entry.Localizations.map(loc => loc.Currency) : []
+      );
+      const uniqueCurrenciesApi = Array.from(
+        new Map(
+          allCurrenciesApi
+            .filter(curr => curr && curr.ID != null && curr.CurrencyCode != null && curr.Name != null)
+            .map(curr => [curr.ID, curr])
+        ).values()
+      );
+      setCachedCurrencies(uniqueCurrenciesApi);
+      try {
+        localStorage.setItem('appCachedCurrencies', JSON.stringify(uniqueCurrenciesApi));
+      } catch (e) {
+        console.error("Error saving currencies to localStorage", e);
       }
     }
-  }, [localData, cachedLanguages, cachedCurrencies]);
+  }, [localData]);
+
+  // Effect to set default selected language when cachedLanguages are available/updated
+  useEffect(() => {
+    if (cachedLanguages && cachedLanguages.length > 0) {
+      // If selectedLanguage is not set OR is not in the current list of cachedLanguages
+      if (!selectedLanguage || !cachedLanguages.find(lang => lang.UniqueSeoCode === selectedLanguage)) {
+        const defaultLang = cachedLanguages.find(lang => lang.LanguageCulture === 'en-US');
+        if (defaultLang) {
+          setSelectedLanguageState(defaultLang.UniqueSeoCode);
+        } else {
+          setSelectedLanguageState(cachedLanguages[0].UniqueSeoCode); // Fallback to the first language
+        }
+      }
+    } else if (cachedLanguages && cachedLanguages.length === 0) {
+      setSelectedLanguageState(null); // No languages available
+    } else if (!cachedLanguages) { // If cachedLanguages itself is null
+      setSelectedLanguageState(null);
+    }
+  }, [cachedLanguages, selectedLanguage]);
+
 
   const handleLanguageChange = (
     _: React.SyntheticEvent | null,
     newValue: string | null,
   ) => {
     if (newValue) {
-      setSelectedLanguageState(newValue); // Using local state for now
-      // Removed logic to auto-select currency based on language
+      setSelectedLanguageState(newValue);
     }
   };
 
@@ -79,11 +134,11 @@ const Localizations: React.FC = () => {
     newValue: string | null,
   ) => {
     if (newValue) {
-      setSelectedCurrencyState(newValue); // Using local state for now
+      setSelectedCurrencyState(newValue);
     }
   };
 
-  if (loading) {
+  if (isLoading) { // API is loading
     return <CircularProgress />;
   }
 
@@ -91,10 +146,9 @@ const Localizations: React.FC = () => {
     return <Typography color="danger">Error fetching data: {('data' in error ? JSON.stringify(error.data) : "error.message") || 'Unknown error'}</Typography>;
   }
 
-  if (!localData || !cachedLanguages || !cachedCurrencies) {
-    if (!localData || !cachedCurrencies) {
-      return <Typography>No data available.</Typography>;
-    }
+  // If not loading from API and no cached languages after attempting to load/fetch
+  if (!cachedLanguages || cachedLanguages.length === 0) {
+    return <Typography>No language data available.</Typography>;
   }
 
   return (
@@ -104,10 +158,10 @@ const Localizations: React.FC = () => {
           value={selectedLanguage}
           onChange={handleLanguageChange}
           placeholder="Select language"
-          disabled={!cachedLanguages || cachedLanguages.length === 0} // Disable if no languages
+          disabled={!cachedLanguages || cachedLanguages.length === 0}
         >
           {cachedLanguages && cachedLanguages.map((lang) => (
-            <Option key={lang.ID} value={lang.UniqueSeoCode}> {/* lang.UniqueSeoCode is already uppercased */}
+            <Option key={lang.ID} value={lang.UniqueSeoCode}>
               <img
                 src={`${import.meta.env.VITE_MEDIA_URL}images/${lang.FlagImageFileName}`}
                 alt={`${lang.Name} flag`}
@@ -124,8 +178,9 @@ const Localizations: React.FC = () => {
           value={selectedCurrency}
           onChange={handleCurrencyChange}
           placeholder="Select currency"
+          disabled={!cachedCurrencies || cachedCurrencies.length === 0}
         >
-          {cachedCurrencies.map((currency) => (
+          {cachedCurrencies && cachedCurrencies.map((currency) => ( // Added null check for cachedCurrencies
             <Option key={currency.ID} value={currency.CurrencyCode}>
               {currency.CurrencyCode}
             </Option>
